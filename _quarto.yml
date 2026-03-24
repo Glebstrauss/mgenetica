@@ -1,0 +1,51 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "MGenética"
+  site-url: "https://SEU-USUARIO.github.io/mgenetica/"
+  repo-url: "https://github.com/SEU-USUARIO/mgenetica"
+  repo-actions: [issue]
+  navbar:
+    left:
+      - href: index.qmd
+        text: Início
+      - href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
+        text: Módulos
+      - href: README.md
+        text: README
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "Módulos"
+        contents:
+          - modules/modulo01-introducao-ao-melhoramento-animal.qmd
+          - modules/modulo02-bases-da-genetica-quantitativa.qmd
+          - modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd
+          - modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd
+          - modules/modulo05-herdabilidade-e-repetibilidade.qmd
+          - modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd
+          - modules/modulo07-modelos-lineares-e-modelos-mistos.qmd
+          - modules/modulo08-blup-e-avaliacao-genetica.qmd
+          - modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd
+          - modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd
+          - modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd
+          - modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-copy: true
+    smooth-scroll: true
+    link-external-newwindow: true
+    lang: pt-BR
+
+execute:
+  warning: false
+  message: false
+  echo: true
