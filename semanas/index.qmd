@@ -1,0 +1,42 @@
+---
+title: "Semanas de Genética Quantitativa em Equídeos"
+subtitle: "Curso completo – 12 semanas"
+page-layout: full
+---
+
+# Genética Quantitativa em Equídeos
+
+Bem-vindo à parte de **Genética Quantitativa** aplicada a cavalos, burros, pôneis e outros equídeos.
+
+Este módulo tem duração de **12 semanas** e cobre desde os conceitos básicos até aplicações avançadas em melhoramento genético de raças equinas.
+
+## Estrutura do Módulo
+
+::: {.callout-tip}
+## Navegação
+Use o menu lateral esquerdo para acessar cada semana.
+:::
+
+### Semanas
+
+- [Semana 1: Introdução à Genética Quantitativa em Equídeos](semana01.qmd)
+- [Semana 2: Variância Fenotípica e Componentes da Variância](semana02.qmd)
+- [Semana 3: Hereditabilidade e Repetibilidade](semana03.qmd)
+- [Semana 4: Correlações Genéticas e Fenotípicas](semana04.qmd)
+- [Semana 5: Seleção e Resposta à Seleção](semana05.qmd)
+- [Semana 6: Índices de Seleção em Equídeos](semana06.qmd)
+- [Semana 7: Modelos Mistos e BLUP](semana07.qmd)
+- [Semana 8: Avaliação Genética de Reprodutores](semana08.qmd)
+- [Semana 9: Genética de Características de Limiar](semana09.qmd)
+- [Semana 10: Genética de Características de Longevidade e Reprodução](semana10.qmd)
+- [Semana 11: Interação Genótipo × Ambiente em Equídeos](semana11.qmd)
+- [Semana 12: Melhoramento Genético Sustentável em Raças Equinas](semana12.qmd)
+
+---
+
+**Próximo passo recomendado:**
+Vá para a [Semana 1 →](semana01.qmd)
+
+:::{.callout-note}
+Todo o conteúdo foi adaptado para características importantes em equídeos, como: altura na cernelha, velocidade em corridas, marcha, conformação, suscetibilidade a doenças (laminite, OCD, etc.) e desempenho reprodutivo.
+:::
