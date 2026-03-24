@@ -1,0 +1,56 @@
+---
+title: "Módulo 06 — Correlações genéticas e fenotípicas"
+---
+
+[← Módulo anterior](modulo05-herdabilidade-e-repetibilidade.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo07-modelos-lineares-e-modelos-mistos.qmd)
+
+## Introdução
+
+Este módulo apresenta os principais pontos sobre **correlações genéticas e fenotípicas** dentro da proposta do MGenética, conectando teoria e prática com foco em aprendizado progressivo.
+
+## Conceitos teóricos
+
+- Conceito 1: definição e contexto no melhoramento animal.
+- Conceito 2: relações com genética quantitativa e/ou genômica.
+- Conceito 3: implicações para seleção e tomada de decisão.
+
+## Parte prática
+
+Nesta etapa, utilizamos dados simulados para reproduzir um cenário didático e controlado.
+
+## Exemplo com dados simulados
+
+```{r}
+#| eval: false
+source("../scripts/modulo06.R")
+```
+
+## Código em R
+
+```{r}
+#| eval: false
+# Estrutura mínima para leitura do conjunto simulado
+# e execução da análise principal do módulo.
+```
+
+## Interpretação dos resultados
+
+- Verifique o comportamento das estimativas.
+- Compare os resultados com o esperado teoricamente.
+- Discuta possíveis fontes de variação ou viés.
+
+## Exercício ou atividade sugerida
+
+1. Modifique os parâmetros da simulação.
+2. Reexecute o script e compare as saídas.
+3. Redija uma breve conclusão técnica (5 a 10 linhas).
+
+## Materiais extras
+
+- Script de apoio: `../scripts/modulo06.R`
+- Pasta de dados: `../data/`
+- Referências adicionais serão incluídas nas próximas versões.
+
+---
+
+[← Módulo anterior](modulo05-herdabilidade-e-repetibilidade.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo07-modelos-lineares-e-modelos-mistos.qmd)

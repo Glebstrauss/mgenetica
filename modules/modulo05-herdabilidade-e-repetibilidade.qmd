@@ -1,0 +1,56 @@
+---
+title: "Módulo 05 — Herdabilidade e repetibilidade"
+---
+
+[← Módulo anterior](modulo04-medias-variancias-e-componentes-de-variancia.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo06-correlacoes-geneticas-e-fenotipicas.qmd)
+
+## Introdução
+
+Este módulo apresenta os principais pontos sobre **herdabilidade e repetibilidade** dentro da proposta do MGenética, conectando teoria e prática com foco em aprendizado progressivo.
+
+## Conceitos teóricos
+
+- Conceito 1: definição e contexto no melhoramento animal.
+- Conceito 2: relações com genética quantitativa e/ou genômica.
+- Conceito 3: implicações para seleção e tomada de decisão.
+
+## Parte prática
+
+Nesta etapa, utilizamos dados simulados para reproduzir um cenário didático e controlado.
+
+## Exemplo com dados simulados
+
+```{r}
+#| eval: false
+source("../scripts/modulo05.R")
+```
+
+## Código em R
+
+```{r}
+#| eval: false
+# Estrutura mínima para leitura do conjunto simulado
+# e execução da análise principal do módulo.
+```
+
+## Interpretação dos resultados
+
+- Verifique o comportamento das estimativas.
+- Compare os resultados com o esperado teoricamente.
+- Discuta possíveis fontes de variação ou viés.
+
+## Exercício ou atividade sugerida
+
+1. Modifique os parâmetros da simulação.
+2. Reexecute o script e compare as saídas.
+3. Redija uma breve conclusão técnica (5 a 10 linhas).
+
+## Materiais extras
+
+- Script de apoio: `../scripts/modulo05.R`
+- Pasta de dados: `../data/`
+- Referências adicionais serão incluídas nas próximas versões.
+
+---
+
+[← Módulo anterior](modulo04-medias-variancias-e-componentes-de-variancia.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo06-correlacoes-geneticas-e-fenotipicas.qmd)

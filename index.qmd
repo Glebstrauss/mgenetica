@@ -1,0 +1,64 @@
+---
+title: "MGenética"
+subtitle: "Fundamentos e aplicações de Melhoramento Animal, Genética Quantitativa e Genômica com dados simulados"
+page-layout: full
+---
+
+# MGenética
+
+Bem-vindo(a) ao **MGenética**, uma plataforma educacional aberta para apoiar o aprendizado de Melhoramento Animal com foco em **Genética Quantitativa** e **Genômica aplicada**.
+
+::: {.callout-important}
+Este site foi estruturado para ensino progressivo, com conteúdo teórico e prático em **R**, sempre começando por **dados simulados**.
+:::
+
+## Sobre
+
+O projeto MGenética integra fundamentos conceituais e aplicações analíticas para estudantes, pesquisadores e profissionais que desejam entender e aplicar métodos modernos de avaliação genética.
+
+## Objetivos
+
+- Apresentar os conceitos centrais do melhoramento animal de forma didática.
+- Construir uma base sólida em genética quantitativa aplicada.
+- Introduzir a genômica de maneira acessível e prática.
+- Desenvolver habilidades em análise de dados simulados no R para apoiar estudos futuros com dados reais.
+
+## Público-alvo
+
+- Estudantes de graduação e pós-graduação em Zootecnia, Medicina Veterinária e áreas afins.
+- Pesquisadores iniciantes em genética quantitativa e genômica animal.
+- Profissionais que atuam com avaliação genética e programas de melhoramento.
+
+## Bibliografia
+
+- Falconer, D. S.; Mackay, T. F. C. *Introduction to Quantitative Genetics*.
+- Lynch, M.; Walsh, B. *Genetics and Analysis of Quantitative Traits*.
+- Mrode, R. A. *Linear Models for the Prediction of Animal Breeding Values*.
+- Legarra, A.; Misztal, I. Materiais técnicos sobre avaliação genética e genômica.
+
+## Softwares e pacotes
+
+- **R** (>= 4.3)
+- **RStudio** (opcional)
+- Pacotes sugeridos: `tidyverse`, `lme4`, `sommer`, `rrBLUP`, `AGHmatrix`, `ggplot2`, `data.table`
+
+## Módulos do projeto
+
+Abaixo está a trilha completa com 12 módulos. Clique para acessar cada página:
+
+1. [Módulo 01 — Introdução ao Melhoramento Animal](modules/modulo01-introducao-ao-melhoramento-animal.qmd)
+2. [Módulo 02 — Bases da Genética Quantitativa](modules/modulo02-bases-da-genetica-quantitativa.qmd)
+3. [Módulo 03 — Estatística descritiva e exploração de dados no R](modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd)
+4. [Módulo 04 — Médias, variâncias e componentes de variância](modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd)
+5. [Módulo 05 — Herdabilidade e repetibilidade](modules/modulo05-herdabilidade-e-repetibilidade.qmd)
+6. [Módulo 06 — Correlações genéticas e fenotípicas](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd)
+7. [Módulo 07 — Modelos lineares e modelos mistos](modules/modulo07-modelos-lineares-e-modelos-mistos.qmd)
+8. [Módulo 08 — BLUP e avaliação genética](modules/modulo08-blup-e-avaliacao-genetica.qmd)
+9. [Módulo 09 — Estrutura de pedigree e parentesco](modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd)
+10. [Módulo 10 — Introdução à Genômica e marcadores SNP](modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd)
+11. [Módulo 11 — Controle de qualidade de dados genômicos](modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd)
+12. [Módulo 12 — Matrizes genômicas, GWAS e predição genômica](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd)
+
+---
+
+Se preferir começar do início, acesse o [Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd).
