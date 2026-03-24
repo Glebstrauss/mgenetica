@@ -35,6 +35,10 @@ jobs:
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Install R packages for Quarto render
+        run: |
+          Rscript -e 'install.packages(c("knitr", "rmarkdown"), repos = "https://cloud.r-project.org")'
+
       - name: Render Quarto site
         uses: quarto-dev/quarto-actions/render@v2
         with:
