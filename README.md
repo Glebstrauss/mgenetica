@@ -46,7 +46,10 @@ mgenetica/
 
 ## Como gerar e visualizar localmente
 
-Pré-requisito: [Quarto](https://quarto.org/) instalado.
+Pré-requisitos:
+
+- [Quarto](https://quarto.org/) instalado.
+- [R](https://www.r-project.org/) instalado para executar os scripts práticos.
 
 ```bash
 quarto preview
@@ -60,17 +63,25 @@ quarto render
 
 A saída está configurada para a pasta `docs/`, facilitando publicação com GitHub Pages.
 
-## Publicação futura no GitHub Pages
+## Como validar os scripts em R
 
-1. No GitHub, vá em **Settings > Pages**.
-2. Em **Build and deployment**, selecione:
-   - **Source**: Deploy from a branch
-   - **Branch**: `main` (ou branch desejada)
-   - **Folder**: `/docs`
-3. Garanta que o site foi renderizado com `quarto render` antes do push final.
-4. Atualize em `_quarto.yml`:
-   - `site-url`
-   - `repo-url`
+Para executar todos os scripts dos módulos a partir da raiz do projeto:
+
+```bash
+Rscript scripts/run_all_modules.R
+```
+
+Os arquivos `data/modulo*_simulado.csv` são saídas geradas automaticamente pelos scripts e não precisam ser versionados.
+
+## Publicação no GitHub Pages
+
+O repositório já inclui o workflow `.github/workflows/quarto-publish.yml`, que renderiza o site e publica no GitHub Pages quando há push na branch `main`.
+
+No GitHub, vá em **Settings > Pages** e selecione:
+
+- **Source**: GitHub Actions
+
+Os links públicos do site e do repositório ficam configurados em `_quarto.yml`.
 
 ## Próximos passos sugeridos
 
