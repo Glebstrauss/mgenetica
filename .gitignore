@@ -1,0 +1,14 @@
+.DS_Store
+.Rhistory
+.RData
+.Rproj.user/
+
+# Quarto outputs and caches
+/.quarto/
+/_freeze/
+/docs/
+/**/*_files/
+/.jupyter_cache/
+
+# Generated practice data
+/data/modulo*_simulado.csv
