@@ -4,8 +4,8 @@ project:
 
 website:
   title: "MGenética"
-  site-url: "https://SEU-USUARIO.github.io/mgenetica/"
-  repo-url: "https://github.com/SEU-USUARIO/mgenetica"
+  site-url: "https://glebstrauss.github.io/mgenetica/"
+  repo-url: "https://github.com/Glebstrauss/mgenetica"
   repo-actions: [issue]
   navbar:
     left:
