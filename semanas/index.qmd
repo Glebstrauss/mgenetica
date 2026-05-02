@@ -1,42 +1,40 @@
 ---
-title: "Semanas de Genética Quantitativa em Equídeos"
-subtitle: "Curso completo – 12 semanas"
+title: "Trilha de estudo"
+subtitle: "Roteiro de 12 semanas para avançar pelos módulos"
 page-layout: full
 ---
 
-# Genética Quantitativa em Equídeos
+# Trilha de estudo em 12 semanas
 
-Bem-vindo à parte de **Genética Quantitativa** aplicada a cavalos, burros, pôneis e outros equídeos.
-
-Este módulo tem duração de **12 semanas** e cobre desde os conceitos básicos até aplicações avançadas em melhoramento genético de raças equinas.
-
-## Estrutura do Módulo
+Esta página organiza os módulos existentes em um ritmo semanal. A proposta é estudar um tema por semana, executar o script correspondente e registrar uma interpretação curta dos resultados.
 
 ::: {.callout-tip}
-## Navegação
-Use o menu lateral esquerdo para acessar cada semana.
+Use esta trilha como plano de estudo. Os links apontam para os módulos já publicados, evitando páginas vazias ou links quebrados.
 :::
 
-### Semanas
+| Semana | Tema | Prática |
+|---:|---|---|
+| 1 | [Introdução ao Melhoramento Animal](../modules/modulo01-introducao-ao-melhoramento-animal.qmd) | Rodar `scripts/modulo01.R` e comparar grupos de seleção. |
+| 2 | [Bases da Genética Quantitativa](../modules/modulo02-bases-da-genetica-quantitativa.qmd) | Relacionar fenótipo, valor genético e ambiente. |
+| 3 | [Estatística descritiva e exploração no R](../modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd) | Descrever distribuição, média e dispersão dos dados simulados. |
+| 4 | [Médias, variâncias e componentes de variância](../modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd) | Comparar fontes de variação e interpretação biológica. |
+| 5 | [Herdabilidade e repetibilidade](../modules/modulo05-herdabilidade-e-repetibilidade.qmd) | Testar como mudanças na variância alteram estimativas. |
+| 6 | [Correlações genéticas e fenotípicas](../modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd) | Discutir respostas correlacionadas à seleção. |
+| 7 | [Modelos lineares e modelos mistos](../modules/modulo07-modelos-lineares-e-modelos-mistos.qmd) | Separar efeitos fixos, aleatórios e erro residual. |
+| 8 | [BLUP e avaliação genética](../modules/modulo08-blup-e-avaliacao-genetica.qmd) | Interpretar ranking de candidatos à seleção. |
+| 9 | [Estrutura de pedigree e parentesco](../modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd) | Avaliar como parentesco muda a comparação entre indivíduos. |
+| 10 | [Genômica e marcadores SNP](../modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd) | Revisar a entrada dos marcadores SNP no fluxo analítico. |
+| 11 | [Controle de qualidade genômico](../modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd) | Planejar filtros para dados genômicos simulados. |
+| 12 | [Matrizes genômicas, GWAS e predição](../modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd) | Conectar matriz genômica, associação e predição. |
 
-- [Semana 1: Introdução à Genética Quantitativa em Equídeos](semana01.qmd)
-- [Semana 2: Variância Fenotípica e Componentes da Variância](semana02.qmd)
-- [Semana 3: Hereditabilidade e Repetibilidade](semana03.qmd)
-- [Semana 4: Correlações Genéticas e Fenotípicas](semana04.qmd)
-- [Semana 5: Seleção e Resposta à Seleção](semana05.qmd)
-- [Semana 6: Índices de Seleção em Equídeos](semana06.qmd)
-- [Semana 7: Modelos Mistos e BLUP](semana07.qmd)
-- [Semana 8: Avaliação Genética de Reprodutores](semana08.qmd)
-- [Semana 9: Genética de Características de Limiar](semana09.qmd)
-- [Semana 10: Genética de Características de Longevidade e Reprodução](semana10.qmd)
-- [Semana 11: Interação Genótipo × Ambiente em Equídeos](semana11.qmd)
-- [Semana 12: Melhoramento Genético Sustentável em Raças Equinas](semana12.qmd)
+## Rotina recomendada
 
----
+1. Leia o módulo antes de abrir o script.
+2. Execute o script correspondente.
+3. Altere um parâmetro da simulação.
+4. Compare a saída nova com a original.
+5. Escreva uma conclusão técnica curta.
 
-**Próximo passo recomendado:**
-Vá para a [Semana 1 →](semana01.qmd)
-
-:::{.callout-note}
-Todo o conteúdo foi adaptado para características importantes em equídeos, como: altura na cernelha, velocidade em corridas, marcha, conformação, suscetibilidade a doenças (laminite, OCD, etc.) e desempenho reprodutivo.
+::: {.callout-note}
+Para validar todos os scripts de uma vez, execute `Rscript scripts/run_all_modules.R` na raiz do projeto.
 :::
