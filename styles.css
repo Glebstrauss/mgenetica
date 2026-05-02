@@ -1,18 +1,19 @@
 :root {
-  --mg-ink: #17324d;
-  --mg-muted: #5d6b78;
-  --mg-line: #d9e2ea;
-  --mg-soft: #f5f8fb;
+  --mg-ink: #071821;
+  --mg-muted: #536773;
+  --mg-line: #cfe0e8;
+  --mg-soft: #f1f7fa;
   --mg-paper: #ffffff;
-  --mg-accent: #147d7e;
-  --mg-accent-strong: #0f6263;
-  --mg-warm: #c87924;
-  --mg-warm-soft: #fff4e7;
+  --mg-accent: #006e9e;
+  --mg-accent-strong: #003d5c;
+  --mg-warm: #1496c8;
+  --mg-warm-soft: #e5f6fc;
+  --mg-deep: #020a0e;
 }
 
 body {
   color: var(--mg-ink);
-  background: linear-gradient(180deg, #f8fbfd 0, #ffffff 380px);
+  background: linear-gradient(180deg, #edf5f8 0, #ffffff 420px);
 }
 
 a {
@@ -24,9 +25,14 @@ a:hover {
 }
 
 .navbar {
-  background: #102d46;
+  background: linear-gradient(90deg, #020a0e, #063049 60%, #005f86);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 28px rgba(16, 45, 70, 0.16);
+  box-shadow: 0 10px 28px rgba(2, 10, 14, 0.24);
+}
+
+.navbar-brand img {
+  max-height: 34px;
+  border-radius: 6px;
 }
 
 .navbar-title {
@@ -89,12 +95,21 @@ h2::after {
   margin: 1.25rem 0 2rem;
   overflow: hidden;
   background:
-    radial-gradient(circle at 82% 18%, rgba(200, 121, 36, 0.18), transparent 28%),
-    linear-gradient(120deg, rgba(20, 125, 126, 0.14), rgba(16, 45, 70, 0.06)),
+    radial-gradient(circle at 82% 18%, rgba(0, 110, 158, 0.20), transparent 30%),
+    linear-gradient(120deg, rgba(7, 24, 33, 0.08), rgba(0, 110, 158, 0.10)),
     var(--mg-soft);
   border: 1px solid var(--mg-line);
   border-radius: 14px;
   box-shadow: 0 16px 40px rgba(23, 50, 77, 0.08);
+}
+
+.hero-logo img {
+  width: 88px;
+  height: 88px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 18px 36px rgba(2, 10, 14, 0.20);
 }
 
 .hero-kicker {
@@ -319,7 +334,7 @@ table {
 
 thead th {
   color: #ffffff;
-  background: #17324d;
+  background: var(--mg-deep);
 }
 
 tbody tr:nth-child(even) {
@@ -334,6 +349,67 @@ code {
   color: #0f6263;
   background: #edf7f7;
   border-radius: 4px;
+}
+
+.profile-hero {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.35fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  margin: 1.25rem 0 2rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--mg-line);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0, 110, 158, 0.22), transparent 32%),
+    linear-gradient(120deg, #071821, #063049 62%, #005f86);
+  box-shadow: 0 18px 44px rgba(2, 10, 14, 0.18);
+}
+
+.profile-logo img {
+  width: min(100%, 260px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.28);
+}
+
+.profile-copy,
+.profile-copy h1 {
+  color: #ffffff;
+}
+
+.profile-copy p {
+  max-width: 760px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.4rem;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.profile-card,
+.profile-section {
+  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--mg-line);
+  border-radius: 8px;
+  background: var(--mg-paper);
+  box-shadow: 0 10px 28px rgba(23, 50, 77, 0.06);
+}
+
+.profile-card h3 {
+  margin-top: 0;
 }
 
 @media (max-width: 1100px) {
@@ -351,8 +427,14 @@ code {
   .metric-grid,
   .feature-grid,
   .module-grid,
-  .study-flow {
+  .study-flow,
+  .profile-grid,
+  .profile-hero {
     grid-template-columns: 1fr;
+  }
+
+  .profile-logo img {
+    width: min(220px, 100%);
   }
 }
 
