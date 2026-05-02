@@ -39,12 +39,24 @@ a:hover {
   width: 46px;
   height: 46px;
   max-height: 46px;
-  object-fit: cover;
-  padding: 2px;
+  object-fit: contain;
+  padding: 0;
   border: 1px solid rgba(0, 161, 214, 0.42);
   border-radius: 10px;
-  background: #061219;
+  background: #020a0e;
   box-shadow: 0 0 24px rgba(0, 161, 214, 0.28);
+}
+
+.navbar-brand .navbar-logo.dark-content {
+  display: none;
+}
+
+body.quarto-dark .navbar-brand .navbar-logo.light-content {
+  display: none;
+}
+
+body.quarto-dark .navbar-brand .navbar-logo.dark-content {
+  display: inline-block;
 }
 
 .navbar-title {

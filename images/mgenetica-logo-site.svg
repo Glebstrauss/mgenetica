@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-labelledby="title desc">
+  <title id="title">MGenética</title>
+  <desc id="desc">Marca MGenética com monograma em forma de M e dupla hélice.</desc>
+  <defs>
+    <linearGradient id="mark-gradient" x1="160" y1="120" x2="760" y2="720" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e8fbff"/>
+      <stop offset="0.48" stop-color="#6fdcff"/>
+      <stop offset="1" stop-color="#008fc5"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0  0 0 0 0 0.62  0 0 0 0 0.86  0 0 0 0.7 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="900" height="900" rx="120" fill="#020a0e"/>
+  <circle cx="450" cy="420" r="310" fill="#006f9f" opacity="0.22"/>
+  <circle cx="450" cy="420" r="210" fill="#00a1d6" opacity="0.18"/>
+  <g fill="none" stroke="url(#mark-gradient)" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <path d="M250 190v300h62V295c34 74 80 124 138 164" stroke-width="34"/>
+    <path d="M650 190v300h-62V295c-34 74-80 124-138 164" stroke-width="34"/>
+    <path d="M326 490c20-140 222-158 248-300" stroke-width="34"/>
+    <path d="M574 490c-20-140-222-158-248-300" stroke-width="34"/>
+    <path d="M390 250h120" stroke-width="24"/>
+    <path d="M372 315h156" stroke-width="24"/>
+    <path d="M390 380h120" stroke-width="24"/>
+  </g>
+  <text x="450" y="680" text-anchor="middle"
+        font-family="Inter, Avenir Next, Segoe UI, Arial, sans-serif"
+        font-size="116" font-weight="800" letter-spacing="-1"
+        fill="#e8fbff">MGenética</text>
+  <text x="450" y="736" text-anchor="middle"
+        font-family="Inter, Avenir Next, Segoe UI, Arial, sans-serif"
+        font-size="32" font-weight="650" letter-spacing="7"
+        fill="#6fdcff">GENÉTICA QUANTITATIVA</text>
+</svg>

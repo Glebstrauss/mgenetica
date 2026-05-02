@@ -12,7 +12,7 @@ website:
   repo-url: "https://github.com/Glebstrauss/mgenetica"
   repo-actions: [issue]
   navbar:
-    logo: images/mgenetica-logo-site.png
+    logo: images/mgenetica-logo-site.svg
     logo-alt: "Logo MGenética"
     left:
       - href: index.qmd
