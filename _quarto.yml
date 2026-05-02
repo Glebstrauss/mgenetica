@@ -1,6 +1,10 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "modules/*.qmd"
+    - "semanas/*.qmd"
 
 website:
   title: "MGenética"
@@ -8,6 +12,8 @@ website:
   repo-url: "https://github.com/Glebstrauss/mgenetica"
   repo-actions: [issue]
   navbar:
+    logo: images/mgenetica-logo-site.png
+    logo-alt: "Logo MGenética"
     left:
       - href: index.qmd
         text: Início
@@ -15,8 +21,8 @@ website:
         text: Módulos
       - href: semanas/index.qmd
         text: Trilha
-      - href: README.md
-        text: README
+      - href: perfil.qmd
+        text: Perfil
   sidebar:
     style: "docked"
     search: true
