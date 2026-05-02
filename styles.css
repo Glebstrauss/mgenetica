@@ -82,22 +82,41 @@ h2::after {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
-  gap: clamp(1.25rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
   align-items: center;
-  padding: clamp(2.75rem, 6vw, 5rem) min(5vw, 4rem);
-  margin: -1.5rem calc(50% - 50vw) 2rem;
+  padding: clamp(1.6rem, 4vw, 3rem);
+  margin: 1.25rem 0 2rem;
+  overflow: hidden;
   background:
     radial-gradient(circle at 82% 18%, rgba(200, 121, 36, 0.18), transparent 28%),
     linear-gradient(120deg, rgba(20, 125, 126, 0.14), rgba(16, 45, 70, 0.06)),
     var(--mg-soft);
-  border-bottom: 1px solid var(--mg-line);
+  border: 1px solid var(--mg-line);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(23, 50, 77, 0.08);
 }
 
-.hero h1 {
+.hero-kicker {
+  width: max-content;
+  margin-bottom: 0.85rem;
+  padding: 0.28rem 0.62rem;
+  color: var(--mg-accent-strong);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  background: rgba(20, 125, 126, 0.10);
+}
+
+.hero-title {
+  max-width: 720px;
   margin-bottom: 1rem;
-  font-size: clamp(2.6rem, 7vw, 5.6rem);
-  line-height: 0.95;
+  color: var(--mg-ink);
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.02;
   letter-spacing: 0;
 }
 
@@ -146,16 +165,16 @@ h2::after {
 }
 
 .hero-panel {
-  padding: 0.75rem;
+  padding: 0.65rem;
   border: 1px solid rgba(20, 125, 126, 0.16);
-  border-radius: 16px;
+  border-radius: 12px;
   background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 22px 55px rgba(23, 50, 77, 0.12);
+  box-shadow: 0 16px 34px rgba(23, 50, 77, 0.10);
 }
 
 .hero-panel img {
   width: 100%;
-  max-height: 380px;
+  max-height: 300px;
   object-fit: contain;
 }
 
@@ -326,7 +345,7 @@ code {
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
-    padding: 2.5rem 1.25rem;
+    padding: 1.5rem;
   }
 
   .metric-grid,
@@ -339,7 +358,7 @@ code {
 
 @media (max-width: 560px) {
   .hero {
-    margin-top: -1rem;
+    margin-top: 1rem;
   }
 
   .hero-actions .btn {
