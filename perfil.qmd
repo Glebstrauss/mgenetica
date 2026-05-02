@@ -6,7 +6,7 @@ page-layout: full
 
 ::: {.profile-hero}
 ::: {.profile-logo}
-![](images/mgenetica-logo-site.svg){fig-alt="Logo do MGenética"}
+![](images/mgenetica-logo-correct.png){fig-alt="Logo do MGenética"}
 :::
 
 ::: {.profile-copy}

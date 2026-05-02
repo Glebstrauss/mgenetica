@@ -26,6 +26,7 @@ a:hover {
   color: var(--mg-cyan);
 }
 
+/* ── Navbar ──────────────────────────────────────────────── */
 .navbar {
   min-height: 64px;
   background:
@@ -40,23 +41,11 @@ a:hover {
   height: 46px;
   max-height: 46px;
   object-fit: contain;
-  padding: 0;
-  border: 1px solid rgba(0, 161, 214, 0.42);
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 10px;
-  background: #020a0e;
-  box-shadow: 0 0 24px rgba(0, 161, 214, 0.28);
-}
-
-.navbar-brand .navbar-logo.dark-content {
-  display: none;
-}
-
-body.quarto-dark .navbar-brand .navbar-logo.light-content {
-  display: none;
-}
-
-body.quarto-dark .navbar-brand .navbar-logo.dark-content {
-  display: inline-block;
+  background: #ffffff;
+  box-shadow: 0 0 18px rgba(0, 161, 214, 0.22);
 }
 
 .navbar-title {
@@ -68,8 +57,9 @@ body.quarto-dark .navbar-brand .navbar-logo.dark-content {
 .navbar .nav-link {
   color: rgba(255, 255, 255, 0.88);
   border-radius: 6px;
-  font-weight: 650;
+  font-weight: 700;
   margin: 0 0.1rem;
+  transition: background 160ms ease;
 }
 
 .navbar .nav-link:hover,
@@ -77,6 +67,7 @@ body.quarto-dark .navbar-brand .navbar-logo.dark-content {
   background: rgba(255, 255, 255, 0.12);
 }
 
+/* ── Sidebar ─────────────────────────────────────────────── */
 #quarto-sidebar {
   border-right: 1px solid var(--mg-line);
   background: rgba(245, 248, 251, 0.92);
@@ -84,6 +75,7 @@ body.quarto-dark .navbar-brand .navbar-logo.dark-content {
 
 .sidebar-item-text {
   border-radius: 6px;
+  transition: background 120ms ease;
 }
 
 .sidebar-item-text:hover,
@@ -91,10 +83,12 @@ body.quarto-dark .navbar-brand .navbar-logo.dark-content {
   background: var(--mg-cyan-soft);
 }
 
+/* ── Layout ──────────────────────────────────────────────── */
 .page-layout-full .content {
   max-width: 1180px;
 }
 
+/* ── Headings ────────────────────────────────────────────── */
 h2 {
   margin-top: 2.7rem;
   padding-top: 0.25rem;
@@ -112,6 +106,7 @@ h2::after {
   background: var(--mg-cyan);
 }
 
+/* ── Hero ────────────────────────────────────────────────── */
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(340px, 1.08fr);
@@ -167,58 +162,88 @@ h2::after {
   margin-top: 1.6rem;
 }
 
+/* ── Botões — Bootstrap 5 usa --bs-btn-* vars, precisamos sobrescrever ── */
 .btn {
   border-radius: 7px;
   font-weight: 800;
   padding: 0.78rem 1.05rem;
   text-decoration: none;
+  transition: transform 140ms ease, box-shadow 140ms ease,
+              background-color 140ms ease, border-color 140ms ease;
 }
 
 .btn-primary {
-  background: var(--mg-accent);
-  border-color: var(--mg-accent);
+  /* Bootstrap 5 CSS vars */
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #006f9f;
+  --bs-btn-border-color: #006f9f;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #004d73;
+  --bs-btn-hover-border-color: #004d73;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #004d73;
+  --bs-btn-active-border-color: #004d73;
+  --bs-btn-focus-shadow-rgb: 0, 111, 159;
+  /* Fallback direto */
+  color: #ffffff;
+  background-color: #006f9f;
+  border-color: #006f9f;
   box-shadow: 0 12px 28px rgba(0, 111, 159, 0.26);
 }
 
-.btn-primary:hover {
-  background: var(--mg-accent-strong);
-  border-color: var(--mg-accent-strong);
-  transform: translateY(-1px);
+.btn-primary:hover,
+.btn-primary:focus {
+  color: #ffffff;
+  background-color: #004d73;
+  border-color: #004d73;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(0, 111, 159, 0.34);
 }
 
 .btn-secondary {
+  /* Bootstrap 5 CSS vars */
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: rgba(255, 255, 255, 0.10);
+  --bs-btn-border-color: rgba(255, 255, 255, 0.30);
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: rgba(0, 161, 214, 0.18);
+  --bs-btn-hover-border-color: rgba(0, 161, 214, 0.80);
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: rgba(0, 161, 214, 0.22);
+  /* Fallback direto */
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.10);
-  border: 1px solid rgba(255, 255, 255, 0.24);
+  background-color: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.30);
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover,
+.btn-secondary:focus {
   color: #ffffff;
-  border-color: rgba(0, 161, 214, 0.78);
-  background: rgba(0, 161, 214, 0.16);
-  transform: translateY(-1px);
+  background-color: rgba(0, 161, 214, 0.18);
+  border-color: rgba(0, 161, 214, 0.80);
+  transform: translateY(-2px);
 }
 
+/* ── Hero panel (logo) ───────────────────────────────────── */
 .hero-panel {
   display: grid;
   place-items: center;
-  padding: clamp(0.8rem, 2.4vw, 1.35rem);
-  border: 1px solid rgba(0, 161, 214, 0.34);
-  border-radius: 14px;
-  background:
-    radial-gradient(circle at 50% 45%, rgba(0, 161, 214, 0.18), transparent 45%),
-    rgba(2, 10, 14, 0.64);
-  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.24);
+  padding: clamp(1.2rem, 2.4vw, 2rem);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(0,161,214,0.12);
 }
 
 .hero-panel img {
   width: 100%;
-  max-width: 520px;
-  max-height: 520px;
+  max-width: 420px;
+  max-height: 420px;
   object-fit: contain;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
+/* ── Métricas e fluxo ────────────────────────────────────── */
 .metric-grid,
 .feature-grid,
 .module-grid,
@@ -239,6 +264,12 @@ h2::after {
   border-radius: 8px;
   background: var(--mg-paper);
   box-shadow: 0 10px 26px rgba(23, 50, 77, 0.05);
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+.metric:hover {
+  box-shadow: 0 14px 32px rgba(23, 50, 77, 0.10);
+  transform: translateY(-1px);
 }
 
 .metric strong {
@@ -270,6 +301,7 @@ h2::after {
   color: var(--mg-cyan);
 }
 
+/* ── Feature cards ───────────────────────────────────────── */
 .feature-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-bottom: 2rem;
@@ -286,6 +318,12 @@ h2::after {
 
 .feature {
   padding: 1.25rem;
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+.feature:hover {
+  box-shadow: 0 16px 36px rgba(23, 50, 77, 0.10);
+  transform: translateY(-2px);
 }
 
 .feature h3 {
@@ -299,6 +337,7 @@ h2::after {
   line-height: 1.62;
 }
 
+/* ── Module grid ─────────────────────────────────────────── */
 .module-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 1rem;
@@ -306,7 +345,7 @@ h2::after {
 
 .module-card {
   min-height: 205px;
-  padding: 1.05rem;
+  padding: 1.05rem 1.2rem;
   transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 }
 
@@ -339,6 +378,7 @@ h2::after {
   font-size: 0.95rem;
 }
 
+/* ── Resource panel ──────────────────────────────────────── */
 .resource-panel {
   padding: 1.1rem 1.25rem;
   background:
@@ -351,6 +391,7 @@ h2::after {
   margin-bottom: 0;
 }
 
+/* ── Tabelas ─────────────────────────────────────────────── */
 table {
   border: 1px solid var(--mg-line);
   border-radius: 8px;
@@ -367,6 +408,7 @@ tbody tr:nth-child(even) {
   background: #f7fafc;
 }
 
+/* ── Callout e código ────────────────────────────────────── */
 .callout {
   border-radius: 8px;
 }
@@ -377,6 +419,7 @@ code {
   border-radius: 4px;
 }
 
+/* ── Perfil ──────────────────────────────────────────────── */
 .profile-hero {
   display: grid;
   grid-template-columns: minmax(190px, 0.35fr) minmax(0, 1fr);
@@ -392,14 +435,21 @@ code {
   box-shadow: 0 18px 44px rgba(2, 10, 14, 0.18);
 }
 
+.profile-logo {
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+}
+
 .profile-logo img {
-  width: min(100%, 260px);
+  width: min(100%, 220px);
   aspect-ratio: 1;
-  object-fit: cover;
-  padding: 0.35rem;
-  border: 1px solid rgba(0, 161, 214, 0.36);
-  border-radius: 24px;
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.28);
+  object-fit: contain;
+  border-radius: 8px;
 }
 
 .profile-copy,
@@ -434,12 +484,19 @@ code {
   border-radius: 8px;
   background: var(--mg-paper);
   box-shadow: 0 10px 28px rgba(23, 50, 77, 0.06);
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+.profile-card:hover {
+  box-shadow: 0 16px 36px rgba(23, 50, 77, 0.10);
+  transform: translateY(-2px);
 }
 
 .profile-card h3 {
   margin-top: 0;
 }
 
+/* ── Responsivo ──────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .module-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -461,8 +518,9 @@ code {
     grid-template-columns: 1fr;
   }
 
-  .profile-logo img {
-    width: min(220px, 100%);
+  .profile-logo {
+    max-width: 200px;
+    margin: 0 auto;
   }
 }
 

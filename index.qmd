@@ -24,7 +24,7 @@ Uma trilha aberta para aprender melhoramento animal com base quantitativa, exemp
 :::
 
 ::: {.hero-panel}
-![](images/mgenetica-logo-site.svg){fig-alt="Logo do MGenética"}
+![](images/mgenetica-logo-correct.png){fig-alt="Logo do MGenética"}
 :::
 :::
 
