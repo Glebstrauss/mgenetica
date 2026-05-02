@@ -6,6 +6,10 @@ page-layout: full
 
 ::: {.hero}
 ::: {.hero-copy}
+::: {.hero-logo}
+![](images/mgenetica-logo-site.png){fig-alt="Logo do MGenética"}
+:::
+
 ::: {.hero-kicker}
 Curso aberto
 :::
@@ -19,6 +23,7 @@ Uma trilha aberta para aprender melhoramento animal com base quantitativa, exemp
 ::: {.hero-actions}
 [Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
 [Ver trilha completa](#trilha-de-aprendizado){.btn .btn-secondary}
+[Conhecer o perfil](perfil.qmd){.btn .btn-secondary}
 :::
 :::
 
