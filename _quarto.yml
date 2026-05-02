@@ -13,6 +13,8 @@ website:
         text: Início
       - href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
         text: Módulos
+      - href: semanas/index.qmd
+        text: Trilha
       - href: README.md
         text: README
   sidebar:
@@ -37,6 +39,7 @@ website:
 format:
   html:
     theme: cosmo
+    css: styles.css
     toc: true
     toc-depth: 3
     number-sections: true
