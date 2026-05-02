@@ -41,6 +41,32 @@ Dados simulados para ensino
 :::
 :::
 
+::: {.study-flow}
+::: {.flow-step}
+**01**
+
+Fundamentos
+:::
+
+::: {.flow-step}
+**02**
+
+Simulação
+:::
+
+::: {.flow-step}
+**03**
+
+Modelagem
+:::
+
+::: {.flow-step}
+**04**
+
+Decisão
+:::
+:::
+
 ## Como usar o curso
 
 ::: {.feature-grid}
@@ -165,10 +191,12 @@ Integração entre parentesco genômico, associação e predição genômica.
 
 ## Recursos práticos
 
+::: {.resource-panel}
 - Scripts dos módulos: `scripts/modulo01.R` até `scripts/modulo12.R`.
 - Execução completa: `Rscript scripts/run_all_modules.R`.
 - Dados simulados gerados automaticamente em `data/`.
 - Publicação do site por GitHub Actions.
+:::
 
 ## Referências de base
 
