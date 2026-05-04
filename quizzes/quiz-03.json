@@ -1,0 +1,58 @@
+{
+  "module": "03",
+  "title": "Quiz — Módulo 03",
+  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "O coeficiente de variação (CV) é útil para comparar variabilidades entre características distintas porque:",
+      "options": [
+        "Remove a influência da média, expressando a dispersão em termos percentuais.",
+        "É sempre maior que o desvio padrão independente da escala.",
+        "Independe da distribuição dos dados e pode ser negativo.",
+        "É equivalente à variância e facilmente comparável."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Em uma distribuição fenotípica com assimetria positiva (skewness > 0):",
+      "options": [
+        "A média é menor que a mediana e a moda.",
+        "A cauda da distribuição estende-se para a direita, com poucos valores muito altos.",
+        "Os dados são perfeitamente simétricos ao redor da média.",
+        "A variância é necessariamente negativa."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Qual medida de dispersão é diretamente utilizada no cálculo da herdabilidade?",
+      "options": [
+        "Amplitude total",
+        "Intervalo interquartil (IIQ)",
+        "Variância",
+        "Moda"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "Na análise exploratória de dados fenotípicos, o gráfico mais eficaz para identificar outliers é:",
+      "options": [
+        "Gráfico de pizza",
+        "Diagrama de caixa (boxplot)",
+        "Gráfico de barras simples",
+        "Histograma de frequências acumuladas"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "O desvio padrão amostral de um conjunto de fenótipos é:",
+      "options": [
+        "O quadrado da variância amostral.",
+        "A raiz quadrada da variância amostral.",
+        "A média dos valores absolutos dos desvios em relação à mediana.",
+        "A metade da amplitude total dos dados."
+      ],
+      "correct": 1
+    }
+  ]
+}

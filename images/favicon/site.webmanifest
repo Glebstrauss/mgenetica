@@ -1,0 +1,22 @@
+{
+  "name": "MGenética Academy",
+  "short_name": "MGenética",
+  "description": "Melhoramento animal, genética quantitativa e genômica aplicada com R.",
+  "start_url": "/mgenetica/",
+  "display": "standalone",
+  "background_color": "#0d2642",
+  "theme_color": "#0d2642",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/mgenetica/images/favicon/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/mgenetica/images/favicon/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

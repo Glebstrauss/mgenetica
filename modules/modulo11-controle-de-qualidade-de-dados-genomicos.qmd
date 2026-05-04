@@ -1,56 +1,173 @@
 ---
-title: "Módulo 11 — Controle de qualidade de dados genômicos"
+title: "Módulo 11 — Controle de Qualidade de Dados Genômicos"
+description: "Filtros de MAF, call rate e HWE. Detecção de amostras problemáticas antes da análise."
 ---
 
-[← Módulo anterior](modulo10-introducao-a-genomica-e-marcadores-snp.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd)
-
-## Introdução
-
-Este módulo apresenta os principais pontos sobre **controle de qualidade de dados genômicos** dentro da proposta do MGenética, conectando teoria e prática com foco em aprendizado progressivo.
-
-## Conceitos teóricos
-
-- Conceito 1: definição e contexto no melhoramento animal.
-- Conceito 2: relações com genética quantitativa e/ou genômica.
-- Conceito 3: implicações para seleção e tomada de decisão.
-
-## Parte prática
-
-Nesta etapa, utilizamos dados simulados para reproduzir um cenário didático e controlado.
-
-## Exemplo com dados simulados
-
-```{r}
-#| eval: false
-source("../scripts/modulo11.R")
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 11 · GENÔMICA</span>
+  <div class="module-meta"><span>⏱ ~35 min</span><span>Nível: Avançado</span></div>
+</div>
+<div class="module-objectives">
+  <h3>O que você vai aprender</h3>
+  <ul>
+    <li>Por que controle de qualidade (QC) é etapa obrigatória antes de qualquer análise genômica</li>
+    <li>Aplicar filtros de MAF, call rate por SNP e por animal</li>
+    <li>Usar o teste HWE para detectar SNPs com erros sistemáticos</li>
+    <li>Quantificar o impacto do QC no conjunto de dados</li>
+  </ul>
+</div>
 ```
 
-## Código em R
+## Por que dados genômicos brutos não estão prontos para análise
+
+Plataformas de genotipagem produzem dados de alta qualidade, mas imperfeitos. Erros de cluster, problemas de extração de DNA, loci difíceis de genotipagem e variantes raras dificultam as análises. Um dado ruim incluído em GWAS ou na construção da matriz G pode comprometer todos os resultados.
+
+O protocolo padrão de QC aplica filtros em dois níveis: **por SNP** e **por animal**.
+
+::: {.callout-note}
+**Conceito central:** QC não "cria" dados melhores — elimina dados problemáticos. O conjunto resultante é menor, mas mais confiável. Errar no QC (ser muito liberal) contamina a análise; ser muito conservador desperdiça informação.
+:::
+
+## Critérios padrão de QC
+
+| Critério | Limiar típico | Fundamento |
+|---|---|---|
+| MAF por SNP | > 0,05 | SNPs raros têm baixo poder e maior taxa de erro |
+| Call rate por SNP | ≥ 0,95 | Loci com muitos dados faltantes indicam problema técnico |
+| Call rate por animal | ≥ 0,90 | DNA degradado compromete toda a amostra |
+| HWE p-valor | > 10⁻⁶ | Desvio forte indica erro sistemático de genotipagem |
+
+## Simulação e aplicação de QC em R
 
 ```{r}
-#| eval: false
-# Estrutura mínima para leitura do conjunto simulado
-# e execução da análise principal do módulo.
+#| label: simula-dados-qc
+set.seed(111)
+n_anim <- 300; n_snp <- 1000
+
+# Gera dados com problemas propositais
+p_alelo <- rbeta(n_snp, 2, 2)
+p_alelo[1:80] <- runif(80, 0.01, 0.04)  # SNPs raros (MAF < 0.05)
+
+G <- matrix(NA, n_anim, n_snp)
+for (j in 1:n_snp) {
+  a1 <- rbinom(n_anim,1,p_alelo[j]); a2 <- rbinom(n_anim,1,p_alelo[j])
+  G[,j] <- a1 + a2
+}
+# Insere missings: SNPs com baixo call rate
+snp_ruim <- sample(1:n_snp, 60)
+for (j in snp_ruim) G[sample(n_anim,80),j] <- NA
+# Amostras com baixo call rate
+anim_ruim <- sample(1:n_anim, 15)
+G[anim_ruim, sample(n_snp,120)] <- NA
+
+cat(sprintf("Dados brutos: %d animais × %d SNPs\n", n_anim, n_snp))
+cat(sprintf("Missings totais: %.1f%%\n", 100*mean(is.na(G))))
 ```
 
-## Interpretação dos resultados
+```{r}
+#| label: filtro-snp-cr
+# 1. Call rate por SNP
+snp_cr <- 1 - colMeans(is.na(G))
+cat("=== Filtro 1: Call rate por SNP (≥ 0.95) ===\n")
+cat(sprintf("SNPs removidos: %d / %d (%.1f%%)\n",
+            sum(snp_cr<.95), n_snp, 100*mean(snp_cr<.95)))
+print(quantile(snp_cr, c(0,0.05,0.25,0.5,0.75,0.95,1)))
+```
 
-- Verifique o comportamento das estimativas.
-- Compare os resultados com o esperado teoricamente.
-- Discuta possíveis fontes de variação ou viés.
+```{r}
+#| label: filtro-maf
+# 2. MAF
+p_obs <- colMeans(G, na.rm=TRUE)/2
+maf   <- pmin(p_obs, 1-p_obs)
+cat("\n=== Filtro 2: MAF (≥ 0.05) ===\n")
+cat(sprintf("SNPs removidos: %d / %d (%.1f%%)\n",
+            sum(maf<.05,na.rm=TRUE), n_snp, 100*mean(maf<.05,na.rm=TRUE)))
+```
 
-## Exercício ou atividade sugerida
+```{r}
+#| label: filtro-hwe
+# 3. Teste HWE por SNP
+hwe_p <- numeric(n_snp)
+for (j in 1:n_snp) {
+  g <- G[!is.na(G[,j]),j]
+  if (length(g)<20) { hwe_p[j]<-0; next }
+  pj <- mean(g)/2; qj <- 1-pj
+  exp_c <- c(pj^2, 2*pj*qj, qj^2)*length(g)
+  obs_c <- as.numeric(table(factor(g,levels=0:2)))
+  chi2  <- sum((obs_c-exp_c)^2/(exp_c+1e-9))
+  hwe_p[j] <- pchisq(chi2, 1, lower.tail=FALSE)
+}
+cat("\n=== Filtro 3: HWE (p > 1e-6) ===\n")
+cat(sprintf("SNPs fora de HWE: %d / %d (%.1f%%)\n",
+            sum(hwe_p<1e-6), n_snp, 100*mean(hwe_p<1e-6)))
+```
 
-1. Modifique os parâmetros da simulação.
-2. Reexecute o script e compare as saídas.
-3. Redija uma breve conclusão técnica (5 a 10 linhas).
+```{r}
+#| label: filtro-anim
+# 4. Call rate por animal
+anim_cr <- 1 - rowMeans(is.na(G))
+cat("\n=== Filtro 4: Call rate por animal (≥ 0.90) ===\n")
+cat(sprintf("Animais removidos: %d / %d (%.1f%%)\n",
+            sum(anim_cr<.90), n_anim, 100*mean(anim_cr<.90)))
+```
 
-## Materiais extras
+```{r}
+#| label: aplica-qc
+# Aplica todos os filtros
+keep_snp  <- snp_cr >= .95 & !is.na(maf) & maf >= .05 & hwe_p >= 1e-6
+keep_anim <- anim_cr >= .90
 
-- Script de apoio: `../scripts/modulo11.R`
-- Pasta de dados: `../data/`
-- Referências adicionais serão incluídas nas próximas versões.
+G_qc <- G[keep_anim, keep_snp]
 
----
+cat("\n=== RESUMO DO CONTROLE DE QUALIDADE ===\n")
+cat(sprintf("Antes:   %d animais × %d SNPs\n", n_anim, n_snp))
+cat(sprintf("Depois:  %d animais × %d SNPs\n", sum(keep_anim), sum(keep_snp)))
+cat(sprintf("Animais retidos: %.1f%%   SNPs retidos: %.1f%%\n",
+            100*mean(keep_anim), 100*mean(keep_snp)))
+cat(sprintf("Missings após QC: %.2f%%\n", 100*mean(is.na(G_qc))))
+```
 
-[← Módulo anterior](modulo10-introducao-a-genomica-e-marcadores-snp.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd)
+```{r}
+#| fig-height: 3.5
+#| label: plot-qc
+par(mfrow=c(1,2), mar=c(4,4,2,1))
+hist(snp_cr, breaks=30, col="#e8f1f8", border="#0d2642",
+     main="Call rate por SNP", xlab="Call rate", ylab="Frequência")
+abline(v=0.95, col="#dc2626", lty=2, lwd=2)
+hist(anim_cr, breaks=20, col="#e8f1f8", border="#0d2642",
+     main="Call rate por animal", xlab="Call rate", ylab="Frequência")
+abline(v=0.90, col="#dc2626", lty=2, lwd=2)
+```
+
+## Interpretação
+
+- Os histogramas mostram que a maioria dos SNPs e animais tem call rate próximo de 1,0 — os valores baixos são exceções claras, facilitando a definição de limiares.
+- O filtro de MAF removeu ~8% dos SNPs. Estes são SNPs raros introduzidos intencionalmente.
+- Após QC, os dados têm ~0% de missing — muito mais limpo para construir a matriz G.
+
+::: {.callout-important}
+**Interpretação:** Limiares de QC são decisões do pesquisador, não regras absolutas. Em estudos de raças puras com alta endogamia, o limiar de MAF pode ser rebaixado para 0,01. Em populações mistas, SNPs raros em uma raça podem ser comuns em outra.
+:::
+
+## Exercício proposto
+
+1. Mude o limiar de call rate por SNP para 0,90 (mais liberal). Quantos SNPs extras são mantidos?
+2. Remova apenas animais com call rate < 0,80. Como o resultado muda?
+3. Após QC, verifique se os SNPs retidos ainda têm distribuição de MAF razoável.
+
+```{=html}
+<div class="module-nav">
+  <a class="module-nav-card module-nav-prev" href="modulo10-introducao-a-genomica-e-marcadores-snp.qmd">
+    <span>Anterior · Módulo 10</span>
+    <strong>Genômica e Marcadores SNP</strong>
+  </a>
+  <a class="module-nav-card module-nav-next" href="modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd">
+    <span>Próximo · Módulo 12</span>
+    <strong>Matrizes Genômicas, GWAS e Predição</strong>
+  </a>
+</div>
+```
+
+::: {.quiz-container data-module="11"}
+:::

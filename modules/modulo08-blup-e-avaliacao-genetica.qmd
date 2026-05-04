@@ -1,56 +1,158 @@
 ---
-title: "Módulo 08 — BLUP e avaliação genética"
+title: "Módulo 08 — BLUP e Avaliação Genética"
+description: "Equações de Henderson, predição de EBV, acurácia e ranking de candidatos à seleção."
 ---
 
-[← Módulo anterior](modulo07-modelos-lineares-e-modelos-mistos.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo09-estrutura-de-pedigree-e-parentesco.qmd)
-
-## Introdução
-
-Este módulo apresenta os principais pontos sobre **blup e avaliação genética** dentro da proposta do MGenética, conectando teoria e prática com foco em aprendizado progressivo.
-
-## Conceitos teóricos
-
-- Conceito 1: definição e contexto no melhoramento animal.
-- Conceito 2: relações com genética quantitativa e/ou genômica.
-- Conceito 3: implicações para seleção e tomada de decisão.
-
-## Parte prática
-
-Nesta etapa, utilizamos dados simulados para reproduzir um cenário didático e controlado.
-
-## Exemplo com dados simulados
-
-```{r}
-#| eval: false
-source("../scripts/modulo08.R")
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 08 · MODELOS ESTATÍSTICOS</span>
+  <div class="module-meta"><span>⏱ ~45 min</span><span>Nível: Avançado</span></div>
+</div>
+<div class="module-objectives">
+  <h3>O que você vai aprender</h3>
+  <ul>
+    <li>As Equações de Modelos Mistos (MME) de Henderson</li>
+    <li>Resolver o sistema de equações em R usando álgebra matricial</li>
+    <li>Interpretar EBV, DEP e acurácia da predição</li>
+    <li>Ranquear candidatos e entender o efeito do número de filhos</li>
+  </ul>
+</div>
 ```
 
-## Código em R
+## O problema que Henderson resolveu
 
-```{r}
-#| eval: false
-# Estrutura mínima para leitura do conjunto simulado
-# e execução da análise principal do módulo.
+Em 1949, C.R. Henderson formulou um sistema de equações que permite, simultaneamente:
+
+1. **Estimar** os efeitos fixos (BLUE) — correção para fazenda, sexo, ano
+2. **Predizer** os valores genéticos aditivos (BLUP) de cada animal
+
+A elegância do sistema é que ele usa o pedigree diretamente na solução, por meio da inversa da matriz de parentesco numérico **A⁻¹**.
+
+## As equações de Henderson (MME)
+
+Para o modelo animal `y = Xb + Za + e`:
+
+$$\begin{bmatrix} \mathbf{X'X} & \mathbf{X'Z} \\ \mathbf{Z'X} & \mathbf{Z'Z} + \mathbf{A}^{-1}\lambda \end{bmatrix} \begin{bmatrix} \hat{\mathbf{b}} \\ \hat{\mathbf{a}} \end{bmatrix} = \begin{bmatrix} \mathbf{X'y} \\ \mathbf{Z'y} \end{bmatrix}$$
+
+Onde λ = σ²_e / σ²_A. O termo **A⁻¹λ** é o que "puxa" os EBVs em direção à média da população, com força proporcional ao grau de incerteza sobre o animal.
+
+::: {.callout-note}
+**Conceito central:** A inversa de A (A⁻¹) pode ser calculada diretamente do pedigree pelo método de Henderson (1976), sem nunca construir e inverter A explicitamente. Isso torna o BLUP computacionalmente viável para milhões de animais.
+:::
+
+```{=html}
+<div class="mg-viz" data-mg-viz="blup"></div>
 ```
 
-## Interpretação dos resultados
+## Implementação em R
 
-- Verifique o comportamento das estimativas.
-- Compare os resultados com o esperado teoricamente.
-- Discuta possíveis fontes de variação ou viés.
+```{r}
+#| label: pedigree-a-matrix
+set.seed(108)
 
-## Exercício ou atividade sugerida
+# Pedigree simplificado: 5 fundadores + 15 animais avaliados
+n_fnd <- 5; n_obs <- 15; n_tot <- n_fnd + n_obs
 
-1. Modifique os parâmetros da simulação.
-2. Reexecute o script e compare as saídas.
-3. Redija uma breve conclusão técnica (5 a 10 linhas).
+sires <- c(rep(0,n_fnd), sample(1:n_fnd, n_obs, TRUE))
+dams  <- c(rep(0,n_fnd), sample(1:n_fnd, n_obs, TRUE))
 
-## Materiais extras
+# Constrói A pelo método tabular (simplificado, sem endogamia)
+A <- diag(n_tot)
+for (i in (n_fnd+1):n_tot) {
+  s <- sires[i]; d <- dams[i]
+  if (s>0 && d>0) { A[s,i] <- A[i,s] <- 0.25; A[d,i] <- A[i,d] <- 0.25 }
+}
+Ainv <- solve(A + 1e-4*diag(n_tot))   # pequena regularização
+cat("Dimensão de A:", nrow(A), "×", ncol(A), "\n")
+cat("Diagonal de A (primeiros 10):", round(diag(A)[1:10], 3), "\n")
+```
 
-- Script de apoio: `../scripts/modulo08.R`
-- Pasta de dados: `../data/`
-- Referências adicionais serão incluídas nas próximas versões.
+```{r}
+#| label: simula-fenotipos
+# Simula fenótipos (apenas animais não-fundadores observados)
+va <- 400; ve <- 600; h2 <- va/(va+ve); lambda <- ve/va
 
----
+a_true <- rnorm(n_tot, 0, sqrt(va))
+obs_id <- (n_fnd+1):n_tot
+y      <- 300 + a_true[obs_id] + rnorm(n_obs, 0, sqrt(ve))
 
-[← Módulo anterior](modulo07-modelos-lineares-e-modelos-mistos.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo09-estrutura-de-pedigree-e-parentesco.qmd)
+cat(sprintf("\nh²=%.3f  λ=%.3f  n observados=%d\n", h2, lambda, n_obs))
+```
+
+```{r}
+#| label: resolve-mme
+# Monta e resolve as MME de Henderson
+# Modelo: y = 1μ + Za + e (apenas intercepto como efeito fixo)
+X   <- matrix(1, n_obs, 1)
+Z   <- matrix(0, n_obs, n_tot)
+for (i in seq_along(obs_id)) Z[i, obs_id[i]] <- 1
+
+LHS <- rbind(cbind(t(X)%*%X,          t(X)%*%Z),
+             cbind(t(Z)%*%X, t(Z)%*%Z + Ainv*lambda))
+RHS <- c(t(X)%*%y, t(Z)%*%y)
+
+sol   <- solve(LHS + 1e-8*diag(nrow(LHS)), RHS)
+mu_hat <- sol[1]
+a_hat  <- sol[-1]
+
+cat(sprintf("=== Resultados MME ===\n"))
+cat(sprintf("μ estimado:     %.2f  (verdadeiro: 300)\n", mu_hat))
+cat(sprintf("Cor(EBV, a_verd): %.4f\n", cor(a_hat[obs_id], a_true[obs_id])))
+```
+
+```{r}
+#| label: ranking-ebv
+ebv_df <- data.frame(
+  animal       = obs_id,
+  sire         = sires[obs_id],
+  EBV          = round(a_hat[obs_id], 2),
+  a_verdadeiro = round(a_true[obs_id], 2),
+  fenotipo     = round(y, 2)
+)[order(-a_hat[obs_id]),]
+
+cat("\n=== Top 8 animais por EBV ===\n")
+print(head(ebv_df, 8), row.names=FALSE)
+```
+
+```{r}
+#| fig-height: 4
+#| label: plot-ebv
+par(mar=c(4,4,2,1))
+plot(a_true[obs_id], a_hat[obs_id], pch=20, col=adjustcolor("#0d2642",0.6),
+     xlab="a verdadeiro", ylab="EBV (BLUP)",
+     main=sprintf("EBV vs. valor genético real  (r=%.3f)", cor(a_hat[obs_id],a_true[obs_id])))
+abline(0,1, lty=2, col="#5b6b7d"); abline(lm(a_hat[obs_id]~a_true[obs_id]), col="#dc2626", lwd=2)
+legend("topleft", c("Regressão","Linha 45°"), lty=1:2, col=c("#dc2626","#5b6b7d"), bty="n")
+```
+
+## Interpretação
+
+- A correlação EBV × a_verdadeiro é a **acurácia da avaliação** (r). Com apenas 15 animais avaliados e sem muitos filhos por touro, a acurácia é moderada.
+- Note que os EBVs têm **menor variância** que os valores verdadeiros — o "encolhimento" do BLUP.
+- Animais fundadores (sem fenótipo próprio) recebem EBV baseado **apenas nos filhos** — demonstrando o poder do modelo animal em usar toda a estrutura de pedigree.
+
+::: {.callout-important}
+**Interpretação:** DEP (Diferença Esperada na Progênie) = EBV/2. Um touro com EBV = +40 kg tem DEP = +20 kg, i.e., em média seus filhos pesarão 20 kg a mais que filhos de um touro mediano, nas mesmas condições.
+:::
+
+## Exercício proposto
+
+1. Aumente `n_obs` para 100. A acurácia melhora? Por quê?
+2. Mude `h2` para 0,10 (λ muito alto). O encolhimento dos EBVs aumenta? Verifique via `sd(a_hat)`.
+3. Selecione os top 3 animais por EBV. Verifique se eles têm os maiores valores verdadeiros.
+
+```{=html}
+<div class="module-nav">
+  <a class="module-nav-card module-nav-prev" href="modulo07-modelos-lineares-e-modelos-mistos.qmd">
+    <span>Anterior · Módulo 07</span>
+    <strong>Modelos Lineares e Mistos</strong>
+  </a>
+  <a class="module-nav-card module-nav-next" href="modulo09-estrutura-de-pedigree-e-parentesco.qmd">
+    <span>Próximo · Módulo 09</span>
+    <strong>Estrutura de Pedigree e Parentesco</strong>
+  </a>
+</div>
+```
+
+::: {.quiz-container data-module="08"}
+:::

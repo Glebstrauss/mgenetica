@@ -1,56 +1,144 @@
 ---
-title: "Módulo 10 — Introdução à Genômica e marcadores SNP"
+title: "Módulo 10 — Introdução à Genômica e Marcadores SNP"
+description: "SNPs, plataformas de genotipagem, frequências alélicas e desequilíbrio de ligação."
 ---
 
-[← Módulo anterior](modulo09-estrutura-de-pedigree-e-parentesco.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo11-controle-de-qualidade-de-dados-genomicos.qmd)
-
-## Introdução
-
-Este módulo apresenta os principais pontos sobre **introdução à genômica e marcadores snp** dentro da proposta do MGenética, conectando teoria e prática com foco em aprendizado progressivo.
-
-## Conceitos teóricos
-
-- Conceito 1: definição e contexto no melhoramento animal.
-- Conceito 2: relações com genética quantitativa e/ou genômica.
-- Conceito 3: implicações para seleção e tomada de decisão.
-
-## Parte prática
-
-Nesta etapa, utilizamos dados simulados para reproduzir um cenário didático e controlado.
-
-## Exemplo com dados simulados
-
-```{r}
-#| eval: false
-source("../scripts/modulo10.R")
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 10 · GENÔMICA</span>
+  <div class="module-meta"><span>⏱ ~35 min</span><span>Nível: Intermediário</span></div>
+</div>
+<div class="module-objectives">
+  <h3>O que você vai aprender</h3>
+  <ul>
+    <li>O que são SNPs e como são genotipados em populações</li>
+    <li>Frequência alélica, MAF e codificação 0/1/2</li>
+    <li>Desequilíbrio de ligação (LD) e sua importância para GWAS</li>
+    <li>Simular e analisar dados SNP com R base</li>
+  </ul>
+</div>
 ```
 
-## Código em R
+## Do pedigree ao DNA
+
+Os módulos anteriores usaram o pedigree para inferir parentesco. Mas o pedigree diz o que **esperamos** em média — um filho recebe, em média, 50% dos genes do pai, mas o valor real pode variar de 40% a 60% por acaso meiótico. Com **marcadores moleculares SNP**, medimos o que o animal **realmente herdou**, locus por locus.
+
+Um **SNP (Single Nucleotide Polymorphism)** é uma posição do genoma onde existe variação entre indivíduos em uma única base nitrogenada (ex.: A/G, C/T). Plataformas comerciais como o BovineSNP50 genotipam ~50.000 SNPs; o BovineHD genotipa ~777.000.
+
+::: {.callout-note}
+**Conceito central:** A codificação padrão dos SNPs é 0, 1, 2 — o número de cópias do alelo alternativo. 0 = AA (homozigoto referência), 1 = Aa (heterozigoto), 2 = aa (homozigoto alternativo).
+:::
+
+## Frequências alélicas e MAF
+
+Para cada SNP j na população:
+
+$$p_j = \frac{\text{número de alelos alternativos}}{2n}$$
+
+$$MAF_j = \min(p_j, 1-p_j)$$
+
+SNPs com MAF muito baixo (< 0,05) são pouco informativos e propensos a erros de genotipagem — geralmente removidos no controle de qualidade.
+
+## Simulação em R
 
 ```{r}
-#| eval: false
-# Estrutura mínima para leitura do conjunto simulado
-# e execução da análise principal do módulo.
+#| label: simula-snp
+set.seed(110)
+n_anim <- 200; n_snp <- 500
+
+# Frequências alélicas (distribuição Beta para variedade realista)
+p_alelo <- rbeta(n_snp, 2, 2)
+p_alelo <- pmax(0.02, pmin(0.98, p_alelo))
+
+# Gera matriz de genótipos 0/1/2
+G_mat <- matrix(NA, n_anim, n_snp)
+for (j in 1:n_snp) {
+  a1 <- rbinom(n_anim, 1, p_alelo[j])
+  a2 <- rbinom(n_anim, 1, p_alelo[j])
+  G_mat[, j] <- a1 + a2
+}
+cat(sprintf("Matriz de genótipos: %d animais × %d SNPs\n", n_anim, n_snp))
+cat(sprintf("Primeiros 3 animais, 8 SNPs:\n"))
+print(G_mat[1:3, 1:8])
 ```
 
-## Interpretação dos resultados
+```{r}
+#| label: frequencias
+p_obs <- colMeans(G_mat) / 2
+maf   <- pmin(p_obs, 1 - p_obs)
 
-- Verifique o comportamento das estimativas.
-- Compare os resultados com o esperado teoricamente.
-- Discuta possíveis fontes de variação ou viés.
+cat("\n=== Distribuição de MAF ===\n")
+print(summary(maf))
+cat(sprintf("SNPs com MAF < 0.05: %d (%.1f%%)\n", sum(maf<.05), 100*mean(maf<.05)))
+cat(sprintf("SNPs com MAF > 0.40: %d (%.1f%%)\n", sum(maf>.40), 100*mean(maf>.40)))
+```
 
-## Exercício ou atividade sugerida
+```{r}
+#| fig-height: 3.5
+#| label: plot-maf
+hist(maf, breaks=30, col="#e8f1f8", border="#0d2642",
+     main="Distribuição de MAF (n=500 SNPs)", xlab="Minor Allele Frequency", ylab="Frequência")
+abline(v=0.05, col="#dc2626", lty=2, lwd=2)
+legend("topright", "Limiar MAF=0.05", lty=2, col="#dc2626", bty="n")
+```
 
-1. Modifique os parâmetros da simulação.
-2. Reexecute o script e compare as saídas.
-3. Redija uma breve conclusão técnica (5 a 10 linhas).
+```{r}
+#| label: hwe-test
+# Teste de Equilíbrio de Hardy-Weinberg para o SNP 1
+j     <- 1
+p1    <- p_obs[j]; q1 <- 1 - p1
+obs   <- table(factor(G_mat[,j], levels=0:2))
+exp   <- c(p1^2, 2*p1*q1, q1^2) * n_anim
 
-## Materiais extras
+cat("=== Teste HWE — SNP 1 ===\n")
+cat(sprintf("p observada: %.4f\n", p1))
+cat(sprintf("Genótipos observados:  AA=%d  Aa=%d  aa=%d\n", obs[1],obs[2],obs[3]))
+cat(sprintf("Genótipos esperados:   AA=%.1f Aa=%.1f aa=%.1f\n", exp[1],exp[2],exp[3]))
+chi2 <- sum((obs - exp)^2 / exp)
+pval <- pchisq(chi2, df=1, lower.tail=FALSE)
+cat(sprintf("χ²=%.4f  p-valor=%.4f  %s\n", chi2, pval,
+            if(pval>0.05) "→ HWE não rejeitado" else "→ FORA do HWE"))
+```
 
-- Script de apoio: `../scripts/modulo10.R`
-- Pasta de dados: `../data/`
-- Referências adicionais serão incluídas nas próximas versões.
+```{r}
+#| label: ld
+# Desequilíbrio de ligação entre SNPs adjacentes
+r2_adj <- sapply(1:(n_snp-1), function(j) cor(G_mat[,j], G_mat[,j+1])^2)
+cat("\n=== Desequilíbrio de ligação entre SNPs adjacentes ===\n")
+cat(sprintf("r² médio:   %.4f\n", mean(r2_adj)))
+cat(sprintf("r² mediano: %.4f\n", median(r2_adj)))
+cat(sprintf("r² máximo:  %.4f\n", max(r2_adj)))
+cat("\n(r² alto = SNPs em desequilíbrio = um 'representa' o outro no GWAS)\n")
+```
 
----
+## Interpretação
 
-[← Módulo anterior](modulo09-estrutura-de-pedigree-e-parentesco.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo11-controle-de-qualidade-de-dados-genomicos.qmd)
+- A distribuição de MAF em forma de sino (Bell-shaped) com moda ~0,30–0,35 é típica de plataformas bem projetadas: poucas variantes raras, muitas moderadamente comuns.
+- O teste HWE verifica se as frequências dos genótipos AA, Aa e aa correspondem ao esperado em panmixia. Desvios sistemáticos indicam erros de genotipagem.
+- O LD entre SNPs adjacentes é baixo (~0,03) nesta simulação de posições aleatórias. No genoma real, SNPs próximos têm LD muito mais alto, formando **blocos de haplótipos**.
+
+::: {.callout-tip}
+**Dica R:** O pacote `snpStats` (Bioconductor) é a referência para análise de dados SNP em R. Para dados grandes, `PLINK` e `GCTA` são as ferramentas de linha de comando padrão.
+:::
+
+## Exercício proposto
+
+1. Calcule a distribuição de genótipos esperada para o SNP com maior MAF. Compare com os observados.
+2. Calcule r² entre SNPs separados por 1, 5 e 10 posições. O LD decai com a distância?
+3. Como o tamanho da amostra afeta a precisão da estimativa de p? Recalcule p_obs com apenas 20 animais.
+
+```{=html}
+<div class="module-nav">
+  <a class="module-nav-card module-nav-prev" href="modulo09-estrutura-de-pedigree-e-parentesco.qmd">
+    <span>Anterior · Módulo 09</span>
+    <strong>Estrutura de Pedigree e Parentesco</strong>
+  </a>
+  <a class="module-nav-card module-nav-next" href="modulo11-controle-de-qualidade-de-dados-genomicos.qmd">
+    <span>Próximo · Módulo 11</span>
+    <strong>Controle de Qualidade Genômico</strong>
+  </a>
+</div>
+```
+
+::: {.quiz-container data-module="10"}
+:::

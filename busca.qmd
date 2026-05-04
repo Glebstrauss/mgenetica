@@ -1,0 +1,41 @@
+---
+title: "Busca"
+description: "Busca full-text no conteúdo do MGenética Academy."
+page-layout: full
+---
+
+# Busca no curso
+
+Digite um termo, conceito, função em R ou nome de módulo para localizar páginas do curso.
+
+<link href="_pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="_pagefind/pagefind-ui.js"></script>
+
+<div id="search"></div>
+
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  if (typeof PagefindUI === 'undefined') {
+    document.getElementById('search').innerHTML =
+      '<p>A busca é ativada após a renderização publicada do site.</p>';
+    return;
+  }
+
+  new PagefindUI({
+    element: '#search',
+    showSubResults: true,
+    showImages: false,
+    translations: {
+      placeholder: 'Buscar no curso',
+      clear_search: 'Limpar',
+      load_more: 'Carregar mais resultados',
+      search_label: 'Buscar neste site',
+      filters_label: 'Filtros',
+      zero_results: 'Nenhum resultado para [SEARCH_TERM]',
+      many_results: '[COUNT] resultados para [SEARCH_TERM]',
+      one_result: '[COUNT] resultado para [SEARCH_TERM]',
+      searching: 'Buscando por [SEARCH_TERM]...'
+    }
+  });
+});
+</script>

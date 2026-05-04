@@ -1,56 +1,152 @@
 ---
-title: "Módulo 09 — Estrutura de pedigree e parentesco"
+title: "Módulo 09 — Estrutura de Pedigree e Parentesco"
+description: "Matriz de parentesco numérico A, método tabular, coeficientes de endogamia e A⁻¹."
 ---
 
-[← Módulo anterior](modulo08-blup-e-avaliacao-genetica.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo10-introducao-a-genomica-e-marcadores-snp.qmd)
-
-## Introdução
-
-Este módulo apresenta os principais pontos sobre **estrutura de pedigree e parentesco** dentro da proposta do MGenética, conectando teoria e prática com foco em aprendizado progressivo.
-
-## Conceitos teóricos
-
-- Conceito 1: definição e contexto no melhoramento animal.
-- Conceito 2: relações com genética quantitativa e/ou genômica.
-- Conceito 3: implicações para seleção e tomada de decisão.
-
-## Parte prática
-
-Nesta etapa, utilizamos dados simulados para reproduzir um cenário didático e controlado.
-
-## Exemplo com dados simulados
-
-```{r}
-#| eval: false
-source("../scripts/modulo09.R")
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 09 · PEDIGREE &amp; PARENTESCO</span>
+  <div class="module-meta"><span>⏱ ~40 min</span><span>Nível: Avançado</span></div>
+</div>
+<div class="module-objectives">
+  <h3>O que você vai aprender</h3>
+  <ul>
+    <li>O que a matriz A (parentesco numérico) representa e como interpretá-la</li>
+    <li>Construir A pelo método tabular de Henderson</li>
+    <li>Calcular coeficientes de endogamia a partir de A</li>
+    <li>Entender por que A⁻¹ é necessária nas MME</li>
+  </ul>
+</div>
 ```
 
-## Código em R
+## O pedigree como informação genética
+
+Dois irmãos completos compartilham, em média, 50% dos seus genes. Dois meio-irmãos paternos compartilham 25%. Esse grau de parentesco genético — expresso como **coeficiente de parentesco (a_ij)** — é a base para conectar avaliações de animais em diferentes rebanhos e épocas.
+
+A **Matriz de Parentesco Numérico (A)**, também chamada de Numerator Relationship Matrix, organiza esses coeficientes:
+
+- **Diagonal:** a_ii = 1 + F_i (onde F_i = coeficiente de endogamia do animal i)
+- **Off-diagonal:** a_ij = 2 × θ_ij (duas vezes o coeficiente de parentesco entre i e j)
+
+::: {.callout-note}
+**Conceito central:** A diagonal de A não é simplesmente "1" para todos. Para um animal endogâmico (pais aparentados), a_ii = 1 + F_i > 1. Isso reflete que seus dois alelos têm maior probabilidade de serem idênticos por descendência (IBD).
+:::
+
+## Valores esperados de a_ij
+
+| Relação | a_ij |
+|---|---|
+| Animal consigo mesmo (sem endogamia) | 1,0 |
+| Pai–filho | 0,5 |
+| Irmãos completos (sem endogamia) | 0,5 |
+| Meio-irmãos paternos (sem endogamia) | 0,25 |
+| Avô–neto | 0,25 |
+| Primos | 0,125 |
+| Animais não aparentados | 0,0 |
+
+## Método tabular de Henderson
 
 ```{r}
-#| eval: false
-# Estrutura mínima para leitura do conjunto simulado
-# e execução da análise principal do módulo.
+#| label: constroi-A
+# Pedigree de 10 animais (ordem cronológica obrigatória)
+ped <- data.frame(
+  animal = 1:10,
+  sire   = c(0,0,0, 1,1, 4,4, 6,6, 8),
+  dam    = c(0,0,0, 2,3, 5,5, 5,7, 7)
+)
+cat("=== Pedigree ===\n"); print(ped)
+
+# Método tabular: constrói A linha por linha
+n <- nrow(ped)
+A <- matrix(0, n, n)
+
+for (i in 1:n) {
+  s <- ped$sire[i]; d <- ped$dam[i]
+  # Diagonal
+  A[i,i] <- if (s==0 || d==0) 1 else 1 + 0.5*A[s,d]
+  # Off-diagonal (j < i)
+  for (j in seq_len(i-1)) {
+    A[j,i] <- A[i,j] <- if (s==0 && d==0) 0
+                          else if (s==0)   0.5*A[j,d]
+                          else if (d==0)   0.5*A[j,s]
+                          else             0.5*(A[j,s]+A[j,d])
+  }
+}
 ```
 
-## Interpretação dos resultados
+```{r}
+#| label: interpreta-A
+cat("=== Matriz A (arredondada) ===\n")
+print(round(A, 4))
 
-- Verifique o comportamento das estimativas.
-- Compare os resultados com o esperado teoricamente.
-- Discuta possíveis fontes de variação ou viés.
+Fi <- diag(A) - 1
+cat("\n=== Coeficientes de endogamia (F_i) ===\n")
+for (i in 1:n)
+  if (Fi[i] > 0) cat(sprintf("Animal %2d: F = %.4f (pais: %d × %d)\n",
+                              i, Fi[i], ped$sire[i], ped$dam[i]))
+if (all(Fi == 0)) cat("Nenhum animal endogâmico neste pedigree.\n")
+```
 
-## Exercício ou atividade sugerida
+```{r}
+#| label: verifica-parentescos
+cat("=== Verificação de coeficientes de parentesco ===\n")
+pares <- list(
+  list(i=4,  j=5,  relacao="Irmãos completos (pai 1, mãe 2/3 distintas)"),
+  list(i=6,  j=7,  relacao="Irmãos completos (pai 4, mãe 5)"),
+  list(i=4,  j=6,  relacao="Pai (4) – filho (6)"),
+  list(i=1,  j=6,  relacao="Avô (1) – neto (6)"),
+  list(i=1,  j=2,  relacao="Fundadores não aparentados"),
+  list(i=8,  j=9,  relacao="Irmãos completos (pai 6, mãe 5/7)")
+)
+for (p in pares)
+  cat(sprintf("a[%d,%d] = %.4f  ← %s\n", p$i, p$j, A[p$i,p$j], p$relacao))
+```
 
-1. Modifique os parâmetros da simulação.
-2. Reexecute o script e compare as saídas.
-3. Redija uma breve conclusão técnica (5 a 10 linhas).
+```{r}
+#| label: inversa-A
+cat("\n=== Inversa de A (5×5 primeiros) ===\n")
+Ainv <- solve(A)
+print(round(Ainv[1:5,1:5], 4))
+cat("\n(Valores fora da diagonal de A⁻¹ conectam parentes nas MME)\n")
+```
 
-## Materiais extras
+```{r}
+#| label: media-endogamia-geracoes
+cat("\n=== Coeficiente médio de parentesco (diagonal média de A) ===\n")
+for (g in list(1:3, 4:5, 6:7, 8:9, 10)) {
+  cat(sprintf("Geração (~%s): diagonal média = %.4f\n",
+              paste(g, collapse="-"), mean(diag(A)[g])))
+}
+```
 
-- Script de apoio: `../scripts/modulo09.R`
-- Pasta de dados: `../data/`
-- Referências adicionais serão incluídas nas próximas versões.
+## Interpretação
 
----
+- Os animais 4 e 5 (filhos de 1 × 2 e 1 × 3, respectivamente) têm a[4,5] ≈ 0,25 — meio-irmãos, não irmãos completos, porque têm mães distintas.
+- As diagonais da primeira geração (fundadores) são todas 1,0; nas gerações seguintes, podem superar 1,0 se houver endogamia.
+- A⁻¹ tem uma propriedade crucial: ela é **esparsa** (muitos zeros), o que torna o sistema MME computacionalmente eficiente mesmo com milhões de animais.
 
-[← Módulo anterior](modulo08-blup-e-avaliacao-genetica.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo10-introducao-a-genomica-e-marcadores-snp.qmd)
+::: {.callout-warning}
+**Atenção:** O pedigree deve estar ordenado cronologicamente — pais antes dos filhos. Um animal fora de ordem produz erros silenciosos na matriz A.
+:::
+
+## Exercício proposto
+
+1. Adicione ao pedigree um animal 11 com `sire=4` e `dam=5` (irmão cruzado com irmã). Calcule F_11.
+2. O que acontece com a diagonal de A se todos os animais forem filhos de pai × filha repetidamente por 3 gerações?
+3. Compare `solve(A)` com `solve(A + 0.01*diag(n))`. Por que a regularização ajuda?
+
+```{=html}
+<div class="module-nav">
+  <a class="module-nav-card module-nav-prev" href="modulo08-blup-e-avaliacao-genetica.qmd">
+    <span>Anterior · Módulo 08</span>
+    <strong>BLUP e Avaliação Genética</strong>
+  </a>
+  <a class="module-nav-card module-nav-next" href="modulo10-introducao-a-genomica-e-marcadores-snp.qmd">
+    <span>Próximo · Módulo 10</span>
+    <strong>Genômica e Marcadores SNP</strong>
+  </a>
+</div>
+```
+
+::: {.quiz-container data-module="09"}
+:::

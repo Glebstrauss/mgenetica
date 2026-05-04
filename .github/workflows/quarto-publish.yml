@@ -35,14 +35,22 @@ jobs:
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install R packages for Quarto render
+      - name: Setup Node.js (for Pagefind)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Restore R packages with renv
         run: |
-          Rscript -e 'repos <- Sys.getenv("RSPM", "https://packagemanager.posit.co/cran/__linux__/noble/latest"); install.packages(c("knitr", "rmarkdown"), repos = repos)'
+          Rscript -e 'repos <- Sys.getenv("RSPM", "https://packagemanager.posit.co/cran/__linux__/noble/latest"); install.packages("renv", repos = repos); renv::restore(prompt = FALSE)'
 
       - name: Render Quarto site
         uses: quarto-dev/quarto-actions/render@v2
         with:
           path: .
+
+      - name: Index with Pagefind
+        run: npx --yes pagefind --site docs --output-subdir _pagefind
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

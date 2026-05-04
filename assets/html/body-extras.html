@@ -1,0 +1,23 @@
+<script>
+// ── Carrega scripts globais (compatível com subpath do GH Pages) ──
+(function () {
+  var pageDir  = window.location.pathname.endsWith('/')
+    ? window.location.pathname
+    : window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+  var inSubdir = ['modules', 'semanas'].some(function (d) {
+    return pageDir.indexOf('/' + d) >= 0;
+  });
+  var prefix = inSubdir ? '../' : '';
+
+  function load(files) {
+    if (files.length === 0) return;
+    var file = files.shift();
+    var s = document.createElement('script');
+    s.src = prefix + 'assets/js/' + file;
+    s.onload = function () { load(files); };
+    document.body.appendChild(s);
+  }
+
+  load(['progress.js', 'darkmode.js', 'teacher-mode.js', 'interactives.js', 'quiz.js']);
+})();
+</script>

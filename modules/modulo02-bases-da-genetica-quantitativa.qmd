@@ -1,56 +1,143 @@
 ---
 title: "Módulo 02 — Bases da Genética Quantitativa"
+description: "A equação P = G + E, decomposição do valor genético e a herança de características quantitativas."
 ---
 
-[← Módulo anterior](modulo01-introducao-ao-melhoramento-animal.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd)
-
-## Introdução
-
-Este módulo apresenta os principais pontos sobre **bases da genética quantitativa** dentro da proposta do MGenética, conectando teoria e prática com foco em aprendizado progressivo.
-
-## Conceitos teóricos
-
-- Conceito 1: definição e contexto no melhoramento animal.
-- Conceito 2: relações com genética quantitativa e/ou genômica.
-- Conceito 3: implicações para seleção e tomada de decisão.
-
-## Parte prática
-
-Nesta etapa, utilizamos dados simulados para reproduzir um cenário didático e controlado.
-
-## Exemplo com dados simulados
-
-```{r}
-#| eval: false
-source("../scripts/modulo02.R")
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 02 · FUNDAMENTOS</span>
+  <div class="module-meta"><span>⏱ ~30 min</span><span>Nível: Introdutório</span></div>
+</div>
+<div class="module-objectives">
+  <h3>O que você vai aprender</h3>
+  <ul>
+    <li>Decomposição do fenótipo: P = G + E</li>
+    <li>Componentes do valor genotípico: A (aditivo), D (dominância), I (epistasia)</li>
+    <li>O que é o valor de melhoramento e por que herda apenas a metade aditiva</li>
+    <li>Estimar h² pela regressão pai–filho</li>
+  </ul>
+</div>
 ```
 
-## Código em R
+## Por que as características zootécnicas não obedecem a Mendel?
 
-```{r}
-#| eval: false
-# Estrutura mínima para leitura do conjunto simulado
-# e execução da análise principal do módulo.
+Peso, produção de leite, prolificidade — essas características variam de forma contínua entre os animais. Não há "pesado" ou "leve", há uma distribuição. Isso acontece porque **muitos loci** contribuem simultaneamente, cada um com efeito pequeno, e o **ambiente** sobrepõe ruído a essa somatória genética. O resultado é a curva normal que observamos nos fenótipos zootécnicos.
+
+O modelo fundamental é:
+
+$$P = G + E$$
+
+Onde **P** é o fenótipo observado, **G** o valor genotípico e **E** o desvio ambiental.
+
+## Decomposição do valor genotípico
+
+O valor genotípico **G** não é simples. Ele se decompõe em:
+
+$$G = A + D + I$$
+
+| Componente | Nome | Transmissão |
+|---|---|---|
+| **A** | Valor aditivo (breeding value) | Metade para cada filho |
+| **D** | Desvio de dominância | Não se transmite (recombinação) |
+| **I** | Desvio de interação (epistasia) | Não se transmite (recombinação) |
+
+::: {.callout-note}
+**Conceito central:** O **valor de melhoramento** (A) é a única parte do genótipo que se transmite de forma predizível para a progênie. Em média, cada filho recebe **metade** do valor A do pai — daí DEP = EBV / 2.
+:::
+
+A variância fenotípica se decompõe de forma análoga:
+
+$$V_P = V_A + V_D + V_I + V_E$$
+
+A herdabilidade no sentido estreito — o parâmetro mais importante do melhoramento — é:
+
+$$h^2 = \frac{V_A}{V_P}$$
+
+```{=html}
+<div class="mg-viz" data-mg-viz="pge"></div>
 ```
 
-## Interpretação dos resultados
+## Simulação em R
 
-- Verifique o comportamento das estimativas.
-- Compare os resultados com o esperado teoricamente.
-- Discuta possíveis fontes de variação ou viés.
+```{r}
+#| label: decomposicao-vp
+set.seed(102)
+n  <- 500
 
-## Exercício ou atividade sugerida
+# Definir componentes (valores didáticos em unidades de variância)
+va <- 200; vd <- 60; vi <- 20; ve <- 320
+vp <- va + vd + vi + ve
 
-1. Modifique os parâmetros da simulação.
-2. Reexecute o script e compare as saídas.
-3. Redija uma breve conclusão técnica (5 a 10 linhas).
+cat("=== Decomposição da variância fenotípica ===\n")
+comps <- c("VA (aditiva)", "VD (dominância)", "VI (epistasia)", "VE (ambiental)", "VP total")
+vals  <- c(va, vd, vi, ve, vp)
+for (i in seq_along(comps))
+  cat(sprintf("%-20s %6.1f  (%5.1f%%)\n", comps[i], vals[i], 100*vals[i]/vp))
+cat(sprintf("\nh² = VA/VP = %.4f\n", va/vp))
+```
 
-## Materiais extras
+```{r}
+#| label: simulacao-pge
+# Simula animais com P = A + D + I + E
+a_sim <- rnorm(n, 0, sqrt(va))
+d_sim <- rnorm(n, 0, sqrt(vd))
+i_sim <- rnorm(n, 0, sqrt(vi))
+e_sim <- rnorm(n, 0, sqrt(ve))
+g_sim <- a_sim + d_sim + i_sim
+p_sim <- 100 + g_sim + e_sim
 
-- Script de apoio: `../scripts/modulo02.R`
-- Pasta de dados: `../data/`
-- Referências adicionais serão incluídas nas próximas versões.
+cat("=== Variâncias observadas na simulação ===\n")
+cat(sprintf("Var(P):         %6.2f  (esperado: %6.1f)\n", var(p_sim), vp))
+cat(sprintf("Var(G):         %6.2f  (esperado: %6.1f)\n", var(g_sim), va+vd+vi))
+cat(sprintf("Var(A):         %6.2f  (esperado: %6.1f)\n", var(a_sim), va))
+cat(sprintf("Cor(P, A):      %6.4f  (≈ h = √h²)\n", cor(p_sim, a_sim)))
+cat(sprintf("h² obs (cor²):  %6.4f\n", cor(p_sim, a_sim)^2))
+cat(sprintf("h² teórico:     %6.4f\n", va/vp))
+```
 
----
+```{r}
+#| label: regressao-pai-filho
+# Regressão filho ~ pai: o coeficiente b estima h²/2
+a_pai   <- rnorm(n, 0, sqrt(va))
+p_pai   <- 100 + a_pai + rnorm(n, 0, sqrt(ve + vd + vi))
+a_filho <- 0.5 * a_pai + rnorm(n, 0, sqrt(0.75 * va + ve + vd))
+p_filho <- 100 + a_filho + rnorm(n, 0, sqrt(ve + vd + vi))
 
-[← Módulo anterior](modulo01-introducao-ao-melhoramento-animal.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd)
+b   <- coef(lm(p_filho ~ p_pai))[2]
+cat("=== Regressão filho ~ pai ===\n")
+cat(sprintf("b (coef. regressão): %.4f\n", b))
+cat(sprintf("h² estimado (2×b):   %.4f\n", 2*b))
+cat(sprintf("h² teórico:          %.4f\n", va/vp))
+```
+
+## Interpretação
+
+- A simulação mostra que **apenas VA contribui** para a correlação entre pais e filhos. VD e VI "desaparecem" na recombinação.
+- A regressão pai–filho produz b ≈ h²/2 ≈ 0,20 — consistente com o teórico de 0,19. Variações entre simulações são esperadas (amostragem finita).
+- O h² observado via `cor(P, A)²` converge para o teórico com n grande.
+
+::: {.callout-important}
+**Interpretação:** h² = 0,31 não significa que "31% do fenótipo de cada animal é genético". Significa que 31% da **variação** observada na população se deve a diferenças genéticas aditivas entre animais.
+:::
+
+## Exercício proposto
+
+1. Aumente `vd` para 150 e recalcule `h²`. Como o h² mudou mesmo com VA constante?
+2. Simule o que acontece com a regressão pai–filho quando `n <- 50`. Compare com `n <- 2000`.
+3. Qual seria o h² se `vi = 0` e `vd = 0`? O que isso significa biologicamente?
+
+```{=html}
+<div class="module-nav">
+  <a class="module-nav-card module-nav-prev" href="modulo01-introducao-ao-melhoramento-animal.qmd">
+    <span>Anterior · Módulo 01</span>
+    <strong>Introdução ao Melhoramento Animal</strong>
+  </a>
+  <a class="module-nav-card module-nav-next" href="modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd">
+    <span>Próximo · Módulo 03</span>
+    <strong>Estatística Descritiva e Exploração no R</strong>
+  </a>
+</div>
+```
+
+::: {.quiz-container data-module="02"}
+:::

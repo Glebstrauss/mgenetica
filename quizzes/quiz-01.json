@@ -1,0 +1,58 @@
+{
+  "module": "01",
+  "title": "Quiz — Módulo 01",
+  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "O objetivo principal do melhoramento animal é:",
+      "options": [
+        "Maximizar a produção de um único animal campeão.",
+        "Modificar a média genotípica da população ao longo das gerações.",
+        "Eliminar toda variação genética da população.",
+        "Padronizar os fenótipos para facilitar a comercialização."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Na equação do melhorista ΔG = i × h × σA / L, a letra \"i\" representa:",
+      "options": [
+        "A acurácia da avaliação genética.",
+        "A intensidade de seleção (função do percentual selecionado).",
+        "O intervalo de gerações em anos.",
+        "O desvio padrão fenotípico."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Um aumento no intervalo de gerações (L) tende a:",
+      "options": [
+        "Aumentar o ganho genético anual.",
+        "Não alterar o ganho genético.",
+        "Reduzir o ganho genético anual.",
+        "Aumentar a herdabilidade da característica."
+      ],
+      "correct": 2
+    },
+    {
+      "text": "Para maximizar a resposta à seleção, qual combinação é mais favorável?",
+      "options": [
+        "Alta h², baixa intensidade de seleção, longo intervalo de gerações.",
+        "Baixa h², alta intensidade de seleção, longo intervalo de gerações.",
+        "Alta h², alta intensidade de seleção, curto intervalo de gerações.",
+        "Baixa h², baixa intensidade de seleção, curto intervalo de gerações."
+      ],
+      "correct": 2
+    },
+    {
+      "text": "O diferencial de seleção (S) é definido como:",
+      "options": [
+        "A variância genética aditiva da população.",
+        "O número de animais selecionados para reprodução.",
+        "A diferença entre a média dos selecionados e a média da população.",
+        "A acurácia da avaliação genética dos candidatos."
+      ],
+      "correct": 2
+    }
+  ]
+}

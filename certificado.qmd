@@ -1,0 +1,320 @@
+---
+title: "Certificado de Conclusão"
+description: "Gere seu certificado de conclusão do curso MGenética Academy"
+---
+
+<div id="cert-gate">
+  <div id="cert-incomplete" style="display:none">
+    <div class="module-objectives" style="margin-bottom:2rem">
+      <h3>Módulos pendentes</h3>
+      <p>Complete todos os 12 módulos do curso para desbloquear o certificado.</p>
+      <div id="cert-progress-list"></div>
+    </div>
+    <div style="text-align:center">
+      <a href="modules/modulo01-introducao-ao-melhoramento-animal.html" class="btn btn-primary">
+        Continuar estudando
+      </a>
+    </div>
+  </div>
+
+  <div id="cert-ready" style="display:none">
+    <div class="hero" style="text-align:center;margin-bottom:2rem">
+      <div class="hero-kicker">🎓 Parabéns!</div>
+      <h1 class="hero-title">Você concluiu o curso</h1>
+      <p>Todos os 12 módulos foram completados com aprovação nos quizzes.</p>
+    </div>
+
+    <!-- Certificate preview -->
+    <div id="cert-preview" style="
+      background:#fff;color:#0d2642;
+      border:3px solid #0d2642;border-radius:12px;
+      padding:3rem 2.5rem;max-width:760px;margin:0 auto 2rem;
+      font-family:'Inter',sans-serif;
+      box-shadow:0 8px 32px rgba(13,38,66,.15);
+      position:relative;overflow:hidden;
+    ">
+      <!-- decorative top stripe -->
+      <div style="
+        position:absolute;top:0;left:0;right:0;height:8px;
+        background:linear-gradient(90deg,#0d2642,#2563a8,#0d2642);
+      "></div>
+
+      <div style="text-align:center;margin-bottom:2rem">
+        <img src="images/mgenetica-logo-correct.png" alt="MGenética" style="height:56px;margin-bottom:1rem">
+        <div style="font-size:.85rem;letter-spacing:.15em;color:#2563a8;text-transform:uppercase;font-weight:600">
+          MGenética Academy
+        </div>
+      </div>
+
+      <div style="text-align:center;border-top:1px solid #c8d8ea;border-bottom:1px solid #c8d8ea;padding:1.5rem 0;margin-bottom:1.5rem">
+        <div style="font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#5a7a9a;margin-bottom:.5rem">
+          Certifica que
+        </div>
+        <div id="cert-name" style="font-size:2rem;font-weight:700;color:#0d2642;font-style:italic;min-height:2.5rem">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-bottom:1.5rem;color:#1a3a5c;line-height:1.7">
+        concluiu com aproveitamento o curso<br>
+        <strong style="font-size:1.15rem">Melhoramento Animal, Genética Quantitativa<br>e Genômica Aplicada</strong><br>
+        composto de 12 módulos, com aprovação em todos os quizzes de avaliação.
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:2rem;flex-wrap:wrap;gap:1rem">
+        <div style="font-size:.82rem;color:#5a7a9a">
+          <span style="display:block;font-weight:600;color:#0d2642">Data de conclusão</span>
+          <span id="cert-date"></span>
+        </div>
+        <div style="text-align:center">
+          <div style="width:160px;border-top:1px solid #0d2642;padding-top:.4rem;font-size:.78rem;color:#5a7a9a">
+            MGenética Academy
+          </div>
+        </div>
+        <div style="font-size:.82rem;color:#5a7a9a;text-align:right">
+          <span style="display:block;font-weight:600;color:#0d2642">Carga horária estimada</span>
+          36 horas
+        </div>
+      </div>
+
+      <!-- decorative bottom stripe -->
+      <div style="
+        position:absolute;bottom:0;left:0;right:0;height:4px;
+        background:linear-gradient(90deg,#0d2642,#2563a8,#0d2642);
+      "></div>
+    </div>
+
+    <!-- Name input + actions -->
+    <div style="text-align:center;max-width:480px;margin:0 auto">
+      <label for="cert-name-input" style="display:block;font-weight:600;margin-bottom:.5rem">
+        Seu nome (para o certificado)
+      </label>
+      <input id="cert-name-input" type="text" placeholder="Digite seu nome completo"
+        style="width:100%;padding:.6rem 1rem;border:1px solid var(--mg-line,#c8d8ea);
+               border-radius:8px;font-size:1rem;margin-bottom:1rem;
+               background:var(--mg-bg,#fff);color:var(--mg-text,#0d2642)">
+
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <button id="cert-pdf-btn" class="btn btn-primary" style="min-width:200px">
+          Gerar PDF
+        </button>
+        <button id="cert-reset-btn" class="btn btn-secondary" style="min-width:140px">
+          Limpar progresso
+        </button>
+      </div>
+      <p style="font-size:.8rem;color:var(--mg-muted,#8b949e);margin-top:.75rem">
+        O PDF é gerado diretamente no seu navegador — nenhum dado é enviado a servidores.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var MODULES = [
+    'modulo01','modulo02','modulo03','modulo04',
+    'modulo05','modulo06','modulo07','modulo08',
+    'modulo09','modulo10','modulo11','modulo12'
+  ];
+
+  var MODULE_TITLES = {
+    modulo01: 'Introdução ao Melhoramento Animal',
+    modulo02: 'Bases da Genética Quantitativa',
+    modulo03: 'Estatística Descritiva e Exploração de Dados no R',
+    modulo04: 'Médias, Variâncias e Componentes de Variância',
+    modulo05: 'Herdabilidade e Repetibilidade',
+    modulo06: 'Correlações Genéticas e Fenotípicas',
+    modulo07: 'Modelos Lineares e Modelos Mistos',
+    modulo08: 'BLUP e Avaliação Genética',
+    modulo09: 'Estrutura de Pedigree e Parentesco',
+    modulo10: 'Introdução à Genômica e Marcadores SNP',
+    modulo11: 'Controle de Qualidade de Dados Genômicos',
+    modulo12: 'Matrizes Genômicas, GWAS e Predição Genômica'
+  };
+
+  function getCompleted() {
+    try {
+      var api = window.mgenetica;
+      if (api && api.getCompleted) return api.getCompleted();
+    } catch (_) {}
+    try { return JSON.parse(localStorage.getItem('mgenetica_completed')) || []; }
+    catch (_) { return []; }
+  }
+
+  function init() {
+    var completed = getCompleted();
+    var pending   = MODULES.filter(function (m) { return !completed.includes(m); });
+
+    if (pending.length > 0) {
+      showIncomplete(completed, pending);
+    } else {
+      showReady();
+    }
+  }
+
+  function showIncomplete(completed, pending) {
+    document.getElementById('cert-incomplete').style.display = '';
+    var list = document.getElementById('cert-progress-list');
+    var html = '<ul style="list-style:none;padding:0;margin:.75rem 0 0">';
+    MODULES.forEach(function (m) {
+      var done  = completed.includes(m);
+      var title = MODULE_TITLES[m] || m;
+      html += '<li style="padding:.3rem 0;display:flex;align-items:center;gap:.5rem">' +
+        '<span style="font-size:1rem">' + (done ? '✅' : '⬜') + '</span>' +
+        '<span style="' + (done ? '' : 'color:var(--mg-muted,#8b949e)') + '">' + title + '</span>' +
+        '</li>';
+    });
+    html += '</ul>';
+    list.innerHTML = html;
+  }
+
+  function showReady() {
+    document.getElementById('cert-ready').style.display = '';
+
+    var dateEl = document.getElementById('cert-date');
+    var stored = localStorage.getItem('mgenetica_cert_date');
+    if (!stored) {
+      stored = new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'long', year:'numeric' });
+      localStorage.setItem('mgenetica_cert_date', stored);
+    }
+    dateEl.textContent = stored;
+
+    var nameInput = document.getElementById('cert-name-input');
+    var certName  = document.getElementById('cert-name');
+
+    var savedName = localStorage.getItem('mgenetica_cert_name') || '';
+    nameInput.value = savedName;
+    certName.textContent = savedName || 'Seu Nome';
+
+    nameInput.addEventListener('input', function () {
+      certName.textContent = nameInput.value.trim() || 'Seu Nome';
+    });
+
+    document.getElementById('cert-pdf-btn').addEventListener('click', generatePDF);
+    document.getElementById('cert-reset-btn').addEventListener('click', function () {
+      if (confirm('Isso vai apagar todo o seu progresso. Tem certeza?')) {
+        localStorage.removeItem('mgenetica_completed');
+        localStorage.removeItem('mgenetica_cert_date');
+        localStorage.removeItem('mgenetica_cert_name');
+        location.reload();
+      }
+    });
+  }
+
+  function generatePDF() {
+    var nameInput = document.getElementById('cert-name-input');
+    var name = nameInput.value.trim();
+    if (!name) { nameInput.focus(); nameInput.style.borderColor = 'var(--mg-red,#e53e3e)'; return; }
+    nameInput.style.borderColor = '';
+    localStorage.setItem('mgenetica_cert_name', name);
+
+    var script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    script.onload = function () { buildPDF(name); };
+    script.onerror = function () {
+      alert('Não foi possível carregar a biblioteca de PDF. Verifique sua conexão.');
+    };
+    document.body.appendChild(script);
+  }
+
+  function buildPDF(name) {
+    /* global jspdf */
+    var jsPDF = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;
+    var doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+    var W = 297, H = 210;
+
+    // Background
+    doc.setFillColor(255, 255, 255);
+    doc.rect(0, 0, W, H, 'F');
+
+    // Top & bottom navy bar
+    doc.setFillColor(13, 38, 66);
+    doc.rect(0, 0, W, 8, 'F');
+    doc.rect(0, H - 6, W, 6, 'F');
+
+    // Border
+    doc.setDrawColor(13, 38, 66);
+    doc.setLineWidth(0.6);
+    doc.rect(10, 12, W - 20, H - 22);
+
+    // Header label
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(37, 99, 168);
+    doc.text('MGENETICA ACADEMY', W / 2, 26, { align: 'center' });
+
+    // Certifica que
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(11);
+    doc.setTextColor(90, 122, 154);
+    doc.text('Certifica que', W / 2, 42, { align: 'center' });
+
+    // Name
+    doc.setFont('helvetica', 'bolditalic');
+    doc.setFontSize(28);
+    doc.setTextColor(13, 38, 66);
+    doc.text(name, W / 2, 60, { align: 'center' });
+
+    // Divider
+    doc.setDrawColor(200, 216, 234);
+    doc.setLineWidth(0.3);
+    doc.line(40, 66, W - 40, 66);
+
+    // Body text
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(11);
+    doc.setTextColor(26, 58, 92);
+    doc.text('concluiu com aproveitamento o curso', W / 2, 78, { align: 'center' });
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(14);
+    doc.setTextColor(13, 38, 66);
+    doc.text('Melhoramento Animal, Genética Quantitativa e Genômica Aplicada', W / 2, 88, { align: 'center' });
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(90, 122, 154);
+    doc.text('composto de 12 módulos, com aprovação em todos os quizzes de avaliação.', W / 2, 98, { align: 'center' });
+
+    // Bottom row
+    var dateStored = localStorage.getItem('mgenetica_cert_date') ||
+      new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(13, 38, 66);
+    doc.text('Data de conclusão', 50, H - 28);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(90, 122, 154);
+    doc.text(dateStored, 50, H - 22);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(13, 38, 66);
+    doc.text('Carga horária estimada', W - 50, H - 28, { align: 'right' });
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(90, 122, 154);
+    doc.text('36 horas', W - 50, H - 22, { align: 'right' });
+
+    // Signature line
+    doc.setDrawColor(13, 38, 66);
+    doc.setLineWidth(0.3);
+    doc.line(W / 2 - 35, H - 22, W / 2 + 35, H - 22);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(90, 122, 154);
+    doc.text('MGenética Academy', W / 2, H - 17, { align: 'center' });
+
+    doc.save('certificado-mgenetica-' + name.replace(/\s+/g, '-').toLowerCase() + '.pdf');
+  }
+
+  // Wait for progress tracker to be available
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(init, 100); });
+  } else {
+    setTimeout(init, 100);
+  }
+})();
+</script>

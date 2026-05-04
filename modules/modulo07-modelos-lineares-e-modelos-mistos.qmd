@@ -1,56 +1,148 @@
 ---
-title: "Módulo 07 — Modelos lineares e modelos mistos"
+title: "Módulo 07 — Modelos Lineares e Modelos Mistos"
+description: "Estrutura dos modelos lineares mistos, efeitos fixos vs. aleatórios, BLUE e BLUP."
 ---
 
-[← Módulo anterior](modulo06-correlacoes-geneticas-e-fenotipicas.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo08-blup-e-avaliacao-genetica.qmd)
-
-## Introdução
-
-Este módulo apresenta os principais pontos sobre **modelos lineares e modelos mistos** dentro da proposta do MGenética, conectando teoria e prática com foco em aprendizado progressivo.
-
-## Conceitos teóricos
-
-- Conceito 1: definição e contexto no melhoramento animal.
-- Conceito 2: relações com genética quantitativa e/ou genômica.
-- Conceito 3: implicações para seleção e tomada de decisão.
-
-## Parte prática
-
-Nesta etapa, utilizamos dados simulados para reproduzir um cenário didático e controlado.
-
-## Exemplo com dados simulados
-
-```{r}
-#| eval: false
-source("../scripts/modulo07.R")
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 07 · MODELOS ESTATÍSTICOS</span>
+  <div class="module-meta"><span>⏱ ~40 min</span><span>Nível: Intermediário</span></div>
+</div>
+<div class="module-objectives">
+  <h3>O que você vai aprender</h3>
+  <ul>
+    <li>A estrutura do modelo misto: y = Xb + Zu + e</li>
+    <li>Por que alguns efeitos são fixos e outros aleatórios</li>
+    <li>A diferença entre BLUE (fixo) e BLUP (aleatório)</li>
+    <li>Como a variância dos resíduos e dos efeitos aleatórios entra no modelo</li>
+  </ul>
+</div>
 ```
 
-## Código em R
+## Por que precisamos de modelos mistos?
+
+Em um experimento clássico de fazenda, temos:
+
+- **Fazendas diferentes** → afetam a média de forma sistemática (efeito fixo)
+- **Genótipo do animal** → varia aleatoriamente em torno de zero (efeito aleatório)
+- **Ruído de medição** → erro residual
+
+Se ajustarmos apenas um modelo fixo `y ~ fazenda + sexo`, o resíduo ancora o efeito genético, mas sem separar VA de VE. Se ajustarmos um modelo com o animal como efeito aleatório, podemos predizer o valor genético de cada indivíduo — mesmo usando informação de parentes.
+
+::: {.callout-note}
+**Conceito central:** No modelo misto `y = Xb + Zu + e`, o vetor **b** contém efeitos fixos estimados (BLUE) e o vetor **u** contém efeitos aleatórios preditos (BLUP). Fixo = queremos estimar os níveis específicos; Aleatório = assumimos que os níveis vieram de uma distribuição conhecida.
+:::
+
+## O modelo animal básico
+
+Para avaliação genética, o modelo mais importante é:
+
+$$\mathbf{y} = \mathbf{X}\mathbf{b} + \mathbf{Z}\mathbf{a} + \mathbf{e}$$
+
+Com:
+- **a** ~ N(0, **A**σ²_A) — valores genéticos correlacionados pelo pedigree
+- **e** ~ N(0, **I**σ²_e) — resíduos independentes
+
+## Simulação em R
 
 ```{r}
-#| eval: false
-# Estrutura mínima para leitura do conjunto simulado
-# e execução da análise principal do módulo.
+#| label: simula-modelo-misto
+set.seed(107)
+n_anim <- 300
+va <- 400; ve <- 900; h2 <- va/(va+ve); lambda <- ve/va
+
+# Efeitos fixos verdadeiros
+farm_ef <- c(10, -5, 0)
+sex_ef  <- c(15, 0)
+
+farm <- sample(1:3, n_anim, TRUE)
+sex  <- sample(1:2, n_anim, TRUE)
+a    <- rnorm(n_anim, 0, sqrt(va))   # valor genético verdadeiro
+e    <- rnorm(n_anim, 0, sqrt(ve))
+y    <- 250 + farm_ef[farm] + sex_ef[sex] + a + e
+
+dados <- data.frame(y=y, fazenda=as.factor(farm), sexo=as.factor(sex))
+cat(sprintf("n=%d  h²=%.3f  λ=σe²/σa²=%.3f\n\n", n_anim, h2, lambda))
 ```
 
-## Interpretação dos resultados
+```{r}
+#| label: modelo-fixo
+cat("=== Modelo FIXO: y ~ fazenda + sexo ===\n")
+mod_fixo <- lm(y ~ fazenda + sexo, data=dados)
+cf <- coef(mod_fixo)
+cat(sprintf("Intercepto:    %.2f\n", cf[1]))
+cat(sprintf("Fazenda 2:     %.2f  (verdadeiro: %.2f)\n", cf[2], farm_ef[2]-farm_ef[1]))
+cat(sprintf("Fazenda 3:     %.2f  (verdadeiro: %.2f)\n", cf[3], farm_ef[3]-farm_ef[1]))
+cat(sprintf("Sexo 2:        %.2f  (verdadeiro: %.2f)\n", cf[4], sex_ef[2]-sex_ef[1]))
+cat(sprintf("R²:            %.4f\n", summary(mod_fixo)$r.squared))
+```
 
-- Verifique o comportamento das estimativas.
-- Compare os resultados com o esperado teoricamente.
-- Discuta possíveis fontes de variação ou viés.
+```{r}
+#| label: blup-simplificado
+# BLUP de um animal isolado (sem pedigree): u_hat = VA/(VA+VE) × y_ajustado
+# Equivale ao "shrinkage" para a média da população
+y_adj  <- resid(mod_fixo)         # fenótipo corrigido para efeitos fixos
+u_hat  <- y_adj * (va / (va + ve))  # BLUP sem pedigree (= h² × y_adj)
 
-## Exercício ou atividade sugerida
+cat("\n=== BLUP simplificado (sem pedigree) ===\n")
+cat(sprintf("h² (shrinkage factor): %.4f\n", va/(va+ve)))
+cat(sprintf("Correlação BLUP × a verdadeiro: %.4f\n", cor(u_hat, a)))
+cat(sprintf("Correlação fenótipo adj × a verd: %.4f\n", cor(y_adj, a)))
+cat("(BLUP sempre tem correlação igual ao fenótipo com o valor verdadeiro,\n")
+cat(" mas com variância reduzida — é o 'encolhimento' para a média)\n")
+```
 
-1. Modifique os parâmetros da simulação.
-2. Reexecute o script e compare as saídas.
-3. Redija uma breve conclusão técnica (5 a 10 linhas).
+```{r}
+#| fig-height: 4
+#| label: plot-blup-vs-a
+par(mar=c(4,4,2,1))
+plot(a, u_hat, pch=20, col=adjustcolor("#0d2642", 0.4),
+     xlab="Valor genético verdadeiro (a)", ylab="BLUP (ŷ_adj × h²)",
+     main="BLUP vs. valor genético verdadeiro")
+abline(lm(u_hat ~ a), col="#dc2626", lwd=2)
+abline(0, 1, lty=2, col="#5b6b7d")
+legend("topleft", c("Regressão BLUP~a", "Linha 45°"), lty=c(1,2),
+       col=c("#dc2626","#5b6b7d"), bty="n")
+```
 
-## Materiais extras
+```{r}
+#| label: efeito-lambda
+cat("\n=== Efeito do λ no encolhimento do BLUP ===\n")
+cat("(λ alto = h² baixo = maior regressão para a média)\n\n")
+for (lam in c(0.5, 1, 2, 5, 10)) {
+  h2_l <- 1/(1+lam)
+  cat(sprintf("λ=%.1f  h²=%.3f  shrinkage=%.3f\n", lam, h2_l, h2_l))
+}
+```
 
-- Script de apoio: `../scripts/modulo07.R`
-- Pasta de dados: `../data/`
-- Referências adicionais serão incluídas nas próximas versões.
+## Interpretação
 
----
+- O gráfico mostra que o BLUP tem **inclinação menor que 1** em relação ao valor genético verdadeiro — o "encolhimento" é intencional e correto: minimiza o erro de predição médio.
+- Animais com BLUP alto tendem a ter a verdadeiro alto, mas com variância menor. Isso é BLUP fazendo seu trabalho: reduzindo incerteza ao custo de ligeira subestimação dos extremos.
+- λ = σ²_e/σ²_a é o parâmetro chave: quanto maior, mais o BLUP "desconfia" dos dados individuais e se apoia na média da população.
 
-[← Módulo anterior](modulo06-correlacoes-geneticas-e-fenotipicas.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo08-blup-e-avaliacao-genetica.qmd)
+::: {.callout-tip}
+**Dica R:** Para modelos mistos reais com pedigree, use `lme4::lmer()` para estruturas simples ou `ASReml-R` / `breedR` para o modelo animal completo.
+:::
+
+## Exercício proposto
+
+1. Altere `h2` para 0,10 (`va=100, ve=900`). O λ muda como? O BLUP "encolhe" mais ou menos?
+2. Adicione um terceiro nível fixo (ex.: mês de nascimento) e veja se o R² do modelo fixo aumenta.
+3. O que acontece com `cor(u_hat, a)` se você usar todos os animais como efeito fixo (`y ~ as.factor(1:n_anim)`)? Por que isso não é BLUP?
+
+```{=html}
+<div class="module-nav">
+  <a class="module-nav-card module-nav-prev" href="modulo06-correlacoes-geneticas-e-fenotipicas.qmd">
+    <span>Anterior · Módulo 06</span>
+    <strong>Correlações Genéticas e Fenotípicas</strong>
+  </a>
+  <a class="module-nav-card module-nav-next" href="modulo08-blup-e-avaliacao-genetica.qmd">
+    <span>Próximo · Módulo 08</span>
+    <strong>BLUP e Avaliação Genética</strong>
+  </a>
+</div>
+```
+
+::: {.quiz-container data-module="07"}
+:::

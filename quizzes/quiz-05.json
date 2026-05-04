@@ -1,0 +1,58 @@
+{
+  "module": "05",
+  "title": "Quiz — Módulo 05",
+  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "A herdabilidade no sentido estreito (h²) é definida como:",
+      "options": [
+        "VP / VG",
+        "VG / VP",
+        "VA / VP",
+        "VA / VG"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "Uma característica com h² = 0,40 significa que:",
+      "options": [
+        "40% do fenótipo de cada animal é determinado geneticamente.",
+        "40% da variação fenotípica observada na população é devida a diferenças genéticas aditivas.",
+        "40% dos filhos terão fenótipo superior ao pai.",
+        "A acurácia da seleção é exatamente 0,40."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "A repetibilidade (r) em relação à herdabilidade no sentido estreito (h²):",
+      "options": [
+        "É sempre menor que h², pois ignora efeitos de dominância.",
+        "É sempre maior ou igual a h², pois inclui VA, VD e VPE no numerador.",
+        "É sempre igual a h².",
+        "Pode ser negativa para características de reprodução."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "A regressão linear de filhos sobre pais (y = a + b × pai) fornece estimativa de:",
+      "options": [
+        "h² diretamente (b = h²).",
+        "h²/2 — metade da herdabilidade no sentido estreito (b = h²/2).",
+        "A repetibilidade da característica.",
+        "A correlação genética entre pai e filho."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Em qual situação a repetibilidade é especialmente útil em termos práticos?",
+      "options": [
+        "Quando apenas uma medida por animal está disponível.",
+        "Quando a característica é medida múltiplas vezes no mesmo animal ao longo da vida.",
+        "Quando se deseja estimar componentes de dominância.",
+        "Quando a população está em cruzamento entre raças."
+      ],
+      "correct": 1
+    }
+  ]
+}

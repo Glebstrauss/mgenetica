@@ -1,0 +1,58 @@
+{
+  "module": "06",
+  "title": "Quiz — Módulo 06",
+  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "A correlação genética (rA) entre duas características representa:",
+      "options": [
+        "A correlação entre os valores fenotípicos observados das duas características.",
+        "A correlação entre os valores de melhoramento (breeding values) das duas características.",
+        "A correlação ambiental entre as características.",
+        "O coeficiente de regressão de uma característica sobre a outra."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Uma correlação genética negativa entre produção de leite e fertilidade implica que:",
+      "options": [
+        "Selecionar para maior produção tende a melhorar a fertilidade indiretamente.",
+        "As duas características são geneticamente independentes.",
+        "Selecionar para maior produção tende a piorar a fertilidade indiretamente.",
+        "A herdabilidade da fertilidade é negativa."
+      ],
+      "correct": 2
+    },
+    {
+      "text": "A fórmula da resposta correlacionada (RC) em y ao selecionar diretamente em x é:",
+      "options": [
+        "RC = ix × rA × hx × σAy",
+        "RC = iy × rA × hx × σAy",
+        "RC = ix × rA × hy × σAy",
+        "RC = ix × rP × hy × σPy"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "Quando rA > rP entre duas características, isso indica que:",
+      "options": [
+        "Os fatores genéticos contribuem mais para a associação do que os fatores ambientais.",
+        "A correlação ambiental entre as características é necessariamente negativa.",
+        "A herdabilidade de ambas as características é zero.",
+        "A seleção indireta é sempre mais eficiente que a seleção direta."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "A seleção indireta pela característica auxiliar x pode ser mais eficiente que a seleção direta em y quando:",
+      "options": [
+        "hx × rA > hy (produto da precisão pelo coeficiente genético supera a herdabilidade de y)",
+        "hx < hy",
+        "rA = 0",
+        "VP(x) > VP(y)"
+      ],
+      "correct": 0
+    }
+  ]
+}

@@ -1,56 +1,138 @@
 ---
-title: "Módulo 04 — Médias, variâncias e componentes de variância"
+title: "Módulo 04 — Médias, Variâncias e Componentes de Variância"
+description: "Decomposição de VP em componentes genéticos e ambientais. Estimação por ANOVA com grupos de meio-irmãos."
 ---
 
-[← Módulo anterior](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo05-herdabilidade-e-repetibilidade.qmd)
-
-## Introdução
-
-Este módulo apresenta os principais pontos sobre **médias, variâncias e componentes de variância** dentro da proposta do MGenética, conectando teoria e prática com foco em aprendizado progressivo.
-
-## Conceitos teóricos
-
-- Conceito 1: definição e contexto no melhoramento animal.
-- Conceito 2: relações com genética quantitativa e/ou genômica.
-- Conceito 3: implicações para seleção e tomada de decisão.
-
-## Parte prática
-
-Nesta etapa, utilizamos dados simulados para reproduzir um cenário didático e controlado.
-
-## Exemplo com dados simulados
-
-```{r}
-#| eval: false
-source("../scripts/modulo04.R")
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 04 · ESTATÍSTICA &amp; R</span>
+  <div class="module-meta"><span>⏱ ~35 min</span><span>Nível: Intermediário</span></div>
+</div>
+<div class="module-objectives">
+  <h3>O que você vai aprender</h3>
+  <ul>
+    <li>A decomposição completa: V<sub>P</sub> = V<sub>A</sub> + V<sub>D</sub> + V<sub>I</sub> + V<sub>E</sub></li>
+    <li>Por que V<sub>A</sub> é o componente mais importante para seleção</li>
+    <li>O método ANOVA (Sire model) para estimar V<sub>A</sub> em estruturas de meio-irmãos</li>
+    <li>Simulação e estimação de componentes de variância em R</li>
+  </ul>
+</div>
 ```
 
-## Código em R
+## Da variância observada à variância útil
+
+Quando olhamos para o peso de 500 bovinos, vemos que eles variam. Essa variação total — a **variância fenotípica (VP)** — tem origens distintas. Parte vem de diferenças genéticas reais entre animais; parte vem do ambiente em que cada animal foi criado. A grande questão do melhoramento é: **quanto dessa variação é genético e, desse genético, quanto é transmissível?**
+
+A resposta está na decomposição:
+
+$$V_P = V_A + V_D + V_I + V_E$$
+
+::: {.callout-note}
+**Conceito central:** Apenas **V_A** (variância genética aditiva) é diretamente utilizável pela seleção. V_D e V_I existem, mas se dissipam na recombinação a cada geração. V_E é ruído ambiental.
+:::
+
+## Por que V_A é especial?
+
+Em uma população cruzando aleatoriamente, a covariância entre parentes de primeiro grau é função de VA:
+
+| Par de parentes | Cov(relativos) |
+|---|---|
+| Pai–filho | VA / 2 |
+| Meio-irmãos paternos | VA / 4 |
+| Irmãos completos | VA / 2 + VD / 4 |
+
+Essa estrutura é a base do método clássico de estimação: se medirmos meio-irmãos (filhos do mesmo touro por mães diferentes), a variação **entre** grupos de meio-irmãos reflete VA, e a variação **dentro** reflete VA + VD + VE.
+
+## Estimação por ANOVA — Modelo Sire
 
 ```{r}
-#| eval: false
-# Estrutura mínima para leitura do conjunto simulado
-# e execução da análise principal do módulo.
+#| label: simula-estrutura
+set.seed(104)
+n_touro  <- 20   # reprodutores (sires)
+n_filhos <- 25   # filhos por touro
+
+# Componentes de variância reais
+va <- 400; ve <- 800; vp <- va + ve   # ignoramos VD e VI por simplicidade
+
+# Simula: meio da VA vem do pai, a outra metade da mãe
+a_touro    <- rnorm(n_touro, 0, sqrt(va/2))   # contribuição do pai
+touro_id   <- rep(1:n_touro, each=n_filhos)
+a_materno  <- rnorm(n_touro*n_filhos, 0, sqrt(va/2))
+e_ambiental<- rnorm(n_touro*n_filhos, 0, sqrt(ve))
+
+y <- 500 + a_touro[touro_id] + a_materno + e_ambiental
+
+cat(sprintf("n total de observações: %d\n", length(y)))
+cat(sprintf("n grupos (touros):      %d\n", n_touro))
+cat(sprintf("VP observada: %.2f  (esperado: %.1f)\n", var(y), vp))
 ```
 
-## Interpretação dos resultados
+```{r}
+#| label: anova-sire
+# ANOVA clássica (método Sire)
+modelo    <- lm(y ~ as.factor(touro_id))
+tab_anova <- anova(modelo)
 
-- Verifique o comportamento das estimativas.
-- Compare os resultados com o esperado teoricamente.
-- Discuta possíveis fontes de variação ou viés.
+CMS_entre  <- tab_anova["as.factor(touro_id)", "Mean Sq"]
+CMS_dentro <- tab_anova["Residuals", "Mean Sq"]
+VA_est     <- 4 * (CMS_entre - CMS_dentro) / n_filhos   # 4× porque meio-irmãos = VA/4
+VP_est     <- var(y)
+h2_est     <- VA_est / VP_est
 
-## Exercício ou atividade sugerida
+cat("=== Resultado da ANOVA ===\n")
+cat(sprintf("CMS entre grupos (sires):  %8.2f\n", CMS_entre))
+cat(sprintf("CMS dentro grupos:         %8.2f\n", CMS_dentro))
+cat(sprintf("VA estimada:               %8.2f  (verdadeiro: %d)\n", VA_est, va))
+cat(sprintf("VP estimada:               %8.2f  (verdadeiro: %d)\n", VP_est, vp))
+cat(sprintf("h² estimado (VA/VP):       %8.4f  (verdadeiro: %.4f)\n", h2_est, va/vp))
+```
 
-1. Modifique os parâmetros da simulação.
-2. Reexecute o script e compare as saídas.
-3. Redija uma breve conclusão técnica (5 a 10 linhas).
+```{r}
+#| label: efeito-tamanho-grupo
+# Como o n de filhos por touro afeta a precisão da estimativa?
+cat("\n=== Precisão da estimativa de h² vs. n de filhos ===\n")
+for (nf in c(5, 10, 25, 50, 100)) {
+  resultados <- replicate(200, {
+    a_t  <- rnorm(n_touro, 0, sqrt(va/2))
+    tid  <- rep(1:n_touro, each=nf)
+    y_s  <- 500 + a_t[tid] + rnorm(n_touro*nf, 0, sqrt(va/2)) + rnorm(n_touro*nf, 0, sqrt(ve))
+    tb   <- anova(lm(y_s ~ as.factor(tid)))
+    cms_e <- tb[1, "Mean Sq"]; cms_d <- tb[2, "Mean Sq"]
+    4 * (cms_e - cms_d) / nf / var(y_s)
+  })
+  cat(sprintf("n_filhos = %3d  →  h² médio: %.3f  DP: %.3f\n",
+              nf, mean(resultados), sd(resultados)))
+}
+```
 
-## Materiais extras
+## Interpretação
 
-- Script de apoio: `../scripts/modulo04.R`
-- Pasta de dados: `../data/`
-- Referências adicionais serão incluídas nas próximas versões.
+- Com 25 filhos por touro, a estimativa de h² tem DP ≈ 0,10 — substantial uncertainty. É por isso que estudos de componentes de variância requerem centenas ou milhares de observações.
+- O método ANOVA é **não-viesado**, mas tem **alta variância amostral** com poucos dados.
+- Na prática moderna, REML (Restricted Maximum Likelihood) substitui ANOVA e produz estimativas mais precisas, especialmente com dados desbalanceados.
 
----
+::: {.callout-tip}
+**Dica R:** O pacote `lme4` implementa REML via `lmer()`. O pacote `ASReml-R` é o padrão industrial para análises de melhoramento.
+:::
 
-[← Módulo anterior](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo05-herdabilidade-e-repetibilidade.qmd)
+## Exercício proposto
+
+1. Dobre o número de touros para 40 mantendo n_filhos = 25. A precisão melhora?
+2. Troque VA=400 por VA=100 (h²=0,11). O que acontece com a estimativa de h²?
+3. Adicione um efeito de fazenda fixo (`+ 15 * (touro_id %% 3)`) ao `y`. A estimativa de VA muda? Por quê?
+
+```{=html}
+<div class="module-nav">
+  <a class="module-nav-card module-nav-prev" href="modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd">
+    <span>Anterior · Módulo 03</span>
+    <strong>Estatística Descritiva e Exploração no R</strong>
+  </a>
+  <a class="module-nav-card module-nav-next" href="modulo05-herdabilidade-e-repetibilidade.qmd">
+    <span>Próximo · Módulo 05</span>
+    <strong>Herdabilidade e Repetibilidade</strong>
+  </a>
+</div>
+```
+
+::: {.quiz-container data-module="04"}
+:::

@@ -1,56 +1,140 @@
 ---
 title: "Módulo 01 — Introdução ao Melhoramento Animal"
+description: "Objetivos do melhoramento, a equação do melhorista e os fatores que determinam o ganho genético."
 ---
 
-[Início](../index.qmd) | [Próximo módulo →](modulo02-bases-da-genetica-quantitativa.qmd)
-
-## Introdução
-
-Este módulo apresenta os principais pontos sobre **introdução ao melhoramento animal** dentro da proposta do MGenética, conectando teoria e prática com foco em aprendizado progressivo.
-
-## Conceitos teóricos
-
-- Conceito 1: definição e contexto no melhoramento animal.
-- Conceito 2: relações com genética quantitativa e/ou genômica.
-- Conceito 3: implicações para seleção e tomada de decisão.
-
-## Parte prática
-
-Nesta etapa, utilizamos dados simulados para reproduzir um cenário didático e controlado.
-
-## Exemplo com dados simulados
-
-```{r}
-#| eval: false
-source("../scripts/modulo01.R")
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 01 · FUNDAMENTOS</span>
+  <div class="module-meta"><span>⏱ ~25 min</span><span>Nível: Introdutório</span></div>
+</div>
+<div class="module-objectives">
+  <h3>O que você vai aprender</h3>
+  <ul>
+    <li>O que é melhoramento animal e qual é o seu objetivo biológico</li>
+    <li>A equação do melhorista: ΔG = i × h × σ<sub>A</sub> / L</li>
+    <li>Como cada componente da equação afeta o ganho genético anual</li>
+    <li>Simular resposta à seleção ao longo de gerações com R</li>
+  </ul>
+</div>
 ```
 
-## Código em R
+## O problema antes da fórmula
+
+Imagine um rebanho de bovinos de corte com média de peso ao sobreano de 280 kg. O produtor seleciona os animais mais pesados para reprodução. Após alguns anos, o rebanho pesa, em média, 295 kg. O que aconteceu? Os genes que contribuem para maior peso ficaram mais frequentes na população. Essa mudança dirigida na média genotípica de uma população ao longo das gerações é o que chamamos de **melhoramento genético animal**.
+
+::: {.callout-note}
+**Conceito central:** Melhoramento animal é a alteração intencional da frequência de alelos favoráveis em uma população, por meio de seleção e acasalamento dirigidos, com o objetivo de deslocar a média genotípica na direção desejada.
+:::
+
+O alvo não é um animal campeão individual — é a **população**. O que importa é quanto a média genética muda de geração em geração.
+
+## A equação do melhorista
+
+O ganho genético anual (ΔG) é descrito pela equação:
+
+$$\Delta G = \frac{i \times r_{TI} \times \sigma_A}{L}$$
+
+Onde:
+
+| Símbolo | Significado | Como aumentar |
+|---|---|---|
+| **i** | Intensidade de seleção (função do % selecionado) | Selecionar proporção menor |
+| **r** | Acurácia da avaliação genética | Mais filhos, melhor método |
+| **σ_A** | Desvio padrão genético aditivo | Manter diversidade |
+| **L** | Intervalo de geração médio (anos) | Usar reprodutores mais jovens |
+
+::: {.callout-tip}
+**Dica prática:** Para seleção massal (i.e., com base apenas no fenótipo do próprio animal), a acurácia r ≈ √h², então ΔG = i × h² × σ_P — a equação simplificada mais comum nos livros.
+:::
+
+## Simulação em R
 
 ```{r}
-#| eval: false
-# Estrutura mínima para leitura do conjunto simulado
-# e execução da análise principal do módulo.
+#| label: selecao-basica
+set.seed(101)
+
+# Parâmetros populacionais
+n     <- 1000   # animais
+mu    <- 300    # média inicial (kg)
+h2    <- 0.35   # herdabilidade
+vp    <- 900    # variância fenotípica (σP = 30 kg)
+va    <- h2 * vp
+ve    <- vp - va
+
+# Gera população base
+a <- rnorm(n, 0, sqrt(va))   # valores genéticos
+e <- rnorm(n, 0, sqrt(ve))   # desvios ambientais
+p <- mu + a + e               # fenótipos
+
+# Seleciona top 20%
+sel      <- p >= quantile(p, 0.80)
+S        <- mean(p[sel]) - mean(p)   # diferencial de seleção
+delta_G  <- h2 * S
+
+cat("Média da população:      ", round(mean(p), 2), "kg\n")
+cat("Média dos selecionados:  ", round(mean(p[sel]), 2), "kg\n")
+cat("Diferencial (S):         ", round(S, 2), "kg\n")
+cat("Ganho genético (ΔG):     ", round(delta_G, 2), "kg\n")
 ```
 
-## Interpretação dos resultados
+```{r}
+#| label: progressao-geracoes
+# Simula 5 gerações de seleção
+n_ger     <- 5
+med_ger   <- numeric(n_ger + 1)
+med_ger[1] <- mean(p)
 
-- Verifique o comportamento das estimativas.
-- Compare os resultados com o esperado teoricamente.
-- Discuta possíveis fontes de variação ou viés.
+for (g in seq_len(n_ger)) {
+  p_nova <- (med_ger[1] + delta_G * g) + rnorm(n, 0, sqrt(va)) + rnorm(n, 0, sqrt(ve))
+  med_ger[g + 1] <- mean(p_nova)
+}
 
-## Exercício ou atividade sugerida
+resultado <- data.frame(
+  Geração          = 0:n_ger,
+  Média_kg         = round(med_ger, 2),
+  Ganho_acumulado  = round(med_ger - med_ger[1], 2)
+)
+print(resultado)
+```
 
-1. Modifique os parâmetros da simulação.
-2. Reexecute o script e compare as saídas.
-3. Redija uma breve conclusão técnica (5 a 10 linhas).
+```{r}
+#| label: efeito-herdabilidade
+# Como a herdabilidade afeta o ganho genético?
+h2_vals <- c(0.10, 0.20, 0.35, 0.50, 0.70)
+cat("\n--- Ganho genético para diferentes h² (S fixo) ---\n")
+for (h in h2_vals) {
+  cat(sprintf("h² = %.2f  →  ΔG = %.2f kg  (%.1f%% da média)\n",
+              h, h * S, 100 * h * S / mu))
+}
+```
 
-## Materiais extras
+## Interpretação
 
-- Script de apoio: `../scripts/modulo01.R`
-- Pasta de dados: `../data/`
-- Referências adicionais serão incluídas nas próximas versões.
+Observando a tabela de progressão:
 
----
+- O ganho acumulado aumenta aproximadamente de forma **linear** a cada geração — porque a intensidade de seleção foi mantida constante e a variância genética não foi reduzida (sem endogamia nessa simulação simples).
+- Com h² = 0,35 e seleção do top 20%, o ganho por geração é ~4,5 kg — aproximadamente **1,5% da média** por geração.
+- Características de baixa herdabilidade (fertilidade, sobrevivência) respondem muito mais lentamente à seleção direta.
 
-[Início](../index.qmd) | [Próximo módulo →](modulo02-bases-da-genetica-quantitativa.qmd)
+::: {.callout-warning}
+**Atenção:** A equação do melhorista pressupõe que a variância genética permanece constante ao longo das gerações. Na prática, seleção intensa e endogamia reduzem essa variância — o ganho real tende a desacelerar.
+:::
+
+## Exercício proposto
+
+1. Modifique o código para selecionar os **top 10%** em vez de 20%. Como S e ΔG mudam?
+2. Mantenha a intensidade original, mas altere `h2` para 0,15 (característica de reprodução). Qual é o ganho esperado?
+3. Se L = 5 anos (touro usado por 5 anos), qual é o ganho genético **anual** usando a equação ΔG/L?
+
+```{=html}
+<div class="module-nav">
+  <a class="module-nav-card module-nav-next" href="modulo02-bases-da-genetica-quantitativa.qmd">
+    <span>Próximo · Módulo 02</span>
+    <strong>Bases da Genética Quantitativa</strong>
+  </a>
+</div>
+```
+
+::: {.quiz-container data-module="01"}
+:::

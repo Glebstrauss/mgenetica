@@ -5,12 +5,28 @@ project:
     - "*.qmd"
     - "modules/*.qmd"
     - "semanas/*.qmd"
+  resources:
+    - "assets/"
+    - "images/"
+    - "quizzes/"
 
 website:
   title: "MGenética"
   site-url: "https://glebstrauss.github.io/mgenetica/"
   repo-url: "https://github.com/Glebstrauss/mgenetica"
   repo-actions: [issue]
+  description: "Curso aberto de melhoramento animal, genética quantitativa e genômica aplicada com R. 12 módulos progressivos, scripts reproduzíveis e dados simulados."
+  favicon: images/favicon/favicon.ico
+  open-graph:
+    title: "MGenética Academy"
+    description: "Melhoramento animal, do conceito ao código. 12 módulos progressivos com R."
+    image: images/og-card.png
+    locale: pt_BR
+  twitter-card:
+    card-style: summary_large_image
+    title: "MGenética Academy"
+    description: "Melhoramento animal, do conceito ao código. 12 módulos progressivos com R."
+    image: images/og-card.png
   navbar:
     logo: images/mgenetica-logo-correct.png
     logo-alt: "Logo MGenética"
@@ -21,6 +37,10 @@ website:
         text: Módulos
       - href: semanas/index.qmd
         text: Trilha
+      - href: busca.qmd
+        text: Busca
+      - href: glossario.qmd
+        text: Glossário
       - href: perfil.qmd
         text: Perfil
   sidebar:
@@ -44,8 +64,11 @@ website:
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme:
+      light: [cosmo, styles/main.scss]
+      dark:  [slate,  styles/main-dark.scss]
+    include-in-header: assets/html/head-extras.html
+    include-after-body: assets/html/body-extras.html
     toc: true
     toc-depth: 3
     number-sections: true

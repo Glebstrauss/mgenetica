@@ -1,0 +1,58 @@
+{
+  "module": "11",
+  "title": "Quiz — Módulo 11",
+  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "O filtro de MAF < 0,05 remove SNPs raros porque:",
+      "options": [
+        "Esses SNPs são comuns demais para fornecer informação discriminatória.",
+        "SNPs raros têm menor poder estatístico e maior probabilidade de erros de genotipagem.",
+        "Esses SNPs violam sempre o equilíbrio de Hardy-Weinberg.",
+        "SNPs com MAF baixo indicam sempre erros de genotipagem."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "O call rate de um SNP é a proporção de amostras com genótipo válido. Um call rate < 0,95 indica:",
+      "options": [
+        "Que o SNP é raro na população estudada (MAF baixo).",
+        "Problemas técnicos com a genotipagem naquele locus específico.",
+        "Excesso de heterozigose em relação ao esperado por HWE.",
+        "Desequilíbrio de ligação com outro SNP próximo."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "O teste de Equilíbrio de Hardy-Weinberg (HWE) é usado no controle de qualidade para:",
+      "options": [
+        "Identificar SNPs com erros sistemáticos de genotipagem que distorcem as frequências genotípicas.",
+        "Detectar animais com grau de parentesco elevado na amostra.",
+        "Calcular com precisão a frequência de alelos raros no locus.",
+        "Estimar a herdabilidade da característica fenotípica."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Um call rate por animal (sample call rate) < 0,90 indica:",
+      "options": [
+        "Que o animal está fora do equilíbrio de Hardy-Weinberg.",
+        "Problema na extração de DNA ou na genotipagem desse animal específico.",
+        "Que o animal tem coeficiente de endogamia elevado.",
+        "Que o MAF médio dos SNPs desse animal é muito alto."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Após o controle de qualidade genômico rigoroso, espera-se que o conjunto de dados resultante:",
+      "options": [
+        "Seja idêntico ao original, pois QC não remove marcadores.",
+        "Seja maior que o original, pois QC cria novos SNPs sintéticos.",
+        "Seja menor em número de SNPs e amostras, mas mais confiável para análises subsequentes.",
+        "Contenha apenas SNPs com MAF = 0,50 (máxima variabilidade)."
+      ],
+      "correct": 2
+    }
+  ]
+}

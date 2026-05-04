@@ -12,6 +12,12 @@ Esta página organiza os módulos existentes em um ritmo semanal. A proposta é 
 Use esta trilha como plano de estudo. Os links apontam para os módulos já publicados, evitando páginas vazias ou links quebrados.
 :::
 
+## Mapa visual de progresso
+
+```{=html}
+<div data-learning-map></div>
+```
+
 | Semana | Tema | Prática |
 |---:|---|---|
 | 1 | [Introdução ao Melhoramento Animal](../modules/modulo01-introducao-ao-melhoramento-animal.qmd) | Rodar `scripts/modulo01.R` e comparar grupos de seleção. |

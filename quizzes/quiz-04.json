@@ -1,0 +1,58 @@
+{
+  "module": "04",
+  "title": "Quiz — Módulo 04",
+  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "A decomposição completa da variância fenotípica é:",
+      "options": [
+        "VP = VG + VE",
+        "VP = VA + VD + VI + VE",
+        "VP = h² + e²",
+        "VP = VG × VE"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "A variância genética aditiva (VA) é a componente de maior interesse prático porque:",
+      "options": [
+        "É sempre a maior componente da variância total.",
+        "É transmitida aos descendentes e permite resposta à seleção.",
+        "Deve-se a interações não aditivas entre alelos de diferentes loci.",
+        "Resulta de efeitos ambientais não controláveis."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Em uma população em equilíbrio (panmixia, sem seleção), as variâncias genéticas:",
+      "options": [
+        "Tendem a aumentar continuamente a cada geração.",
+        "Permanecem relativamente constantes de geração em geração.",
+        "Desaparecem após 5–6 gerações de cruzamento aleatório.",
+        "Tornam-se todas dominância após o equilíbrio de Hardy-Weinberg."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "O método de análise de variância (ANOVA) por grupos de meio-irmãos paternos permite estimar VA porque:",
+      "options": [
+        "Meio-irmãos paternos compartilham em média 1/4 dos genes aditivos (a_ij = 0,25).",
+        "Meio-irmãos paternos compartilham todos os genes de dominância.",
+        "A covariância entre meio-irmãos = VA/4, então VA ≈ 4 × CMS entre grupos.",
+        "Alternativas a e c estão corretas."
+      ],
+      "correct": 3
+    },
+    {
+      "text": "A variância de dominância (VD) contribui para:",
+      "options": [
+        "A resposta à seleção massal em características de baixa h².",
+        "A heterose observada em cruzamentos entre populações divergentes.",
+        "O aumento da herdabilidade no sentido estreito.",
+        "A transmissão linear de metade do valor genético para os filhos."
+      ],
+      "correct": 1
+    }
+  ]
+}

@@ -1,0 +1,439 @@
+/*-- scss:defaults --*/
+
+// ── Cores dark mode ───────────────────────────────────────────
+$primary:                   #58a6ff;
+$secondary:                 #79b8ff;
+$success:                   #3fb950;
+$warning:                   #d29922;
+$danger:                    #f85149;
+$info:                      #79c0ff;
+
+$body-bg:                   #0f1117;
+$body-color:                #e6edf3;
+$headings-color:            #f0f6ff;
+$link-color:                #58a6ff;
+$link-hover-color:          #79b8ff;
+
+$font-family-sans-serif:    "Inter", -apple-system, BlinkMacSystemFont,
+                            "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace:     "JetBrains Mono", "Fira Code", "Cascadia Code",
+                            ui-monospace, "SFMono-Regular", monospace;
+
+$code-color:                #79b8ff;
+$code-bg:                   #1c2d3f;
+
+$navbar-bg:                 #161b22;
+$navbar-dark-color:         #e6edf3;
+$navbar-dark-hover-color:   #f0f6ff;
+$navbar-dark-active-color:  #58a6ff;
+
+/*-- scss:rules --*/
+
+// ╔══════════════════════════════════════════════════════════╗
+// ║  MGenética — design system (dark theme)                  ║
+// ╚══════════════════════════════════════════════════════════╝
+
+// ── Custom properties (dark) ──────────────────────────────────
+:root {
+  --mg-navy:        #58a6ff;
+  --mg-navy-700:    #79b8ff;
+  --mg-navy-900:    #a8d1ff;
+  --mg-blue:        #79b8ff;
+  --mg-blue-soft:   #1c2d3f;
+  --mg-cyan:        #56d364;
+  --mg-green:       #3fb950;
+  --mg-amber:       #d29922;
+  --mg-red:         #f85149;
+
+  --mg-ink:         #f0f6ff;
+  --mg-text:        #e6edf3;
+  --mg-muted:       #8b949e;
+  --mg-line:        #30363d;
+  --mg-line-strong: #444c56;
+
+  --mg-bg:          #0f1117;
+  --mg-bg-soft:     #161b22;
+  --mg-bg-tint:     #1c2430;
+
+  --shadow-sm:      0 1px 2px rgba(0, 0, 0, 0.20),
+                    0 1px 1px rgba(0, 0, 0, 0.15);
+  --shadow-md:      0 4px 12px rgba(0, 0, 0, 0.30),
+                    0 2px 4px rgba(0, 0, 0, 0.20);
+  --shadow-lg:      0 12px 32px rgba(0, 0, 0, 0.40),
+                    0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+// ── Base ──────────────────────────────────────────────────────
+body {
+  color: var(--mg-text);
+  background: var(--mg-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--mg-navy);
+  &:hover { color: var(--mg-navy-700); }
+}
+
+h1, h2, h3, h4, h5, h6 { color: var(--mg-ink); }
+
+h2::after { background: var(--mg-navy); }
+
+code {
+  color: var(--mg-navy-700);
+  background: var(--mg-blue-soft);
+}
+
+// ── Navbar (dark) ─────────────────────────────────────────────
+.navbar {
+  background: #161b22 !important;
+  border-bottom: 1px solid var(--mg-line);
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar-title { color: #f0f6ff; }
+
+.navbar .nav-link {
+  color: var(--mg-text);
+
+  &:hover {
+    color: var(--mg-ink);
+    background: var(--mg-bg-tint);
+  }
+
+  &.active {
+    color: var(--mg-navy);
+    background: var(--mg-blue-soft);
+  }
+}
+
+// ── Sidebar (dark) ────────────────────────────────────────────
+#quarto-sidebar {
+  background: var(--mg-bg-soft);
+  border-right: 1px solid var(--mg-line);
+}
+
+.sidebar-item-text {
+  &:hover {
+    background: var(--mg-bg-tint);
+    color: var(--mg-ink);
+  }
+
+  &.active {
+    background: var(--mg-navy);
+    color: #0f1117;
+  }
+}
+
+.sidebar-section .sidebar-item-text { color: var(--mg-ink); }
+
+// Progress bar sidebar
+.mg-sidebar-progress {
+  border-bottom-color: var(--mg-line);
+
+  .mg-progress-bar-track { background: var(--mg-line); }
+  .mg-progress-bar-fill  { background: var(--mg-navy); }
+}
+
+// ── Hero (dark) ───────────────────────────────────────────────
+.hero {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+
+  &::before {
+    background:
+      radial-gradient(circle at 90% 20%, rgba(88, 166, 255, 0.08), transparent 40%),
+      radial-gradient(circle at 10% 80%, rgba(88, 166, 255, 0.04), transparent 35%);
+  }
+}
+
+.hero-kicker {
+  color: var(--mg-navy);
+  background: var(--mg-blue-soft);
+  border-color: rgba(88, 166, 255, 0.20);
+}
+
+.hero-title { color: var(--mg-ink); }
+.hero p     { color: var(--mg-text); }
+
+.hero-panel {
+  background: var(--mg-bg);
+  border-color: var(--mg-line);
+}
+
+// ── Botões (dark) ─────────────────────────────────────────────
+.btn-primary {
+  --bs-btn-color: #0f1117;
+  --bs-btn-bg: #58a6ff;
+  --bs-btn-border-color: #58a6ff;
+  --bs-btn-hover-color: #0f1117;
+  --bs-btn-hover-bg: #79b8ff;
+  --bs-btn-hover-border-color: #79b8ff;
+
+  color: #0f1117 !important;
+  background: #58a6ff;
+  border-color: #58a6ff;
+}
+
+.btn-secondary {
+  color: var(--mg-ink) !important;
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+
+  &:hover, &:focus {
+    color: var(--mg-ink) !important;
+    background: var(--mg-bg-tint);
+    border-color: var(--mg-navy);
+  }
+}
+
+// ── Métricas (dark) ───────────────────────────────────────────
+.metric {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+
+  &:hover { border-color: var(--mg-line-strong); }
+
+  strong { color: var(--mg-navy); }
+  > p { color: var(--mg-muted); }
+}
+
+// ── Fluxo de estudo (dark) ────────────────────────────────────
+.study-flow {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.flow-step {
+  background: var(--mg-bg);
+  border-color: var(--mg-line);
+  color: var(--mg-text);
+
+  &:hover { border-color: var(--mg-navy); }
+  strong  { color: var(--mg-navy); }
+}
+
+// ── Features (dark) ───────────────────────────────────────────
+.feature {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+
+  &:hover { border-color: var(--mg-line-strong); }
+
+  h3 { color: var(--mg-navy); }
+  p  { color: var(--mg-text); }
+}
+
+// ── Module cards (dark) ───────────────────────────────────────
+.module-card {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+
+  &:hover { border-color: var(--mg-navy); }
+
+  > p:first-child {
+    color: var(--mg-navy);
+    background: var(--mg-blue-soft);
+  }
+
+  a {
+    color: var(--mg-ink);
+    &:hover { color: var(--mg-navy); }
+  }
+
+  p:last-child { color: var(--mg-muted); }
+}
+
+// ── Recursos práticos (dark) ──────────────────────────────────
+.resource-panel {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+  border-left-color: var(--mg-navy);
+}
+
+// ── Tabelas (dark) ────────────────────────────────────────────
+table {
+  border-color: var(--mg-line);
+  color: var(--mg-text);
+}
+
+thead th {
+  background: var(--mg-bg-tint);
+  color: var(--mg-ink);
+  border-bottom: 1px solid var(--mg-line);
+}
+
+tbody td { border-top-color: var(--mg-line); }
+
+tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
+
+// ── Perfil (dark) ─────────────────────────────────────────────
+.profile-hero {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.profile-logo {
+  background: var(--mg-bg);
+  border-color: var(--mg-line);
+}
+
+.profile-card,
+.profile-section {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+
+  h3 { color: var(--mg-navy); }
+}
+
+// ── Callouts (dark) ───────────────────────────────────────────
+.callout { border-color: var(--mg-line); }
+
+// ── Module header (dark) ──────────────────────────────────────
+.module-badge {
+  background: var(--mg-navy);
+  color: #0f1117;
+}
+
+.module-objectives {
+  background: var(--mg-blue-soft);
+  border-color: var(--mg-line);
+  border-left-color: var(--mg-navy);
+
+  h3 { color: var(--mg-navy); }
+  li  { color: var(--mg-text); }
+}
+
+.module-nav { border-top-color: var(--mg-line); }
+
+.module-nav-card {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+
+  span { color: var(--mg-muted); }
+  strong { color: var(--mg-ink); }
+
+  &:hover {
+    color: var(--mg-text);
+    border-color: var(--mg-navy);
+  }
+}
+
+// ── Quiz (dark) ───────────────────────────────────────────────
+.quiz-container {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+
+  .quiz-title    { color: var(--mg-navy); }
+  .quiz-subtitle { color: var(--mg-muted); }
+}
+
+.quiz-question .quiz-question-text { color: var(--mg-ink); }
+
+.quiz-option {
+  background: var(--mg-bg);
+  border-color: var(--mg-line);
+  color: var(--mg-text);
+
+  &:hover, &.selected {
+    border-color: var(--mg-navy);
+    background: var(--mg-blue-soft);
+    color: var(--mg-navy);
+  }
+
+  &.correct {
+    border-color: var(--mg-green);
+    background: rgba(63, 185, 80, 0.10);
+    color: #aff5b4;
+  }
+
+  &.incorrect {
+    border-color: var(--mg-red);
+    background: rgba(248, 81, 73, 0.10);
+    color: #ffa198;
+  }
+}
+
+.quiz-submit-btn {
+  background: var(--mg-navy);
+  color: #0f1117;
+
+  &:hover { background: var(--mg-navy-700); }
+}
+
+.quiz-result {
+  &.result-pass {
+    background: rgba(63, 185, 80, 0.10);
+    border-color: rgba(63, 185, 80, 0.30);
+    color: #aff5b4;
+  }
+
+  &.result-fail {
+    background: rgba(210, 153, 34, 0.10);
+    border-color: rgba(210, 153, 34, 0.30);
+    color: #e3b341;
+  }
+}
+
+.teacher-mode-toggle {
+  color: #0f1117;
+  background: var(--mg-navy);
+  border-color: var(--mg-navy);
+}
+
+.teacher-answer {
+  color: #aff5b4;
+  background: rgba(63, 185, 80, 0.10);
+  border-color: rgba(63, 185, 80, 0.30);
+}
+
+.mg-viz,
+.learning-node,
+.glossary-item {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.mg-viz-head h3,
+.mg-kpi-grid strong,
+.glossary-item h3 {
+  color: var(--mg-navy);
+}
+
+.mg-viz-head p,
+.learning-node em,
+.glossary-item p {
+  color: var(--mg-muted);
+}
+
+.mg-kpi-grid div,
+.mg-scatter,
+.mg-manhattan,
+.mg-segmented,
+.glossary-search {
+  color: var(--mg-text);
+  background: var(--mg-bg);
+  border-color: var(--mg-line);
+}
+
+.mg-bar-track { background: var(--mg-line); }
+.axis { stroke: var(--mg-line-strong); }
+.dot { fill: var(--mg-navy); }
+
+.mg-segmented button {
+  color: var(--mg-text);
+
+  &.active {
+    color: #0f1117;
+    background: var(--mg-navy);
+  }
+}
+
+// ── Pagefind (dark) ───────────────────────────────────────────
+.pagefind-ui {
+  --pagefind-ui-primary: var(--mg-navy);
+  --pagefind-ui-text: var(--mg-text);
+  --pagefind-ui-background: var(--mg-bg-soft);
+  --pagefind-ui-border: var(--mg-line);
+  --pagefind-ui-tag: var(--mg-bg-tint);
+}

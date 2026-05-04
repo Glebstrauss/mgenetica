@@ -1,0 +1,58 @@
+{
+  "module": "08",
+  "title": "Quiz — Módulo 08",
+  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "As equações de modelos mistos (MME) de Henderson permitem predizer EBVs porque:",
+      "options": [
+        "Usam informações de parentes e ajustam para efeitos fixos simultaneamente.",
+        "Ignoram o pedigree e avaliam cada animal de forma independente.",
+        "Assumem que todos os animais são não aparentados.",
+        "Utilizam apenas a variância fenotípica, sem necessidade de h²."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "O termo A⁻¹λ (onde λ = σ²e / σ²A) nas MME serve para:",
+      "options": [
+        "Inflar artificialmente os EBVs de animais de alto mérito.",
+        "\"Regredir\" as predições em direção à média com base nas relações de parentesco.",
+        "Remover o efeito fixo de fazenda antes da estimação.",
+        "Estimar a herdabilidade a partir dos dados fenotípicos."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "A acurácia de avaliação genética (r) para um touro com poucas filhas avaliadas aumenta quando:",
+      "options": [
+        "O número de filhas avaliadas aumenta.",
+        "A herdabilidade da característica é próxima de zero.",
+        "O intervalo de gerações diminui para zero.",
+        "A variância fenotípica aumenta indefinidamente."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Qual afirmação sobre BLUP é correta?",
+      "options": [
+        "Maximiza a variância entre EBVs para facilitar a seleção.",
+        "Minimiza o erro quadrático médio de predição (MSEP) dos valores genéticos.",
+        "Não utiliza informações de parentes, apenas do próprio animal.",
+        "Exige que todos os animais sejam genotipados com marcadores SNP."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "A DEP (Diferença Esperada na Progênie) de um reprodutor é equivalente a:",
+      "options": [
+        "EBV / 2, pois representa o valor transmissível médio para cada filho.",
+        "2 × EBV, pois considera ambos os alelos do reprodutor.",
+        "A variância do valor genético aditivo do reprodutor.",
+        "O fenótipo esperado na progênie sem ajuste de ambiente."
+      ],
+      "correct": 0
+    }
+  ]
+}

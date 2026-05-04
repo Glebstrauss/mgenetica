@@ -1,56 +1,150 @@
 ---
-title: "Módulo 06 — Correlações genéticas e fenotípicas"
+title: "Módulo 06 — Correlações Genéticas e Fenotípicas"
+description: "Relações entre características, resposta correlacionada à seleção e implicações para índices de seleção."
 ---
 
-[← Módulo anterior](modulo05-herdabilidade-e-repetibilidade.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo07-modelos-lineares-e-modelos-mistos.qmd)
-
-## Introdução
-
-Este módulo apresenta os principais pontos sobre **correlações genéticas e fenotípicas** dentro da proposta do MGenética, conectando teoria e prática com foco em aprendizado progressivo.
-
-## Conceitos teóricos
-
-- Conceito 1: definição e contexto no melhoramento animal.
-- Conceito 2: relações com genética quantitativa e/ou genômica.
-- Conceito 3: implicações para seleção e tomada de decisão.
-
-## Parte prática
-
-Nesta etapa, utilizamos dados simulados para reproduzir um cenário didático e controlado.
-
-## Exemplo com dados simulados
-
-```{r}
-#| eval: false
-source("../scripts/modulo06.R")
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 06 · PARÂMETROS GENÉTICOS</span>
+  <div class="module-meta"><span>⏱ ~35 min</span><span>Nível: Intermediário</span></div>
+</div>
+<div class="module-objectives">
+  <h3>O que você vai aprender</h3>
+  <ul>
+    <li>Diferenciar correlação genética (r<sub>A</sub>) de correlação fenotípica (r<sub>P</sub>)</li>
+    <li>Calcular a resposta correlacionada à seleção indireta</li>
+    <li>Identificar casos onde seleção indireta é mais eficiente que direta</li>
+    <li>Simular dados bivariados com correlação genética controlada em R</li>
+  </ul>
+</div>
 ```
 
-## Código em R
+## Quando selecionar para uma característica muda outra
+
+Um produtor seleciona bovinos para maior produção de leite. Alguns anos depois, percebe que a taxa de prenhez do rebanho diminuiu. Não é coincidência: há uma **correlação genética negativa** entre produção de leite e fertilidade. Os genes que elevam a produção frequentemente desfavorecem a reprodução. Isso é a correlação genética em ação.
+
+$$r_A = \frac{Cov_A(x, y)}{\sqrt{V_{Ax} \cdot V_{Ay}}}$$
+
+::: {.callout-note}
+**Conceito central:** A correlação genética (r_A) mede a associação entre os **valores de melhoramento** de duas características, causada por pleiotropia (um gene afeta ambas) ou desequilíbrio de ligação (genes próximos no cromossomo).
+:::
+
+## Correlação genética vs. fenotípica
+
+| | Correlação genética (r_A) | Correlação fenotípica (r_P) |
+|---|---|---|
+| Origem | Pleiotropia + LD genético | r_A + correlação ambiental |
+| Uso | Prediz resposta correlacionada | Descreve associação observável |
+| Valor típico | Pode ser fortemente neg. ou pos. | Frequentemente menor em magnitude |
+
+## Resposta correlacionada à seleção
+
+Quando selecionamos para a característica x, a característica y também muda. A resposta correlacionada (RC) é:
+
+$$RC_y = i_x \cdot r_A \cdot h_y \cdot \sigma_{Ay}$$
+
+A seleção indireta (selecionar x para melhorar y) é mais eficiente que a seleção direta quando:
+
+$$h_x \cdot r_A > h_y$$
+
+## Simulação em R
 
 ```{r}
-#| eval: false
-# Estrutura mínima para leitura do conjunto simulado
-# e execução da análise principal do módulo.
+#| label: simula-bivariado
+set.seed(106)
+n <- 800
+
+# Parâmetros: peso (x) e espessura de gordura subcutânea (y)
+va1 <- 400; va2 <- 8; rA <- -0.35   # correlação genética negativa
+ve1 <- 600; ve2 <- 12; rE <- -0.10  # correlação ambiental
+
+# Simula via decomposição de Cholesky
+covA <- rA * sqrt(va1) * sqrt(va2)
+LA   <- chol(matrix(c(va1,covA,covA,va2), 2, 2))
+A    <- matrix(rnorm(n*2), n, 2) %*% LA
+
+covE <- rE * sqrt(ve1) * sqrt(ve2)
+LE   <- chol(matrix(c(ve1,covE,covE,ve2), 2, 2))
+E    <- matrix(rnorm(n*2), n, 2) %*% LE
+
+P <- sweep(A+E, 2, c(300, 12), "+")
+colnames(P) <- c("peso_kg","gordura_mm")
+colnames(A) <- c("a_peso","a_gordura")
 ```
 
-## Interpretação dos resultados
+```{r}
+#| label: estima-correlacoes
+rA_obs <- cor(A)[1,2]
+rP_obs <- cor(P)[1,2]
+h1 <- sqrt(var(A[,1])/var(P[,1]))
+h2 <- sqrt(var(A[,2])/var(P[,2]))
 
-- Verifique o comportamento das estimativas.
-- Compare os resultados com o esperado teoricamente.
-- Discuta possíveis fontes de variação ou viés.
+cat("=== Correlações observadas vs. teóricas ===\n")
+cat(sprintf("rA observada: %6.4f  (teórica: %6.4f)\n", rA_obs, rA))
+cat(sprintf("rP observada: %6.4f\n", rP_obs))
+cat(sprintf("h1 (peso):    %6.4f\n", h1))
+cat(sprintf("h2 (gordura): %6.4f\n", h2))
+```
 
-## Exercício ou atividade sugerida
+```{r}
+#| fig-height: 4
+#| label: plot-bivariado
+par(mfrow=c(1,2), mar=c(4,4,2,1))
 
-1. Modifique os parâmetros da simulação.
-2. Reexecute o script e compare as saídas.
-3. Redija uma breve conclusão técnica (5 a 10 linhas).
+plot(P[,1], P[,2], pch=20, col=adjustcolor("#0d2642",0.25),
+     xlab="Peso (kg)", ylab="Gordura (mm)",
+     main=sprintf("Fenótipos  (rP = %.3f)", rP_obs))
+abline(lm(P[,2]~P[,1]), col="#dc2626", lwd=2)
 
-## Materiais extras
+plot(A[,1], A[,2], pch=20, col=adjustcolor("#4a9fd1",0.4),
+     xlab="Valor aditivo — Peso", ylab="Valor aditivo — Gordura",
+     main=sprintf("Valores aditivos  (rA = %.3f)", rA_obs))
+abline(lm(A[,2]~A[,1]), col="#dc2626", lwd=2)
+```
 
-- Script de apoio: `../scripts/modulo06.R`
-- Pasta de dados: `../data/`
-- Referências adicionais serão incluídas nas próximas versões.
+```{r}
+#| label: resposta-correlacionada
+# Selecionar top 20% em peso → como muda a gordura?
+i_sel  <- 1.40
+sel    <- P[,1] >= quantile(P[,1], 0.80)
+S_peso <- mean(P[sel,1]) - mean(P[,1])
+RC_gord <- i_sel * rA * h2 * sqrt(va2)
 
----
+cat("=== Resposta correlacionada (seleção por peso) ===\n")
+cat(sprintf("S (diferencial peso):        %6.2f kg\n", S_peso))
+cat(sprintf("RC gordura (fórmula):        %6.3f mm\n", RC_gord))
+cat(sprintf("Variação obs. em gordura:    %6.3f mm\n", mean(P[sel,2])-mean(P[,2])))
+cat(sprintf("\nrA < 0: selecionar peso+ → gordura diminui (desfavorável p/ acabamento)\n"))
+```
 
-[← Módulo anterior](modulo05-herdabilidade-e-repetibilidade.qmd) | [Início](../index.qmd) | [Próximo módulo →](modulo07-modelos-lineares-e-modelos-mistos.qmd)
+## Interpretação
+
+- Os dois gráficos mostram que rP e rA têm mesmo sinal, mas magnitudes diferentes. A correlação fenotípica "dilui" a genética com o ruído ambiental.
+- A RC para gordura é negativa (−0,15 mm): seleção positiva para peso reduz levemente a espessura de gordura — desfavorável se o mercado paga por acabamento.
+- Esse antagonismo justifica o uso de **índices de seleção** que ponderam simultaneamente peso e gordura, em vez de selecionar por uma característica só.
+
+::: {.callout-important}
+**Interpretação:** r_A e r_P podem ter sinais opostos. Uma correlação fenotípica positiva pode esconder uma correlação genética negativa se os dois ambientes tiverem efeitos positivos correlacionados nas duas características.
+:::
+
+## Exercício proposto
+
+1. Mude `rA` para +0,60 (correlação favorável). Como muda a decisão de seleção?
+2. Calcule quando a seleção indireta por peso seria mais eficiente que a direta para gordura: `h1 × rA > h2`?
+3. Se você quisesse manter gordura constante enquanto seleciona para peso, o que faria?
+
+```{=html}
+<div class="module-nav">
+  <a class="module-nav-card module-nav-prev" href="modulo05-herdabilidade-e-repetibilidade.qmd">
+    <span>Anterior · Módulo 05</span>
+    <strong>Herdabilidade e Repetibilidade</strong>
+  </a>
+  <a class="module-nav-card module-nav-next" href="modulo07-modelos-lineares-e-modelos-mistos.qmd">
+    <span>Próximo · Módulo 07</span>
+    <strong>Modelos Lineares e Mistos</strong>
+  </a>
+</div>
+```
+
+::: {.quiz-container data-module="06"}
+:::
