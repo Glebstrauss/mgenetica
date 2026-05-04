@@ -12,3 +12,5 @@
 
 # Generated practice data
 /data/modulo*_simulado.csv
+
+**/*.quarto_ipynb
