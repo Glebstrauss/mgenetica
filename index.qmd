@@ -11,7 +11,7 @@ Curso aberto
 :::
 
 ::: {.hero-title}
-Genética quantitativa aplicada, do conceito ao R
+Genética quantitativa<br>aplicada, do conceito ao R
 :::
 
 Uma trilha aberta para aprender melhoramento animal com base quantitativa, exemplos em R e progressão do conceito biológico até a avaliação genômica.
@@ -24,7 +24,7 @@ Uma trilha aberta para aprender melhoramento animal com base quantitativa, exemp
 :::
 
 ::: {.hero-panel}
-![](images/mgenetica-logo-correct.png){fig-alt="Logo do MGenética"}
+![](images/mgenetica-logo-site.svg){fig-alt="Logo MGenética — monograma com dupla hélice em gradiente cyan sobre fundo escuro"}
 :::
 :::
 
