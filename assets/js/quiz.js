@@ -177,7 +177,8 @@
         ' acertos. Revise o conteúdo e tente novamente.';
     }
 
-    resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    resultEl.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
   }
 
   function initQuizzes() {

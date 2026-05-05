@@ -362,13 +362,6 @@ main.content {
   }
 }
 
-.hero p {
-  color: var(--mg-text);
-  font-size: clamp(1rem, 1.35vw, 1.1rem);
-  line-height: 1.72;
-  max-width: 52ch;
-}
-
 .hero-copy > p {
   color: var(--mg-text);
   font-size: clamp(1rem, 1.35vw, 1.1rem);

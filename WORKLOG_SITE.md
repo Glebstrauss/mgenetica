@@ -377,3 +377,110 @@ Continue from `NEXT_SITE.md` with a site-only QA and refinement block: improve p
 - Verify GitHub Pages deployment output after a render/publish cycle.
 - Remove older duplicate SCSS rules only after rendered comparisons confirm parity.
 - Consider manifest-driven generation for the module index in a future block.
+
+---
+
+## 2026-05-05 — Rendered metadata and accessibility QA block
+
+### Block objective
+
+Continue from `NEXT_SITE.md` with a site-only block focused on rendered-public QA, page metadata, editorial section numbering, public navigation assets, module-index polish, safe SCSS cleanup and accessibility-sensitive interactions.
+
+### Cycles executed
+
+1. Diagnosis: the published homepage rendered global section numbers in editorial headings, producing labels such as "5 Trilha de aprendizado".
+   Implementation: disabled section numbering on `index.qmd` only.
+   Testing: validated the homepage front matter and compiled `styles/main.scss`.
+   Notes: module pages remain numbered for didactic content.
+
+2. Diagnosis: published favicon/PWA links from `head-extras.html` were rewritten to duplicated `/mgenetica/mgenetica/` paths, and Open Graph images on subpages pointed to folder-relative image paths.
+   Implementation: changed favicon/PWA extras and Open Graph/Twitter image URLs to absolute GitHub Pages URLs.
+   Testing: validated `_quarto.yml` and confirmed the published target assets return HTTP 200.
+   Notes: this improves social sharing and browser metadata without changing public copy.
+
+3. Diagnosis: the module index is an editorial landing page and also inherited global section numbering.
+   Implementation: disabled section numbering on `modules/index.qmd`.
+   Testing: validated module-index front matter and reran the site manifest validator.
+   Notes: representative modules 1, 6 and 12 were checked for navigation structure.
+
+4. Diagnosis: an older broad `.hero p` rule duplicated more specific hero-copy and hero-panel paragraph rules.
+   Implementation: removed the redundant broad selector from `styles/main.scss`.
+   Testing: compiled light and dark SCSS and reviewed the resulting diff.
+   Notes: cleanup was intentionally conservative because local Quarto rendering is unavailable.
+
+5. Diagnosis: glossary results could expose stronger live-region semantics and quiz result scrolling should honor reduced-motion preferences.
+   Implementation: added `aria-controls`, `role="status"` and `aria-live="polite"` to glossary results, and made quiz result scrolling respect `prefers-reduced-motion`.
+   Testing: ran JS syntax checks for changed scripts and reran manifest validation.
+   Notes: no dependencies or app changes were introduced.
+
+6. Diagnosis: the block needed a full available validation pass and updated continuation files.
+   Implementation: ran YAML, SCSS, manifest, JS, renv, module-script and whitespace checks; updated `WORKLOG_SITE.md` and prepared the next `NEXT_SITE.md`.
+   Testing: all available checks passed; `quarto` is still unavailable locally.
+   Notes: rendered verification should happen through GitHub Actions or another Quarto-enabled environment.
+
+### Files changed
+
+- `_quarto.yml`
+- `assets/html/head-extras.html`
+- `assets/js/interactives.js`
+- `assets/js/quiz.js`
+- `index.qmd`
+- `modules/index.qmd`
+- `styles/main.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Removed editorial section numbering from the homepage and module index.
+- Fixed favicon/PWA metadata targets for GitHub Pages.
+- Fixed Open Graph and Twitter image URLs for subpages.
+- Reduced one broad, obsolete hero paragraph rule.
+- Improved glossary live-region semantics.
+- Made quiz result scrolling respect reduced-motion preferences.
+
+### Problems fixed
+
+- Homepage and module-index headings were visually weakened by automatic section numbers.
+- Extra favicon links could resolve to duplicated GitHub Pages paths.
+- Social preview images on internal pages could point to incorrect nested paths.
+- A broad SCSS selector increased the chance of paragraph-style conflicts inside the hero.
+- Glossary and quiz interactions had small accessibility polish gaps.
+
+### Commands executed
+
+- `command -v quarto`
+- `curl -L https://glebstrauss.github.io/mgenetica/ -o /private/tmp/mgenetica-home.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/index.html -o /private/tmp/mgenetica-modules.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/semanas/ -o /private/tmp/mgenetica-semanas.html`
+- `curl -I https://glebstrauss.github.io/mgenetica/images/og-card.png`
+- `curl -I https://glebstrauss.github.io/mgenetica/images/favicon/site.webmanifest`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); cat("yaml ok\n")'`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript scripts/validate_site_manifest.R`
+- `node --check assets/js/progress.js`
+- `node --check assets/js/darkmode.js`
+- `node --check assets/js/interactives.js`
+- `node --check assets/js/quiz.js`
+- `node --check assets/js/teacher-mode.js`
+- `Rscript -e 'renv::status()'`
+- `Rscript scripts/run_all_modules.R`
+- `git diff --check`
+
+### Test results
+
+- YAML validation passed.
+- Light and dark SCSS compilation passed.
+- Site manifest validation passed.
+- JS syntax checks passed.
+- `renv::status()` reported no issues.
+- `scripts/run_all_modules.R` completed successfully.
+- `git diff --check` passed.
+- `quarto render` was not run because `quarto` is not installed or not on `PATH` locally.
+
+### Pending items
+
+- Publish this block and confirm GitHub Actions render output.
+- Re-fetch rendered pages after deploy to confirm section numbers and metadata URLs in generated HTML.
+- Continue SCSS cleanup only with rendered comparison or GitHub Pages verification.
+- Add lightweight rendered-link checks for social images, favicon links and generated internal links.

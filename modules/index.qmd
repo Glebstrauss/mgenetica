@@ -4,6 +4,7 @@ subtitle: "Trilha pública de genética quantitativa e genômica aplicada"
 description: "Índice dos 12 módulos do MGenética, organizado por fases de aprendizagem, prática em R e progressão técnica."
 page-layout: full
 toc: false
+number-sections: false
 ---
 
 ```{=html}

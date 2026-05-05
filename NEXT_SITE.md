@@ -6,7 +6,7 @@ Work only on the public site. Do not alter the app. Do not mix site evolution wi
 
 ## Objective
 
-Run rendered visual QA and safe cleanup for the public MGenética site. The priority is to inspect the actual rendered pages, compare desktop and mobile behavior, and only then remove older duplicate stylesheet rules that are demonstrably covered by the newer public component layer.
+Publish or render the latest site-only refinements, then verify the generated HTML for the issues fixed in the last block: homepage/module-index section numbering, favicon/PWA metadata, Open Graph image URLs, glossary semantics and quiz reduced-motion behavior.
 
 ## Scope
 
@@ -16,9 +16,8 @@ In scope:
 - Module index.
 - Representative module pages.
 - Search, glossary, roteiro and sobre pages.
-- `styles/main.scss` and `styles/main-dark.scss`.
-- Public interaction scripts when regressions are found.
-- Site manifest validation.
+- Generated HTML checks after render/deploy.
+- `styles/main.scss` and public interaction scripts if regressions are found.
 - `WORKLOG_SITE.md` and `NEXT_SITE.md`.
 
 Out of scope:
@@ -26,70 +25,68 @@ Out of scope:
 - App changes.
 - Backend.
 - Authentication.
-- New dependencies unless strictly justified.
 - Large scientific-content rewrites.
-- Repositioning the product away from a premium public education/science site.
+- New dependencies unless needed for a small validation script.
 
 ## Priorities
 
-1. Render the site and inspect real desktop/mobile output.
-2. Correct any visible homepage hierarchy, spacing, CTA or logo/capa issues.
-3. Verify module index and representative module pages as a coherent editorial system.
-4. Remove older duplicate SCSS only after visual parity is confirmed.
-5. Validate accessibility-sensitive interactions and publication readiness.
-6. Keep the content/manifest structure prepared for future app management without altering the app.
+1. Render or publish the current site changes.
+2. Verify generated HTML no longer shows numbered headings on homepage and module index.
+3. Verify favicon/PWA and social image metadata resolve to valid URLs on root and nested pages.
+4. Inspect homepage, module index and representative module pages after deploy.
+5. Add lightweight generated-HTML validation if the checks are repetitive and stable.
+6. Keep all changes site-only and documented.
 
 ## Planned cycles
 
-### Cycle 1 — Render and homepage visual QA
+### Cycle 1 — Publish/render verification
 
-- Diagnose the rendered homepage at desktop and mobile widths.
-- Check hero composition, logo use, CTAs, section rhythm and first-viewport clarity.
-- Implement only concrete visual fixes found in the rendered output.
-- Test with SCSS compilation and, when possible, browser screenshot review.
+- Diagnose whether local Quarto is available.
+- If unavailable, publish via GitHub Actions when requested or rely on the latest deployed artifact.
+- Verify workflow/render status when publishing occurs.
 - Register notes in `WORKLOG_SITE.md`.
 
-### Cycle 2 — Public navigation and CTA flow
+### Cycle 2 — Generated homepage QA
 
-- Diagnose header, footer, homepage CTAs, module-index CTAs and public return paths.
-- Correct confusing labels, weak hierarchy or broken navigation states.
-- Test links through static checks or rendered browser review.
+- Fetch rendered homepage HTML.
+- Confirm homepage headings are not visually numbered.
+- Check hero logo, primary CTA and secondary CTA in generated markup.
+- Correct regressions if found and test.
+
+### Cycle 3 — Generated module-index QA
+
+- Fetch rendered module-index HTML.
+- Confirm module-index headings are not visually numbered.
+- Check module-index CTAs and phase/module cards.
+- Correct regressions if found and test.
+
+### Cycle 4 — Metadata and asset-link validation
+
+- Check favicon, apple-touch-icon, manifest and Open Graph/Twitter image URLs on root and nested pages.
+- Add a small validation script only if it stays dependency-light.
+- Test with `curl` or the validation script.
 - Register notes in `WORKLOG_SITE.md`.
 
-### Cycle 3 — Module index and representative module pages
+### Cycle 5 — Interaction and accessibility spot check
 
-- Diagnose `modules/index.qmd` plus at least modules 1, 6 and 12.
-- Improve spacing, editorial hierarchy, bottom navigation or quiz placement if needed.
-- Run manifest validation and SCSS checks.
+- Check glossary generated markup, quiz result markup and reduced-motion behavior by static inspection.
+- Run JS syntax checks.
+- Correct small regressions only.
 - Register notes in `WORKLOG_SITE.md`.
 
-### Cycle 4 — Safe SCSS duplicate removal
+### Cycle 6 — Final validation and next plan
 
-- Identify older rules that duplicate the public component layer.
-- Remove only redundant rules that do not change rendered output materially.
-- Compile light and dark SCSS after each meaningful cleanup.
-- Register notes in `WORKLOG_SITE.md`.
-
-### Cycle 5 — Accessibility, responsiveness and interaction regression
-
-- Check skip link, focus states, color contrast, reduced-motion behavior, quiz feedback, glossary search and teacher-mode toggle.
-- Correct regressions or small semantic gaps.
-- Run JS syntax checks and manifest validation.
-- Register notes in `WORKLOG_SITE.md`.
-
-### Cycle 6 — Publication readiness and documentation
-
-- Run the full validation command set.
-- If Quarto is available, run `quarto render`.
-- If local Quarto is unavailable, record the blocker and rely on GitHub Actions or another Quarto-enabled environment for render verification.
-- Update `WORKLOG_SITE.md` and prepare the following `NEXT_SITE.md`.
+- Run the full available validation command set.
+- Update `WORKLOG_SITE.md`.
+- Prepare the following `NEXT_SITE.md`.
+- Record any deployment/cache caveats.
 
 ## Criteria for completion
 
 - At least 6 cycles are executed unless there is a real blocker.
 - Changes remain site-only.
 - No app files are altered.
-- Rendered output is inspected if Quarto/browser tooling is available.
+- Generated output is inspected through local render, deployed HTML or workflow artifacts.
 - `WORKLOG_SITE.md` is updated.
 - `NEXT_SITE.md` is updated again at the end of the block.
 - Available build, lint or tests are run.
@@ -97,6 +94,12 @@ Out of scope:
 
 ## Recommended commands
 
+- `command -v quarto`
+- `quarto render` if Quarto is available locally.
+- `curl -L https://glebstrauss.github.io/mgenetica/ -o /private/tmp/mgenetica-home.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/index.html -o /private/tmp/mgenetica-modules.html`
+- `curl -I https://glebstrauss.github.io/mgenetica/images/og-card.png`
+- `curl -I https://glebstrauss.github.io/mgenetica/images/favicon/site.webmanifest`
 - `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); cat("yaml ok\n")'`
 - `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
 - `Rscript scripts/validate_site_manifest.R`
@@ -108,5 +111,3 @@ Out of scope:
 - `Rscript -e 'renv::status()'`
 - `Rscript scripts/run_all_modules.R`
 - `git diff --check`
-- `quarto render` if Quarto is available locally.
-- GitHub Actions or GitHub Pages deploy verification if local Quarto is unavailable.

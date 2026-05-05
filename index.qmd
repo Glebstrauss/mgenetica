@@ -4,6 +4,7 @@ subtitle: "Melhoramento animal, genética quantitativa e genômica aplicada com 
 page-layout: full
 toc: false
 sidebar: false
+number-sections: false
 ---
 
 ::: {.hero}
