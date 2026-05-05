@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    env:
+      R_LIBS_USER: ${{ runner.temp }}/R-library
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -33,6 +35,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends r-base-core
+          mkdir -p "$R_LIBS_USER"
           Rscript --version
           Rscript -e 'options(repos = c(RSPM = "https://packagemanager.posit.co/cran/__linux__/noble/latest")); install.packages(c("knitr", "rmarkdown"), Ncpus = 2)'
 
