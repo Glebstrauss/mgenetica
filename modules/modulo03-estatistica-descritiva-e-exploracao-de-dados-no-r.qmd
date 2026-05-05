@@ -124,6 +124,10 @@ boxplot(peso_kg ~ raca, data=dados, col=c("#4a9fd1","#0d2642","#e8f1f8"),
 
 ```{=html}
 <div class="module-nav">
+  <a class="module-nav-card module-nav-index" href="index.qmd">
+    <span>Índice</span>
+    <strong>Todos os módulos</strong>
+  </a>
   <a class="module-nav-card module-nav-prev" href="modulo02-bases-da-genetica-quantitativa.qmd">
     <span>Anterior · Módulo 02</span>
     <strong>Bases da Genética Quantitativa</strong>

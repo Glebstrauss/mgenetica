@@ -1,16 +1,49 @@
-## Working mode for long site-evolution tasks
+# AGENTS.md
 
-When the user requests a 1-hour work block for the site, do not stop after the first successful visual or technical fix.
+## Project fronts
 
-For a 1-hour site work block:
-- Plan at least 5 complete work cycles before editing.
-- Each cycle must include diagnosis, implementation, testing, and notes.
-- Cover homepage, navigation, internal pages, responsiveness/accessibility, and code/content structure.
-- Continue to the next highest-impact issue after each completed item.
-- Do not stop just because the build passes.
-- Do not stop after homepage-only changes.
-- Stop only after completing the planned cycles, reaching a real blocker, or exhausting meaningful medium/high-impact improvements.
+This repository has two distinct fronts:
 
-The site is the public editorial/institutional layer of MGenética.
-The app is an internal panel for managing the site and the user's projects.
-The site should remain public-facing, premium, scientific, modern, and modular enough to be managed by the app later.
+- Site: the public, editorial and institutional layer of MGenética.
+- App: the internal management panel for the site and the user's projects.
+
+Do not mix these fronts. When the request is about the site, work only on the site. When the request is about the app, work only on the app. Do not alter the app during site-evolution blocks unless the user explicitly asks for an app change or a site bug is caused by a minimal shared reference that must be fixed.
+
+## Site working mode
+
+The site must remain public-facing, premium, scientific, modern, elegant, clear, trustworthy and technological. It should be modular enough to be managed by the internal app later, but it must not become an app-like administrative experience.
+
+For site work:
+
+- Diagnose before editing.
+- Work in cycles: diagnose -> implement -> test -> register.
+- Do not stop after one small correction if the user requested a larger block.
+- Do not stop only because the build passes.
+- Cover the highest-impact public-site issues first.
+- Keep site evolution separate from app evolution.
+- Do not implement backend, authentication or complex integrations unless explicitly requested.
+- Always run build, lint or tests when available.
+- Always update `WORKLOG_SITE.md` and `NEXT_SITE.md` at the end of future site work blocks.
+
+## Long site-evolution blocks
+
+When the user requests a 1-hour work block for the site, do not treat "1 hour" as symbolic. Plan at least 5 complete work cycles before editing.
+
+Each cycle must include:
+
+- Diagnosis.
+- Implementation.
+- Testing or verification.
+- Notes in the worklog.
+
+Required coverage across the block:
+
+- Homepage.
+- Public navigation.
+- Internal pages and modules.
+- Responsiveness and accessibility.
+- Performance where applicable.
+- Code/content structure.
+- Modular preparation for future app-based management.
+
+Stop only after completing the planned cycles, reaching a real blocker, exhausting meaningful medium/high-impact site improvements, or using the requested work block effectively.

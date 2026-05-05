@@ -21,7 +21,7 @@
 
   function showMessage(container, message, type) {
     container.innerHTML =
-      '<div class="quiz-result ' + (type || 'result-fail') + '" style="display:block">' +
+      '<div class="quiz-result ' + (type || 'result-fail') + '" role="status" aria-live="polite" style="display:block">' +
         escapeHtml(message) +
       '</div>';
   }
@@ -57,7 +57,7 @@
       return;
     }
 
-    var html = '<div class="quiz-title">' + escapeHtml(data.title || ('Quiz - Módulo ' + moduleId)) + '</div>';
+    var html = '<div class="quiz-title" id="quiz-title-' + moduleId + '">' + escapeHtml(data.title || ('Quiz - Módulo ' + moduleId)) + '</div>';
     html += '<p class="quiz-subtitle">' +
       escapeHtml(data.subtitle || ('Responda as questões abaixo. São necessários ' + data.passMark + ' acertos.')) +
       '</p>';
@@ -65,18 +65,18 @@
     data.questions.forEach(function (q, qi) {
       html += '<div class="quiz-question" data-qi="' + qi + '">';
       html += '<div class="quiz-question-text">' + (qi + 1) + '. ' + escapeHtml(q.text) + '</div>';
-      html += '<div class="quiz-options">';
+      html += '<div class="quiz-options" role="group" aria-label="Questão ' + (qi + 1) + '">';
       q.options.forEach(function (opt, oi) {
         html +=
-          '<button class="quiz-option" type="button" data-oi="' + oi + '" aria-label="Opção ' + (oi + 1) + '">' +
+          '<button class="quiz-option" type="button" data-oi="' + oi + '" aria-pressed="false" aria-label="Opção ' + (oi + 1) + '">' +
           '<span class="opt-letter">' + ['A', 'B', 'C', 'D', 'E'][oi] + '.</span> ' + escapeHtml(opt) +
           '</button>';
       });
       html += '</div></div>';
     });
 
-    html += '<button class="quiz-submit-btn" type="button" disabled>Verificar respostas</button>';
-    html += '<div class="quiz-result" style="display:none"></div>';
+    html += '<button class="quiz-submit-btn" type="button" disabled aria-describedby="quiz-title-' + moduleId + '">Verificar respostas</button>';
+    html += '<div class="quiz-result" role="status" aria-live="polite" style="display:none"></div>';
 
     container.innerHTML = html;
     attachQuizEvents(container, moduleId, data);
@@ -111,9 +111,11 @@
 
           qEl.querySelectorAll('.quiz-option').forEach(function (option) {
             option.classList.remove('selected');
+            option.setAttribute('aria-pressed', 'false');
           });
 
           btn.classList.add('selected');
+          btn.setAttribute('aria-pressed', 'true');
           answers[qi] = parseInt(btn.getAttribute('data-oi'), 10);
           submit.disabled = !answers.every(function (answer) { return answer !== null; });
         });
@@ -141,8 +143,14 @@
       qEl.querySelectorAll('.quiz-option').forEach(function (btn) {
         var oi = parseInt(btn.getAttribute('data-oi'), 10);
         btn.classList.remove('selected');
-        if (oi === rightAnswer) btn.classList.add('correct');
-        else if (oi === selected) btn.classList.add('incorrect');
+        btn.setAttribute('aria-pressed', 'false');
+        if (oi === rightAnswer) {
+          btn.classList.add('correct');
+          btn.setAttribute('aria-label', 'Resposta correta');
+        } else if (oi === selected) {
+          btn.classList.add('incorrect');
+          btn.setAttribute('aria-label', 'Resposta selecionada incorreta');
+        }
       });
 
       if (selected === rightAnswer) correct++;

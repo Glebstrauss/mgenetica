@@ -212,7 +212,7 @@
       ['Call rate', 'Proporcao de genotipos observados, sem dados faltantes.'],
       ['QTL', 'Regiao genomica associada a variacao de uma caracteristica quantitativa.']
     ];
-    el.innerHTML = '<input class="glossary-search" type="search" placeholder="Buscar termo, sigla ou conceito" aria-label="Buscar no glossario"><div class="glossary-results"></div>';
+    el.innerHTML = '<input class="glossary-search" type="search" placeholder="Buscar termo, sigla ou conceito" aria-label="Buscar no glossário"><div class="glossary-results"></div>';
     var input = el.querySelector('input');
     var results = el.querySelector('.glossary-results');
     function draw() {

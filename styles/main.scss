@@ -754,9 +754,10 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
 }
 
 .module-nav {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
+  align-items: stretch;
   margin: 3.5rem 0 2rem;
   padding-top: 2rem;
   border-top: 1px solid var(--mg-line);
@@ -801,8 +802,22 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
   }
 }
 
-.module-nav-prev { margin-right: auto; }
-.module-nav-next { margin-left: auto; text-align: right; }
+.module-nav-prev {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.module-nav-index {
+  grid-column: 2;
+  justify-self: center;
+  text-align: center;
+}
+
+.module-nav-next {
+  grid-column: 3;
+  justify-self: end;
+  text-align: right;
+}
 
 
 // ── 16. Quiz ──────────────────────────────────────────────────
@@ -1304,9 +1319,11 @@ div.sourceCode {
 
   .module-card   { min-height: auto; }
 
-  .module-nav    { flex-direction: column; }
+  .module-nav    { grid-template-columns: 1fr; }
 
   .module-nav-card {
+    grid-column: 1;
+    justify-self: stretch;
     width: 100%;
     max-width: none;
     text-align: left;
@@ -2725,6 +2742,43 @@ body:has(.hero) h2 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.phase-preview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: 1.3rem;
+}
+
+.phase-preview-card {
+  min-height: 170px;
+  padding: 1.15rem;
+  border: 1px solid rgba(10, 31, 56, 0.10);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.90);
+}
+
+.phase-preview-card strong {
+  display: block;
+  margin-bottom: 0.65rem;
+  color: #0a1f38;
+  font-family: "Manrope", "Inter", sans-serif;
+  font-size: 0.98rem;
+}
+
+.phase-preview-card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.section-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.2rem;
+}
+
 .home-sequence h2 {
   max-width: 760px;
   margin-bottom: 1.4rem;
@@ -2767,9 +2821,36 @@ body:has(.hero) h2 {
 
   .metric-grid,
   .study-flow,
+  .phase-preview,
   .feature-grid,
   .module-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 980px) {
+  .phase-preview,
+  .module-grid,
+  .feature-grid,
+  .phase-grid,
+  .statement-points,
+  .lab-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .module-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .module-nav-card {
+    grid-column: auto;
+    justify-self: stretch;
+    max-width: none;
+    text-align: left;
+  }
+
+  .module-nav-index {
+    order: -1;
   }
 }
 
@@ -2824,6 +2905,16 @@ body:has(.hero) h2 {
 
   .home-section {
     margin-block: 3.2rem;
+  }
+
+  .phase-preview-card,
+  .module-card,
+  .feature,
+  .statement-point,
+  .lab-card,
+  .phase-card,
+  .routine-card {
+    min-height: auto;
   }
 }
 
@@ -3562,6 +3653,11 @@ table {
   box-shadow: none;
 }
 
+.table,
+table {
+  width: 100%;
+}
+
 thead th {
   background: #0a1f38;
   font-size: 0.82rem;
@@ -3611,6 +3707,18 @@ code {
     padding: 1.35rem;
   }
 
+  .module-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .module-nav-card {
+    grid-column: 1;
+    justify-self: stretch;
+    width: 100%;
+    max-width: none;
+    text-align: left;
+  }
+
   .module-meta {
     flex-direction: column;
     gap: 0.25rem;
@@ -3626,5 +3734,106 @@ code {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+
+// ── 34. Public site component layer ───────────────────────────
+// Camada de consolidação: mantém os seletores existentes, mas
+// centraliza decisões repetidas para cards, painéis e CTAs públicos.
+// Novos componentes públicos devem entrar aqui antes de receberem
+// regras específicas de página.
+:where(
+  .metric,
+  .feature,
+  .module-card,
+  .profile-card,
+  .profile-section,
+  .statement-copy,
+  .statement-point,
+  .lab-card,
+  .phase-preview-card,
+  .phase-card,
+  .page-hero-copy,
+  .page-hero-aside,
+  .search-panel,
+  .glossary-panel,
+  .routine-card,
+  .module-nav-card
+) {
+  border-color: rgba(10, 31, 56, 0.10);
+  background-clip: padding-box;
+}
+
+:where(
+  .feature,
+  .module-card,
+  .statement-point,
+  .lab-card,
+  .phase-preview-card,
+  .phase-card,
+  .routine-card
+) {
+  overflow-wrap: anywhere;
+}
+
+:where(.section-cta, .hero-actions, .modules-landing-actions, .final-cta-actions, .profile-actions) {
+  align-items: center;
+}
+
+:where(.section-cta, .hero-actions, .modules-landing-actions, .final-cta-actions, .profile-actions) .btn {
+  white-space: normal;
+}
+
+:where(.module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card) strong {
+  text-wrap: balance;
+}
+
+:where(.module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card) p {
+  text-wrap: pretty;
+}
+
+:where(.module-grid, .feature-grid, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid) {
+  align-items: stretch;
+}
+
+:where(.feature, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card) {
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+:where(.feature, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):hover {
+  border-color: rgba(0, 168, 214, 0.34);
+  box-shadow: 0 14px 32px rgba(10, 31, 56, 0.065);
+}
+
+:where(.module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):focus-within {
+  border-color: rgba(0, 168, 214, 0.54);
+  box-shadow: 0 0 0 3px rgba(0, 168, 214, 0.12);
+}
+
+.section-cta {
+  padding-top: 0.3rem;
+}
+
+.module-card a,
+.module-nav-card,
+.phase-preview-card,
+.phase-card {
+  outline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+  :where(.section-cta, .hero-actions, .modules-landing-actions, .final-cta-actions, .profile-actions) {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  :where(.module-grid, .feature-grid, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid) {
+    grid-template-columns: 1fr;
   }
 }

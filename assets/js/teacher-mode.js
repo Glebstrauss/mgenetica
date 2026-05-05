@@ -25,6 +25,7 @@
     button.type = 'button';
     button.className = 'teacher-mode-toggle';
     button.setAttribute('aria-label', 'Alternar modo professor');
+    button.setAttribute('title', 'Alternar modo professor');
     button.addEventListener('click', function () { setEnabled(!enabled()); });
     document.body.appendChild(button);
     setEnabled(enabled());

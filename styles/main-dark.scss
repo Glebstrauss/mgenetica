@@ -240,6 +240,24 @@ code {
   strong  { color: var(--mg-cyan); }
 }
 
+.phase-preview-card {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+
+  strong { color: var(--mg-ink); }
+  p      { color: var(--mg-text); }
+}
+
+:where(.feature, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):hover {
+  border-color: rgba(111, 220, 255, 0.42);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+}
+
+:where(.module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):focus-within {
+  border-color: rgba(111, 220, 255, 0.58);
+  box-shadow: 0 0 0 3px rgba(111, 220, 255, 0.14);
+}
+
 
 // ── Features ──────────────────────────────────────────────────
 .feature {

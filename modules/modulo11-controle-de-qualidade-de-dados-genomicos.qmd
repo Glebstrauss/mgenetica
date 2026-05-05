@@ -158,6 +158,10 @@ abline(v=0.90, col="#dc2626", lty=2, lwd=2)
 
 ```{=html}
 <div class="module-nav">
+  <a class="module-nav-card module-nav-index" href="index.qmd">
+    <span>Índice</span>
+    <strong>Todos os módulos</strong>
+  </a>
   <a class="module-nav-card module-nav-prev" href="modulo10-introducao-a-genomica-e-marcadores-snp.qmd">
     <span>Anterior · Módulo 10</span>
     <strong>Genômica e Marcadores SNP</strong>

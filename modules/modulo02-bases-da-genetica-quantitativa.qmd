@@ -128,6 +128,10 @@ cat(sprintf("h² teórico:          %.4f\n", va/vp))
 
 ```{=html}
 <div class="module-nav">
+  <a class="module-nav-card module-nav-index" href="index.qmd">
+    <span>Índice</span>
+    <strong>Todos os módulos</strong>
+  </a>
   <a class="module-nav-card module-nav-prev" href="modulo01-introducao-ao-melhoramento-animal.qmd">
     <span>Anterior · Módulo 01</span>
     <strong>Introdução ao Melhoramento Animal</strong>

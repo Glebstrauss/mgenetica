@@ -40,7 +40,7 @@ Estrutura pronta para gestão editorial
 
 ::: {.hero-actions}
 [Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
-[Ver trilha completa](#trilha-de-aprendizado){.btn .btn-secondary}
+[Ver fases da trilha](#trilha-de-aprendizado){.btn .btn-secondary}
 :::
 :::
 
@@ -188,102 +188,37 @@ As atividades pedem comparação entre estimativas, hipóteses e implicações p
 ::: {.home-section .home-modules}
 ## Trilha de aprendizado
 
-::: {#trilha-de-aprendizado .module-grid}
-::: {.module-card}
-**01**
+Um panorama das quatro fases editoriais. O catálogo completo fica no índice de módulos.
 
-[Introdução ao Melhoramento Animal](modules/modulo01-introducao-ao-melhoramento-animal.qmd)
+::: {#trilha-de-aprendizado .phase-preview}
+::: {.phase-preview-card}
+**01 · Fundamentos**
 
-Objetivos, resposta à seleção e organização de programas de melhoramento.
+Melhoramento animal e bases da genética quantitativa.
 :::
 
-::: {.module-card}
-**02**
+::: {.phase-preview-card}
+**02 · Dados e parâmetros**
 
-[Bases da Genética Quantitativa](modules/modulo02-bases-da-genetica-quantitativa.qmd)
-
-Valor genético, fenótipo, ambiente e decomposição da variação observada.
+Exploração, variâncias, herdabilidade e correlações.
 :::
 
-::: {.module-card}
-**03**
+::: {.phase-preview-card}
+**03 · Modelagem**
 
-[Estatística descritiva e exploração no R](modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd)
-
-Primeiros diagnósticos, distribuição dos dados e interpretação exploratória.
+Modelos mistos, BLUP, pedigree e parentesco.
 :::
 
-::: {.module-card}
-**04**
+::: {.phase-preview-card}
+**04 · Genômica**
 
-[Médias, variâncias e componentes](modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd)
-
-Variância fenotípica, genética e ambiental como base para decisões.
+SNPs, controle de qualidade, matrizes, GWAS e predição.
+:::
 :::
 
-::: {.module-card}
-**05**
-
-[Herdabilidade e repetibilidade](modules/modulo05-herdabilidade-e-repetibilidade.qmd)
-
-Parâmetros que conectam observações individuais à previsibilidade genética.
-:::
-
-::: {.module-card}
-**06**
-
-[Correlações genéticas e fenotípicas](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd)
-
-Relações entre características e consequências indiretas da seleção.
-:::
-
-::: {.module-card}
-**07**
-
-[Modelos lineares e mistos](modules/modulo07-modelos-lineares-e-modelos-mistos.qmd)
-
-Estrutura estatística para combinar efeitos fixos, aleatórios e erro.
-:::
-
-::: {.module-card}
-**08**
-
-[BLUP e avaliação genética](modules/modulo08-blup-e-avaliacao-genetica.qmd)
-
-Predição de valores genéticos e comparação de candidatos à seleção.
-:::
-
-::: {.module-card}
-**09**
-
-[Pedigree e parentesco](modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd)
-
-Uso de genealogia, matrizes de parentesco e conexão entre indivíduos.
-:::
-
-::: {.module-card}
-**10**
-
-[Genômica e marcadores SNP](modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd)
-
-Entrada dos marcadores moleculares na avaliação e no controle de dados.
-:::
-
-::: {.module-card}
-**11**
-
-[Controle de qualidade genômico](modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd)
-
-Filtros, consistência dos genótipos e preparação para análises genômicas.
-:::
-
-::: {.module-card}
-**12**
-
-[Matrizes genômicas, GWAS e predição](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd)
-
-Integração entre parentesco genômico, associação e predição genômica.
-:::
+::: {.section-cta}
+[Ver os 12 módulos](modules/index.qmd){.btn .btn-primary}
+[Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-secondary}
 :::
 :::
 

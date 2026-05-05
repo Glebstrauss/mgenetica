@@ -15,12 +15,14 @@ toc: false
     <div class="modules-landing-actions">
       <a class="btn btn-primary" href="modulo01-introducao-ao-melhoramento-animal.qmd">Começar pelo Módulo 01</a>
       <a class="btn btn-secondary" href="../semanas/index.qmd">Ver roteiro semanal</a>
+      <a class="btn btn-secondary" href="../index.qmd">Voltar ao início</a>
     </div>
   </div>
   <div class="modules-landing-panel" aria-label="Resumo da trilha">
     <strong>12 módulos</strong>
     <span>4 fases editoriais</span>
     <span>Scripts reproduzíveis em R</span>
+    <span>Sequência registrada no manifesto do site</span>
   </div>
 </section>
 ```
