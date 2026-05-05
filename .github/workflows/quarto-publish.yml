@@ -27,10 +27,8 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Setup R (stable)
-        uses: r-lib/actions/setup-r@v2
-        with:
-          r-version: release
+      - name: Check runner R
+        run: Rscript --version
 
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -39,10 +37,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Restore R packages with renv
-        run: |
-          Rscript -e 'repos <- Sys.getenv("RSPM", "https://packagemanager.posit.co/cran/__linux__/noble/latest"); install.packages("renv", repos = repos); renv::restore(prompt = FALSE)'
 
       - name: Render Quarto site
         uses: quarto-dev/quarto-actions/render@v2
