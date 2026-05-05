@@ -21,7 +21,6 @@ Uma plataforma aberta para estudar genética quantitativa e genômica aplicada c
 ::: {.hero-actions}
 [Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
 [Ver trilha completa](#trilha-de-aprendizado){.btn .btn-secondary}
-[Conhecer o perfil](perfil.qmd){.btn .btn-secondary}
 :::
 :::
 
@@ -48,6 +47,34 @@ Scripts reproduzíveis
 **100%**
 
 Dados simulados para ensino
+:::
+:::
+:::
+
+::: {.home-section .platform-statement}
+::: {.statement-copy}
+## Plataforma pública para educação científica aplicada
+
+O MGenética organiza conteúdo, prática computacional e progressão técnica em uma experiência pública de estudo. A camada administrativa deve apoiar manutenção, projetos e publicação; a experiência do visitante permanece editorial, clara e orientada ao aprendizado.
+:::
+
+::: {.statement-points}
+::: {.statement-point}
+**Conteúdo modular**
+
+Páginas e módulos com estrutura previsível para edição futura.
+:::
+
+::: {.statement-point}
+**Prática reproduzível**
+
+Scripts e dados simulados conectados aos objetivos de cada módulo.
+:::
+
+::: {.statement-point}
+**Publicação estática**
+
+Performance e estabilidade adequadas para GitHub Pages.
 :::
 :::
 :::

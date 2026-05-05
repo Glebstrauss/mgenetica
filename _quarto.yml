@@ -7,6 +7,7 @@ project:
     - "semanas/*.qmd"
   resources:
     - "assets/"
+    - "data/site-manifest.yml"
     - "images/"
     - "quizzes/"
 

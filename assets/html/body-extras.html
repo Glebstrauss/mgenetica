@@ -18,6 +18,13 @@
     document.body.appendChild(s);
   }
 
-  load(['progress.js', 'darkmode.js', 'teacher-mode.js', 'interactives.js', 'quiz.js']);
+  var files = ['progress.js', 'darkmode.js'];
+  var isModulePage = /\/modules\//.test(window.location.pathname);
+
+  if (isModulePage) files.push('teacher-mode.js');
+  if (document.querySelector('[data-viz], [data-learning-map], .mg-viz')) files.push('interactives.js');
+  if (document.querySelector('.quiz-container')) files.push('quiz.js');
+
+  load(files);
 })();
 </script>
