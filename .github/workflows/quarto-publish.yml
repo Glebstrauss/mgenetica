@@ -28,10 +28,13 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Install R for Quarto render
+        env:
+          R_PROFILE_USER: /dev/null
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends r-base-core r-cran-knitr r-cran-rmarkdown
+          sudo apt-get install -y --no-install-recommends r-base-core
           Rscript --version
+          Rscript -e 'options(repos = c(RSPM = "https://packagemanager.posit.co/cran/__linux__/noble/latest")); install.packages(c("knitr", "rmarkdown"), Ncpus = 2)'
 
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
