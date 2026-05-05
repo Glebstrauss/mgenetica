@@ -34,7 +34,7 @@ jobs:
           export R_LIBS_USER="$RUNNER_TEMP/R-library"
           echo "R_LIBS_USER=$R_LIBS_USER" >> "$GITHUB_ENV"
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends r-base-core
+          sudo apt-get install -y --no-install-recommends r-base-core libuv1-dev
           mkdir -p "$R_LIBS_USER"
           Rscript --version
           Rscript -e 'options(repos = c(RSPM = "https://packagemanager.posit.co/cran/__linux__/noble/latest")); install.packages(c("knitr", "rmarkdown"), Ncpus = 2)'
