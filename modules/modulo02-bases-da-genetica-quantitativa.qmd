@@ -17,6 +17,11 @@ description: "A equação P = G + E, decomposição do valor genético e a heran
     <li>Estimar h² pela regressão pai–filho</li>
   </ul>
 </div>
+<div class="module-orientation" aria-label="Como estudar este modulo">
+  <span>Leitura</span>
+  <span>Simulacao em R</span>
+  <span>Interpretacao</span>
+</div>
 ```
 
 ## Por que as características zootécnicas não obedecem a Mendel?

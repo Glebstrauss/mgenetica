@@ -10,7 +10,7 @@ number-sections: false
 ::: {.hero}
 ::: {.hero-copy}
 ::: {.hero-kicker}
-MGenética Academy · curso aberto
+MGenética Academy · plataforma pública
 :::
 
 ::: {.hero-title}
@@ -41,7 +41,7 @@ Estrutura pronta para gestão editorial
 
 ::: {.hero-actions}
 [Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
-[Ver fases da trilha](#trilha-de-aprendizado){.btn .btn-secondary}
+[Explorar a trilha](modules/index.qmd){.btn .btn-secondary}
 :::
 :::
 
@@ -68,6 +68,40 @@ Scripts reproduzíveis
 **100%**
 
 Dados simulados para ensino
+:::
+:::
+:::
+
+::: {.home-section .home-entry}
+::: {.section-label}
+Entrada
+:::
+
+## Escolha o melhor ponto de partida
+
+::: {.entry-grid}
+::: {.entry-card .entry-card-primary}
+**Começar agora**
+
+Siga o primeiro módulo, rode o script correspondente e registre uma interpretação curta.
+
+[Abrir Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+:::
+
+::: {.entry-card}
+**Entender a trilha**
+
+Veja as quatro fases editoriais antes de avançar para os módulos individuais.
+
+[Ver índice de módulos](modules/index.qmd){.entry-link}
+:::
+
+::: {.entry-card}
+**Planejar o estudo**
+
+Use o roteiro semanal para organizar leitura, prática em R e revisão.
+
+[Abrir roteiro](semanas/index.qmd){.entry-link}
 :::
 :::
 :::

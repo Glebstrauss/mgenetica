@@ -17,6 +17,11 @@ description: "Matriz de parentesco numérico A, método tabular, coeficientes de
     <li>Entender por que A⁻¹ é necessária nas MME</li>
   </ul>
 </div>
+<div class="module-orientation" aria-label="Como estudar este modulo">
+  <span>Leitura</span>
+  <span>Simulacao em R</span>
+  <span>Interpretacao</span>
+</div>
 ```
 
 ## O pedigree como informação genética

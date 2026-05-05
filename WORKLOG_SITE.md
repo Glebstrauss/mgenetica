@@ -1254,3 +1254,251 @@ Continue from `NEXT_SITE.md` by adding low-risk manifest validation coverage, au
 - Consider a Quarto-enabled local or CI preview step so rendered output can be checked before GitHub Pages deploy.
 - Continue SCSS consolidation only with screenshot/browser evidence.
 - Consider adding a small CI workflow step that runs `scripts/prepublish_site_check.R` before Pages deployment.
+
+---
+
+## 2026-05-05 — CI prepublication gate block
+
+### Block objective
+
+Execute the publication-safety block from `NEXT_SITE.md` by integrating the local prepublication validation into the GitHub Pages workflow without changing the app.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` still identified publication safety as the next site-only block, and the Pages workflow rendered/deployed without running the new prepublication script.
+   Implementation: inspected `.github/workflows/quarto-publish.yml` and `scripts/prepublish_site_check.R`.
+   Testing: reviewed the workflow structure and current clean git state.
+   Notes: no app files were touched.
+
+2. Diagnosis: running the full prepublish script inside CI after Quarto setup would duplicate the Quarto render before the existing render action.
+   Implementation: added `SKIP_QUARTO_RENDER=1` support to `scripts/prepublish_site_check.R`.
+   Testing: included the script in the local prepublish run.
+   Notes: local behavior remains unchanged unless the environment variable is set.
+
+3. Diagnosis: the Pages workflow needed a validation gate before render, Pagefind, artifact upload and deploy.
+   Implementation: added a `Prepublish site validation` step after Node setup and before `Render Quarto site`.
+   Testing: parsed `.github/workflows/quarto-publish.yml` with `yaml::read_yaml`.
+   Notes: the workflow keeps Node 24 and the existing Quarto render action.
+
+4. Diagnosis: the validation gate must still pass locally before continuing to later site work.
+   Implementation: no additional edit was needed.
+   Testing: ran `Rscript scripts/prepublish_site_check.R`.
+   Notes: Quarto render remains skipped locally because `quarto` is not on `PATH`.
+
+5. Diagnosis: the next site block should move beyond publication safety now that the gate exists.
+   Implementation: prepared the next `NEXT_SITE.md` toward homepage and public navigation polish.
+   Testing: checked the diff for workflow/script scope.
+   Notes: this block intentionally did not publish yet, because the user requested three work rounds in sequence.
+
+### Files changed
+
+- `.github/workflows/quarto-publish.yml`
+- `scripts/prepublish_site_check.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added a CI prepublication gate before the Pages render/deploy path.
+- Added an environment-controlled way to skip duplicate Quarto render inside the prepublish script.
+- Preserved the existing GitHub Pages render, Pagefind and deploy flow.
+
+### Problems fixed
+
+- The workflow could deploy without running the same validation gate used locally.
+- The prepublish script had no CI-friendly way to avoid duplicate renders.
+
+### Commands executed
+
+- `sed -n '1,240p' .github/workflows/quarto-publish.yml`
+- `sed -n '1,220p' scripts/prepublish_site_check.R`
+- `Rscript scripts/prepublish_site_check.R`
+- `Rscript -e 'invisible(yaml::read_yaml(".github/workflows/quarto-publish.yml")); cat("workflow yaml ok\n")'`
+- `git diff -- .github/workflows/quarto-publish.yml scripts/prepublish_site_check.R`
+
+### Test results
+
+- `scripts/prepublish_site_check.R` passed.
+- Workflow YAML parsed, with the existing non-blocking YAML coercion warning from GitHub workflow syntax.
+- The diff remained site-publication scoped.
+
+### Pending items
+
+- Run the next site-only block focused on homepage, navigation and editorial clarity.
+- Run the full prepublish check again after all requested rounds are complete.
+
+---
+
+## 2026-05-05 — Homepage and public navigation clarity block
+
+### Block objective
+
+Execute the next site-only block by improving homepage entry clarity, public navigation flow, module-index guidance and manifest alignment without changing the app.
+
+### Cycles executed
+
+1. Diagnosis: the homepage had a strong visual system but the first decision after the hero was not explicit enough for different visitor intents.
+   Implementation: replaced the secondary hero anchor with a direct module-index CTA and added a three-path `home-entry` section for starting now, understanding the trail or planning study.
+   Testing: compiled light and dark SCSS.
+   Notes: content remained short and visitor-facing.
+
+2. Diagnosis: homepage CTAs and the module index needed a clearer bridge between public narrative and the full module collection.
+   Implementation: added `modules-guidance` to the module index with recommended flow, editorial management context and progression notes.
+   Testing: compiled SCSS and reviewed the changed module-index markup.
+   Notes: the new guidance reinforces future app management without turning the page into an admin surface.
+
+3. Diagnosis: the footer omitted the search route even though search is a public utility in the main nav.
+   Implementation: added Busca to the footer and aligned `data/site-manifest.yml`.
+   Testing: ran `scripts/validate_site_manifest.R` and YAML parsing.
+   Notes: fixed an intermediate manifest duplication during implementation before validation.
+
+4. Diagnosis: new entry/guidance cards needed responsive, focus and dark-mode support.
+   Implementation: added light and dark SCSS for `.entry-card`, `.guidance-item`, `.entry-grid` and `.modules-guidance`, including mobile one-column behavior and card focus inclusion in the public component layer.
+   Testing: compiled `styles/main.scss` and `styles/main-dark.scss`.
+   Notes: styling follows the existing logo-derived geometric strip motif.
+
+5. Diagnosis: the next block should move from public landing surfaces to internal module pages and editorial consistency.
+   Implementation: prepared the next `NEXT_SITE.md`.
+   Testing: checked the diff stat and validation outputs.
+   Notes: no app files were changed.
+
+### Files changed
+
+- `index.qmd`
+- `modules/index.qmd`
+- `_quarto.yml`
+- `data/site-manifest.yml`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added a clearer homepage entry system for three visitor intents.
+- Strengthened the route from homepage to module index and study route.
+- Added editorial guidance to the module index.
+- Added Busca to the public footer.
+- Added responsive and dark-theme styling for the new public components.
+
+### Problems fixed
+
+- Homepage CTAs were less decisive than the learning journey required.
+- Module index lacked a compact editorial bridge explaining how to use the collection.
+- Footer navigation did not expose search.
+
+### Commands executed
+
+- `rg -n "hero|home-|section-cta|final-cta|modules-landing|phase-preview|navbar|page-footer|btn" styles/main.scss styles/main-dark.scss`
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); cat("site yaml ok\n")'`
+- `git diff --stat`
+
+### Test results
+
+- Manifest validation passed.
+- Light/dark SCSS compilation passed.
+- Site YAML parsing passed.
+
+### Pending items
+
+- Run the next site-only block on module page hierarchy, reusable module affordances and internal-page validation.
+- Run the full prepublish check after the third requested round.
+
+---
+
+## 2026-05-05 — Module orientation and internal consistency block
+
+### Block objective
+
+Execute the third requested site-only round by improving module-page orientation and strengthening validation for that internal-page pattern.
+
+### Cycles executed
+
+1. Diagnosis: representative modules had consistent headers, objectives, quizzes and navigation, but lacked a compact orientation cue between objectives and long-form reading.
+   Implementation: inspected modules 01, 06 and 12 plus the existing module selectors and validation script.
+   Testing: searched for module header/objective/nav/quiz structure across all modules.
+   Notes: no scientific body content was rewritten.
+
+2. Diagnosis: the orientation pattern should be reusable and low-risk across all modules.
+   Implementation: added a `module-orientation` block to all 12 module pages with the consistent sequence Leitura, Simulacao em R and Interpretacao.
+   Testing: confirmed 12 module-orientation markers.
+   Notes: an initial mechanical replacement produced malformed markup; it was immediately corrected before continuing.
+
+3. Diagnosis: the new pattern needed visual treatment that supports scanability without competing with objectives.
+   Implementation: added light-theme styling for `.module-orientation` and mobile stacking behavior.
+   Testing: compiled `styles/main.scss`.
+   Notes: the pills use the existing cyan precision-dot motif.
+
+4. Diagnosis: dark mode needed equivalent contrast and surface treatment.
+   Implementation: added dark-theme overrides for module orientation pills.
+   Testing: compiled `styles/main-dark.scss`.
+   Notes: no new dependency or app coupling was introduced.
+
+5. Diagnosis: future site edits should not accidentally remove the module orientation pattern.
+   Implementation: added a `module-orientation` check to `scripts/validate_site_manifest.R` and added `orientation` to the module editable-region contract in `data/site-manifest.yml`.
+   Testing: ran `scripts/validate_site_manifest.R`.
+   Notes: the manifest now describes this as a future app-manageable editorial region.
+
+### Files changed
+
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `data/site-manifest.yml`
+- `scripts/validate_site_manifest.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added a consistent orientation affordance to every module page.
+- Improved module scanability before long-form content.
+- Added responsive and dark-theme support for the new module pattern.
+- Strengthened validation so all modules must keep the orientation block.
+- Expanded the manifest module editable-region contract.
+
+### Problems fixed
+
+- Module pages jumped from objectives directly into long-form content with no compact study-mode cue.
+- Validation did not protect the new reusable module pattern.
+
+### Commands executed
+
+- `sed -n '1,180p' modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `sed -n '1,180p' modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `sed -n '1,180p' modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `rg -n "module-header|module-objectives|module-nav|quiz-container|module-orientation" modules styles/main.scss scripts/validate_site_manifest.R`
+- `perl -0pi -e '...' modules/modulo*.qmd`
+- `rg -n "module-orientation" modules/modulo*.qmd | wc -l`
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+
+### Test results
+
+- Manifest validation passed with the new module-orientation check.
+- Light/dark SCSS compilation passed.
+- All 12 module files contain the orientation block.
+
+### Pending items
+
+- Publish the accumulated site-only changes if requested.
+- Use browser/screenshot QA after the next publication because local `quarto render` is still unavailable.
+
+### Post-round validation
+
+- `Rscript scripts/prepublish_site_check.R` passed after the three requested rounds.
+- `git diff --check` passed.
+- `quarto render` remains skipped locally because `quarto` is not available on `PATH`; the next recommended block is publication plus GitHub Pages render/deploy QA.

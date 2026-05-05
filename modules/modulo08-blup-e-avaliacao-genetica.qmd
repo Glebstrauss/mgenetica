@@ -17,6 +17,11 @@ description: "Equações de Henderson, predição de EBV, acurácia e ranking de
     <li>Ranquear candidatos e entender o efeito do número de filhos</li>
   </ul>
 </div>
+<div class="module-orientation" aria-label="Como estudar este modulo">
+  <span>Leitura</span>
+  <span>Simulacao em R</span>
+  <span>Interpretacao</span>
+</div>
 ```
 
 ## O problema que Henderson resolveu

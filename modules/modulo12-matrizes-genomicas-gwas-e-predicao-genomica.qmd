@@ -17,6 +17,11 @@ description: "Construção da matriz G, teste de associação genômica (GWAS) e
     <li>Avaliar a acurácia da predição genômica em um conjunto de validação</li>
   </ul>
 </div>
+<div class="module-orientation" aria-label="Como estudar este modulo">
+  <span>Leitura</span>
+  <span>Simulacao em R</span>
+  <span>Interpretacao</span>
+</div>
 ```
 
 ## Da matriz A à matriz G: parentesco esperado vs. realizado

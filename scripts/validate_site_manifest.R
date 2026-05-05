@@ -130,6 +130,9 @@ for (i in seq_along(modules)) {
   check_file(item$script, paste0("module script ", item$id))
 
   module_text <- paste(readLines(file.path(repo_root, item$href), warn = FALSE), collapse = "\n")
+  if (!grepl("module-orientation", module_text, fixed = TRUE)) {
+    fail(sprintf("module %s is missing module-orientation", item$id))
+  }
   if (!grepl("module-nav-index", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-nav-index", item$id))
   }

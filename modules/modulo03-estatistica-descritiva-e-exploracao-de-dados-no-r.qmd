@@ -17,6 +17,11 @@ description: "Diagnóstico inicial de dados fenotípicos: resumos, distribuiçõ
     <li>Explorar dados por grupos (raça, fazenda) com <code>tapply</code> e <code>aggregate</code></li>
   </ul>
 </div>
+<div class="module-orientation" aria-label="Como estudar este modulo">
+  <span>Leitura</span>
+  <span>Simulacao em R</span>
+  <span>Interpretacao</span>
+</div>
 ```
 
 ## Antes de estimar qualquer parâmetro, explore os dados

@@ -29,6 +29,26 @@ number-sections: false
 </section>
 ```
 
+::: {.modules-guidance}
+::: {.guidance-item}
+**Fluxo recomendado**
+
+Leia o conceito, execute o script do módulo e compare a interpretação com os objetivos declarados na página.
+:::
+
+::: {.guidance-item}
+**Gestão editorial**
+
+Ordem, fases, cartões e status de publicação ficam descritos no manifesto do site para futura edição pelo painel interno.
+:::
+
+::: {.guidance-item}
+**Progressão**
+
+Cada página de módulo mantém navegação anterior, próxima etapa e retorno para este índice.
+:::
+:::
+
 ## Fases da trilha
 
 ::: {.phase-grid}

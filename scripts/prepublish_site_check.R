@@ -42,7 +42,10 @@ for (file in c(
 run("Module data scripts", "Rscript", "scripts/run_all_modules.R")
 run("Whitespace/diff check", "git", c("diff", "--check"))
 
-if (nzchar(Sys.which("quarto"))) {
+if (identical(Sys.getenv("SKIP_QUARTO_RENDER"), "1")) {
+  cat("\n==> Quarto render\n")
+  cat("skipped: SKIP_QUARTO_RENDER=1\n")
+} else if (nzchar(Sys.which("quarto"))) {
   run("Quarto render", "quarto", "render")
 } else {
   cat("\n==> Quarto render\n")

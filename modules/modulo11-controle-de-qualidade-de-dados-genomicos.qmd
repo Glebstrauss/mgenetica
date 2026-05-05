@@ -17,6 +17,11 @@ description: "Filtros de MAF, call rate e HWE. Detecção de amostras problemát
     <li>Quantificar o impacto do QC no conjunto de dados</li>
   </ul>
 </div>
+<div class="module-orientation" aria-label="Como estudar este modulo">
+  <span>Leitura</span>
+  <span>Simulacao em R</span>
+  <span>Interpretacao</span>
+</div>
 ```
 
 ## Por que dados genômicos brutos não estão prontos para análise

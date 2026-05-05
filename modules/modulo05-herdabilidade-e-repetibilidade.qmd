@@ -17,6 +17,11 @@ description: "Conceitos, estimação e interpretação de h² e repetibilidade. 
     <li>Calcular o número ótimo de medidas por animal dado r</li>
   </ul>
 </div>
+<div class="module-orientation" aria-label="Como estudar este modulo">
+  <span>Leitura</span>
+  <span>Simulacao em R</span>
+  <span>Interpretacao</span>
+</div>
 ```
 
 ## O que é herdabilidade — e o que não é

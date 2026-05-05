@@ -66,6 +66,9 @@ navigation:
     - id: study-path
       label: Roteiro
       href: semanas/index.qmd
+    - id: search
+      label: Busca
+      href: busca.qmd
     - id: glossary
       label: Glossário
       href: glossario.qmd
@@ -86,6 +89,7 @@ content_pages:
       status: published
       editable_regions:
         - hero
+        - entry-points
         - platform-statement
         - phase-preview
         - final-cta
@@ -129,6 +133,7 @@ content_collections:
     editable_regions:
       - header
       - objectives
+      - orientation
       - body
       - exercise
       - quiz

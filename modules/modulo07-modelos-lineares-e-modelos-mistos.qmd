@@ -17,6 +17,11 @@ description: "Estrutura dos modelos lineares mistos, efeitos fixos vs. aleatóri
     <li>Como a variância dos resíduos e dos efeitos aleatórios entra no modelo</li>
   </ul>
 </div>
+<div class="module-orientation" aria-label="Como estudar este modulo">
+  <span>Leitura</span>
+  <span>Simulacao em R</span>
+  <span>Interpretacao</span>
+</div>
 ```
 
 ## Por que precisamos de modelos mistos?

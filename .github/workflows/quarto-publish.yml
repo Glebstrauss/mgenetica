@@ -45,6 +45,12 @@ jobs:
           node-version: '24'
           package-manager-cache: false
 
+      - name: Prepublish site validation
+        env:
+          R_PROFILE_USER: /dev/null
+          SKIP_QUARTO_RENDER: "1"
+        run: Rscript scripts/prepublish_site_check.R
+
       - name: Render Quarto site
         uses: quarto-dev/quarto-actions/render@v2
         env:

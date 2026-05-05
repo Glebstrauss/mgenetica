@@ -248,12 +248,44 @@ code {
   p      { color: var(--mg-text); }
 }
 
-:where(.feature, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):hover {
+.entry-card,
+.guidance-item {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+
+  strong { color: var(--mg-ink); }
+  p      { color: var(--mg-text); }
+}
+
+.entry-card-primary {
+  background:
+    linear-gradient(145deg, rgba(0, 168, 214, 0.20), rgba(10, 31, 56, 0.96));
+
+  strong { color: #ffffff; }
+  p      { color: rgba(232, 244, 252, 0.78); }
+}
+
+.entry-link {
+  color: var(--mg-cyan-lt);
+}
+
+.module-orientation span {
+  color: var(--mg-text);
+  background: var(--mg-bg-tint);
+  border-color: var(--mg-line);
+}
+
+.module-orientation span::before {
+  background: var(--mg-cyan-lt);
+  box-shadow: 0 0 0 4px rgba(111, 220, 255, 0.12);
+}
+
+:where(.feature, .entry-card, .guidance-item, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):hover {
   border-color: rgba(111, 220, 255, 0.42);
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
 }
 
-:where(.module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):focus-within {
+:where(.module-card, .entry-card, .guidance-item, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):focus-within {
   border-color: rgba(111, 220, 255, 0.58);
   box-shadow: 0 0 0 3px rgba(111, 220, 255, 0.14);
 }

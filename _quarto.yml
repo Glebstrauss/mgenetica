@@ -51,6 +51,8 @@ website:
         text: Módulos
       - href: semanas/index.qmd
         text: Roteiro
+      - href: busca.qmd
+        text: Busca
       - href: glossario.qmd
         text: Glossário
     right:

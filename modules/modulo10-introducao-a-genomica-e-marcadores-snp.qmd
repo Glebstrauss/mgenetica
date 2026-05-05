@@ -17,6 +17,11 @@ description: "SNPs, plataformas de genotipagem, frequências alélicas e desequi
     <li>Simular e analisar dados SNP com R base</li>
   </ul>
 </div>
+<div class="module-orientation" aria-label="Como estudar este modulo">
+  <span>Leitura</span>
+  <span>Simulacao em R</span>
+  <span>Interpretacao</span>
+</div>
 ```
 
 ## Do pedigree ao DNA

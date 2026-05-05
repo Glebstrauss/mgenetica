@@ -17,6 +17,11 @@ description: "Relações entre características, resposta correlacionada à sele
     <li>Simular dados bivariados com correlação genética controlada em R</li>
   </ul>
 </div>
+<div class="module-orientation" aria-label="Como estudar este modulo">
+  <span>Leitura</span>
+  <span>Simulacao em R</span>
+  <span>Interpretacao</span>
+</div>
 ```
 
 ## Quando selecionar para uma característica muda outra

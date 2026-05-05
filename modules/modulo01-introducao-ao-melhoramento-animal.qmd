@@ -17,6 +17,11 @@ description: "Objetivos do melhoramento, a equação do melhorista e os fatores 
     <li>Simular resposta à seleção ao longo de gerações com R</li>
   </ul>
 </div>
+<div class="module-orientation" aria-label="Como estudar este modulo">
+  <span>Leitura</span>
+  <span>Simulacao em R</span>
+  <span>Interpretacao</span>
+</div>
 ```
 
 ## O problema antes da fórmula
