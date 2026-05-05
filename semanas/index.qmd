@@ -2,6 +2,8 @@
 title: "Trilha de estudo"
 subtitle: "Roteiro de 12 semanas para avançar pelos módulos"
 page-layout: full
+toc: false
+number-sections: false
 ---
 
 ::: {.page-hero}

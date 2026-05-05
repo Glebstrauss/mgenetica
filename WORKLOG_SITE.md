@@ -589,3 +589,100 @@ Publish the latest site-only refinements, verify the generated GitHub Pages outp
 - The GitHub Actions workflow reports a Node.js 20 deprecation warning; update workflow actions/runtime in a future site-infrastructure block.
 - Continue rendered visual QA with screenshots or browser inspection.
 - Extend deployed validation to more internal pages if generated-output regressions recur.
+
+---
+
+## 2026-05-05 — Utility pages and workflow maintenance block
+
+### Block objective
+
+Continue the site-only evolution block from `NEXT_SITE.md`: inspect published public pages, remove section numbering from utility/editorial pages, extend deployed validation, and make a small workflow-only update for the GitHub Actions Node.js 20 deprecation warning.
+
+### Cycles executed
+
+1. Diagnosis: the published homepage and module index were structurally healthy after the previous deploy.
+   Implementation: no visual code change was needed for home/module index in this cycle.
+   Testing: fetched the published HTML and ran `scripts/validate_deployed_site.R`.
+   Notes: logo, CTAs, module cards and no-numbering checks remained valid.
+
+2. Diagnosis: representative module pages needed confirmation after previous stylesheet and navigation changes.
+   Implementation: no module-page content change was needed.
+   Testing: fetched modules 01, 06 and 12 and verified headers, objectives, callouts, tables/code, navigation and quiz containers.
+   Notes: module pages remain numbered because they are didactic content.
+
+3. Diagnosis: Busca, Glossário and Roteiro still inherited global `number-sections`, producing numbered hero headings in generated HTML.
+   Implementation: added `number-sections: false` to `busca.qmd` and `glossario.qmd`; added `toc: false` and `number-sections: false` to `semanas/index.qmd`.
+   Testing: validated the front matter and ran SCSS/JS checks.
+   Notes: this aligns utility pages with the premium editorial treatment already applied to home and module index.
+
+4. Diagnosis: GitHub Actions warned that Node.js 20 actions are deprecated and recommended opting into Node 24.
+   Implementation: added workflow-level `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true` to `.github/workflows/quarto-publish.yml`.
+   Testing: parsed the workflow YAML successfully.
+   Notes: this is a minimal workflow-only maintenance change.
+
+5. Diagnosis: deployed validation needed to cover the utility pages where the numbering issue was found.
+   Implementation: extended `scripts/validate_deployed_site.R` to validate search, glossary and route pages, including their key hooks.
+   Testing: validated script syntax; full deployed validation is expected to pass after publication.
+   Notes: no dependency was added.
+
+6. Diagnosis: the block needs publication and post-deploy verification because it changes generated public pages and workflow behavior.
+   Implementation: updated `WORKLOG_SITE.md` and prepared the next `NEXT_SITE.md`; final validation and publication are part of the delivery pass.
+   Testing: final local and deployed checks are listed below.
+   Notes: no app files were changed.
+
+### Files changed
+
+- `.github/workflows/quarto-publish.yml`
+- `busca.qmd`
+- `glossario.qmd`
+- `semanas/index.qmd`
+- `scripts/validate_deployed_site.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Removed automatic section numbering from utility/editorial pages.
+- Kept module pages numbered for learning content.
+- Extended deployed validation to search, glossary and route pages.
+- Added a minimal workflow-level opt-in to Node 24 for GitHub Actions.
+
+### Problems fixed
+
+- Busca, Glossário and Roteiro rendered numbered hero headings.
+- Deployed validation did not yet catch numbering regressions on utility pages.
+- The GitHub Pages workflow still followed the Node.js 20 deprecation path.
+
+### Commands executed
+
+- `curl -L https://glebstrauss.github.io/mgenetica/ -o /private/tmp/mgenetica-home-qa.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/index.html -o /private/tmp/mgenetica-modules-qa.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo01-introducao-ao-melhoramento-animal.html -o /private/tmp/mgenetica-mod01-qa.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html -o /private/tmp/mgenetica-mod06-qa.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html -o /private/tmp/mgenetica-mod12-qa.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/busca.html -o /private/tmp/mgenetica-busca-qa.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/glossario.html -o /private/tmp/mgenetica-glossario-qa.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/semanas/ -o /private/tmp/mgenetica-semanas-qa.html`
+- `Rscript scripts/validate_deployed_site.R`
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `node --check assets/js/interactives.js`
+- `Rscript -e 'invisible(yaml::read_yaml(".github/workflows/quarto-publish.yml")); cat("workflow yaml ok\n")'`
+- `git diff --check`
+
+### Test results
+
+- Published home/module-index validator passed before changes.
+- Module representative HTML checks passed.
+- Utility-page front matter validation passed.
+- SCSS compilation passed.
+- JS syntax check passed.
+- Site manifest validation passed.
+- Workflow YAML parsed successfully.
+
+### Pending items
+
+- Publish this block and confirm the Node 20 warning is gone or reduced.
+- Re-run `scripts/validate_deployed_site.R` after deployment, since it now expects utility pages to be unnumbered.
+- Continue visual QA with actual screenshots/browser review when browser tooling is available.

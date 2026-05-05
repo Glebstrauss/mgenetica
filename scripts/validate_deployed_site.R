@@ -4,6 +4,9 @@ base_url <- sub("/+$", "", base_url)
 pages <- c(
   home = paste0(base_url, "/"),
   modules = paste0(base_url, "/modules/index.html"),
+  search = paste0(base_url, "/busca.html"),
+  glossary = paste0(base_url, "/glossario.html"),
+  route = paste0(base_url, "/semanas/"),
   module01 = paste0(base_url, "/modules/modulo01-introducao-ao-melhoramento-animal.html")
 )
 
@@ -19,7 +22,7 @@ assert <- function(ok, message) {
 
 html <- lapply(pages, read_page)
 
-editorial_pages <- html[c("home", "modules")]
+editorial_pages <- html[c("home", "modules", "search", "glossary", "route")]
 for (name in names(editorial_pages)) {
   page <- editorial_pages[[name]]
   assert(!grepl("header-section-number", page, fixed = TRUE), paste(name, "has visible section numbers"))
@@ -37,6 +40,9 @@ for (name in names(html)) {
 assert(grepl("Começar pelo Módulo 01", html$home, fixed = TRUE), "home missing primary CTA")
 assert(grepl("Ver fases da trilha", html$home, fixed = TRUE), "home missing secondary CTA")
 assert(grepl("TRILHA COMPLETA", html$modules, fixed = TRUE), "module index missing landing badge")
+assert(grepl("PagefindUI", html$search, fixed = TRUE), "search page missing Pagefind")
+assert(grepl("data-glossary", html$glossary, fixed = TRUE), "glossary page missing glossary hook")
+assert(grepl("data-learning-map", html$route, fixed = TRUE), "route page missing learning map")
 assert(grepl("Todos os módulos", html$module01, fixed = TRUE), "module page missing module index nav")
 assert(grepl("quiz-container", html$module01, fixed = TRUE), "module page missing quiz container")
 

@@ -3,6 +3,7 @@ title: "Busca"
 description: "Busca full-text no conteúdo do MGenética Academy."
 page-layout: full
 toc: false
+number-sections: false
 ---
 
 ::: {.page-hero}

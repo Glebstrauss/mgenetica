@@ -3,6 +3,7 @@ title: "Glossário técnico"
 description: "Glossário pesquisável de termos de melhoramento animal, genética quantitativa e genômica aplicada."
 page-layout: full
 toc: false
+number-sections: false
 ---
 
 ::: {.page-hero}
