@@ -7,6 +7,32 @@ site:
   publication_target: github-pages
   content_owner: public-site
 
+governance:
+  public_site_role: editorial-institutional-layer
+  app_role: internal-management-panel
+  canonical_sources:
+    navigation: data/site-manifest.yml
+    page_registry: data/site-manifest.yml
+    module_registry: data/site-manifest.yml
+    module_index_cards: data/site-manifest.yml
+    longform_content: qmd-pages
+    visual_system: styles
+  editable_later_by_app:
+    - navigation labels and routes
+    - page registry and publication status
+    - module order, phase, card title and card summary
+    - editable regions declared per page or collection
+  not_app_managed_in_public_site:
+    - rendered Quarto layout chrome
+    - scientific longform body without editorial review
+    - scripts that generate teaching data
+    - visual design tokens without frontend review
+  statuses:
+    - draft
+    - review
+    - published
+    - archived
+
 navigation:
   primary:
     - id: home
@@ -109,25 +135,36 @@ content_collections:
       - navigation
     phases:
       - id: fundamentos
+        order: 1
         label: Fundamentos
         summary: Melhoramento animal e bases da genética quantitativa.
+        index_summary: Módulos 01-02 apresentam a lógica do melhoramento animal e a decomposição genética do fenótipo.
         modules: [modulo01, modulo02]
       - id: dados-parametros
+        order: 2
         label: Dados e parâmetros
         summary: Exploração, variâncias, herdabilidade e correlações.
+        index_summary: Módulos 03-06 conectam exploração, variância, herdabilidade, repetibilidade e correlações.
         modules: [modulo03, modulo04, modulo05, modulo06]
       - id: modelagem
+        order: 3
         label: Modelagem
         summary: Modelos mistos, BLUP, pedigree e parentesco.
+        index_summary: Módulos 07-09 avançam para modelos mistos, BLUP, pedigree e parentesco.
         modules: [modulo07, modulo08, modulo09]
       - id: genomica
+        order: 4
         label: Genômica
         summary: SNPs, controle de qualidade, matrizes, GWAS e predição.
+        index_summary: Módulos 10-12 introduzem SNPs, controle de qualidade, matrizes genômicas, GWAS e predição.
         modules: [modulo10, modulo11, modulo12]
     items:
       - id: modulo01
         order: 1
         title: Introdução ao Melhoramento Animal
+        card_title: Introdução ao Melhoramento Animal
+        card_summary: Objetivos, resposta à seleção e organização de programas de melhoramento.
+        phase_id: fundamentos
         phase: Fundamentos
         status: published
         href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
@@ -137,6 +174,9 @@ content_collections:
       - id: modulo02
         order: 2
         title: Bases da Genética Quantitativa
+        card_title: Bases da Genética Quantitativa
+        card_summary: Valor genético, fenótipo, ambiente e decomposição da variação observada.
+        phase_id: fundamentos
         phase: Fundamentos
         status: published
         href: modules/modulo02-bases-da-genetica-quantitativa.qmd
@@ -146,6 +186,9 @@ content_collections:
       - id: modulo03
         order: 3
         title: Estatística descritiva e exploração no R
+        card_title: Estatística descritiva e exploração no R
+        card_summary: Primeiros diagnósticos, distribuição dos dados e interpretação exploratória.
+        phase_id: dados-parametros
         phase: Dados
         status: published
         href: modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd
@@ -155,6 +198,9 @@ content_collections:
       - id: modulo04
         order: 4
         title: Médias, variâncias e componentes de variância
+        card_title: Médias, variâncias e componentes
+        card_summary: Variância fenotípica, genética e ambiental como base para decisões.
+        phase_id: dados-parametros
         phase: Dados
         status: published
         href: modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd
@@ -164,6 +210,9 @@ content_collections:
       - id: modulo05
         order: 5
         title: Herdabilidade e repetibilidade
+        card_title: Herdabilidade e repetibilidade
+        card_summary: Parâmetros que conectam observações individuais à previsibilidade genética.
+        phase_id: dados-parametros
         phase: Parâmetros
         status: published
         href: modules/modulo05-herdabilidade-e-repetibilidade.qmd
@@ -173,6 +222,9 @@ content_collections:
       - id: modulo06
         order: 6
         title: Correlações genéticas e fenotípicas
+        card_title: Correlações genéticas e fenotípicas
+        card_summary: Relações entre características e consequências indiretas da seleção.
+        phase_id: dados-parametros
         phase: Parâmetros
         status: published
         href: modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd
@@ -182,6 +234,9 @@ content_collections:
       - id: modulo07
         order: 7
         title: Modelos lineares e modelos mistos
+        card_title: Modelos lineares e mistos
+        card_summary: Estrutura estatística para combinar efeitos fixos, aleatórios e erro.
+        phase_id: modelagem
         phase: Modelagem
         status: published
         href: modules/modulo07-modelos-lineares-e-modelos-mistos.qmd
@@ -191,6 +246,9 @@ content_collections:
       - id: modulo08
         order: 8
         title: BLUP e avaliação genética
+        card_title: BLUP e avaliação genética
+        card_summary: Predição de valores genéticos e comparação de candidatos à seleção.
+        phase_id: modelagem
         phase: Modelagem
         status: published
         href: modules/modulo08-blup-e-avaliacao-genetica.qmd
@@ -200,6 +258,9 @@ content_collections:
       - id: modulo09
         order: 9
         title: Estrutura de pedigree e parentesco
+        card_title: Pedigree e parentesco
+        card_summary: Uso de genealogia, matrizes de parentesco e conexão entre indivíduos.
+        phase_id: modelagem
         phase: Conexão
         status: published
         href: modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd
@@ -209,6 +270,9 @@ content_collections:
       - id: modulo10
         order: 10
         title: Genômica e marcadores SNP
+        card_title: Genômica e marcadores SNP
+        card_summary: Entrada dos marcadores moleculares na avaliação e no controle de dados.
+        phase_id: genomica
         phase: Genômica
         status: published
         href: modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd
@@ -218,6 +282,9 @@ content_collections:
       - id: modulo11
         order: 11
         title: Controle de qualidade genômico
+        card_title: Controle de qualidade genômico
+        card_summary: Filtros, consistência dos genótipos e preparação para análises genômicas.
+        phase_id: genomica
         phase: Genômica
         status: published
         href: modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd
@@ -227,6 +294,9 @@ content_collections:
       - id: modulo12
         order: 12
         title: Matrizes genômicas, GWAS e predição
+        card_title: Matrizes genômicas, GWAS e predição
+        card_summary: Integração entre parentesco genômico, associação e predição genômica.
+        phase_id: genomica
         phase: Predição
         status: published
         href: modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd

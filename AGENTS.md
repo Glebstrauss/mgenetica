@@ -24,6 +24,7 @@ For site work:
 - Do not implement backend, authentication or complex integrations unless explicitly requested.
 - Always run build, lint or tests when available.
 - Always update `WORKLOG_SITE.md` and `NEXT_SITE.md` at the end of future site work blocks.
+- Before publishing site changes, run `Rscript scripts/prepublish_site_check.R` and only commit/push when it passes. If several site work blocks are done locally before publishing, run this check after the final block and again after any publication-fix change.
 
 ## Long site-evolution blocks
 

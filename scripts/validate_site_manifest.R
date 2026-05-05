@@ -24,12 +24,79 @@ check_file <- function(path, label) {
   invisible(TRUE)
 }
 
+check_text <- function(text, needle, label) {
+  if (is.null(needle) || !nzchar(needle)) fail(sprintf("%s is empty", label))
+  if (!grepl(needle, text, fixed = TRUE)) {
+    fail(sprintf("%s is missing from module index: %s", label, needle))
+  }
+}
+
+required_scalar <- function(item, field, label) {
+  value <- item[[field]]
+  if (is.null(value) || length(value) != 1 || is.na(value) || !nzchar(as.character(value))) {
+    fail(sprintf("%s has missing or empty %s", label, field))
+  }
+  value
+}
+
+check_unique <- function(values, label) {
+  duplicates <- unique(values[duplicated(values)])
+  if (length(duplicates)) {
+    fail(sprintf("%s has duplicated values: %s", label, paste(duplicates, collapse = ", ")))
+  }
+}
+
+allowed_statuses <- manifest$governance$statuses
+if (is.null(allowed_statuses) || !length(allowed_statuses)) {
+  fail("governance.statuses is empty")
+}
+
+required_governance <- c("navigation", "page_registry", "module_registry", "module_index_cards", "longform_content", "visual_system")
+missing_governance <- setdiff(required_governance, names(manifest$governance$canonical_sources))
+if (length(missing_governance)) {
+  fail(sprintf("governance.canonical_sources missing: %s", paste(missing_governance, collapse = ", ")))
+}
+
 pages <- manifest$content_pages$items
 if (!length(pages)) fail("content_pages.items is empty")
 
+valid_page_roles <- c("public-home", "collection-index", "study-plan", "utility", "reference", "institutional")
+page_ids <- vapply(pages, function(page) required_scalar(page, "id", "page"), character(1))
+page_hrefs <- vapply(pages, function(page) required_scalar(page, "href", paste0("page ", page$id)), character(1))
+
+check_unique(page_ids, "content_pages.items.id")
+check_unique(page_hrefs, "content_pages.items.href")
+
 for (page in pages) {
+  required_scalar(page, "title", paste0("page ", page$id))
   check_file(page$href, paste0("page ", page$id))
-  if (is.null(page$status)) fail(sprintf("page %s has no status", page$id))
+  if (!required_scalar(page, "status", paste0("page ", page$id)) %in% allowed_statuses) {
+    fail(sprintf("page %s has invalid status", page$id))
+  }
+  if (!required_scalar(page, "role", paste0("page ", page$id)) %in% valid_page_roles) {
+    fail(sprintf("page %s has invalid role", page$id))
+  }
+}
+
+primary_nav <- manifest$navigation$primary
+footer_nav <- manifest$navigation$footer
+
+check_unique(vapply(primary_nav, function(item) required_scalar(item, "id", "primary navigation item"), character(1)), "navigation.primary.id")
+check_unique(vapply(footer_nav, function(item) required_scalar(item, "id", "footer navigation item"), character(1)), "navigation.footer.id")
+check_unique(vapply(primary_nav, function(item) required_scalar(item, "href", paste0("primary navigation ", item$id)), character(1)), "navigation.primary.href")
+check_unique(vapply(footer_nav, function(item) required_scalar(item, "href", paste0("footer navigation ", item$id)), character(1)), "navigation.footer.href")
+
+nav_items <- c(primary_nav, footer_nav)
+for (item in nav_items) {
+  href <- required_scalar(item, "href", paste0("navigation ", item$id))
+  required_scalar(item, "label", paste0("navigation ", item$id))
+  if (!href %in% page_hrefs) {
+    fail(sprintf("navigation item %s references unregistered page: %s", item$id, href))
+  }
+}
+
+for (item in primary_nav) {
+  required_scalar(item, "type", paste0("primary navigation ", item$id))
 }
 
 modules <- manifest$content_collections$modules$items
@@ -37,14 +104,28 @@ if (length(modules) != 12) {
   fail(sprintf("expected 12 modules, found %s", length(modules)))
 }
 
+module_index_path <- manifest$content_collections$modules$index
+check_file(module_index_path, "module collection index")
+module_index_text <- paste(readLines(file.path(repo_root, module_index_path), warn = FALSE), collapse = "\n")
+
 ids <- vapply(modules, function(item) item$id, character(1))
 orders <- vapply(modules, function(item) item$order, numeric(1))
+module_hrefs <- vapply(modules, function(item) required_scalar(item, "href", paste0("module ", item$id)), character(1))
+module_scripts <- vapply(modules, function(item) required_scalar(item, "script", paste0("module ", item$id)), character(1))
 
 if (anyDuplicated(ids)) fail("duplicated module ids in manifest")
+check_unique(module_hrefs, "module hrefs")
+check_unique(module_scripts, "module scripts")
 if (!all(orders == seq_along(orders))) fail("module order must be sequential from 1")
 
 for (i in seq_along(modules)) {
   item <- modules[[i]]
+  for (field in c("id", "title", "card_title", "card_summary", "phase_id", "status", "href", "script")) {
+    required_scalar(item, field, sprintf("module %s", item$id %||% i))
+  }
+  if (!item$status %in% allowed_statuses) {
+    fail(sprintf("module %s has invalid status", item$id))
+  }
   check_file(item$href, paste0("module ", item$id))
   check_file(item$script, paste0("module script ", item$id))
 
@@ -70,14 +151,39 @@ for (i in seq_along(modules)) {
 phase_ids <- vapply(manifest$content_collections$modules$phases, function(item) item$id, character(1))
 if (anyDuplicated(phase_ids)) fail("duplicated phase ids in manifest")
 
+phase_orders <- vapply(manifest$content_collections$modules$phases, function(item) item$order, numeric(1))
+if (!all(phase_orders == seq_along(phase_orders))) fail("phase order must be sequential from 1")
+
 for (phase in manifest$content_collections$modules$phases) {
   if (is.null(phase$summary) || !nzchar(phase$summary)) {
     fail(sprintf("phase %s has no summary", phase$id))
   }
+  if (is.null(phase$index_summary) || !nzchar(phase$index_summary)) {
+    fail(sprintf("phase %s has no index_summary", phase$id))
+  }
+  check_text(module_index_text, sprintf("%02d · %s", phase$order, phase$label), sprintf("phase %s label", phase$id))
+  check_text(module_index_text, phase$index_summary, sprintf("phase %s index_summary", phase$id))
+
   missing <- setdiff(phase$modules, ids)
   if (length(missing)) {
     fail(sprintf("phase %s references unknown modules: %s", phase$id, paste(missing, collapse = ", ")))
   }
+}
+
+phase_modules <- unlist(lapply(manifest$content_collections$modules$phases, function(phase) {
+  stats::setNames(rep(phase$id, length(phase$modules)), phase$modules)
+}), use.names = TRUE)
+
+for (item in modules) {
+  if (is.null(item$phase_id) || !item$phase_id %in% phase_ids) {
+    fail(sprintf("module %s has invalid phase_id", item$id))
+  }
+  if (!identical(phase_modules[[item$id]], item$phase_id)) {
+    fail(sprintf("module %s phase_id does not match phase.modules", item$id))
+  }
+  check_text(module_index_text, sprintf("**%02d**", item$order), sprintf("module %s order", item$id))
+  check_text(module_index_text, sprintf("[%s](%s)", item$card_title, basename(item$href)), sprintf("module %s card link", item$id))
+  check_text(module_index_text, item$card_summary, sprintf("module %s card_summary", item$id))
 }
 
 cat("site manifest ok\n")

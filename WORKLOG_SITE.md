@@ -820,3 +820,437 @@ Continue the site-only evolution from `NEXT_SITE.md`, verify the published site,
 - The Node.js 20 deprecation warning is expected to remain until the workflow actions are upgraded safely without forcing all actions globally.
 - Run actual browser/screenshot review when the in-app browser backend is available.
 - Continue SCSS consolidation; `styles/main.scss` still contains accumulated late override sections.
+
+---
+
+## 2026-05-05 — Published QA and validation hardening block
+
+### Block objective
+
+Continue from `NEXT_SITE.md` with a site-only QA block focused on the published homepage, module index, representative module pages, light/dark theme structure, browser verification and repeatable validation.
+
+### Cycles executed
+
+1. Diagnosis: the repository was clean and the latest GitHub Pages workflow had already completed successfully.
+   Implementation: no site code change was needed in this cycle.
+   Testing: checked `git status`, confirmed the latest `Render and Publish Quarto Site` runs were successful and verified that local `quarto` is not available on `PATH`.
+   Notes: the block used deployed HTML, R validation and browser QA as the practical verification path.
+
+2. Diagnosis: the homepage and module index still include Quarto-generated title blocks in HTML, so the important question was whether they are hidden from the public visual hierarchy.
+   Implementation: no CSS change was needed because the published CSS already hides the title/sidebar chrome for `.hero` and `.modules-landing` pages.
+   Testing: fetched the published homepage and module index, checked hero/landing markers and ran `scripts/validate_deployed_site.R`.
+   Notes: the generated chrome remains in HTML but is hidden visually by the public layout rules.
+
+3. Diagnosis: representative module pages needed confirmation that quiz flow and final navigation remained correct after the previous reorder.
+   Implementation: no module content change was needed.
+   Testing: fetched modules 01, 06 and 12, confirmed quiz containers appear before final module navigation, confirmed index/previous/next links and ran `scripts/validate_site_manifest.R`.
+   Notes: module 01 correctly starts with index/next, module 06 has previous/index/next, and module 12 points forward to the certificate page.
+
+4. Diagnosis: dark-theme parity depended on the dark theme inheriting shared structural CSS and applying only dark overrides.
+   Implementation: no theme file change was needed.
+   Testing: inspected `_quarto.yml`, `styles/main.scss` and `styles/main-dark.scss`; compiled light and dark SCSS.
+   Notes: dark theme uses `[slate, styles/main.scss, styles/main-dark.scss]`, so shared structural selectors are present before dark overrides.
+
+5. Diagnosis: visual/browser QA should be repeatable instead of relying only on manual inspection.
+   Implementation: extended `scripts/validate_deployed_site.R` to fetch generated CSS, check public chrome hide rules, verify 12 module cards and assert quiz-before-navigation ordering.
+   Testing: used the in-app browser on the published homepage, module index and module 06; confirmed no console errors/warnings and reran the deployed-site validator after fixing an attribute-order bug in the validator parser.
+   Notes: browser QA was available in this block through the Codex in-app browser backend.
+
+6. Diagnosis: the block needed documentation and the next work plan.
+   Implementation: updated `WORKLOG_SITE.md` and prepared a new `NEXT_SITE.md`.
+   Testing: final validation commands are listed below.
+   Notes: no app files were changed.
+
+### Files changed
+
+- `scripts/validate_deployed_site.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Published-site validation now checks generated CSS for homepage/module-index chrome suppression rules.
+- Published-site validation now verifies that the module index exposes all 12 module cards.
+- Published-site validation now catches regressions where module navigation appears before the quiz.
+- Browser QA confirmed the public homepage, module index and a representative module render their key structures without console errors.
+- The next site block is now focused on reducing duplication between module index and manifest/content structure.
+
+### Problems fixed
+
+- The deployed-site validator could not previously catch missing landing-page chrome suppression in generated CSS.
+- The deployed-site validator did not verify the full 12-card module index.
+- The deployed-site validator did not enforce quiz-before-navigation ordering.
+- The first version of the CSS-link parser assumed a fixed HTML attribute order and was corrected.
+
+### Commands executed
+
+- `sed -n '1,240p' AGENTS.md`
+- `sed -n '1,260p' ROADMAP_SITE.md`
+- `sed -n '1,320p' BACKLOG_SITE.md`
+- `sed -n '1,260p' WORKLOG_SITE.md`
+- `sed -n '1,260p' NEXT_SITE.md`
+- `git status --short --branch`
+- `gh run list --repo Glebstrauss/mgenetica --workflow quarto-publish.yml --limit 3`
+- `command -v quarto`
+- `curl -L https://glebstrauss.github.io/mgenetica/ -o /private/tmp/mgenetica-home-next.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/index.html -o /private/tmp/mgenetica-modules-next.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo01-introducao-ao-melhoramento-animal.html -o /private/tmp/mgenetica-mod01-next.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html -o /private/tmp/mgenetica-mod06-next.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html -o /private/tmp/mgenetica-mod12-next.html`
+- `Rscript scripts/validate_deployed_site.R`
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); invisible(yaml::read_yaml(".github/workflows/quarto-publish.yml")); cat("yaml ok\n")'`
+- `node --check assets/js/progress.js`
+- `node --check assets/js/darkmode.js`
+
+### Test results
+
+- Latest GitHub Pages workflow was already successful before this block.
+- Published homepage returned the expected hero structure.
+- Published module index returned 12 module cards and active public navigation.
+- Published modules 01, 06 and 12 preserved quiz-before-navigation flow.
+- Browser QA found no console errors or warnings on homepage, module index or module 06.
+- `scripts/validate_deployed_site.R` passed after validator hardening.
+- `scripts/validate_site_manifest.R` passed.
+- Light/dark SCSS compilation passed.
+- YAML parsing passed, with a non-blocking YAML coercion warning from existing workflow syntax.
+- JS syntax checks passed for `progress.js` and `darkmode.js`.
+
+### Pending items
+
+- Run the remaining JS syntax checks and module-script suite before the next publish.
+- Reduce hardcoded duplication between `modules/index.qmd` and `data/site-manifest.yml`.
+- Consider adding a local generated-output validation step when `quarto` is available in the environment.
+- Continue conservative SCSS organization work; avoid visual churn unless QA exposes a concrete issue.
+
+---
+
+## 2026-05-05 — Manifest and module-index alignment block
+
+### Block objective
+
+Continue from `NEXT_SITE.md` by reducing drift risk between the public module index and `data/site-manifest.yml`, while keeping the current public visual output stable and not altering the app.
+
+### Cycles executed
+
+1. Diagnosis: `modules/index.qmd` duplicated module card titles, card summaries and phase summaries that were not fully represented in the manifest.
+   Implementation: no edit in this cycle; chose a conservative path of adding canonical metadata and validation instead of dynamic generation.
+   Testing: ran `scripts/validate_site_manifest.R`.
+   Notes: local changes from the previous block were preserved and worked with.
+
+2. Diagnosis: the manifest lacked fields needed to describe the module index as a future app-manageable collection.
+   Implementation: added ordered phase metadata, `index_summary`, `phase_id`, `card_title` and `card_summary` fields to `data/site-manifest.yml`.
+   Testing: ran `scripts/validate_site_manifest.R`.
+   Notes: public copy stayed short and matched the current module index.
+
+3. Diagnosis: the index still remains hand-authored, so drift must be caught automatically.
+   Implementation: extended `scripts/validate_site_manifest.R` to compare phase labels/summaries, module card order, card titles, card summaries and phase membership against `modules/index.qmd`.
+   Testing: ran `scripts/validate_site_manifest.R`.
+   Notes: this guards the current structure without requiring Quarto-time generation.
+
+4. Diagnosis: the metadata and validation changes should not affect the already-published public site.
+   Implementation: no visual change was needed.
+   Testing: fetched the published homepage, module index and module 06; ran `scripts/validate_deployed_site.R`.
+   Notes: published hero, module landing, 12 cards, 4 phase cards, quiz and navigation markers remained intact.
+
+5. Diagnosis: module-index responsiveness/accessibility needed browser confirmation before making any CSS change.
+   Implementation: no CSS change was made because QA found no regression.
+   Testing: browser QA confirmed landing visibility, hidden title block, 12 module cards, 4 phase cards, unique CTAs, active nav and no console errors/warnings.
+   Notes: this block avoided visual churn.
+
+6. Diagnosis: the block needed final validation and planning records.
+   Implementation: updated `WORKLOG_SITE.md` and prepared a new `NEXT_SITE.md`.
+   Testing: full validation set below.
+   Notes: no app files were changed.
+
+### Files changed
+
+- `data/site-manifest.yml`
+- `scripts/validate_site_manifest.R`
+- `scripts/validate_deployed_site.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added app-manageable card metadata for all 12 modules.
+- Added ordered phase metadata and module-index summaries to the manifest.
+- Added `phase_id` to each module and validation against phase membership.
+- Strengthened manifest validation to catch drift between `modules/index.qmd` and the manifest.
+- Preserved the current hand-authored module index while creating a clearer path toward future app-managed content.
+
+### Problems fixed
+
+- Module card titles and summaries were maintained only in the index page.
+- Phase labels/summaries in the index could drift from the manifest.
+- Module phase membership had no explicit machine-readable `phase_id`.
+- The validator did not previously protect the public module index from metadata drift.
+
+### Commands executed
+
+- `sed -n '1,240p' AGENTS.md`
+- `sed -n '1,240p' ROADMAP_SITE.md`
+- `sed -n '1,320p' BACKLOG_SITE.md`
+- `tail -n 220 WORKLOG_SITE.md`
+- `sed -n '1,260p' NEXT_SITE.md`
+- `sed -n '1,320p' data/site-manifest.yml`
+- `sed -n '1,240p' modules/index.qmd`
+- `git status --short --branch`
+- `Rscript scripts/validate_site_manifest.R`
+- `curl -L https://glebstrauss.github.io/mgenetica/ -o /private/tmp/mgenetica-home-manifest-block.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/index.html -o /private/tmp/mgenetica-modules-manifest-block.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html -o /private/tmp/mgenetica-mod06-manifest-block.html`
+- `Rscript scripts/validate_deployed_site.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); invisible(yaml::read_yaml(".github/workflows/quarto-publish.yml")); cat("yaml ok\n")'`
+- `node --check assets/js/progress.js`
+- `node --check assets/js/darkmode.js`
+- `node --check assets/js/interactives.js`
+- `node --check assets/js/quiz.js`
+- `node --check assets/js/teacher-mode.js`
+- `Rscript scripts/run_all_modules.R`
+- `git diff --check`
+- `command -v quarto`
+
+### Test results
+
+- `scripts/validate_site_manifest.R` passed with the new index/manifest drift checks.
+- `scripts/validate_deployed_site.R` passed.
+- Light/dark SCSS compilation passed.
+- YAML parsing passed, with the existing non-blocking YAML coercion warning from workflow syntax.
+- JS syntax checks passed.
+- `scripts/run_all_modules.R` completed successfully.
+- `git diff --check` passed.
+- `quarto render` was not run locally because `quarto` is still not available on `PATH`.
+- Browser QA found no console errors/warnings on the published module index.
+
+### Pending items
+
+- Commit/publish these local site-only changes when ready.
+- Consider a future generated or partially generated module index once local/CI Quarto constraints are comfortable.
+- Add documentation for public content governance and manifest fields.
+- Continue SCSS consolidation only where it reduces maintenance risk without visual churn.
+
+---
+
+## 2026-05-05 — Public content governance block
+
+### Block objective
+
+Continue from `NEXT_SITE.md` by documenting and stabilizing the public-site governance model so future app management can consume the manifest without changing the public site into an admin interface.
+
+### Cycles executed
+
+1. Diagnosis: the manifest had useful metadata, but the ownership boundary between manifest fields, `.qmd` content, styles and future app editing was still mostly implicit.
+   Implementation: audited `data/site-manifest.yml`, `ROADMAP_SITE.md`, `BACKLOG_SITE.md`, `WORKLOG_SITE.md` and `NEXT_SITE.md`.
+   Testing: ran `scripts/validate_site_manifest.R`.
+   Notes: continued working with the existing local site-only changes.
+
+2. Diagnosis: the manifest needed a first-class governance contract.
+   Implementation: added a `governance` section to `data/site-manifest.yml` with canonical sources, future app-editable areas, non-app-managed areas and allowed statuses.
+   Testing: ran `scripts/validate_site_manifest.R`.
+   Notes: no public visual output changed.
+
+3. Diagnosis: the governance rules needed to be visible outside the YAML file.
+   Implementation: added a `Content Governance` section to `ROADMAP_SITE.md`.
+   Testing: searched the roadmap to confirm the new section and field references.
+   Notes: documentation clarifies that `.qmd` files remain canonical for longform teaching content.
+
+4. Diagnosis: validation did not yet enforce status values, page roles, registered navigation targets or governance canonical-source fields.
+   Implementation: extended `scripts/validate_site_manifest.R` with required scalar checks, allowed statuses, page role validation, registered navigation validation and governance-source validation.
+   Testing: ran `scripts/validate_site_manifest.R`.
+   Notes: the validator now catches another class of metadata drift before publishing.
+
+5. Diagnosis: governance changes should not affect the public site, but the in-app browser was available and already on the module index.
+   Implementation: no CSS or content change was needed.
+   Testing: browser QA confirmed module index and homepage render correctly, title blocks are hidden, module cards/fases are present and console issues are empty; downloaded module index and module 06; ran `scripts/validate_deployed_site.R`.
+   Notes: this cycle made no app changes.
+
+6. Diagnosis: final validation and planning records were required.
+   Implementation: updated `WORKLOG_SITE.md` and prepared the next `NEXT_SITE.md`.
+   Testing: full validation set below.
+   Notes: `quarto render` remains unavailable locally.
+
+### Files changed
+
+- `data/site-manifest.yml`
+- `ROADMAP_SITE.md`
+- `scripts/validate_site_manifest.R`
+- `scripts/validate_deployed_site.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added a manifest-level governance contract for canonical content sources.
+- Documented which public-site fields the app may manage later.
+- Documented what must remain outside automatic app management.
+- Added allowed publication statuses to the manifest.
+- Strengthened validation for page roles, statuses, navigation targets, required module fields and governance canonical sources.
+
+### Problems fixed
+
+- Manifest ownership boundaries were implicit.
+- Page roles and statuses could drift without validation.
+- Navigation could point to unregistered pages without validation.
+- Future app-management scope was not clearly separated from `.qmd` longform content, scripts and visual tokens.
+
+### Commands executed
+
+- `sed -n '1,240p' AGENTS.md`
+- `sed -n '1,240p' ROADMAP_SITE.md`
+- `sed -n '1,320p' BACKLOG_SITE.md`
+- `tail -n 260 WORKLOG_SITE.md`
+- `sed -n '1,260p' NEXT_SITE.md`
+- `sed -n '1,340p' data/site-manifest.yml`
+- `sed -n '1,220p' scripts/validate_site_manifest.R`
+- `rg -n "govern|manifest|canonical|app|editable|source_collection|content" ROADMAP_SITE.md BACKLOG_SITE.md WORKLOG_SITE.md NEXT_SITE.md data/site-manifest.yml`
+- `Rscript scripts/validate_site_manifest.R`
+- `rg -n "Content Governance|data/site-manifest|canonical|Future app" ROADMAP_SITE.md`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/index.html -o /private/tmp/mgenetica-modules-governance.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html -o /private/tmp/mgenetica-mod06-governance.html`
+- `Rscript scripts/validate_deployed_site.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); invisible(yaml::read_yaml(".github/workflows/quarto-publish.yml")); cat("yaml ok\n")'`
+- `node --check assets/js/progress.js`
+- `node --check assets/js/darkmode.js`
+- `node --check assets/js/interactives.js`
+- `node --check assets/js/quiz.js`
+- `node --check assets/js/teacher-mode.js`
+- `Rscript scripts/run_all_modules.R`
+- `git diff --check`
+- `command -v quarto`
+
+### Test results
+
+- `scripts/validate_site_manifest.R` passed with the new governance checks.
+- `scripts/validate_deployed_site.R` passed.
+- Light/dark SCSS compilation passed.
+- YAML parsing passed, with the existing non-blocking YAML coercion warning from workflow syntax.
+- JS syntax checks passed.
+- `scripts/run_all_modules.R` completed successfully.
+- `git diff --check` passed.
+- Browser QA found no console errors/warnings on the published homepage and module index.
+- `quarto render` was not run locally because `quarto` is still not available on `PATH`.
+
+### Pending items
+
+- Commit/publish the accumulated site-only changes when ready.
+- Before publishing, run `Rscript scripts/prepublish_site_check.R`; if publication happens only after several work blocks, run it after the final block and again after any publication-fix change.
+- Consider generated or partially generated module index once Quarto execution is available locally or safely handled in CI.
+- Continue SCSS consolidation in a future block, limited to maintenance-risk reduction.
+- Consider adding governance checks for duplicate navigation ids and duplicate page ids.
+
+---
+
+## 2026-05-05 — Validation hardening and SCSS risk audit block
+
+### Block objective
+
+Continue from `NEXT_SITE.md` by adding low-risk manifest validation coverage, auditing SCSS duplication without visual churn, and running the prepublication check before any publish step.
+
+### Cycles executed
+
+1. Diagnosis: the manifest validator already checked statuses, roles, registered navigation and module/index drift, but not duplicate page ids, duplicate hrefs or duplicate navigation entries within each region.
+   Implementation: audited `scripts/validate_site_manifest.R` and `data/site-manifest.yml`; no edit in this cycle.
+   Testing: ran `scripts/validate_site_manifest.R`.
+   Notes: continued working with accumulated local site-only changes.
+
+2. Diagnosis: duplicate page/module/navigation metadata could still slip through.
+   Implementation: added a reusable `check_unique()` helper and validation for duplicate page ids, page hrefs, primary/footer nav ids, primary/footer nav hrefs, module hrefs and module scripts; also required page titles and primary navigation types.
+   Testing: ran `scripts/validate_site_manifest.R`; adjusted the first duplicate check to allow intentional header/footer link repetition while still validating each region separately.
+   Notes: validation now catches another class of publication-risk drift.
+
+3. Diagnosis: late sections of `styles/main.scss` contain real duplication, but many rules are accumulated visual overrides with page-specific behavior.
+   Implementation: no SCSS change was made because no clearly safe visual-neutral consolidation was found in this block.
+   Testing: compiled `styles/main.scss` and `styles/main-dark.scss`.
+   Notes: the safer choice was to avoid visual churn without a confirmed regression.
+
+4. Diagnosis: public QA was still needed even though this block mainly changed validation logic.
+   Implementation: browser tooling was unavailable in this turn, so used the documented fallback.
+   Testing: downloaded the published homepage, module index and module 06; checked key markers and ran `scripts/validate_deployed_site.R`.
+   Notes: published HTML retains expected hero, modules landing, 12 module cards, 4 phase cards, quiz and module navigation markers.
+
+5. Diagnosis: the user specifically asked for a verification step before publication to avoid another site-publish error.
+   Implementation: used the new `scripts/prepublish_site_check.R` command as the single prepublication gate.
+   Testing: ran manifest, deployed-site, YAML, SCSS, JS checks and `Rscript scripts/prepublish_site_check.R`.
+   Notes: `prepublish_site_check` passed and skipped only local `quarto render` because `quarto` is not available on `PATH`.
+
+6. Diagnosis: worklog and next-plan updates were required.
+   Implementation: updated `WORKLOG_SITE.md` and prepared a new `NEXT_SITE.md`.
+   Testing: final checks are listed below.
+   Notes: no app files were changed.
+
+### Files changed
+
+- `scripts/validate_site_manifest.R`
+- `AGENTS.md`
+- `ROADMAP_SITE.md`
+- `data/site-manifest.yml`
+- `scripts/validate_deployed_site.R`
+- `scripts/prepublish_site_check.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added duplicate validation for page ids, page hrefs, module hrefs and module scripts.
+- Added duplicate validation inside primary and footer navigation regions.
+- Added required page-title and primary-navigation-type checks.
+- Confirmed the new prepublication command passes after the accumulated site-only changes.
+- Documented that SCSS consolidation should remain evidence-backed because existing late overrides are visually sensitive.
+
+### Problems fixed
+
+- Duplicate page/navigation/module metadata could pass validation.
+- Primary navigation entries could miss `type` without being caught.
+- Publication readiness depended on manually remembering multiple commands instead of one prepublish gate.
+
+### Commands executed
+
+- `sed -n '1,220p' AGENTS.md`
+- `sed -n '1,220p' ROADMAP_SITE.md`
+- `sed -n '1,260p' BACKLOG_SITE.md`
+- `tail -n 220 WORKLOG_SITE.md`
+- `sed -n '1,240p' NEXT_SITE.md`
+- `sed -n '1,240p' scripts/validate_site_manifest.R`
+- `sed -n '1,340p' data/site-manifest.yml`
+- `Rscript scripts/validate_site_manifest.R`
+- `sed -n '2520,2925p' styles/main.scss`
+- `sed -n '3200,3865p' styles/main.scss`
+- `sed -n '220,480p' styles/main-dark.scss`
+- `rg -n "section-cta|hero-actions|modules-landing-actions|final-cta-actions|profile-actions|module-card|phase-card|focus-within|transition" styles/main.scss styles/main-dark.scss`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `curl -L https://glebstrauss.github.io/mgenetica/ -o /private/tmp/mgenetica-home-hardening.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/index.html -o /private/tmp/mgenetica-modules-hardening.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html -o /private/tmp/mgenetica-mod06-hardening.html`
+- `Rscript scripts/validate_deployed_site.R`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); invisible(yaml::read_yaml(".github/workflows/quarto-publish.yml")); cat("yaml ok\n")'`
+- `node --check assets/js/progress.js`
+- `node --check assets/js/darkmode.js`
+- `node --check assets/js/interactives.js`
+- `node --check assets/js/quiz.js`
+- `node --check assets/js/teacher-mode.js`
+- `git diff --check`
+- `command -v quarto`
+- `Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- `scripts/validate_site_manifest.R` passed with duplicate/id checks.
+- `scripts/validate_deployed_site.R` passed.
+- Light/dark SCSS compilation passed.
+- YAML parsing passed, with the existing non-blocking YAML coercion warning from workflow syntax.
+- JS syntax checks passed.
+- `scripts/prepublish_site_check.R` passed.
+- `git diff --check` passed.
+- Browser automation was unavailable in this turn, so published HTML checks were used as fallback.
+- `quarto render` was not run locally because `quarto` is still not available on `PATH`.
+
+### Pending items
+
+- Commit/publish the accumulated site-only changes when ready, after rerunning `Rscript scripts/prepublish_site_check.R`.
+- Consider a Quarto-enabled local or CI preview step so rendered output can be checked before GitHub Pages deploy.
+- Continue SCSS consolidation only with screenshot/browser evidence.
+- Consider adding a small CI workflow step that runs `scripts/prepublish_site_check.R` before Pages deployment.

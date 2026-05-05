@@ -78,3 +78,13 @@ The app is an internal management layer. The site should be structured so the ap
 - Content collections.
 
 This preparation should happen through clear content organization and metadata, not by turning the public site into an admin interface.
+
+## Content Governance
+
+`data/site-manifest.yml` is the public-site content map. It is the canonical source for navigation, page registry, module registry, module order, phase membership, module card titles and module card summaries.
+
+The `.qmd` pages remain the canonical source for longform teaching content, scientific explanation, exercises and page-specific editorial composition. The manifest may describe editable regions, but it should not become a dump of full scientific lessons.
+
+Future app management should read and write only the declared public-site metadata and editable regions. It must not turn the public site into an administrative interface, and it must not silently alter teaching scripts, visual design tokens or longform scientific content without explicit editorial review.
+
+Validation scripts should protect the contract between the manifest and public pages. When module cards, phases, page roles, statuses or navigation entries drift, the local validation should fail before publication.
