@@ -17,8 +17,6 @@ concurrency:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    env:
-      R_LIBS_USER: ${{ runner.temp }}/R-library
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -33,6 +31,8 @@ jobs:
         env:
           R_PROFILE_USER: /dev/null
         run: |
+          export R_LIBS_USER="$RUNNER_TEMP/R-library"
+          echo "R_LIBS_USER=$R_LIBS_USER" >> "$GITHUB_ENV"
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends r-base-core
           mkdir -p "$R_LIBS_USER"
