@@ -80,7 +80,7 @@ format:
   html:
     theme:
       light: [cosmo, styles/main.scss]
-      dark:  [slate,  styles/main-dark.scss]
+      dark:  [slate,  styles/main.scss, styles/main-dark.scss]
     include-in-header: assets/html/head-extras.html
     include-after-body: assets/html/body-extras.html
     toc: true

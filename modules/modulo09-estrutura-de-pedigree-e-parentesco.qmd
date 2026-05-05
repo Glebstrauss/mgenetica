@@ -135,6 +135,9 @@ for (g in list(1:3, 4:5, 6:7, 8:9, 10)) {
 2. O que acontece com a diagonal de A se todos os animais forem filhos de pai × filha repetidamente por 3 gerações?
 3. Compare `solve(A)` com `solve(A + 0.01*diag(n))`. Por que a regularização ajuda?
 
+::: {.quiz-container data-module="09"}
+:::
+
 ```{=html}
 <div class="module-nav">
   <a class="module-nav-card module-nav-index" href="index.qmd">
@@ -151,6 +154,3 @@ for (g in list(1:3, 4:5, 6:7, 8:9, 10)) {
   </a>
 </div>
 ```
-
-::: {.quiz-container data-module="09"}
-:::

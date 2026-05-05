@@ -2542,12 +2542,25 @@ body:has(.hero) .teacher-mode-toggle {
   display: none !important;
 }
 
+body:has(.hero) #title-block-header,
+body:has(.modules-landing) #title-block-header,
+body:has(.modules-landing) .quarto-page-breadcrumbs,
+body:has(.modules-landing) .quarto-secondary-nav,
+body:has(.modules-landing) #quarto-sidebar,
+body:has(.modules-landing) #quarto-margin-sidebar,
+body:has(.modules-landing) .sidebar {
+  display: none !important;
+}
+
 body:has(.hero) #quarto-content,
-body:has(.hero) .page-columns {
+body:has(.hero) .page-columns,
+body:has(.modules-landing) #quarto-content,
+body:has(.modules-landing) .page-columns {
   display: block;
 }
 
-body:has(.hero) main.content {
+body:has(.hero) main.content,
+body:has(.modules-landing) main.content {
   width: min(100% - 48px, 1220px);
   max-width: 1220px;
   margin: 0 auto;
@@ -2795,6 +2808,10 @@ body:has(.hero) h2 {
     width: min(100% - 32px, 760px);
   }
 
+  body:has(.modules-landing) main.content {
+    width: min(100% - 32px, 760px);
+  }
+
   .hero {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -2849,6 +2866,11 @@ body:has(.hero) h2 {
 
 @media (max-width: 640px) {
   body:has(.hero) main.content {
+    width: min(100% - 24px, 520px);
+    padding-top: 0.75rem;
+  }
+
+  body:has(.modules-landing) main.content {
     width: min(100% - 24px, 520px);
     padding-top: 0.75rem;
   }

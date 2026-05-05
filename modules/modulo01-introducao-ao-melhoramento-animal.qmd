@@ -127,6 +127,9 @@ Observando a tabela de progressão:
 2. Mantenha a intensidade original, mas altere `h2` para 0,15 (característica de reprodução). Qual é o ganho esperado?
 3. Se L = 5 anos (touro usado por 5 anos), qual é o ganho genético **anual** usando a equação ΔG/L?
 
+::: {.quiz-container data-module="01"}
+:::
+
 ```{=html}
 <div class="module-nav">
   <a class="module-nav-card module-nav-index" href="index.qmd">
@@ -139,6 +142,3 @@ Observando a tabela de progressão:
   </a>
 </div>
 ```
-
-::: {.quiz-container data-module="01"}
-:::

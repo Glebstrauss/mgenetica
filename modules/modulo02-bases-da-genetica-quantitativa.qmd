@@ -126,6 +126,9 @@ cat(sprintf("h² teórico:          %.4f\n", va/vp))
 2. Simule o que acontece com a regressão pai–filho quando `n <- 50`. Compare com `n <- 2000`.
 3. Qual seria o h² se `vi = 0` e `vd = 0`? O que isso significa biologicamente?
 
+::: {.quiz-container data-module="02"}
+:::
+
 ```{=html}
 <div class="module-nav">
   <a class="module-nav-card module-nav-index" href="index.qmd">
@@ -142,6 +145,3 @@ cat(sprintf("h² teórico:          %.4f\n", va/vp))
   </a>
 </div>
 ```
-
-::: {.quiz-container data-module="02"}
-:::

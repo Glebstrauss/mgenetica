@@ -686,3 +686,126 @@ Continue the site-only evolution block from `NEXT_SITE.md`: inspect published pu
 - Publish this block and confirm the Node 20 warning is gone or reduced.
 - Re-run `scripts/validate_deployed_site.R` after deployment, since it now expects utility pages to be unnumbered.
 - Continue visual QA with actual screenshots/browser review when browser tooling is available.
+
+---
+
+## 2026-05-05 — Landing hierarchy and module flow block
+
+### Block objective
+
+Continue the site-only evolution from `NEXT_SITE.md`, verify the published site, correct public landing hierarchy, improve module learning flow, and strengthen light/dark visual structure without touching the app.
+
+### Cycles executed
+
+1. Diagnosis: the latest GitHub Pages deploy was already live after the previous block.
+   Implementation: no code change was needed in this cycle.
+   Testing: confirmed the homepage returned HTTP 200 and the latest `Render and Publish Quarto Site` workflow completed successfully.
+   Notes: the Node.js 20 warning remains as an annotation, but the workflow reports the actions are being forced to Node 24.
+
+2. Diagnosis: Busca, Glossário and Roteiro needed post-deploy verification after disabling section numbering.
+   Implementation: no code change was needed in this cycle.
+   Testing: fetched the three published pages, checked for absence of `header-section-number`/`data-number`, confirmed Pagefind/glossary/learning-map hooks and ran `scripts/validate_deployed_site.R`.
+   Notes: deployed utility-page validation passed.
+
+3. Diagnosis: the homepage and module index still rendered Quarto title/breadcrumb/sidebar chrome above or around custom public landing sections.
+   Implementation: hid generated title/breadcrumb/sidebar chrome for `.hero` and `.modules-landing` pages; added `sidebar: false` to `modules/index.qmd`.
+   Testing: compiled SCSS, validated module-index front matter and ran manifest validation.
+   Notes: the custom hero/landing sections now control the first public hierarchy.
+
+4. Diagnosis: module pages had consistent structure, but quizzes appeared after final module navigation.
+   Implementation: moved each module quiz container before the final previous/index/next navigation in all 12 module pages.
+   Testing: verified quiz line numbers precede navigation line numbers in all modules, ran `node --check assets/js/quiz.js` and ran site manifest validation.
+   Notes: the assessment now belongs to the learning flow before the user advances.
+
+5. Diagnosis: browser/screenshot tooling was requested by the next plan, but the in-app browser backend was unavailable; fallback HTML/CSS inspection found a dark-mode structure risk.
+   Implementation: updated `_quarto.yml` so the dark theme compiles the shared structural `styles/main.scss` before `styles/main-dark.scss`.
+   Testing: parsed `_quarto.yml`, compiled light/dark SCSS files and ran manifest validation.
+   Notes: this improves dark-theme parity without duplicating layout rules.
+
+6. Diagnosis: final validation and planning records were required before publishing.
+   Implementation: cleaned mechanical EOF whitespace from module files, updated `WORKLOG_SITE.md` and prepared a new `NEXT_SITE.md`.
+   Testing: YAML, SCSS, manifest, JS, `renv::status()`, all module scripts and `git diff --check` passed; local `quarto render` was not available because `quarto` is not on `PATH`.
+   Notes: no app files were changed.
+
+### Files changed
+
+- `_quarto.yml`
+- `modules/index.qmd`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `styles/main.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Public landing pages now suppress duplicated generated title/breadcrumb/sidebar chrome.
+- Module index is treated as a public landing page, not as an internal module reading page.
+- Module quizzes now appear before final navigation across all 12 modules.
+- Dark theme now inherits shared structural site CSS before applying dark-specific overrides.
+- The block records the browser QA limitation and keeps the next block focused on rendered visual inspection.
+
+### Problems fixed
+
+- Homepage and module index had competing Quarto-generated hierarchy above custom hero sections.
+- Module index inherited sidebar behavior that made it feel more administrative/internal than public.
+- Module quizzes were placed after the navigation decision point.
+- Dark-mode compilation risked missing shared layout rules.
+- Mechanical trailing blank lines introduced by the module reorder were removed.
+
+### Commands executed
+
+- `git status --short --branch`
+- `gh run list --repo Glebstrauss/mgenetica --workflow quarto-publish.yml --limit 3`
+- `curl -I https://glebstrauss.github.io/mgenetica/`
+- `curl -L https://glebstrauss.github.io/mgenetica/busca.html -o /private/tmp/mgenetica-busca.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/glossario.html -o /private/tmp/mgenetica-glossario.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/semanas/ -o /private/tmp/mgenetica-semanas.html`
+- `Rscript scripts/validate_deployed_site.R`
+- `curl -L https://glebstrauss.github.io/mgenetica/ -o /private/tmp/mgenetica-home.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/index.html -o /private/tmp/mgenetica-modules.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo01-introducao-ao-melhoramento-animal.html -o /private/tmp/mgenetica-mod01.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html -o /private/tmp/mgenetica-mod06.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html -o /private/tmp/mgenetica-mod12.html`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript scripts/validate_site_manifest.R`
+- `node --check assets/js/progress.js`
+- `node --check assets/js/darkmode.js`
+- `node --check assets/js/interactives.js`
+- `node --check assets/js/quiz.js`
+- `node --check assets/js/teacher-mode.js`
+- `Rscript -e 'renv::status()'`
+- `Rscript scripts/run_all_modules.R`
+- `git diff --check`
+
+### Test results
+
+- Published utility-page validation passed.
+- YAML validation passed.
+- Light and dark SCSS compilation passed.
+- Site manifest validation passed.
+- JS syntax checks passed.
+- `renv::status()` reported no issues.
+- `scripts/run_all_modules.R` completed successfully.
+- `git diff --check` passed after trimming trailing blank lines.
+- `quarto render` was not run locally because `quarto` is not installed or not on `PATH`.
+- In-app browser/screenshot QA was attempted but blocked because no Codex IAB backend was discovered.
+
+### Pending items
+
+- Publish this block and verify rendered homepage/module index after GitHub Actions builds the new output.
+- Confirm the module index no longer renders sidebar/breadcrumb/title chrome in generated HTML.
+- Confirm dark-mode generated CSS contains shared structural landing rules after the workflow render.
+- Run actual browser/screenshot review when the in-app browser backend is available.
+- Continue SCSS consolidation; `styles/main.scss` still contains accumulated late override sections.

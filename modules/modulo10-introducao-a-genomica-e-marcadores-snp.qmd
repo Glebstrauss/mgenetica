@@ -127,6 +127,9 @@ cat("\n(r² alto = SNPs em desequilíbrio = um 'representa' o outro no GWAS)\n")
 2. Calcule r² entre SNPs separados por 1, 5 e 10 posições. O LD decai com a distância?
 3. Como o tamanho da amostra afeta a precisão da estimativa de p? Recalcule p_obs com apenas 20 animais.
 
+::: {.quiz-container data-module="10"}
+:::
+
 ```{=html}
 <div class="module-nav">
   <a class="module-nav-card module-nav-index" href="index.qmd">
@@ -143,6 +146,3 @@ cat("\n(r² alto = SNPs em desequilíbrio = um 'representa' o outro no GWAS)\n")
   </a>
 </div>
 ```
-
-::: {.quiz-container data-module="10"}
-:::

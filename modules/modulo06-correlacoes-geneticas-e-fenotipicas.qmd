@@ -133,6 +133,9 @@ cat(sprintf("\nrA < 0: selecionar peso+ → gordura diminui (desfavorável p/ ac
 2. Calcule quando a seleção indireta por peso seria mais eficiente que a direta para gordura: `h1 × rA > h2`?
 3. Se você quisesse manter gordura constante enquanto seleciona para peso, o que faria?
 
+::: {.quiz-container data-module="06"}
+:::
+
 ```{=html}
 <div class="module-nav">
   <a class="module-nav-card module-nav-index" href="index.qmd">
@@ -149,6 +152,3 @@ cat(sprintf("\nrA < 0: selecionar peso+ → gordura diminui (desfavorável p/ ac
   </a>
 </div>
 ```
-
-::: {.quiz-container data-module="06"}
-:::

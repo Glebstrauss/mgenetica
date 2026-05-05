@@ -136,6 +136,9 @@ for (k in 1:6) {
 2. Calcule o número ótimo de medidas (`k*`) para r = 0,20, 0,40 e 0,70, onde o ganho marginal < 0,01.
 3. Se h² = 0,10 e r = 0,45, qual componente de variância deve ser grande? (Dica: V_PE)
 
+::: {.quiz-container data-module="05"}
+:::
+
 ```{=html}
 <div class="module-nav">
   <a class="module-nav-card module-nav-index" href="index.qmd">
@@ -152,6 +155,3 @@ for (k in 1:6) {
   </a>
 </div>
 ```
-
-::: {.quiz-container data-module="05"}
-:::

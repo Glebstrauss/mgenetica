@@ -155,6 +155,9 @@ cat(sprintf("n treinamento=%d  n validação=%d\n", length(train_id), length(val
 2. Compare a diagonal de G com a diagonal de A construída pelo pedigree (Módulo 09). As magnitudes são similares?
 3. Aumente `n_anim` para 500. A acurácia GBLUP melhora significativamente?
 
+::: {.quiz-container data-module="12"}
+:::
+
 ```{=html}
 <div class="module-nav">
   <a class="module-nav-card module-nav-index" href="index.qmd">
@@ -171,6 +174,3 @@ cat(sprintf("n treinamento=%d  n validação=%d\n", length(train_id), length(val
   </a>
 </div>
 ```
-
-::: {.quiz-container data-module="12"}
-:::

@@ -121,6 +121,9 @@ for (nf in c(5, 10, 25, 50, 100)) {
 2. Troque VA=400 por VA=100 (h²=0,11). O que acontece com a estimativa de h²?
 3. Adicione um efeito de fazenda fixo (`+ 15 * (touro_id %% 3)`) ao `y`. A estimativa de VA muda? Por quê?
 
+::: {.quiz-container data-module="04"}
+:::
+
 ```{=html}
 <div class="module-nav">
   <a class="module-nav-card module-nav-index" href="index.qmd">
@@ -137,6 +140,3 @@ for (nf in c(5, 10, 25, 50, 100)) {
   </a>
 </div>
 ```
-
-::: {.quiz-container data-module="04"}
-:::

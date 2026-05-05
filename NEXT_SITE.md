@@ -6,7 +6,7 @@ Work only on the public site. Do not alter the app. Do not mix site evolution wi
 
 ## Objective
 
-Publish and verify the utility-page and workflow-maintenance changes, then continue visual QA with emphasis on screenshot/browser review and conservative CSS organization.
+Publish and verify the landing-hierarchy, module-flow and dark-theme structure changes from the previous block, then continue with rendered visual QA and conservative SCSS consolidation.
 
 ## Scope
 
@@ -15,10 +15,10 @@ In scope:
 - Public homepage.
 - Module index.
 - Representative module pages.
-- Search, glossary, roteiro and sobre pages.
-- Generated HTML checks after render/deploy.
+- Generated dark and light theme CSS.
 - GitHub Pages workflow verification.
-- `styles/main.scss` and public interaction scripts if regressions are found.
+- Published HTML checks after deploy.
+- `styles/main.scss` and `styles/main-dark.scss` if visual regressions are confirmed.
 - `WORKLOG_SITE.md` and `NEXT_SITE.md`.
 
 Out of scope:
@@ -27,84 +27,86 @@ Out of scope:
 - Backend.
 - Authentication.
 - Large scientific-content rewrites.
-- New dependencies unless needed for a small validation script.
+- New dependencies unless they are strictly needed for a lightweight site validation helper.
 
 ## Priorities
 
-1. Publish the current changes and confirm the GitHub Pages workflow succeeds.
-2. Confirm Busca, Glossário and Roteiro no longer show automatic heading numbers.
-3. Confirm the Node.js 20 deprecation warning is gone or document any remaining warning.
-4. Use `scripts/validate_deployed_site.R` as the standard generated-output check.
-5. Continue visual QA with screenshot/browser review if available.
-6. Keep all changes site-only and documented.
+1. Publish the current site-only changes and watch the GitHub Pages workflow.
+2. Confirm homepage and module index no longer show duplicated Quarto title/breadcrumb/sidebar chrome.
+3. Confirm module quizzes render before final previous/index/next navigation.
+4. Confirm the dark theme includes shared structural layout rules plus dark overrides.
+5. Use browser/screenshot review if available; otherwise document the limitation and use generated HTML/CSS checks.
+6. Continue SCSS cleanup only where it reduces real maintenance risk without changing the visual direction.
 
 ## Planned cycles
 
 ### Cycle 1 — Publish and workflow verification
 
-- Publish the current changes if they are not yet deployed.
-- Watch the GitHub Pages workflow.
-- Confirm whether the Node.js 20 warning is resolved.
-- Register notes in `WORKLOG_SITE.md`.
+- Commit and push the current site-only changes if not already published.
+- Watch the GitHub Pages workflow until completion.
+- Record whether the Node.js 20 deprecation annotation remains.
+- Register result in `WORKLOG_SITE.md`.
 
-### Cycle 2 — Utility page generated QA
+### Cycle 2 — Generated landing-page QA
 
-- Fetch Busca, Glossário and Roteiro after deploy.
-- Confirm no `header-section-number` or `data-number` remains.
-- Check Pagefind, glossary and learning-map hooks.
+- Fetch the published homepage and module index.
+- Confirm generated title/breadcrumb/sidebar chrome is hidden or absent.
+- Confirm hero/logo/CTA anchors remain intact.
 - Run `scripts/validate_deployed_site.R`.
 
-### Cycle 3 — Homepage and module index visual QA
+### Cycle 3 — Module flow QA
 
-- Inspect published homepage and module index.
-- Check first viewport, logo treatment, section rhythm and CTAs.
-- Correct medium/high-impact layout issues only.
-- Test SCSS if styles are touched.
+- Fetch representative modules 01, 06 and 12.
+- Confirm each published page has quiz before module navigation.
+- Check module navigation still links to previous/index/next targets correctly.
+- Run `scripts/validate_site_manifest.R`.
 
-### Cycle 4 — Module page visual QA
+### Cycle 4 — Theme parity QA
 
-- Inspect representative modules 1, 6 and 12.
-- Check tables, code blocks, callouts, module nav and quiz placement.
-- Correct spacing/readability regressions if found.
-- Run manifest validation.
+- Fetch or inspect generated light and dark CSS from GitHub Pages.
+- Confirm dark CSS contains shared hero/module-index layout selectors and dark override selectors.
+- Correct only confirmed dark/light parity regressions.
+- Compile SCSS after any style change.
 
-### Cycle 5 — Browser/screenshot QA or fallback
+### Cycle 5 — Browser/screenshot QA or documented fallback
 
-- Use browser/screenshot review if available.
-- If unavailable, use deployed HTML checks and document the limitation.
-- Only do conservative SCSS cleanup when supported by visual evidence.
-- Register notes in `WORKLOG_SITE.md`.
+- Try the in-app browser/screenshot workflow.
+- If unavailable, document the exact limitation and use deployed HTML/CSS checks as fallback.
+- Review homepage, module index and one long module for mobile-sensitive layout risks.
+- Make only evidence-backed visual fixes.
 
-### Cycle 6 — Final validation and next plan
+### Cycle 6 — SCSS structure and next planning
 
-- Run the full available validation command set.
-- Publish if public files or workflow files changed and publication is required.
-- Update `WORKLOG_SITE.md`.
-- Prepare the following `NEXT_SITE.md`.
-- Record any deployment/cache caveats.
+- Audit the late override sections in `styles/main.scss`.
+- Consolidate only low-risk duplicated rules that improve maintainability.
+- Run the full validation set.
+- Update `WORKLOG_SITE.md` and prepare the next `NEXT_SITE.md`.
 
 ## Criteria for completion
 
 - At least 6 cycles are executed unless there is a real blocker.
 - Changes remain site-only.
 - No app files are altered.
-- Published output is inspected through deployed HTML and, when available, browser/screenshot review.
+- Published output is inspected after deploy.
+- Dark-theme structure is specifically checked.
 - `WORKLOG_SITE.md` is updated.
 - `NEXT_SITE.md` is updated again at the end of the block.
 - Available build, lint or tests are run.
-- Any unavailable command is explicitly noted.
+- Any unavailable browser/render command is explicitly noted.
 
 ## Recommended commands
 
 - `command -v quarto`
 - `quarto render` if Quarto is available locally.
-- `curl -L https://glebstrauss.github.io/mgenetica/ -o /private/tmp/mgenetica-home.html`
-- `curl -L https://glebstrauss.github.io/mgenetica/modules/index.html -o /private/tmp/mgenetica-modules.html`
-- `curl -L https://glebstrauss.github.io/mgenetica/busca.html -o /private/tmp/mgenetica-busca.html`
-- `curl -L https://glebstrauss.github.io/mgenetica/glossario.html -o /private/tmp/mgenetica-glossario.html`
-- `curl -L https://glebstrauss.github.io/mgenetica/semanas/ -o /private/tmp/mgenetica-semanas.html`
+- `gh run list --repo Glebstrauss/mgenetica --workflow quarto-publish.yml --limit 1`
+- `gh run watch <run-id> --repo Glebstrauss/mgenetica --exit-status`
+- `curl -L https://glebstrauss.github.io/mgenetica/ -o /private/tmp/mgenetica-home-next.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/index.html -o /private/tmp/mgenetica-modules-next.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo01-introducao-ao-melhoramento-animal.html -o /private/tmp/mgenetica-mod01-next.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html -o /private/tmp/mgenetica-mod06-next.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html -o /private/tmp/mgenetica-mod12-next.html`
 - `Rscript scripts/validate_deployed_site.R`
-- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); cat("yaml ok\n")'`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); invisible(yaml::read_yaml(".github/workflows/quarto-publish.yml")); cat("yaml ok\n")'`
 - `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
 - `Rscript scripts/validate_site_manifest.R`
 - `node --check assets/js/progress.js`
