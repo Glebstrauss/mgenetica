@@ -484,3 +484,108 @@ Continue from `NEXT_SITE.md` with a site-only block focused on rendered-public Q
 - Re-fetch rendered pages after deploy to confirm section numbers and metadata URLs in generated HTML.
 - Continue SCSS cleanup only with rendered comparison or GitHub Pages verification.
 - Add lightweight rendered-link checks for social images, favicon links and generated internal links.
+
+---
+
+## 2026-05-05 — Published HTML verification block
+
+### Block objective
+
+Publish the latest site-only refinements, verify the generated GitHub Pages output, and add a lightweight deployed-site validator for repeated checks of editorial headings, metadata assets and core public navigation.
+
+### Cycles executed
+
+1. Diagnosis: local Quarto remained unavailable, while the pending changes needed generated HTML verification.
+   Implementation: validated the local package, committed the site-only changes and pushed to `main` to trigger the Quarto GitHub Pages workflow.
+   Testing: watched the `Render and Publish Quarto Site` workflow until it completed successfully.
+   Notes: the workflow rendered Quarto, indexed Pagefind, uploaded the Pages artifact and deployed successfully.
+
+2. Diagnosis: the homepage needed generated-output verification after disabling section numbering.
+   Implementation: fetched the published homepage HTML and checked headings, hero logo and primary/secondary CTAs.
+   Testing: confirmed no `header-section-number` or `data-number` remained on the homepage and the expected CTAs/logo were present.
+   Notes: the published `last-modified` timestamp confirmed the new deploy was live.
+
+3. Diagnosis: the module index and representative module pages needed the same generated-output check.
+   Implementation: fetched `modules/index.html`, module 01 and module 12 from GitHub Pages.
+   Testing: confirmed the module index no longer had numbered editorial headings; module pages retained module navigation and quiz containers.
+   Notes: module 12 still links to the published certificate page as expected.
+
+4. Diagnosis: rendered metadata checks were repetitive and easy to miss manually.
+   Implementation: added `scripts/validate_deployed_site.R` to fetch deployed pages and validate heading numbering, duplicated GitHub Pages paths, favicon/PWA URLs, social image URL and core CTAs/navigation.
+   Testing: ran the new validator successfully and checked favicon and Open Graph assets with `curl -I`.
+   Notes: the script is dependency-light and uses base R plus remote HTML.
+
+5. Diagnosis: glossary, search and quiz behavior needed a deployed spot check after render.
+   Implementation: fetched glossary/search pages and inspected generated hooks for conditional script loading, skip link, Pagefind assets, glossary container and quiz container.
+   Testing: ran JS syntax checks for public scripts and confirmed Pagefind CSS/JS return HTTP 200.
+   Notes: no additional interaction fixes were needed in this cycle.
+
+6. Diagnosis: final validation and continuation planning were required after the deployed QA.
+   Implementation: ran the available validation set, updated `WORKLOG_SITE.md` and prepared a new `NEXT_SITE.md`.
+   Testing: YAML, SCSS, site manifest, deployed-site validator and diff checks passed.
+   Notes: no app files were changed.
+
+### Files changed
+
+- `scripts/validate_deployed_site.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Published the previous metadata/accessibility refinements.
+- Confirmed the generated homepage and module index no longer show automatic section numbering.
+- Confirmed favicon/PWA and social image metadata now resolve to valid GitHub Pages URLs.
+- Added a deployed-site validation script for repeated generated HTML checks.
+- Verified Pagefind assets, glossary hooks, quiz containers and module navigation in published HTML.
+
+### Problems fixed
+
+- Manual generated-HTML checks now have a repeatable validator.
+- The previously pending publication verification is complete.
+- The next block now has a stronger starting point for visual QA and publication maintenance.
+
+### Commands executed
+
+- `command -v quarto`
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); cat("yaml ok\n")'`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `git add NEXT_SITE.md WORKLOG_SITE.md _quarto.yml assets/html/head-extras.html assets/js/interactives.js assets/js/quiz.js index.qmd modules/index.qmd styles/main.scss`
+- `git commit -m "Fix rendered site metadata and accessibility"`
+- `git push origin main`
+- `gh run list --repo Glebstrauss/mgenetica --workflow quarto-publish.yml --limit 1`
+- `gh run watch 25385283280 --repo Glebstrauss/mgenetica --exit-status`
+- `curl -L https://glebstrauss.github.io/mgenetica/ -o /private/tmp/mgenetica-home-after.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/index.html -o /private/tmp/mgenetica-modules-after.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo01-introducao-ao-melhoramento-animal.html -o /private/tmp/mgenetica-module01-after.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html -o /private/tmp/mgenetica-module12-after.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/glossario.html -o /private/tmp/mgenetica-glossario-after.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/busca.html -o /private/tmp/mgenetica-busca-after.html`
+- `curl -I https://glebstrauss.github.io/mgenetica/images/favicon/favicon.ico`
+- `curl -I https://glebstrauss.github.io/mgenetica/images/og-card.png`
+- `curl -I https://glebstrauss.github.io/mgenetica/_pagefind/pagefind-ui.js`
+- `curl -I https://glebstrauss.github.io/mgenetica/_pagefind/pagefind-ui.css`
+- `Rscript scripts/validate_deployed_site.R`
+- `node --check assets/js/progress.js`
+- `node --check assets/js/darkmode.js`
+- `node --check assets/js/interactives.js`
+- `node --check assets/js/quiz.js`
+- `node --check assets/js/teacher-mode.js`
+- `git diff --check`
+
+### Test results
+
+- GitHub Actions Pages workflow completed successfully.
+- Published homepage returned HTTP 200 with the new deploy timestamp.
+- Published module index returned HTTP 200.
+- Deployed-site validator passed.
+- YAML, SCSS and manifest validation passed.
+- JS syntax checks passed.
+- Pagefind CSS/JS, favicon and Open Graph image returned HTTP 200.
+
+### Pending items
+
+- The GitHub Actions workflow reports a Node.js 20 deprecation warning; update workflow actions/runtime in a future site-infrastructure block.
+- Continue rendered visual QA with screenshots or browser inspection.
+- Extend deployed validation to more internal pages if generated-output regressions recur.
