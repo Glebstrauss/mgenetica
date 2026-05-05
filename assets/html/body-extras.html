@@ -1,3 +1,5 @@
+<a class="skip-link" href="#quarto-document-content">Pular para o conteúdo</a>
+
 <script>
 // ── Carrega scripts globais (compatível com subpath do GH Pages) ──
 (function () {
@@ -14,6 +16,7 @@
     var file = files.shift();
     var s = document.createElement('script');
     s.src = prefix + 'assets/js/' + file;
+    s.defer = true;
     s.onload = function () { load(files); };
     document.body.appendChild(s);
   }
@@ -22,7 +25,7 @@
   var isModulePage = /\/modules\//.test(window.location.pathname);
 
   if (isModulePage) files.push('teacher-mode.js');
-  if (document.querySelector('[data-viz], [data-learning-map], .mg-viz')) files.push('interactives.js');
+  if (document.querySelector('[data-viz], [data-learning-map], [data-glossary], .mg-viz')) files.push('interactives.js');
   if (document.querySelector('.quiz-container')) files.push('quiz.js');
 
   load(files);

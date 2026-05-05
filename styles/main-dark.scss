@@ -172,6 +172,14 @@ code {
 .hero p,
 .hero-copy > p { color: var(--mg-text); }
 
+.hero-meta-item {
+  background: var(--mg-bg-tint);
+  border-color: var(--mg-line);
+
+  strong { color: var(--mg-ink); }
+  p      { color: var(--mg-muted); }
+}
+
 
 // ── Botões ────────────────────────────────────────────────────
 .btn-primary {
@@ -272,6 +280,88 @@ code {
   background: var(--mg-bg-soft);
   border-color: var(--mg-line);
   border-left-color: var(--mg-cyan);
+}
+
+
+// ── Editorial structures ─────────────────────────────────────
+.statement-copy,
+.statement-point,
+.lab-card,
+.home-final-cta,
+.modules-landing-copy,
+.modules-landing-panel,
+.phase-card,
+.page-hero-copy,
+.page-hero-aside,
+.search-panel,
+.glossary-panel,
+.routine-card {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.statement-copy p,
+.statement-point p,
+.lab-card p,
+.final-cta-copy p,
+.modules-landing-copy p,
+.modules-landing-panel span,
+.phase-card p,
+.page-hero-copy p,
+.page-hero-aside,
+.routine-card p {
+  color: var(--mg-text);
+}
+
+.statement-copy h2,
+.statement-point strong,
+.lab-card strong,
+.final-cta-copy h2,
+.modules-landing-copy h1,
+.modules-landing-panel strong,
+.phase-card strong,
+.page-hero-copy h1,
+.page-hero-aside strong {
+  color: var(--mg-ink);
+}
+
+.lab-copy,
+.modules-landing-panel {
+  background:
+    linear-gradient(180deg, rgba(2, 10, 14, 0.96), rgba(10, 31, 56, 0.82));
+}
+
+.lab-copy p {
+  color: rgba(232, 244, 252, 0.74);
+}
+
+.lab-card::before,
+.modules-landing-panel::before {
+  border-color: rgba(111, 220, 255, 0.28);
+  background:
+    linear-gradient(90deg, rgba(111, 220, 255, 0.34) 2px, transparent 2px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10) 2px, transparent 2px);
+  background-size: 14px 14px;
+}
+
+.home-final-cta {
+  background:
+    linear-gradient(135deg, var(--mg-bg-soft), var(--mg-bg-tint));
+}
+
+footer.footer {
+  background: var(--mg-bg-soft);
+  border-top-color: var(--mg-line);
+}
+
+footer.footer .nav-footer {
+  color: var(--mg-muted);
+}
+
+footer.footer a {
+  color: var(--mg-text);
+
+  &:hover { color: var(--mg-cyan-lt); }
 }
 
 

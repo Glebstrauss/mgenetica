@@ -2,12 +2,25 @@
 title: "Glossário técnico"
 description: "Glossário pesquisável de termos de melhoramento animal, genética quantitativa e genômica aplicada."
 page-layout: full
+toc: false
 ---
 
+::: {.page-hero}
+::: {.page-hero-copy}
 # Glossário técnico
 
-Use a busca abaixo para localizar rapidamente siglas, parâmetros e conceitos recorrentes nos módulos.
+Referência rápida para siglas, parâmetros e conceitos recorrentes nos módulos. O glossário funciona como camada de apoio à leitura, sem competir com a sequência principal do curso.
+:::
+
+::: {.page-hero-aside}
+**Uso recomendado**
+
+Consulte durante a leitura dos módulos quando um termo técnico aparecer fora do seu contexto imediato.
+:::
+:::
 
 ```{=html}
+<div class="glossary-panel">
 <div data-glossary></div>
+</div>
 ```

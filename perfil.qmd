@@ -1,6 +1,6 @@
 ---
-title: "Perfil"
-subtitle: "Currículo, projetos e produção acadêmica"
+title: "Sobre"
+subtitle: "Identidade editorial e estrutura pública da MGenética"
 page-layout: full
 ---
 
@@ -10,79 +10,73 @@ page-layout: full
 :::
 
 ::: {.profile-copy}
-# Seu nome aqui
+# MGenética
 
-Use esta página para reunir suas informações profissionais, acadêmicas e técnicas. Substitua os textos abaixo por seu currículo, projetos, artigos, links e contatos.
+Uma publicação digital aberta para estudar melhoramento animal, genética quantitativa e genômica aplicada com uma ponte direta entre conceito, simulação e código.
 
 ::: {.profile-actions}
-[Currículo](#curriculo){.btn .btn-primary}
-[Projetos](#projetos){.btn .btn-secondary}
-[Artigos](#artigos){.btn .btn-secondary}
+[Conhecer os módulos](modules/index.qmd){.btn .btn-primary}
+[Ver roteiro](semanas/index.qmd){.btn .btn-secondary}
+[Buscar conteúdo](busca.qmd){.btn .btn-secondary}
 :::
 :::
 :::
 
-## Currículo
+## Papel do site
 
 ::: {.profile-section}
-### Formação
-
-- Graduação:
-- Mestrado:
-- Doutorado:
-- Cursos e certificações:
-
-### Experiência
-
-- Cargo ou atuação:
-- Instituição/empresa:
-- Período:
-- Principais atividades:
-
-### Áreas de interesse
-
-- Melhoramento animal
-- Genética quantitativa
-- Genômica aplicada
-- Bioinformática e análise de dados em R
+O site é a camada pública da MGenética: editorial, institucional e orientada ao aprendizado. Ele deve permanecer simples para acessar, rápido para publicar e suficientemente modular para que páginas, módulos, roteiros e materiais possam ser administrados por um painel interno no futuro.
 :::
 
-## Projetos
+## Princípios
 
 ::: {.profile-grid}
 ::: {.profile-card}
-### Projeto 1
+### Ciência aplicada
 
-Descreva o objetivo, metodologia, tecnologias usadas e resultados principais.
+Os módulos priorizam problemas biológicos reais antes de fórmulas e saídas computacionais.
 :::
 
 ::: {.profile-card}
-### Projeto 2
+### Reprodutibilidade
 
-Inclua links para repositórios, relatórios, dashboards, materiais de aula ou publicações relacionadas.
+Scripts em R e dados simulados ajudam a repetir, comparar e interpretar resultados.
 :::
 
 ::: {.profile-card}
-### Projeto 3
+### Gestão futura
 
-Use este espaço para projetos de pesquisa, extensão, ensino ou consultoria.
+Conteúdos são organizados como páginas, coleções e metadados para futura edição por app interno.
 :::
 :::
 
-## Artigos
+## Escopo editorial
 
 ::: {.profile-section}
-- **Título do artigo**. Autores. Periódico, ano. DOI/link.
-- **Título do artigo**. Autores. Periódico, ano. DOI/link.
-- **Título do artigo**. Autores. Periódico, ano. DOI/link.
+- Melhoramento animal e resposta à seleção.
+- Genética quantitativa, parâmetros genéticos e modelos mistos.
+- Avaliação genética, pedigree, parentesco e BLUP.
+- Genômica aplicada, controle de qualidade, GWAS e predição.
 :::
 
-## Contato
+## Estrutura pública
 
-::: {.profile-section}
-- E-mail:
-- Lattes:
-- ORCID:
-- GitHub:
-- LinkedIn:
+::: {.profile-grid}
+::: {.profile-card}
+### Página inicial
+
+Apresenta posicionamento, promessa, percurso e chamadas para a trilha.
+:::
+
+::: {.profile-card}
+### Módulos
+
+Concentram leitura, prática em R, interpretação e exercícios.
+:::
+
+::: {.profile-card}
+### Roteiro
+
+Organiza os módulos em uma sequência semanal de estudo.
+:::
 :::

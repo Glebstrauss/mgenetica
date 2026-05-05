@@ -2,16 +2,32 @@
 title: "Busca"
 description: "Busca full-text no conteúdo do MGenética Academy."
 page-layout: full
+toc: false
 ---
 
+::: {.page-hero}
+::: {.page-hero-copy}
 # Busca no curso
 
-Digite um termo, conceito, função em R ou nome de módulo para localizar páginas do curso.
+Localize conceitos, funções em R, parâmetros genéticos, módulos e referências internas. A busca é indexada na publicação do GitHub Pages.
+:::
+
+::: {.page-hero-aside}
+**Atalhos úteis**
+
+- herdabilidade
+- BLUP
+- matriz genômica
+- seleção
+:::
+:::
 
 <link href="_pagefind/pagefind-ui.css" rel="stylesheet">
 <script src="_pagefind/pagefind-ui.js"></script>
 
+::: {.search-panel}
 <div id="search"></div>
+:::
 
 <script>
 window.addEventListener('DOMContentLoaded', function () {

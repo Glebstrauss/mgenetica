@@ -1,0 +1,154 @@
+---
+title: "Módulos"
+subtitle: "Trilha pública de genética quantitativa e genômica aplicada"
+description: "Índice dos 12 módulos do MGenética, organizado por fases de aprendizagem, prática em R e progressão técnica."
+page-layout: full
+toc: false
+---
+
+```{=html}
+<section class="modules-landing">
+  <div class="modules-landing-copy">
+    <span class="module-badge">TRILHA COMPLETA</span>
+    <h1>Do fundamento biológico à avaliação genômica</h1>
+    <p>Os módulos foram organizados para combinar conceito, simulação, código em R e interpretação. A sequência mantém uma estrutura previsível para leitura pública hoje e edição por painel interno no futuro.</p>
+    <div class="modules-landing-actions">
+      <a class="btn btn-primary" href="modulo01-introducao-ao-melhoramento-animal.qmd">Começar pelo Módulo 01</a>
+      <a class="btn btn-secondary" href="../semanas/index.qmd">Ver roteiro semanal</a>
+    </div>
+  </div>
+  <div class="modules-landing-panel" aria-label="Resumo da trilha">
+    <strong>12 módulos</strong>
+    <span>4 fases editoriais</span>
+    <span>Scripts reproduzíveis em R</span>
+  </div>
+</section>
+```
+
+## Fases da trilha
+
+::: {.phase-grid}
+::: {.phase-card}
+**01 · Fundamentos**
+
+Módulos 01-02 apresentam a lógica do melhoramento animal e a decomposição genética do fenótipo.
+:::
+
+::: {.phase-card}
+**02 · Dados e parâmetros**
+
+Módulos 03-06 conectam exploração, variância, herdabilidade, repetibilidade e correlações.
+:::
+
+::: {.phase-card}
+**03 · Modelagem**
+
+Módulos 07-09 avançam para modelos mistos, BLUP, pedigree e parentesco.
+:::
+
+::: {.phase-card}
+**04 · Genômica**
+
+Módulos 10-12 introduzem SNPs, controle de qualidade, matrizes genômicas, GWAS e predição.
+:::
+:::
+
+## Todos os módulos
+
+::: {.module-grid}
+::: {.module-card}
+**01**
+
+[Introdução ao Melhoramento Animal](modulo01-introducao-ao-melhoramento-animal.qmd)
+
+Objetivos, resposta à seleção e organização de programas de melhoramento.
+:::
+
+::: {.module-card}
+**02**
+
+[Bases da Genética Quantitativa](modulo02-bases-da-genetica-quantitativa.qmd)
+
+Valor genético, fenótipo, ambiente e decomposição da variação observada.
+:::
+
+::: {.module-card}
+**03**
+
+[Estatística descritiva e exploração no R](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd)
+
+Primeiros diagnósticos, distribuição dos dados e interpretação exploratória.
+:::
+
+::: {.module-card}
+**04**
+
+[Médias, variâncias e componentes](modulo04-medias-variancias-e-componentes-de-variancia.qmd)
+
+Variância fenotípica, genética e ambiental como base para decisões.
+:::
+
+::: {.module-card}
+**05**
+
+[Herdabilidade e repetibilidade](modulo05-herdabilidade-e-repetibilidade.qmd)
+
+Parâmetros que conectam observações individuais à previsibilidade genética.
+:::
+
+::: {.module-card}
+**06**
+
+[Correlações genéticas e fenotípicas](modulo06-correlacoes-geneticas-e-fenotipicas.qmd)
+
+Relações entre características e consequências indiretas da seleção.
+:::
+
+::: {.module-card}
+**07**
+
+[Modelos lineares e mistos](modulo07-modelos-lineares-e-modelos-mistos.qmd)
+
+Estrutura estatística para combinar efeitos fixos, aleatórios e erro.
+:::
+
+::: {.module-card}
+**08**
+
+[BLUP e avaliação genética](modulo08-blup-e-avaliacao-genetica.qmd)
+
+Predição de valores genéticos e comparação de candidatos à seleção.
+:::
+
+::: {.module-card}
+**09**
+
+[Pedigree e parentesco](modulo09-estrutura-de-pedigree-e-parentesco.qmd)
+
+Uso de genealogia, matrizes de parentesco e conexão entre indivíduos.
+:::
+
+::: {.module-card}
+**10**
+
+[Genômica e marcadores SNP](modulo10-introducao-a-genomica-e-marcadores-snp.qmd)
+
+Entrada dos marcadores moleculares na avaliação e no controle de dados.
+:::
+
+::: {.module-card}
+**11**
+
+[Controle de qualidade genômico](modulo11-controle-de-qualidade-de-dados-genomicos.qmd)
+
+Filtros, consistência dos genótipos e preparação para análises genômicas.
+:::
+
+::: {.module-card}
+**12**
+
+[Matrizes genômicas, GWAS e predição](modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd)
+
+Integração entre parentesco genômico, associação e predição genômica.
+:::
+:::

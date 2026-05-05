@@ -18,6 +18,26 @@ Melhoramento animal,<br>do conceito ao código
 
 Uma plataforma aberta para estudar genética quantitativa e genômica aplicada com progressão clara, scripts em R e dados simulados para aprendizagem reproduzível.
 
+::: {.hero-meta}
+::: {.hero-meta-item}
+**Aberto**
+
+Publicação estática e acessível
+:::
+
+::: {.hero-meta-item}
+**Aplicado**
+
+Exercícios com dados simulados
+:::
+
+::: {.hero-meta-item}
+**Modular**
+
+Estrutura pronta para gestão editorial
+:::
+:::
+
 ::: {.hero-actions}
 [Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
 [Ver trilha completa](#trilha-de-aprendizado){.btn .btn-secondary}
@@ -84,6 +104,8 @@ Performance e estabilidade adequadas para GitHub Pages.
 Percurso
 :::
 
+## Uma sequência pensada para sair da intuição e chegar à decisão
+
 ::: {.study-flow}
 ::: {.flow-step}
 **01**
@@ -107,6 +129,34 @@ Modelagem
 **04**
 
 Decisão
+:::
+:::
+:::
+
+::: {.home-section .home-lab}
+::: {.lab-copy}
+## Conteúdo público, estrutura de plataforma
+
+O site apresenta a experiência de estudo. Por trás dele, a organização precisa continuar simples o bastante para que páginas, módulos, scripts e publicações sejam mantidos por um painel interno sem contaminar a experiência pública.
+:::
+
+::: {.lab-grid}
+::: {.lab-card}
+**Sinal**
+
+Conceitos biológicos aparecem antes das fórmulas, para preservar contexto.
+:::
+
+::: {.lab-card}
+**Modelo**
+
+Roteiros em R conectam simulação, parâmetros e interpretação.
+:::
+
+::: {.lab-card}
+**Decisão**
+
+Cada módulo aponta para consequências práticas em seleção e avaliação.
 :::
 :::
 :::
@@ -245,6 +295,19 @@ Integração entre parentesco genômico, associação e predição genômica.
 - Execução completa: `Rscript scripts/run_all_modules.R`.
 - Dados simulados gerados automaticamente em `data/`.
 - Publicação do site por GitHub Actions.
+:::
+:::
+
+::: {.home-section .home-final-cta}
+::: {.final-cta-copy}
+## Comece pela trilha principal
+
+O melhor caminho é seguir os módulos em ordem, executar os scripts e registrar uma interpretação curta a cada etapa.
+:::
+
+::: {.final-cta-actions}
+[Abrir índice de módulos](modules/index.qmd){.btn .btn-primary}
+[Ver roteiro semanal](semanas/index.qmd){.btn .btn-secondary}
 :::
 :::
 

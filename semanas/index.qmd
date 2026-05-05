@@ -4,9 +4,19 @@ subtitle: "Roteiro de 12 semanas para avançar pelos módulos"
 page-layout: full
 ---
 
-# Trilha de estudo em 12 semanas
+::: {.page-hero}
+::: {.page-hero-copy}
+# Roteiro de estudo em 12 semanas
 
 Esta página organiza os módulos existentes em um ritmo semanal. A proposta é estudar um tema por semana, executar o script correspondente e registrar uma interpretação curta dos resultados.
+:::
+
+::: {.page-hero-aside}
+**Ritmo sugerido**
+
+1 módulo por semana, com leitura, execução do script e síntese técnica curta.
+:::
+:::
 
 ::: {.callout-tip}
 Use esta trilha como plano de estudo. Os links apontam para os módulos já publicados, evitando páginas vazias ou links quebrados.
@@ -35,11 +45,37 @@ Use esta trilha como plano de estudo. Os links apontam para os módulos já publ
 
 ## Rotina recomendada
 
-1. Leia o módulo antes de abrir o script.
-2. Execute o script correspondente.
-3. Altere um parâmetro da simulação.
-4. Compare a saída nova com a original.
-5. Escreva uma conclusão técnica curta.
+::: {.routine-grid}
+::: {.routine-card}
+**01**
+
+Leia o módulo antes de abrir o script.
+:::
+
+::: {.routine-card}
+**02**
+
+Execute o script correspondente.
+:::
+
+::: {.routine-card}
+**03**
+
+Altere um parâmetro da simulação.
+:::
+
+::: {.routine-card}
+**04**
+
+Compare a saída nova com a original.
+:::
+
+::: {.routine-card}
+**05**
+
+Escreva uma conclusão técnica curta.
+:::
+:::
 
 ::: {.callout-note}
 Para validar todos os scripts de uma vez, execute `Rscript scripts/run_all_modules.R` na raiz do projeto.

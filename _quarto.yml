@@ -34,22 +34,35 @@ website:
     left:
       - href: index.qmd
         text: Início
-      - href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
+      - href: modules/index.qmd
         text: Módulos
       - href: semanas/index.qmd
-        text: Trilha
+        text: Roteiro
       - href: busca.qmd
         text: Busca
       - href: glossario.qmd
         text: Glossário
       - href: perfil.qmd
-        text: Perfil
+        text: Sobre
+  page-footer:
+    left: "MGenética · educação científica aberta"
+    center:
+      - href: modules/index.qmd
+        text: Módulos
+      - href: semanas/index.qmd
+        text: Roteiro
+      - href: glossario.qmd
+        text: Glossário
+    right:
+      - href: https://github.com/Glebstrauss/mgenetica
+        text: GitHub
   sidebar:
     style: "docked"
     search: true
     contents:
       - section: "Módulos"
         contents:
+          - modules/index.qmd
           - modules/modulo01-introducao-ao-melhoramento-animal.qmd
           - modules/modulo02-bases-da-genetica-quantitativa.qmd
           - modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd
