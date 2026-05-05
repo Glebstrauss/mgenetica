@@ -5,16 +5,20 @@ page-layout: full
 ---
 
 ::: {.hero}
+::: {.hero-panel}
+![](images/mgenetica-logo-site.svg){fig-alt="Logo MGenética — monograma com dupla hélice em gradiente cyan sobre fundo escuro"}
+:::
+
 ::: {.hero-copy}
 ::: {.hero-kicker}
-Curso aberto
+Curso aberto · 12 módulos
 :::
 
 ::: {.hero-title}
-Genética quantitativa<br>aplicada, do conceito ao R
+Genética quantitativa,<br>da teoria ao código
 :::
 
-Uma trilha aberta para aprender melhoramento animal com base quantitativa, exemplos em R e progressão do conceito biológico até a avaliação genômica.
+Uma publicação digital aberta para aprender melhoramento animal com base quantitativa, dados simulados e uma progressão rigorosa do conceito biológico até a avaliação genômica.
 
 ::: {.hero-actions}
 [Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
@@ -22,12 +26,9 @@ Uma trilha aberta para aprender melhoramento animal com base quantitativa, exemp
 [Conhecer o perfil](perfil.qmd){.btn .btn-secondary}
 :::
 :::
-
-::: {.hero-panel}
-![](images/mgenetica-logo-site.svg){fig-alt="Logo MGenética — monograma com dupla hélice em gradiente cyan sobre fundo escuro"}
-:::
 :::
 
+::: {.home-section .home-proof}
 ::: {.metric-grid}
 ::: {.metric}
 **12**
@@ -47,7 +48,9 @@ Scripts reproduzíveis
 Dados simulados para ensino
 :::
 :::
+:::
 
+::: {.home-section .home-sequence}
 ::: {.study-flow}
 ::: {.flow-step}
 **01**
@@ -73,7 +76,9 @@ Modelagem
 Decisão
 :::
 :::
+:::
 
+::: {.home-section .home-method}
 ## Como usar o curso
 
 ::: {.feature-grid}
@@ -95,7 +100,9 @@ Os scripts em `scripts/` geram dados simulados e ajudam a observar variação, s
 As atividades pedem comparação entre estimativas, hipóteses e implicações para tomada de decisão em programas de melhoramento.
 :::
 :::
+:::
 
+::: {.home-section .home-modules}
 ## Trilha de aprendizado
 
 ::: {#trilha-de-aprendizado .module-grid}
@@ -195,7 +202,9 @@ Filtros, consistência dos genótipos e preparação para análises genômicas.
 Integração entre parentesco genômico, associação e predição genômica.
 :::
 :::
+:::
 
+::: {.home-section .home-resources}
 ## Recursos práticos
 
 ::: {.resource-panel}
@@ -204,10 +213,13 @@ Integração entre parentesco genômico, associação e predição genômica.
 - Dados simulados gerados automaticamente em `data/`.
 - Publicação do site por GitHub Actions.
 :::
+:::
 
+::: {.home-section .home-references}
 ## Referências de base
 
 - Falconer, D. S.; Mackay, T. F. C. *Introduction to Quantitative Genetics*.
 - Lynch, M.; Walsh, B. *Genetics and Analysis of Quantitative Traits*.
 - Mrode, R. A. *Linear Models for the Prediction of Animal Breeding Values*.
 - Legarra, A.; Misztal, I. Materiais técnicos sobre avaliação genética e genômica.
+:::
