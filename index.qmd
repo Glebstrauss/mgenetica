@@ -2,29 +2,31 @@
 title: "MGenética"
 subtitle: "Melhoramento animal, genética quantitativa e genômica aplicada com dados simulados"
 page-layout: full
+toc: false
+sidebar: false
 ---
 
 ::: {.hero}
-::: {.hero-panel}
-![](images/mgenetica-logo-site.svg){fig-alt="Logo MGenética — monograma com dupla hélice em gradiente cyan sobre fundo escuro"}
-:::
-
 ::: {.hero-copy}
 ::: {.hero-kicker}
-Curso aberto · 12 módulos
+MGenética Academy · curso aberto
 :::
 
 ::: {.hero-title}
-Genética quantitativa,<br>da teoria ao código
+Melhoramento animal,<br>do conceito ao código
 :::
 
-Uma publicação digital aberta para aprender melhoramento animal com base quantitativa, dados simulados e uma progressão rigorosa do conceito biológico até a avaliação genômica.
+Uma plataforma aberta para estudar genética quantitativa e genômica aplicada com progressão clara, scripts em R e dados simulados para aprendizagem reproduzível.
 
 ::: {.hero-actions}
 [Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
 [Ver trilha completa](#trilha-de-aprendizado){.btn .btn-secondary}
 [Conhecer o perfil](perfil.qmd){.btn .btn-secondary}
 :::
+:::
+
+::: {.hero-panel}
+![](images/mgenetica-logo-correct.png){fig-alt="Logo original da MGenética em fundo escuro com monograma geométrico cyan"}
 :::
 :::
 
@@ -51,6 +53,10 @@ Dados simulados para ensino
 :::
 
 ::: {.home-section .home-sequence}
+::: {.section-label}
+Percurso
+:::
+
 ::: {.study-flow}
 ::: {.flow-step}
 **01**
