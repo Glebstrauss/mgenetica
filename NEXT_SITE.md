@@ -45,6 +45,7 @@ Out of scope:
 - Commit and push the current site-only changes if not already published.
 - Watch the GitHub Pages workflow until completion.
 - Record whether the Node.js 20 deprecation annotation remains.
+- Do not reintroduce `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` unless the R setup hang has been diagnosed.
 - Register result in `WORKLOG_SITE.md`.
 
 ### Cycle 2 — Generated landing-page QA
@@ -93,6 +94,7 @@ Out of scope:
 - `NEXT_SITE.md` is updated again at the end of the block.
 - Available build, lint or tests are run.
 - Any unavailable browser/render command is explicitly noted.
+- Workflow stability takes priority over removing the Node.js 20 warning.
 
 ## Recommended commands
 

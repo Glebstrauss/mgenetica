@@ -723,13 +723,14 @@ Continue the site-only evolution from `NEXT_SITE.md`, verify the published site,
    Notes: this improves dark-theme parity without duplicating layout rules.
 
 6. Diagnosis: final validation and planning records were required before publishing.
-   Implementation: cleaned mechanical EOF whitespace from module files, updated `WORKLOG_SITE.md` and prepared a new `NEXT_SITE.md`.
+   Implementation: cleaned mechanical EOF whitespace from module files, updated `WORKLOG_SITE.md`, prepared a new `NEXT_SITE.md`, committed and pushed the block.
    Testing: YAML, SCSS, manifest, JS, `renv::status()`, all module scripts and `git diff --check` passed; local `quarto render` was not available because `quarto` is not on `PATH`.
-   Notes: no app files were changed.
+   Notes: the first publication run for this block stalled in `Setup R (stable)` for more than 20 minutes and was canceled; the workflow-level Node 24 force flag was removed in a follow-up infrastructure correction.
 
 ### Files changed
 
 - `_quarto.yml`
+- `.github/workflows/quarto-publish.yml`
 - `modules/index.qmd`
 - `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
 - `modules/modulo02-bases-da-genetica-quantitativa.qmd`
@@ -753,6 +754,7 @@ Continue the site-only evolution from `NEXT_SITE.md`, verify the published site,
 - Module index is treated as a public landing page, not as an internal module reading page.
 - Module quizzes now appear before final navigation across all 12 modules.
 - Dark theme now inherits shared structural site CSS before applying dark-specific overrides.
+- The workflow no longer forces every JavaScript action onto Node 24 globally because that publication run stalled before setup completed.
 - The block records the browser QA limitation and keeps the next block focused on rendered visual inspection.
 
 ### Problems fixed
@@ -761,6 +763,7 @@ Continue the site-only evolution from `NEXT_SITE.md`, verify the published site,
 - Module index inherited sidebar behavior that made it feel more administrative/internal than public.
 - Module quizzes were placed after the navigation decision point.
 - Dark-mode compilation risked missing shared layout rules.
+- The Node 24 force workaround introduced a publication stability risk and was removed.
 - Mechanical trailing blank lines introduced by the module reorder were removed.
 
 ### Commands executed
@@ -788,6 +791,12 @@ Continue the site-only evolution from `NEXT_SITE.md`, verify the published site,
 - `Rscript -e 'renv::status()'`
 - `Rscript scripts/run_all_modules.R`
 - `git diff --check`
+- `git add NEXT_SITE.md WORKLOG_SITE.md _quarto.yml modules/index.qmd modules/modulo*.qmd styles/main.scss`
+- `git commit -m "Improve public landing hierarchy and module flow"`
+- `git push origin main`
+- `gh run watch 25388209942 --repo Glebstrauss/mgenetica --exit-status`
+- `gh run view 25388209942 --repo Glebstrauss/mgenetica --json status,conclusion,jobs`
+- `gh run cancel 25388209942 --repo Glebstrauss/mgenetica`
 
 ### Test results
 
@@ -801,11 +810,13 @@ Continue the site-only evolution from `NEXT_SITE.md`, verify the published site,
 - `git diff --check` passed after trimming trailing blank lines.
 - `quarto render` was not run locally because `quarto` is not installed or not on `PATH`.
 - In-app browser/screenshot QA was attempted but blocked because no Codex IAB backend was discovered.
+- The first post-push GitHub Pages workflow was canceled after stalling for more than 20 minutes in `Setup R (stable)`.
 
 ### Pending items
 
-- Publish this block and verify rendered homepage/module index after GitHub Actions builds the new output.
+- Publish the follow-up workflow correction and verify rendered homepage/module index after GitHub Actions builds the new output.
 - Confirm the module index no longer renders sidebar/breadcrumb/title chrome in generated HTML.
 - Confirm dark-mode generated CSS contains shared structural landing rules after the workflow render.
+- The Node.js 20 deprecation warning is expected to remain until the workflow actions are upgraded safely without forcing all actions globally.
 - Run actual browser/screenshot review when the in-app browser backend is available.
 - Continue SCSS consolidation; `styles/main.scss` still contains accumulated late override sections.
