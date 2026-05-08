@@ -2245,3 +2245,78 @@ Continue from `NEXT_SITE.md` after the published hero cleanup by documenting cur
 - Publish the documentation change if the prepublish gate passes.
 - After publication, run deployed-site validation.
 - In a future block, either continue one small SCSS cleanup with rendered evidence or use this document to guide broader stylesheet organization.
+
+---
+
+## 2026-05-08 — Public component documentation validation block
+
+### Block objective
+
+Continue from `NEXT_SITE.md` by turning the new public component documentation into a protected site contract without changing app code, public content, styles or scripts.
+
+### Cycles executed
+
+1. Diagnosis: the public component documentation had already been published and GitHub Pages was healthy.
+   Implementation: ran deployed-site validation and checked the latest Pages workflow before editing.
+   Testing: `Rscript scripts/validate_deployed_site.R` returned `deployed site ok`; latest workflow was successful.
+   Notes: no app files were changed.
+
+2. Diagnosis: `PUBLIC_SITE_COMPONENTS.md` documented source-of-truth and component families, but no local validation protected it from deletion or drift.
+   Implementation: inspected `scripts/validate_site_manifest.R`, `scripts/prepublish_site_check.R` and the component document.
+   Testing: confirmed the component doc existed and matched the current public-site terminology before editing.
+   Notes: this fits the `NEXT_SITE.md` preference for validation enhancement when rendered CSS parity cannot be checked locally.
+
+3. Diagnosis: the manifest validator already protects public page and module contracts, making it the right place for a lightweight documentation contract.
+   Implementation: added checks that `PUBLIC_SITE_COMPONENTS.md` exists, contains required source-of-truth sections/references and names documented public classes that also exist in the SCSS.
+   Testing: ran `Rscript scripts/validate_site_manifest.R` successfully.
+   Notes: the validator does not inspect app/admin code and remains site-only.
+
+4. Diagnosis: the validation contract change needed the full prepublish gate.
+   Implementation: ran `Rscript scripts/prepublish_site_check.R`.
+   Testing: full prepublish passed; Quarto render remains skipped because `quarto` is not on `PATH`.
+   Notes: module scripts regenerated ignored CSV outputs as expected.
+
+5. Diagnosis: records and next-step guidance needed to reflect the new validation coverage.
+   Implementation: updated `WORKLOG_SITE.md` and `NEXT_SITE.md`.
+   Testing: final validation is run after these record updates.
+   Notes: the next block should publish and verify this validation enhancement, then choose a small rendered-safe improvement.
+
+### Files changed
+
+- `scripts/validate_site_manifest.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added validation coverage for `PUBLIC_SITE_COMPONENTS.md`.
+- Protected core public component references and source-of-truth documentation from accidental removal or drift.
+- Strengthened the site-maintenance contract without changing rendered pages.
+
+### Problems fixed
+
+- Public component documentation was not yet part of any prepublish contract.
+
+### Commands executed
+
+- `Rscript scripts/validate_deployed_site.R`
+- `gh run list --repo Glebstrauss/mgenetica --workflow quarto-publish.yml --limit 3`
+- `sed -n '1,260p' scripts/validate_site_manifest.R`
+- `sed -n '1,260p' scripts/prepublish_site_check.R`
+- `sed -n '1,220p' PUBLIC_SITE_COMPONENTS.md`
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Deployed-site validation passed before new edits.
+- Latest GitHub Pages workflow was successful before new edits.
+- Site manifest validation passed with the new documentation checks.
+- Full prepublish validation passed with the new documentation checks.
+
+### Pending items
+
+- Run final validation after this record update.
+- Publish the validation enhancement if the prepublish gate passes.
+- After publication, watch GitHub Pages and rerun deployed-site validation.
+- Continue with a small site-only improvement backed by validation or rendered evidence.

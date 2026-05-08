@@ -15,6 +15,11 @@ repo_root <- normalizePath(file.path(dirname(script_path), ".."), mustWork = TRU
 manifest_path <- file.path(repo_root, "data", "site-manifest.yml")
 
 manifest <- yaml::read_yaml(manifest_path)
+styles_text <- paste(
+  readLines(file.path(repo_root, "styles", "main.scss"), warn = FALSE),
+  readLines(file.path(repo_root, "styles", "main-dark.scss"), warn = FALSE),
+  collapse = "\n"
+)
 
 check_file <- function(path, label) {
   full_path <- file.path(repo_root, path)
@@ -28,6 +33,12 @@ check_text <- function(text, needle, label) {
   if (is.null(needle) || !nzchar(needle)) fail(sprintf("%s is empty", label))
   if (!grepl(needle, text, fixed = TRUE)) {
     fail(sprintf("%s is missing from module index: %s", label, needle))
+  }
+}
+
+check_contains <- function(text, needle, label) {
+  if (!grepl(needle, text, fixed = TRUE)) {
+    fail(sprintf("%s is missing required reference: %s", label, needle))
   }
 }
 
@@ -55,6 +66,39 @@ required_governance <- c("navigation", "page_registry", "module_registry", "modu
 missing_governance <- setdiff(required_governance, names(manifest$governance$canonical_sources))
 if (length(missing_governance)) {
   fail(sprintf("governance.canonical_sources missing: %s", paste(missing_governance, collapse = ", ")))
+}
+
+components_doc_path <- file.path(repo_root, "PUBLIC_SITE_COMPONENTS.md")
+if (!file.exists(components_doc_path)) {
+  fail("PUBLIC_SITE_COMPONENTS.md is missing")
+}
+
+components_doc <- paste(readLines(components_doc_path, warn = FALSE), collapse = "\n")
+for (reference in c(
+  "data/site-manifest.yml",
+  ".qmd",
+  "styles/main.scss",
+  "styles/main-dark.scss",
+  "assets/js/",
+  "## Page Patterns",
+  "## Component Families",
+  "## Responsive And Accessibility Rules",
+  "## Maintenance Rules"
+)) {
+  check_contains(components_doc, reference, "PUBLIC_SITE_COMPONENTS.md")
+}
+
+for (class_name in c(
+  ".hero",
+  ".page-hero",
+  ".profile-hero",
+  ".module-nav",
+  ".module-nav-card",
+  ".section-cta",
+  ".final-cta-actions"
+)) {
+  check_contains(components_doc, class_name, "PUBLIC_SITE_COMPONENTS.md")
+  check_contains(styles_text, class_name, sprintf("styles for documented class %s", class_name))
 }
 
 pages <- manifest$content_pages$items

@@ -6,18 +6,18 @@ Work only on the public site. Do not alter the app. Do not mix site evolution wi
 
 ## Objective
 
-Publish and verify the public component documentation, then use it to guide the next conservative site-maintenance step.
+Publish and verify the public component documentation validation, then continue with one small site-maintenance improvement backed by validation or rendered evidence.
 
 ## Scope
 
 In scope:
 
-- Local prepublish validation for the current documentation change.
+- Local prepublish validation for the current validation enhancement.
 - Commit/push of the current site-only changes if validation passes.
 - GitHub Pages workflow monitoring.
 - Deployed validation after publication.
-- Review of `PUBLIC_SITE_COMPONENTS.md` against current public page patterns.
-- One small follow-up improvement: either a low-risk SCSS cleanup with clear evidence or a manifest/page-pattern validation enhancement.
+- Review of ignored/generated local outputs before staging.
+- One small follow-up improvement: either a low-risk manifest/page-pattern validation enhancement or a rendered-verifiable CSS cleanup.
 - `WORKLOG_SITE.md` and `NEXT_SITE.md`.
 
 Out of scope:
@@ -32,14 +32,14 @@ Out of scope:
 
 1. Run `Rscript scripts/prepublish_site_check.R`.
 2. Confirm changed files are site-only.
-3. Commit and push the documentation change.
+3. Commit and push the validation enhancement.
 4. Watch GitHub Pages to completion.
 5. Run `Rscript scripts/validate_deployed_site.R`.
-6. Choose the next small maintenance step using `PUBLIC_SITE_COMPONENTS.md` as the reference.
+6. Choose the next small maintenance step.
 
 ## Planned cycles
 
-### Cycle 1 — Publish current documentation
+### Cycle 1 — Publish current validation enhancement
 
 - Review git diff and changed-file scope.
 - Run the full prepublish gate.
@@ -49,17 +49,17 @@ Out of scope:
 
 - Watch the GitHub Pages workflow.
 - Run deployed-site validation.
-- Confirm no generated or ignored local outputs are accidentally staged.
+- Confirm no ignored generated outputs are accidentally staged.
 
-### Cycle 3 — Documentation alignment
+### Cycle 3 — Validation coverage review
 
-- Compare `PUBLIC_SITE_COMPONENTS.md` with the current homepage, module index, module pages, utility pages and profile page.
-- Tighten documentation only if it is inaccurate or too broad.
+- Review `scripts/validate_site_manifest.R` and `scripts/validate_deployed_site.R` for one small missing public-site contract.
+- Prefer checks that protect manifest/page/component consistency without requiring rendered screenshots.
 
-### Cycle 4 — Next maintainability step
+### Cycle 4 — Optional rendered-safe maintenance
 
-- Prefer a validation enhancement if rendered CSS parity cannot be checked locally.
-- Only remove another SCSS group if it is clearly superseded and compiled/deployed verification is enough.
+- If local `quarto preview` is available, use rendered evidence for a tiny CSS cleanup.
+- If local preview remains unavailable, avoid visual CSS deletion and prefer validation/documentation work.
 - Preserve layout, pseudo-element structure, responsive behavior and dark-mode parity.
 
 ### Cycle 5 — Records
