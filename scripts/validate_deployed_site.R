@@ -77,8 +77,11 @@ assert(gregexpr("quiz-container", html$module01, fixed = TRUE)[[1]][1] < gregexp
 
 for (css in list(light = light_css, dark = dark_css)) {
   assert(grepl("body:has(.hero) #title-block-header", css, fixed = TRUE), "home title chrome hide rule missing from CSS")
+  assert(grepl("body:has(.page-hero) #title-block-header", css, fixed = TRUE), "utility title chrome hide rule missing from CSS")
+  assert(grepl("body:has(.profile-hero) #title-block-header", css, fixed = TRUE), "about title chrome hide rule missing from CSS")
   assert(grepl("body:has(.modules-landing) #title-block-header", css, fixed = TRUE), "module index title chrome hide rule missing from CSS")
   assert(grepl("body:has(.modules-landing) #quarto-sidebar", css, fixed = TRUE), "module index sidebar hide rule missing from CSS")
+  assert(grepl("body:has(.module-header) .quarto-secondary-nav", css, fixed = TRUE), "mobile module breadcrumb hide rule missing from CSS")
 }
 
 cat("deployed site ok\n")

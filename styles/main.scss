@@ -2543,6 +2543,8 @@ body:has(.hero) .teacher-mode-toggle {
 }
 
 body:has(.hero) #title-block-header,
+body:has(.page-hero) #title-block-header,
+body:has(.profile-hero) #title-block-header,
 body:has(.modules-landing) #title-block-header,
 body:has(.modules-landing) .quarto-page-breadcrumbs,
 body:has(.modules-landing) .quarto-secondary-nav,
@@ -2565,6 +2567,11 @@ body:has(.modules-landing) main.content {
   max-width: 1220px;
   margin: 0 auto;
   padding: 1.25rem 0 4rem;
+}
+
+body:has(.page-hero) main.content,
+body:has(.profile-hero) main.content {
+  padding-top: 1.25rem;
 }
 
 body:has(.hero) h2 {
@@ -3916,6 +3923,10 @@ code {
 }
 
 @media (max-width: 640px) {
+  body:has(.module-header) .quarto-secondary-nav {
+    display: none !important;
+  }
+
   .module-header {
     align-items: flex-start;
     padding: 1.35rem;
@@ -3952,6 +3963,14 @@ code {
   .quiz-container,
   .mg-viz {
     padding: 1.15rem;
+  }
+
+  .teacher-mode-toggle {
+    position: static;
+    display: block;
+    width: fit-content;
+    margin: 1rem 1rem 1.5rem auto;
+    box-shadow: 0 10px 24px rgba(10, 31, 56, 0.14);
   }
 
   table {

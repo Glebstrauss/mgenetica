@@ -22,11 +22,10 @@
   }
 
   var files = ['progress.js', 'darkmode.js'];
-  var isModulePage = /\/modules\//.test(window.location.pathname);
+  var hasQuiz = document.querySelector('.quiz-container');
 
-  if (isModulePage) files.push('teacher-mode.js');
   if (document.querySelector('[data-viz], [data-learning-map], [data-glossary], .mg-viz')) files.push('interactives.js');
-  if (document.querySelector('.quiz-container')) files.push('quiz.js');
+  if (hasQuiz) files.push('teacher-mode.js', 'quiz.js');
 
   load(files);
 })();

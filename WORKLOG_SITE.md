@@ -1846,3 +1846,92 @@ Publish the remaining local site-only institutional/utility and validation-harde
 - Run browser/screenshot QA across desktop and mobile for homepage, module index, module page, search, glossary, route and about.
 - Continue stylesheet cleanup only after rendered visual comparison.
 - Keep expanding deployed validation if future public patterns become important enough to assert.
+
+---
+
+## 2026-05-08 — Rendered mobile QA and public polish block
+
+### Block objective
+
+Continue the site-only visual QA block from `NEXT_SITE.md`, using local Quarto preview screenshots to fix visible public-site issues without touching the app.
+
+### Cycles executed
+
+1. Diagnosis: local Quarto preview was running and browser screenshots covered homepage and module index at desktop/mobile sizes.
+   Implementation: captured representative screenshots with Firefox headless.
+   Testing: reviewed `home-desktop`, `home-mobile`, `modules-desktop` and `modules-mobile` screenshots.
+   Notes: homepage first viewport was healthy; module index had one visible overlay issue.
+
+2. Diagnosis: utility and institutional pages rendered Quarto's automatic title block above their custom hero sections on mobile, duplicating title/subtitle and pushing the main public composition down.
+   Implementation: hid `#title-block-header` for pages containing `.page-hero` or `.profile-hero`.
+   Testing: recaptured search and about mobile screenshots; duplication was removed.
+   Notes: this follows the existing public pattern already used by homepage and module index.
+
+3. Diagnosis: after hiding the automatic title block, utility/institutional heroes started too close to the sticky secondary navigation.
+   Implementation: added top padding for `main.content` on `.page-hero` and `.profile-hero` pages.
+   Testing: recaptured `busca.html` mobile and confirmed the hero has breathing room below the nav.
+   Notes: change is CSS-only and limited to public editorial pages.
+
+4. Diagnosis: the module index loaded `teacher-mode.js`, causing a floating "Modo professor" control to overlap public cards even though the index has no quiz.
+   Implementation: changed `assets/html/body-extras.html` to load `teacher-mode.js` only when a `.quiz-container` exists, together with `quiz.js`.
+   Testing: recaptured module-index desktop screenshot and confirmed the overlay was gone; JS syntax checks passed.
+   Notes: this also keeps scripts more conditional.
+
+5. Diagnosis: module pages on mobile showed a long Quarto breadcrumb bar that wrapped across several lines before the module header.
+   Implementation: hid `.quarto-secondary-nav` on small screens only for pages containing `.module-header`.
+   Testing: recaptured modules 01 and 12 on mobile; headers now start cleanly under the main navbar.
+   Notes: desktop module navigation remains unchanged.
+
+6. Diagnosis: deployed validation should protect the new rendered CSS invariants after publication.
+   Implementation: extended `scripts/validate_deployed_site.R` to assert utility/about title-block hide rules and the mobile module breadcrumb rule.
+   Testing: SCSS compilation, manifest validation and JS syntax checks passed before final prepublish.
+   Notes: deployed validation must run after the publication commit is live.
+
+### Files changed
+
+- `assets/html/body-extras.html`
+- `styles/main.scss`
+- `scripts/validate_deployed_site.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Removed duplicated automatic Quarto title blocks from utility/institutional public pages.
+- Added better top rhythm for search, glossary, route and about heroes.
+- Stopped loading teacher mode on the module index where no quiz exists.
+- Removed the long mobile breadcrumb strip from module pages.
+- Added deployed CSS-rule assertions for these rendered fixes.
+
+### Problems fixed
+
+- Mobile utility pages repeated their page title before the custom hero.
+- The about page started with a redundant subtitle before the branded profile hero.
+- The module index had an app-like floating teacher control over public cards.
+- Module pages lost first-viewport space to a wrapped breadcrumb trail on mobile.
+
+### Commands executed
+
+- `curl -I http://127.0.0.1:4321/`
+- `Firefox --headless --screenshot` captures for homepage, module index, modules 01/12, search, glossary, route and about.
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript scripts/validate_site_manifest.R`
+- `node --check assets/js/progress.js`
+- `node --check assets/js/darkmode.js`
+- `node --check assets/js/interactives.js`
+- `node --check assets/js/quiz.js`
+- `node --check assets/js/teacher-mode.js`
+
+### Test results
+
+- Local Quarto preview returned HTTP 200.
+- Representative screenshots confirmed the visual fixes locally.
+- SCSS compilation passed.
+- Manifest validation passed.
+- JS syntax checks passed.
+
+### Pending items
+
+- Run full prepublish after record updates.
+- Publish the visual QA fixes and run deployed-site validation.
+- Continue with dark-mode rendered screenshot QA and deeper SCSS simplification only after deployed parity is confirmed.
