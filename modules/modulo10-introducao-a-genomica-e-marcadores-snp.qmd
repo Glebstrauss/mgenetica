@@ -17,10 +17,10 @@ description: "SNPs, plataformas de genotipagem, frequências alélicas e desequi
     <li>Simular e analisar dados SNP com R base</li>
   </ul>
 </div>
-<div class="module-orientation" aria-label="Como estudar este modulo">
+<div class="module-orientation" aria-label="Como estudar este módulo">
   <span>Leitura</span>
-  <span>Simulacao em R</span>
-  <span>Interpretacao</span>
+  <span>Simulação em R</span>
+  <span>Interpretação</span>
 </div>
 ```
 
@@ -132,20 +132,26 @@ cat("\n(r² alto = SNPs em desequilíbrio = um 'representa' o outro no GWAS)\n")
 2. Calcule r² entre SNPs separados por 1, 5 e 10 posições. O LD decai com a distância?
 3. Como o tamanho da amostra afeta a precisão da estimativa de p? Recalcule p_obs com apenas 20 animais.
 
+::: {.module-study-checkpoint role="note" aria-label="Checkpoint de estudo antes do quiz"}
+**Antes do quiz**
+
+Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção.
+:::
+
 ::: {.quiz-container data-module="10"}
 :::
 
 ```{=html}
 <div class="module-nav">
-  <a class="module-nav-card module-nav-index" href="index.qmd">
+  <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
   </a>
-  <a class="module-nav-card module-nav-prev" href="modulo09-estrutura-de-pedigree-e-parentesco.qmd">
+  <a class="module-nav-card module-nav-prev" href="modulo09-estrutura-de-pedigree-e-parentesco.html">
     <span>Anterior · Módulo 09</span>
     <strong>Estrutura de Pedigree e Parentesco</strong>
   </a>
-  <a class="module-nav-card module-nav-next" href="modulo11-controle-de-qualidade-de-dados-genomicos.qmd">
+  <a class="module-nav-card module-nav-next" href="modulo11-controle-de-qualidade-de-dados-genomicos.html">
     <span>Próximo · Módulo 11</span>
     <strong>Controle de Qualidade Genômico</strong>
   </a>

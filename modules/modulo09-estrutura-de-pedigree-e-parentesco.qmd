@@ -17,10 +17,10 @@ description: "Matriz de parentesco numérico A, método tabular, coeficientes de
     <li>Entender por que A⁻¹ é necessária nas MME</li>
   </ul>
 </div>
-<div class="module-orientation" aria-label="Como estudar este modulo">
+<div class="module-orientation" aria-label="Como estudar este módulo">
   <span>Leitura</span>
-  <span>Simulacao em R</span>
-  <span>Interpretacao</span>
+  <span>Simulação em R</span>
+  <span>Interpretação</span>
 </div>
 ```
 
@@ -140,20 +140,26 @@ for (g in list(1:3, 4:5, 6:7, 8:9, 10)) {
 2. O que acontece com a diagonal de A se todos os animais forem filhos de pai × filha repetidamente por 3 gerações?
 3. Compare `solve(A)` com `solve(A + 0.01*diag(n))`. Por que a regularização ajuda?
 
+::: {.module-study-checkpoint role="note" aria-label="Checkpoint de estudo antes do quiz"}
+**Antes do quiz**
+
+Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção.
+:::
+
 ::: {.quiz-container data-module="09"}
 :::
 
 ```{=html}
 <div class="module-nav">
-  <a class="module-nav-card module-nav-index" href="index.qmd">
+  <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
   </a>
-  <a class="module-nav-card module-nav-prev" href="modulo08-blup-e-avaliacao-genetica.qmd">
+  <a class="module-nav-card module-nav-prev" href="modulo08-blup-e-avaliacao-genetica.html">
     <span>Anterior · Módulo 08</span>
     <strong>BLUP e Avaliação Genética</strong>
   </a>
-  <a class="module-nav-card module-nav-next" href="modulo10-introducao-a-genomica-e-marcadores-snp.qmd">
+  <a class="module-nav-card module-nav-next" href="modulo10-introducao-a-genomica-e-marcadores-snp.html">
     <span>Próximo · Módulo 10</span>
     <strong>Genômica e Marcadores SNP</strong>
   </a>

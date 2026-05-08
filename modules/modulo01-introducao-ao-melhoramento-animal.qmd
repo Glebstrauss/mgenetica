@@ -17,10 +17,10 @@ description: "Objetivos do melhoramento, a equação do melhorista e os fatores 
     <li>Simular resposta à seleção ao longo de gerações com R</li>
   </ul>
 </div>
-<div class="module-orientation" aria-label="Como estudar este modulo">
+<div class="module-orientation" aria-label="Como estudar este módulo">
   <span>Leitura</span>
-  <span>Simulacao em R</span>
-  <span>Interpretacao</span>
+  <span>Simulação em R</span>
+  <span>Interpretação</span>
 </div>
 ```
 
@@ -132,16 +132,22 @@ Observando a tabela de progressão:
 2. Mantenha a intensidade original, mas altere `h2` para 0,15 (característica de reprodução). Qual é o ganho esperado?
 3. Se L = 5 anos (touro usado por 5 anos), qual é o ganho genético **anual** usando a equação ΔG/L?
 
+::: {.module-study-checkpoint role="note" aria-label="Checkpoint de estudo antes do quiz"}
+**Antes do quiz**
+
+Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção.
+:::
+
 ::: {.quiz-container data-module="01"}
 :::
 
 ```{=html}
 <div class="module-nav">
-  <a class="module-nav-card module-nav-index" href="index.qmd">
+  <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
   </a>
-  <a class="module-nav-card module-nav-next" href="modulo02-bases-da-genetica-quantitativa.qmd">
+  <a class="module-nav-card module-nav-next" href="modulo02-bases-da-genetica-quantitativa.html">
     <span>Próximo · Módulo 02</span>
     <strong>Bases da Genética Quantitativa</strong>
   </a>

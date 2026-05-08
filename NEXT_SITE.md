@@ -4,89 +4,111 @@
 
 Work only on the public site. Do not alter the app. Do not mix site evolution with app evolution.
 
+## Tipo do próximo bloco
+
+`interactive-rendered-qa-final`
+
+Use this as the default interpretation for the next block: run a true interactive rendered QA pass (light + dark, with devtools) for the recently added public UX components, then decide whether the site is ready for an explicit publication request.
+
 ## Objective
 
-Publish and verify the quiz-contract hardening block, then use Quarto/local preview if available for one small rendered-safe improvement to the public learning flow.
+Complete an interactive rendered QA of the homepage first viewport + CTA hierarchy, the module index route band and representative module pages around the pre-quiz checkpoint (including dark mode focus/skip-link behavior), then make only the small polish fixes justified by rendered evidence.
 
-## Scope
+Rendered-QA prerequisite: `quarto` must be available on `PATH`. If it is not, treat making Quarto available as the blocking next action before any new visual judgement.
 
-In scope:
+Notes from the last block:
+- In this Codex sandbox, `quarto preview` failed to bind a local port (`PermissionDenied`). Run the interactive QA in a normal terminal environment where preview can listen on localhost.
+- If you need the vendored Quarto used in the sandbox, it was found at `/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto`.
+- If Quarto render fails with Sass cache errors on macOS, run with a clean HOME like `HOME=/private/tmp/quarto-home` (or another writable temp dir).
 
-- Local prepublish validation for the quiz manifest/deployed-validation changes.
-- Commit/push of the current site-only changes if validation passes.
-- GitHub Pages workflow monitoring.
-- Deployed validation after publication, including deployed quiz JSON checks.
-- A small follow-up improvement to homepage, module index or module pages backed by rendered evidence when possible.
-- `WORKLOG_SITE.md` and `NEXT_SITE.md`.
+## In scope
 
-Out of scope:
+- Local interactive rendered QA with `quarto preview` (preferred).
+- Visual review of homepage first viewport and CTA hierarchy (hero + mid-page + final CTA).
+- Visual review of module index flow around the route band (ensure it does not compete with header CTAs).
+- Visual review of representative module pages with the pre-quiz checkpoint.
+- Mobile/tablet checks for the new components and focus-visible styling.
+- Small CSS or copy polish directly tied to rendered evidence.
+- `WORKLOG_SITE.md` and `NEXT_SITE.md` updates.
+
+## Out of scope
 
 - App changes.
 - Backend, CMS, authentication or new dependencies.
-- Broad SCSS deletion without rendered comparison.
-- Scientific lesson rewrites unrelated to the public learning flow.
+- Automatic publication, commit or push.
+- Broad redesigns or scientific lesson rewrites.
+- Manifest-only, validation-only or deployment-only work as the main task.
 - Removing ignored/generated outputs unless explicitly requested.
 
 ## Priorities
 
-1. Run `Rscript scripts/prepublish_site_check.R`.
-2. Confirm changed files are site-only.
-3. Commit and push the quiz-contract hardening.
-4. Watch GitHub Pages to completion.
-5. Run `Rscript scripts/validate_deployed_site.R`.
-6. If continuing locally, try `quarto preview` or the available local render path before visual/CSS changes.
+1. Confirm changed files are site-only and preserve pre-existing local changes.
+2. Check whether `quarto` is available on `PATH`.
+3. If not available, record the blocker and obtain a working `quarto` install / PATH entry before attempting visual QA.
+4. If available, run `quarto preview` and inspect homepage, module index and one representative module page.
+5. Use the browser/devtools to check light and dark themes, including keyboard navigation focus rings and skip-link behavior.
+6. Make only small rendered-safe polish fixes tied to evidence.
+7. Run available validation and update records (do not publish unless explicitly requested).
 
 ## Planned cycles
 
-### Cycle 1 — Publish current quiz-contract hardening
+### Cycle 1 — Render setup
 
-- Review git diff and changed-file scope.
-- Run the full prepublish gate.
-- Commit and push only if validation passes.
+- Run `git status --short --branch`.
+- Check `command -v quarto`.
+- Start local preview only if available.
 
-### Cycle 2 — Deployed QA
+### Cycle 2 — Homepage visual QA
 
-- Watch the GitHub Pages workflow.
-- Run deployed-site validation.
-- Confirm ignored/generated local outputs are not staged.
+- Inspect the first viewport and the new `.hero-learning-path`.
+- Confirm CTA hierarchy, spacing and text wrapping.
+- Fix only concrete issues found.
 
-### Cycle 3 — Local rendered setup
+### Cycle 3 — Module index visual QA
 
-- Check whether `quarto` is available on `PATH`.
-- If available, run `quarto preview` for local rendered QA.
-- If unavailable, prefer validation/documentation/content-structure work over visual deletion.
+- Inspect `.modules-route` between guidance and phase cards.
+- Verify module-index raw-HTML actions navigate to rendered pages (`.html`), not source files (`.qmd`).
+- Confirm the new actions do not compete with the main catalog.
+- Fix only concrete issues found.
 
-### Cycle 4 — Small rendered-safe improvement
+### Cycle 4 — Module page visual QA
 
-- Prefer homepage, module index or module page flow.
-- Keep edits small, public-site-only and compatible with manifest contracts.
-- Run targeted validation during the cycle.
+- Inspect a beginning, middle and final module page around `.module-study-checkpoint`, quiz and module navigation.
+- Verify the module nav cards (raw HTML) link to rendered outputs (`.html`), not `*.qmd`.
+- Confirm the checkpoint helps transition to the quiz without crowding.
+- Fix only concrete issues found.
 
-### Cycle 5 — Records
+### Cycle 5 — Mobile/accessibility QA
+
+- Check mobile/tablet stacking and keyboard focus behavior for the new components.
+- Confirm no horizontal overflow, clipped CTA text or weak dark-mode contrast (especially for focus rings and the skip-link).
+- Fix only concrete issues found.
+
+### Cycle 6 — Validation and records
 
 - Run available validation.
-- Publish if rendered behavior or validation contracts changed.
-- Update `WORKLOG_SITE.md` and prepare the next `NEXT_SITE.md`.
+- Update `WORKLOG_SITE.md` and `NEXT_SITE.md`.
+- Do not publish unless explicitly requested.
 
 ## Criteria for completion
 
 - Changes remain site-only.
 - No app files are altered.
-- Local prepublish passes.
-- GitHub Pages workflow succeeds for published changes.
-- Deployed-site validation passes after publication.
-- Any visual/CSS change is backed by compiled, deployed or rendered verification.
-- `WORKLOG_SITE.md` and `NEXT_SITE.md` are updated.
+- Rendered QA is completed in a `quarto preview` environment, or unavailability is recorded with a concrete next action to obtain a render.
+- Any polish is tied to homepage, module index, module page flow, responsiveness or accessibility.
+- `WORKLOG_SITE.md` records diagnosis, implementation and validation notes.
+- `NEXT_SITE.md` is updated with the next concrete site-only action.
+- Changes are not committed, pushed or published unless the user explicitly requests publication.
 
 ## Recommended commands
 
+- `git status --short --branch`
+- `command -v quarto`
+- `quarto preview`
+- `HOME=/private/tmp/quarto-home quarto render` (only if needed to workaround Sass cache issues)
 - `Rscript scripts/prepublish_site_check.R`
 - `Rscript scripts/validate_site_manifest.R`
-- `Rscript scripts/validate_deployed_site.R`
 - `git diff --check`
-- `git status --short --branch`
-- `git add data/site-manifest.yml scripts/validate_site_manifest.R scripts/validate_deployed_site.R PUBLIC_SITE_COMPONENTS.md WORKLOG_SITE.md NEXT_SITE.md`
-- `git commit -m "Harden module quiz contracts"`
-- `git push origin main`
-- `gh run list --repo Glebstrauss/mgenetica --workflow quarto-publish.yml --limit 3`
-- `gh run watch <run-id> --repo Glebstrauss/mgenetica --exit-status`
+- `rg 'href=\".*\\.qmd\"' modules`
+
+Use `Rscript scripts/validate_deployed_site.R` only after publication or when specifically checking the deployed site.

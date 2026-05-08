@@ -15,9 +15,9 @@ number-sections: false
     <h1>Do fundamento biológico à avaliação genômica</h1>
     <p>Os módulos foram organizados para combinar conceito, simulação, código em R e interpretação. A sequência mantém uma estrutura previsível para leitura pública hoje e edição por painel interno no futuro.</p>
     <div class="modules-landing-actions">
-      <a class="btn btn-primary" href="modulo01-introducao-ao-melhoramento-animal.qmd">Começar pelo Módulo 01</a>
-      <a class="btn btn-secondary" href="../semanas/index.qmd">Ver roteiro semanal</a>
-      <a class="btn btn-secondary" href="../index.qmd">Voltar ao início</a>
+      <a class="btn btn-primary" href="modulo01-introducao-ao-melhoramento-animal.html">Começar pelo Módulo 01</a>
+      <a class="btn btn-secondary" href="../semanas/index.html">Ver roteiro semanal</a>
+      <a class="btn btn-secondary" href="../index.html">Voltar ao início</a>
     </div>
   </div>
   <div class="modules-landing-panel" aria-label="Resumo da trilha">
@@ -46,6 +46,19 @@ Ordem, fases, cartões e status de publicação ficam descritos no manifesto do 
 **Progressão**
 
 Cada página de módulo mantém navegação anterior, próxima etapa e retorno para este índice.
+:::
+:::
+
+::: {.modules-route role="region" aria-label="Orientação para avançar na trilha"}
+::: {.modules-route-copy}
+**Como avançar sem perder contexto**
+
+Use as fases como checkpoints: fundamentos antes de parâmetros, parâmetros antes de modelos e modelos antes de genômica. Se um resultado em R não fizer sentido, volte ao cartão da fase e revise o objetivo antes de seguir.
+:::
+
+::: {.modules-route-actions}
+[Iniciar fundamentos](modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-secondary}
+[Planejar por semana](../semanas/index.qmd){.btn .btn-secondary}
 :::
 :::
 

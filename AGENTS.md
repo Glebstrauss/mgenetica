@@ -20,6 +20,9 @@ For site work:
 - Do not stop after one small correction if the user requested a larger block.
 - Do not stop only because the build passes.
 - Cover the highest-impact public-site issues first.
+- Treat site evolution as evolution of the public editorial/institutional experience, not only scripts, manifests, deployment or validation infrastructure.
+- When `NEXT_SITE.md` is broad or ambiguous, prioritize visible public-site UX: homepage, navigation, internal pages/modules, CTAs, responsiveness, accessibility and editorial clarity.
+- Use scripts, manifests, validation and publication work as support unless the user or `NEXT_SITE.md` explicitly makes them the main objective.
 - Keep site evolution separate from app evolution.
 - Do not implement backend, authentication or complex integrations unless explicitly requested.
 - Always run build, lint or tests when available.
@@ -48,3 +51,7 @@ Required coverage across the block:
 - Modular preparation for future app-based management.
 
 Stop only after completing the planned cycles, reaching a real blocker, exhausting meaningful medium/high-impact site improvements, or using the requested work block effectively.
+
+If a cycle finishes quickly, continue to the next highest-impact public-site problem instead of ending the block. A passing build, one infrastructure fix or one homepage-only improvement is not enough to conclude a long site-evolution block.
+
+By default, long site-evolution blocks should validate and prepare changes for review, not publish automatically. Commit, push or publish only when the user explicitly requests publication or the current `NEXT_SITE.md` names publication as the objective.

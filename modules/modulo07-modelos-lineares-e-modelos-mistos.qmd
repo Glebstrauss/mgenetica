@@ -17,10 +17,10 @@ description: "Estrutura dos modelos lineares mistos, efeitos fixos vs. aleatóri
     <li>Como a variância dos resíduos e dos efeitos aleatórios entra no modelo</li>
   </ul>
 </div>
-<div class="module-orientation" aria-label="Como estudar este modulo">
+<div class="module-orientation" aria-label="Como estudar este módulo">
   <span>Leitura</span>
-  <span>Simulacao em R</span>
-  <span>Interpretacao</span>
+  <span>Simulação em R</span>
+  <span>Interpretação</span>
 </div>
 ```
 
@@ -136,20 +136,26 @@ for (lam in c(0.5, 1, 2, 5, 10)) {
 2. Adicione um terceiro nível fixo (ex.: mês de nascimento) e veja se o R² do modelo fixo aumenta.
 3. O que acontece com `cor(u_hat, a)` se você usar todos os animais como efeito fixo (`y ~ as.factor(1:n_anim)`)? Por que isso não é BLUP?
 
+::: {.module-study-checkpoint role="note" aria-label="Checkpoint de estudo antes do quiz"}
+**Antes do quiz**
+
+Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção.
+:::
+
 ::: {.quiz-container data-module="07"}
 :::
 
 ```{=html}
 <div class="module-nav">
-  <a class="module-nav-card module-nav-index" href="index.qmd">
+  <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
   </a>
-  <a class="module-nav-card module-nav-prev" href="modulo06-correlacoes-geneticas-e-fenotipicas.qmd">
+  <a class="module-nav-card module-nav-prev" href="modulo06-correlacoes-geneticas-e-fenotipicas.html">
     <span>Anterior · Módulo 06</span>
     <strong>Correlações Genéticas e Fenotípicas</strong>
   </a>
-  <a class="module-nav-card module-nav-next" href="modulo08-blup-e-avaliacao-genetica.qmd">
+  <a class="module-nav-card module-nav-next" href="modulo08-blup-e-avaliacao-genetica.html">
     <span>Próximo · Módulo 08</span>
     <strong>BLUP e Avaliação Genética</strong>
   </a>

@@ -180,6 +180,24 @@ code {
   p      { color: var(--mg-muted); }
 }
 
+.hero-learning-path {
+  background: rgba(2, 10, 14, 0.44);
+  border-color: var(--mg-line);
+}
+
+.hero-path-step {
+  background: var(--mg-bg-soft);
+  border: 1px solid var(--mg-line);
+
+  strong { color: var(--mg-ink); }
+  p      { color: var(--mg-muted); }
+}
+
+.hero-path-step:not(:last-child)::after {
+  border-color: rgba(111, 220, 255, 0.58);
+  background: var(--mg-bg-soft);
+}
+
 
 // ── Botões ────────────────────────────────────────────────────
 .btn-primary {
@@ -267,6 +285,17 @@ code {
 
 .entry-link {
   color: var(--mg-cyan-lt);
+}
+
+.modules-route {
+  background:
+    linear-gradient(135deg, var(--mg-bg-soft), rgba(10, 31, 56, 0.38));
+  border-color: rgba(111, 220, 255, 0.24);
+}
+
+.modules-route-copy {
+  strong { color: var(--mg-ink); }
+  p      { color: var(--mg-text); }
 }
 
 .module-orientation span {
@@ -456,6 +485,16 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
   li  { color: var(--mg-text); }
 }
 
+.module-study-checkpoint {
+  background:
+    linear-gradient(135deg, rgba(0, 168, 214, 0.10), var(--mg-bg-soft));
+  border-color: rgba(111, 220, 255, 0.24);
+  border-left-color: var(--mg-cyan-lt);
+
+  strong { color: var(--mg-ink); }
+  p      { color: var(--mg-text); }
+}
+
 .module-nav { border-top-color: var(--mg-line); }
 
 .module-nav-card {
@@ -643,4 +682,97 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
   --pagefind-ui-background: var(--mg-bg);
   --pagefind-ui-border:     var(--mg-line);
   --pagefind-ui-tag:        var(--mg-bg-tint);
+}
+
+
+// ── Acessibilidade, foco e mobile polish ──────────────────────
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 2000;
+  transform: translateY(-160%);
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  color: #080f1a;
+  background: var(--mg-cyan-lt);
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.38);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  color: #080f1a;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+.btn:focus-visible,
+.quiz-option:focus-visible,
+.teacher-mode-toggle:focus-visible {
+  outline: 3px solid rgba(111, 220, 255, 0.86);
+  outline-offset: 3px;
+}
+
+.btn,
+.quiz-option,
+.teacher-mode-toggle,
+.navbar .nav-link {
+  min-height: 42px;
+}
+
+.navbar-toggler {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.pagefind-ui__search-input,
+.glossary-search {
+  min-height: 48px;
+  border-radius: 10px;
+}
+
+@media (max-width: 640px) {
+  .navbar {
+    padding-inline: 0.75rem;
+  }
+
+  .navbar-brand {
+    min-width: 0;
+  }
+
+  .navbar-title {
+    max-width: 13ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .modules-landing-actions,
+  .profile-actions,
+  .hero-actions,
+  .final-cta-actions {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

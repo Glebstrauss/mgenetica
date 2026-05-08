@@ -2503,3 +2503,346 @@ Use the `mgenetica-site` skill for a longer site-only block after the previous p
 - Commit and push the quiz-contract hardening if the prepublish gate passes.
 - Watch GitHub Pages and rerun deployed-site validation after publication.
 - Next block can use local preview/Quarto if available for a small rendered-safe improvement.
+
+---
+
+## 2026-05-08 — Long public visual/UX evolution block
+
+### Block objective
+
+Use the `mgenetica-site` skill for a long, site-only visual/UX block focused on the public MGenética experience, following `NEXT_SITE.md`, without app changes and without automatic publication.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` called for visible public-site UX rather than another infrastructure block; the homepage hero explained the promise but did not yet expose the learning sequence in the first viewport.
+   Implementation: added a `hero-learning-path` sequence to the homepage hero, making the path concept -> simulation -> R -> decision visible before the primary CTA.
+   Testing: compiled SCSS and ran manifest validation after the first edit set.
+   Notes: this improves first-viewport hierarchy without changing scripts or module content.
+
+2. Diagnosis: the homepage CTA wording used "Explorar a trilha", while the visitor flow now distinguishes the module catalog from the weekly route.
+   Implementation: changed the secondary hero CTA to "Ver os 12 módulos" to make the destination explicit.
+   Testing: reviewed the changed homepage diff and ran local SCSS/manifest checks.
+   Notes: this is a small navigation/CTA clarity improvement.
+
+3. Diagnosis: the module index had guidance cards but no compact transition between the general guidance and the phase catalog.
+   Implementation: added a `modules-route` guidance band with primary action to start foundations and secondary action to plan by week.
+   Testing: compiled SCSS and checked the new component references.
+   Notes: this strengthens the internal public flow from catalog to action.
+
+4. Diagnosis: quizzes were structurally present, but modules moved from exercises to quiz with little learner-facing transition.
+   Implementation: added one `module-study-checkpoint` before the quiz in all 12 module pages.
+   Testing: confirmed every module has exactly one checkpoint and manifest validation still passes.
+   Notes: the checkpoint is intentionally short and generic; it does not rewrite scientific lessons.
+
+5. Diagnosis: the new route/checkpoint blocks needed mobile and dark-mode parity to remain premium and readable.
+   Implementation: added light/dark SCSS for `hero-learning-path`, `modules-route` and `module-study-checkpoint`, including mobile stacking, CTA wrapping and dark contrast rules.
+   Testing: `sass::sass_file()` compiled both light and dark themes successfully.
+   Notes: local Quarto preview is unavailable because `quarto` is not on `PATH`.
+
+6. Diagnosis: the new learning-path patterns should be reusable public-site components and protected from accidental drift.
+   Implementation: updated `PUBLIC_SITE_COMPONENTS.md` and added the new classes to `scripts/validate_site_manifest.R` component checks.
+   Testing: `Rscript scripts/validate_site_manifest.R` passed after documentation and validator updates.
+   Notes: validation supports the visible UX change; it was not the main focus of the block.
+
+7. Diagnosis: accessibility metadata could be improved for the new public guidance blocks.
+   Implementation: added `aria-label` to the homepage learning path, `role="region"` with label to the module-index route band and `role="note"` to module checkpoints.
+   Testing: searched all module pages for the semantic markers and reran SCSS/manifest checks.
+   Notes: this covers basic accessibility without new dependencies.
+
+8. Diagnosis: the block needed final validation and records, with no publication.
+   Implementation: updated this worklog and `NEXT_SITE.md`.
+   Testing: full prepublish validation passed after these record updates.
+   Notes: existing untracked `.agents/`, `.vscode/` and `AUTOMATION_SITE.md` are preserved; `AGENTS.md` had pre-existing local changes before this block.
+
+### Files changed
+
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added a visible learning path in the homepage first viewport.
+- Clarified the homepage secondary CTA destination.
+- Added a module-index route band connecting phases, starting point and weekly planning.
+- Added pre-quiz learning checkpoints to all modules.
+- Added responsive, dark-mode and accessibility support for the new public UX components.
+- Documented and validated the new component classes.
+
+### Problems fixed
+
+- The homepage did not make the concept-to-code-to-decision progression visible enough above the fold.
+- The module index lacked a compact action band between guidance and the full catalog.
+- Module quizzes felt more appended than integrated with the exercise flow.
+
+### Commands executed
+
+- `command -v quarto`
+- `sed -n ... AGENTS.md ROADMAP_SITE.md BACKLOG_SITE.md WORKLOG_SITE.md NEXT_SITE.md`
+- `sed -n ... index.qmd modules/index.qmd modules/modulo01-introducao-ao-melhoramento-animal.qmd styles/main.scss styles/main-dark.scss`
+- `rg -n "quiz-container data-module|module-study-checkpoint|hero-learning-path|modules-route" ...`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript scripts/validate_site_manifest.R`
+- `git diff --check`
+- `Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Light and dark SCSS compilation passed.
+- Site manifest validation passed.
+- Whitespace diff check passed before records.
+- Local Quarto preview/render is unavailable because `quarto` is not on `PATH`.
+- Full prepublish validation passed after records; the prepublish script also skipped Quarto render because `quarto` is not on `PATH`.
+
+### Pending items
+
+- Review the rendered site visually when `quarto preview` or GitHub Pages publication is available.
+- Do not publish automatically; publish only after explicit user request.
+
+---
+
+## 2026-05-08 — Visual QA polish follow-up (site-only)
+
+### Block objective
+
+Execute the `visual-review-publico` follow-up block requested in `NEXT_SITE.md`, focusing on public UX polish (homepage CTA hierarchy, module index route band and module checkpoints), plus dark-mode/accessibility parity — without touching the app or publishing.
+
+### Cycles executed
+
+1. Diagnosis: the worktree already contained site-only changes from the previous long visual block; `quarto` is not available on `PATH`.
+   Implementation: proceeded with code-level QA and CSS compilation-only verification (no local rendered preview).
+   Testing: confirmed `quarto` absence via `command -v quarto`.
+   Notes: visual judgement was deferred to a rendered environment as per `NEXT_SITE.md`.
+
+2. Diagnosis: homepage CTA hierarchy was inconsistent between the hero, mid-page “Trilha de aprendizado” section and the final CTA.
+   Implementation: made “Começar pelo Módulo 01” the primary action consistently; kept module index as secondary (“Explorar os 12 módulos” / “Abrir índice de módulos”).
+   Testing: verified link targets and class usage in `index.qmd`.
+   Notes: no content rewrite, only public UX hierarchy polish.
+
+3. Diagnosis: the module index route band repeated a primary CTA and could compete with the page header CTA.
+   Implementation: downgraded the route band actions to secondary styling to keep guidance prominent without adding another “primary” competing action.
+   Testing: checked `.modules-route-actions` markup in `modules/index.qmd`.
+   Notes: preserves the route band intent while reducing visual competition.
+
+4. Diagnosis: module header orientation labels contained missing accents (e.g. “Simulacao”, “Interpretacao”) and the pre-quiz checkpoint note lacked a label.
+   Implementation: fixed the Portuguese accents across all 12 module pages and added `aria-label` to `.module-study-checkpoint`.
+   Testing: `rg` confirmed no remaining unaccented strings and checkpoint blocks include the new label.
+   Notes: strictly copy/a11y polish, without rewriting lesson content.
+
+5. Diagnosis: dark theme lacked parity for skip link and focus-visible styles (and the hero learning-path steps were visually less separated).
+   Implementation: added `.skip-link`, `:focus-visible`, touch-target sizing and reduced-motion rules to `styles/main-dark.scss`, plus a border on `.hero-path-step`.
+   Testing: compiled both light and dark SCSS successfully (`Rscript --vanilla`).
+   Notes: improves accessibility and dark-mode clarity without changing layout structure.
+
+6. Diagnosis: final gate and records were required; Quarto render should be skipped when unavailable.
+   Implementation: ran the standard validations and updated records.
+   Testing: `git diff --check` passed; `Rscript --vanilla scripts/prepublish_site_check.R` passed (Quarto render skipped).
+   Notes: no commit/push/publish performed.
+
+### Files changed in this follow-up block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Commands executed
+
+- `git status --short --branch`
+- `command -v quarto`
+- `git diff --check`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla scripts/prepublish_site_check.R`
+
+### Test results
+
+- Prepublish site check passed; Quarto render was skipped because `quarto` is not on `PATH`.
+- Site manifest validation passed.
+- Light/dark SCSS compilation passed.
+
+### Pending items
+
+- Run a true rendered review when `quarto preview` is available (or after a publication preview), focusing on the homepage first viewport and dark-mode focus/skip behavior.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-08 — Rendered QA final (blocked) + module link hardening
+
+### Block objective
+
+Execute a long, site-only block following `NEXT_SITE.md` (rendered QA final). Because `quarto` is still unavailable on `PATH`, use code-based QA to harden the public flow, run validations and leave the changes ready for a future rendered review (no publication).
+
+### Cycles executed
+
+1. Diagnosis: `quarto` is not available on `PATH`, so `quarto preview` cannot be used for a true rendered QA pass.
+   Implementation: proceeded with code-level QA and validation-first safeguards; kept scope to site-only files.
+   Testing: `command -v quarto` confirmed unavailability.
+   Notes: rendered judgement remains pending until Quarto is available.
+
+2. Diagnosis: the module index landing section is emitted as raw HTML and used `href="*.qmd"` links, which would not be rewritten by Quarto and can break navigation in the rendered site.
+   Implementation: updated raw HTML links in `modules/index.qmd` to point to the rendered outputs (`.html`), including the homepage and weekly plan routes.
+   Testing: `rg 'href=".*\\.qmd"' modules/index.qmd` returned no matches.
+   Notes: this is a functional public-flow fix, not a visual redesign.
+
+3. Diagnosis: module navigation at the bottom of each module page is also emitted as raw HTML and used `href="*.qmd"` links.
+   Implementation: updated all module nav cards across the 12 modules to point to `.html` outputs (including the final link to `certificado.html`).
+   Testing: `rg 'href=".*\\.qmd"' modules` returned no matches.
+   Notes: improves public navigation reliability independent of visual QA.
+
+4. Diagnosis: representative module pages should keep the pre-quiz checkpoint + quiz + nav flow intact after link changes.
+   Implementation: verified the checkpoint blocks and quiz containers remained unchanged while only nav `href` targets were adjusted.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` passed.
+   Notes: no scientific content rewrite was introduced.
+
+5. Diagnosis: the homepage learning-path sequence is semantically a list and benefits from explicit screen-reader roles.
+   Implementation: added `role="list"` to `.hero-learning-path` and `role="listitem"` to `.hero-path-step` entries.
+   Testing: `Rscript --vanilla scripts/prepublish_site_check.R` passed (Quarto render skipped).
+   Notes: accessibility improvement is attribute-only; no layout change intended.
+
+6. Diagnosis: the block needs a final validation gate and records, without publication.
+   Implementation: ran the standard prepublish suite and updated work records.
+   Testing: `Rscript --vanilla scripts/prepublish_site_check.R` passed; `git diff --check` passed; Quarto render skipped due to missing `quarto`.
+   Notes: no commit/push/publish performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Commands executed
+
+- `git status --short --branch`
+- `command -v quarto`
+- `Rscript --vanilla scripts/prepublish_site_check.R`
+- `rg 'href=".*\\.qmd"' modules`
+
+### Test results
+
+- Prepublish site check passed; Quarto render was skipped because `quarto` is not on `PATH`.
+- Module scripts executed successfully via `scripts/run_all_modules.R`.
+- Whitespace diff check passed (`git diff --check`).
+
+### Pending items
+
+- Install or expose `quarto` on `PATH`, then run `quarto preview` (light + dark) and complete the true rendered QA pass.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-08 — Rendered QA final (static render) + skip-link focus fix
+
+### Block objective
+
+Execute the `rendered-qa-final` block in `NEXT_SITE.md`, prioritizing homepage first viewport + CTAs, module index route band, representative module pages and skip-link/focus behavior — site-only, no publication.
+
+Because `quarto preview` cannot bind a local port in this sandbox (`PermissionDenied: Operation not permitted`), this block uses `quarto render` + inspection of the generated HTML in `docs/` as the rendered evidence loop.
+
+### Cycles executed
+
+1. Diagnosis: `quarto` is not on `PATH`, and `quarto preview` fails to listen on localhost in this environment.
+   Implementation: located a working Quarto CLI at `/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto`; switched to static renders (`quarto render ...`) instead of preview server.
+   Testing: confirmed `quarto --version` and verified the preview bind error.
+   Notes: interactive browser/devtools QA remains a next-step outside this sandbox.
+
+2. Diagnosis: homepage secondary CTAs used inconsistent labels across sections; skip-link was present but rendered late (after main content).
+   Implementation: standardized the secondary CTA copy to “Explorar os 12 módulos”; reworked skip-link behavior to reliably become the first focusable element and move focus to main content on activation.
+   Testing: rendered `index.qmd` and inspected `docs/index.html` for CTA text consistency + injected skip-link logic.
+   Notes: preserves the premium CTA hierarchy while improving a11y without changing lesson content.
+
+3. Diagnosis: module index route band must not compete with the primary catalog CTA and must not link to source files (`*.qmd`) in raw HTML.
+   Implementation: confirmed `.modules-route` actions remain `.btn-secondary` and link to rendered outputs (`.html`).
+   Testing: rendered `modules/index.qmd` and checked `docs/modules/index.html` for absence of `href="*.qmd"`.
+   Notes: ensures safe navigation in rendered site.
+
+4. Diagnosis: representative module pages must preserve checkpoint → quiz → navigation flow and keep module nav cards pointing to `.html`.
+   Implementation: rendered module pages 01/06/12 (static, `--no-execute`) using a clean HOME to avoid Quarto sass-cache failures; verified checkpoint and nav sections in the rendered HTML.
+   Testing: inspected `docs/modules/modulo01-*.html`, `docs/modules/modulo06-*.html`, `docs/modules/modulo12-*.html` for `.module-study-checkpoint` + `.module-nav` and `.html` links.
+   Notes: this validates the public flow without requiring full project render.
+
+5. Diagnosis: skip-link activation should move keyboard focus to content (not only scroll).
+   Implementation: updated the head include to move the existing `.skip-link` to the start of `<body>`, ensure `tabindex="-1"` on `main#quarto-document-content`, and focus the main element when the skip-link is activated.
+   Testing: verified script presence in rendered outputs.
+   Notes: improves keyboard navigation for both light and dark themes (styling handled in SCSS).
+
+6. Diagnosis: final gate and records are required; publication remains out-of-scope.
+   Implementation: ran the validation suite and recorded results.
+   Testing: `git diff --check` OK; `Rscript --vanilla scripts/validate_site_manifest.R` OK; `SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R` OK.
+   Notes: no commit/push/publish performed.
+
+### Files changed in this block
+
+- `_quarto.yml`
+- `assets/html/body-extras.html`
+- `assets/html/head-extras.html`
+- `index.qmd`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Commands executed
+
+- `quarto --version` (via the vendor path)
+- `quarto preview ...` (failed bind in sandbox)
+- `HOME=/private/tmp/quarto-home quarto render index.qmd --no-execute`
+- `HOME=/private/tmp/quarto-home quarto render modules/index.qmd --no-execute`
+- `HOME=/private/tmp/quarto-home quarto render modules/modulo01-... --no-execute`
+- `HOME=/private/tmp/quarto-home quarto render modules/modulo06-... --no-execute`
+- `HOME=/private/tmp/quarto-home quarto render modules/modulo12-... --no-execute`
+- `git diff --check`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Prepublish site check passed (Quarto render skipped by `SKIP_QUARTO_RENDER=1`).
+- Whitespace/diff check passed.
+
+### Pending items
+
+- Run an interactive rendered QA pass in a normal environment (where `quarto preview` can bind to a local port) and visually confirm: homepage hero + CTAs, `.modules-route`, module checkpoint spacing and dark-mode focus/skip-link behavior.
+- Publish only after explicit user request.

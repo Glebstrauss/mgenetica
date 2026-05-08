@@ -17,10 +17,10 @@ description: "Decomposição de VP em componentes genéticos e ambientais. Estim
     <li>Simulação e estimação de componentes de variância em R</li>
   </ul>
 </div>
-<div class="module-orientation" aria-label="Como estudar este modulo">
+<div class="module-orientation" aria-label="Como estudar este módulo">
   <span>Leitura</span>
-  <span>Simulacao em R</span>
-  <span>Interpretacao</span>
+  <span>Simulação em R</span>
+  <span>Interpretação</span>
 </div>
 ```
 
@@ -126,20 +126,26 @@ for (nf in c(5, 10, 25, 50, 100)) {
 2. Troque VA=400 por VA=100 (h²=0,11). O que acontece com a estimativa de h²?
 3. Adicione um efeito de fazenda fixo (`+ 15 * (touro_id %% 3)`) ao `y`. A estimativa de VA muda? Por quê?
 
+::: {.module-study-checkpoint role="note" aria-label="Checkpoint de estudo antes do quiz"}
+**Antes do quiz**
+
+Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção.
+:::
+
 ::: {.quiz-container data-module="04"}
 :::
 
 ```{=html}
 <div class="module-nav">
-  <a class="module-nav-card module-nav-index" href="index.qmd">
+  <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
   </a>
-  <a class="module-nav-card module-nav-prev" href="modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd">
+  <a class="module-nav-card module-nav-prev" href="modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.html">
     <span>Anterior · Módulo 03</span>
     <strong>Estatística Descritiva e Exploração no R</strong>
   </a>
-  <a class="module-nav-card module-nav-next" href="modulo05-herdabilidade-e-repetibilidade.qmd">
+  <a class="module-nav-card module-nav-next" href="modulo05-herdabilidade-e-repetibilidade.html">
     <span>Próximo · Módulo 05</span>
     <strong>Herdabilidade e Repetibilidade</strong>
   </a>

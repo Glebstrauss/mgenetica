@@ -2438,6 +2438,55 @@ body:has(.hero) h2 {
   line-height: 1.35;
 }
 
+.hero-learning-path {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+  max-width: 700px;
+  margin-top: 1.05rem;
+  padding: 0.55rem;
+  border: 1px solid rgba(10, 31, 56, 0.08);
+  border-radius: 12px;
+  background: rgba(248, 250, 252, 0.82);
+}
+
+.hero-path-step {
+  position: relative;
+  min-width: 0;
+  padding: 0.75rem 0.8rem;
+  border-radius: 9px;
+  background: #ffffff;
+}
+
+.hero-path-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -0.36rem;
+  top: 50%;
+  z-index: 1;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-top: 2px solid rgba(0, 168, 214, 0.54);
+  border-right: 2px solid rgba(0, 168, 214, 0.54);
+  transform: translateY(-50%) rotate(45deg);
+  background: #ffffff;
+}
+
+.hero-path-step strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: #0a1f38;
+  font-size: 0.82rem;
+  line-height: 1.2;
+}
+
+.hero-path-step p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.76rem;
+  line-height: 1.32;
+}
+
 .hero-actions {
   margin-top: 2.4rem;
 }
@@ -2671,6 +2720,18 @@ body:has(.hero) h2 {
 
   .hero-meta {
     grid-template-columns: 1fr;
+  }
+
+  .hero-learning-path {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .hero-path-step:not(:last-child)::after {
+    right: 50%;
+    top: auto;
+    bottom: -0.38rem;
+    transform: translateX(50%) rotate(135deg);
   }
 
   .hero-panel {
@@ -3232,6 +3293,42 @@ div.sourceCode {
   background: #f8fafc;
 }
 
+.modules-route {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  margin: -0.35rem 0 3rem;
+  padding: clamp(1.1rem, 2.5vw, 1.55rem);
+  border: 1px solid rgba(0, 168, 214, 0.18);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(248, 250, 252, 0.98), rgba(255, 255, 255, 0.94));
+}
+
+.modules-route-copy strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #0a1f38;
+  font-family: "Manrope", "Inter", sans-serif;
+  font-size: 1.05rem;
+}
+
+.modules-route-copy p {
+  max-width: 78ch;
+  margin: 0;
+  color: #52657d;
+  font-size: 0.95rem;
+  line-height: 1.62;
+}
+
+.modules-route-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.65rem;
+}
+
 footer.footer {
   border-top: 1px solid rgba(10, 31, 56, 0.10);
   background: #ffffff;
@@ -3264,6 +3361,14 @@ footer.footer a:hover {
 
   .modules-landing-panel {
     min-height: 260px;
+  }
+
+  .modules-route {
+    grid-template-columns: 1fr;
+  }
+
+  .modules-route-actions {
+    justify-content: flex-start;
   }
 
   .phase-card,
@@ -3685,6 +3790,29 @@ code {
   box-shadow: 0 14px 28px rgba(10, 31, 56, 0.07);
 }
 
+.module-study-checkpoint {
+  margin: 1.6rem 0 1.1rem;
+  padding: 1.05rem 1.15rem;
+  border: 1px solid rgba(0, 168, 214, 0.20);
+  border-left: 4px solid #00a8d6;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(240, 249, 255, 0.95), rgba(255, 255, 255, 0.94));
+}
+
+.module-study-checkpoint strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #0a1f38;
+  font-family: "Manrope", "Inter", sans-serif;
+}
+
+.module-study-checkpoint p {
+  margin: 0;
+  color: #33465f;
+  font-size: 0.95rem;
+  line-height: 1.58;
+}
+
 @media (max-width: 640px) {
   body:has(.page-hero) .quarto-secondary-nav,
   body:has(.profile-hero) .quarto-secondary-nav,
@@ -3725,6 +3853,7 @@ code {
   }
 
   .module-objectives,
+  .module-study-checkpoint,
   .quiz-container,
   .mg-viz {
     padding: 1.15rem;
@@ -3774,7 +3903,9 @@ code {
   .search-panel,
   .glossary-panel,
   .routine-card,
-  .module-nav-card
+  .module-nav-card,
+  .module-study-checkpoint,
+  .modules-route
 ) {
   border-color: rgba(10, 31, 56, 0.10);
   background-clip: padding-box;
@@ -3792,44 +3923,45 @@ code {
   .lab-card,
   .phase-preview-card,
   .phase-card,
-  .routine-card
+  .routine-card,
+  .hero-path-step
 ) {
   overflow-wrap: anywhere;
 }
 
-:where(.section-cta, .hero-actions, .modules-landing-actions, .final-cta-actions, .profile-actions) {
+:where(.section-cta, .hero-actions, .modules-landing-actions, .modules-route-actions, .final-cta-actions, .profile-actions) {
   align-items: center;
 }
 
-:where(.section-cta, .hero-actions, .modules-landing-actions, .final-cta-actions, .profile-actions) .btn {
+:where(.section-cta, .hero-actions, .modules-landing-actions, .modules-route-actions, .final-cta-actions, .profile-actions) .btn {
   white-space: normal;
 }
 
-:where(.module-card, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card) strong {
+:where(.module-card, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step, .module-study-checkpoint) strong {
   text-wrap: balance;
 }
 
-:where(.module-card, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card) p {
+:where(.module-card, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step, .module-study-checkpoint) p {
   text-wrap: pretty;
 }
 
-:where(.module-grid, .feature-grid, .entry-grid, .modules-guidance, .public-page-triad, .utility-flow, .route-checkpoints, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid) {
+:where(.module-grid, .feature-grid, .entry-grid, .modules-guidance, .public-page-triad, .utility-flow, .route-checkpoints, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid, .hero-learning-path) {
   align-items: stretch;
 }
 
-:where(.feature, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card) {
+:where(.feature, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step) {
   transition:
     border-color 160ms ease,
     box-shadow 160ms ease,
     transform 160ms ease;
 }
 
-:where(.feature, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):hover {
+:where(.feature, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step):hover {
   border-color: rgba(0, 168, 214, 0.34);
   box-shadow: 0 14px 32px rgba(10, 31, 56, 0.065);
 }
 
-:where(.module-card, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):focus-within {
+:where(.module-card, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step):focus-within {
   border-color: rgba(0, 168, 214, 0.54);
   box-shadow: 0 0 0 3px rgba(0, 168, 214, 0.12);
 }
@@ -3846,12 +3978,12 @@ code {
 }
 
 @media (max-width: 640px) {
-  :where(.section-cta, .hero-actions, .modules-landing-actions, .final-cta-actions, .profile-actions) {
+  :where(.section-cta, .hero-actions, .modules-landing-actions, .modules-route-actions, .final-cta-actions, .profile-actions) {
     align-items: stretch;
     flex-direction: column;
   }
 
-  :where(.module-grid, .feature-grid, .entry-grid, .modules-guidance, .public-page-triad, .utility-flow, .route-checkpoints, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid) {
+  :where(.module-grid, .feature-grid, .entry-grid, .modules-guidance, .public-page-triad, .utility-flow, .route-checkpoints, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid, .hero-learning-path) {
     grid-template-columns: 1fr;
   }
 }

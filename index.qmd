@@ -39,9 +39,35 @@ Estrutura pronta para gestão editorial
 :::
 :::
 
+::: {.hero-learning-path role="list" aria-label="Sequência de aprendizagem"}
+::: {.hero-path-step role="listitem"}
+**Conceito**
+
+Pergunta biológica
+:::
+
+::: {.hero-path-step role="listitem"}
+**Simulação**
+
+Dados controlados
+:::
+
+::: {.hero-path-step role="listitem"}
+**R**
+
+Código reproduzível
+:::
+
+::: {.hero-path-step role="listitem"}
+**Decisão**
+
+Interpretação aplicada
+:::
+:::
+
 ::: {.hero-actions}
 [Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
-[Explorar a trilha](modules/index.qmd){.btn .btn-secondary}
+[Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
 :::
 :::
 
@@ -252,8 +278,8 @@ SNPs, controle de qualidade, matrizes, GWAS e predição.
 :::
 
 ::: {.section-cta}
-[Ver os 12 módulos](modules/index.qmd){.btn .btn-primary}
-[Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-secondary}
+[Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
+[Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
 :::
 :::
 
@@ -276,8 +302,8 @@ O melhor caminho é seguir os módulos em ordem, executar os scripts e registrar
 :::
 
 ::: {.final-cta-actions}
-[Abrir índice de módulos](modules/index.qmd){.btn .btn-primary}
-[Ver roteiro semanal](semanas/index.qmd){.btn .btn-secondary}
+[Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
+[Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
 :::
 :::
 
