@@ -610,6 +610,11 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
 .profile-logo {
   background: var(--mg-bg);
   border-color: var(--mg-line);
+
+  img {
+    filter: brightness(0) invert(1) drop-shadow(0 0 18px rgba(111, 220, 255, 0.22));
+    opacity: 0.94;
+  }
 }
 
 .profile-card,

@@ -6,65 +6,65 @@ Work only on the public site. Do not alter the app. Do not mix site evolution wi
 
 ## Objective
 
-Publish the rendered mobile QA fixes, verify the deployed public site, then continue with dark-mode rendered QA and conservative stylesheet simplification.
+Publish and verify the dark-mode QA fixes, then continue with conservative SCSS simplification based on rendered parity.
 
 ## Scope
 
 In scope:
 
-- Local prepublish validation for the current site-only changes.
-- Commit/push of the rendered QA fixes.
+- Local prepublish validation for the current dark-mode fixes.
+- Commit/push of the current site-only changes.
 - GitHub Pages workflow monitoring.
-- Deployed validation for homepage, module index, module page, search, glossary, route and about.
-- Dark-mode screenshot QA for homepage, module index and representative module/utility pages.
-- Low-risk cleanup of duplicated SCSS only when rendered comparison confirms parity.
+- Deployed validation after publication.
+- Spot-check published dark-mode search/about/module behavior if validation or cache timing is suspect.
+- Review of duplicated SCSS blocks only after the deployed site is healthy.
 - `WORKLOG_SITE.md` and `NEXT_SITE.md`.
 
 Out of scope:
 
 - App changes.
 - Backend, CMS, authentication or new dependencies.
-- Large visual redesigns.
-- Removing public controls or content without rendered evidence.
+- Large redesigns.
+- Broad SCSS deletion without rendered comparison.
 
 ## Priorities
 
 1. Run `Rscript scripts/prepublish_site_check.R`.
-2. Commit and push the current site-only fixes.
-3. Watch the GitHub Pages workflow to completion.
-4. Run `Rscript scripts/validate_deployed_site.R` after deploy.
-5. Start the next QA pass with dark-mode screenshots before any larger SCSS cleanup.
+2. Confirm changed files are site-only.
+3. Commit and push the dark-mode QA fixes.
+4. Watch GitHub Pages to completion.
+5. Run `Rscript scripts/validate_deployed_site.R`.
 
 ## Planned cycles
 
-### Cycle 1 — Publish current fixes
+### Cycle 1 — Publish current dark-mode fixes
 
-- Review changed-file scope.
+- Review git diff and changed-file scope.
 - Run the full prepublish gate.
 - Commit and push only if validation passes.
 
-### Cycle 2 — Deployed verification
+### Cycle 2 — Deployed QA
 
 - Watch the GitHub Pages workflow.
 - Run deployed-site validation.
-- Spot-check the published utility pages and module page if validation fails or cache timing is suspect.
+- Fetch representative pages if cache timing causes uncertainty.
 
-### Cycle 3 — Dark-mode screenshot QA
+### Cycle 3 — SCSS duplication map
 
-- Capture dark-mode states for homepage, module index, module 01 or 12, search/glossary and about.
-- Record visible contrast, spacing or component parity issues.
-- Fix only medium/high-impact public issues.
+- Identify repeated hero/card/button/module rules now superseded by later component layers.
+- Choose one low-risk duplicate group for cleanup.
+- Avoid changing public page markup unless a rendered bug requires it.
 
-### Cycle 4 — CSS simplification candidate review
+### Cycle 4 — Cleanup and screenshot comparison
 
-- Identify duplicated SCSS blocks that are now superseded by the public component layer.
-- Remove or consolidate only one low-risk group at a time.
-- Re-render/screenshot after each meaningful cleanup.
+- Apply one conservative CSS cleanup.
+- Compile SCSS and compare rendered screenshots for affected pages.
+- Revert or adjust if visual parity is not clear.
 
-### Cycle 5 — Final validation and records
+### Cycle 5 — Records
 
-- Run local validation.
-- Publish if changes affect rendered site behavior.
+- Run available validation.
+- Publish if rendered behavior changed.
 - Update `WORKLOG_SITE.md` and prepare the next `NEXT_SITE.md`.
 
 ## Criteria for completion
@@ -74,7 +74,7 @@ Out of scope:
 - Local prepublish passes.
 - GitHub Pages workflow succeeds for published changes.
 - Deployed-site validation passes after publication.
-- Dark-mode QA findings are recorded.
+- Any SCSS cleanup is backed by rendered comparison.
 - `WORKLOG_SITE.md` and `NEXT_SITE.md` are updated.
 
 ## Recommended commands

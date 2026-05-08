@@ -1935,3 +1935,85 @@ Continue the site-only visual QA block from `NEXT_SITE.md`, using local Quarto p
 - Run full prepublish after record updates.
 - Publish the visual QA fixes and run deployed-site validation.
 - Continue with dark-mode rendered screenshot QA and deeper SCSS simplification only after deployed parity is confirmed.
+
+---
+
+## 2026-05-08 — Dark-mode rendered QA block
+
+### Block objective
+
+Continue from `NEXT_SITE.md` with dark-mode rendered QA for the public site, fixing only concrete contrast and mobile chrome issues.
+
+### Cycles executed
+
+1. Diagnosis: the previous mobile QA fixes were already deployed and the deployed validator passed.
+   Implementation: ran `Rscript scripts/validate_deployed_site.R` before starting new edits.
+   Testing: deployed-site validation passed.
+   Notes: no app files were changed.
+
+2. Diagnosis: dark-mode screenshots needed a reliable rendered source without changing the repository.
+   Implementation: downloaded a temporary copy of the published site to `/private/tmp`, forced Quarto's dark-mode sentinel in that copy and captured home, module index, module 12, search, glossary and about pages with Firefox headless.
+   Testing: screenshots showed overall dark contrast was usable.
+   Notes: the temporary rendered copy was not committed.
+
+3. Diagnosis: utility/institutional pages in dark mode still showed Quarto's secondary navigation as a bright strip on mobile.
+   Implementation: extended the existing mobile secondary-nav hide rule to pages with `.page-hero` and `.profile-hero`.
+   Testing: dark-mode search and about screenshots no longer showed the bright strip.
+   Notes: this affects mobile editorial pages only; desktop remains unchanged.
+
+4. Diagnosis: the profile logo card on the about page used the dark logo asset on a dark surface, losing brand visibility.
+   Implementation: added a dark-theme filter for `.profile-logo img` to render the mark in a high-contrast light treatment with a restrained cyan glow.
+   Testing: dark-mode about screenshot showed the brand mark and wordmark clearly.
+   Notes: this is limited to the institutional profile logo, not a global logo rewrite.
+
+5. Diagnosis: deployed validation should catch the new mobile chrome rules after publication.
+   Implementation: extended `scripts/validate_deployed_site.R` with assertions for the utility and about secondary-nav hide rules.
+   Testing: full prepublish validation passed.
+   Notes: deployed validation must be rerun after publication.
+
+6. Diagnosis: a direct local `quarto render` was useful to try because Quarto exists through RStudio, but it stalled at module 01 and cleaned ignored `docs/` output.
+   Implementation: stopped the stalled render process, restored ignored `docs/` from the published site and continued with the supported prepublish checks.
+   Testing: `Rscript scripts/prepublish_site_check.R` passed after cleanup.
+   Notes: the GitHub Pages workflow remains the authoritative full render path.
+
+### Files changed
+
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `scripts/validate_deployed_site.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Improved dark-mode mobile utility/institutional pages by removing the bright secondary-navigation strip.
+- Improved dark-mode brand visibility on the about page profile logo.
+- Added deployed validation coverage for the new mobile public-page chrome rules.
+
+### Problems fixed
+
+- Dark-mode search/glossary/route/about pages had a light secondary-nav strip on mobile.
+- The about-page logo mark was too low-contrast in dark mode.
+
+### Commands executed
+
+- `Rscript scripts/validate_deployed_site.R`
+- `wget --page-requisites --convert-links ...`
+- `Firefox --headless --screenshot ...`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `/Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto render`
+- `Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Deployed-site validation passed before edits.
+- Dark-mode screenshots confirmed the fixes in a temporary rendered copy.
+- SCSS compilation passed.
+- Full prepublish validation passed.
+- Direct local `quarto render` was attempted but stalled at module 01; it was stopped and not used as the final validation.
+
+### Pending items
+
+- Publish these dark-mode fixes and run deployed-site validation.
+- Continue with conservative SCSS simplification after deployed dark-mode parity is confirmed.
+- Consider adding a documented local render command that uses the RStudio-bundled Quarto without interfering with preview output.

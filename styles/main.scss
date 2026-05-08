@@ -3923,6 +3923,8 @@ code {
 }
 
 @media (max-width: 640px) {
+  body:has(.page-hero) .quarto-secondary-nav,
+  body:has(.profile-hero) .quarto-secondary-nav,
   body:has(.module-header) .quarto-secondary-nav {
     display: none !important;
   }
