@@ -6,18 +6,18 @@ Work only on the public site. Do not alter the app. Do not mix site evolution wi
 
 ## Objective
 
-Publish and verify the public component documentation validation, then continue with one small site-maintenance improvement backed by validation or rendered evidence.
+Publish and verify the long validation-hardening block, then use the stronger contracts for one small rendered-safe site improvement.
 
 ## Scope
 
 In scope:
 
-- Local prepublish validation for the current validation enhancement.
+- Local prepublish validation for the current validation hardening.
 - Commit/push of the current site-only changes if validation passes.
 - GitHub Pages workflow monitoring.
 - Deployed validation after publication.
 - Review of ignored/generated local outputs before staging.
-- One small follow-up improvement: either a low-risk manifest/page-pattern validation enhancement or a rendered-verifiable CSS cleanup.
+- One small follow-up improvement backed by validation or rendered evidence.
 - `WORKLOG_SITE.md` and `NEXT_SITE.md`.
 
 Out of scope:
@@ -32,14 +32,14 @@ Out of scope:
 
 1. Run `Rscript scripts/prepublish_site_check.R`.
 2. Confirm changed files are site-only.
-3. Commit and push the validation enhancement.
+3. Commit and push the validation hardening.
 4. Watch GitHub Pages to completion.
 5. Run `Rscript scripts/validate_deployed_site.R`.
-6. Choose the next small maintenance step.
+6. Choose the next small rendered-safe improvement.
 
 ## Planned cycles
 
-### Cycle 1 — Publish current validation enhancement
+### Cycle 1 — Publish current validation hardening
 
 - Review git diff and changed-file scope.
 - Run the full prepublish gate.
@@ -49,18 +49,18 @@ Out of scope:
 
 - Watch the GitHub Pages workflow.
 - Run deployed-site validation.
-- Confirm no ignored generated outputs are accidentally staged.
+- Confirm ignored/generated local outputs are not staged.
 
-### Cycle 3 — Validation coverage review
+### Cycle 3 — Pick next improvement
 
-- Review `scripts/validate_site_manifest.R` and `scripts/validate_deployed_site.R` for one small missing public-site contract.
-- Prefer checks that protect manifest/page/component consistency without requiring rendered screenshots.
+- Prefer a rendered-verifiable improvement to homepage, module index, module pages or utility pages.
+- If local preview remains unavailable, prefer a validation/documentation change over visual deletion.
 
-### Cycle 4 — Optional rendered-safe maintenance
+### Cycle 4 — Implement and verify
 
-- If local `quarto preview` is available, use rendered evidence for a tiny CSS cleanup.
-- If local preview remains unavailable, avoid visual CSS deletion and prefer validation/documentation work.
-- Preserve layout, pseudo-element structure, responsive behavior and dark-mode parity.
+- Keep edits small and site-only.
+- Preserve public visual identity, responsive behavior and dark-mode parity.
+- Run targeted validation during the cycle.
 
 ### Cycle 5 — Records
 

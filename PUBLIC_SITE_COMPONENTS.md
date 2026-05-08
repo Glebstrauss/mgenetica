@@ -44,3 +44,10 @@ The public site uses editorial components to explain the MGenetica learning path
 - Avoid adding new public patterns when an existing hero, card, CTA or module-navigation pattern fits.
 - Do not delete old SCSS groups unless a later active rule clearly supersedes them and validation passes.
 - Do not put app/admin behavior, authentication or backend assumptions into public components.
+
+## Validation Contracts
+
+- `scripts/validate_site_manifest.R` protects manifest/page/module contracts, Quarto navigation sync and this documentation file.
+- `scripts/validate_deployed_site.R` protects the published public pages and representative module patterns after GitHub Pages deployment.
+- `scripts/prepublish_site_check.R` is the required local gate before publication.
+- GitHub Actions remains the authoritative full Quarto render path when local `quarto` is not available on `PATH`.

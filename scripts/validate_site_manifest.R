@@ -15,9 +15,14 @@ repo_root <- normalizePath(file.path(dirname(script_path), ".."), mustWork = TRU
 manifest_path <- file.path(repo_root, "data", "site-manifest.yml")
 
 manifest <- yaml::read_yaml(manifest_path)
+quarto <- yaml::read_yaml(file.path(repo_root, "_quarto.yml"))
 styles_text <- paste(
   readLines(file.path(repo_root, "styles", "main.scss"), warn = FALSE),
   readLines(file.path(repo_root, "styles", "main-dark.scss"), warn = FALSE),
+  collapse = "\n"
+)
+body_extras_text <- paste(
+  readLines(file.path(repo_root, "assets", "html", "body-extras.html"), warn = FALSE),
   collapse = "\n"
 )
 
@@ -57,6 +62,20 @@ check_unique <- function(values, label) {
   }
 }
 
+compare_nav_items <- function(actual, expected, label) {
+  actual_hrefs <- vapply(actual, function(item) required_scalar(item, "href", label), character(1))
+  actual_labels <- vapply(actual, function(item) required_scalar(item, "text", label), character(1))
+  expected_hrefs <- vapply(expected, function(item) required_scalar(item, "href", label), character(1))
+  expected_labels <- vapply(expected, function(item) required_scalar(item, "label", label), character(1))
+
+  if (!identical(actual_hrefs, expected_hrefs)) {
+    fail(sprintf("%s hrefs differ from site manifest", label))
+  }
+  if (!identical(actual_labels, expected_labels)) {
+    fail(sprintf("%s labels differ from site manifest", label))
+  }
+}
+
 allowed_statuses <- manifest$governance$statuses
 if (is.null(allowed_statuses) || !length(allowed_statuses)) {
   fail("governance.statuses is empty")
@@ -83,7 +102,11 @@ for (reference in c(
   "## Page Patterns",
   "## Component Families",
   "## Responsive And Accessibility Rules",
-  "## Maintenance Rules"
+  "## Maintenance Rules",
+  "## Validation Contracts",
+  "scripts/validate_site_manifest.R",
+  "scripts/validate_deployed_site.R",
+  "scripts/prepublish_site_check.R"
 )) {
   check_contains(components_doc, reference, "PUBLIC_SITE_COMPONENTS.md")
 }
@@ -100,6 +123,26 @@ for (class_name in c(
   check_contains(components_doc, class_name, "PUBLIC_SITE_COMPONENTS.md")
   check_contains(styles_text, class_name, sprintf("styles for documented class %s", class_name))
 }
+
+if (!identical(quarto$project$type, "website")) fail("_quarto.yml project.type must be website")
+if (!identical(quarto$project[["output-dir"]], "docs")) fail("_quarto.yml project.output-dir must be docs")
+if (is.null(quarto$website[["site-url"]]) || !grepl("^https://glebstrauss.github.io/mgenetica/?$", quarto$website[["site-url"]])) {
+  fail("_quarto.yml website.site-url must point to the public GitHub Pages site")
+}
+
+for (resource in c("assets/", "data/site-manifest.yml", "images/", "quizzes/")) {
+  if (!resource %in% quarto$project$resources) {
+    fail(sprintf("_quarto.yml project.resources missing %s", resource))
+  }
+}
+
+check_contains(body_extras_text, 'class="skip-link"', "body-extras.html")
+check_contains(body_extras_text, "progress.js", "body-extras.html")
+check_contains(body_extras_text, "darkmode.js", "body-extras.html")
+check_contains(body_extras_text, "var hasQuiz = document.querySelector('.quiz-container')", "body-extras.html")
+check_contains(body_extras_text, "if (hasQuiz) files.push('teacher-mode.js', 'quiz.js')", "body-extras.html")
+check_contains(body_extras_text, "[data-viz], [data-learning-map], [data-glossary], .mg-viz", "body-extras.html")
+check_contains(body_extras_text, "['modules', 'semanas']", "body-extras.html")
 
 pages <- manifest$content_pages$items
 if (!length(pages)) fail("content_pages.items is empty")
@@ -189,6 +232,9 @@ for (item in primary_nav) {
   required_scalar(item, "type", paste0("primary navigation ", item$id))
 }
 
+compare_nav_items(quarto$website$navbar$left, primary_nav, "_quarto.yml navbar.left")
+compare_nav_items(quarto$website[["page-footer"]]$center, footer_nav, "_quarto.yml page-footer.center")
+
 modules <- manifest$content_collections$modules$items
 if (length(modules) != 12) {
   fail(sprintf("expected 12 modules, found %s", length(modules)))
@@ -202,6 +248,14 @@ ids <- vapply(modules, function(item) item$id, character(1))
 orders <- vapply(modules, function(item) item$order, numeric(1))
 module_hrefs <- vapply(modules, function(item) required_scalar(item, "href", paste0("module ", item$id)), character(1))
 module_scripts <- vapply(modules, function(item) required_scalar(item, "script", paste0("module ", item$id)), character(1))
+sidebar_sections <- quarto$website$sidebar$contents
+if (length(sidebar_sections) != 1 || !identical(sidebar_sections[[1]]$section, "Módulos")) {
+  fail("_quarto.yml sidebar must contain one Módulos section")
+}
+expected_sidebar <- c(module_index_path, module_hrefs)
+if (!identical(sidebar_sections[[1]]$contents, expected_sidebar)) {
+  fail("_quarto.yml sidebar module contents differ from site manifest")
+}
 
 if (anyDuplicated(ids)) fail("duplicated module ids in manifest")
 check_unique(module_hrefs, "module hrefs")

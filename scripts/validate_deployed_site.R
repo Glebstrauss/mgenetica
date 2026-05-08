@@ -8,7 +8,9 @@ pages <- c(
   glossary = paste0(base_url, "/glossario.html"),
   route = paste0(base_url, "/semanas/"),
   about = paste0(base_url, "/perfil.html"),
-  module01 = paste0(base_url, "/modules/modulo01-introducao-ao-melhoramento-animal.html")
+  module01 = paste0(base_url, "/modules/modulo01-introducao-ao-melhoramento-animal.html"),
+  module06 = paste0(base_url, "/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html"),
+  module12 = paste0(base_url, "/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html")
 )
 
 read_page <- function(url) {
@@ -70,10 +72,19 @@ assert(grepl("data-learning-map", html$route, fixed = TRUE), "route page missing
 assert(grepl("profile-hero", html$about, fixed = TRUE), "about page missing profile hero")
 assert(grepl("public-page-triad", html$about, fixed = TRUE), "about page missing public page triad")
 assert(grepl("Princípios", html$about, fixed = TRUE), "about page missing principles section")
-assert(grepl("Todos os módulos", html$module01, fixed = TRUE), "module page missing module index nav")
-assert(grepl("module-orientation", html$module01, fixed = TRUE), "module page missing orientation pattern")
-assert(grepl("quiz-container", html$module01, fixed = TRUE), "module page missing quiz container")
-assert(gregexpr("quiz-container", html$module01, fixed = TRUE)[[1]][1] < gregexpr("module-nav", html$module01, fixed = TRUE)[[1]][1], "module quiz should appear before final navigation")
+
+module_pages <- html[c("module01", "module06", "module12")]
+for (name in names(module_pages)) {
+  page <- module_pages[[name]]
+  assert(grepl("Todos os módulos", page, fixed = TRUE), paste(name, "missing module index nav"))
+  assert(grepl("module-header", page, fixed = TRUE), paste(name, "missing module header"))
+  assert(grepl("module-orientation", page, fixed = TRUE), paste(name, "missing orientation pattern"))
+  assert(grepl("module-objectives", page, fixed = TRUE), paste(name, "missing objectives pattern"))
+  assert(grepl('class="quiz-container"', page, fixed = TRUE), paste(name, "missing quiz container"))
+  assert(gregexpr('class="quiz-container"', page, fixed = TRUE)[[1]][1] < gregexpr("module-nav", page, fixed = TRUE)[[1]][1], paste(name, "quiz should appear before final navigation"))
+}
+
+assert(!grepl('class="quiz-container"', html$modules, fixed = TRUE), "module index should not expose quiz container")
 
 for (css in list(light = light_css, dark = dark_css)) {
   assert(grepl("body:has(.hero) #title-block-header", css, fixed = TRUE), "home title chrome hide rule missing from CSS")
