@@ -2173,3 +2173,75 @@ Continue the site-only stylesheet consolidation from `NEXT_SITE.md` by removing 
 - Publish the hero SCSS cleanup if the prepublish gate passes.
 - Watch GitHub Pages and rerun deployed-site validation after publication.
 - Continue with one small SCSS cleanup group at a time, or document public component patterns before larger stylesheet restructuring.
+
+---
+
+## 2026-05-08 — Public component documentation block
+
+### Block objective
+
+Continue from `NEXT_SITE.md` after the published hero cleanup by documenting current public-site component patterns instead of forcing another CSS deletion without local rendered preview.
+
+### Cycles executed
+
+1. Diagnosis: the hero SCSS cleanup had already been published and GitHub Pages was healthy.
+   Implementation: ran deployed-site validation and checked the latest Pages workflow before new edits.
+   Testing: `Rscript scripts/validate_deployed_site.R` returned `deployed site ok`; latest workflow was successful.
+   Notes: no app files were changed.
+
+2. Diagnosis: another SCSS deletion would be less certain without local `quarto preview`, while the backlog also asks for public component documentation.
+   Implementation: chose the safer maintainability step from `NEXT_SITE.md`: document public component patterns.
+   Testing: full prepublish validation passed before editing.
+   Notes: this avoids visual risk while improving future site-only work.
+
+3. Diagnosis: public patterns were implicit across manifest, `.qmd` pages, SCSS and JS.
+   Implementation: added `PUBLIC_SITE_COMPONENTS.md` with source-of-truth, page patterns, component families, responsive/accessibility rules and maintenance rules.
+   Testing: file is documentation-only and does not touch modules, styles, scripts, assets or app code.
+   Notes: the document explicitly excludes app/admin behavior.
+
+4. Diagnosis: records needed to reflect the documentation step and next publication gate.
+   Implementation: updated `WORKLOG_SITE.md` and `NEXT_SITE.md`.
+   Testing: final validation is run after these record updates.
+   Notes: this prepares the next block to publish and verify the documentation change.
+
+5. Diagnosis: local generated files may reappear during validation because module scripts write ignored CSV outputs.
+   Implementation: keep generated ignored outputs untouched and do not remove `.vscode/`.
+   Testing: `git status --short --branch` is checked in the final validation set.
+   Notes: cleanup scope remains separate from site evolution.
+
+### Files changed
+
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added concise documentation for public site component families and maintenance rules.
+- Clarified source-of-truth boundaries between manifest metadata, `.qmd` content, styles and public JS.
+- Created a safer basis for future SCSS consolidation without touching rendered behavior.
+
+### Problems fixed
+
+- Public component patterns were spread across code and worklog history but not documented in a stable reference.
+- Further stylesheet deletion was becoming less defensible without local rendered preview.
+
+### Commands executed
+
+- `Rscript scripts/validate_deployed_site.R`
+- `gh run list --repo Glebstrauss/mgenetica --workflow quarto-publish.yml --limit 3`
+- `Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Deployed-site validation passed before the documentation change.
+- Latest GitHub Pages workflow was successful before the documentation change.
+- Full prepublish validation passed before the documentation change.
+- Final validation is run after record updates.
+
+### Pending items
+
+- Run final validation after this record update.
+- Publish the documentation change if the prepublish gate passes.
+- After publication, run deployed-site validation.
+- In a future block, either continue one small SCSS cleanup with rendered evidence or use this document to guide broader stylesheet organization.
