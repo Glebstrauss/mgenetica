@@ -2846,3 +2846,31 @@ Because `quarto preview` cannot bind a local port in this sandbox (`PermissionDe
 
 - Run an interactive rendered QA pass in a normal environment (where `quarto preview` can bind to a local port) and visually confirm: homepage hero + CTAs, `.modules-route`, module checkpoint spacing and dark-mode focus/skip-link behavior.
 - Publish only after explicit user request.
+
+---
+
+## 2026-05-08 — Publicação das alterações recentes
+
+### Objective
+
+Publish the recent public-site UX changes after running the prepublication gate.
+
+### Actions
+
+- Ran the full prepublish gate with the vendored Quarto CLI on `PATH` and `HOME=/private/tmp/quarto-home` to avoid local Sass-cache issues.
+- Committed the tracked site changes as `994de9e` (`Publish public site UX updates`).
+- Pushed `main` to `origin`, triggering GitHub Actions run `25569422545`.
+- Confirmed the `Render and Publish Quarto Site` workflow completed successfully, including `Deploy to GitHub Pages`.
+- Aligned `scripts/validate_deployed_site.R` with the current homepage secondary CTA copy (“Explorar os 12 módulos”).
+
+### Validation
+
+- `git diff --check` passed.
+- `Rscript --vanilla scripts/validate_site_manifest.R` passed.
+- `HOME=/private/tmp/quarto-home PATH=... Rscript --vanilla scripts/prepublish_site_check.R` passed, including full `quarto render`.
+- GitHub Actions deployment completed successfully.
+
+### Pending items
+
+- Run deployed-site validation after the validator-copy alignment is pushed.
+- Keep the remaining untracked local files out of publication unless explicitly needed: `.agents/`, `.vscode/`, `AUTOMATION_SITE.md`.

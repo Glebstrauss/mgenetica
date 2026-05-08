@@ -6,13 +6,13 @@ Work only on the public site. Do not alter the app. Do not mix site evolution wi
 
 ## Tipo do próximo bloco
 
-`interactive-rendered-qa-final`
+`post-publication-qa`
 
-Use this as the default interpretation for the next block: run a true interactive rendered QA pass (light + dark, with devtools) for the recently added public UX components, then decide whether the site is ready for an explicit publication request.
+Use this as the default interpretation for the next block: verify the published site after the recent deployment, then run a true interactive rendered QA pass (light + dark, with devtools) for the recently added public UX components.
 
 ## Objective
 
-Complete an interactive rendered QA of the homepage first viewport + CTA hierarchy, the module index route band and representative module pages around the pre-quiz checkpoint (including dark mode focus/skip-link behavior), then make only the small polish fixes justified by rendered evidence.
+Complete post-publication QA of the deployed site, then inspect the homepage first viewport + CTA hierarchy, the module index route band and representative module pages around the pre-quiz checkpoint (including dark mode focus/skip-link behavior), making only small polish fixes justified by rendered evidence.
 
 Rendered-QA prerequisite: `quarto` must be available on `PATH`. If it is not, treat making Quarto available as the blocking next action before any new visual judgement.
 
@@ -20,9 +20,11 @@ Notes from the last block:
 - In this Codex sandbox, `quarto preview` failed to bind a local port (`PermissionDenied`). Run the interactive QA in a normal terminal environment where preview can listen on localhost.
 - If you need the vendored Quarto used in the sandbox, it was found at `/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto`.
 - If Quarto render fails with Sass cache errors on macOS, run with a clean HOME like `HOME=/private/tmp/quarto-home` (or another writable temp dir).
+- Recent publication: commit `994de9e` was pushed to `main` and GitHub Actions run `25569422545` completed deployment successfully.
 
 ## In scope
 
+- `Rscript scripts/validate_deployed_site.R` against the published GitHub Pages site.
 - Local interactive rendered QA with `quarto preview` (preferred).
 - Visual review of homepage first viewport and CTA hierarchy (hero + mid-page + final CTA).
 - Visual review of module index flow around the route band (ensure it does not compete with header CTAs).

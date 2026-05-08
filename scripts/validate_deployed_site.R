@@ -75,7 +75,7 @@ for (name in names(html)) {
 }
 
 assert(grepl("Começar pelo Módulo 01", html$home, fixed = TRUE), "home missing primary CTA")
-assert(grepl("Explorar a trilha", html$home, fixed = TRUE), "home missing secondary CTA")
+assert(grepl("Explorar os 12 módulos", html$home, fixed = TRUE), "home missing secondary CTA")
 assert(grepl("Escolha o melhor ponto de partida", html$home, fixed = TRUE), "home missing entry section")
 assert(grepl("TRILHA COMPLETA", html$modules, fixed = TRUE), "module index missing landing badge")
 assert(grepl("Fluxo recomendado", html$modules, fixed = TRUE), "module index missing guidance section")
