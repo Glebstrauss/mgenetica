@@ -1741,3 +1741,108 @@ Strengthen validation for the newer public page patterns before the next publica
 
 - Commit/publish the remaining local site-only changes from rounds 2 and 3.
 - After publication, extend `scripts/validate_deployed_site.R` to assert the rendered utility/institutional page patterns once they are live.
+
+---
+
+## 2026-05-08 — Publication and deployed utility QA block
+
+### Block objective
+
+Publish the remaining local site-only institutional/utility and validation-hardening changes, monitor GitHub Pages, verify the deployed public pages, and update continuation records.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` called for publication of accumulated site-only changes, and the working tree contained only public-site/documentation files plus an unrelated untracked `.vscode/` directory.
+   Implementation: ran the full local prepublish check and reviewed staged scope before committing.
+   Testing: `Rscript scripts/prepublish_site_check.R` passed; `git diff --check` passed inside the prepublish gate.
+   Notes: no app files were changed or staged.
+
+2. Diagnosis: the remaining local changes needed to be published before deployed QA could be meaningful.
+   Implementation: committed and pushed `e07de57` (`Polish utility pages and site validation`) to `main`.
+   Testing: GitHub Pages workflow run `25551053309` completed successfully.
+   Notes: workflow steps included prepublish validation, Quarto render, Pagefind indexing, artifact upload and deploy.
+
+3. Diagnosis: deployed validation needed to cover homepage, module index, representative module, search, glossary, route and about page.
+   Implementation: ran `scripts/validate_deployed_site.R`, fetched the published homepage and inspected the published `perfil.html`.
+   Testing: deployed validator passed, but manual inspection found the about page still had automatic section numbering.
+   Notes: this was a rendered-output issue not caught by the previous deployed validator.
+
+4. Diagnosis: the about page is institutional/editorial and should follow the no-numbering treatment used by other public utility pages.
+   Implementation: added `toc: false` and `number-sections: false` to `perfil.qmd`; extended `scripts/validate_deployed_site.R` to fetch and assert the about page, including no section numbering and expected institutional patterns.
+   Testing: reran `Rscript scripts/prepublish_site_check.R` successfully.
+   Notes: validation now catches about-page numbering regressions.
+
+5. Diagnosis: the fix needed a second publication and generated-output verification.
+   Implementation: committed and pushed `117a2bf` (`Fix about page editorial numbering`) to `main`.
+   Testing: GitHub Pages workflow run `25551395543` completed successfully; the updated deployed validator passed.
+   Notes: published `perfil.html` returned HTTP 200 with `last-modified: Fri, 08 May 2026 10:50:50 GMT`.
+
+6. Diagnosis: final records and next planning needed to reflect the completed publication/QA block.
+   Implementation: updated `WORKLOG_SITE.md` and prepared `NEXT_SITE.md` for the next site-only visual QA and stylesheet simplification block.
+   Testing: final validation is scheduled after these record updates.
+   Notes: `.vscode/` remains untracked and intentionally outside the site commits.
+
+### Files changed
+
+- `.gitignore`
+- `README.md`
+- `busca.qmd`
+- `glossario.qmd`
+- `perfil.qmd`
+- `semanas/index.qmd`
+- `data/site-manifest.yml`
+- `scripts/validate_site_manifest.R`
+- `scripts/validate_deployed_site.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Published the institutional/utility page consistency changes.
+- Published manifest editable-region validation hardening.
+- Removed automatic section numbering and TOC from the public about page.
+- Extended deployed-site validation to cover the about page and institutional patterns.
+- Confirmed the published site passes deployed validation after GitHub Pages render/deploy.
+
+### Problems fixed
+
+- The about page still rendered numbered editorial headings.
+- The deployed validator did not previously assert the about page.
+- The remaining local site changes were unpublished and unverified on GitHub Pages.
+
+### Commands executed
+
+- `Rscript scripts/prepublish_site_check.R`
+- `git status --short --branch`
+- `git add .gitignore README.md busca.qmd glossario.qmd perfil.qmd semanas/index.qmd data/site-manifest.yml scripts/validate_deployed_site.R scripts/validate_site_manifest.R styles/main.scss styles/main-dark.scss WORKLOG_SITE.md NEXT_SITE.md`
+- `git commit -m "Polish utility pages and site validation"`
+- `git push origin main`
+- `gh run list --repo Glebstrauss/mgenetica --workflow quarto-publish.yml --limit 3`
+- `Rscript scripts/validate_deployed_site.R`
+- `curl -I https://glebstrauss.github.io/mgenetica/`
+- `curl -L https://glebstrauss.github.io/mgenetica/perfil.html -o /private/tmp/mgenetica-perfil-after.html`
+- `rg -n "profile-hero|public-page-triad|Princípios|MGenética|header-section-number|data-number" /private/tmp/mgenetica-perfil-after.html`
+- `git add perfil.qmd scripts/validate_deployed_site.R`
+- `git commit -m "Fix about page editorial numbering"`
+- `git push origin main`
+- `gh run watch 25551395543 --repo Glebstrauss/mgenetica --exit-status`
+- `curl -I https://glebstrauss.github.io/mgenetica/perfil.html`
+- `curl -L https://glebstrauss.github.io/mgenetica/perfil.html -o /private/tmp/mgenetica-perfil-final.html`
+- `rg -n "header-section-number|data-number|profile-hero|public-page-triad|Princípios" /private/tmp/mgenetica-perfil-final.html`
+
+### Test results
+
+- Local prepublish check passed before both publication commits.
+- GitHub Pages workflow run `25551053309` passed.
+- GitHub Pages workflow run `25551395543` passed.
+- Deployed-site validation passed after the final deploy.
+- Published about page returned HTTP 200 and no longer contains section-number markers.
+- Local Quarto render remains skipped because `quarto` is not available on `PATH`.
+
+### Pending items
+
+- Run browser/screenshot QA across desktop and mobile for homepage, module index, module page, search, glossary, route and about.
+- Continue stylesheet cleanup only after rendered visual comparison.
+- Keep expanding deployed validation if future public patterns become important enough to assert.
