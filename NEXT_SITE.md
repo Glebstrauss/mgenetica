@@ -6,18 +6,18 @@ Work only on the public site. Do not alter the app. Do not mix site evolution wi
 
 ## Objective
 
-Publish and verify the dark-mode QA fixes, then continue with conservative SCSS simplification based on rendered parity.
+Publish and verify the conservative SCSS simplification, then continue reducing stylesheet duplication only where rendered behavior can be checked.
 
 ## Scope
 
 In scope:
 
-- Local prepublish validation for the current dark-mode fixes.
-- Commit/push of the current site-only changes.
+- Local prepublish validation for the current SCSS cleanup.
+- Commit/push of the current site-only changes if validation passes.
 - GitHub Pages workflow monitoring.
 - Deployed validation after publication.
-- Spot-check published dark-mode search/about/module behavior if validation or cache timing is suspect.
-- Review of duplicated SCSS blocks only after the deployed site is healthy.
+- Spot-check homepage/module-index pages if cache timing or layout concerns appear.
+- One additional low-risk SCSS cleanup group after deployed parity is healthy.
 - `WORKLOG_SITE.md` and `NEXT_SITE.md`.
 
 Out of scope:
@@ -26,18 +26,20 @@ Out of scope:
 - Backend, CMS, authentication or new dependencies.
 - Large redesigns.
 - Broad SCSS deletion without rendered comparison.
+- Public-content rewrites unrelated to the stylesheet cleanup.
 
 ## Priorities
 
 1. Run `Rscript scripts/prepublish_site_check.R`.
 2. Confirm changed files are site-only.
-3. Commit and push the dark-mode QA fixes.
+3. Commit and push the SCSS cleanup.
 4. Watch GitHub Pages to completion.
 5. Run `Rscript scripts/validate_deployed_site.R`.
+6. Continue with the next small duplicated SCSS group only after publication is healthy.
 
 ## Planned cycles
 
-### Cycle 1 — Publish current dark-mode fixes
+### Cycle 1 — Publish current SCSS cleanup
 
 - Review git diff and changed-file scope.
 - Run the full prepublish gate.
@@ -49,17 +51,17 @@ Out of scope:
 - Run deployed-site validation.
 - Fetch representative pages if cache timing causes uncertainty.
 
-### Cycle 3 — SCSS duplication map
+### Cycle 3 — Rendered or compiled parity check
 
-- Identify repeated hero/card/button/module rules now superseded by later component layers.
-- Choose one low-risk duplicate group for cleanup.
+- Prefer `quarto preview` if the CLI is available in the environment.
+- If `quarto` remains unavailable locally, rely on GitHub Pages render plus deployed validation and document the limitation.
+- Check homepage and module-index behavior because the cleanup touched shared card/grid/button styles.
+
+### Cycle 4 — Next SCSS duplication map
+
+- Identify one additional repeated group, prioritizing duplicate hero/card declarations that are superseded by final component layers.
+- Preserve base declarations that still provide layout, pseudo-element structure or responsive behavior.
 - Avoid changing public page markup unless a rendered bug requires it.
-
-### Cycle 4 — Cleanup and screenshot comparison
-
-- Apply one conservative CSS cleanup.
-- Compile SCSS and compare rendered screenshots for affected pages.
-- Revert or adjust if visual parity is not clear.
 
 ### Cycle 5 — Records
 
@@ -74,7 +76,7 @@ Out of scope:
 - Local prepublish passes.
 - GitHub Pages workflow succeeds for published changes.
 - Deployed-site validation passes after publication.
-- Any SCSS cleanup is backed by rendered comparison.
+- Any SCSS cleanup is backed by rendered, deployed or compiled verification.
 - `WORKLOG_SITE.md` and `NEXT_SITE.md` are updated.
 
 ## Recommended commands

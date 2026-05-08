@@ -2017,3 +2017,80 @@ Continue from `NEXT_SITE.md` with dark-mode rendered QA for the public site, fix
 - Publish these dark-mode fixes and run deployed-site validation.
 - Continue with conservative SCSS simplification after deployed dark-mode parity is confirmed.
 - Consider adding a documented local render command that uses the RStudio-bundled Quarto without interfering with preview output.
+
+---
+
+## 2026-05-08 — Conservative SCSS simplification block
+
+### Block objective
+
+Continue from `NEXT_SITE.md` after the dark-mode publication by simplifying one low-risk group of duplicated public-site SCSS rules without changing app code or public content.
+
+### Cycles executed
+
+1. Diagnosis: the dark-mode fixes were already published and GitHub Pages validation had passed.
+   Implementation: started from a clean tracked tree and kept scope to public-site styles and site planning records.
+   Testing: confirmed `Rscript scripts/validate_deployed_site.R` returned `deployed site ok`.
+   Notes: `.vscode/` remains an unrelated untracked local folder.
+
+2. Diagnosis: `styles/main.scss` has several historical layers for buttons, metric grids, feature cards, module cards and study-flow blocks.
+   Implementation: mapped repeated selectors and selected only an intermediate layer whose visual values are superseded by later public-site rules.
+   Testing: inspected the affected selector groups before editing.
+   Notes: pseudo-element scaffolding and positioning needed by the final design were preserved or moved to the active rules.
+
+3. Diagnosis: the intermediate layer repeated button, grid, metric, feature, flow and module-card values that are overwritten later with the same selectors.
+   Implementation: removed the redundant declarations and added `position: relative` to the active `.flow-step` and `.module-card` rules so their pseudo-elements remain anchored.
+   Testing: compiled both light and dark SCSS successfully.
+   Notes: no `.qmd`, app, backend or content-management code was changed.
+
+4. Diagnosis: local `quarto preview` is not available from the shell because `quarto` is not on `PATH`.
+   Implementation: used the available automated checks instead of forcing another local render path that previously stalled.
+   Testing: `command -v quarto` returned no executable; manifest validation and `git diff --check` passed.
+   Notes: GitHub Actions remains the reliable full render path for this repository.
+
+5. Diagnosis: the cleanup needs publication and deployed verification because it touches rendered CSS.
+   Implementation: updated `WORKLOG_SITE.md` and `NEXT_SITE.md` with the current state and next publication/verification steps.
+   Testing: final prepublish validation is run after record updates.
+   Notes: future SCSS simplification should continue in small groups with screenshots or deployed checks.
+
+### Files changed
+
+- `styles/main.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Removed an obsolete intermediate SCSS layer for repeated public button/card/grid values.
+- Preserved active pseudo-element behavior for study-flow and module-card visual motifs.
+- Reduced stylesheet size while keeping the current public-site visual system intact.
+
+### Problems fixed
+
+- Public SCSS had old styling strata that made the current component rules harder to audit.
+- The next work plan still described already completed dark-mode publication as the primary task.
+
+### Commands executed
+
+- `Rscript scripts/validate_deployed_site.R`
+- `rg -n "module-card|phase-card|public-card|cta|hero|profile|page-hero|module-header|module-nav" styles/main.scss styles/main-dark.scss`
+- `sed -n ... styles/main.scss`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `command -v quarto`
+- `Rscript scripts/validate_site_manifest.R`
+- `git diff --check`
+
+### Test results
+
+- Deployed-site validation passed before the cleanup.
+- SCSS compilation passed after the cleanup.
+- Manifest validation passed.
+- `git diff --check` passed.
+- `quarto preview` could not be used because the `quarto` executable is not on `PATH`.
+
+### Pending items
+
+- Run full prepublish after these records.
+- Publish the SCSS cleanup if the prepublish gate passes.
+- Watch the GitHub Pages workflow and rerun deployed-site validation after deploy.
+- Continue SCSS simplification only in small, rendered-verifiable groups.
