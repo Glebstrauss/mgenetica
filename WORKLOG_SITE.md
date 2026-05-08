@@ -2094,3 +2094,82 @@ Continue from `NEXT_SITE.md` after the dark-mode publication by simplifying one 
 - Publish the SCSS cleanup if the prepublish gate passes.
 - Watch the GitHub Pages workflow and rerun deployed-site validation after deploy.
 - Continue SCSS simplification only in small, rendered-verifiable groups.
+
+---
+
+## 2026-05-08 — Hero SCSS duplicate cleanup block
+
+### Block objective
+
+Continue the site-only stylesheet consolidation from `NEXT_SITE.md` by removing one additional obsolete public hero layer after confirming the previous cleanup was published and healthy.
+
+### Cycles executed
+
+1. Diagnosis: the previous SCSS simplification was deployed successfully.
+   Implementation: ran deployed-site validation and checked the latest GitHub Pages workflow status before new edits.
+   Testing: `Rscript scripts/validate_deployed_site.R` returned `deployed site ok`; workflow `25558247750` was successful.
+   Notes: no app files were changed.
+
+2. Diagnosis: `styles/main.scss` still contained three generations of homepage hero rules after the base hero section.
+   Implementation: inspected the older, intermediate and current hero layers to identify declarations superseded by later selectors.
+   Testing: checked remaining `.hero`, `.hero-copy`, `.hero-panel` and pseudo-element selectors after the cleanup.
+   Notes: the active homepage hero rules remain in place.
+
+3. Diagnosis: the older middle hero block repeated layout, color, typography and panel rules that are overridden by newer homepage hero layers.
+   Implementation: removed the obsolete middle hero block only; preserved the section-heading constraint and later motif/card rules.
+   Testing: compiled both light and dark SCSS successfully.
+   Notes: no `.qmd`, JS, data manifest or app code was modified.
+
+4. Diagnosis: local rendered parity remains constrained by the missing `quarto` executable on `PATH`.
+   Implementation: used SCSS compilation, selector inspection, manifest validation and whitespace checks locally, with GitHub Actions kept as the full render gate.
+   Testing: manifest validation and `git diff --check` passed.
+   Notes: this is a conservative deletion of overridden CSS rather than a visual redesign.
+
+5. Diagnosis: because CSS changed, the cleanup needs the normal publication gate.
+   Implementation: updated `WORKLOG_SITE.md` and `NEXT_SITE.md` with the current block and next recommended site-only work.
+   Testing: full prepublish validation is run after record updates.
+   Notes: deployed validation should run again after publication.
+
+### Files changed
+
+- `styles/main.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Removed an obsolete intermediate homepage hero styling layer.
+- Reduced public stylesheet size while keeping active hero rules intact.
+- Continued the SCSS consolidation backlog item without changing public content or app behavior.
+
+### Problems fixed
+
+- Homepage hero styles were harder to audit because an older visual direction remained in the cascade even though newer rules superseded it.
+
+### Commands executed
+
+- `Rscript scripts/validate_deployed_site.R`
+- `gh run list --repo Glebstrauss/mgenetica --workflow quarto-publish.yml --limit 3`
+- `Rscript scripts/prepublish_site_check.R`
+- `rg -n "..." styles/main.scss`
+- `sed -n ... styles/main.scss`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript scripts/validate_site_manifest.R`
+- `git diff --check`
+
+### Test results
+
+- Deployed-site validation passed before new edits.
+- Latest GitHub Pages publication was successful before new edits.
+- Full prepublish validation passed before new edits.
+- SCSS compilation passed after the cleanup.
+- Manifest validation passed after the cleanup.
+- `git diff --check` passed after the cleanup.
+- Local Quarto preview/render remains unavailable from the shell because `quarto` is not on `PATH`.
+
+### Pending items
+
+- Run full prepublish after these records.
+- Publish the hero SCSS cleanup if the prepublish gate passes.
+- Watch GitHub Pages and rerun deployed-site validation after publication.
+- Continue with one small SCSS cleanup group at a time, or document public component patterns before larger stylesheet restructuring.
