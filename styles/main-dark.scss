@@ -298,6 +298,19 @@ code {
   p      { color: var(--mg-text); }
 }
 
+.modules-route-actions .btn {
+  background: rgba(13, 24, 39, 0.56);
+  border-color: var(--mg-line);
+  color: var(--mg-ink);
+  box-shadow: none;
+}
+
+.modules-route-actions .btn:hover,
+.modules-route-actions .btn:focus {
+  background: rgba(16, 34, 54, 0.92);
+  border-color: rgba(111, 220, 255, 0.46);
+}
+
 .module-orientation span {
   color: var(--mg-text);
   background: var(--mg-bg-tint);

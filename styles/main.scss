@@ -2728,10 +2728,10 @@ body:has(.hero) h2 {
   }
 
   .hero-path-step:not(:last-child)::after {
-    right: 50%;
+    right: 1rem;
     top: auto;
-    bottom: -0.38rem;
-    transform: translateX(50%) rotate(135deg);
+    bottom: -0.42rem;
+    transform: rotate(135deg);
   }
 
   .hero-panel {
@@ -3329,6 +3329,16 @@ div.sourceCode {
   gap: 0.65rem;
 }
 
+.modules-route-actions .btn {
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: none;
+}
+
+.modules-route-actions .btn:hover,
+.modules-route-actions .btn:focus {
+  background: #ffffff;
+}
+
 footer.footer {
   border-top: 1px solid rgba(10, 31, 56, 0.10);
   background: #ffffff;
@@ -3813,6 +3823,10 @@ code {
   line-height: 1.58;
 }
 
+.module-study-checkpoint + .quiz-container {
+  margin-top: 0.85rem;
+}
+
 @media (max-width: 640px) {
   body:has(.page-hero) .quarto-secondary-nav,
   body:has(.profile-hero) .quarto-secondary-nav,
@@ -3857,6 +3871,10 @@ code {
   .quiz-container,
   .mg-viz {
     padding: 1.15rem;
+  }
+
+  .module-study-checkpoint + .quiz-container {
+    margin-top: 0.7rem;
   }
 
   .teacher-mode-toggle {

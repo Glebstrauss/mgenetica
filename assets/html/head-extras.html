@@ -39,5 +39,19 @@
     }
 
     document.body.insertBefore(link, document.body.firstChild);
+
+    function quietAnchorLinks() {
+      document.querySelectorAll(".anchorjs-link").forEach(function (anchor) {
+        anchor.setAttribute("tabindex", "-1");
+        anchor.setAttribute("aria-hidden", "true");
+      });
+    }
+
+    quietAnchorLinks();
+    window.setTimeout(quietAnchorLinks, 600);
+    new MutationObserver(quietAnchorLinks).observe(document.body, {
+      childList: true,
+      subtree: true
+    });
   });
 </script>

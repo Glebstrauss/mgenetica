@@ -61,6 +61,260 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-08 — Publication of public UX QA changes
+
+### Block objective
+
+Publish the validated public-site UX and accessibility changes after the screenshot QA blocks, following the explicit user request to publish.
+
+### Actions
+
+- Confirmed the tracked diff is site-only.
+- Kept pre-existing untracked local files out of publication: `.agents/`, `.vscode/`, `AUTOMATION_SITE.md`.
+- Ran the full prepublication gate with the vendored Quarto CLI on `PATH` and `HOME=/private/tmp/quarto-home`.
+- Prepared the site records for publication.
+- Committed and pushed the tracked site changes to `main`.
+
+### Files changed
+
+- `NEXT_SITE.md`
+- `WORKLOG_SITE.md`
+- `assets/html/head-extras.html`
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+
+### Validation
+
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R` passed.
+
+### Pending items
+
+- Confirm the GitHub Actions deployment completes.
+- Run deployed-site validation after deployment.
+
+---
+
+## 2026-05-08 — Browser screenshot QA + anchor focus polish
+
+### Block objective
+
+Execute the `browser-screenshot-qa` block from `NEXT_SITE.md`: run screenshot-based QA of the public site across desktop, tablet and mobile; check light/dark theme behavior; inspect homepage CTAs, module index route band and representative module checkpoint/quiz/navigation flows; apply only evidence-based site polish; validate and update records. No app files were changed and no publication was performed.
+
+### Cycles executed
+
+1. Diagnosis: no Codex browser screenshot tool was exposed in this session, but Playwright CLI could be installed through `pnpm dlx`; `quarto` remained absent from `PATH`.
+   Implementation: rendered the site with the vendored Quarto binary and prepared a temporary Playwright QA workspace under `/private/tmp/mgenetica-playwright-qa`.
+   Testing: `quarto render` completed successfully; Playwright 1.59.1 was available.
+   Notes: Chromium installation and headless execution required sandbox escalation because the browser cache and MachPort launch are outside the normal workspace sandbox.
+
+2. Diagnosis: the first `file://` screenshot pass produced screenshots but did not load quizzes or dark mode reliably.
+   Implementation: served the rendered `docs/` directory through `python3 -m http.server 8899 --directory docs` and reran screenshots against `http://127.0.0.1:8899`.
+   Testing: screenshots confirmed quizzes render over HTTP; `/private/tmp/mgenetica-site-qa/visual-qa-report.json` was generated.
+   Notes: the temporary HTTP server was stopped after QA.
+
+3. Diagnosis: screenshot and focus audit showed Quarto-generated `anchorjs-link` entries were still appearing in keyboard focus order after headings.
+   Implementation: updated `assets/html/head-extras.html` to mark `.anchorjs-link` as `tabindex="-1"` and `aria-hidden="true"` using an initial pass, delayed pass and `MutationObserver`.
+   Testing: rerendered the site and reran the Playwright audit; focusable output no longer included heading anchor links after the script's tabindex filter.
+   Notes: this improves keyboard navigation without changing visible content.
+
+4. Diagnosis: homepage first viewport, final CTA and module index route band needed rendered checks across mobile/tablet/desktop and dark mode.
+   Implementation: captured top and component screenshots for `.hero`, `.home-final-cta` and `.modules-route` in light and dark themes at 1440, 820 and 390 px widths.
+   Testing: screenshots in `/private/tmp/mgenetica-site-qa` showed no page-level horizontal overflow and no clipped CTA text in those components.
+   Notes: dark mode visually applied via the Quarto theme toggle; the report's `darkActive` flag is unreliable because Quarto does not consistently expose the state via `body.quarto-dark`.
+
+5. Diagnosis: representative module pages needed checkpoint/quiz/nav screenshots and mobile overflow verification.
+   Implementation: captured screenshots for modules 01, 08 and 12 around `.module-study-checkpoint`, `.quiz-container` and `.module-nav`.
+   Testing: report found no document-level overflow; element-level overflow was limited to scientific tables/code/math inside scrollable content, not to the page width.
+   Notes: quiz containers loaded correctly over HTTP and checkpoint-to-quiz flow was visible.
+
+6. Diagnosis: final validation needed to include the new head include change plus the existing site-only local polish.
+   Implementation: ran the validation suite with the vendored Quarto binary on `PATH`.
+   Testing: manifest validation, Sass compilation, JS syntax checks, `git diff --check`, full `Rscript scripts/prepublish_site_check.R` including Quarto render, and deployed-site validation all passed.
+   Notes: only site files were touched; no commit, push or publication was performed.
+
+### Files changed
+
+- `assets/html/head-extras.html`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Removed generated heading anchor links from the keyboard tab sequence while keeping them visually/functionally available for pointer use.
+- Completed screenshot QA over HTTP for homepage, module index and representative module pages across light/dark and desktop/tablet/mobile.
+- Confirmed route-band, final CTA, checkpoint, quiz and module navigation flows render without page-level overflow.
+
+### Problems fixed
+
+- Quarto heading anchors were polluting keyboard navigation after the primary page actions.
+- `file://` screenshots did not represent quiz loading accurately; HTTP-local QA now verifies the rendered behavior.
+
+### Commands executed
+
+- `pnpm dlx playwright --version`
+- `pnpm add playwright` in `/private/tmp/mgenetica-playwright-qa`
+- `pnpm exec playwright install chromium`
+- `HOME=/private/tmp/quarto-home '/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto' render`
+- `python3 -m http.server 8899 --directory docs`
+- `MGENETICA_QA_BASE_URL=http://127.0.0.1:8899 node mgenetica_visual_qa.js`
+- `lsof -ti :8899`
+- `kill 18002`
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `node --check assets/js/quiz.js`
+- `node --check assets/js/teacher-mode.js`
+- `git diff --check`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `Rscript scripts/validate_deployed_site.R`
+
+### Test results
+
+- 102 screenshots were generated in `/private/tmp/mgenetica-site-qa`.
+- `visual-qa-report.json` recorded no document-level horizontal overflow across the tested pages/viewports.
+- Homepage, module index and representative module screenshots passed visual checks for CTA wrapping and component stacking.
+- Light and dark theme screenshots were captured; dark mode was visually confirmed in screenshots.
+- Manifest validation passed.
+- Sass validation passed.
+- JS syntax checks passed.
+- Full prepublish site check passed, including Quarto render.
+- Deployed-site validation passed.
+- `git diff --check` passed.
+
+### Pending items
+
+- Review the generated screenshots manually before any publication decision.
+- If publication is requested later, commit/push only after rerunning `Rscript scripts/prepublish_site_check.R` and `git diff --check`.
+
+---
+
+## 2026-05-08 — Post-publication rendered UX QA block
+
+### Block objective
+
+Execute a long site-only QA/polish block from `NEXT_SITE.md`, focused on the public MGenética UX after publication: homepage CTA hierarchy, module index route band, representative module pages, mobile/accessibility behavior, validation and records. No app files were changed and no publication was performed.
+
+### Cycles executed
+
+1. Diagnosis: confirmed the worktree had only pre-existing untracked planning/editor files (`.agents/`, `.vscode/`, `AUTOMATION_SITE.md`) and no app changes; `quarto` was not available on `PATH`.
+   Implementation: used the vendored Quarto binary at `/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto` with `HOME=/private/tmp/quarto-home`.
+   Testing: `quarto --version` returned `1.9.37`; full `quarto render` completed and generated `docs/index.html`.
+   Notes: `quarto preview` failed inside the sandbox with `PermissionDenied`, then started with escalation on `http://localhost:4876/`; during later preview requests it emitted a Quarto Sass-cache `BadResource` error, while the full static render remained successful.
+
+2. Diagnosis: the homepage final CTA repeated the same module-index choice already present in the hero and mid-page section, making the end-of-page decision less useful.
+   Implementation: adjusted the final CTA copy to acknowledge weekly planning and changed the secondary action from the module catalog to the weekly route.
+   Testing: re-rendered the site and verified the generated homepage link resolves to `./semanas/index.html`.
+   Notes: the primary action remains "Começar pelo Módulo 01".
+
+3. Diagnosis: the module index route band was visually close to the main action hierarchy and still used source-oriented `.qmd` references in the source block.
+   Implementation: changed the route-band actions to "Revisar fases" and "Planejar por semana", using an in-page anchor and explicit rendered `.html` route for the weekly plan; softened route-band button styling in light and dark themes.
+   Testing: verified rendered `docs/modules/index.html` contains `#fases-da-trilha` and `../semanas/index.html`, and no rendered `.qmd` hrefs were found.
+   Notes: the main module-index hero remains responsible for starting Module 01.
+
+4. Diagnosis: the pre-quiz checkpoint existed consistently, but its copy stopped just before the quiz and could make the transition feel less intentional.
+   Implementation: updated all 12 module checkpoint notes with a short instruction to enter the quiz with the interpretation sentence in mind; added tighter spacing from checkpoint to quiz.
+   Testing: checked rendered representative modules 01, 08 and 12 for `.module-study-checkpoint`, `.quiz-container` and `.module-nav` presence.
+   Notes: module navigation links already point to rendered `.html` outputs.
+
+5. Diagnosis: mobile learning-path arrows were centered between full-width stacked cards, which could visually compete with the content; route-band CTAs also needed quieter dark-mode parity.
+   Implementation: moved mobile hero path connectors toward the right edge, added checkpoint-to-quiz mobile spacing and added dark-mode route action button states.
+   Testing: compiled `styles/main.scss` and `styles/main-dark.scss` successfully.
+   Notes: no new dependency or app-facing behavior was added.
+
+6. Diagnosis: final validation needed to cover local render, manifest, Sass, JS, module scripts, deployed-site QA and whitespace.
+   Implementation: ran the available validation set and updated records.
+   Testing: `Rscript scripts/validate_site_manifest.R`, Sass compilation, `node --check` for quiz and teacher-mode JS, `quarto render` with vendored Quarto, `Rscript scripts/prepublish_site_check.R`, `Rscript scripts/validate_deployed_site.R` and `git diff --check` all passed.
+   Notes: `prepublish_site_check.R` reports "Quarto render skipped" because `quarto` is not on `PATH`; the full render was run separately with the vendored Quarto binary.
+
+### Files changed
+
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Homepage final CTA now offers a clearer next choice: start Module 01 or plan by week.
+- Module index route band now supports review/planning instead of competing with the main start action.
+- Pre-quiz checkpoints now explicitly bridge interpretation into the quiz across all 12 module pages.
+- Light and dark route-band buttons have quieter, more consistent states.
+- Mobile hero learning-path connectors are less centered over stacked content.
+
+### Problems fixed
+
+- Reduced CTA duplication between homepage hero/mid-page/final sections.
+- Removed source-oriented `.qmd` route-band hrefs from `modules/index.qmd`.
+- Improved transition spacing between checkpoint and quiz.
+- Preserved dark-mode parity for the newly softened route-band actions.
+
+### Commands executed
+
+- `git status --short --branch`
+- `command -v quarto`
+- `'/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto' --version`
+- `HOME=/private/tmp/quarto-home '/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto' render`
+- `HOME=/private/tmp/quarto-home '/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto' preview --no-browser --port 4876`
+- `curl -L http://localhost:4876/`
+- `curl -L http://localhost:4876/modules/`
+- `curl -L http://localhost:4876/modules/modulo01-introducao-ao-melhoramento-animal.html`
+- `curl -L http://localhost:4876/modules/modulo08-blup-e-avaliacao-genetica.html`
+- `curl -L http://localhost:4876/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `node --check assets/js/quiz.js`
+- `node --check assets/js/teacher-mode.js`
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript scripts/prepublish_site_check.R`
+- `Rscript scripts/validate_deployed_site.R`
+- `git diff --check`
+
+### Test results
+
+- Vendored Quarto render passed.
+- Local preview started at `http://localhost:4876/` after sandbox escalation; it later emitted a Sass-cache `BadResource` error during preview requests, so final verification relied on the successful full static render and generated HTML checks.
+- No rendered `.qmd` hrefs were found in the generated HTML checked.
+- Sass compilation passed for light and dark themes.
+- JS syntax checks passed for changed interaction scripts.
+- Site manifest validation passed.
+- `Rscript scripts/prepublish_site_check.R` passed, with Quarto render skipped inside that script because `quarto` is not on `PATH`.
+- `Rscript scripts/validate_deployed_site.R` passed.
+- `git diff --check` passed.
+
+### Pending items
+
+- Run a browser screenshot/devtools QA pass in a normal local browser session with viewport screenshots for homepage, module index and representative module pages in light and dark mode.
+- If Quarto preview repeats the Sass-cache `BadResource` issue, restart it with a clean temporary `HOME` and rerender before visual judgement.
+- Consider putting the vendored Quarto binary on `PATH` for future blocks so `prepublish_site_check.R` can run its own Quarto render step.
+
+---
+
 ## 2026-05-05
 
 ### Block objective

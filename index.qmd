@@ -298,12 +298,12 @@ SNPs, controle de qualidade, matrizes, GWAS e predição.
 ::: {.final-cta-copy}
 ## Comece pela trilha principal
 
-O melhor caminho é seguir os módulos em ordem, executar os scripts e registrar uma interpretação curta a cada etapa.
+O melhor caminho é seguir os módulos em ordem, executar os scripts e registrar uma interpretação curta a cada etapa. Se preferir distribuir a carga, use o roteiro semanal antes de começar.
 :::
 
 ::: {.final-cta-actions}
 [Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
-[Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
+[Planejar por semana](semanas/index.qmd){.btn .btn-secondary}
 :::
 :::
 

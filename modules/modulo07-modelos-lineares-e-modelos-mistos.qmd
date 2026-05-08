@@ -139,7 +139,7 @@ for (lam in c(0.5, 1, 2, 5, 10)) {
 ::: {.module-study-checkpoint role="note" aria-label="Checkpoint de estudo antes do quiz"}
 **Antes do quiz**
 
-Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção.
+Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção. Depois avance para o quiz com essa frase em mente.
 :::
 
 ::: {.quiz-container data-module="07"}

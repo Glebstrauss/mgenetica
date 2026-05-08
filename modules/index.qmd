@@ -57,8 +57,8 @@ Use as fases como checkpoints: fundamentos antes de parâmetros, parâmetros ant
 :::
 
 ::: {.modules-route-actions}
-[Iniciar fundamentos](modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-secondary}
-[Planejar por semana](../semanas/index.qmd){.btn .btn-secondary}
+[Revisar fases](#fases-da-trilha){.btn .btn-secondary}
+[Planejar por semana](../semanas/index.html){.btn .btn-secondary}
 :::
 :::
 
