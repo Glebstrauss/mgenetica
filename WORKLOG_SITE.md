@@ -1502,3 +1502,242 @@ Execute the third requested site-only round by improving module-page orientation
 - `Rscript scripts/prepublish_site_check.R` passed after the three requested rounds.
 - `git diff --check` passed.
 - `quarto render` remains skipped locally because `quarto` is not available on `PATH`; the next recommended block is publication plus GitHub Pages render/deploy QA.
+
+---
+
+## 2026-05-05 — Publish and post-deploy QA block
+
+### Block objective
+
+Execute the publication block from `NEXT_SITE.md`: validate, commit, publish the accumulated site-only changes, and verify the deployed GitHub Pages output.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` required local prepublish validation before any push.
+   Implementation: reran the full prepublication gate.
+   Testing: `Rscript scripts/prepublish_site_check.R` passed; `git diff --check` passed.
+   Notes: local Quarto render remains unavailable, so the CI render remained the authoritative render check.
+
+2. Diagnosis: the workflow needed to include the new prepublish gate before render/deploy.
+   Implementation: confirmed `Prepublish site validation` appears before `Render Quarto site`, and `SKIP_QUARTO_RENDER=1` is wired for CI.
+   Testing: parsed workflow YAML.
+   Notes: the existing YAML coercion warning is non-blocking for GitHub workflow syntax.
+
+3. Diagnosis: validated site-only changes were ready to publish.
+   Implementation: staged the site/publication files, committed `dc4a17c` and pushed to `main`.
+   Testing: confirmed the push started GitHub Actions run `25407184313`.
+   Notes: no app files were staged or altered.
+
+4. Diagnosis: publication needed workflow-level confirmation.
+   Implementation: polled the public GitHub Actions API.
+   Testing: run `25407184313` completed successfully; `Prepublish site validation`, Quarto render, Pagefind, artifact upload and Pages deploy all passed.
+   Notes: the new CI gate executed successfully in 2 seconds after Node setup.
+
+5. Diagnosis: the deployed-site validator still expected the previous homepage secondary CTA.
+   Implementation: updated `scripts/validate_deployed_site.R` to validate the new homepage entry section, module guidance and module orientation pattern.
+   Testing: `Rscript scripts/validate_deployed_site.R` passed against the published site.
+   Notes: this was a validation contract update; the published site itself was already deployed successfully.
+
+### Files changed
+
+- `scripts/validate_deployed_site.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Published the accumulated homepage, module-index, module-page and publication-safety changes.
+- Confirmed the CI prepublish gate runs before render/deploy.
+- Updated deployed-site validation to match the current public UX contract.
+
+### Problems fixed
+
+- Deployed-site QA was still checking for the old homepage secondary CTA text.
+- The validator did not yet check the new homepage entry section, module-index guidance or module orientation pattern.
+
+### Commands executed
+
+- `Rscript scripts/prepublish_site_check.R`
+- `Rscript -e 'invisible(yaml::read_yaml(".github/workflows/quarto-publish.yml")); cat("workflow yaml ok\n")'`
+- `git diff --check`
+- `git add ...`
+- `git commit -m "Evolve site flow and publication checks"`
+- `git push origin main`
+- `curl -s 'https://api.github.com/repos/Glebstrauss/mgenetica/actions/runs?per_page=1'`
+- `curl -s https://api.github.com/repos/Glebstrauss/mgenetica/actions/runs/25407184313/jobs`
+- `curl -I https://glebstrauss.github.io/mgenetica/`
+- `Rscript scripts/validate_deployed_site.R`
+- `Rscript scripts/validate_site_manifest.R`
+
+### Test results
+
+- Local prepublish check passed.
+- GitHub Pages workflow run `25407184313` passed.
+- Published homepage returned `HTTP/2 200` with `last-modified: Tue, 05 May 2026 23:10:18 GMT`.
+- Deployed-site validation passed.
+- Manifest validation passed.
+
+### Pending items
+
+- Commit/publish the updated deployed-site validation script and this worklog after the remaining requested rounds.
+- Continue with the next site-only block on institutional and utility page consistency.
+
+---
+
+## 2026-05-05 — Institutional and utility page consistency block
+
+### Block objective
+
+Continue the site-only evolution by aligning `Sobre`, `Busca`, `Glossário` and `Roteiro` with the more polished homepage/module experience.
+
+### Cycles executed
+
+1. Diagnosis: utility pages used the shared `page-hero` pattern but had limited orientation after the hero; `Sobre` used a separate profile pattern and needed a clearer public/app boundary.
+   Implementation: audited `perfil.qmd`, `busca.qmd`, `glossario.qmd`, `semanas/index.qmd` and related SCSS.
+   Testing: reviewed existing structural hooks such as `PagefindUI`, `data-glossary` and `data-learning-map`.
+   Notes: no app files were touched.
+
+2. Diagnosis: the `Sobre` page needed a concise institutional bridge explaining site/app roles.
+   Implementation: added a `public-page-triad` with public layer, modular content and internal management boundaries.
+   Testing: included new classes in SCSS compilation.
+   Notes: copy stays institutional and visitor-facing.
+
+3. Diagnosis: Search and glossary needed more useful orientation before the functional widgets.
+   Implementation: added `utility-flow` cards to `busca.qmd` and `glossario.qmd`.
+   Testing: `node --check assets/js/interactives.js` passed.
+   Notes: existing Pagefind and glossary hooks were preserved.
+
+4. Diagnosis: The study route page needed a clearer repeatable routine before the progress map.
+   Implementation: added `route-checkpoints` for before/during/after study behavior.
+   Testing: existing `data-learning-map` hook remained unchanged.
+   Notes: no new technical lesson content was invented.
+
+5. Diagnosis: new reusable components needed responsive, dark-mode and future app metadata support.
+   Implementation: added SCSS for `public-page-triad`, `utility-flow`, `route-checkpoints` and their cards; added editable-region metadata to `data/site-manifest.yml`.
+   Testing: `scripts/validate_site_manifest.R` passed; light/dark SCSS compilation passed.
+   Notes: the visual motif uses the existing MGenética geometric strip language.
+
+### Files changed
+
+- `perfil.qmd`
+- `busca.qmd`
+- `glossario.qmd`
+- `semanas/index.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `data/site-manifest.yml`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Improved the public "Sobre" page with clearer site/app separation.
+- Added concise utility guidance to search and glossary.
+- Added a study checkpoint pattern to the route page.
+- Added responsive and dark-mode support for the new cards.
+- Declared the new regions in the site manifest for future app management.
+
+### Problems fixed
+
+- Utility pages felt thinner than the homepage/module surfaces.
+- The public/internal management boundary was not as visible on the institutional page.
+- New route behavior was not represented as an editable content region.
+
+### Commands executed
+
+- `sed -n '1,220p' perfil.qmd`
+- `sed -n '1,220p' busca.qmd`
+- `sed -n '1,260p' glossario.qmd`
+- `sed -n '1,280p' semanas/index.qmd`
+- `rg -n "page-hero|search-panel|glossary-panel|routine-grid|profile|data-learning-map|data-glossary|PagefindUI|section-cta" perfil.qmd busca.qmd glossario.qmd semanas/index.qmd styles/main.scss styles/main-dark.scss`
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `node --check assets/js/interactives.js`
+- `git diff --stat`
+
+### Test results
+
+- Manifest validation passed.
+- Light/dark SCSS compilation passed.
+- `assets/js/interactives.js` syntax check passed.
+
+### Pending items
+
+- Add validation coverage for the new institutional/utility page patterns.
+- Run the full prepublish check after the next round.
+
+---
+
+## 2026-05-05 — Public pattern validation hardening block
+
+### Block objective
+
+Strengthen validation for the newer public page patterns before the next publication, keeping changes site-only and low-risk.
+
+### Cycles executed
+
+1. Diagnosis: `data/site-manifest.yml` declared editable regions for homepage, route, search, glossary and about, but `scripts/validate_site_manifest.R` only validated module patterns and general page metadata.
+   Implementation: inspected manifest, deployed validator and page markers.
+   Testing: searched for `public-page-triad`, `utility-flow`, `route-checkpoints`, `module-orientation`, `home-entry` and `modules-guidance`.
+   Notes: no app files were touched.
+
+2. Diagnosis: declared editable regions needed a concrete page-marker contract.
+   Implementation: added `region_markers` to `scripts/validate_site_manifest.R` for home, study route, search, glossary and about pages.
+   Testing: ran `scripts/validate_site_manifest.R`.
+   Notes: the validator now fails when a declared region lacks a known marker or the page no longer contains that marker.
+
+3. Diagnosis: the new institutional/utility regions should remain validation-only unless a real visual bug is found.
+   Implementation: no additional UI changes were made in this cycle.
+   Testing: compiled light and dark SCSS.
+   Notes: avoided visual churn after the previous round.
+
+4. Diagnosis: the deployed-site validator already covered the currently published homepage/module changes and should not require unpublished utility-page changes yet.
+   Implementation: left `scripts/validate_deployed_site.R` aligned with the published site from run `25407184313`.
+   Testing: the full prepublish check does not depend on deployed-site validation.
+   Notes: deployed validation should be extended for utility pages after these local changes are published.
+
+5. Diagnosis: final validation was required after three consecutive rounds.
+   Implementation: ran the full prepublish gate.
+   Testing: `Rscript scripts/prepublish_site_check.R` passed; `git diff --check` passed.
+   Notes: local `quarto render` remains skipped because Quarto is not available on `PATH`.
+
+### Files changed
+
+- `scripts/validate_site_manifest.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added validation for manifest-declared editable regions on public pages.
+- Connected page metadata to actual `.qmd` markers.
+- Preserved the deployed validator for the currently published contract.
+
+### Problems fixed
+
+- Editable regions could be declared in the manifest without any corresponding marker in the source page.
+- Future app-management metadata could drift from the public page structure without local validation catching it.
+
+### Commands executed
+
+- `sed -n '1,240p' scripts/validate_site_manifest.R`
+- `sed -n '1,220p' scripts/validate_deployed_site.R`
+- `sed -n '80,150p' data/site-manifest.yml`
+- `rg -n "public-page-triad|utility-flow|route-checkpoints|module-orientation|home-entry|modules-guidance|editable_regions" data/site-manifest.yml *.qmd modules/*.qmd semanas/*.qmd scripts/validate_site_manifest.R scripts/validate_deployed_site.R`
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript scripts/prepublish_site_check.R`
+- `git diff --check`
+- `git status -sb`
+
+### Test results
+
+- Manifest validation passed with editable-region marker checks.
+- Light/dark SCSS compilation passed.
+- Full prepublish check passed.
+- `git diff --check` passed.
+
+### Pending items
+
+- Commit/publish the remaining local site-only changes from rounds 2 and 3.
+- After publication, extend `scripts/validate_deployed_site.R` to assert the rendered utility/institutional page patterns once they are live.

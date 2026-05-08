@@ -23,6 +23,26 @@ Localize conceitos, funções em R, parâmetros genéticos, módulos e referênc
 :::
 :::
 
+::: {.utility-flow}
+::: {.utility-step}
+**Busque um conceito**
+
+Comece por termos como herdabilidade, BLUP, seleção ou matriz genômica.
+:::
+
+::: {.utility-step}
+**Abra o contexto**
+
+Use os resultados para entrar no módulo ou seção em que o conceito é aplicado.
+:::
+
+::: {.utility-step}
+**Volte à trilha**
+
+Depois da consulta, retome a sequência dos módulos ou o roteiro semanal.
+:::
+:::
+
 <link href="_pagefind/pagefind-ui.css" rel="stylesheet">
 <script src="_pagefind/pagefind-ui.js"></script>
 

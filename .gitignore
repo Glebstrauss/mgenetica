@@ -3,6 +3,16 @@
 .RData
 .Rproj.user/
 
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# JavaScript dependencies and generated bundles
+node_modules/
+dist/
+build/
+
 # Quarto outputs and caches
 /.quarto/
 /_freeze/
@@ -12,5 +22,13 @@
 
 # Generated practice data
 /data/modulo*_simulado.csv
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
 
 **/*.quarto_ipynb

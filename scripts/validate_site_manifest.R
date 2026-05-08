@@ -67,6 +67,36 @@ page_hrefs <- vapply(pages, function(page) required_scalar(page, "href", paste0(
 check_unique(page_ids, "content_pages.items.id")
 check_unique(page_hrefs, "content_pages.items.href")
 
+region_markers <- list(
+  home = list(
+    hero = "hero",
+    "entry-points" = "home-entry",
+    "platform-statement" = "platform-statement",
+    "phase-preview" = "phase-preview",
+    "final-cta" = "home-final-cta"
+  ),
+  `study-path` = list(
+    hero = "page-hero",
+    "route-checkpoints" = "route-checkpoints",
+    routine = "routine-grid"
+  ),
+  search = list(
+    hero = "page-hero",
+    "utility-flow" = "utility-flow",
+    "search-panel" = "search-panel"
+  ),
+  glossary = list(
+    hero = "page-hero",
+    "utility-flow" = "utility-flow",
+    "glossary-panel" = "glossary-panel"
+  ),
+  about = list(
+    hero = "profile-hero",
+    "public-page-triad" = "public-page-triad",
+    principles = "Princípios"
+  )
+)
+
 for (page in pages) {
   required_scalar(page, "title", paste0("page ", page$id))
   check_file(page$href, paste0("page ", page$id))
@@ -75,6 +105,22 @@ for (page in pages) {
   }
   if (!required_scalar(page, "role", paste0("page ", page$id)) %in% valid_page_roles) {
     fail(sprintf("page %s has invalid role", page$id))
+  }
+  if (!is.null(page$editable_regions)) {
+    page_text <- paste(readLines(file.path(repo_root, page$href), warn = FALSE), collapse = "\n")
+    markers <- region_markers[[page$id]]
+    if (is.null(markers)) {
+      fail(sprintf("page %s declares editable_regions but has no validator markers", page$id))
+    }
+    for (region in page$editable_regions) {
+      marker <- markers[[region]]
+      if (is.null(marker)) {
+        fail(sprintf("page %s editable region has no marker mapping: %s", page$id, region))
+      }
+      if (!grepl(marker, page_text, fixed = TRUE)) {
+        fail(sprintf("page %s is missing editable region marker %s (%s)", page$id, region, marker))
+      }
+    }
   }
 }
 

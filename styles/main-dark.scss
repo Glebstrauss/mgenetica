@@ -620,6 +620,16 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
   h3 { color: var(--mg-cyan-lt); }
 }
 
+.public-page-card,
+.utility-step,
+.route-checkpoint {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+
+  strong { color: var(--mg-ink); }
+  p      { color: var(--mg-text); }
+}
+
 
 // ── Pagefind ──────────────────────────────────────────────────
 .pagefind-ui {

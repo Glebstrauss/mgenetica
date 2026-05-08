@@ -28,6 +28,26 @@ Uma publicação digital aberta para estudar melhoramento animal, genética quan
 O site é a camada pública da MGenética: editorial, institucional e orientada ao aprendizado. Ele deve permanecer simples para acessar, rápido para publicar e suficientemente modular para que páginas, módulos, roteiros e materiais possam ser administrados por um painel interno no futuro.
 :::
 
+::: {.public-page-triad}
+::: {.public-page-card}
+**Camada pública**
+
+Conteúdo aberto, navegável e otimizado para leitura.
+:::
+
+::: {.public-page-card}
+**Conteúdo modular**
+
+Páginas, módulos e roteiros com estrutura editorial previsível.
+:::
+
+::: {.public-page-card}
+**Gestão interna**
+
+O app deve apoiar manutenção e publicação sem aparecer como produto público.
+:::
+:::
+
 ## Princípios
 
 ::: {.profile-grid}

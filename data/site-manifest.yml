@@ -106,21 +106,37 @@ content_pages:
       href: semanas/index.qmd
       role: study-plan
       status: published
+      editable_regions:
+        - hero
+        - route-checkpoints
+        - routine
     - id: search
       title: Busca
       href: busca.qmd
       role: utility
       status: published
+      editable_regions:
+        - hero
+        - utility-flow
+        - search-panel
     - id: glossary
       title: Glossário técnico
       href: glossario.qmd
       role: reference
       status: published
+      editable_regions:
+        - hero
+        - utility-flow
+        - glossary-panel
     - id: about
       title: Sobre
       href: perfil.qmd
       role: institutional
       status: published
+      editable_regions:
+        - hero
+        - public-page-triad
+        - principles
 
 content_collections:
   modules:

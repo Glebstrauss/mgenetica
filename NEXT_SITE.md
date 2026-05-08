@@ -6,79 +6,78 @@ Work only on the public site. Do not alter the app. Do not mix site evolution wi
 
 ## Objective
 
-Validate, visually review and publish the accumulated site-only changes from the last work rounds, then perform post-deploy QA on the public GitHub Pages site.
+Commit, publish and QA the remaining local site-only changes from the institutional/utility page and validation-hardening rounds.
 
 ## Scope
 
 In scope:
 
-- Local validation of the accumulated site changes.
-- GitHub Pages workflow validation after push.
-- Published-site QA for homepage, module index and representative module pages.
+- Local validation before publication.
+- Commit and push of the remaining site-only files.
+- GitHub Pages workflow monitoring.
+- Published-site QA for homepage, module index, module page, search, glossary, study route and about page.
+- `scripts/validate_deployed_site.R` updates after publication if new rendered patterns should be asserted.
 - `WORKLOG_SITE.md` and `NEXT_SITE.md`.
 
 Out of scope:
 
 - App changes.
 - Backend, CMS or authentication.
-- New design sections before the accumulated changes are published and reviewed.
+- New visual sections before publishing the current local changes.
 - New dependencies.
 
 ## Priorities
 
 1. Run `Rscript scripts/prepublish_site_check.R`.
-2. Confirm the workflow prepublish gate is present and syntactically valid.
-3. Commit and push only if validation passes.
+2. Confirm changed-file scope remains site-only.
+3. Commit and push remaining local changes.
 4. Watch GitHub Pages to completion.
-5. Validate the deployed homepage, module index and representative module pages.
+5. Validate the newly published utility/institutional page patterns.
 
 ## Planned cycles
 
-### Cycle 1 — Local prepublish validation
+### Cycle 1 — Local validation
 
 - Run `Rscript scripts/prepublish_site_check.R`.
 - Run `git diff --check`.
-- Review git status and changed-file scope.
+- Review changed files.
 
-### Cycle 2 — Workflow readiness
-
-- Confirm `.github/workflows/quarto-publish.yml` includes the prepublish gate before render/deploy.
-- Confirm the local script supports CI skip-render behavior.
-- Parse workflow YAML.
-
-### Cycle 3 — Commit and publish
+### Cycle 2 — Commit and publish
 
 - Stage only site/publication files.
 - Commit with a clear message.
 - Push to `main`.
 
-### Cycle 4 — GitHub Pages QA
+### Cycle 3 — Workflow QA
 
-- Watch or poll the GitHub Pages workflow.
-- Confirm render, Pagefind, artifact upload and deploy pass.
-- Check workflow annotations if tooling is available.
+- Poll the GitHub Actions run.
+- Confirm prepublish validation, Quarto render, Pagefind, artifact upload and deploy succeed.
 
-### Cycle 5 — Published-site validation
+### Cycle 4 — Deployed-site validation
 
-- Run `Rscript scripts/validate_deployed_site.R`.
-- Fetch the homepage headers and representative pages.
-- Record results in `WORKLOG_SITE.md`.
+- Fetch the published pages.
+- Update `scripts/validate_deployed_site.R` if needed to cover newly live utility/institutional page patterns.
+- Run deployed-site validation.
+
+### Cycle 5 — Records and next planning
+
+- Update `WORKLOG_SITE.md`.
+- Prepare the next `NEXT_SITE.md` for the next visual/content block.
 
 ## Criteria for completion
 
 - Changes remain site-only.
 - No app files are altered.
-- Local prepublish check passes.
+- Local prepublish passes.
 - GitHub Pages workflow succeeds.
-- Published-site validation passes.
-- `WORKLOG_SITE.md` and `NEXT_SITE.md` are updated after publication QA.
+- Deployed-site validation passes after publication.
+- `WORKLOG_SITE.md` and `NEXT_SITE.md` are updated.
 
 ## Recommended commands
 
 - `Rscript scripts/prepublish_site_check.R`
 - `Rscript scripts/validate_site_manifest.R`
 - `Rscript scripts/validate_deployed_site.R`
-- `Rscript -e 'invisible(yaml::read_yaml(".github/workflows/quarto-publish.yml")); cat("workflow yaml ok\n")'`
 - `git diff --check`
 - `git status --short --branch`
 - `git add ...`

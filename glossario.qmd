@@ -20,6 +20,26 @@ Consulte durante a leitura dos módulos quando um termo técnico aparecer fora d
 :::
 :::
 
+::: {.utility-flow}
+::: {.utility-step}
+**Leia o termo**
+
+Use o glossário como apoio rápido, não como substituto do módulo.
+:::
+
+::: {.utility-step}
+**Compare o uso**
+
+Observe se o termo aparece como conceito, parâmetro, método ou saída de análise.
+:::
+
+::: {.utility-step}
+**Aplique no módulo**
+
+Volte ao conteúdo principal para interpretar o termo em contexto.
+:::
+:::
+
 ```{=html}
 <div class="glossary-panel">
 <div data-glossary></div>

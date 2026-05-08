@@ -58,13 +58,16 @@ for (name in names(html)) {
 }
 
 assert(grepl("Começar pelo Módulo 01", html$home, fixed = TRUE), "home missing primary CTA")
-assert(grepl("Ver fases da trilha", html$home, fixed = TRUE), "home missing secondary CTA")
+assert(grepl("Explorar a trilha", html$home, fixed = TRUE), "home missing secondary CTA")
+assert(grepl("Escolha o melhor ponto de partida", html$home, fixed = TRUE), "home missing entry section")
 assert(grepl("TRILHA COMPLETA", html$modules, fixed = TRUE), "module index missing landing badge")
+assert(grepl("Fluxo recomendado", html$modules, fixed = TRUE), "module index missing guidance section")
 assert(lengths(regmatches(html$modules, gregexpr('class="module-card"', html$modules, fixed = TRUE))) == 12, "module index should expose 12 module cards")
 assert(grepl("PagefindUI", html$search, fixed = TRUE), "search page missing Pagefind")
 assert(grepl("data-glossary", html$glossary, fixed = TRUE), "glossary page missing glossary hook")
 assert(grepl("data-learning-map", html$route, fixed = TRUE), "route page missing learning map")
 assert(grepl("Todos os módulos", html$module01, fixed = TRUE), "module page missing module index nav")
+assert(grepl("module-orientation", html$module01, fixed = TRUE), "module page missing orientation pattern")
 assert(grepl("quiz-container", html$module01, fixed = TRUE), "module page missing quiz container")
 assert(gregexpr("quiz-container", html$module01, fixed = TRUE)[[1]][1] < gregexpr("module-nav", html$module01, fixed = TRUE)[[1]][1], "module quiz should appear before final navigation")
 

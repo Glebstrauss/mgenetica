@@ -3614,13 +3614,73 @@ footer.footer a:hover {
   line-height: 1.5;
 }
 
+.public-page-triad,
+.utility-flow,
+.route-checkpoints {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 1.15rem 0 2.4rem;
+}
+
+.public-page-card,
+.utility-step,
+.route-checkpoint {
+  min-height: 164px;
+  padding: 1.05rem;
+  border: 1px solid rgba(10, 31, 56, 0.10);
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.public-page-card::before,
+.utility-step::before,
+.route-checkpoint::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 8px;
+  margin-bottom: 0.95rem;
+  background:
+    linear-gradient(90deg,
+      #00a8d6 0 18px,
+      transparent 18px 27px,
+      rgba(30, 87, 153, 0.56) 27px 43px,
+      transparent 43px);
+}
+
+.public-page-card strong,
+.utility-step strong,
+.route-checkpoint strong {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: #0a1f38;
+  font-family: "Manrope", "Inter", sans-serif;
+  font-size: 1rem;
+}
+
+.public-page-card p,
+.utility-step p,
+.route-checkpoint p {
+  margin: 0;
+  color: #52657d;
+  font-size: 0.92rem;
+  line-height: 1.58;
+}
+
 @media (max-width: 980px) {
   .page-hero,
-  .routine-grid {
+  .routine-grid,
+  .public-page-triad,
+  .utility-flow,
+  .route-checkpoints {
     grid-template-columns: 1fr;
   }
 
-  .routine-card {
+  .routine-card,
+  .public-page-card,
+  .utility-step,
+  .route-checkpoint {
     min-height: auto;
   }
 }
@@ -3917,6 +3977,9 @@ code {
   .profile-section,
   .entry-card,
   .guidance-item,
+  .public-page-card,
+  .utility-step,
+  .route-checkpoint,
   .statement-copy,
   .statement-point,
   .lab-card,
@@ -3937,6 +4000,9 @@ code {
   .feature,
   .entry-card,
   .guidance-item,
+  .public-page-card,
+  .utility-step,
+  .route-checkpoint,
   .module-card,
   .statement-point,
   .lab-card,
@@ -3955,31 +4021,31 @@ code {
   white-space: normal;
 }
 
-:where(.module-card, .entry-card, .guidance-item, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card) strong {
+:where(.module-card, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card) strong {
   text-wrap: balance;
 }
 
-:where(.module-card, .entry-card, .guidance-item, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card) p {
+:where(.module-card, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card) p {
   text-wrap: pretty;
 }
 
-:where(.module-grid, .feature-grid, .entry-grid, .modules-guidance, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid) {
+:where(.module-grid, .feature-grid, .entry-grid, .modules-guidance, .public-page-triad, .utility-flow, .route-checkpoints, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid) {
   align-items: stretch;
 }
 
-:where(.feature, .entry-card, .guidance-item, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card) {
+:where(.feature, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card) {
   transition:
     border-color 160ms ease,
     box-shadow 160ms ease,
     transform 160ms ease;
 }
 
-:where(.feature, .entry-card, .guidance-item, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):hover {
+:where(.feature, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):hover {
   border-color: rgba(0, 168, 214, 0.34);
   box-shadow: 0 14px 32px rgba(10, 31, 56, 0.065);
 }
 
-:where(.module-card, .entry-card, .guidance-item, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):focus-within {
+:where(.module-card, .entry-card, .guidance-item, .public-page-card, .utility-step, .route-checkpoint, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card):focus-within {
   border-color: rgba(0, 168, 214, 0.54);
   box-shadow: 0 0 0 3px rgba(0, 168, 214, 0.12);
 }
@@ -4001,7 +4067,7 @@ code {
     flex-direction: column;
   }
 
-  :where(.module-grid, .feature-grid, .entry-grid, .modules-guidance, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid) {
+  :where(.module-grid, .feature-grid, .entry-grid, .modules-guidance, .public-page-triad, .utility-flow, .route-checkpoints, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid) {
     grid-template-columns: 1fr;
   }
 }

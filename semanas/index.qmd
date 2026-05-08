@@ -24,6 +24,26 @@ Esta página organiza os módulos existentes em um ritmo semanal. A proposta é 
 Use esta trilha como plano de estudo. Os links apontam para os módulos já publicados, evitando páginas vazias ou links quebrados.
 :::
 
+::: {.route-checkpoints}
+::: {.route-checkpoint}
+**Antes**
+
+Leia o objetivo do módulo e identifique a pergunta biológica central.
+:::
+
+::: {.route-checkpoint}
+**Durante**
+
+Execute o script, altere um parâmetro e compare a saída.
+:::
+
+::: {.route-checkpoint}
+**Depois**
+
+Registre uma interpretação curta e avance para o próximo módulo.
+:::
+:::
+
 ## Mapa visual de progresso
 
 ```{=html}
