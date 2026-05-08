@@ -190,6 +190,7 @@ content_collections:
         status: published
         href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
         script: scripts/modulo01.R
+        quiz: quizzes/quiz-01.json
         previous: null
         next: modulo02
       - id: modulo02
@@ -202,6 +203,7 @@ content_collections:
         status: published
         href: modules/modulo02-bases-da-genetica-quantitativa.qmd
         script: scripts/modulo02.R
+        quiz: quizzes/quiz-02.json
         previous: modulo01
         next: modulo03
       - id: modulo03
@@ -214,6 +216,7 @@ content_collections:
         status: published
         href: modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd
         script: scripts/modulo03.R
+        quiz: quizzes/quiz-03.json
         previous: modulo02
         next: modulo04
       - id: modulo04
@@ -226,6 +229,7 @@ content_collections:
         status: published
         href: modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd
         script: scripts/modulo04.R
+        quiz: quizzes/quiz-04.json
         previous: modulo03
         next: modulo05
       - id: modulo05
@@ -238,6 +242,7 @@ content_collections:
         status: published
         href: modules/modulo05-herdabilidade-e-repetibilidade.qmd
         script: scripts/modulo05.R
+        quiz: quizzes/quiz-05.json
         previous: modulo04
         next: modulo06
       - id: modulo06
@@ -250,6 +255,7 @@ content_collections:
         status: published
         href: modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd
         script: scripts/modulo06.R
+        quiz: quizzes/quiz-06.json
         previous: modulo05
         next: modulo07
       - id: modulo07
@@ -262,6 +268,7 @@ content_collections:
         status: published
         href: modules/modulo07-modelos-lineares-e-modelos-mistos.qmd
         script: scripts/modulo07.R
+        quiz: quizzes/quiz-07.json
         previous: modulo06
         next: modulo08
       - id: modulo08
@@ -274,6 +281,7 @@ content_collections:
         status: published
         href: modules/modulo08-blup-e-avaliacao-genetica.qmd
         script: scripts/modulo08.R
+        quiz: quizzes/quiz-08.json
         previous: modulo07
         next: modulo09
       - id: modulo09
@@ -286,6 +294,7 @@ content_collections:
         status: published
         href: modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd
         script: scripts/modulo09.R
+        quiz: quizzes/quiz-09.json
         previous: modulo08
         next: modulo10
       - id: modulo10
@@ -298,6 +307,7 @@ content_collections:
         status: published
         href: modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd
         script: scripts/modulo10.R
+        quiz: quizzes/quiz-10.json
         previous: modulo09
         next: modulo11
       - id: modulo11
@@ -310,6 +320,7 @@ content_collections:
         status: published
         href: modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd
         script: scripts/modulo11.R
+        quiz: quizzes/quiz-11.json
         previous: modulo10
         next: modulo12
       - id: modulo12
@@ -322,6 +333,7 @@ content_collections:
         status: published
         href: modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd
         script: scripts/modulo12.R
+        quiz: quizzes/quiz-12.json
         previous: modulo11
         next: certificate
 

@@ -47,6 +47,13 @@ check_contains <- function(text, needle, label) {
   }
 }
 
+check_integer_scalar <- function(value, label) {
+  if (is.null(value) || length(value) != 1 || is.na(value) || value != as.integer(value)) {
+    fail(sprintf("%s must be an integer scalar", label))
+  }
+  as.integer(value)
+}
+
 required_scalar <- function(item, field, label) {
   value <- item[[field]]
   if (is.null(value) || length(value) != 1 || is.na(value) || !nzchar(as.character(value))) {
@@ -99,6 +106,7 @@ for (reference in c(
   "styles/main.scss",
   "styles/main-dark.scss",
   "assets/js/",
+  "quizzes/",
   "## Page Patterns",
   "## Component Families",
   "## Responsive And Accessibility Rules",
@@ -248,6 +256,7 @@ ids <- vapply(modules, function(item) item$id, character(1))
 orders <- vapply(modules, function(item) item$order, numeric(1))
 module_hrefs <- vapply(modules, function(item) required_scalar(item, "href", paste0("module ", item$id)), character(1))
 module_scripts <- vapply(modules, function(item) required_scalar(item, "script", paste0("module ", item$id)), character(1))
+module_quizzes <- vapply(modules, function(item) required_scalar(item, "quiz", paste0("module ", item$id)), character(1))
 sidebar_sections <- quarto$website$sidebar$contents
 if (length(sidebar_sections) != 1 || !identical(sidebar_sections[[1]]$section, "Módulos")) {
   fail("_quarto.yml sidebar must contain one Módulos section")
@@ -260,11 +269,12 @@ if (!identical(sidebar_sections[[1]]$contents, expected_sidebar)) {
 if (anyDuplicated(ids)) fail("duplicated module ids in manifest")
 check_unique(module_hrefs, "module hrefs")
 check_unique(module_scripts, "module scripts")
+check_unique(module_quizzes, "module quizzes")
 if (!all(orders == seq_along(orders))) fail("module order must be sequential from 1")
 
 for (i in seq_along(modules)) {
   item <- modules[[i]]
-  for (field in c("id", "title", "card_title", "card_summary", "phase_id", "status", "href", "script")) {
+  for (field in c("id", "title", "card_title", "card_summary", "phase_id", "status", "href", "script", "quiz")) {
     required_scalar(item, field, sprintf("module %s", item$id %||% i))
   }
   if (!item$status %in% allowed_statuses) {
@@ -272,16 +282,54 @@ for (i in seq_along(modules)) {
   }
   check_file(item$href, paste0("module ", item$id))
   check_file(item$script, paste0("module script ", item$id))
+  check_file(item$quiz, paste0("module quiz ", item$id))
 
   module_text <- paste(readLines(file.path(repo_root, item$href), warn = FALSE), collapse = "\n")
+  module_number <- sprintf("%02d", item$order)
   if (!grepl("module-orientation", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-orientation", item$id))
   }
   if (!grepl("module-nav-index", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-nav-index", item$id))
   }
-  if (!grepl(sprintf('quiz-container data-module="%02d"', item$order), module_text, fixed = TRUE)) {
+  if (!grepl(sprintf('quiz-container data-module="%s"', module_number), module_text, fixed = TRUE)) {
     fail(sprintf("module %s quiz data-module does not match order", item$id))
+  }
+  if (!identical(item$quiz, sprintf("quizzes/quiz-%s.json", module_number))) {
+    fail(sprintf("module %s quiz path does not match order", item$id))
+  }
+
+  quiz <- tryCatch(
+    jsonlite::fromJSON(file.path(repo_root, item$quiz), simplifyVector = FALSE),
+    error = function(err) fail(sprintf("module %s quiz JSON is invalid: %s", item$id, conditionMessage(err)))
+  )
+  if (!identical(quiz$module, module_number)) {
+    fail(sprintf("module %s quiz module id should be %s", item$id, module_number))
+  }
+  required_scalar(quiz, "title", sprintf("module %s quiz", item$id))
+  required_scalar(quiz, "subtitle", sprintf("module %s quiz", item$id))
+  if (is.null(quiz$questions) || !is.list(quiz$questions) || length(quiz$questions) < 1) {
+    fail(sprintf("module %s quiz must contain at least one question", item$id))
+  }
+  pass_mark <- check_integer_scalar(quiz$passMark, sprintf("module %s quiz passMark", item$id))
+  if (pass_mark < 1 || pass_mark > length(quiz$questions)) {
+    fail(sprintf("module %s quiz passMark must be between 1 and question count", item$id))
+  }
+  for (question_index in seq_along(quiz$questions)) {
+    question <- quiz$questions[[question_index]]
+    question_label <- sprintf("module %s quiz question %s", item$id, question_index)
+    required_scalar(question, "text", question_label)
+    if (is.null(question$options) || !is.character(unlist(question$options, use.names = FALSE)) || length(question$options) < 2) {
+      fail(sprintf("%s must contain at least two text options", question_label))
+    }
+    options <- unlist(question$options, use.names = FALSE)
+    if (any(!nzchar(options))) {
+      fail(sprintf("%s contains an empty option", question_label))
+    }
+    correct <- check_integer_scalar(question$correct, sprintf("%s correct", question_label))
+    if (correct < 0 || correct >= length(options)) {
+      fail(sprintf("%s correct index is outside options", question_label))
+    }
   }
 
   expected_previous <- if (i == 1) NULL else ids[[i - 1]]

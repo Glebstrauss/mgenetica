@@ -1,5 +1,15 @@
+`%||%` <- function(x, y) {
+  if (is.null(x) || length(x) == 0) y else x
+}
+
 base_url <- Sys.getenv("MGENETICA_SITE_URL", "https://glebstrauss.github.io/mgenetica")
 base_url <- sub("/+$", "", base_url)
+
+args <- commandArgs(trailingOnly = FALSE)
+file_arg <- grep("^--file=", args, value = TRUE)
+script_path <- if (length(file_arg)) sub("^--file=", "", file_arg[[1]]) else "scripts/validate_deployed_site.R"
+repo_root <- normalizePath(file.path(dirname(script_path), ".."), mustWork = TRUE)
+manifest <- yaml::read_yaml(file.path(repo_root, "data", "site-manifest.yml"))
 
 pages <- c(
   home = paste0(base_url, "/"),
@@ -17,6 +27,10 @@ read_page <- function(url) {
   con <- url(url, open = "rb")
   on.exit(close(con), add = TRUE)
   paste(readLines(con, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
+}
+
+read_json_url <- function(url) {
+  jsonlite::fromJSON(read_page(url), simplifyVector = FALSE)
 }
 
 absolute_url <- function(path) {
@@ -85,6 +99,15 @@ for (name in names(module_pages)) {
 }
 
 assert(!grepl('class="quiz-container"', html$modules, fixed = TRUE), "module index should not expose quiz container")
+
+modules <- manifest$content_collections$modules$items
+for (module in modules) {
+  quiz <- read_json_url(absolute_url(module$quiz))
+  module_number <- sprintf("%02d", module$order)
+  assert(identical(quiz$module, module_number), paste(module$id, "deployed quiz module id mismatch"))
+  assert(length(quiz$questions) >= 1, paste(module$id, "deployed quiz has no questions"))
+  assert(length(quiz$questions) >= quiz$passMark, paste(module$id, "deployed quiz passMark is higher than question count"))
+}
 
 for (css in list(light = light_css, dark = dark_css)) {
   assert(grepl("body:has(.hero) #title-block-header", css, fixed = TRUE), "home title chrome hide rule missing from CSS")

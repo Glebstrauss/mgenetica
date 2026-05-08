@@ -6,40 +6,39 @@ Work only on the public site. Do not alter the app. Do not mix site evolution wi
 
 ## Objective
 
-Publish and verify the long validation-hardening block, then use the stronger contracts for one small rendered-safe site improvement.
+Publish and verify the quiz-contract hardening block, then use Quarto/local preview if available for one small rendered-safe improvement to the public learning flow.
 
 ## Scope
 
 In scope:
 
-- Local prepublish validation for the current validation hardening.
+- Local prepublish validation for the quiz manifest/deployed-validation changes.
 - Commit/push of the current site-only changes if validation passes.
 - GitHub Pages workflow monitoring.
-- Deployed validation after publication.
-- Review of ignored/generated local outputs before staging.
-- One small follow-up improvement backed by validation or rendered evidence.
+- Deployed validation after publication, including deployed quiz JSON checks.
+- A small follow-up improvement to homepage, module index or module pages backed by rendered evidence when possible.
 - `WORKLOG_SITE.md` and `NEXT_SITE.md`.
 
 Out of scope:
 
 - App changes.
 - Backend, CMS, authentication or new dependencies.
-- Large redesigns.
 - Broad SCSS deletion without rendered comparison.
-- Public-content rewrites unrelated to component structure.
+- Scientific lesson rewrites unrelated to the public learning flow.
+- Removing ignored/generated outputs unless explicitly requested.
 
 ## Priorities
 
 1. Run `Rscript scripts/prepublish_site_check.R`.
 2. Confirm changed files are site-only.
-3. Commit and push the validation hardening.
+3. Commit and push the quiz-contract hardening.
 4. Watch GitHub Pages to completion.
 5. Run `Rscript scripts/validate_deployed_site.R`.
-6. Choose the next small rendered-safe improvement.
+6. If continuing locally, try `quarto preview` or the available local render path before visual/CSS changes.
 
 ## Planned cycles
 
-### Cycle 1 — Publish current validation hardening
+### Cycle 1 — Publish current quiz-contract hardening
 
 - Review git diff and changed-file scope.
 - Run the full prepublish gate.
@@ -51,15 +50,16 @@ Out of scope:
 - Run deployed-site validation.
 - Confirm ignored/generated local outputs are not staged.
 
-### Cycle 3 — Pick next improvement
+### Cycle 3 — Local rendered setup
 
-- Prefer a rendered-verifiable improvement to homepage, module index, module pages or utility pages.
-- If local preview remains unavailable, prefer a validation/documentation change over visual deletion.
+- Check whether `quarto` is available on `PATH`.
+- If available, run `quarto preview` for local rendered QA.
+- If unavailable, prefer validation/documentation/content-structure work over visual deletion.
 
-### Cycle 4 — Implement and verify
+### Cycle 4 — Small rendered-safe improvement
 
-- Keep edits small and site-only.
-- Preserve public visual identity, responsive behavior and dark-mode parity.
+- Prefer homepage, module index or module page flow.
+- Keep edits small, public-site-only and compatible with manifest contracts.
 - Run targeted validation during the cycle.
 
 ### Cycle 5 — Records
@@ -75,7 +75,7 @@ Out of scope:
 - Local prepublish passes.
 - GitHub Pages workflow succeeds for published changes.
 - Deployed-site validation passes after publication.
-- Any CSS cleanup is backed by compiled, deployed or rendered verification.
+- Any visual/CSS change is backed by compiled, deployed or rendered verification.
 - `WORKLOG_SITE.md` and `NEXT_SITE.md` are updated.
 
 ## Recommended commands
@@ -85,8 +85,8 @@ Out of scope:
 - `Rscript scripts/validate_deployed_site.R`
 - `git diff --check`
 - `git status --short --branch`
-- `git add ...`
-- `git commit -m "..."`
+- `git add data/site-manifest.yml scripts/validate_site_manifest.R scripts/validate_deployed_site.R PUBLIC_SITE_COMPONENTS.md WORKLOG_SITE.md NEXT_SITE.md`
+- `git commit -m "Harden module quiz contracts"`
 - `git push origin main`
 - `gh run list --repo Glebstrauss/mgenetica --workflow quarto-publish.yml --limit 3`
 - `gh run watch <run-id> --repo Glebstrauss/mgenetica --exit-status`

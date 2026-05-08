@@ -12,6 +12,7 @@ The public site uses editorial components to explain the MGenetica learning path
 - `.qmd` pages: longform teaching content, page-specific editorial copy, exercises and scientific explanation.
 - `styles/main.scss` and `styles/main-dark.scss`: visual system, public components, responsive behavior and dark-mode parity.
 - `assets/js/`: public interactions only, loaded conditionally where possible.
+- `quizzes/`: public quiz data for module self-assessment, referenced from the module registry in the manifest.
 
 ## Page Patterns
 
@@ -27,7 +28,7 @@ The public site uses editorial components to explain the MGenetica learning path
 - Card components: module, phase, statement, profile, public-page and routine cards share border, hover, focus and wrapping behavior through the final public component layer.
 - CTA groups: `.hero-actions`, `.section-cta`, `.modules-landing-actions`, `.final-cta-actions` and `.profile-actions` should expose a clear primary path and restrained secondary actions.
 - Module navigation: `.module-nav` and `.module-nav-card` keep module pages connected to previous, index and next destinations.
-- Learning widgets: quizzes, progress indicators and visualizations must remain public learning aids, not admin controls.
+- Learning widgets: quizzes, progress indicators and visualizations must remain public learning aids, not admin controls. Quiz JSON files are data for public self-assessment and must stay aligned with each module's `data-module` value.
 
 ## Responsive And Accessibility Rules
 

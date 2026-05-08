@@ -2412,3 +2412,94 @@ Use the `mgenetica-site` skill for a longer site-only maintenance block, followi
 - Publish the validation hardening changes if the prepublish gate passes.
 - Watch GitHub Pages and rerun deployed-site validation after publication.
 - Next block can use the stronger validation base to choose either a small rendered-safe CSS cleanup or another manifest/page-pattern contract.
+
+---
+
+## 2026-05-08 — Long quiz contract hardening block
+
+### Block objective
+
+Use the `mgenetica-site` skill for a longer site-only block after the previous publication, making module quiz data a first-class public-site contract without changing app code or rewriting module lessons.
+
+### Cycles executed
+
+1. Diagnosis: the prior validation-hardening block was already published, the latest GitHub Pages workflow was successful and the tracked worktree was clean.
+   Implementation: confirmed the deployed site before editing and preserved untracked `.agents/` and `.vscode/`.
+   Testing: `Rscript scripts/validate_deployed_site.R` returned `deployed site ok`; existing local manifest validation returned `site manifest ok`.
+   Notes: this covered publication health, public navigation and homepage/deployed page status before new changes.
+
+2. Diagnosis: every module had a quiz container, but quiz JSON files were not represented in the canonical manifest.
+   Implementation: audited all `quizzes/quiz-*.json` files and confirmed the 12 public quizzes each have 5 questions and `passMark` 4.
+   Testing: parsed the quiz files with `jsonlite` through R.
+   Notes: no quiz content was rewritten.
+
+3. Diagnosis: `data/site-manifest.yml` should own module metadata useful for future app management, including each module's public quiz data file.
+   Implementation: added a `quiz:` path to all 12 module registry entries.
+   Testing: ran `Rscript scripts/validate_site_manifest.R` after extending validation.
+   Notes: this keeps quiz ownership in the public-site content map while leaving longform lessons in `.qmd`.
+
+4. Diagnosis: local validation did not catch missing, malformed or mismatched quiz JSON.
+   Implementation: extended `scripts/validate_site_manifest.R` to require unique quiz paths, check each file exists, parse JSON, match the module number, validate title/subtitle, validate `passMark`, require questions and ensure each `correct` index points to an existing option.
+   Testing: first run exposed that `PUBLIC_SITE_COMPONENTS.md` did not yet document `quizzes/`; after updating the doc, manifest validation passed.
+   Notes: this protects internal module pages and future manifest edits from quiz/data drift.
+
+5. Diagnosis: deployed validation confirmed rendered module patterns but did not verify that quiz data files were actually published by GitHub Pages.
+   Implementation: extended `scripts/validate_deployed_site.R` to read quiz paths from the manifest and fetch every deployed quiz JSON.
+   Testing: deployed validation passed against the current published site.
+   Notes: the new deployed check will become authoritative after these changes are published.
+
+6. Diagnosis: public component documentation needed to reflect quiz data as a source of truth and learning-widget contract.
+   Implementation: updated `PUBLIC_SITE_COMPONENTS.md` to document `quizzes/` and quiz JSON alignment with module `data-module` values.
+   Testing: documentation is now required by `scripts/validate_site_manifest.R`.
+   Notes: this keeps the contract public-site-specific, not app/admin documentation.
+
+7. Diagnosis: the complete block needed the standard final gate and next-step record.
+   Implementation: updated this worklog and `NEXT_SITE.md`.
+   Testing: final validation is run after these record updates.
+   Notes: no app files were changed.
+
+### Files changed
+
+- `data/site-manifest.yml`
+- `scripts/validate_site_manifest.R`
+- `scripts/validate_deployed_site.R`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Made quiz JSON files part of the canonical module registry.
+- Added local validation for quiz file existence, JSON shape, module-number alignment, question/options structure and scoring bounds.
+- Added deployed validation for all published quiz JSON endpoints.
+- Documented quiz data as public-site learning-widget data.
+
+### Problems fixed
+
+- Quiz data was important to module completion but was not declared in the manifest.
+- Missing or malformed quiz JSON could previously pass local manifest validation.
+- Deployed validation did not verify that quiz data resources were published.
+
+### Commands executed
+
+- `Rscript scripts/validate_deployed_site.R`
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'for (f in sort(list.files("quizzes", pattern = "json$", full.names = TRUE))) { x <- jsonlite::fromJSON(f, simplifyVector = FALSE); cat(basename(f), x$module, length(x$questions), x$passMark, "\n") }'`
+- `git diff --check`
+- `git diff --name-only`
+- Final prepublish validation is run after these records.
+
+### Test results
+
+- Deployed-site validation passed before edits.
+- Site manifest validation passed with the new quiz contract.
+- Deployed-site validation passed with the new quiz-resource checks.
+- Whitespace diff check passed before records.
+- Final prepublish validation is run after these records.
+
+### Pending items
+
+- Run final validation after these records.
+- Commit and push the quiz-contract hardening if the prepublish gate passes.
+- Watch GitHub Pages and rerun deployed-site validation after publication.
+- Next block can use local preview/Quarto if available for a small rendered-safe improvement.
