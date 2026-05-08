@@ -7,6 +7,7 @@ pages <- c(
   search = paste0(base_url, "/busca.html"),
   glossary = paste0(base_url, "/glossario.html"),
   route = paste0(base_url, "/semanas/"),
+  about = paste0(base_url, "/perfil.html"),
   module01 = paste0(base_url, "/modules/modulo01-introducao-ao-melhoramento-animal.html")
 )
 
@@ -42,7 +43,7 @@ dark_css <- read_page(absolute_url(extract_css_href(
   "quarto-bootstrap"
 )))
 
-editorial_pages <- html[c("home", "modules", "search", "glossary", "route")]
+editorial_pages <- html[c("home", "modules", "search", "glossary", "route", "about")]
 for (name in names(editorial_pages)) {
   page <- editorial_pages[[name]]
   assert(!grepl("header-section-number", page, fixed = TRUE), paste(name, "has visible section numbers"))
@@ -66,6 +67,9 @@ assert(lengths(regmatches(html$modules, gregexpr('class="module-card"', html$mod
 assert(grepl("PagefindUI", html$search, fixed = TRUE), "search page missing Pagefind")
 assert(grepl("data-glossary", html$glossary, fixed = TRUE), "glossary page missing glossary hook")
 assert(grepl("data-learning-map", html$route, fixed = TRUE), "route page missing learning map")
+assert(grepl("profile-hero", html$about, fixed = TRUE), "about page missing profile hero")
+assert(grepl("public-page-triad", html$about, fixed = TRUE), "about page missing public page triad")
+assert(grepl("Princípios", html$about, fixed = TRUE), "about page missing principles section")
 assert(grepl("Todos os módulos", html$module01, fixed = TRUE), "module page missing module index nav")
 assert(grepl("module-orientation", html$module01, fixed = TRUE), "module page missing orientation pattern")
 assert(grepl("quiz-container", html$module01, fixed = TRUE), "module page missing quiz container")

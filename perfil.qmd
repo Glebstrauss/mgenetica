@@ -2,6 +2,8 @@
 title: "Sobre"
 subtitle: "Identidade editorial e estrutura pública da MGenética"
 page-layout: full
+toc: false
+number-sections: false
 ---
 
 ::: {.profile-hero}
