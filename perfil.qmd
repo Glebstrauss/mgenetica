@@ -30,6 +30,34 @@ Uma publicação digital aberta para estudar melhoramento animal, genética quan
 O site é a camada pública da MGenética: editorial, institucional e orientada ao aprendizado. Ele deve permanecer simples para acessar, rápido para publicar e suficientemente modular para que páginas, módulos, roteiros e materiais possam ser administrados por um painel interno no futuro.
 :::
 
+::: {.about-route role="region" aria-label="Como a experiência pública está organizada"}
+::: {.about-route-copy}
+## Como a experiência pública se organiza
+
+A MGenética foi desenhada para conduzir o visitante por uma rota de aprendizagem completa: entrar pela trilha principal, consultar apoio quando necessário e fechar a jornada com evidência de conclusão.
+:::
+
+::: {.about-route-steps role="list" aria-label="Rota pública da MGenética"}
+::: {.about-route-step role="listitem"}
+**Estudar**
+
+Os módulos apresentam conceito, simulação e interpretação em sequência.
+:::
+
+::: {.about-route-step role="listitem"}
+**Consultar**
+
+Busca, glossário e roteiro ajudam a recuperar contexto sem quebrar o fluxo.
+:::
+
+::: {.about-route-step role="listitem"}
+**Concluir**
+
+Quizzes e certificado registram a conclusão de forma local e pública.
+:::
+:::
+:::
+
 ::: {.public-page-triad role="list" aria-label="Papéis da camada pública"}
 ::: {.public-page-card role="listitem"}
 **Camada pública**

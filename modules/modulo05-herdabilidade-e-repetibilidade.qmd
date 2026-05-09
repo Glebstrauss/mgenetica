@@ -147,7 +147,20 @@ for (k in 1:6) {
 Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção. Depois avance para o quiz com essa frase em mente.
 :::
 
+::: {.module-takeaways role="note" aria-label="Resumo técnico do módulo"}
+**O que levar deste módulo**
+
+- Herdabilidade orienta resposta à seleção; repetibilidade orienta confiança em medidas repetidas.
+- Mais registros podem aumentar segurança de decisão, mas não substituem boa interpretação da fonte de variação.
+:::
+
 ::: {.quiz-container data-module="05"}
+:::
+
+::: {.module-after-quiz role="note" aria-label="Próximo passo depois do quiz"}
+**Depois do quiz**
+
+Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e ao exercício proposto. Se estiver consistente, avance mantendo uma frase técnica registrada.
 :::
 
 ```{=html}

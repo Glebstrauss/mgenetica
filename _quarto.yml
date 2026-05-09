@@ -15,7 +15,7 @@ website:
   title: "MGenética"
   site-url: "https://glebstrauss.github.io/mgenetica/"
   repo-url: "https://github.com/Glebstrauss/mgenetica"
-  repo-actions: [issue]
+  repo-actions: []
   description: "Curso aberto de melhoramento animal, genética quantitativa e genômica aplicada com R. 12 módulos progressivos, scripts reproduzíveis e dados simulados."
   favicon: images/favicon/favicon.ico
   open-graph:
@@ -38,6 +38,8 @@ website:
         text: Módulos
       - href: semanas/index.qmd
         text: Roteiro
+      - href: certificado.qmd
+        text: Certificado
       - href: busca.qmd
         text: Busca
       - href: glossario.qmd
@@ -46,9 +48,9 @@ website:
         text: Sobre
     right:
       - href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
-        text: Começar
+        text: Começar Módulo 01
   page-footer:
-    left: "MGenética · educação científica aberta"
+    left: "MGenética · trilha pública em genética aplicada"
     center:
       - href: modules/index.qmd
         text: Módulos
@@ -62,6 +64,8 @@ website:
         text: Certificado
       - href: perfil.qmd
         text: Sobre
+      - href: https://github.com/Glebstrauss/mgenetica/issues/new
+        text: Feedback
     right:
       - href: https://github.com/Glebstrauss/mgenetica
         text: GitHub

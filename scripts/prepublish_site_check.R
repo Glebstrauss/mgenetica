@@ -6,6 +6,10 @@ script_path <- if (length(file_arg)) sub("^--file=", "", file_arg[[1]]) else "sc
 repo_root <- normalizePath(file.path(dirname(script_path), ".."), mustWork = TRUE)
 setwd(repo_root)
 
+if (!nzchar(Sys.getenv("QUARTO_NUM_THREADS"))) {
+  Sys.setenv(QUARTO_NUM_THREADS = "1")
+}
+
 run <- function(label, command, args = character(), required = TRUE) {
   cat(sprintf("\n==> %s\n", label))
   status <- system2(command, args)

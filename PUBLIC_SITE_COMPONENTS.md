@@ -16,21 +16,21 @@ The public site uses editorial components to explain the MGenetica learning path
 
 ## Page Patterns
 
-- Homepage: brand introduction, learning promise, initial orientation, module anatomy, visible learning path, repeatable learning loop, phase preview and primary next actions.
-- Module index: complete public course catalog organized from the manifest-backed module journey, with phase-level guidance, support crosslinks before the full catalog and a decisive final next-step band.
-- Module pages: consistent module header, objectives, teaching content, pre-quiz checkpoint, quiz, practical interpretation and previous/index/next navigation.
-- Utility pages: search, glossary, certificate and study route use public hero sections plus task-focused panels.
-- Institutional page: profile/about content uses `profile-hero`, public cards, site-map cards and restrained next-step guidance.
+- Homepage: brand introduction, learning promise, hero proof panel, initial orientation, module anatomy, entry-decision guidance, public resource support, study-readiness checkpoint, visible learning path, repeatable learning loop, phase preview and primary next actions.
+- Module index: complete public course catalog organized from the manifest-backed module journey, with phase-level guidance, support crosslinks, completion flow, module-choice checkpoint before the final next-step band and a decisive final next-step band.
+- Module pages: consistent module header, objectives, teaching content, pre-quiz checkpoint, technical takeaways, quiz, post-quiz continuity note, practical interpretation and previous/index/next navigation.
+- Utility pages: search, glossary, certificate and study route use public hero sections, task-focused panels, certificate readiness guidance and return-to-trail guidance.
+- Institutional page: profile/about content uses `profile-hero`, `.about-route`, public cards, site-map cards and restrained next-step guidance.
 
 ## Component Families
 
-- Hero components: `.hero`, `.page-hero`, `.profile-hero` introduce the page and should not coexist with Quarto's automatic title block.
-- Card components: module, phase, statement, profile, public-page and routine cards share border, hover, focus and wrapping behavior through the final public component layer.
-- CTA groups: `.hero-actions`, `.section-cta`, `.modules-landing-actions`, `.utility-next-step`, `.final-cta-actions`, `.about-next-step-actions`, navbar journey CTA and `.profile-actions` should expose a clear primary path and restrained secondary actions.
-- Learning-path components: `.hero-learning-path`, `.hero-signal`, `.home-orientation`, `.module-anatomy-grid`, `.learning-loop-grid`, `.modules-route`, `.modules-support`, `.modules-next-step`, `.route-overview`, `.route-map-intro`, `.module-study-checkpoint`, `.module-phase-start` and `.module-phase-note` clarify progression without turning the site into a dashboard.
-- Discovery components: `.home-discovery`, `.discovery-grid` and `.discovery-card` connect search, glossary and route pages as learning support, not as admin utilities.
-- Certificate components: `.certificate-intro`, `.certificate-status`, `.certificate-progress-list`, `.certificate-actions` and `.certificate-ready` keep the completion flow public and editorial while the progress logic remains browser-local.
-- Institutional components: `.site-map-grid` and `.about-next-step` keep the about page connected to public learning routes.
+- Hero components: `.hero`, `.hero-panel-proof`, `.page-hero`, `.profile-hero` introduce the page and should not coexist with Quarto's automatic title block.
+- Card components: module, phase, statement, resource, profile, public-page and routine cards share border, hover, focus and wrapping behavior through the final public component layer.
+- CTA groups: `.hero-actions`, `.section-cta`, `.modules-landing-actions`, `.utility-next-step`, `.utility-return-actions`, `.route-finish-actions`, `.final-cta-actions`, `.about-next-step-actions`, navbar journey CTA and `.profile-actions` should expose a clear primary path and restrained secondary actions.
+- Learning-path components: `.hero-learning-path`, `.hero-signal`, `.home-orientation`, `.module-anatomy-grid`, `.entry-decision`, `.home-readiness`, `.resource-grid`, `.resource-card`, `.learning-loop-grid`, `.modules-route`, `.modules-support`, `.modules-completion-flow`, `.modules-study-check`, `.modules-next-step`, `.route-overview`, `.route-map-intro`, `.route-finish-band`, `.module-study-checkpoint`, `.module-takeaways`, `.module-after-quiz`, `.module-phase-start` and `.module-phase-note` clarify progression without turning the site into a dashboard.
+- Discovery components: `.home-discovery`, `.discovery-grid`, `.discovery-card` and `.utility-return-guide` connect search, glossary and route pages as learning support, not as admin utilities.
+- Certificate components: `.certificate-intro`, `.certificate-readiness-guide`, `.certificate-status`, `.certificate-progress-list`, `.certificate-actions`, `.certificate-ready`, `.certificate-preview`, `.certificate-form` and `.certificate-noscript` keep the completion flow public and editorial while the progress logic remains browser-local.
+- Institutional components: `.about-route`, `.site-map-grid` and `.about-next-step` keep the about page connected to public learning routes.
 - Module navigation: `.module-nav` and `.module-nav-card` keep module pages connected to previous, index and next destinations.
 - Learning widgets: quizzes, progress indicators and visualizations must remain public learning aids, not admin controls. Quiz JSON files are data for public self-assessment and must stay aligned with each module's `data-module` value.
 

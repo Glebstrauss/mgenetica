@@ -40,12 +40,55 @@ Se ainda houver pendências, a página indica os módulos que faltam.
 :::
 :::
 
+::: {.certificate-readiness-guide role="region" aria-label="Como desbloquear o certificado"}
+::: {.certificate-readiness-copy}
+## Antes de gerar o certificado
+
+O certificado não é uma página isolada: ele fecha uma rota pública de estudo. Use esta tela para conferir pendências, voltar aos módulos certos e emitir o PDF apenas quando a trilha estiver completa.
+:::
+
+::: {.certificate-readiness-steps role="list" aria-label="Etapas para desbloquear o certificado"}
+::: {.certificate-readiness-step role="listitem"}
+**1 · Estude**
+
+Siga os 12 módulos em ordem ou retome a fase em que parou.
+:::
+
+::: {.certificate-readiness-step role="listitem"}
+**2 · Valide**
+
+Conclua os quizzes para registrar o progresso local no navegador.
+:::
+
+::: {.certificate-readiness-step role="listitem"}
+**3 · Emita**
+
+Informe seu nome e gere o PDF quando todos os módulos estiverem completos.
+:::
+:::
+
+::: {.certificate-readiness-actions role="navigation" aria-label="Rotas antes de emitir o certificado"}
+[Ver módulos](modules/index.qmd){.btn .btn-primary}
+[Planejar estudo](semanas/index.qmd){.btn .btn-secondary}
+[Buscar conceito](busca.qmd){.btn .btn-secondary}
+:::
+:::
+
+```{=html}
 <div id="cert-gate">
-  <div id="cert-incomplete" style="display:none">
+  <noscript>
+    <div class="certificate-noscript" role="status">
+      <strong>JavaScript necessário</strong>
+      <p>O certificado depende do progresso salvo localmente pelos quizzes. Ative JavaScript no navegador para consultar pendências ou gerar o PDF.</p>
+      <a href="modules/index.html" class="entry-link">Voltar aos módulos</a>
+    </div>
+  </noscript>
+
+  <div id="cert-incomplete" class="certificate-state" hidden>
     <div class="module-objectives certificate-status">
       <h3>Módulos pendentes</h3>
       <p>Complete todos os 12 módulos do curso para desbloquear o certificado.</p>
-      <div id="cert-progress-list"></div>
+      <div id="cert-progress-list" aria-live="polite"></div>
     </div>
     <div class="certificate-actions">
       <a href="modules/modulo01-introducao-ao-melhoramento-animal.html" class="btn btn-primary">
@@ -57,97 +100,74 @@ Se ainda houver pendências, a página indica os módulos que faltam.
     </div>
   </div>
 
-  <div id="cert-ready" style="display:none">
+  <div id="cert-ready" class="certificate-state" hidden>
     <div class="certificate-ready">
       <div class="hero-kicker">Trilha concluída</div>
       <h2>Você concluiu o curso</h2>
       <p>Todos os 12 módulos foram completados com aprovação nos quizzes.</p>
     </div>
 
-    <!-- Certificate preview -->
-    <div id="cert-preview" style="
-      background:#fff;color:#0d2642;
-      border:3px solid #0d2642;border-radius:12px;
-      padding:3rem 2.5rem;max-width:760px;margin:0 auto 2rem;
-      font-family:'Inter',sans-serif;
-      box-shadow:0 8px 32px rgba(13,38,66,.15);
-      position:relative;overflow:hidden;
-    ">
-      <!-- decorative top stripe -->
-      <div style="
-        position:absolute;top:0;left:0;right:0;height:8px;
-        background:linear-gradient(90deg,#0d2642,#2563a8,#0d2642);
-      "></div>
-
-      <div style="text-align:center;margin-bottom:2rem">
-        <img src="images/mgenetica-logo-correct.png" alt="MGenética" style="height:56px;margin-bottom:1rem">
-        <div style="font-size:.85rem;letter-spacing:.15em;color:#2563a8;text-transform:uppercase;font-weight:600">
+    <div id="cert-preview" class="certificate-preview" role="region" aria-label="Prévia do certificado">
+      <div class="certificate-preview-brand">
+        <img src="images/mgenetica-logo-correct.png" alt="MGenética">
+        <div class="certificate-preview-kicker">
           MGenética Academy
         </div>
       </div>
 
-      <div style="text-align:center;border-top:1px solid #c8d8ea;border-bottom:1px solid #c8d8ea;padding:1.5rem 0;margin-bottom:1.5rem">
-        <div style="font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#5a7a9a;margin-bottom:.5rem">
+      <div class="certificate-preview-nameband">
+        <div class="certificate-preview-label">
           Certifica que
         </div>
-        <div id="cert-name" style="font-size:2rem;font-weight:700;color:#0d2642;font-style:italic;min-height:2.5rem">
+        <div id="cert-name" class="certificate-preview-name">
           <!-- filled by JS -->
         </div>
       </div>
 
-      <div style="text-align:center;margin-bottom:1.5rem;color:#1a3a5c;line-height:1.7">
+      <div class="certificate-preview-body">
         concluiu com aproveitamento o curso<br>
-        <strong style="font-size:1.15rem">Melhoramento Animal, Genética Quantitativa<br>e Genômica Aplicada</strong><br>
+        <strong>Melhoramento Animal, Genética Quantitativa<br>e Genômica Aplicada</strong><br>
         composto de 12 módulos, com aprovação em todos os quizzes de avaliação.
       </div>
 
-      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:2rem;flex-wrap:wrap;gap:1rem">
-        <div style="font-size:.82rem;color:#5a7a9a">
-          <span style="display:block;font-weight:600;color:#0d2642">Data de conclusão</span>
+      <div class="certificate-preview-footer">
+        <div class="certificate-preview-detail">
+          <span>Data de conclusão</span>
           <span id="cert-date"></span>
         </div>
-        <div style="text-align:center">
-          <div style="width:160px;border-top:1px solid #0d2642;padding-top:.4rem;font-size:.78rem;color:#5a7a9a">
+        <div class="certificate-preview-signature">
+          <div>
             MGenética Academy
           </div>
         </div>
-        <div style="font-size:.82rem;color:#5a7a9a;text-align:right">
-          <span style="display:block;font-weight:600;color:#0d2642">Carga horária estimada</span>
+        <div class="certificate-preview-detail certificate-preview-detail-right">
+          <span>Carga horária estimada</span>
           36 horas
         </div>
       </div>
-
-      <!-- decorative bottom stripe -->
-      <div style="
-        position:absolute;bottom:0;left:0;right:0;height:4px;
-        background:linear-gradient(90deg,#0d2642,#2563a8,#0d2642);
-      "></div>
     </div>
 
-    <!-- Name input + actions -->
-    <div style="text-align:center;max-width:480px;margin:0 auto">
-      <label for="cert-name-input" style="display:block;font-weight:600;margin-bottom:.5rem">
+    <div class="certificate-form">
+      <label for="cert-name-input">
         Seu nome (para o certificado)
       </label>
-      <input id="cert-name-input" type="text" placeholder="Digite seu nome completo"
-        style="width:100%;padding:.6rem 1rem;border:1px solid var(--mg-line,#c8d8ea);
-               border-radius:8px;font-size:1rem;margin-bottom:1rem;
-               background:var(--mg-bg,#fff);color:var(--mg-text,#0d2642)">
+      <input id="cert-name-input" type="text" placeholder="Digite seu nome completo" autocomplete="name" aria-describedby="cert-name-help">
 
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-        <button id="cert-pdf-btn" class="btn btn-primary" style="min-width:200px">
+      <div class="certificate-form-actions">
+        <button id="cert-pdf-btn" class="btn btn-primary">
           Gerar PDF
         </button>
-        <button id="cert-reset-btn" class="btn btn-secondary" style="min-width:140px">
+        <button id="cert-reset-btn" class="btn btn-secondary">
           Limpar progresso
         </button>
       </div>
-      <p style="font-size:.8rem;color:var(--mg-muted,#8b949e);margin-top:.75rem">
+      <p id="cert-name-help">
         O PDF é gerado diretamente no seu navegador — nenhum dado é enviado a servidores.
       </p>
     </div>
   </div>
 </div>
+```
 
 <script>
 (function () {
@@ -174,6 +194,21 @@ Se ainda houver pendências, a página indica os módulos que faltam.
     modulo12: 'Matrizes Genômicas, GWAS e Predição Genômica'
   };
 
+  var MODULE_LINKS = {
+    modulo01: 'modules/modulo01-introducao-ao-melhoramento-animal.html',
+    modulo02: 'modules/modulo02-bases-da-genetica-quantitativa.html',
+    modulo03: 'modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.html',
+    modulo04: 'modules/modulo04-medias-variancias-e-componentes-de-variancia.html',
+    modulo05: 'modules/modulo05-herdabilidade-e-repetibilidade.html',
+    modulo06: 'modules/modulo06-correlacoes-geneticas-e-fenotipicas.html',
+    modulo07: 'modules/modulo07-modelos-lineares-e-modelos-mistos.html',
+    modulo08: 'modules/modulo08-blup-e-avaliacao-genetica.html',
+    modulo09: 'modules/modulo09-estrutura-de-pedigree-e-parentesco.html',
+    modulo10: 'modules/modulo10-introducao-a-genomica-e-marcadores-snp.html',
+    modulo11: 'modules/modulo11-controle-de-qualidade-de-dados-genomicos.html',
+    modulo12: 'modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html'
+  };
+
   function getCompleted() {
     try {
       var api = window.mgenetica;
@@ -195,15 +230,18 @@ Se ainda houver pendências, a página indica os módulos que faltam.
   }
 
   function showIncomplete(completed, pending) {
-    document.getElementById('cert-incomplete').style.display = '';
+    document.getElementById('cert-incomplete').hidden = false;
     var list = document.getElementById('cert-progress-list');
     var html = '<ul class="certificate-progress-list">';
     MODULES.forEach(function (m) {
       var done  = completed.includes(m);
       var title = MODULE_TITLES[m] || m;
+      var href  = MODULE_LINKS[m];
+      var label = 'Abrir ' + title;
+      var titleHtml = href ? ('<a href=\"' + href + '\" aria-label=\"' + label + '\">' + title + '</a>') : title;
       html += '<li class="certificate-progress-item ' + (done ? 'is-complete' : 'is-pending') + '">' +
         '<span class="certificate-progress-state">' + (done ? 'Concluído' : 'Pendente') + '</span>' +
-        '<span>' + title + '</span>' +
+        '<span>' + titleHtml + '</span>' +
         '</li>';
     });
     html += '</ul>';
@@ -211,7 +249,7 @@ Se ainda houver pendências, a página indica os módulos que faltam.
   }
 
   function showReady() {
-    document.getElementById('cert-ready').style.display = '';
+    document.getElementById('cert-ready').hidden = false;
 
     var dateEl = document.getElementById('cert-date');
     var stored = localStorage.getItem('mgenetica_cert_date');
@@ -230,6 +268,8 @@ Se ainda houver pendências, a página indica os módulos que faltam.
 
     nameInput.addEventListener('input', function () {
       certName.textContent = nameInput.value.trim() || 'Seu Nome';
+      nameInput.removeAttribute('aria-invalid');
+      nameInput.style.borderColor = '';
     });
 
     document.getElementById('cert-pdf-btn').addEventListener('click', generatePDF);
@@ -246,7 +286,13 @@ Se ainda houver pendências, a página indica os módulos que faltam.
   function generatePDF() {
     var nameInput = document.getElementById('cert-name-input');
     var name = nameInput.value.trim();
-    if (!name) { nameInput.focus(); nameInput.style.borderColor = 'var(--mg-red,#e53e3e)'; return; }
+    if (!name) {
+      nameInput.setAttribute('aria-invalid', 'true');
+      nameInput.focus();
+      nameInput.style.borderColor = 'var(--mg-red,#e53e3e)';
+      return;
+    }
+    nameInput.removeAttribute('aria-invalid');
     nameInput.style.borderColor = '';
     localStorage.setItem('mgenetica_cert_name', name);
 

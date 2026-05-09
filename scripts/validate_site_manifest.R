@@ -121,13 +121,29 @@ for (reference in c(
 
 for (class_name in c(
   ".hero",
+  ".hero-panel-proof",
   ".page-hero",
   ".profile-hero",
   ".hero-learning-path",
+  ".resource-grid",
+  ".resource-card",
+  ".entry-decision",
   ".modules-route",
+  ".home-readiness",
+  ".modules-completion-flow",
+  ".modules-study-check",
+  ".utility-return-guide",
+  ".route-finish-band",
   ".module-study-checkpoint",
+  ".module-takeaways",
+  ".module-after-quiz",
   ".module-nav",
   ".module-nav-card",
+  ".certificate-preview",
+  ".certificate-form",
+  ".certificate-noscript",
+  ".certificate-readiness-guide",
+  ".about-route",
   ".section-cta",
   ".final-cta-actions"
 )) {
@@ -168,13 +184,17 @@ check_unique(page_hrefs, "content_pages.items.href")
 region_markers <- list(
   home = list(
     hero = "hero",
+    "hero-panel-proof" = "hero-panel-proof",
     "hero-signal" = "hero-signal",
     orientation = "home-orientation",
     "module-anatomy" = "home-module-anatomy",
+    "entry-decision" = "entry-decision",
     "entry-points" = "home-entry",
     "platform-statement" = "platform-statement",
     discovery = "home-discovery",
     "learning-loop" = "learning-loop-grid",
+    resources = "resource-grid",
+    readiness = "home-readiness",
     "phase-preview" = "phase-preview",
     "final-cta" = "home-final-cta"
   ),
@@ -183,8 +203,10 @@ region_markers <- list(
     guidance = "modules-guidance",
     route = "modules-route",
     support = "modules-support",
+    "completion-flow" = "modules-completion-flow",
     phases = "phase-grid",
     "module-grid" = "module-grid",
+    "study-check" = "modules-study-check",
     "next-step" = "modules-next-step"
   ),
   `study-path` = list(
@@ -192,28 +214,36 @@ region_markers <- list(
     "route-checkpoints" = "route-checkpoints",
     "route-overview" = "route-overview",
     "route-map-intro" = "route-map-intro",
-    routine = "routine-grid"
+    routine = "routine-grid",
+    "route-finish" = "route-finish-band"
   ),
   search = list(
     hero = "page-hero",
     "utility-flow" = "utility-flow",
+    "utility-return" = "utility-return-guide",
     "search-panel" = "search-panel",
     "utility-next-step" = "utility-next-step"
   ),
   glossary = list(
     hero = "page-hero",
     "utility-flow" = "utility-flow",
+    "utility-return" = "utility-return-guide",
     "glossary-panel" = "glossary-panel",
     "utility-next-step" = "utility-next-step"
   ),
   certificate = list(
     hero = "page-hero",
     "certificate-intro" = "certificate-intro",
+    "certificate-readiness" = "certificate-readiness-guide",
+    "certificate-preview" = "certificate-preview",
+    "certificate-form" = "certificate-form",
+    "certificate-noscript" = "certificate-noscript",
     "certificate-gate" = "cert-gate"
   ),
   about = list(
     hero = "profile-hero",
     "public-page-triad" = "public-page-triad",
+    "about-route" = "about-route",
     principles = "Princípios",
     "site-map" = "site-map-grid",
     "about-next-step" = "about-next-step"
@@ -259,6 +289,7 @@ nav_items <- c(primary_nav, footer_nav)
 for (item in nav_items) {
   href <- required_scalar(item, "href", paste0("navigation ", item$id))
   required_scalar(item, "label", paste0("navigation ", item$id))
+  if (grepl("^https?://", href)) next
   if (!href %in% page_hrefs) {
     fail(sprintf("navigation item %s references unregistered page: %s", item$id, href))
   }
@@ -322,6 +353,12 @@ for (i in seq_along(modules)) {
   }
   if (!grepl(sprintf('quiz-container data-module="%s"', module_number), module_text, fixed = TRUE)) {
     fail(sprintf("module %s quiz data-module does not match order", item$id))
+  }
+  if (!grepl("module-takeaways", module_text, fixed = TRUE)) {
+    fail(sprintf("module %s is missing module-takeaways", item$id))
+  }
+  if (!grepl("module-after-quiz", module_text, fixed = TRUE)) {
+    fail(sprintf("module %s is missing module-after-quiz", item$id))
   }
   if (!identical(item$quiz, sprintf("quizzes/quiz-%s.json", module_number))) {
     fail(sprintf("module %s quiz path does not match order", item$id))

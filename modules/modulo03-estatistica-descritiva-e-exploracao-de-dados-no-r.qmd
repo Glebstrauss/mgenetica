@@ -139,7 +139,20 @@ boxplot(peso_kg ~ raca, data=dados, col=c("#4a9fd1","#0d2642","#e8f1f8"),
 Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção. Depois avance para o quiz com essa frase em mente.
 :::
 
+::: {.module-takeaways role="note" aria-label="Resumo técnico do módulo"}
+**O que levar deste módulo**
+
+- Estatística descritiva é triagem: ela revela escala, dispersão, grupos e valores suspeitos antes do modelo.
+- Gráficos e resumos precisam responder se os dados sustentam a pergunta biológica inicial.
+:::
+
 ::: {.quiz-container data-module="03"}
+:::
+
+::: {.module-after-quiz role="note" aria-label="Próximo passo depois do quiz"}
+**Depois do quiz**
+
+Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e ao exercício proposto. Se estiver consistente, avance mantendo uma frase técnica registrada.
 :::
 
 ```{=html}

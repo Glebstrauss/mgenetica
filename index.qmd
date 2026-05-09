@@ -71,12 +71,38 @@ Interpretação aplicada
 :::
 
 ::: {.hero-signal role="note" aria-label="Forma de estudo recomendada"}
-Cada módulo foi desenhado para fechar um ciclo curto: leia o conceito, rode o script, ajuste um parâmetro e escreva uma decisão técnica.
+Cada módulo foi desenhado para fechar um ciclo curto: leia o conceito, rode o script, ajuste um parâmetro e escreva uma decisão técnica. Ao completar os quizzes, a trilha pode ser fechada no certificado.
 :::
 :::
 
 ::: {.hero-panel}
 ![](images/mgenetica-logo-correct.png){fig-alt="Logo original da MGenética em fundo escuro com monograma geométrico cyan"}
+
+::: {.hero-panel-proof role="note" aria-label="Resumo da trilha MGenética"}
+**12 módulos guiados**
+
+Conceito, simulação, R e interpretação em uma sequência pública de estudo.
+
+::: {.hero-panel-proof-list role="list" aria-label="Indicadores da trilha"}
+::: {.hero-panel-proof-item role="listitem"}
+**36h**
+
+ritmo estimado
+:::
+
+::: {.hero-panel-proof-item role="listitem"}
+**Local**
+
+progresso no navegador
+:::
+
+::: {.hero-panel-proof-item .hero-panel-proof-item--wide role="listitem"}
+**Certificado**
+
+conclusão após os quizzes
+:::
+:::
+:::
 :::
 :::
 
@@ -170,6 +196,34 @@ Entrada
 :::
 
 ## Escolha o melhor ponto de partida
+
+::: {.entry-decision role="region" aria-label="Como escolher uma rota de entrada"}
+::: {.entry-decision-copy}
+**Escolha pela situação atual**
+
+A trilha principal continua sendo o Módulo 01. Use as rotas alternativas quando você já conhece o conteúdo, precisa retomar contexto ou quer organizar o estudo antes de começar.
+:::
+
+::: {.entry-decision-list role="list" aria-label="Critérios para escolher uma rota"}
+::: {.entry-decision-item role="listitem"}
+**Primeira vez**
+
+Comece pelo Módulo 01.
+:::
+
+::: {.entry-decision-item role="listitem"}
+**Revisão**
+
+Abra o índice e escolha a fase.
+:::
+
+::: {.entry-decision-item role="listitem"}
+**Planejamento**
+
+Use o roteiro semanal.
+:::
+:::
+:::
 
 ::: {.entry-grid role="list" aria-label="Pontos de partida no curso"}
 ::: {.entry-card .entry-card-primary role="listitem"}
@@ -418,13 +472,58 @@ SNPs, controle de qualidade, matrizes, GWAS e predição.
 :::
 
 ::: {.home-section .home-resources}
-## Recursos práticos
+::: {.section-label}
+Materiais
+:::
 
-::: {.resource-panel}
-- Scripts dos módulos: `scripts/modulo01.R` até `scripts/modulo12.R`.
-- Execução completa: `Rscript scripts/run_all_modules.R`.
-- Dados simulados gerados automaticamente em `data/`.
-- Publicação do site por GitHub Actions.
+## Apoio prático para estudar sem perder a sequência
+
+::: {.resource-grid role="list" aria-label="Recursos práticos de apoio ao estudo"}
+::: {.resource-card role="listitem"}
+**Scripts em R**
+
+Cada módulo tem um script correspondente para transformar a pergunta em simulação, saída e interpretação.
+:::
+
+::: {.resource-card role="listitem"}
+**Dados simulados**
+
+Os exemplos são controlados para ensino, comparação e repetição sem depender de bases externas.
+:::
+
+::: {.resource-card role="listitem"}
+**Quizzes locais**
+
+A checagem de progresso acontece no navegador e ajuda a decidir quando avançar ou revisar.
+:::
+:::
+:::
+
+::: {.home-section .home-readiness role="region" aria-label="Checklist público antes de começar"}
+::: {.home-readiness-copy}
+## Antes de iniciar o próximo módulo
+
+Use este checkpoint para manter o estudo objetivo: cada sessão deve terminar com uma saída técnica pequena, não apenas com leitura passiva.
+:::
+
+::: {.home-readiness-grid role="list" aria-label="Checklist para estudar com a MGenética"}
+::: {.home-readiness-item role="listitem"}
+**Pergunta**
+
+Identifique qual decisão biológica ou de seleção o módulo ajuda a responder.
+:::
+
+::: {.home-readiness-item role="listitem"}
+**Código**
+
+Rode o script correspondente e altere pelo menos um parâmetro da simulação.
+:::
+
+::: {.home-readiness-item role="listitem"}
+**Síntese**
+
+Escreva uma frase técnica antes de avançar para o quiz ou para o próximo módulo.
+:::
 :::
 :::
 

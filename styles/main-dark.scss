@@ -267,6 +267,10 @@ code {
 }
 
 .entry-card,
+.entry-decision,
+.entry-decision-item,
+.home-readiness,
+.home-readiness-item,
 .guidance-item {
   background: var(--mg-bg-soft);
   border-color: var(--mg-line);
@@ -483,10 +487,14 @@ footer.footer a {
 .utility-next-step,
 .discovery-card,
 .certificate-intro-card,
+.certificate-readiness-guide,
+.certificate-readiness-step,
 .certificate-ready,
 .module-completion-note,
 .module-phase-note,
 .module-phase-start,
+.module-takeaways,
+.module-after-quiz,
 .route-map-intro,
 .learning-loop-card,
 .route-overview-card {
@@ -505,10 +513,14 @@ footer.footer a {
 .route-map-intro p,
 .discovery-card p,
 .certificate-intro-card p,
+.certificate-readiness-copy p,
+.certificate-readiness-step p,
 .certificate-ready p,
 .module-completion-note p,
 .module-phase-note p,
 .module-phase-start p,
+.module-takeaways li,
+.module-after-quiz p,
 .learning-loop-card p,
 .route-overview-card p {
   color: var(--mg-text);
@@ -522,10 +534,14 @@ footer.footer a {
 .about-next-step-copy h2,
 .discovery-card strong,
 .certificate-intro-card strong,
+.certificate-readiness-copy h2,
+.certificate-readiness-step strong,
 .certificate-ready h2,
 .module-completion-note strong,
 .module-phase-note strong,
 .module-phase-start strong,
+.module-takeaways strong,
+.module-after-quiz strong,
 .learning-loop-card strong,
 .route-overview-card strong {
   color: var(--mg-ink);
@@ -560,6 +576,111 @@ footer.footer a {
 .certificate-progress-item.is-pending .certificate-progress-state {
   color: var(--mg-muted);
   background: var(--mg-bg-tint);
+}
+
+.hero-panel-proof {
+  color: rgba(232, 244, 252, 0.82);
+  background: rgba(2, 10, 14, 0.42);
+  border-color: rgba(111, 220, 255, 0.26);
+}
+
+.hero-panel-proof strong {
+  color: #ffffff;
+}
+
+.hero-panel-proof p {
+  color: rgba(232, 244, 252, 0.76);
+}
+
+.hero-panel-proof-item {
+  background: rgba(255, 255, 255, 0.055);
+  border-color: rgba(111, 220, 255, 0.22);
+}
+
+.hero-panel-proof-item strong {
+  color: var(--mg-cyan-lt);
+}
+
+.modules-completion-copy,
+.modules-completion-step,
+.modules-study-check,
+.modules-study-check-item {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.home-readiness-copy,
+.modules-completion-copy,
+.modules-study-check-copy {
+  background:
+    linear-gradient(135deg, rgba(2, 10, 14, 0.96), rgba(10, 31, 56, 0.82));
+}
+
+.home-readiness-copy h2,
+.home-readiness-copy p,
+.modules-study-check-copy strong,
+.modules-study-check-copy p {
+  color: var(--mg-ink);
+}
+
+.modules-completion-copy strong,
+.modules-completion-step strong,
+.home-readiness-item strong,
+.modules-study-check-item strong {
+  color: var(--mg-ink);
+}
+
+.modules-completion-copy p,
+.modules-completion-step p,
+.home-readiness-item p,
+.modules-study-check-item p {
+  color: var(--mg-text);
+}
+
+.certificate-noscript {
+  background: rgba(210, 153, 34, 0.10);
+  border-color: rgba(210, 153, 34, 0.34);
+  border-left-color: var(--mg-amber);
+}
+
+.certificate-noscript strong,
+.certificate-noscript p {
+  color: #ffdca8;
+}
+
+.certificate-noscript .entry-link {
+  color: #ffdca8;
+}
+
+.utility-return-guide,
+.route-finish-band {
+  background:
+    linear-gradient(135deg, var(--mg-bg-soft), rgba(10, 31, 56, 0.38));
+  border-color: rgba(111, 220, 255, 0.24);
+}
+
+.utility-return-copy strong,
+.route-finish-copy strong {
+  color: var(--mg-ink);
+}
+
+.utility-return-copy p,
+.route-finish-copy p {
+  color: var(--mg-text);
+}
+
+.certificate-form label {
+  color: var(--mg-ink);
+}
+
+.certificate-form input {
+  color: var(--mg-text);
+  background: var(--mg-bg-tint);
+  border-color: var(--mg-line);
+}
+
+.certificate-form p {
+  color: var(--mg-muted);
 }
 
 
@@ -612,6 +733,13 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
 
   strong { color: var(--mg-ink); }
   p      { color: var(--mg-text); }
+}
+
+.module-after-quiz {
+  background:
+    linear-gradient(135deg, rgba(30, 87, 153, 0.16), var(--mg-bg-soft));
+  border-color: var(--mg-line);
+  border-left-color: var(--mg-cyan);
 }
 
 .module-nav { border-top-color: var(--mg-line); }
@@ -776,11 +904,26 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
 }
 
 .profile-card,
-.profile-section {
+.profile-section,
+.about-route,
+.about-route-step,
+.resource-card {
   background: var(--mg-bg-soft);
   border-color: var(--mg-line);
 
   h3 { color: var(--mg-cyan-lt); }
+}
+
+.about-route-copy h2,
+.about-route-step strong,
+.resource-card strong {
+  color: var(--mg-ink);
+}
+
+.about-route-copy p,
+.about-route-step p,
+.resource-card p {
+  color: var(--mg-text);
 }
 
 .public-page-card,

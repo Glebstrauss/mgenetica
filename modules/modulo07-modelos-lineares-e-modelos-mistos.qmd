@@ -148,7 +148,20 @@ for (lam in c(0.5, 1, 2, 5, 10)) {
 Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção. Depois avance para o quiz com essa frase em mente.
 :::
 
+::: {.module-takeaways role="note" aria-label="Resumo técnico do módulo"}
+**O que levar deste módulo**
+
+- Modelos mistos separam efeitos sistemáticos, efeitos genéticos e erro para melhorar a inferência.
+- O encolhimento dos valores preditos é uma forma de equilibrar evidência individual e incerteza.
+:::
+
 ::: {.quiz-container data-module="07"}
+:::
+
+::: {.module-after-quiz role="note" aria-label="Próximo passo depois do quiz"}
+**Depois do quiz**
+
+Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e ao exercício proposto. Se estiver consistente, avance mantendo uma frase técnica registrada.
 :::
 
 ```{=html}

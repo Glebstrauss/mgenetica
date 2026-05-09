@@ -47,6 +47,10 @@ navigation:
       label: Roteiro
       href: semanas/index.qmd
       type: page
+    - id: certificate
+      label: Certificado
+      href: certificado.qmd
+      type: utility
     - id: search
       label: Busca
       href: busca.qmd
@@ -78,24 +82,42 @@ navigation:
     - id: about
       label: Sobre
       href: perfil.qmd
+    - id: feedback
+      label: Feedback
+      href: https://github.com/Glebstrauss/mgenetica/issues/new
 
 content_pages:
   editable_by_app: true
   editorial_patterns:
     - hero
+    - hero-panel-proof
     - page-hero
     - hero-signal
     - learning-loop
     - phase-preview
     - module-grid
     - module-anatomy
+    - entry-decision
+    - resource-grid
     - modules-support
+    - modules-completion-flow
     - modules-next-step
     - route-overview
+    - utility-return-guide
+    - route-finish-band
     - home-orientation
+    - home-readiness
+    - modules-study-check
+    - certificate-preview
+    - certificate-form
+    - certificate-noscript
+    - certificate-readiness-guide
     - about-next-step
+    - about-route
     - module-phase-note
     - module-phase-start
+    - module-takeaways
+    - module-after-quiz
     - final-cta
   items:
     - id: home
@@ -105,13 +127,17 @@ content_pages:
       status: published
       editable_regions:
         - hero
+        - hero-panel-proof
         - hero-signal
         - orientation
         - module-anatomy
+        - entry-decision
         - entry-points
         - platform-statement
         - discovery
         - learning-loop
+        - resources
+        - readiness
         - phase-preview
         - final-cta
       source_collections:
@@ -127,8 +153,10 @@ content_pages:
         - guidance
         - route
         - support
+        - completion-flow
         - phases
         - module-grid
+        - study-check
         - next-step
     - id: study-path
       title: Roteiro de estudo
@@ -141,6 +169,7 @@ content_pages:
         - route-overview
         - route-map-intro
         - routine
+        - route-finish
     - id: search
       title: Busca
       href: busca.qmd
@@ -149,6 +178,7 @@ content_pages:
       editable_regions:
         - hero
         - utility-flow
+        - utility-return
         - search-panel
         - utility-next-step
     - id: glossary
@@ -159,6 +189,7 @@ content_pages:
       editable_regions:
         - hero
         - utility-flow
+        - utility-return
         - glossary-panel
         - utility-next-step
     - id: certificate
@@ -169,6 +200,10 @@ content_pages:
       editable_regions:
         - hero
         - certificate-intro
+        - certificate-readiness
+        - certificate-preview
+        - certificate-form
+        - certificate-noscript
         - certificate-gate
     - id: about
       title: Sobre
@@ -178,6 +213,7 @@ content_pages:
       editable_regions:
         - hero
         - public-page-triad
+        - about-route
         - principles
         - site-map
         - about-next-step
@@ -196,7 +232,9 @@ content_collections:
       - orientation
       - body
       - exercise
+      - takeaways
       - quiz
+      - after-quiz
       - navigation
     phases:
       - id: fundamentos

@@ -137,7 +137,20 @@ cat(sprintf("h² teórico:          %.4f\n", va/vp))
 Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção. Depois avance para o quiz com essa frase em mente.
 :::
 
+::: {.module-takeaways role="note" aria-label="Resumo técnico do módulo"}
+**O que levar deste módulo**
+
+- O fenótipo observado combina componentes genéticos e ambientais, não apenas valor genético.
+- Herdabilidade resume a fração aditiva útil para seleção dentro de uma população e ambiente definidos.
+:::
+
 ::: {.quiz-container data-module="02"}
+:::
+
+::: {.module-after-quiz role="note" aria-label="Próximo passo depois do quiz"}
+**Depois do quiz**
+
+Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e ao exercício proposto. Se estiver consistente, avance mantendo uma frase técnica registrada.
 :::
 
 ::: {.module-phase-note role="note" aria-label="Transição para a fase de dados e parâmetros"}

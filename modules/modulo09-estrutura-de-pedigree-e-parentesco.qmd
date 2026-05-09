@@ -146,7 +146,20 @@ for (g in list(1:3, 4:5, 6:7, 8:9, 10)) {
 Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção. Depois avance para o quiz com essa frase em mente.
 :::
 
+::: {.module-takeaways role="note" aria-label="Resumo técnico do módulo"}
+**O que levar deste módulo**
+
+- A matriz de parentesco transforma genealogia em covariância genética utilizável em avaliação.
+- Diagonal, fora da diagonal e inversa da matriz carregam informação sobre endogamia e conexão entre animais.
+:::
+
 ::: {.quiz-container data-module="09"}
+:::
+
+::: {.module-after-quiz role="note" aria-label="Próximo passo depois do quiz"}
+**Depois do quiz**
+
+Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e ao exercício proposto. Se estiver consistente, avance mantendo uma frase técnica registrada.
 :::
 
 ::: {.module-phase-note role="note" aria-label="Transição para a fase de genômica"}

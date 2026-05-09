@@ -20,10 +20,11 @@ number-sections: false
       <a class="btn btn-secondary" href="../index.html">Voltar ao início</a>
     </div>
   </div>
-  <div class="modules-landing-panel" aria-label="Resumo da trilha">
+  <div class="modules-landing-panel" role="note" aria-label="Resumo da trilha">
     <strong>12 módulos</strong>
     <span>4 fases editoriais</span>
     <span>Scripts reproduzíveis em R</span>
+    <span>Certificado ao concluir os quizzes</span>
     <span>Sequência registrada no manifesto do site</span>
   </div>
 </section>
@@ -74,6 +75,34 @@ Se você chegou por um conceito específico, use busca e glossário antes de esc
 [Buscar conceito](../busca.qmd){.btn .btn-secondary}
 [Consultar glossário](../glossario.qmd){.btn .btn-secondary}
 [Ver roteiro](../semanas/index.qmd){.btn .btn-secondary}
+:::
+:::
+
+::: {.modules-completion-flow role="region" aria-label="Como concluir a trilha MGenética"}
+::: {.modules-completion-copy}
+**Da primeira leitura ao certificado**
+
+O percurso público fecha quando o visitante completa os quizzes dos 12 módulos. A conclusão continua local ao navegador, sem cadastro e sem envio de dados.
+:::
+
+::: {.modules-completion-steps role="list" aria-label="Etapas de conclusão"}
+::: {.modules-completion-step role="listitem"}
+**1 · Estudar**
+
+Leia o módulo e execute o script correspondente.
+:::
+
+::: {.modules-completion-step role="listitem"}
+**2 · Validar**
+
+Responda ao quiz e registre o progresso local.
+:::
+
+::: {.modules-completion-step role="listitem"}
+**3 · Emitir**
+
+Abra o certificado quando todos os módulos estiverem concluídos.
+:::
 :::
 :::
 
@@ -205,6 +234,34 @@ Integração entre parentesco genômico, associação e predição genômica.
 :::
 :::
 
+::: {.modules-study-check role="region" aria-label="Como escolher o próximo módulo"}
+::: {.modules-study-check-copy}
+**Checkpoint antes de abrir um módulo**
+
+Escolha o próximo módulo pela pergunta que você consegue formular agora. Se a pergunta ainda estiver vaga, volte à fase correspondente antes de seguir para o conteúdo longo.
+:::
+
+::: {.modules-study-check-list role="list" aria-label="Critérios para escolher o próximo módulo"}
+::: {.modules-study-check-item role="listitem"}
+**Base**
+
+Consigo explicar o conceito anterior sem consultar a resposta?
+:::
+
+::: {.modules-study-check-item role="listitem"}
+**Prática**
+
+Sei qual script vou executar e qual parâmetro pretendo alterar?
+:::
+
+::: {.modules-study-check-item role="listitem"}
+**Fechamento**
+
+Tenho uma frase técnica para comparar com o quiz?
+:::
+:::
+:::
+
 ::: {.modules-next-step role="region" aria-label="Próximo passo após revisar os módulos"}
 ::: {.modules-next-step-copy}
 ## Próximo passo recomendado
@@ -215,5 +272,6 @@ Se esta é sua primeira visita, comece pelo Módulo 01. Se você já conhece a b
 ::: {.modules-next-step-actions role="navigation" aria-label="Ações finais do índice de módulos"}
 [Começar pelo Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
 [Planejar por semana](../semanas/index.qmd){.btn .btn-secondary}
+[Entender o certificado](../certificado.qmd){.btn .btn-secondary}
 :::
 :::

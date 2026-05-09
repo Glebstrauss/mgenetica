@@ -137,6 +137,19 @@ Escreva uma conclusão técnica curta.
 :::
 :::
 
+::: {.route-finish-band role="region" aria-label="Fechamento da trilha de estudo"}
+::: {.route-finish-copy}
+**Feche cada semana com evidência**
+
+O roteiro só vira progresso real quando a leitura, o script e a interpretação curta são concluídos. Use os quizzes dos módulos como verificação local antes de avançar para o certificado.
+:::
+
+::: {.route-finish-actions role="navigation" aria-label="Ações para fechar a trilha"}
+[Revisar módulos](../modules/index.qmd){.btn .btn-secondary}
+[Entender o certificado](../certificado.qmd){.btn .btn-secondary}
+:::
+:::
+
 ::: {.callout-note}
 Para validar todos os scripts de uma vez, execute `Rscript scripts/run_all_modules.R` na raiz do projeto.
 :::

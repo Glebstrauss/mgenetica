@@ -61,6 +61,612 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-09 — Publication gate fix and publish request
+
+### Block objective
+
+Publish the accumulated site-only public UX changes after the explicit user request, while preserving the required prepublish gate and keeping unrelated untracked files out of the commit.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` recorded a project-level Quarto render rename failure in the prepublish gate.
+   Implementation: reproduced the project render with `QUARTO_NUM_THREADS=1` and confirmed the render completes.
+   Testing: `QUARTO_NUM_THREADS=1 ... quarto render` passed.
+   Notes: the issue was tied to project render concurrency, not to page content.
+2. Diagnosis: relying on an external environment variable would be fragile for future publication.
+   Implementation: updated `scripts/prepublish_site_check.R` to set `QUARTO_NUM_THREADS=1` when it is not already defined.
+   Testing: ran the normal prepublish command without manually setting `QUARTO_NUM_THREADS`.
+   Notes: this keeps the publication gate reproducible.
+3. Diagnosis: the public site still needed the required full local gate immediately before commit/push.
+   Implementation: ran `PATH=".../quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`.
+   Testing: full prepublish passed with `prepublish site check ok`.
+   Notes: non-fatal `renv` sandbox and YAML coercion warnings remained.
+4. Diagnosis: publication should include only tracked site-related changes.
+   Implementation: reviewed `git status --short --branch` and kept `.agents/`, `.vscode/` and `AUTOMATION_SITE.md` untracked.
+   Testing: pending commit scope contains tracked site files only.
+   Notes: no app files were intentionally changed.
+5. Diagnosis: after publishing, the next site task should focus on remote deployment health, not more local UX edits.
+   Implementation: updated `NEXT_SITE.md` to reflect that the local prepublish blocker is fixed and the next step is GitHub Actions/deployed-site validation after push.
+   Testing: manifest and whitespace checks remained clean before publication.
+   Notes: publication is explicit in this block because the user requested it.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `WORKLOG_SITE.md`
+- `scripts/prepublish_site_check.R`
+
+### Commands executed
+
+- `git status --short --branch`
+- `find modules -maxdepth 1 -name '*.html' -print`
+- `QUARTO_NUM_THREADS=1 PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Project-level Quarto render passed when serialized.
+- Full prepublish gate passed after the script change.
+- Unrelated untracked files remained uncommitted.
+
+### Pending items
+
+- Commit and push this publication set.
+- Watch GitHub Actions after push.
+- Run deployed-site validation after deployment completes.
+
+---
+
+## 2026-05-09 — Public readiness checklist and navigation UX block
+
+### Block objective
+
+Continue a long, site-only public visual/UX evolution block under `NEXT_SITE.md`, without publishing and without app changes. The block focused on public readiness cues before publication review: homepage study readiness, certificate discoverability, module-choice confidence and responsive CTA behavior.
+
+### Cycles executed
+
+1. Diagnosis: the homepage had entry guidance and final CTAs, but lacked a compact checklist telling visitors what a successful study session should produce.
+   Implementation: added `.home-readiness` with three public checklist items: question, code and synthesis.
+   Testing: rendered `index.qmd` and confirmed `.home-readiness`, `.home-readiness-grid` and `.home-readiness-item` in `docs/index.html`.
+   Notes: the block stays editorial; it does not add progress tracking or app behavior.
+2. Diagnosis: the certificate flow was important but depended mainly on footer/final CTAs for discovery.
+   Implementation: added `Certificado` to the primary navbar and aligned the manifest navigation contract.
+   Testing: rendered homepage/module/certificate pages and confirmed the navbar certificate link in generated HTML.
+   Notes: no publication, authentication or backend behavior was introduced.
+3. Diagnosis: the module index listed all modules but did not give a final decision aid before opening a module from the catalog.
+   Implementation: added `.modules-study-check` after the module grid with criteria for base, practice and closure.
+   Testing: rendered `modules/index.qmd` and confirmed `.modules-study-check` and its list in `docs/modules/index.html`.
+   Notes: this improves module-choice confidence without changing longform scientific content.
+4. Diagnosis: several CTA groups and new checklist grids needed consistent mobile behavior before publication review.
+   Implementation: added responsive collapse/wrapping coverage for `.home-readiness`, `.modules-study-check`, module next-step actions, utility/route actions, certificate form actions and footer nav spacing.
+   Testing: SCSS validation passed through `scripts/validate_site_manifest.R`, `git diff --check` and the explicit Quarto render set.
+   Notes: dark-mode parity was added for the new checklist components.
+5. Diagnosis: new public components must remain part of the future app-management contract and validation layer.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` for `home-readiness` and `modules-study-check`.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` passed.
+   Notes: this is metadata/contract support for the public site, not app work.
+
+### Files changed in this block
+
+- `_quarto.yml`
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `modules/index.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Commands executed
+
+- `git status --short --branch`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd certificado.qmd --no-execute`
+- `rg -n "home-readiness|modules-study-check|href=\"certificado.html\"|href=\"../certificado.html\"|Feedback" docs/index.html docs/modules/index.html docs/certificado.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render busca.qmd certificado.qmd glossario.qmd index.qmd modules/index.qmd modules/modulo01-introducao-ao-melhoramento-animal.qmd modules/modulo02-bases-da-genetica-quantitativa.qmd modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd modules/modulo05-herdabilidade-e-repetibilidade.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo07-modelos-lineares-e-modelos-mistos.qmd modules/modulo08-blup-e-avaliacao-genetica.qmd modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd perfil.qmd semanas/index.qmd --no-execute`
+- `find modules -maxdepth 1 -name '*.html' -print`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Targeted static renders passed for homepage, module index and certificate page.
+- Explicit render of all public `.qmd` pages with `--no-execute` passed.
+- Rendered HTML inspection confirmed `.home-readiness`, `.modules-study-check` and the primary navbar certificate link.
+- Full `scripts/prepublish_site_check.R` did not complete: it passed manifest, YAML, SCSS, JS syntax, module data scripts and `git diff --check`, but failed during the final project-level `quarto render` with a Quarto rename error for generated module HTML. Transient source HTML artifacts left by the failed render were removed; `find modules -maxdepth 1 -name '*.html' -print` returned no files afterward.
+
+### Pending items
+
+- Resolve the project-level Quarto render rename failure before any publication.
+- Run true browser visual QA with screenshots if browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Homepage entry-decision UX block
+
+### Block objective
+
+Continue a long site-only public visual/UX evolution block under `NEXT_SITE.md`, without publishing and without app changes. The block focused on helping visitors choose the right homepage entry route before selecting module, index or study-plan cards.
+
+### Cycles executed
+
+1. Diagnosis: the homepage had orientation and entry cards, but visitors still had to infer whether to start, review, or plan.
+   Implementation: selected homepage entry guidance as the next visible UX improvement.
+   Testing: reviewed `index.qmd`, existing entry styles, manifest mappings and component documentation.
+   Notes: scope remained public homepage only plus site contract files.
+2. Diagnosis: the entry section needed an intermediate decision aid before the action cards.
+   Implementation: added `.entry-decision` with guidance for first-time visitors, review visitors and planning visitors.
+   Testing: rendered `index.qmd` and confirmed `.entry-decision`, `.entry-decision-list` and three items in `docs/index.html`.
+   Notes: the primary path still points to Module 01.
+3. Diagnosis: the new panel needed to support CTA hierarchy rather than compete with the entry cards.
+   Implementation: kept the decision panel informational, with no extra buttons; existing entry CTAs remain the actions.
+   Testing: inspected rendered HTML structure around the homepage entry section.
+   Notes: this avoids adding secondary visual noise.
+4. Diagnosis: the panel needed responsive, accessibility and dark-mode coverage.
+   Implementation: added light/dark styling, list semantics, mobile one-column collapse and component-layer wrapping/hover/focus coverage.
+   Testing: SCSS validation passed inside the full prepublish gate.
+   Notes: the block uses `role="region"` and nested `role="list"` / `role="listitem"` semantics.
+5. Diagnosis: the new homepage region needed modular contract coverage for future app-managed editing.
+   Implementation: added `entry-decision` to `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R`.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R`, `git diff --check`, targeted render and full prepublish passed.
+   Notes: no publication commands were run.
+
+### Files changed
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Improvements implemented
+
+- Added a homepage decision panel to help visitors choose start, review or planning routes.
+- Preserved the existing CTA hierarchy by keeping the panel informational.
+- Added responsive, dark-mode and component-contract coverage for `.entry-decision`.
+
+### Problems fixed
+
+- Homepage entry cards now have clearer pre-selection guidance.
+- Future edits are less likely to omit or drift this region because the manifest validator checks it.
+
+### Commands executed
+
+- `git status --short --branch`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd --no-execute`
+- `rg -n "entry-decision|Escolha pela situação atual|Critérios para escolher uma rota" docs/index.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Targeted static render passed for homepage.
+- Rendered HTML inspection confirmed `.entry-decision` in `docs/index.html`.
+- Full prepublish site check passed, including SCSS validation, JS syntax checks, module data scripts and complete Quarto render.
+
+### Pending items
+
+- Run true browser visual QA with screenshots if browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Publication readiness review: hero/footer/certificate polish
+
+### Block objective
+
+Execute a long, site-only public UX review block following `NEXT_SITE.md` (`publication-readiness-review`). Prepare the current local UX/a11y changes for publication readiness without publishing, committing or touching the app.
+
+### Cycles executed
+
+1. Diagnosis: the homepage hero proof panel communicated “tempo” and “progresso local”, but the completion cue was still implicit.
+   Implementation: added a third proof item (“Certificado”) and a wide-row layout helper (`.hero-panel-proof-item--wide`) to keep hierarchy clean.
+   Testing: rendered `index.qmd`; confirmed the new proof item and class in the generated HTML.
+   Notes: keeps the primary CTA unchanged while making completion more visible above the fold.
+
+2. Diagnosis: footer contained a Quarto-generated “Criar uma issue” action that looked more administrative than editorial.
+   Implementation: disabled Quarto `repo-actions` and added an explicit “Feedback” link as a normal footer item.
+   Testing: rendered `index.qmd`; confirmed the footer no longer renders the Quarto repo action and includes the new footer link.
+   Notes: keeps feedback available without injecting a tooling-oriented UI element.
+
+3. Diagnosis: certificate pending state listed modules as plain text, forcing extra navigation steps to resume study.
+   Implementation: made module titles in the pending list link to their corresponding module pages and added minimal focus/hover styling for those links.
+   Testing: rendered `certificado.qmd`; confirmed the new `MODULE_LINKS` mapping and link markup in the embedded script.
+   Notes: preserves privacy and local-storage model; improves “continue study” flow.
+
+4. Diagnosis: fixed header + anchor navigation can hide headings after scroll, impacting ToC usability and keyboard navigation context.
+   Implementation: added `scroll-margin-top` for anchored headings inside `main.content`.
+   Testing: rendered `modules/modulo01-introducao-ao-melhoramento-animal.qmd`; ensured SCSS compiles and output is generated without errors.
+   Notes: improves usability across modules and internal pages without changing content.
+
+5. Diagnosis: the site manifest should remain the canonical public navigation contract and support external links where needed.
+   Implementation: aligned `data/site-manifest.yml` navigation with `_quarto.yml` (including the new footer “Feedback”), and updated `scripts/validate_site_manifest.R` to allow external `https://` navigation hrefs.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` passed.
+   Notes: prepares metadata for future app-based management without changing the app.
+
+### Files changed in this block
+
+- `_quarto.yml`
+- `certificado.qmd`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+
+### Commands executed
+
+- `git diff --check`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd --no-execute`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render certificado.qmd --no-execute`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render modules/modulo01-introducao-ao-melhoramento-animal.qmd --no-execute`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript --vanilla scripts/prepublish_site_check.R`
+
+### Test results
+
+- `git diff --check` OK.
+- Site manifest validation passed.
+- Full prepublish site check passed (SCSS, JS syntax, module scripts and full Quarto render).
+
+### Pending items
+
+- Run true browser visual QA (light+dark + mobile widths) in an environment where browser tooling can open local renders.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Module technical takeaways UX block
+
+### Block objective
+
+Continue a long site-only public visual/UX evolution block under `NEXT_SITE.md`, without publishing and without app changes. The block focused on improving module reading rhythm by adding concise technical takeaways before each quiz, then documenting and validating the new module pattern.
+
+### Cycles executed
+
+1. Diagnosis: module pages had a pre-quiz checkpoint and post-quiz continuity note, but lacked a concise summary to help visitors consolidate the lesson before self-assessment.
+   Implementation: selected the backlog item for module summaries as a visible public UX improvement.
+   Testing: inspected all module files with `rg` for checkpoint, quiz and after-quiz placement.
+   Notes: scope stayed within public `.qmd` module pages and site contracts.
+2. Diagnosis: every module needed the same structural improvement, but the content had to stay specific to each scientific topic.
+   Implementation: added `.module-takeaways` blocks to all 12 modules, each with two concise technical bullets.
+   Testing: source inspection confirmed the new block exists across all module pages.
+   Notes: no scientific scripts, quizzes or app files were changed.
+3. Diagnosis: the takeaways needed to feel integrated with the premium public module design rather than default markdown lists.
+   Implementation: added light-mode styling, compact list spacing, mobile padding and dark-mode parity for `.module-takeaways`.
+   Testing: SCSS validation passed inside the prepublish gate.
+   Notes: the block sits between the study checkpoint and quiz to improve learning flow.
+4. Diagnosis: the new module summary pattern needed contract coverage for future app-managed editorial regions.
+   Implementation: added `module-takeaways` to `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R`; the validator now requires it in each module.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` and `git diff --check` passed.
+   Notes: the collection editable regions now include `takeaways`.
+5. Diagnosis: the change affects every module, so representative and full renders were required.
+   Implementation: rendered Modules 01, 06 and 12 directly, then ran the full prepublish gate.
+   Testing: generated HTML inspection confirmed `.module-takeaways` in start, middle and final modules; full prepublish passed.
+   Notes: repeated `renv` sandbox and YAML coercion warnings remained non-fatal and unchanged.
+
+### Files changed
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `data/site-manifest.yml`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Improvements implemented
+
+- Added technical takeaways before the quiz in every module.
+- Styled the new summary block for light mode, dark mode and mobile.
+- Declared `takeaways` as a module editable region and validation requirement.
+
+### Problems fixed
+
+- Module quizzes are now preceded by a concise synthesis instead of relying only on the broader checkpoint.
+- Future module edits are less likely to omit the summary pattern because validation now checks it.
+
+### Commands executed
+
+- `git status --short --branch`
+- `rg -n "module-summary|module-takeaway|module-study-checkpoint|quiz-container|module-after-quiz" modules -g '*.qmd'`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render modules/modulo01-introducao-ao-melhoramento-animal.qmd --no-execute`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd --no-execute`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `rg -n "module-takeaways|O que levar deste módulo" docs/modules/modulo01-introducao-ao-melhoramento-animal.html docs/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html docs/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Targeted static renders passed for Modules 01, 06 and 12.
+- Rendered HTML inspection confirmed `.module-takeaways` in representative module pages.
+- Full prepublish site check passed, including SCSS validation, JS syntax checks, module data scripts and complete Quarto render.
+
+### Pending items
+
+- Run true browser visual QA with screenshots if browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Certificate readiness and footer clarity UX block
+
+### Block objective
+
+Continue a long site-only public visual/UX evolution block under `NEXT_SITE.md`, without publishing and without app changes. The block focused on making the certificate page more self-explanatory before the browser-local gate, improving public footer wording and extending the component/manifest contract.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` remained in publication-readiness mode, but the current request asked for another public UX evolution block without publication.
+   Implementation: selected the certificate page and public footer as remaining visitor-facing completion/navigation surfaces.
+   Testing: reviewed `certificado.qmd`, `busca.qmd`, `glossario.qmd`, `_quarto.yml`, manifest mappings and component documentation.
+   Notes: no app files were touched.
+2. Diagnosis: the footer left label was generic and did not reinforce the public learning route.
+   Implementation: changed the footer microcopy to `MGenética · trilha pública em genética aplicada`.
+   Testing: rendered homepage and certificate page; generated HTML contains the updated footer label.
+   Notes: footer navigation links remained unchanged and manifest-aligned.
+3. Diagnosis: the certificate page explained criterion and privacy but did not show a static step-by-step route before the dynamic completion gate.
+   Implementation: added `.certificate-readiness-guide` with Estude, Valide and Emita steps plus contextual actions to modules, route and search.
+   Testing: rendered `certificado.qmd` and confirmed `.certificate-readiness-guide`, steps and actions in `docs/certificado.html`.
+   Notes: this improves the page even before JavaScript reveals incomplete/ready state.
+4. Diagnosis: the new certificate block needed responsive behavior, focus/wrapping coverage and dark-mode parity.
+   Implementation: added SCSS for the guide, cards, actions, mobile collapse and dark-mode text/background treatment; included it in the public component layer.
+   Testing: SCSS validation passed inside prepublish.
+   Notes: actions stack on small screens to prevent cramped buttons.
+5. Diagnosis: the certificate readiness region must be part of the future app-management contract and local validation.
+   Implementation: added `certificate-readiness-guide` to `data/site-manifest.yml`, documented it in `PUBLIC_SITE_COMPONENTS.md`, and mapped `certificate-readiness` in `scripts/validate_site_manifest.R`.
+   Testing: manifest validation, whitespace diff check, targeted renders and full prepublish passed.
+   Notes: browser/screenshot tooling remains unavailable in this session.
+
+### Files changed
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `_quarto.yml`
+- `certificado.qmd`
+- `data/site-manifest.yml`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Improvements implemented
+
+- Added static certificate readiness guidance before the dynamic certificate gate.
+- Improved footer microcopy to reinforce the public learning route.
+- Added responsive and dark-mode styling for the new certificate readiness pattern.
+- Extended manifest/documentation/validation coverage for `certificate-readiness`.
+
+### Problems fixed
+
+- Certificate page no longer relies only on dynamic state to explain how to unlock the certificate.
+- Footer wording is less generic and better aligned with the public site role.
+- Future edits now have a declared certificate readiness region to validate.
+
+### Commands executed
+
+- `git status --short --branch`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render certificado.qmd --no-execute`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd --no-execute`
+- `rg -n "certificate-readiness|Antes de gerar o certificado|Rotas antes de emitir" docs/certificado.html`
+- `rg -n "trilha pública em genética aplicada" docs/index.html docs/certificado.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Targeted static renders passed for certificate and homepage.
+- Rendered HTML inspection confirmed the certificate readiness guide and updated footer microcopy.
+- Full prepublish site check passed, including SCSS validation, JS syntax checks, module data scripts and complete Quarto render.
+
+### Pending items
+
+- Run true browser visual QA with screenshots if browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Public resources and institutional route UX block
+
+### Block objective
+
+Continue a long site-only public visual/UX evolution block under `NEXT_SITE.md`, without publishing and without app changes. The block focused on making the homepage resource area more visitor-facing, clarifying the global start CTA, strengthening the institutional Sobre page and extending the manifest/component contract.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` was still in publication-readiness mode, but the requested block asked for further public UX evolution without publication.
+   Implementation: selected remaining visible public-site gaps: homepage resources, global start CTA and institutional route explanation.
+   Testing: reviewed `index.qmd`, `perfil.qmd`, `_quarto.yml`, `data/site-manifest.yml` and the current worklog.
+   Notes: no app files were touched.
+2. Diagnosis: the homepage “Recursos práticos” section exposed internal operational language, including GitHub Actions, which was not useful as public UX.
+   Implementation: replaced the bullet panel with `.resource-grid` / `.resource-card` cards for scripts, simulated data and local quizzes.
+   Testing: rendered `index.qmd` and confirmed `.resource-grid`, `.resource-card` and the new heading in `docs/index.html`.
+   Notes: this keeps resource support editorial and study-oriented.
+3. Diagnosis: the top-right navbar CTA was terse as “Começar”, which was less explicit on smaller screens and in repeated navigation contexts.
+   Implementation: changed the right navbar CTA label to “Começar Módulo 01”.
+   Testing: rendered `index.qmd` and confirmed the new label in `docs/index.html`.
+   Notes: primary path is clearer without changing destination.
+4. Diagnosis: the Sobre page explained the project role but did not concisely connect the public identity to the visitor's route through study, support and conclusion.
+   Implementation: added `.about-route` with three semantic steps: Estudar, Consultar and Concluir.
+   Testing: rendered `perfil.qmd` and confirmed `.about-route` and `.about-route-steps` in `docs/perfil.html`.
+   Notes: this strengthens institutional clarity without turning the page into an app/admin description.
+5. Diagnosis: the new patterns needed responsive/dark parity and future app-management contract coverage.
+   Implementation: added light/dark SCSS for resource/about-route cards, mobile grid collapse, public component-layer inclusion, manifest editable regions, component documentation and validator coverage. The validator now also requires `.module-after-quiz` in every module.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R`, `git diff --check` and the full prepublish gate passed.
+   Notes: browser tooling was searched but not exposed; validation relied on static render and generated HTML inspection.
+
+### Files changed
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `_quarto.yml`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `perfil.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Improvements implemented
+
+- Reframed homepage resources as public learning support cards.
+- Made the global start CTA more explicit as “Começar Módulo 01”.
+- Added a concise institutional route block to the Sobre page.
+- Added manifest, documentation and validation coverage for `.resource-grid`, `.resource-card` and `.about-route`.
+
+### Problems fixed
+
+- Removed internal publication/infrastructure language from the public homepage resource area.
+- Reduced ambiguity in the navbar start action.
+- Strengthened validation for the module post-quiz pattern across all module files.
+
+### Commands executed
+
+- `git status --short --branch`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd --no-execute`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render perfil.qmd --no-execute`
+- `rg -n "resource-grid|resource-card|Apoio prático|Começar Módulo 01" docs/index.html`
+- `rg -n "about-route|Como a experiência pública se organiza" docs/perfil.html`
+- `tool_search` for browser/local inspection tooling
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Targeted static renders passed for homepage and Sobre.
+- Rendered HTML inspection confirmed the new resource cards, the explicit navbar CTA and the Sobre route block.
+- Full prepublish site check passed, including SCSS validation, JS syntax checks, module data scripts and complete Quarto render.
+
+### Pending items
+
+- Run true browser visual QA with screenshots if browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Module post-quiz continuity and readiness block
+
+### Block objective
+
+Continue a long site-only public visual/UX evolution block under `NEXT_SITE.md`, without publishing and without app changes. The block focused on making the internal module flow less abrupt after quizzes, preserving the public learning tone and keeping the new pattern documented, responsive and validated.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` was in publication-readiness mode, but the current request asked for another visual/UX evolution block with no publication.
+   Implementation: kept the work site-only and chose a visible public learning-flow improvement inside modules.
+   Testing: reviewed the module quiz/navigation structure with `rg`.
+   Notes: no app files were touched and no commit/push was run.
+2. Diagnosis: all modules had a pre-quiz checkpoint, but the experience jumped from quiz directly into navigation or phase notes.
+   Implementation: added `.module-after-quiz` notes to all 12 module pages, with a certificate-oriented variant in Module 12.
+   Testing: inspected source placement after each `.quiz-container`.
+   Notes: the new note asks the visitor to revisit the R exercise or advance with a technical phrase recorded.
+3. Diagnosis: the new module note needed a coherent public visual treatment rather than default callout styling.
+   Implementation: added light-mode SCSS, mobile padding behavior, text wrapping and public component-layer inclusion for `.module-after-quiz`.
+   Testing: SCSS validation later passed in the full prepublish gate.
+   Notes: the component remains editorial and compact, not dashboard-like.
+4. Diagnosis: dark mode and modular future management needed parity.
+   Implementation: added dark-mode styling, registered `module-after-quiz` in `data/site-manifest.yml`, documented it in `PUBLIC_SITE_COMPONENTS.md`, and added it to `scripts/validate_site_manifest.R`.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` passed.
+   Notes: modules now expose `after-quiz` as a public editable region.
+5. Diagnosis: the change affects every module, so representative and full renders were needed.
+   Implementation: rendered Modules 01, 06 and 12 directly, then ran the full prepublish gate.
+   Testing: targeted renders passed; generated HTML contains `.module-after-quiz` in the start, transition and final modules; full `scripts/prepublish_site_check.R` passed.
+   Notes: repeated `renv` sandbox and YAML coercion warnings remained non-fatal and unchanged.
+
+### Files changed
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `data/site-manifest.yml`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Improvements implemented
+
+- Standardized post-quiz continuity guidance across all module pages.
+- Added light/dark and responsive styling for the new public learning-flow component.
+- Added manifest, documentation and validation coverage for the new `module-after-quiz` pattern and `after-quiz` editable region.
+
+### Problems fixed
+
+- Module pages no longer end quiz sections abruptly before navigation.
+- The final module now points the visitor from quiz completion toward certificate readiness with clearer editorial context.
+- The future app-management contract now knows about the post-quiz module region.
+
+### Commands executed
+
+- `git status --short --branch`
+- `rg -n "quiz-container|module-nav|module-after-quiz|phase-note|completion-note" modules -g '*.qmd'`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render modules/modulo01-introducao-ao-melhoramento-animal.qmd --no-execute`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd --no-execute`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `rg -n "module-after-quiz|Depois do quiz" docs/modules/modulo01-introducao-ao-melhoramento-animal.html docs/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html docs/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Targeted static renders passed for Modules 01, 06 and 12.
+- Rendered HTML inspection confirmed `.module-after-quiz` in representative start, transition and final modules.
+- Full prepublish site check passed, including SCSS validation, JS syntax checks, module data scripts and complete Quarto render.
+
+### Pending items
+
+- Run true browser visual QA with screenshots if browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
 ## 2026-05-09 — Sixth long public visual/UX module-anatomy and support-flow block
 
 ### Block objective
@@ -3702,3 +4308,284 @@ Publish the recent public-site UX changes after running the prepublication gate.
 
 - Run deployed-site validation after the validator-copy alignment is pushed.
 - Keep the remaining untracked local files out of publication unless explicitly needed: `.agents/`, `.vscode/`, `AUTOMATION_SITE.md`.
+
+---
+
+## 2026-05-09 — Long public UX evolution block: hero proof, completion flow and certificate components
+
+### Block objective
+
+Execute a long, site-only public visual/UX evolution block following `NEXT_SITE.md` as the main contract after the previous publication. Do not alter the app and do not publish automatically.
+
+### Cycles executed
+
+1. Diagnosis: the homepage first viewport had strong title and CTAs, but the dark logo panel communicated little beyond identity.
+   Implementation: added `.hero-panel-proof` under the logo with a concise 12-module learning promise.
+   Testing: included in the full Quarto render through `scripts/prepublish_site_check.R`.
+   Notes: keeps the first viewport public/editorial and avoids adding admin-like controls.
+
+2. Diagnosis: the module index explained phases and study route, but the completion/certificate path was less visible before entering modules.
+   Implementation: added certificate completion language to the module landing panel and a final “Entender o certificado” CTA.
+   Testing: included in full render and whitespace diff check.
+   Notes: reinforces the learning journey without changing module content.
+
+3. Diagnosis: the certificate page still relied on large inline style blocks for the preview and form, making visual maintenance harder.
+   Implementation: moved the certificate preview, name band, footer, form and actions to public CSS classes.
+   Testing: checked that `certificado.qmd` no longer contains `style=""` inline attributes; full render passed.
+   Notes: improves public component reuse and dark-mode maintainability.
+
+4. Diagnosis: the certificate form used color/border changes for invalid input without a semantic invalid state or described help.
+   Implementation: added `autocomplete="name"`, `aria-describedby`, `aria-invalid` handling and CSS for invalid state.
+   Testing: JavaScript syntax passed as part of prepublish; rendered certificate page passed.
+   Notes: keeps all data browser-local and improves keyboard/screen-reader clarity.
+
+5. Diagnosis: new public components need to be known by the manifest/documentation contract for future app-managed metadata.
+   Implementation: added `hero-panel-proof`, `certificate-preview` and `certificate-form` to `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R`.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` passed.
+   Notes: this is structure support for public UX, not app work.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `certificado.qmd`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `modules/index.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Commands executed
+
+- `git status --short --branch`
+- `git diff --check`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Full prepublish site check passed, including SCSS validation, JS syntax checks, module data scripts and complete Quarto render.
+
+### Pending items
+
+- Review the rendered homepage, module index and certificate page visually in browser/light/dark before publication.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Rendered public UX review follow-up: hero proof, completion bridge and certificate fallback
+
+### Block objective
+
+Execute the `rendered-public-ux-review` block in `NEXT_SITE.md` as a site-only long block. Review the local public UX changes from the previous block, correct rendered/public-flow issues and leave the site validated without publication.
+
+### Cycles executed
+
+1. Diagnosis: the homepage hero proof rendered correctly, but the dark panel could carry more useful public context without becoming an app dashboard.
+   Implementation: added a compact proof list inside `.hero-panel-proof` with estimated course rhythm and local-progress framing.
+   Testing: rendered `index.qmd` and confirmed `.hero-panel-proof-list` / `.hero-panel-proof-item` in `docs/index.html`.
+   Notes: this keeps the first viewport focused on the public learning promise.
+
+2. Diagnosis: the module index had the certificate CTA, but the relation between studying modules, validating quizzes and emitting the certificate needed clearer editorial structure.
+   Implementation: added `.modules-completion-flow` with three public steps: study, validate and emit.
+   Testing: rendered `modules/index.qmd` and confirmed the completion flow in `docs/modules/index.html`.
+   Notes: this improves module-to-certificate continuity without changing lesson content.
+
+3. Diagnosis: the certificate page depends on browser-local JavaScript for progress state; without JavaScript the public page had no explicit fallback.
+   Implementation: added a `.certificate-noscript` status block and kept the preview/form as real rendered HTML.
+   Testing: rendered `certificado.qmd` and confirmed `certificate-noscript`, `certificate-preview` and `certificate-form` in `docs/certificado.html`.
+   Notes: the certificate remains browser-local; no backend or account flow was introduced.
+
+4. Diagnosis: tablet/mobile layouts could compress the new module completion flow and certificate preview.
+   Implementation: added responsive collapse for `.modules-completion-flow`, width/box-sizing protections for `.certificate-preview` and `.certificate-form input`, and dark-mode parity for the new blocks.
+   Testing: SCSS validation and static render passed.
+   Notes: improves responsiveness without adding new dependencies.
+
+5. Diagnosis: the new completion and fallback components must be part of the public component contract.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` for `.modules-completion-flow` and `.certificate-noscript`.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` passed.
+   Notes: supports future app-managed metadata while keeping public content separate from app behavior.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `certificado.qmd`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `modules/index.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Commands executed
+
+- `git status --short --branch`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd certificado.qmd --no-execute`
+- `rg` inspections of rendered HTML in `docs/index.html`, `docs/modules/index.html` and `docs/certificado.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Targeted static render for homepage, module index and certificate passed.
+- Full prepublish site check passed, including SCSS validation, JS syntax checks, module data scripts and complete Quarto render.
+
+### Pending items
+
+- Perform browser-level visual QA in light/dark mode if an interactive browser session is available.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Browser-readiness static QA: semantic polish and publication review prep
+
+### Block objective
+
+Execute the `browser-visual-qa-or-publication-readiness` block in `NEXT_SITE.md` as a site-only long block. Browser/screenshot tooling was not available in this session, so the block used static Quarto rendering, generated HTML inspection and targeted semantic/responsive fixes. No publication.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` asked for browser-level visual QA, but the available tool discovery did not expose a browser automation tool, and local screenshot CLIs (`playwright`, Chrome/Chromium, `wkhtmltoimage`) were not available.
+   Implementation: continued with static render evidence and documented the limitation; kept scope to public-site files.
+   Testing: confirmed absence of local browser/screenshot CLIs and proceeded with Quarto render inspections.
+   Notes: no app files touched.
+
+2. Diagnosis: the homepage hero proof panel rendered correctly, but its public proof content could better support first-viewport decision-making.
+   Implementation: kept the new `.hero-panel-proof-list` indicators and verified them in rendered HTML.
+   Testing: inspected `docs/index.html` for `.hero-panel-proof-list` and `.hero-panel-proof-item`.
+   Notes: reinforces visual/UX clarity without adding dashboard behavior.
+
+3. Diagnosis: the module index completion bridge rendered correctly, but the top summary panel used `aria-label` on a generic `div` without an explicit semantic role.
+   Implementation: added `role="note"` to `.modules-landing-panel`.
+   Testing: rendered `modules/index.qmd` and confirmed the role in `docs/modules/index.html`.
+   Notes: small accessibility improvement to public navigation context.
+
+4. Diagnosis: the certificate fallback and preview rendered correctly, but the preview region and no-JavaScript fallback could be more explicit.
+   Implementation: added `role="region"` to `.certificate-preview`, added a fallback link back to modules inside `.certificate-noscript`, and styled that link in light/dark mode.
+   Testing: rendered `certificado.qmd` and confirmed `certificate-noscript`, fallback link and `certificate-preview` role in `docs/certificado.html`.
+   Notes: certificate remains local/browser-only.
+
+5. Diagnosis: responsive/dark public component layer should include the new completion/fallback components consistently.
+   Implementation: kept `.modules-completion-flow`, `.certificate-noscript`, `.certificate-preview` and `.certificate-form` in the manifest/documentation/validation contract and added consolidated SCSS coverage for wrapping, state and dark-mode link color.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` and `git diff --check` passed.
+   Notes: improves future app-managed metadata readiness without app changes.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `certificado.qmd`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `modules/index.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Commands executed
+
+- `git status --short --branch`
+- `tool_search` for browser/local inspection tooling
+- `command -v wkhtmltoimage`
+- `command -v chromium`
+- `command -v google-chrome`
+- `command -v playwright`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render modules/index.qmd certificado.qmd --no-execute`
+- `rg` inspections of rendered HTML in `docs/modules/index.html` and `docs/certificado.html`
+- `git diff --check`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Targeted static render for module index and certificate passed.
+- Rendered HTML contained the expected semantic roles and fallback link.
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Full prepublish site check passed, including SCSS validation, JS syntax checks, module data scripts and complete Quarto render.
+
+### Pending items
+
+- Run true browser visual QA with screenshots if browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Public support-flow UX block: search, glossary and route return guidance
+
+### Block objective
+
+Execute another long, site-only public UX evolution block while following `NEXT_SITE.md`. Because local browser/screenshot tooling remains unavailable, use Quarto static renders and generated HTML inspection. Do not publish.
+
+### Cycles executed
+
+1. Diagnosis: the homepage first viewport introduced the study cycle but did not explicitly connect that cycle to completion.
+   Implementation: extended `.hero-signal` copy to mention that completed quizzes close the trail in the certificate.
+   Testing: rendered `index.qmd` and confirmed the updated sentence in `docs/index.html`.
+   Notes: small first-viewport clarity improvement without adding another CTA.
+
+2. Diagnosis: search and glossary acted as support pages but did not explicitly tell users how to return to the main learning path.
+   Implementation: added `.utility-return-guide` blocks to `busca.qmd` and `glossario.qmd` with restrained return CTAs.
+   Testing: rendered both pages and confirmed `.utility-return-guide` in `docs/busca.html` and `docs/glossario.html`.
+   Notes: keeps utility pages public and learning-oriented, not administrative.
+
+3. Diagnosis: the weekly route explained rhythm but did not visually separate the final evidence/checkpoint before certification.
+   Implementation: added `.route-finish-band` to `semanas/index.qmd` connecting weekly work, quizzes and certificate readiness.
+   Testing: rendered `semanas/index.qmd` and confirmed `.route-finish-band` in `docs/semanas/index.html`.
+   Notes: reinforces study completion without changing scientific lesson content.
+
+4. Diagnosis: new support-flow blocks needed responsive and dark-mode treatment to avoid button compression and contrast drift.
+   Implementation: added shared SCSS for `.utility-return-guide`, `.route-finish-band`, their action groups and dark-mode colors.
+   Testing: SCSS validation passed inside the final prepublish gate.
+   Notes: buttons collapse to one-column behavior through the existing public component system.
+
+5. Diagnosis: the new public support-flow components need to be part of the future app-management contract.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` for `utility-return` and `route-finish` regions.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` passed.
+   Notes: this remains site metadata and public component governance, not app work.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `busca.qmd`
+- `data/site-manifest.yml`
+- `glossario.qmd`
+- `index.qmd`
+- `scripts/validate_site_manifest.R`
+- `semanas/index.qmd`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Commands executed
+
+- `git status --short --branch`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render busca.qmd glossario.qmd semanas/index.qmd --no-execute`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd --no-execute`
+- `rg` inspections of rendered HTML in `docs/index.html`, `docs/busca.html`, `docs/glossario.html` and `docs/semanas/index.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Targeted static renders passed for homepage, search, glossary and study route.
+- Full prepublish site check passed, including SCSS validation, JS syntax checks, module data scripts and complete Quarto render.
+
+### Pending items
+
+- Run true browser visual QA with screenshots if browser tooling becomes available.
+- Publish only after explicit user request.

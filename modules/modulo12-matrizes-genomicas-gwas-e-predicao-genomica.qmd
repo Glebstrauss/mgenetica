@@ -166,7 +166,20 @@ cat(sprintf("n treinamento=%d  n validação=%d\n", length(train_id), length(val
 Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção. Depois avance para o quiz com essa frase em mente.
 :::
 
+::: {.module-takeaways role="note" aria-label="Resumo técnico do módulo"}
+**O que levar deste módulo**
+
+- Matrizes genômicas, GWAS e predição respondem perguntas diferentes sobre parentesco, associação e valor futuro.
+- A decisão aplicada depende de ligar sinal estatístico, qualidade dos dados e objetivo de seleção.
+:::
+
 ::: {.quiz-container data-module="12"}
+:::
+
+::: {.module-after-quiz role="note" aria-label="Próximo passo depois do quiz"}
+**Depois do quiz**
+
+Se o resultado do quiz estiver consistente, revise as frases técnicas registradas e avance para o certificado. Se houver dúvida, volte ao exercício proposto antes de concluir.
 :::
 
 ::: {.module-completion-note role="region" aria-label="Fechamento da trilha MGenética"}

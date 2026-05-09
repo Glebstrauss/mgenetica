@@ -43,6 +43,20 @@ Depois da consulta, retome a sequência dos módulos ou o roteiro semanal.
 :::
 :::
 
+::: {.utility-return-guide role="region" aria-label="Como usar a busca sem perder a sequência do curso"}
+::: {.utility-return-copy}
+**Use a busca como desvio curto**
+
+A busca funciona melhor quando ajuda a recuperar contexto e depois devolve você para uma decisão de estudo: continuar o módulo aberto, revisar a fase correspondente ou consultar o glossário.
+:::
+
+::: {.utility-return-actions role="navigation" aria-label="Rotas depois de encontrar um resultado"}
+[Retomar módulos](modules/index.qmd){.btn .btn-secondary}
+[Ver roteiro](semanas/index.qmd){.btn .btn-secondary}
+[Abrir certificado](certificado.qmd){.btn .btn-secondary}
+:::
+:::
+
 <link href="_pagefind/pagefind-ui.css" rel="stylesheet">
 <script src="_pagefind/pagefind-ui.js"></script>
 

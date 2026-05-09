@@ -138,7 +138,20 @@ Observando a tabela de progressão:
 Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção. Depois avance para o quiz com essa frase em mente.
 :::
 
+::: {.module-takeaways role="note" aria-label="Resumo técnico do módulo"}
+**O que levar deste módulo**
+
+- Ganho genético depende de variação disponível, intensidade de seleção, acurácia e intervalo entre gerações.
+- A equação do melhorista é mais útil quando vira uma comparação entre decisões possíveis de seleção.
+:::
+
 ::: {.quiz-container data-module="01"}
+:::
+
+::: {.module-after-quiz role="note" aria-label="Próximo passo depois do quiz"}
+**Depois do quiz**
+
+Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e ao exercício proposto. Se estiver consistente, avance mantendo uma frase técnica registrada.
 :::
 
 ```{=html}

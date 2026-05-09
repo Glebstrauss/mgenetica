@@ -40,6 +40,20 @@ Volte ao conteúdo principal para interpretar o termo em contexto.
 :::
 :::
 
+::: {.utility-return-guide role="region" aria-label="Como voltar do glossário para a trilha"}
+::: {.utility-return-copy}
+**Glossário é apoio, não ponto final**
+
+Depois de entender o termo, volte ao módulo em que ele aparece. A interpretação técnica depende do contexto, da simulação e da saída em R.
+:::
+
+::: {.utility-return-actions role="navigation" aria-label="Rotas depois de consultar o glossário"}
+[Voltar aos módulos](modules/index.qmd){.btn .btn-secondary}
+[Buscar no curso](busca.qmd){.btn .btn-secondary}
+[Planejar estudo](semanas/index.qmd){.btn .btn-secondary}
+:::
+:::
+
 ```{=html}
 <div class="glossary-panel">
 <div data-glossary></div>
