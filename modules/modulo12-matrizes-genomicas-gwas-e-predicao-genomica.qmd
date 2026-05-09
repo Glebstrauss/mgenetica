@@ -154,6 +154,12 @@ cat(sprintf("n treinamento=%d  n validação=%d\n", length(train_id), length(val
 **Interpretação:** GWAS identifica regiões associadas, mas não necessariamente o gene causal. O SNP com maior -log10(p) pode estar em LD com o QTL verdadeiro, sem ser o QTL em si. Confirmação funcional exige outras abordagens.
 :::
 
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de concluir a trilha, explique em uma frase quando usar matriz G, quando usar GWAS e quando usar predição genômica para apoiar uma decisão de seleção.
+:::
+
 ## Exercício proposto
 
 1. Aumente `n_qtl` para 50 (arquitetura mais poligênica). O GWAS ainda detecta picos claros?
@@ -189,7 +195,7 @@ Depois deste módulo, revise a interpretação que você escreveu nos checkpoint
 :::
 
 ```{=html}
-<div class="module-nav">
+<nav class="module-nav" aria-label="Navegação entre módulos">
   <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
@@ -202,5 +208,5 @@ Depois deste módulo, revise a interpretação que você escreveu nos checkpoint
     <span>Conclusão</span>
     <strong>Gerar certificado</strong>
   </a>
-</div>
+</nav>
 ```

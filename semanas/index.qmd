@@ -78,6 +78,34 @@ Marcadores SNP, controle de qualidade, matrizes genômicas, GWAS e predição.
 :::
 :::
 
+::: {.route-week-decision role="region" aria-label="Como escolher o ritmo semanal de estudo"}
+::: {.route-week-decision-copy}
+**Ajuste o ritmo sem quebrar a sequência**
+
+Uma semana por módulo é uma referência. O ponto importante é preservar o ciclo completo: leitura, script, alteração de parâmetro, interpretação e quiz.
+:::
+
+::: {.route-week-decision-grid role="list" aria-label="Ritmos possíveis para usar o roteiro"}
+::: {.route-week-decision-item role="listitem"}
+**Ritmo leve**
+
+Separe leitura e script em dois dias.
+:::
+
+::: {.route-week-decision-item role="listitem"}
+**Ritmo padrão**
+
+Conclua um módulo completo por semana.
+:::
+
+::: {.route-week-decision-item role="listitem"}
+**Ritmo de revisão**
+
+Use a semana para refazer script, quiz e síntese.
+:::
+:::
+:::
+
 ## Mapa visual de progresso
 
 ::: {.route-map-intro role="note" aria-label="Como ler o mapa visual de progresso"}

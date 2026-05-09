@@ -140,6 +140,12 @@ legend("topleft", c("Regressão","Linha 45°"), lty=1:2, col=c("#dc2626","#5b6b7
 **Interpretação:** DEP (Diferença Esperada na Progênie) = EBV/2. Um touro com EBV = +40 kg tem DEP = +20 kg, i.e., em média seus filhos pesarão 20 kg a mais que filhos de um touro mediano, nas mesmas condições.
 :::
 
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de seguir, compare fenótipo e EBV para um animal do ranking e escreva por que a decisão de seleção pode mudar.
+:::
+
 ## Exercício proposto
 
 1. Aumente `n_obs` para 100. A acurácia melhora? Por quê?
@@ -169,7 +175,7 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
 :::
 
 ```{=html}
-<div class="module-nav">
+<nav class="module-nav" aria-label="Navegação entre módulos">
   <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
@@ -182,5 +188,5 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
     <span>Próximo · Módulo 09</span>
     <strong>Estrutura de Pedigree e Parentesco</strong>
   </a>
-</div>
+</nav>
 ```

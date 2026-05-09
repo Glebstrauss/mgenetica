@@ -136,6 +136,12 @@ for (lam in c(0.5, 1, 2, 5, 10)) {
 **Dica R:** Para modelos mistos reais com pedigree, use `lme4::lmer()` para estruturas simples ou `ASReml-R` / `breedR` para o modelo animal completo.
 :::
 
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de seguir, explique qual efeito deveria ser tratado como fixo, qual como aleatório e como essa escolha muda a interpretação do resultado.
+:::
+
 ## Exercício proposto
 
 1. Altere `h2` para 0,10 (`va=100, ve=900`). O λ muda como? O BLUP "encolhe" mais ou menos?
@@ -165,7 +171,7 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
 :::
 
 ```{=html}
-<div class="module-nav">
+<nav class="module-nav" aria-label="Navegação entre módulos">
   <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
@@ -178,5 +184,5 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
     <span>Próximo · Módulo 08</span>
     <strong>BLUP e Avaliação Genética</strong>
   </a>
-</div>
+</nav>
 ```

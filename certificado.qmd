@@ -40,6 +40,34 @@ Se ainda houver pendências, a página indica os módulos que faltam.
 :::
 :::
 
+::: {.certificate-scope role="region" aria-label="O que o certificado representa"}
+::: {.certificate-scope-copy}
+**O certificado registra conclusão, não substitui avaliação formal**
+
+Use o certificado como fechamento da trilha pública: ele indica que os quizzes foram concluídos no navegador e que o estudante percorreu a sequência proposta. A interpretação técnica continua dependendo de revisão, contexto e aplicação responsável.
+:::
+
+::: {.certificate-scope-grid role="list" aria-label="Limites e usos do certificado"}
+::: {.certificate-scope-item role="listitem"}
+**Evidência de percurso**
+
+Mostra que a sequência de módulos foi concluída localmente.
+:::
+
+::: {.certificate-scope-item role="listitem"}
+**Uso pessoal**
+
+Serve para registrar estudo, revisão e continuidade da formação.
+:::
+
+::: {.certificate-scope-item role="listitem"}
+**Limite claro**
+
+Não é validação profissional, institucional ou regulatória.
+:::
+:::
+:::
+
 ::: {.certificate-readiness-guide role="region" aria-label="Como desbloquear o certificado"}
 ::: {.certificate-readiness-copy}
 ## Antes de gerar o certificado

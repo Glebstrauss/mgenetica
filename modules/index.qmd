@@ -134,6 +134,62 @@ Módulos 10-12 introduzem SNPs, controle de qualidade, matrizes genômicas, GWAS
 :::
 :::
 
+::: {.modules-phase-bridge role="region" aria-label="Como usar as fases antes de escolher módulos"}
+::: {.modules-phase-bridge-copy}
+**Use cada fase como checkpoint**
+
+Antes de avançar para uma fase nova, confirme se a fase anterior gerou uma decisão escrita. A passagem entre fundamentos, parâmetros, modelagem e genômica deve ser uma mudança de pergunta técnica, não apenas de página.
+:::
+
+::: {.modules-phase-bridge-grid role="list" aria-label="Critérios de passagem entre fases"}
+::: {.modules-phase-bridge-item role="listitem"}
+**Dominar**
+
+Explique o conceito anterior com suas palavras.
+:::
+
+::: {.modules-phase-bridge-item role="listitem"}
+**Testar**
+
+Rode o script e altere um parâmetro relevante.
+:::
+
+::: {.modules-phase-bridge-item role="listitem"}
+**Decidir**
+
+Escreva a implicação prática antes de seguir.
+:::
+:::
+:::
+
+::: {.modules-evidence-standard role="region" aria-label="Evidência esperada em cada módulo"}
+::: {.modules-evidence-standard-copy}
+**Cada módulo deve deixar uma evidência**
+
+Antes de avançar, produza uma frase técnica verificável. Ela deve conectar o conceito estudado, a mudança feita no script e a decisão aplicada que você defenderia.
+:::
+
+::: {.modules-evidence-standard-grid role="list" aria-label="Padrão de evidência por módulo"}
+::: {.modules-evidence-standard-item role="listitem"}
+**Conceito**
+
+Qual pergunta biológica ou estatística ficou mais clara?
+:::
+
+::: {.modules-evidence-standard-item role="listitem"}
+**Variação**
+
+Qual parâmetro você alterou no script?
+:::
+
+::: {.modules-evidence-standard-item role="listitem"}
+**Decisão**
+
+Qual consequência prática você registrou antes do quiz?
+:::
+:::
+:::
+
 ## Todos os módulos
 
 ::: {.module-grid role="list" aria-label="Todos os módulos do curso"}
@@ -234,6 +290,34 @@ Integração entre parentesco genômico, associação e predição genômica.
 :::
 :::
 
+::: {.modules-return-path role="region" aria-label="Como voltar ao índice depois de estudar um módulo"}
+::: {.modules-return-path-copy}
+**Volte ao índice com uma decisão**
+
+Depois de estudar um módulo, use esta página para decidir se avança, revisa a fase ou fecha pendências de conclusão. O retorno ao índice deve organizar o próximo passo, não apenas trocar de página.
+:::
+
+::: {.modules-return-path-grid role="list" aria-label="Decisões após estudar um módulo"}
+::: {.modules-return-path-item role="listitem"}
+**Avançar**
+
+Siga para o próximo módulo quando a frase técnica estiver clara.
+:::
+
+::: {.modules-return-path-item role="listitem"}
+**Revisar**
+
+Volte à fase se o resultado do script ainda não sustenta uma decisão.
+:::
+
+::: {.modules-return-path-item role="listitem"}
+**Fechar**
+
+Use o certificado para localizar quizzes pendentes depois do módulo final.
+:::
+:::
+:::
+
 ::: {.modules-study-check role="region" aria-label="Como escolher o próximo módulo"}
 ::: {.modules-study-check-copy}
 **Checkpoint antes de abrir um módulo**
@@ -262,11 +346,44 @@ Tenho uma frase técnica para comparar com o quiz?
 :::
 :::
 
+::: {.modules-certificate-route role="region" aria-label="Fechamento da trilha e certificado"}
+::: {.modules-certificate-route-copy}
+**Feche a trilha com evidência**
+
+O certificado deve ser a consequência de uma sequência completa: módulo estudado, script executado, interpretação escrita e quiz validado. Se você ainda não concluiu tudo, use o certificado como mapa de pendências.
+:::
+
+::: {.modules-certificate-route-actions role="navigation" aria-label="Ações para acompanhar conclusão"}
+[Abrir certificado](../certificado.qmd){.btn .btn-primary}
+[Revisar roteiro](../semanas/index.qmd){.btn .btn-secondary}
+:::
+:::
+
 ::: {.modules-next-step role="region" aria-label="Próximo passo após revisar os módulos"}
 ::: {.modules-next-step-copy}
 ## Próximo passo recomendado
 
 Se esta é sua primeira visita, comece pelo Módulo 01. Se você já conhece a base conceitual, use o roteiro semanal para distribuir prática em R, revisão e interpretação.
+:::
+
+::: {.modules-next-step-checks role="list" aria-label="Como escolher a ação final do índice"}
+::: {.modules-next-step-check role="listitem"}
+**Começar**
+
+Use quando ainda não há módulo concluído.
+:::
+
+::: {.modules-next-step-check role="listitem"}
+**Planejar**
+
+Use quando precisa distribuir leitura, código e revisão.
+:::
+
+::: {.modules-next-step-check role="listitem"}
+**Concluir**
+
+Use quando a trilha já está quase completa.
+:::
 :::
 
 ::: {.modules-next-step-actions role="navigation" aria-label="Ações finais do índice de módulos"}

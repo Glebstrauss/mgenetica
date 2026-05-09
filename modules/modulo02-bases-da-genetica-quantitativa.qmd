@@ -125,6 +125,12 @@ cat(sprintf("h² teórico:          %.4f\n", va/vp))
 **Interpretação:** h² = 0,31 não significa que "31% do fenótipo de cada animal é genético". Significa que 31% da **variação** observada na população se deve a diferenças genéticas aditivas entre animais.
 :::
 
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de seguir, explique em uma frase por que variância fenotípica alta não garante resposta à seleção se a fração aditiva for baixa.
+:::
+
 ## Exercício proposto
 
 1. Aumente `vd` para 150 e recalcule `h²`. Como o h² mudou mesmo com VA constante?
@@ -160,7 +166,7 @@ Você concluiu a base conceitual da trilha. A partir do próximo módulo, a perg
 :::
 
 ```{=html}
-<div class="module-nav">
+<nav class="module-nav" aria-label="Navegação entre módulos">
   <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
@@ -173,5 +179,5 @@ Você concluiu a base conceitual da trilha. A partir do próximo módulo, a perg
     <span>Próximo · Módulo 03</span>
     <strong>Estatística Descritiva e Exploração no R</strong>
   </a>
-</div>
+</nav>
 ```

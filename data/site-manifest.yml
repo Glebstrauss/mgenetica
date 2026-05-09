@@ -101,23 +101,37 @@ content_pages:
     - resource-grid
     - modules-support
     - modules-completion-flow
+    - modules-evidence-standard
     - modules-next-step
     - route-overview
     - utility-return-guide
     - route-finish-band
     - home-orientation
+    - home-audience
+    - home-start-criteria
+    - home-returning
     - home-readiness
+    - home-continuity
+    - home-evidence
+    - utility-decision
     - modules-study-check
+    - modules-return-path
+    - modules-certificate-route
+    - modules-phase-bridge
+    - route-week-decision
     - certificate-preview
     - certificate-form
     - certificate-noscript
     - certificate-readiness-guide
+    - certificate-scope
     - about-next-step
     - about-route
+    - about-credibility
     - module-phase-note
     - module-phase-start
     - module-takeaways
     - module-after-quiz
+    - module-practice-contract
     - final-cta
   items:
     - id: home
@@ -130,14 +144,19 @@ content_pages:
         - hero-panel-proof
         - hero-signal
         - orientation
+        - audience
+        - start-criteria
         - module-anatomy
         - entry-decision
         - entry-points
+        - returning
         - platform-statement
         - discovery
+        - evidence
         - learning-loop
         - resources
         - readiness
+        - continuity
         - phase-preview
         - final-cta
       source_collections:
@@ -154,9 +173,13 @@ content_pages:
         - route
         - support
         - completion-flow
+        - evidence-standard
         - phases
+        - phase-bridge
         - module-grid
+        - return-path
         - study-check
+        - certificate-route
         - next-step
     - id: study-path
       title: Roteiro de estudo
@@ -167,6 +190,7 @@ content_pages:
         - hero
         - route-checkpoints
         - route-overview
+        - route-week-decision
         - route-map-intro
         - routine
         - route-finish
@@ -178,6 +202,7 @@ content_pages:
       editable_regions:
         - hero
         - utility-flow
+        - utility-decision
         - utility-return
         - search-panel
         - utility-next-step
@@ -189,6 +214,7 @@ content_pages:
       editable_regions:
         - hero
         - utility-flow
+        - utility-decision
         - utility-return
         - glossary-panel
         - utility-next-step
@@ -200,6 +226,7 @@ content_pages:
       editable_regions:
         - hero
         - certificate-intro
+        - certificate-scope
         - certificate-readiness
         - certificate-preview
         - certificate-form
@@ -214,6 +241,7 @@ content_pages:
         - hero
         - public-page-triad
         - about-route
+        - credibility
         - principles
         - site-map
         - about-next-step

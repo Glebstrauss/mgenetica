@@ -120,6 +120,12 @@ for (nf in c(5, 10, 25, 50, 100)) {
 **Dica R:** O pacote `lme4` implementa REML via `lmer()`. O pacote `ASReml-R` é o padrão industrial para análises de melhoramento.
 :::
 
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de seguir, compare duas fontes de variação e escreva qual delas mais limita a previsibilidade da característica no cenário simulado.
+:::
+
 ## Exercício proposto
 
 1. Dobre o número de touros para 40 mantendo n_filhos = 25. A precisão melhora?
@@ -149,7 +155,7 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
 :::
 
 ```{=html}
-<div class="module-nav">
+<nav class="module-nav" aria-label="Navegação entre módulos">
   <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
@@ -162,5 +168,5 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
     <span>Próximo · Módulo 05</span>
     <strong>Herdabilidade e Repetibilidade</strong>
   </a>
-</div>
+</nav>
 ```

@@ -384,8 +384,10 @@ code {
 .statement-point,
 .lab-card,
 .home-final-cta,
+.final-cta-check,
 .modules-landing-copy,
 .modules-landing-panel,
+.modules-next-step-check,
 .phase-card,
 .page-hero-copy,
 .page-hero-aside,
@@ -400,8 +402,10 @@ code {
 .statement-point p,
 .lab-card p,
 .final-cta-copy p,
+.final-cta-check p,
 .modules-landing-copy p,
 .modules-landing-panel span,
+.modules-next-step-check p,
 .phase-card p,
 .page-hero-copy p,
 .page-hero-aside,
@@ -413,8 +417,10 @@ code {
 .statement-point strong,
 .lab-card strong,
 .final-cta-copy h2,
+.final-cta-check strong,
 .modules-landing-copy h1,
 .modules-landing-panel strong,
+.modules-next-step-check strong,
 .phase-card strong,
 .page-hero-copy h1,
 .page-hero-aside strong {
@@ -603,8 +609,32 @@ footer.footer a {
 
 .modules-completion-copy,
 .modules-completion-step,
+.modules-evidence-standard,
+.modules-evidence-standard-item,
+.modules-return-path,
+.modules-return-path-item,
 .modules-study-check,
-.modules-study-check-item {
+.modules-study-check-item,
+.home-returning,
+.home-returning-item,
+.home-audience,
+.home-audience-item,
+.home-start-criteria,
+.home-start-criteria-item,
+.home-evidence,
+.home-evidence-item,
+.modules-phase-bridge,
+.modules-phase-bridge-item,
+.about-credibility,
+.about-credibility-item,
+.certificate-scope,
+.certificate-scope-item,
+.utility-decision,
+.utility-decision-item,
+.route-week-decision,
+.route-week-decision-item,
+.home-continuity,
+.modules-certificate-route {
   background: var(--mg-bg-soft);
   border-color: var(--mg-line);
 }
@@ -618,22 +648,86 @@ footer.footer a {
 
 .home-readiness-copy h2,
 .home-readiness-copy p,
+.home-audience-copy h2,
+.home-audience-copy p,
+.home-returning-copy strong,
+.home-returning-copy p,
+.home-start-criteria-copy strong,
+.home-start-criteria-copy p,
+.home-evidence-copy h2,
+.home-evidence-copy p,
+.home-continuity-copy h2,
+.home-continuity-copy p,
 .modules-study-check-copy strong,
-.modules-study-check-copy p {
+.modules-study-check-copy p,
+.modules-evidence-standard-copy strong,
+.modules-evidence-standard-copy p,
+.modules-return-path-copy strong,
+.modules-return-path-copy p,
+.modules-phase-bridge-copy strong,
+.modules-phase-bridge-copy p,
+.modules-certificate-route-copy strong,
+.modules-certificate-route-copy p,
+.about-credibility-copy h2,
+.about-credibility-copy p,
+.certificate-scope-copy strong,
+.certificate-scope-copy p,
+.utility-decision-copy strong,
+.utility-decision-copy p,
+.route-week-decision-copy strong,
+.route-week-decision-copy p {
   color: var(--mg-ink);
 }
 
 .modules-completion-copy strong,
 .modules-completion-step strong,
+.modules-evidence-standard-item strong,
+.modules-return-path-item strong,
 .home-readiness-item strong,
-.modules-study-check-item strong {
+.home-returning-item strong,
+.home-audience-item strong,
+.home-start-criteria-item strong,
+.home-evidence-item strong,
+.modules-study-check-item strong,
+.modules-phase-bridge-item strong,
+.about-credibility-item strong,
+.certificate-scope-item strong,
+.utility-decision-item strong,
+.route-week-decision-item strong {
   color: var(--mg-ink);
 }
 
 .modules-completion-copy p,
 .modules-completion-step p,
+.modules-evidence-standard-item p,
+.modules-return-path-item p,
 .home-readiness-item p,
-.modules-study-check-item p {
+.home-returning-item p,
+.home-audience-item p,
+.home-start-criteria-item p,
+.home-evidence-item p,
+.modules-study-check-item p,
+.modules-phase-bridge-item p,
+.about-credibility-item p,
+.certificate-scope-item p,
+.utility-decision-item p,
+.route-week-decision-item p {
+  color: var(--mg-text);
+}
+
+.module-practice-contract {
+  color: var(--mg-text);
+  background:
+    linear-gradient(135deg, var(--mg-bg-soft), rgba(10, 31, 56, 0.34));
+  border-color: rgba(111, 220, 255, 0.24);
+  border-left-color: var(--mg-cyan-lt);
+}
+
+.module-practice-contract strong {
+  color: var(--mg-ink);
+}
+
+.module-practice-contract p {
   color: var(--mg-text);
 }
 
@@ -756,6 +850,13 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
     color: var(--mg-text);
     border-color: var(--mg-cyan);
   }
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link[aria-current="page"] {
+  color: var(--mg-ink);
+  background: rgba(111, 220, 255, 0.10);
+  box-shadow: inset 0 -2px 0 var(--mg-cyan-lt);
 }
 
 

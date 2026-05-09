@@ -127,6 +127,12 @@ boxplot(peso_kg ~ raca, data=dados, col=c("#4a9fd1","#0d2642","#e8f1f8"),
 **Atenção:** Nunca estime herdabilidade a partir de dados sem primeiro verificar a distribuição dos resíduos. Outliers inflam a variância residual e deflacionam h².
 :::
 
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de seguir, identifique uma variável com maior dispersão e escreva qual checagem faria antes de usar esses dados em uma decisão de seleção.
+:::
+
 ## Exercício proposto
 
 1. Use `tapply(dados$peso_kg, dados$fazenda, mean)` para verificar se há efeito de fazenda. O que você observa?
@@ -156,7 +162,7 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
 :::
 
 ```{=html}
-<div class="module-nav">
+<nav class="module-nav" aria-label="Navegação entre módulos">
   <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
@@ -169,5 +175,5 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
     <span>Próximo · Módulo 04</span>
     <strong>Médias, Variâncias e Componentes</strong>
   </a>
-</div>
+</nav>
 ```

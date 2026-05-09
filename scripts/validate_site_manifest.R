@@ -128,13 +128,25 @@ for (class_name in c(
   ".resource-grid",
   ".resource-card",
   ".entry-decision",
+  ".home-audience",
+  ".home-start-criteria",
+  ".home-returning",
+  ".home-evidence",
   ".modules-route",
   ".home-readiness",
+  ".home-continuity",
   ".modules-completion-flow",
+  ".modules-evidence-standard",
   ".modules-study-check",
+  ".modules-phase-bridge",
+  ".modules-return-path",
+  ".modules-certificate-route",
   ".utility-return-guide",
+  ".utility-decision",
   ".route-finish-band",
+  ".route-week-decision",
   ".module-study-checkpoint",
+  ".module-practice-contract",
   ".module-takeaways",
   ".module-after-quiz",
   ".module-nav",
@@ -143,8 +155,12 @@ for (class_name in c(
   ".certificate-form",
   ".certificate-noscript",
   ".certificate-readiness-guide",
+  ".certificate-scope",
   ".about-route",
+  ".about-credibility",
   ".section-cta",
+  ".final-cta-checks",
+  ".modules-next-step-checks",
   ".final-cta-actions"
 )) {
   check_contains(components_doc, class_name, "PUBLIC_SITE_COMPONENTS.md")
@@ -187,14 +203,19 @@ region_markers <- list(
     "hero-panel-proof" = "hero-panel-proof",
     "hero-signal" = "hero-signal",
     orientation = "home-orientation",
+    audience = "home-audience",
+    "start-criteria" = "home-start-criteria",
     "module-anatomy" = "home-module-anatomy",
     "entry-decision" = "entry-decision",
     "entry-points" = "home-entry",
+    returning = "home-returning",
     "platform-statement" = "platform-statement",
     discovery = "home-discovery",
+    evidence = "home-evidence",
     "learning-loop" = "learning-loop-grid",
     resources = "resource-grid",
     readiness = "home-readiness",
+    continuity = "home-continuity",
     "phase-preview" = "phase-preview",
     "final-cta" = "home-final-cta"
   ),
@@ -204,15 +225,20 @@ region_markers <- list(
     route = "modules-route",
     support = "modules-support",
     "completion-flow" = "modules-completion-flow",
+    "evidence-standard" = "modules-evidence-standard",
     phases = "phase-grid",
+    "phase-bridge" = "modules-phase-bridge",
     "module-grid" = "module-grid",
+    "return-path" = "modules-return-path",
     "study-check" = "modules-study-check",
+    "certificate-route" = "modules-certificate-route",
     "next-step" = "modules-next-step"
   ),
   `study-path` = list(
     hero = "page-hero",
     "route-checkpoints" = "route-checkpoints",
     "route-overview" = "route-overview",
+    "route-week-decision" = "route-week-decision",
     "route-map-intro" = "route-map-intro",
     routine = "routine-grid",
     "route-finish" = "route-finish-band"
@@ -220,6 +246,7 @@ region_markers <- list(
   search = list(
     hero = "page-hero",
     "utility-flow" = "utility-flow",
+    "utility-decision" = "utility-decision",
     "utility-return" = "utility-return-guide",
     "search-panel" = "search-panel",
     "utility-next-step" = "utility-next-step"
@@ -227,6 +254,7 @@ region_markers <- list(
   glossary = list(
     hero = "page-hero",
     "utility-flow" = "utility-flow",
+    "utility-decision" = "utility-decision",
     "utility-return" = "utility-return-guide",
     "glossary-panel" = "glossary-panel",
     "utility-next-step" = "utility-next-step"
@@ -234,6 +262,7 @@ region_markers <- list(
   certificate = list(
     hero = "page-hero",
     "certificate-intro" = "certificate-intro",
+    "certificate-scope" = "certificate-scope",
     "certificate-readiness" = "certificate-readiness-guide",
     "certificate-preview" = "certificate-preview",
     "certificate-form" = "certificate-form",
@@ -244,6 +273,7 @@ region_markers <- list(
     hero = "profile-hero",
     "public-page-triad" = "public-page-triad",
     "about-route" = "about-route",
+    credibility = "about-credibility",
     principles = "Princípios",
     "site-map" = "site-map-grid",
     "about-next-step" = "about-next-step"
@@ -351,11 +381,17 @@ for (i in seq_along(modules)) {
   if (!grepl("module-nav-index", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-nav-index", item$id))
   }
+  if (!grepl('<nav class="module-nav" aria-label="Navegação entre módulos">', module_text, fixed = TRUE)) {
+    fail(sprintf("module %s is missing semantic module navigation", item$id))
+  }
   if (!grepl(sprintf('quiz-container data-module="%s"', module_number), module_text, fixed = TRUE)) {
     fail(sprintf("module %s quiz data-module does not match order", item$id))
   }
   if (!grepl("module-takeaways", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-takeaways", item$id))
+  }
+  if (!grepl("module-practice-contract", module_text, fixed = TRUE)) {
+    fail(sprintf("module %s is missing module-practice-contract", item$id))
   }
   if (!grepl("module-after-quiz", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-after-quiz", item$id))

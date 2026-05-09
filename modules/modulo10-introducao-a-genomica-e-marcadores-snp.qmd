@@ -132,6 +132,12 @@ cat("\n(r² alto = SNPs em desequilíbrio = um 'representa' o outro no GWAS)\n")
 **Dica R:** O pacote `snpStats` (Bioconductor) é a referência para análise de dados SNP em R. Para dados grandes, `PLINK` e `GCTA` são as ferramentas de linha de comando padrão.
 :::
 
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de seguir, escolha um critério de qualidade para SNPs e escreva qual risco ele reduz antes de uma análise genômica.
+:::
+
 ## Exercício proposto
 
 1. Calcule a distribuição de genótipos esperada para o SNP com maior MAF. Compare com os observados.
@@ -161,7 +167,7 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
 :::
 
 ```{=html}
-<div class="module-nav">
+<nav class="module-nav" aria-label="Navegação entre módulos">
   <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
@@ -174,5 +180,5 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
     <span>Próximo · Módulo 11</span>
     <strong>Controle de Qualidade Genômico</strong>
   </a>
-</div>
+</nav>
 ```

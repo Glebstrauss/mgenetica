@@ -43,6 +43,34 @@ Depois da consulta, retome a sequência dos módulos ou o roteiro semanal.
 :::
 :::
 
+::: {.utility-decision role="region" aria-label="Como decidir o que fazer com um resultado da busca"}
+::: {.utility-decision-copy}
+**Depois do resultado, escolha uma ação**
+
+A busca deve terminar em uma decisão simples: abrir o módulo que explica o conceito, comparar o termo no glossário ou voltar ao roteiro para manter a sequência.
+:::
+
+::: {.utility-decision-grid role="list" aria-label="Ações depois de buscar no curso"}
+::: {.utility-decision-item role="listitem"}
+**Conceito novo**
+
+Abra o módulo completo antes de tentar interpretar a saída em R.
+:::
+
+::: {.utility-decision-item role="listitem"}
+**Termo isolado**
+
+Consulte o glossário e depois retorne ao trecho do módulo.
+:::
+
+::: {.utility-decision-item role="listitem"}
+**Revisão rápida**
+
+Use o resultado para retomar a fase certa da trilha.
+:::
+:::
+:::
+
 ::: {.utility-return-guide role="region" aria-label="Como usar a busca sem perder a sequência do curso"}
 ::: {.utility-return-copy}
 **Use a busca como desvio curto**

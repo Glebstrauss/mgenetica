@@ -126,6 +126,12 @@ Observando a tabela de progressão:
 **Atenção:** A equação do melhorista pressupõe que a variância genética permanece constante ao longo das gerações. Na prática, seleção intensa e endogamia reduzem essa variância — o ganho real tende a desacelerar.
 :::
 
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de seguir, compare duas intensidades de seleção e escreva qual decisão aumenta ganho sem ignorar intervalo de gerações e variância disponível.
+:::
+
 ## Exercício proposto
 
 1. Modifique o código para selecionar os **top 10%** em vez de 20%. Como S e ΔG mudam?
@@ -155,7 +161,7 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
 :::
 
 ```{=html}
-<div class="module-nav">
+<nav class="module-nav" aria-label="Navegação entre módulos">
   <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
@@ -164,5 +170,5 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
     <span>Próximo · Módulo 02</span>
     <strong>Bases da Genética Quantitativa</strong>
   </a>
-</div>
+</nav>
 ```

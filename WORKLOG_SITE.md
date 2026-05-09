@@ -61,6 +61,529 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-09 — Final CTA decision and semantic module navigation block
+
+### Block objective
+
+Execute another site-only public visual/UX evolution block under the `publication-readiness-review` contract in `NEXT_SITE.md`, keeping all changes local and focused on visible public decision flow, module navigation semantics and validation coverage.
+
+### Cycles executed
+
+1. Diagnosis: the homepage already had several entry and return paths, but the final CTA still asked visitors to choose between actions without a compact decision aid.
+   Implementation: added `.final-cta-checks` to `index.qmd`, clarifying when to start, resume through the index or check completion.
+   Testing: rendered `index.qmd` and confirmed `.final-cta-checks` in `docs/index.html`.
+   Notes: the change strengthens the homepage close without adding an app-like dashboard.
+2. Diagnosis: the module index final CTA had the same decision problem: start, plan or conclude were present, but the choice criteria were implicit.
+   Implementation: added `.modules-next-step-checks` to `modules/index.qmd`, pairing the final actions with start, planning and completion criteria.
+   Testing: rendered `modules/index.qmd` and confirmed `.modules-next-step-checks` in `docs/modules/index.html`.
+   Notes: this improves public CTA hierarchy and keeps the route editorial.
+3. Diagnosis: module pages used visually clear previous/index/next cards, but the wrapper was a generic `div` instead of a semantic navigation landmark.
+   Implementation: converted all 12 module navigation wrappers to `<nav class="module-nav" aria-label="Navegação entre módulos">`.
+   Testing: rendered representative modules 01, 06 and 12 and confirmed the semantic nav in generated HTML.
+   Notes: a mechanical replacement briefly touched earlier HTML closings; those were immediately corrected before validation.
+4. Diagnosis: the new decision cards and active navigation needed responsive, accessible and dark-mode treatment.
+   Implementation: added light/dark styles for `.final-cta-checks`, `.final-cta-check`, `.modules-next-step-checks`, `.modules-next-step-check`, plus a more visible active navbar state.
+   Testing: SCSS compilation passed for `styles/main.scss` and `styles/main-dark.scss`; targeted HTML render passed.
+   Notes: mobile layout collapses the decision checks to a single column.
+5. Diagnosis: the new public patterns and semantic module nav needed contract coverage to prevent regression before publication.
+   Implementation: updated `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` to document the new CTA check patterns and require semantic module navigation in every module.
+   Testing: manifest validation and whitespace diff check passed before final validation.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added decision criteria before final homepage CTAs.
+- Added decision criteria before final module-index CTAs.
+- Converted module-page previous/index/next navigation into a semantic navigation landmark.
+- Improved active navbar visibility and responsive/dark-mode treatment for the new decision cards.
+- Extended validation to enforce semantic module navigation.
+
+### Problems fixed
+
+- Final CTAs no longer rely only on button labels to communicate when each path is appropriate.
+- Module navigation now exposes a clearer landmark for assistive technology.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `rg -L '<nav class="module-nav" aria-label="Navegação entre módulos">' modules/*.qmd`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd modules/modulo01-introducao-ao-melhoramento-animal.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `rg -n "final-cta-checks|modules-next-step-checks|<nav class=\"module-nav\" aria-label=\"Navegação entre módulos\"" docs/index.html docs/modules/index.html docs/modules/modulo01-introducao-ao-melhoramento-animal.html docs/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html docs/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- Whitespace diff check passed.
+- SCSS compilation passed.
+- Targeted Quarto render passed for homepage, module index and representative modules 01, 06 and 12.
+- Rendered HTML inspection confirmed final CTA checks, module-index CTA checks and semantic module navigation.
+- Full prepublish gate passed locally.
+
+### Pending items
+
+- Browser screenshot QA remains pending because local `file://` browser access has been unavailable in this sandbox.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-09 — Returning-user and module-return UX block
+
+### Block objective
+
+Execute a site-only public visual/UX evolution block, following `NEXT_SITE.md` while keeping the accumulated unpublished changes local and review-ready. The focus was to improve how returning visitors resume the course and how module readers decide what to do after coming back to the module index.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` identified the current state as publication-readiness, but the requested block still called for visible public UX evolution without app changes.
+   Implementation: scoped the block to small, visitor-facing improvements on the homepage and module index, avoiding backend, app, publication and dependency work.
+   Testing: reread the site skill, governance files and current page structure before editing.
+   Notes: no app files were touched.
+2. Diagnosis: the homepage had first-visit entry points and planning support, but returning users had to infer whether to continue, revise or check completion.
+   Implementation: added `.home-returning` to `index.qmd`, with three compact return routes: continue through modules, revise through the study route and check certificate completion.
+   Testing: rendered `index.qmd` and confirmed `.home-returning` and `.home-returning-grid` in `docs/index.html`.
+   Notes: the new block stays editorial and public-facing, not dashboard-like.
+3. Diagnosis: the module index explained evidence standards and module choice, but did not explicitly guide the user after finishing a module and returning to the catalog.
+   Implementation: added `.modules-return-path` to `modules/index.qmd`, clarifying when to advance, revise or close certificate pendencies.
+   Testing: rendered `modules/index.qmd` and confirmed `.modules-return-path` and `.modules-return-path-grid` in `docs/modules/index.html`.
+   Notes: this strengthens the public navigation loop across internal module pages without altering module content.
+4. Diagnosis: the new blocks needed responsive behavior, focus/wrapping parity and dark-mode parity with the existing public component system.
+   Implementation: extended `styles/main.scss` and `styles/main-dark.scss` so the new home and module-index components inherit grid collapse, focus-within, hover, wrapping and dark contrast treatment.
+   Testing: SCSS compilation passed for both light and dark theme files.
+   Notes: the changes reused the existing card and learning-path layer.
+5. Diagnosis: manifest, documentation and validator coverage needed to reflect the new public patterns so future edits remain app-ready but site-only.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` with `home-returning` and `modules-return-path` editable-region coverage.
+   Testing: manifest validation and whitespace diff check passed before the final prepublish gate.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added a returning-user route on the homepage for continuing, revising or checking certificate completion.
+- Added a post-module decision guide on the module index.
+- Added responsive, accessible and dark-mode styling for both new public UX patterns.
+- Extended manifest, component documentation and validator contracts for the new patterns.
+
+### Problems fixed
+
+- Returning visitors no longer need to infer the right resumption path from first-visit CTAs only.
+- The module index now explains how to use the catalog after finishing a module, not only before opening one.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd --no-execute`
+- `rg -n "home-returning|home-returning-grid|Se você está voltando|modules-return-path|modules-return-path-grid|Volte ao índice" docs/index.html docs/modules/index.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- Whitespace diff check passed.
+- SCSS compilation passed.
+- Targeted Quarto render for homepage and module index passed.
+- Rendered HTML inspection confirmed the new homepage and module-index components.
+- Full prepublish gate passed locally.
+
+### Pending items
+
+- Review accumulated unpublished visual changes in browser screenshots if a local browser target becomes available.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-09 — Full module practice-contract UX standardization block
+
+### Block objective
+
+Execute another long, site-only public visual/UX evolution block on top of the accumulated unpublished changes. Follow `NEXT_SITE.md` by keeping the work local and review-ready, while turning the representative module practice evidence prompt into a consistent pattern across the whole module collection.
+
+### Cycles executed
+
+1. Diagnosis: the homepage and module pages already explained the study cycle, but module-level evidence was still only representative in modules 01, 06 and 12.
+   Implementation: used the existing homepage start criteria and module evidence direction as the contract for a full module-collection standard.
+   Testing: checked current module coverage with `rg` before editing.
+   Notes: no app files touched.
+2. Diagnosis: the module index did not yet state the shared evidence standard before users enter the full catalog.
+   Implementation: added `.modules-evidence-standard` to `modules/index.qmd`, with concept, variation and decision cards.
+   Testing: rendered `modules/index.qmd` and confirmed `.modules-evidence-standard` in `docs/modules/index.html`.
+   Notes: this improves navigation from index to modules by setting expectations before the catalog.
+3. Diagnosis: modules 02-05 and 07-11 lacked the practical evidence prompt now present in representative modules.
+   Implementation: added `.module-practice-contract` to modules 02, 03, 04, 05, 07, 08, 09, 10 and 11 with module-specific evidence prompts.
+   Testing: rendered the changed module pages and confirmed `.module-practice-contract` in generated HTML.
+   Notes: prompts are concise and do not add new scientific longform sections.
+4. Diagnosis: the new index evidence standard needed visual parity, responsive behavior and dark-mode treatment.
+   Implementation: extended `styles/main.scss` and `styles/main-dark.scss` for `.modules-evidence-standard` and its card grid, including generic focus/hover/wrapping coverage.
+   Testing: SCSS compilation passed for light and dark theme files.
+   Notes: the module evidence standard follows the existing public card system.
+5. Diagnosis: the site contract should enforce that every module now contains the practice evidence prompt.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R`; the manifest validator now fails if any module lacks `.module-practice-contract`.
+   Testing: site manifest validation and whitespace diff check passed.
+   Notes: no publication, commit or push was performed.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `data/site-manifest.yml`
+- `modules/index.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Commands executed
+
+- `git status --short --branch`
+- `rg -L "module-practice-contract" modules/*.qmd`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render modules/index.qmd modules/modulo02-bases-da-genetica-quantitativa.qmd modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd modules/modulo05-herdabilidade-e-repetibilidade.qmd modules/modulo07-modelos-lineares-e-modelos-mistos.qmd modules/modulo08-blup-e-avaliacao-genetica.qmd modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd --no-execute`
+- `rg -n "modules-evidence-standard|Cada módulo deve deixar|module-practice-contract|Evidência mínima" docs/modules/index.html docs/modules/modulo*.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed and now enforces `.module-practice-contract` on every module.
+- Whitespace/diff check passed.
+- SCSS compilation passed for light and dark theme files.
+- Targeted static render passed for module index and changed module pages.
+- Rendered HTML inspection confirmed `.modules-evidence-standard` in the index and `.module-practice-contract` across all 12 module pages.
+- Full prepublish site check passed.
+
+### Pending items
+
+- Browser-level visual QA with screenshots is still pending if interactive browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Start criteria, certificate scope and module evidence UX block
+
+### Block objective
+
+Execute another long, site-only public visual/UX evolution block on top of the accumulated unpublished changes. Follow `NEXT_SITE.md` by keeping the work local and review-ready, while adding clearer start criteria, certificate scope, representative module evidence prompts, responsive/dark styling and manifest governance.
+
+### Cycles executed
+
+1. Diagnosis: the homepage had audience guidance and evidence, but did not state the practical conditions for starting a module without turning the session into passive reading.
+   Implementation: added `.home-start-criteria` with time, R environment and question-readiness cards.
+   Testing: rendered `index.qmd` and confirmed `.home-start-criteria` and `.home-start-criteria-grid` in `docs/index.html`.
+   Notes: this improves first-page study readiness without adding app behavior.
+2. Diagnosis: public CTAs point visitors to the certificate, but the certificate page did not state clearly what the certificate represents and what it does not represent.
+   Implementation: added `.certificate-scope` with evidence-of-route, personal-use and clear-limit cards.
+   Testing: rendered `certificado.qmd` and confirmed `.certificate-scope` and `.certificate-scope-grid` in `docs/certificado.html`.
+   Notes: this keeps certificate messaging trustworthy and public-facing.
+3. Diagnosis: module pages had checkpoints and takeaways, but representative modules could make the expected evidence before exercises more explicit.
+   Implementation: added `.module-practice-contract` to modules 01, 06 and 12, covering start, transition and final module contexts.
+   Testing: rendered the three module pages and confirmed `.module-practice-contract` in their generated HTML.
+   Notes: this improves module reading rhythm without inventing new scientific longform content.
+4. Diagnosis: new regions needed consistent light/dark styling and mobile behavior.
+   Implementation: extended `styles/main.scss` and `styles/main-dark.scss` for `.home-start-criteria`, `.certificate-scope` and `.module-practice-contract`.
+   Testing: SCSS compilation passed for both theme files.
+   Notes: new card grids collapse through the existing responsive layer.
+5. Diagnosis: new public components need to remain part of the future editorial contract.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` for the new patterns.
+   Testing: site manifest validation and whitespace diff check passed.
+   Notes: no app files, commit, push or publication commands were used.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `certificado.qmd`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Commands executed
+
+- `git status --short --branch`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd certificado.qmd modules/modulo01-introducao-ao-melhoramento-animal.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `rg -n "home-start-criteria|Comece quando|certificate-scope|certificado registra|module-practice-contract|Evidência mínima" docs/index.html docs/certificado.html docs/modules/modulo01-introducao-ao-melhoramento-animal.html docs/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html docs/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- SCSS compilation passed for light and dark theme files.
+- Targeted static render passed for homepage, certificate and representative module pages 01, 06 and 12.
+- Rendered HTML inspection confirmed the new public UX regions.
+- Full prepublish site check passed.
+
+### Pending items
+
+- Browser-level visual QA with screenshots is still pending if interactive browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Audience, utility-decision and route rhythm UX block
+
+### Block objective
+
+Execute another long, site-only public visual/UX evolution block on top of the accumulated unpublished changes. Follow `NEXT_SITE.md` by keeping the work review-ready and not publishing, while improving audience fit, public CTA clarity, utility-page decision flow, route rhythm guidance, responsive/accessibility treatment and manifest governance.
+
+### Cycles executed
+
+1. Diagnosis: the homepage explained the learning path and evidence, but did not explicitly say who benefits most from the public route.
+   Implementation: added `.home-audience` with three visitor profiles: students, researchers in training and technical professionals.
+   Testing: rendered `index.qmd` and confirmed `.home-audience`, `.home-audience-grid` and the heading in `docs/index.html`.
+   Notes: this improves first-page orientation without making the site app-like.
+2. Diagnosis: the header CTA remained long after the primary navigation gained more labels, increasing risk of crowding at intermediate widths.
+   Implementation: shortened the navbar journey CTA from `Começar Módulo 01` to `Começar` and made the footer left label more compact and aligned with the learning promise.
+   Testing: rendered changed pages and confirmed `>Começar<` and `MGenética · conceito, R e interpretação` in generated HTML.
+   Notes: the destination is unchanged and still points to module 01.
+3. Diagnosis: search and glossary now return users to the trail, but they did not help visitors decide what to do immediately after finding a result or term.
+   Implementation: added `.utility-decision` blocks to `busca.qmd` and `glossario.qmd` with three decision cards each.
+   Testing: rendered `busca.qmd` and `glossario.qmd` and confirmed `.utility-decision` in both generated HTML files.
+   Notes: utility pages remain learning support, not admin utilities.
+4. Diagnosis: the weekly route had phase overview and finish guidance, but not an explicit way to adjust rhythm without losing the required study cycle.
+   Implementation: added `.route-week-decision` with light, standard and review rhythm cards.
+   Testing: rendered `semanas/index.qmd` and confirmed `.route-week-decision` and `.route-week-decision-grid` in `docs/semanas/index.html`.
+   Notes: this supports mobile/tablet study planning with concise cards.
+5. Diagnosis: new public regions need matching responsive/dark styling and validation coverage before review.
+   Implementation: updated `styles/main.scss`, `styles/main-dark.scss`, `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` for `home-audience`, `utility-decision` and `route-week-decision`.
+   Testing: site manifest validation, whitespace diff check, SCSS compilation and targeted Quarto render all passed.
+   Notes: no app files, commit, push or publication commands were used.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `_quarto.yml`
+- `busca.qmd`
+- `data/site-manifest.yml`
+- `glossario.qmd`
+- `index.qmd`
+- `scripts/validate_site_manifest.R`
+- `semanas/index.qmd`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Commands executed
+
+- `git status --short --branch`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd busca.qmd glossario.qmd semanas/index.qmd --no-execute`
+- `rg -n "home-audience|Para quem esta trilha|utility-decision|Depois do resultado|Termo entendido|route-week-decision|Ajuste o ritmo|>Começar<|conceito, R e interpretação" docs/index.html docs/busca.html docs/glossario.html docs/semanas/index.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- SCSS compilation passed for light and dark theme files.
+- Targeted static render passed for homepage, search, glossary and study route.
+- Rendered HTML inspection confirmed the new public UX regions, compact navbar CTA and footer copy.
+- Full prepublish site check passed.
+
+### Pending items
+
+- Browser-level visual QA with screenshots is still pending if interactive browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Public credibility and phase-transition UX block
+
+### Block objective
+
+Execute another long, site-only public visual/UX evolution block on top of the current unpublished changes. Follow `NEXT_SITE.md` by keeping the work local and review-ready, while improving public trust signals, phase transition clarity, institutional credibility, responsive/accessibility treatment and manifest governance.
+
+### Cycles executed
+
+1. Diagnosis: the homepage now connected study to certificate, but the public trust rationale behind the sequence was implicit.
+   Implementation: added `.home-evidence` with three evidence cards covering scientific basis, reproducible practice and private local progress.
+   Testing: rendered `index.qmd` and confirmed `.home-evidence`, `.home-evidence-grid` and the heading in `docs/index.html`.
+   Notes: this improves first-page credibility without adding app/admin behavior.
+2. Diagnosis: public navigation already exposes the certificate and start CTA, but card/focus behavior for repeated public components needed stronger keyboard affordance.
+   Implementation: added a global `:focus-visible` rule and expanded focus/hover/card treatment to the new evidence and phase-transition cards.
+   Testing: SCSS compilation passed for light and dark theme files.
+   Notes: this is a public accessibility improvement, not a navigation structure change.
+3. Diagnosis: the module index showed phases and the full catalog, but the transition between phases did not explicitly tell visitors how to decide when to advance.
+   Implementation: added `.modules-phase-bridge` with a concise checkpoint: dominar, testar and decidir.
+   Testing: rendered `modules/index.qmd` and confirmed `.modules-phase-bridge` and `.modules-phase-bridge-grid` in `docs/modules/index.html`.
+   Notes: this strengthens the module catalog as a learning path instead of only a list.
+4. Diagnosis: the Sobre page explained route and principles, but did not clearly state public credibility boundaries such as no hidden data collection and no overclaiming certificate meaning.
+   Implementation: added `.about-credibility` with public commitments on transparency, local progress and certificate limits.
+   Testing: rendered `perfil.qmd` and confirmed `.about-credibility` and its grid in `docs/perfil.html`.
+   Notes: this keeps institutional copy visitor-facing and avoids admin content.
+5. Diagnosis: the new public components needed to be declared for future app-managed editorial regions and protected by validation.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` for `home-evidence`, `modules-phase-bridge` and `about-credibility`.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R`, `git diff --check`, SCSS compilation and targeted Quarto render all passed.
+   Notes: no publication, commit or push was performed.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `modules/index.qmd`
+- `perfil.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Commands executed
+
+- `git status --short --branch`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd perfil.qmd --no-execute`
+- `rg -n "home-evidence|Por que a trilha|modules-phase-bridge|Use cada fase|about-credibility|Compromissos públicos" docs/index.html docs/modules/index.html docs/perfil.html`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- SCSS compilation passed for light and dark theme files.
+- Targeted static render passed for homepage, module index and Sobre.
+- Rendered HTML inspection confirmed the three new public UX regions.
+- Full prepublish site check passed.
+
+### Pending items
+
+- Browser-level visual QA with screenshots is still pending if interactive browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-09 — Post-publication continuity UX block
+
+### Block objective
+
+Execute a long, site-only public visual/UX evolution block after the successful publication. Follow `NEXT_SITE.md` by verifying deployment health first, then improve the public continuity between study, module choice and certificate without publishing automatically.
+
+### Cycles executed
+
+1. Diagnosis: the previous publication had completed, but the next contract still required confirming deploy health before more local work.
+   Implementation: checked the latest GitHub Actions run and ran deployed-site validation.
+   Testing: `gh run list --limit 1` showed the latest publish workflow as `completed success`; `Rscript scripts/validate_deployed_site.R` returned `deployed site ok`.
+   Notes: this confirmed the published baseline before local changes.
+2. Diagnosis: the homepage had readiness guidance, but the path from a study session to final certificate was still split across separate sections.
+   Implementation: added `.home-continuity` with concise copy and actions to continue through modules or inspect certificate completion.
+   Testing: rendered `index.qmd` and confirmed `.home-continuity` and `.home-continuity-actions` in `docs/index.html`.
+   Notes: the block is public/editorial and does not add app or progress behavior.
+3. Diagnosis: the module index explained completion flow and module choice, but the certificate was still mostly a final CTA rather than a visible checkpoint before leaving the catalog.
+   Implementation: added `.modules-certificate-route` after the module-choice checkpoint with actions for certificate and weekly route.
+   Testing: rendered `modules/index.qmd` and confirmed `.modules-certificate-route` and `.modules-certificate-route-actions` in `docs/modules/index.html`.
+   Notes: this keeps the module catalog connected to the conclusion flow.
+4. Diagnosis: the expanded navbar and new CTA groups needed stronger behavior on intermediate desktop widths and mobile.
+   Implementation: added responsive navbar compression for 992-1220px, and added mobile wrapping/collapse coverage for `.home-continuity` and `.modules-certificate-route`.
+   Testing: SCSS compilation passed for light and dark themes.
+   Notes: this reduces risk of cramped navigation after adding `Certificado` to the primary nav.
+5. Diagnosis: new public components need to stay governed by the manifest/component contract.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` for `home-continuity` and `modules-certificate-route`.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` and `git diff --check` passed.
+   Notes: no publication commands were run.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `modules/index.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+
+### Commands executed
+
+- `git status --short --branch`
+- `gh run list --limit 1`
+- `Rscript scripts/validate_deployed_site.R`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd --no-execute`
+- `rg -n "home-continuity|Da primeira aula ao certificado|modules-certificate-route|Feche a trilha" docs/index.html docs/modules/index.html`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+
+### Test results
+
+- Latest published GitHub Actions workflow is successful.
+- Deployed-site validation passed.
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Targeted static render passed for homepage and module index.
+- Rendered HTML inspection confirmed the new homepage and module-index continuity blocks.
+- SCSS compilation passed for both theme files.
+
+### Pending items
+
+- Run full prepublish gate before any future publication.
+- Run true browser visual QA with screenshots if browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
 ## 2026-05-09 — Publication gate fix and publish request
 
 ### Block objective

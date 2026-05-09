@@ -48,9 +48,9 @@ website:
         text: Sobre
     right:
       - href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
-        text: Começar Módulo 01
+        text: Começar
   page-footer:
-    left: "MGenética · trilha pública em genética aplicada"
+    left: "MGenética · conceito, R e interpretação"
     center:
       - href: modules/index.qmd
         text: Módulos

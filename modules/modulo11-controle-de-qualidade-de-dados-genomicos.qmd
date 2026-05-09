@@ -155,6 +155,12 @@ abline(v=0.90, col="#dc2626", lty=2, lwd=2)
 **Interpretação:** Limiares de QC são decisões do pesquisador, não regras absolutas. Em estudos de raças puras com alta endogamia, o limiar de MAF pode ser rebaixado para 0,01. Em populações mistas, SNPs raros em uma raça podem ser comuns em outra.
 :::
 
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de seguir, compare dois filtros de QC e escreva qual deles mais alterou o conjunto final de SNPs ou animais.
+:::
+
 ## Exercício proposto
 
 1. Mude o limiar de call rate por SNP para 0,90 (mais liberal). Quantos SNPs extras são mantidos?
@@ -184,7 +190,7 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
 :::
 
 ```{=html}
-<div class="module-nav">
+<nav class="module-nav" aria-label="Navegação entre módulos">
   <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
@@ -197,5 +203,5 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
     <span>Próximo · Módulo 12</span>
     <strong>Matrizes Genômicas, GWAS e Predição</strong>
   </a>
-</div>
+</nav>
 ```

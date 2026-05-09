@@ -156,6 +156,62 @@ Ao final, o certificado registra a conclusão após os quizzes dos 12 módulos.
 :::
 :::
 
+::: {.home-section .home-audience role="region" aria-label="Para quem a MGenética foi desenhada"}
+::: {.home-audience-copy}
+## Para quem esta trilha funciona melhor
+
+A MGenética foi pensada para quem precisa ligar teoria, análise e decisão aplicada. O curso não substitui uma disciplina formal, mas organiza uma rota pública para estudar com método e evidência.
+:::
+
+::: {.home-audience-grid role="list" aria-label="Perfis que podem usar a MGenética"}
+::: {.home-audience-item role="listitem"}
+**Estudantes**
+
+Para transformar conceitos de genética quantitativa em prática reproduzível.
+:::
+
+::: {.home-audience-item role="listitem"}
+**Pesquisadores em formação**
+
+Para revisar parâmetros, modelos e genômica com exemplos controlados.
+:::
+
+::: {.home-audience-item role="listitem"}
+**Profissionais técnicos**
+
+Para retomar fundamentos antes de interpretar saídas de seleção e avaliação.
+:::
+:::
+:::
+
+::: {.home-section .home-start-criteria role="region" aria-label="Critérios para começar a estudar"}
+::: {.home-start-criteria-copy}
+**Comece quando houver tempo para fechar um ciclo**
+
+Cada sessão funciona melhor quando termina com uma evidência pequena. Antes de abrir o primeiro módulo, reserve tempo para ler, executar o script e escrever uma frase técnica.
+:::
+
+::: {.home-start-criteria-grid role="list" aria-label="Critérios para começar um módulo"}
+::: {.home-start-criteria-item role="listitem"}
+**30 a 45 min**
+
+Tempo suficiente para leitura, execução e síntese curta.
+:::
+
+::: {.home-start-criteria-item role="listitem"}
+**R disponível**
+
+Ambiente pronto para rodar o script do módulo.
+:::
+
+::: {.home-start-criteria-item role="listitem"}
+**Pergunta clara**
+
+Uma decisão biológica ou técnica para acompanhar a leitura.
+:::
+:::
+:::
+
 ::: {.home-section .home-module-anatomy role="region" aria-label="Estrutura de cada módulo"}
 ::: {.section-label}
 Anatomia
@@ -252,6 +308,40 @@ Use o roteiro semanal para organizar leitura, prática em R e revisão.
 :::
 :::
 
+::: {.home-section .home-returning role="region" aria-label="Como retomar a trilha MGenética"}
+::: {.home-returning-copy}
+**Se você está voltando ao curso**
+
+Retome pela evidência que falta: escolher o próximo módulo, revisar a fase atual ou conferir pendências antes do certificado.
+:::
+
+::: {.home-returning-grid role="list" aria-label="Rotas para retomar o estudo"}
+::: {.home-returning-item role="listitem"}
+**Continuar**
+
+Abra o índice e escolha o próximo módulo pela fase em que você parou.
+
+[Ver módulos](modules/index.qmd){.entry-link}
+:::
+
+::: {.home-returning-item role="listitem"}
+**Revisar**
+
+Use o roteiro para recuperar o contexto antes de abrir uma nova página longa.
+
+[Abrir roteiro](semanas/index.qmd){.entry-link}
+:::
+
+::: {.home-returning-item role="listitem"}
+**Concluir**
+
+Confira se todos os quizzes foram validados no navegador antes de emitir o certificado.
+
+[Checar certificado](certificado.qmd){.entry-link}
+:::
+:::
+:::
+
 ::: {.home-section .home-discovery}
 ::: {.section-label}
 Apoio
@@ -282,6 +372,34 @@ Use como referência rápida para siglas, parâmetros e métodos que aparecem ao
 Distribua leitura, execução dos scripts e interpretação técnica em um plano semanal.
 
 [Ver roteiro](semanas/index.qmd){.entry-link}
+:::
+:::
+:::
+
+::: {.home-section .home-evidence role="region" aria-label="Evidências da experiência de estudo"}
+::: {.home-evidence-copy}
+## Por que a trilha é confiável
+
+A experiência pública combina conteúdo científico, simulação controlada e checagem local. Isso permite estudar conceitos complexos com uma sequência previsível, sem depender de cadastro, base externa ou painel administrativo.
+:::
+
+::: {.home-evidence-grid role="list" aria-label="Evidências da proposta MGenética"}
+::: {.home-evidence-item role="listitem"}
+**Base científica**
+
+O percurso segue referências clássicas de genética quantitativa, avaliação genética e genômica aplicada.
+:::
+
+::: {.home-evidence-item role="listitem"}
+**Prática verificável**
+
+Os scripts permitem repetir a simulação, alterar parâmetros e comparar a interpretação.
+:::
+
+::: {.home-evidence-item role="listitem"}
+**Progresso privado**
+
+Quizzes e certificado funcionam no navegador, sem envio de dados pessoais.
 :::
 :::
 :::
@@ -527,11 +645,44 @@ Escreva uma frase técnica antes de avançar para o quiz ou para o próximo mód
 :::
 :::
 
+::: {.home-section .home-continuity role="region" aria-label="Como a trilha fecha depois do estudo"}
+::: {.home-continuity-copy}
+## Da primeira aula ao certificado
+
+A experiência pública foi desenhada para manter uma linha simples: entrar pela trilha principal, consultar apoio quando necessário, registrar progresso nos quizzes e emitir o certificado quando a sequência estiver completa.
+:::
+
+::: {.home-continuity-actions role="navigation" aria-label="Ações para continuar ou concluir a trilha"}
+[Continuar pelos módulos](modules/index.qmd){.btn .btn-primary}
+[Ver como concluir](certificado.qmd){.btn .btn-secondary}
+:::
+:::
+
 ::: {.home-section .home-final-cta}
 ::: {.final-cta-copy}
 ## Comece pela trilha principal
 
 O melhor caminho é seguir os módulos em ordem, executar os scripts e registrar uma interpretação curta a cada etapa. Se preferir distribuir a carga, use o roteiro semanal antes de começar.
+:::
+
+::: {.final-cta-checks role="list" aria-label="Critérios para escolher o próximo passo"}
+::: {.final-cta-check role="listitem"}
+**Primeira sessão**
+
+Abra o Módulo 01 e feche uma evidência curta.
+:::
+
+::: {.final-cta-check role="listitem"}
+**Retomada**
+
+Volte ao índice e escolha pela fase atual.
+:::
+
+::: {.final-cta-check role="listitem"}
+**Conclusão**
+
+Confira pendências no certificado antes de encerrar.
+:::
 :::
 
 ::: {.final-cta-actions role="navigation" aria-label="Ações finais da página inicial"}

@@ -134,6 +134,12 @@ for (g in list(1:3, 4:5, 6:7, 8:9, 10)) {
 **Atenção:** O pedigree deve estar ordenado cronologicamente — pais antes dos filhos. Um animal fora de ordem produz erros silenciosos na matriz A.
 :::
 
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de seguir, escolha dois indivíduos aparentados e escreva como o parentesco entre eles afetaria comparação, acasalamento ou controle de endogamia.
+:::
+
 ## Exercício proposto
 
 1. Adicione ao pedigree um animal 11 com `sire=4` e `dam=5` (irmão cruzado com irmã). Calcule F_11.
@@ -169,7 +175,7 @@ Você fechou a base de parentesco por pedigree. Nos próximos módulos, a relaç
 :::
 
 ```{=html}
-<div class="module-nav">
+<nav class="module-nav" aria-label="Navegação entre módulos">
   <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
@@ -182,5 +188,5 @@ Você fechou a base de parentesco por pedigree. Nos próximos módulos, a relaç
     <span>Próximo · Módulo 10</span>
     <strong>Genômica e Marcadores SNP</strong>
   </a>
-</div>
+</nav>
 ```

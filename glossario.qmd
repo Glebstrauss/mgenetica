@@ -40,6 +40,34 @@ Volte ao conteúdo principal para interpretar o termo em contexto.
 :::
 :::
 
+::: {.utility-decision role="region" aria-label="Como transformar um termo do glossário em estudo"}
+::: {.utility-decision-copy}
+**Termo entendido, contexto necessário**
+
+O glossário resolve a definição curta. A aprendizagem acontece quando o termo volta para o módulo, para o script e para a interpretação da saída.
+:::
+
+::: {.utility-decision-grid role="list" aria-label="Formas de usar um termo técnico"}
+::: {.utility-decision-item role="listitem"}
+**Definição**
+
+Leia o significado e identifique se é parâmetro, método ou resultado.
+:::
+
+::: {.utility-decision-item role="listitem"}
+**Contexto**
+
+Use a busca para encontrar onde o termo aparece na trilha.
+:::
+
+::: {.utility-decision-item role="listitem"}
+**Aplicação**
+
+Volte ao módulo e conecte o termo à decisão técnica.
+:::
+:::
+:::
+
 ::: {.utility-return-guide role="region" aria-label="Como voltar do glossário para a trilha"}
 ::: {.utility-return-copy}
 **Glossário é apoio, não ponto final**

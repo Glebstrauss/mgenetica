@@ -132,6 +132,12 @@ cat(sprintf("\nrA < 0: selecionar peso+ → gordura diminui (desfavorável p/ ac
 **Interpretação:** r_A e r_P podem ter sinais opostos. Uma correlação fenotípica positiva pode esconder uma correlação genética negativa se os dois ambientes tiverem efeitos positivos correlacionados nas duas características.
 :::
 
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de seguir, altere o sinal da correlação genética e escreva como a decisão de seleção muda quando a resposta correlacionada passa de limitante para favorável.
+:::
+
 ## Exercício proposto
 
 1. Mude `rA` para +0,60 (correlação favorável). Como muda a decisão de seleção?
@@ -167,7 +173,7 @@ Depois de estimar parâmetros e relações entre características, a trilha avan
 :::
 
 ```{=html}
-<div class="module-nav">
+<nav class="module-nav" aria-label="Navegação entre módulos">
   <a class="module-nav-card module-nav-index" href="index.html">
     <span>Índice</span>
     <strong>Todos os módulos</strong>
@@ -180,5 +186,5 @@ Depois de estimar parâmetros e relações entre características, a trilha avan
     <span>Próximo · Módulo 07</span>
     <strong>Modelos Lineares e Mistos</strong>
   </a>
-</div>
+</nav>
 ```

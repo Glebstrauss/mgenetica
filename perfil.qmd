@@ -78,6 +78,34 @@ O app deve apoiar manutenção e publicação sem aparecer como produto público
 :::
 :::
 
+::: {.about-credibility role="region" aria-label="Compromissos públicos de confiança"}
+::: {.about-credibility-copy}
+## Compromissos públicos
+
+A camada pública da MGenética precisa ser compreensível para quem está começando e tecnicamente honesta para quem já trabalha com dados. Por isso, a experiência privilegia contexto, reprodutibilidade e limites claros.
+:::
+
+::: {.about-credibility-grid role="list" aria-label="Compromissos editoriais da MGenética"}
+::: {.about-credibility-item role="listitem"}
+**Sem caixa-preta**
+
+Cada saída técnica deve estar ligada a uma pergunta, um script e uma interpretação.
+:::
+
+::: {.about-credibility-item role="listitem"}
+**Sem coleta obrigatória**
+
+O progresso público fica no navegador e não exige login para estudar.
+:::
+
+::: {.about-credibility-item role="listitem"}
+**Sem promessa automática**
+
+O certificado indica conclusão da trilha, não substitui formação, validação profissional ou aplicação sem revisão.
+:::
+:::
+:::
+
 ## Princípios
 
 ::: {.profile-grid}
