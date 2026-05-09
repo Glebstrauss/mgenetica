@@ -24,6 +24,12 @@ description: "SNPs, plataformas de genotipagem, frequências alélicas e desequi
 </div>
 ```
 
+::: {.module-phase-start role="note" aria-label="Abertura da fase de genômica"}
+**Nova fase da trilha**
+
+Aqui começa a leitura genômica da variação. O parentesco deixa de depender apenas do pedigree esperado e passa a usar marcadores observados no DNA.
+:::
+
 ## Do pedigree ao DNA
 
 Os módulos anteriores usaram o pedigree para inferir parentesco. Mas o pedigree diz o que **esperamos** em média — um filho recebe, em média, 50% dos genes do pai, mas o valor real pode variar de 40% a 60% por acaso meiótico. Com **marcadores moleculares SNP**, medimos o que o animal **realmente herdou**, locus por locus.

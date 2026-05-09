@@ -61,6 +61,580 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-09 — Sixth long public visual/UX module-anatomy and support-flow block
+
+### Block objective
+
+Continue site-only public visual/UX evolution without publishing, following `NEXT_SITE.md` as the current review/readiness contract while adding clearer module anatomy on the homepage, support crosslinks on the module index, phase-start notes in key modules, stronger list semantics, responsive code/table handling and manifest validation coverage. No app files were changed.
+
+### Cycles executed
+
+1. Diagnosis: the homepage explained orientation and learning loop, but did not explicitly show what a visitor should expect inside each module.
+   Implementation: added `.home-module-anatomy` with four cards: objective, practice, interpretation and quiz.
+   Testing: rendered the site and captured `/private/tmp/mgenetica-block6-home-mobile.png`; Playwright verified `.home-module-anatomy` and four `.module-anatomy-card` elements at 1440, 820 and 390 px.
+   Notes: the section clarifies the public learning pattern without adding administrative UI.
+2. Diagnosis: the module index had phase and route guidance, but visitors arriving from a specific concept needed faster support routes.
+   Implementation: added `.modules-support` with actions to search, glossary and weekly route; added an anchor action to jump from route guidance to all modules.
+   Testing: rendered `docs/modules/index.html`; screenshots captured `/private/tmp/mgenetica-block6-modules-mobile.png` and `/private/tmp/mgenetica-block6-modules-tablet.png`; Playwright verified support actions and all 12 module cards.
+   Notes: primary action remains starting Module 01.
+3. Diagnosis: module phase endings were marked in previous work, but phase starts were not explicitly introduced when entering data, modeling and genomics.
+   Implementation: added `.module-phase-start` notes to modules 03, 07 and 10.
+   Testing: Quarto rendered all three altered modules; Playwright verified `.module-phase-start` on the three pages across desktop, tablet and mobile widths.
+   Notes: the notes are short editorial bridges, not scientific rewrites.
+4. Diagnosis: module index cards and phase cards lacked explicit list semantics.
+   Implementation: added `role="list"` and `role="listitem"` to the phase and module grids in `modules/index.qmd`.
+   Testing: full render preserved the markup; Playwright verified the rendered module-card count.
+   Notes: this improves accessibility with no visual disruption.
+5. Diagnosis: mobile QA exposed document-level overflow from long code and table content in module pages.
+   Implementation: added mobile wrapping/containment for source code blocks, scientific tables and inline code.
+   Testing: Playwright initially failed with 80 px overflow on Módulo 03; after CSS fixes, Playwright passed 3/3 checks with no document-level horizontal overflow.
+   Notes: this addresses a broader module-reading risk, not only the new components.
+6. Diagnosis: new public patterns needed governance coverage and final prepublication validation.
+   Implementation: updated `data/site-manifest.yml`, `scripts/validate_site_manifest.R`, `PUBLIC_SITE_COMPONENTS.md`, light/dark styles and removed temporary Playwright artifacts.
+   Testing: manifest, YAML, Sass, `git diff --check`, full Quarto render, Playwright QA and full `prepublish_site_check.R` all passed.
+   Notes: no commit, push or publication was performed.
+
+### Files changed
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+
+### Improvements implemented
+
+- Homepage now explains the repeatable anatomy of each module.
+- Module index now provides support routes to search, glossary and weekly planning before the full catalog.
+- Modules 03, 07 and 10 now mark the beginning of major learning phases.
+- Phase and module grids now expose list semantics.
+- Mobile code, inline code and scientific tables are less likely to create horizontal page overflow.
+- Manifest validation now covers home module anatomy, module-index support and phase-start notes.
+
+### Problems fixed
+
+- The course structure inside each module was implied but not visible enough from the homepage.
+- Concept-first visitors had to leave the module index to find support tools.
+- Phase starts were less explicit than phase endings.
+- Mobile QA found overflow in module pages caused by long code/table content.
+
+### Commands executed
+
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); cat("yaml ok\n")'`
+- `git diff --check`
+- `HOME=/private/tmp/quarto-home '/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto' render`
+- `python3 -m http.server 8903 --directory docs`
+- `pnpm dlx playwright screenshot --viewport-size=390,1400 http://127.0.0.1:8903/ /private/tmp/mgenetica-block6-home-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=390,1400 http://127.0.0.1:8903/modules/ /private/tmp/mgenetica-block6-modules-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=820,1200 http://127.0.0.1:8903/modules/ /private/tmp/mgenetica-block6-modules-tablet.png`
+- `pnpm dlx playwright screenshot --viewport-size=390,1400 http://127.0.0.1:8903/modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.html /private/tmp/mgenetica-block6-module03-mobile.png`
+- `MGENETICA_QA_BASE_URL=http://127.0.0.1:8903 pnpm dlx @playwright/test test .codex-tmp-mgenetica-block6.spec.js --reporter=line`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- YAML validation passed, with the existing parser warning about `.` coercion in workflow metadata.
+- Sass validation passed for light and dark themes.
+- `git diff --check` passed.
+- Full Quarto render passed and generated `docs/index.html`.
+- Playwright QA initially caught mobile overflow in Módulo 03, then passed 3/3 checks after code/table/inline-code fixes.
+- Full prepublish site check passed with `prepublish site check ok`.
+
+### Pending items
+
+- Review the latest screenshots in `/private/tmp/mgenetica-block6-home-mobile.png`, `/private/tmp/mgenetica-block6-modules-mobile.png`, `/private/tmp/mgenetica-block6-modules-tablet.png` and `/private/tmp/mgenetica-block6-module03-mobile.png`.
+- Publish only if explicitly requested after review.
+
+---
+
+## 2026-05-08 — Fifth long public visual/UX navigation-and-phase-flow block
+
+### Block objective
+
+Continue site-only public visual/UX evolution without publishing, following `NEXT_SITE.md` as a review/readiness contract while improving public closure paths, footer navigation, the institutional About page, module phase transitions, responsive footer behavior and governance coverage. No app files were changed.
+
+### Cycles executed
+
+1. Diagnosis: the homepage final CTA offered start and weekly planning, but did not expose the completion/certificate path already introduced elsewhere.
+   Implementation: added `Ver como concluir` to the final homepage CTA group, pointing to `certificado.qmd`.
+   Testing: rendered the site and Playwright verified the certificate CTA on the home page at 1440, 820 and 390 px.
+   Notes: the primary action remains `Começar pelo Módulo 01`.
+2. Diagnosis: the footer included utility routes but still omitted `Sobre`, even though it is part of the public institutional route.
+   Implementation: added `Sobre` to the Quarto footer center and to `data/site-manifest.yml`.
+   Testing: manifest validation confirmed footer sync between manifest and `_quarto.yml`.
+   Notes: header navigation was not expanded; the footer now carries the broader public map.
+3. Diagnosis: the About page explained the site role but ended without a clear next action and had grids without explicit list semantics.
+   Implementation: added list roles to institutional card groups and added `.about-next-step` with actions to modules, search and glossary.
+   Testing: screenshots captured `/private/tmp/mgenetica-block5-about-mobile.png` and `/private/tmp/mgenetica-block5-about-tablet.png`; Playwright verified `.site-map-grid`, `.about-next-step` and three actions across viewports.
+   Notes: the page remains institutional and public, not administrative.
+4. Diagnosis: phase boundaries inside the course were visible in the module index but not at the moment a learner completed a phase.
+   Implementation: added `.module-phase-note` after quizzes in modules 02, 06 and 09, marking transitions to data/parameters, modeling and genomics.
+   Testing: Quarto rendered all module pages; Playwright verified `.module-phase-note` on modules 02, 06 and 09 at desktop, tablet and mobile widths.
+   Notes: notes are concise editorial transitions, not scientific rewrites.
+5. Diagnosis: adding another footer item caused mobile horizontal overflow in QA.
+   Implementation: updated footer styles so center links wrap, footer columns constrain to viewport width on mobile, and the issue action is hidden in the tight mobile footer.
+   Testing: initial Playwright QA found 16 px mobile overflow; after the footer fix, Playwright passed 3/3 checks with no document-level horizontal overflow.
+   Notes: this directly addressed a responsive regression introduced in this block.
+6. Diagnosis: new public patterns needed governance and documentation coverage plus full validation.
+   Implementation: updated `PUBLIC_SITE_COMPONENTS.md`, `data/site-manifest.yml`, `scripts/validate_site_manifest.R`, light/dark styles and local QA artifacts, then removed temporary Playwright files.
+   Testing: manifest, YAML, Sass, `git diff --check`, full Quarto render, Playwright QA and full `prepublish_site_check.R` all passed.
+   Notes: no commit, push or publication was performed.
+
+### Files changed
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `_quarto.yml`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `perfil.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+
+### Improvements implemented
+
+- Homepage final CTA now exposes the public completion/certificate route.
+- Footer navigation now includes the institutional About route.
+- About page now has clearer public next actions and stronger accessibility semantics.
+- Module phase transitions are now visible at the end of modules 02, 06 and 09.
+- Footer mobile wrapping prevents horizontal overflow with the expanded footer route set.
+- Component documentation and manifest validation now cover the new About and phase-transition patterns.
+
+### Problems fixed
+
+- The public footer did not represent the complete institutional route set.
+- The About page ended without a clear next action.
+- Phase boundaries were only explained outside the module completion moment.
+- QA found a 16 px mobile overflow after footer expansion; footer wrapping fixed it.
+
+### Commands executed
+
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); cat("yaml ok\n")'`
+- `git diff --check`
+- `HOME=/private/tmp/quarto-home '/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto' render`
+- `python3 -m http.server 8902 --directory docs`
+- `pnpm dlx playwright screenshot --viewport-size=390,1200 http://127.0.0.1:8902/ /private/tmp/mgenetica-block5-home-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=390,1200 http://127.0.0.1:8902/perfil.html /private/tmp/mgenetica-block5-about-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=820,1200 http://127.0.0.1:8902/perfil.html /private/tmp/mgenetica-block5-about-tablet.png`
+- `pnpm dlx playwright screenshot --viewport-size=390,1400 http://127.0.0.1:8902/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html /private/tmp/mgenetica-block5-module06-mobile.png`
+- `MGENETICA_QA_BASE_URL=http://127.0.0.1:8902 pnpm dlx @playwright/test test .codex-tmp-mgenetica-block5.spec.js --reporter=line`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- YAML validation passed, with the existing parser warning about `.` coercion in workflow metadata.
+- Sass validation passed for light and dark themes.
+- `git diff --check` passed.
+- Full Quarto render passed and generated `docs/index.html`.
+- Playwright QA initially caught mobile footer overflow, then passed 3/3 checks after the footer fix.
+- Full prepublish site check passed with `prepublish site check ok`.
+
+### Pending items
+
+- Review the latest screenshots in `/private/tmp/mgenetica-block5-home-mobile.png`, `/private/tmp/mgenetica-block5-about-mobile.png`, `/private/tmp/mgenetica-block5-about-tablet.png` and `/private/tmp/mgenetica-block5-module06-mobile.png`.
+- Publish only if explicitly requested after review.
+
+---
+
+## 2026-05-08 — Fourth long public visual/UX certificate-readiness block
+
+### Block objective
+
+Continue site-only public visual/UX evolution without publishing, using `NEXT_SITE.md` as the review/readiness contract while improving the public completion path: homepage orientation, route-to-certificate CTA, certificate page editorial structure, certificate progress accessibility, responsive/dark-mode styling and manifest validation coverage. No app files were changed.
+
+### Cycles executed
+
+1. Diagnosis: the homepage had strong start/discovery sections, but it still lacked a concise orientation moment explaining how entry, support tools and completion fit together.
+   Implementation: added `.home-orientation` with three cards for point of entry, support during reading and course closure.
+   Testing: rendered the site and captured `/private/tmp/mgenetica-block4-home-mobile.png`; Playwright verified `.home-orientation` and three `.orientation-card` elements at 1440, 820 and 390 px.
+   Notes: the section supports first-visit clarity without adding app-like progress UI.
+2. Diagnosis: the study route ended with study actions but did not explain that the route leads to a certificate closure.
+   Implementation: added a restrained secondary CTA from `semanas/index.qmd` to `certificado.qmd`.
+   Testing: Playwright verified the certificate CTA on the rendered route page at desktop, tablet and mobile widths; screenshot captured `/private/tmp/mgenetica-block4-route-mobile.png`.
+   Notes: the primary route action remains starting Module 01.
+3. Diagnosis: `certificado.qmd` had a functional gate but the top of the page felt less aligned with the public editorial system and relied on inline hero styling.
+   Implementation: added full-page metadata, a `.page-hero`, `.certificate-intro` cards, `.certificate-ready` and `.certificate-actions`, while preserving the existing browser-local certificate logic.
+   Testing: rendered `docs/certificado.html`; screenshots captured `/private/tmp/mgenetica-block4-certificate-mobile.png` and `/private/tmp/mgenetica-block4-certificate-tablet.png`.
+   Notes: the certificate page now reads as a public completion page rather than a raw utility.
+4. Diagnosis: the certificate progress list used visual symbols for completion state, which was weaker for accessibility and polish.
+   Implementation: replaced the symbol-only progress markers with textual `Concluído`/`Pendente` states and added responsive styles for `.certificate-progress-list`.
+   Testing: Sass validation passed for light and dark themes; Playwright verified no horizontal overflow on certificate across 1440, 820 and 390 px.
+   Notes: progress remains stored locally in the browser; no backend or app behavior was added.
+5. Diagnosis: new public patterns needed governance coverage so future app-based management can recognize editable regions without owning longform behavior.
+   Implementation: updated `data/site-manifest.yml`, `scripts/validate_site_manifest.R` and `PUBLIC_SITE_COMPONENTS.md` for home orientation and certificate intro/status patterns.
+   Testing: `Rscript scripts/validate_site_manifest.R`, YAML validation and `git diff --check` passed.
+   Notes: certificate governance now includes hero, intro and gate markers.
+6. Diagnosis: final verification needed full render, screenshots, automated responsive QA and the full prepublication gate.
+   Implementation: rendered with vendored Quarto, served `docs/` locally, captured screenshots, ran a temporary Playwright QA spec with `@playwright/test`, removed temporary test artifacts, stopped the server and ran the full prepublish check.
+   Testing: Playwright passed 3/3 checks; full `prepublish_site_check.R` passed with `prepublish site check ok`.
+   Notes: no commit, push or publication was performed.
+
+### Files changed
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `certificado.qmd`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `scripts/validate_site_manifest.R`
+- `semanas/index.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+
+### Improvements implemented
+
+- Homepage now explains how entry, support tools and completion relate.
+- Study route now links to certificate context as a secondary action.
+- Certificate page now uses the public `page-hero` pattern and certificate-specific editorial cards.
+- Certificate progress states now use text labels instead of symbol-only status.
+- New components have responsive and dark-mode styling.
+- Manifest validation now covers certificate hero/intro regions and homepage orientation.
+
+### Problems fixed
+
+- Certificate page felt less visually integrated with the public site.
+- Certificate progress status depended on icon-like visual symbols.
+- The route-to-certificate relationship was underexplained.
+- New certificate/home patterns needed component documentation and validation coverage.
+
+### Commands executed
+
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); cat("yaml ok\n")'`
+- `git diff --check`
+- `HOME=/private/tmp/quarto-home '/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto' render`
+- `python3 -m http.server 8901 --directory docs`
+- `pnpm dlx playwright screenshot --viewport-size=390,1200 http://127.0.0.1:8901/ /private/tmp/mgenetica-block4-home-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=390,1200 http://127.0.0.1:8901/certificado.html /private/tmp/mgenetica-block4-certificate-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=820,1200 http://127.0.0.1:8901/certificado.html /private/tmp/mgenetica-block4-certificate-tablet.png`
+- `pnpm dlx playwright screenshot --viewport-size=390,1200 http://127.0.0.1:8901/semanas/ /private/tmp/mgenetica-block4-route-mobile.png`
+- `MGENETICA_QA_BASE_URL=http://127.0.0.1:8901 pnpm dlx @playwright/test test .codex-tmp-mgenetica-block4.spec.js --reporter=line`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- YAML validation passed, with the existing parser warning about `.` coercion in workflow metadata.
+- Sass validation passed for light and dark themes.
+- `git diff --check` passed.
+- Full Quarto render passed and generated `docs/index.html`.
+- Playwright local QA passed 3/3 checks for new public UX markers and no document-level horizontal overflow at 1440, 820 and 390 px.
+- Full prepublish site check passed with `prepublish site check ok`.
+
+### Pending items
+
+- Review the latest screenshots in `/private/tmp/mgenetica-block4-home-mobile.png`, `/private/tmp/mgenetica-block4-certificate-mobile.png`, `/private/tmp/mgenetica-block4-certificate-tablet.png` and `/private/tmp/mgenetica-block4-route-mobile.png`.
+- Publish only if explicitly requested after review.
+
+---
+
+## 2026-05-08 — Third long public visual/UX support-flow block
+
+### Block objective
+
+Continue site-only public visual/UX evolution without publishing, using `NEXT_SITE.md` as review/readiness context while adding higher-impact support-flow improvements: discovery from the homepage, footer navigation to certificate, search/glossary next actions, module 12 completion context, responsive/dark-mode styling and manifest validation coverage. No app files were changed.
+
+### Cycles executed
+
+1. Diagnosis: the accumulated homepage improvements clarified the main learning path, but support routes such as search and glossary were still underexposed from the homepage.
+   Implementation: added a `.home-discovery` section with cards for Busca, Glossário and Roteiro.
+   Testing: rendered the site and verified `docs/index.html` contains `.home-discovery`; Playwright checked the home page at desktop, tablet and mobile widths.
+   Notes: this makes discovery feel like learning support, not an administrative utility.
+2. Diagnosis: the footer omitted the certificate route even though module 12 links to it and `certificado.qmd` is part of the public site.
+   Implementation: added `Certificado` to the Quarto footer center links and registered the certificate page/footer item in the manifest.
+   Testing: the manifest validator initially caught a mistaken insertion into primary navigation; fixed it so the header stays focused and the footer carries certificate access.
+   Notes: the public header remains unchanged apart from the existing compact `Começar` CTA.
+3. Diagnosis: search and glossary pages had useful hero and task-flow panels, but after using them the visitor had no explicit next action.
+   Implementation: added `.utility-next-step` CTA groups to `busca.qmd` and `glossario.qmd`.
+   Testing: rendered `docs/busca.html` and `docs/glossario.html`; Playwright verified `.utility-next-step` on both pages across 1440, 820 and 390 px widths.
+   Notes: local QA logs show a 404 for `_pagefind/pagefind-ui.css` before Pagefind indexing; the page fallback remains expected in local render and publication indexing handles the asset.
+4. Diagnosis: module 12 ended with quiz and navigation, but the final learning moment needed a stronger editorial close before certificate.
+   Implementation: added `.module-completion-note` after the final quiz, framing the certificate as formal closure and the interpretation as evidence of learning.
+   Testing: rendered module 12 and ran Playwright presence/overflow checks for `.module-completion-note` and `.module-nav`.
+   Notes: no scientific lesson rewrite was added; the note is concise and editorial.
+5. Diagnosis: new support components needed visual system coverage, dark-mode parity and app-future governance.
+   Implementation: styled `.discovery-grid`, `.discovery-card`, `.utility-next-step` and `.module-completion-note`; added dark-mode overrides; updated `PUBLIC_SITE_COMPONENTS.md`, `data/site-manifest.yml` and `scripts/validate_site_manifest.R`.
+   Testing: `Rscript scripts/validate_site_manifest.R`, Sass validation, YAML validation and `git diff --check` passed.
+   Notes: the validator now checks the certificate page marker and utility next-step regions.
+6. Diagnosis: final block verification needed full render, screenshot QA and the complete prepublication gate without publishing.
+   Implementation: rendered with vendored Quarto, served `docs/` locally, captured screenshots for home, search and module 12, ran a temporary Playwright test over home/search/glossary/module12/certificate, removed temporary Playwright artifacts, and ran full prepublish validation.
+   Testing: Playwright passed 15/15 checks; full `prepublish_site_check.R` passed with `prepublish site check ok`.
+   Notes: the local HTTP server was stopped after QA.
+
+### Files changed
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `_quarto.yml`
+- `busca.qmd`
+- `data/site-manifest.yml`
+- `glossario.qmd`
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `scripts/validate_site_manifest.R`
+- `semanas/index.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+
+### Improvements implemented
+
+- Homepage now exposes search, glossary and route as public learning support.
+- Footer now includes the public certificate route.
+- Search and glossary pages now provide clear next actions back to the learning path.
+- Module 12 now has an explicit course-completion note before certificate navigation.
+- New support-flow components are covered by responsive and dark-mode styling.
+- Manifest validation now covers certificate and utility next-step regions.
+
+### Problems fixed
+
+- Certificate route existed but was not represented in footer navigation or the manifest page registry.
+- Search/glossary were useful but dead-ended after the primary task.
+- Module 12 final transition to certificate was abrupt.
+- A first manifest attempt put `Certificado` in primary navigation; validation caught it and the route was moved to footer-only navigation.
+
+### Commands executed
+
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `git diff --check`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); cat("yaml ok\n")'`
+- `HOME=/private/tmp/quarto-home '/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto' render`
+- `python3 -m http.server 8899 --directory docs`
+- `pnpm dlx playwright screenshot --viewport-size=390,1200 http://127.0.0.1:8899/ /private/tmp/mgenetica-block3-home-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=390,1200 http://127.0.0.1:8899/busca.html /private/tmp/mgenetica-block3-search-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=390,1200 http://127.0.0.1:8899/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html /private/tmp/mgenetica-block3-module12-mobile.png`
+- `MGENETICA_QA_BASE_URL=http://127.0.0.1:8899 pnpm dlx playwright test .codex-tmp-mgenetica-public-ux.spec.js --reporter=line`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- YAML validation passed, with the existing YAML parser warning about `.` coercion in workflow metadata.
+- Sass validation passed for light and dark themes.
+- `git diff --check` passed.
+- Full Quarto render passed and generated `docs/index.html`.
+- Playwright local QA passed 15/15 checks for altered support-flow markers and no document-level horizontal overflow at 1440, 820 and 390 px.
+- Full prepublish site check passed with `prepublish site check ok`.
+
+### Pending items
+
+- Review the latest screenshots in `/private/tmp/mgenetica-block3-home-mobile.png`, `/private/tmp/mgenetica-block3-search-mobile.png` and `/private/tmp/mgenetica-block3-module12-mobile.png`.
+- Publish only if explicitly requested after review.
+
+---
+
+## 2026-05-08 — Second long public visual/UX readiness block
+
+### Block objective
+
+Continue the site-only public visual/UX evolution block on top of the already validated local changes, following `NEXT_SITE.md` as a review/readiness contract. The block refined first-viewport action visibility, strengthened public CTAs, improved route/module flow, expanded component governance and reran full validation. No app files were changed and no publication was performed.
+
+### Cycles executed
+
+1. Diagnosis: screenshots from the previous block showed the homepage CTA was still too low in the hero, especially on mobile; the first viewport communicated brand and promise but delayed the next action.
+   Implementation: moved `.hero-actions` above the hero meta cards and tightened hero spacing so the primary action appears earlier on desktop and mobile.
+   Testing: rendered the site and captured new homepage screenshots at 390 px and 1440 px.
+   Notes: the mobile screenshot now shows `Começar pelo Módulo 01` within the first viewport.
+2. Diagnosis: homepage entry cards were visually useful but not explicitly grouped for assistive technology.
+   Implementation: added `role="list"` to the entry grid and `role="listitem"` to each entry card.
+   Testing: full Quarto render preserved the markup and Playwright presence checks passed.
+   Notes: this is a low-risk accessibility improvement with no visual change.
+3. Diagnosis: the module index still ended immediately after the 12 module cards, leaving the final decision less directed.
+   Implementation: added a `.modules-next-step` final band with a recommended path and two actions: start Module 01 or plan by week.
+   Testing: rendered `docs/modules/index.html`; Playwright verified `.modules-next-step` across 1440, 820 and 390 px widths.
+   Notes: this complements the top CTA without changing module card content.
+4. Diagnosis: the weekly route had a visual progress map, but it needed a small explanatory note to avoid reading it as a dashboard or scorecard.
+   Implementation: added `.route-map-intro` before the learning map to explain that the map is a marker of progress, not a score.
+   Testing: rendered `docs/semanas/index.html`; Playwright verified `.route-map-intro` across desktop/tablet/mobile widths.
+   Notes: this preserves the public editorial tone and avoids app-like semantics.
+5. Diagnosis: new public components needed responsive and dark-mode parity plus manifest governance coverage.
+   Implementation: added CSS for `.modules-next-step`, `.modules-next-step-actions` and `.route-map-intro`, added dark-mode overrides, updated `PUBLIC_SITE_COMPONENTS.md`, expanded `data/site-manifest.yml` editorial patterns and editable regions, and updated validator markers in `scripts/validate_site_manifest.R`.
+   Testing: `Rscript scripts/validate_site_manifest.R`, YAML validation, Sass validation and `git diff --check` passed.
+   Notes: the module index is now covered by editable-region validation rather than only page existence/navigation checks.
+6. Diagnosis: final verification needed to cover rendered output, screenshots, responsive overflow and full local prepublication gate without publishing.
+   Implementation: served `docs/` locally, captured new screenshots for homepage, module index and weekly route, ran a temporary Playwright test for public UX markers and document width, then removed the temporary test file and `test-results`.
+   Testing: Playwright passed 9/9 checks; full `Rscript scripts/prepublish_site_check.R` passed with Quarto on `PATH`.
+   Notes: the local HTTP server was stopped after QA.
+
+### Files changed
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `_quarto.yml`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `modules/index.qmd`
+- `scripts/validate_site_manifest.R`
+- `semanas/index.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+
+### Improvements implemented
+
+- Homepage primary CTA is now visible earlier in desktop and mobile first viewport.
+- Homepage entry-card group has clearer accessibility semantics.
+- Module index now has a final next-step band for visitor decision-making.
+- Weekly route now explains how to interpret the progress map.
+- New components have responsive and dark-mode styling.
+- Manifest validation now covers editable regions for the module index and the new route map intro.
+
+### Problems fixed
+
+- First viewport action hierarchy was still too delayed after the previous block.
+- The module index lacked a decisive closing action after the full catalog.
+- New module-index and route components needed governance coverage to remain manageable later.
+
+### Commands executed
+
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `git diff --check`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); cat("yaml ok\n")'`
+- `HOME=/private/tmp/quarto-home '/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto' render`
+- `python3 -m http.server 8899 --directory docs`
+- `pnpm dlx playwright screenshot --viewport-size=390,900 http://127.0.0.1:8899/ /private/tmp/mgenetica-block2-home-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=1440,1100 http://127.0.0.1:8899/ /private/tmp/mgenetica-block2-home-desktop.png`
+- `pnpm dlx playwright screenshot --viewport-size=390,1200 http://127.0.0.1:8899/modules/ /private/tmp/mgenetica-block2-modules-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=390,1200 http://127.0.0.1:8899/semanas/ /private/tmp/mgenetica-block2-route-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=820,1100 http://127.0.0.1:8899/modules/ /private/tmp/mgenetica-block2-modules-tablet.png`
+- `MGENETICA_QA_BASE_URL=http://127.0.0.1:8899 pnpm dlx playwright test .codex-tmp-mgenetica-public-ux.spec.js --reporter=line`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- YAML validation passed.
+- Sass validation passed for light and dark themes.
+- `git diff --check` passed.
+- Full Quarto render passed and generated `docs/index.html`.
+- Playwright local QA passed 9/9 checks for altered public UX markers and no document-level horizontal overflow at 1440, 820 and 390 px.
+- Full prepublish site check passed with `prepublish site check ok`.
+
+### Pending items
+
+- Review the latest screenshots in `/private/tmp/mgenetica-block2-home-desktop.png`, `/private/tmp/mgenetica-block2-home-mobile.png`, `/private/tmp/mgenetica-block2-modules-mobile.png`, `/private/tmp/mgenetica-block2-modules-tablet.png` and `/private/tmp/mgenetica-block2-route-mobile.png`.
+- Publish only if explicitly requested after review.
+
+---
+
+## 2026-05-08 — Long public visual/UX evolution block
+
+### Block objective
+
+Execute a long site-only public visual/UX block after the completed publication validation. The work focused on homepage clarity, public navigation, internal route experience, responsiveness/accessibility, and modular content governance. No app files were changed and no publication was performed.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` still described post-publication validation, but that deployment had already been completed in the previous publication request; the next useful site-only work was visible public UX evolution aligned with `BACKLOG_SITE.md`.
+   Implementation: refined the homepage hero promise, added a concise learning-cycle note and introduced a new repeatable "same cycle in every module" section.
+   Testing: rendered the site with the vendored Quarto CLI and verified the generated homepage contains `.hero-signal` and `.learning-loop-grid`.
+   Notes: this directly addresses homepage first-viewport clarity and the concept-to-code-to-interpretation narrative.
+2. Diagnosis: the public header had clear labels but no persistent start action for visitors already convinced to begin.
+   Implementation: added a restrained `Começar` navbar CTA pointing to Module 01 and styled it as a compact journey action with light/dark parity.
+   Testing: screenshot QA confirmed the desktop header shows the action without crowding the existing navigation.
+   Notes: the primary navigation order remains unchanged and manifest validation still protects the canonical left/footer nav.
+3. Diagnosis: the module index CTAs were semantically visible but not exposed as navigation regions for assistive technology.
+   Implementation: added `role="navigation"` and explicit `aria-label` values to the module-index action groups.
+   Testing: rendered `docs/modules/index.html` and verified the action-region labels are present.
+   Notes: this improves accessibility without changing the visual hierarchy already validated in the previous block.
+4. Diagnosis: the weekly route page explained rhythm but did not provide a phase-level map before the detailed 12-week table.
+   Implementation: added a `route-overview` section with four phase cards and a final route CTA group back to Module 01 or the module index.
+   Testing: rendered `docs/semanas/index.html`, captured a mobile screenshot and verified `.route-overview` exists.
+   Notes: this strengthens internal public pages and helps users understand the progression before entering the table.
+5. Diagnosis: new public patterns needed responsive, focus and dark-mode support plus governance coverage.
+   Implementation: added CSS for `.hero-signal`, `.learning-loop-*`, `.route-overview-*`, navbar CTA focus states and dark-mode parity; updated `PUBLIC_SITE_COMPONENTS.md`, `data/site-manifest.yml` and `scripts/validate_site_manifest.R` so new editable regions are validated.
+   Testing: Sass compilation, manifest validation and `git diff --check` passed.
+   Notes: the validator initially failed because the new manifest regions lacked marker mappings; the script was updated to enforce the new contract rather than bypass it.
+6. Diagnosis: final verification needed rendered HTTP QA across the altered pages and common viewport widths.
+   Implementation: served `docs/` locally on port 8899, captured screenshots for homepage desktop/mobile plus module index and weekly route mobile, and ran a temporary Playwright overflow/presence test against home, modules and route at 1440, 820 and 390 px widths.
+   Testing: all 9 Playwright checks passed; screenshots were saved under `/private/tmp/mgenetica-*.png`.
+   Notes: the temporary test file and generated `test-results/` directory were removed after QA.
+
+### Files changed
+
+- `PUBLIC_SITE_COMPONENTS.md`
+- `_quarto.yml`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `modules/index.qmd`
+- `scripts/validate_site_manifest.R`
+- `semanas/index.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Homepage now explains the repeatable learning cycle more explicitly before the rest of the page.
+- Header now has a compact public start CTA while preserving the existing navigation order.
+- Module-index actions are labeled as navigation landmarks.
+- Weekly route page now has a phase-level overview and clearer next actions.
+- New public components have responsive, focus and dark-mode coverage.
+- Manifest validation now recognizes the new homepage and route editable regions.
+
+### Problems fixed
+
+- The local contract still pointed to post-publication validation after publication had already been completed.
+- Newly declared editable regions initially lacked validator marker mappings; this was fixed in `scripts/validate_site_manifest.R`.
+
+### Commands executed
+
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript -e 'invisible(yaml::read_yaml("_quarto.yml")); invisible(yaml::read_yaml("data/site-manifest.yml")); cat("yaml ok\n")'`
+- `node --check assets/js/quiz.js`
+- `node --check assets/js/teacher-mode.js`
+- `HOME=/private/tmp/quarto-home '/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin/quarto' render`
+- `python3 -m http.server 8899 --directory docs`
+- `pnpm dlx playwright screenshot --viewport-size=390,900 http://127.0.0.1:8899/ /private/tmp/mgenetica-home-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=1440,1100 http://127.0.0.1:8899/ /private/tmp/mgenetica-home-desktop.png`
+- `pnpm dlx playwright screenshot --viewport-size=390,900 http://127.0.0.1:8899/modules/ /private/tmp/mgenetica-modules-mobile.png`
+- `pnpm dlx playwright screenshot --viewport-size=390,900 http://127.0.0.1:8899/semanas/ /private/tmp/mgenetica-route-mobile.png`
+- `MGENETICA_QA_BASE_URL=http://127.0.0.1:8899 pnpm dlx playwright test .codex-tmp-mgenetica-public-ux.spec.js --reporter=line`
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- YAML validation passed, with the existing YAML parser warning about `.` coercion in workflow metadata.
+- Sass validation passed for light and dark themes.
+- JS syntax checks passed.
+- Full Quarto render passed and generated `docs/index.html`.
+- Module data scripts for modules 01-12 passed inside `prepublish_site_check.R`.
+- Playwright local QA passed 9/9 checks for presence of altered components and no document-level horizontal overflow.
+- Full prepublish site check passed with `prepublish site check ok`.
+
+### Pending items
+
+- Review the rendered screenshots in `/private/tmp/mgenetica-home-desktop.png`, `/private/tmp/mgenetica-home-mobile.png`, `/private/tmp/mgenetica-modules-mobile.png` and `/private/tmp/mgenetica-route-mobile.png`.
+- Publish only if explicitly requested after review.
+
+---
+
 ## 2026-05-08 — Publication of public UX QA changes
 
 ### Block objective

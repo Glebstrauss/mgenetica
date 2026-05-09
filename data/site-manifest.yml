@@ -72,14 +72,30 @@ navigation:
     - id: glossary
       label: Glossário
       href: glossario.qmd
+    - id: certificate
+      label: Certificado
+      href: certificado.qmd
+    - id: about
+      label: Sobre
+      href: perfil.qmd
 
 content_pages:
   editable_by_app: true
   editorial_patterns:
     - hero
     - page-hero
+    - hero-signal
+    - learning-loop
     - phase-preview
     - module-grid
+    - module-anatomy
+    - modules-support
+    - modules-next-step
+    - route-overview
+    - home-orientation
+    - about-next-step
+    - module-phase-note
+    - module-phase-start
     - final-cta
   items:
     - id: home
@@ -89,8 +105,13 @@ content_pages:
       status: published
       editable_regions:
         - hero
+        - hero-signal
+        - orientation
+        - module-anatomy
         - entry-points
         - platform-statement
+        - discovery
+        - learning-loop
         - phase-preview
         - final-cta
       source_collections:
@@ -101,6 +122,14 @@ content_pages:
       role: collection-index
       status: published
       source_collection: modules
+      editable_regions:
+        - hero
+        - guidance
+        - route
+        - support
+        - phases
+        - module-grid
+        - next-step
     - id: study-path
       title: Roteiro de estudo
       href: semanas/index.qmd
@@ -109,6 +138,8 @@ content_pages:
       editable_regions:
         - hero
         - route-checkpoints
+        - route-overview
+        - route-map-intro
         - routine
     - id: search
       title: Busca
@@ -119,6 +150,7 @@ content_pages:
         - hero
         - utility-flow
         - search-panel
+        - utility-next-step
     - id: glossary
       title: Glossário técnico
       href: glossario.qmd
@@ -128,6 +160,16 @@ content_pages:
         - hero
         - utility-flow
         - glossary-panel
+        - utility-next-step
+    - id: certificate
+      title: Certificado de Conclusão
+      href: certificado.qmd
+      role: utility
+      status: published
+      editable_regions:
+        - hero
+        - certificate-intro
+        - certificate-gate
     - id: about
       title: Sobre
       href: perfil.qmd
@@ -137,6 +179,8 @@ content_pages:
         - hero
         - public-page-triad
         - principles
+        - site-map
+        - about-next-step
 
 content_collections:
   modules:

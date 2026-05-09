@@ -30,20 +30,20 @@ Uma publicação digital aberta para estudar melhoramento animal, genética quan
 O site é a camada pública da MGenética: editorial, institucional e orientada ao aprendizado. Ele deve permanecer simples para acessar, rápido para publicar e suficientemente modular para que páginas, módulos, roteiros e materiais possam ser administrados por um painel interno no futuro.
 :::
 
-::: {.public-page-triad}
-::: {.public-page-card}
+::: {.public-page-triad role="list" aria-label="Papéis da camada pública"}
+::: {.public-page-card role="listitem"}
 **Camada pública**
 
 Conteúdo aberto, navegável e otimizado para leitura.
 :::
 
-::: {.public-page-card}
+::: {.public-page-card role="listitem"}
 **Conteúdo modular**
 
 Páginas, módulos e roteiros com estrutura editorial previsível.
 :::
 
-::: {.public-page-card}
+::: {.public-page-card role="listitem"}
 **Gestão interna**
 
 O app deve apoiar manutenção e publicação sem aparecer como produto público.
@@ -83,22 +83,36 @@ Conteúdos são organizados como páginas, coleções e metadados para futura ed
 
 ## Estrutura pública
 
-::: {.profile-grid}
-::: {.profile-card}
+::: {.profile-grid .site-map-grid role="list" aria-label="Mapa das principais áreas públicas"}
+::: {.profile-card role="listitem"}
 ### Página inicial
 
 Apresenta posicionamento, promessa, percurso e chamadas para a trilha.
 :::
 
-::: {.profile-card}
+::: {.profile-card role="listitem"}
 ### Módulos
 
 Concentram leitura, prática em R, interpretação e exercícios.
 :::
 
-::: {.profile-card}
+::: {.profile-card role="listitem"}
 ### Roteiro
 
 Organiza os módulos em uma sequência semanal de estudo.
+:::
+:::
+
+::: {.about-next-step role="navigation" aria-label="Próximos passos a partir da página Sobre"}
+::: {.about-next-step-copy}
+## Próximo passo
+
+Se você está conhecendo a MGenética agora, comece pela visão geral dos módulos. Se já sabe o tema que procura, use a busca ou o glossário como apoio.
+:::
+
+::: {.about-next-step-actions}
+[Ver módulos](modules/index.qmd){.btn .btn-primary}
+[Buscar conteúdo](busca.qmd){.btn .btn-secondary}
+[Consultar glossário](glossario.qmd){.btn .btn-secondary}
 :::
 :::

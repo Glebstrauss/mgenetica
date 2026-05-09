@@ -140,6 +140,12 @@ Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase l
 ::: {.quiz-container data-module="02"}
 :::
 
+::: {.module-phase-note role="note" aria-label="Transição para a fase de dados e parâmetros"}
+**Transição de fase**
+
+Você concluiu a base conceitual da trilha. A partir do próximo módulo, a pergunta deixa de ser apenas o que é variação genética e passa a ser como observar, resumir e interpretar dados simulados.
+:::
+
 ```{=html}
 <div class="module-nav">
   <a class="module-nav-card module-nav-index" href="index.html">

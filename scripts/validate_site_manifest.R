@@ -168,30 +168,55 @@ check_unique(page_hrefs, "content_pages.items.href")
 region_markers <- list(
   home = list(
     hero = "hero",
+    "hero-signal" = "hero-signal",
+    orientation = "home-orientation",
+    "module-anatomy" = "home-module-anatomy",
     "entry-points" = "home-entry",
     "platform-statement" = "platform-statement",
+    discovery = "home-discovery",
+    "learning-loop" = "learning-loop-grid",
     "phase-preview" = "phase-preview",
     "final-cta" = "home-final-cta"
+  ),
+  `modules-index` = list(
+    hero = "modules-landing",
+    guidance = "modules-guidance",
+    route = "modules-route",
+    support = "modules-support",
+    phases = "phase-grid",
+    "module-grid" = "module-grid",
+    "next-step" = "modules-next-step"
   ),
   `study-path` = list(
     hero = "page-hero",
     "route-checkpoints" = "route-checkpoints",
+    "route-overview" = "route-overview",
+    "route-map-intro" = "route-map-intro",
     routine = "routine-grid"
   ),
   search = list(
     hero = "page-hero",
     "utility-flow" = "utility-flow",
-    "search-panel" = "search-panel"
+    "search-panel" = "search-panel",
+    "utility-next-step" = "utility-next-step"
   ),
   glossary = list(
     hero = "page-hero",
     "utility-flow" = "utility-flow",
-    "glossary-panel" = "glossary-panel"
+    "glossary-panel" = "glossary-panel",
+    "utility-next-step" = "utility-next-step"
+  ),
+  certificate = list(
+    hero = "page-hero",
+    "certificate-intro" = "certificate-intro",
+    "certificate-gate" = "cert-gate"
   ),
   about = list(
     hero = "profile-hero",
     "public-page-triad" = "public-page-triad",
-    principles = "Princípios"
+    principles = "Princípios",
+    "site-map" = "site-map-grid",
+    "about-next-step" = "about-next-step"
   )
 )
 
@@ -343,6 +368,17 @@ for (i in seq_along(modules)) {
   }
   if (!identical(item[["next"]], expected_next)) {
     fail(sprintf("module %s next should be %s", item$id, expected_next))
+  }
+}
+
+for (phase_start_id in c("modulo03", "modulo07", "modulo10")) {
+  module_index <- match(phase_start_id, ids)
+  if (is.na(module_index)) {
+    fail(sprintf("phase start module is missing from manifest: %s", phase_start_id))
+  }
+  module_text <- paste(readLines(file.path(repo_root, modules[[module_index]]$href), warn = FALSE), collapse = "\n")
+  if (!grepl("module-phase-start", module_text, fixed = TRUE)) {
+    fail(sprintf("module %s is missing module-phase-start", phase_start_id))
   }
 }
 

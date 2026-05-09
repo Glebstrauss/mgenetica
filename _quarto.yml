@@ -44,6 +44,9 @@ website:
         text: Glossário
       - href: perfil.qmd
         text: Sobre
+    right:
+      - href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
+        text: Começar
   page-footer:
     left: "MGenética · educação científica aberta"
     center:
@@ -55,6 +58,10 @@ website:
         text: Busca
       - href: glossario.qmd
         text: Glossário
+      - href: certificado.qmd
+        text: Certificado
+      - href: perfil.qmd
+        text: Sobre
     right:
       - href: https://github.com/Glebstrauss/mgenetica
         text: GitHub

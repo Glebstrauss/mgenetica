@@ -24,6 +24,12 @@ description: "Estrutura dos modelos lineares mistos, efeitos fixos vs. aleatóri
 </div>
 ```
 
+::: {.module-phase-start role="note" aria-label="Abertura da fase de modelagem"}
+**Nova fase da trilha**
+
+Aqui começa a modelagem. Os parâmetros estudados antes passam a orientar a separação entre efeitos fixos, efeitos aleatórios e erro residual.
+:::
+
 ## Por que precisamos de modelos mistos?
 
 Em um experimento clássico de fazenda, temos:

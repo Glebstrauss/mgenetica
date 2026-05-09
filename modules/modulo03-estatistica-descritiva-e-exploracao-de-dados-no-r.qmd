@@ -24,6 +24,12 @@ description: "Diagnóstico inicial de dados fenotípicos: resumos, distribuiçõ
 </div>
 ```
 
+::: {.module-phase-start role="note" aria-label="Abertura da fase de dados e parâmetros"}
+**Nova fase da trilha**
+
+Aqui começa a passagem do conceito para o diagnóstico dos dados. Antes de estimar parâmetros, a prioridade é entender distribuição, variação e qualidade do fenótipo observado.
+:::
+
 ## Antes de estimar qualquer parâmetro, explore os dados
 
 Em melhoramento animal, os dados fenotípicos raramente chegam prontos para análise. Erros de digitação, medidas fora do intervalo biológico plausível, distribuições assimétricas — tudo isso distorce estimativas de médias, variâncias e herdabilidade. A análise descritiva não é uma etapa burocrática: é o primeiro diagnóstico científico dos dados.

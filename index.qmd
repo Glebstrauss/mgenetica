@@ -17,7 +17,12 @@ MGenética Academy · plataforma pública
 Melhoramento animal,<br>do conceito ao código
 :::
 
-Uma plataforma aberta para estudar genética quantitativa e genômica aplicada com progressão clara, scripts em R e dados simulados para aprendizagem reproduzível.
+Uma plataforma aberta para estudar genética quantitativa e genômica aplicada em uma sequência guiada: primeiro a pergunta biológica, depois a simulação, o código em R e a interpretação técnica.
+
+::: {.hero-actions role="navigation" aria-label="Ações principais da página inicial"}
+[Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
+[Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
+:::
 
 ::: {.hero-meta}
 ::: {.hero-meta-item}
@@ -65,9 +70,8 @@ Interpretação aplicada
 :::
 :::
 
-::: {.hero-actions}
-[Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
-[Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
+::: {.hero-signal role="note" aria-label="Forma de estudo recomendada"}
+Cada módulo foi desenhado para fechar um ciclo curto: leia o conceito, rode o script, ajuste um parâmetro e escreva uma decisão técnica.
 :::
 :::
 
@@ -98,6 +102,68 @@ Dados simulados para ensino
 :::
 :::
 
+::: {.home-section .home-orientation role="region" aria-label="Orientação inicial do curso"}
+::: {.orientation-copy}
+## Antes de começar
+
+O curso funciona melhor quando o visitante entende o papel de cada etapa: escolher um ponto de entrada, estudar com apoio e fechar cada módulo com uma interpretação própria.
+:::
+
+::: {.orientation-grid role="list" aria-label="Como se orientar no MGenética"}
+::: {.orientation-card role="listitem"}
+**Ponto de entrada**
+
+Comece pelo Módulo 01 se esta for a primeira passagem pela trilha.
+:::
+
+::: {.orientation-card role="listitem"}
+**Apoio durante a leitura**
+
+Use busca, glossário e roteiro para recuperar contexto sem abandonar a sequência principal.
+:::
+
+::: {.orientation-card role="listitem"}
+**Fechamento**
+
+Ao final, o certificado registra a conclusão após os quizzes dos 12 módulos.
+:::
+:::
+:::
+
+::: {.home-section .home-module-anatomy role="region" aria-label="Estrutura de cada módulo"}
+::: {.section-label}
+Anatomia
+:::
+
+## O que se repete em cada módulo
+
+::: {.module-anatomy-grid role="list" aria-label="Partes recorrentes dos módulos"}
+::: {.module-anatomy-card role="listitem"}
+**Objetivo**
+
+O módulo começa com a pergunta técnica que orienta a leitura.
+:::
+
+::: {.module-anatomy-card role="listitem"}
+**Prática**
+
+O script em R transforma a pergunta em dados simulados e saídas comparáveis.
+:::
+
+::: {.module-anatomy-card role="listitem"}
+**Interpretação**
+
+O fechamento pede uma decisão curta conectando resultado, limite e aplicação.
+:::
+
+::: {.module-anatomy-card role="listitem"}
+**Quiz**
+
+A checagem final registra o progresso local antes de avançar.
+:::
+:::
+:::
+
 ::: {.home-section .home-entry}
 ::: {.section-label}
 Entrada
@@ -105,8 +171,8 @@ Entrada
 
 ## Escolha o melhor ponto de partida
 
-::: {.entry-grid}
-::: {.entry-card .entry-card-primary}
+::: {.entry-grid role="list" aria-label="Pontos de partida no curso"}
+::: {.entry-card .entry-card-primary role="listitem"}
 **Começar agora**
 
 Siga o primeiro módulo, rode o script correspondente e registre uma interpretação curta.
@@ -114,7 +180,7 @@ Siga o primeiro módulo, rode o script correspondente e registre uma interpreta�
 [Abrir Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
 :::
 
-::: {.entry-card}
+::: {.entry-card role="listitem"}
 **Entender a trilha**
 
 Veja as quatro fases editoriais antes de avançar para os módulos individuais.
@@ -122,12 +188,46 @@ Veja as quatro fases editoriais antes de avançar para os módulos individuais.
 [Ver índice de módulos](modules/index.qmd){.entry-link}
 :::
 
-::: {.entry-card}
+::: {.entry-card role="listitem"}
 **Planejar o estudo**
 
 Use o roteiro semanal para organizar leitura, prática em R e revisão.
 
 [Abrir roteiro](semanas/index.qmd){.entry-link}
+:::
+:::
+:::
+
+::: {.home-section .home-discovery}
+::: {.section-label}
+Apoio
+:::
+
+## Encontre o conceito certo sem sair da trilha
+
+::: {.discovery-grid role="list" aria-label="Ferramentas de apoio ao estudo"}
+::: {.discovery-card role="listitem"}
+**Busca**
+
+Localize termos, funções em R e trechos dos módulos quando precisar retomar um ponto específico.
+
+[Buscar no curso](busca.qmd){.entry-link}
+:::
+
+::: {.discovery-card role="listitem"}
+**Glossário**
+
+Use como referência rápida para siglas, parâmetros e métodos que aparecem ao longo da sequência.
+
+[Abrir glossário](glossario.qmd){.entry-link}
+:::
+
+::: {.discovery-card role="listitem"}
+**Roteiro**
+
+Distribua leitura, execução dos scripts e interpretação técnica em um plano semanal.
+
+[Ver roteiro](semanas/index.qmd){.entry-link}
 :::
 :::
 :::
@@ -190,6 +290,40 @@ Modelagem
 **04**
 
 Decisão
+:::
+:::
+:::
+
+::: {.home-section .home-learning-loop}
+::: {.section-label}
+Método
+:::
+
+## O mesmo ciclo se repete em todos os módulos
+
+::: {.learning-loop-grid}
+::: {.learning-loop-card}
+**1 · Pergunta**
+
+O conteúdo começa pela decisão biológica ou de seleção que precisa ser entendida.
+:::
+
+::: {.learning-loop-card}
+**2 · Parâmetro**
+
+O módulo introduz o conceito quantitativo que explica a variação observada.
+:::
+
+::: {.learning-loop-card}
+**3 · Código**
+
+O script em R transforma a hipótese em uma saída reproduzível com dados simulados.
+:::
+
+::: {.learning-loop-card}
+**4 · Interpretação**
+
+O fechamento pede uma frase técnica ligando resultado, limite e consequência prática.
 :::
 :::
 :::
@@ -277,7 +411,7 @@ SNPs, controle de qualidade, matrizes, GWAS e predição.
 :::
 :::
 
-::: {.section-cta}
+::: {.section-cta role="navigation" aria-label="Ações da trilha de aprendizado"}
 [Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
 [Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
 :::
@@ -301,9 +435,10 @@ SNPs, controle de qualidade, matrizes, GWAS e predição.
 O melhor caminho é seguir os módulos em ordem, executar os scripts e registrar uma interpretação curta a cada etapa. Se preferir distribuir a carga, use o roteiro semanal antes de começar.
 :::
 
-::: {.final-cta-actions}
+::: {.final-cta-actions role="navigation" aria-label="Ações finais da página inicial"}
 [Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
 [Planejar por semana](semanas/index.qmd){.btn .btn-secondary}
+[Ver como concluir](certificado.qmd){.btn .btn-secondary}
 :::
 :::
 

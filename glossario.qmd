@@ -45,3 +45,9 @@ Volte ao conteúdo principal para interpretar o termo em contexto.
 <div data-glossary></div>
 </div>
 ```
+
+::: {.utility-next-step role="navigation" aria-label="Próximos passos depois do glossário"}
+[Abrir busca](busca.qmd){.btn .btn-primary}
+[Voltar aos módulos](modules/index.qmd){.btn .btn-secondary}
+[Ver roteiro](semanas/index.qmd){.btn .btn-secondary}
+:::

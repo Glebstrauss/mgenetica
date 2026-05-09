@@ -1,26 +1,66 @@
 ---
 title: "Certificado de Conclusão"
 description: "Gere seu certificado de conclusão do curso MGenética Academy"
+page-layout: full
+toc: false
+number-sections: false
 ---
+
+::: {.page-hero}
+::: {.page-hero-copy}
+# Certificado de conclusão
+
+O certificado é o fechamento público da trilha MGenética. Ele fica disponível no navegador quando os 12 módulos constam como concluídos nos quizzes.
+:::
+
+::: {.page-hero-aside}
+**Critério**
+
+Complete os quizzes dos módulos em sequência. O progresso fica salvo localmente no seu navegador.
+:::
+:::
+
+::: {.certificate-intro role="region" aria-label="Como funciona o certificado"}
+::: {.certificate-intro-card}
+**Conclusão real**
+
+O certificado só aparece quando todos os módulos estão marcados como completos.
+:::
+
+::: {.certificate-intro-card}
+**Privacidade**
+
+Nome e data são armazenados localmente no navegador para gerar o PDF.
+:::
+
+::: {.certificate-intro-card}
+**Continuidade**
+
+Se ainda houver pendências, a página indica os módulos que faltam.
+:::
+:::
 
 <div id="cert-gate">
   <div id="cert-incomplete" style="display:none">
-    <div class="module-objectives" style="margin-bottom:2rem">
+    <div class="module-objectives certificate-status">
       <h3>Módulos pendentes</h3>
       <p>Complete todos os 12 módulos do curso para desbloquear o certificado.</p>
       <div id="cert-progress-list"></div>
     </div>
-    <div style="text-align:center">
+    <div class="certificate-actions">
       <a href="modules/modulo01-introducao-ao-melhoramento-animal.html" class="btn btn-primary">
         Continuar estudando
+      </a>
+      <a href="modules/index.html" class="btn btn-secondary">
+        Ver todos os módulos
       </a>
     </div>
   </div>
 
   <div id="cert-ready" style="display:none">
-    <div class="hero" style="text-align:center;margin-bottom:2rem">
-      <div class="hero-kicker">🎓 Parabéns!</div>
-      <h1 class="hero-title">Você concluiu o curso</h1>
+    <div class="certificate-ready">
+      <div class="hero-kicker">Trilha concluída</div>
+      <h2>Você concluiu o curso</h2>
       <p>Todos os 12 módulos foram completados com aprovação nos quizzes.</p>
     </div>
 
@@ -157,13 +197,13 @@ description: "Gere seu certificado de conclusão do curso MGenética Academy"
   function showIncomplete(completed, pending) {
     document.getElementById('cert-incomplete').style.display = '';
     var list = document.getElementById('cert-progress-list');
-    var html = '<ul style="list-style:none;padding:0;margin:.75rem 0 0">';
+    var html = '<ul class="certificate-progress-list">';
     MODULES.forEach(function (m) {
       var done  = completed.includes(m);
       var title = MODULE_TITLES[m] || m;
-      html += '<li style="padding:.3rem 0;display:flex;align-items:center;gap:.5rem">' +
-        '<span style="font-size:1rem">' + (done ? '✅' : '⬜') + '</span>' +
-        '<span style="' + (done ? '' : 'color:var(--mg-muted,#8b949e)') + '">' + title + '</span>' +
+      html += '<li class="certificate-progress-item ' + (done ? 'is-complete' : 'is-pending') + '">' +
+        '<span class="certificate-progress-state">' + (done ? 'Concluído' : 'Pendente') + '</span>' +
+        '<span>' + title + '</span>' +
         '</li>';
     });
     html += '</ul>';

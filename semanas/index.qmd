@@ -44,7 +44,45 @@ Registre uma interpretação curta e avance para o próximo módulo.
 :::
 :::
 
+::: {.route-overview role="region" aria-label="Ritmo editorial da trilha de 12 semanas"}
+::: {.route-overview-copy}
+## Ritmo sugerido por fase
+
+Use o roteiro como uma sequência de consolidação: cada bloco de semanas fecha uma mudança de escala, da intuição biológica aos modelos e depois à genômica.
+:::
+
+::: {.route-overview-grid}
+::: {.route-overview-card}
+**Semanas 1-2**
+
+Fundamentos de melhoramento e decomposição genética do fenótipo.
+:::
+
+::: {.route-overview-card}
+**Semanas 3-6**
+
+Exploração dos dados, variâncias, herdabilidade, repetibilidade e correlações.
+:::
+
+::: {.route-overview-card}
+**Semanas 7-9**
+
+Modelos lineares, BLUP, pedigree e parentesco como base da avaliação.
+:::
+
+::: {.route-overview-card}
+**Semanas 10-12**
+
+Marcadores SNP, controle de qualidade, matrizes genômicas, GWAS e predição.
+:::
+:::
+:::
+
 ## Mapa visual de progresso
+
+::: {.route-map-intro role="note" aria-label="Como ler o mapa visual de progresso"}
+Use o mapa como marcador de avanço, não como placar. O objetivo é completar um ciclo de leitura, execução e interpretação por semana.
+:::
 
 ```{=html}
 <div data-learning-map></div>
@@ -101,4 +139,10 @@ Escreva uma conclusão técnica curta.
 
 ::: {.callout-note}
 Para validar todos os scripts de uma vez, execute `Rscript scripts/run_all_modules.R` na raiz do projeto.
+:::
+
+::: {.section-cta role="navigation" aria-label="Ações do roteiro semanal"}
+[Começar pelo Módulo 01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
+[Voltar ao índice de módulos](../modules/index.qmd){.btn .btn-secondary}
+[Entender o certificado](../certificado.qmd){.btn .btn-secondary}
 :::

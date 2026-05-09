@@ -50,6 +50,12 @@ Depois da consulta, retome a sequência dos módulos ou o roteiro semanal.
 <div id="search"></div>
 :::
 
+::: {.utility-next-step role="navigation" aria-label="Próximos passos depois da busca"}
+[Voltar aos módulos](modules/index.qmd){.btn .btn-primary}
+[Consultar glossário](glossario.qmd){.btn .btn-secondary}
+[Planejar estudo](semanas/index.qmd){.btn .btn-secondary}
+:::
+
 <script>
 window.addEventListener('DOMContentLoaded', function () {
   if (typeof PagefindUI === 'undefined') {

@@ -14,7 +14,7 @@ number-sections: false
     <span class="module-badge">TRILHA COMPLETA</span>
     <h1>Do fundamento biológico à avaliação genômica</h1>
     <p>Os módulos foram organizados para combinar conceito, simulação, código em R e interpretação. A sequência mantém uma estrutura previsível para leitura pública hoje e edição por painel interno no futuro.</p>
-    <div class="modules-landing-actions">
+    <div class="modules-landing-actions" role="navigation" aria-label="Ações principais do índice de módulos">
       <a class="btn btn-primary" href="modulo01-introducao-ao-melhoramento-animal.html">Começar pelo Módulo 01</a>
       <a class="btn btn-secondary" href="../semanas/index.html">Ver roteiro semanal</a>
       <a class="btn btn-secondary" href="../index.html">Voltar ao início</a>
@@ -56,34 +56,49 @@ Cada página de módulo mantém navegação anterior, próxima etapa e retorno p
 Use as fases como checkpoints: fundamentos antes de parâmetros, parâmetros antes de modelos e modelos antes de genômica. Se um resultado em R não fizer sentido, volte ao cartão da fase e revise o objetivo antes de seguir.
 :::
 
-::: {.modules-route-actions}
+::: {.modules-route-actions role="navigation" aria-label="Ações para avançar na trilha"}
 [Revisar fases](#fases-da-trilha){.btn .btn-secondary}
+[Ir para todos os módulos](#todos-os-modulos){.btn .btn-secondary}
 [Planejar por semana](../semanas/index.html){.btn .btn-secondary}
+:::
+:::
+
+::: {.modules-support role="region" aria-label="Apoio para escolher e retomar módulos"}
+::: {.modules-support-copy}
+**Apoio rápido**
+
+Se você chegou por um conceito específico, use busca e glossário antes de escolher o módulo. Se está retomando a trilha, use o roteiro semanal para recuperar o contexto.
+:::
+
+::: {.modules-support-actions role="navigation" aria-label="Ações de apoio no índice de módulos"}
+[Buscar conceito](../busca.qmd){.btn .btn-secondary}
+[Consultar glossário](../glossario.qmd){.btn .btn-secondary}
+[Ver roteiro](../semanas/index.qmd){.btn .btn-secondary}
 :::
 :::
 
 ## Fases da trilha
 
-::: {.phase-grid}
-::: {.phase-card}
+::: {.phase-grid role="list" aria-label="Fases da trilha MGenética"}
+::: {.phase-card role="listitem"}
 **01 · Fundamentos**
 
 Módulos 01-02 apresentam a lógica do melhoramento animal e a decomposição genética do fenótipo.
 :::
 
-::: {.phase-card}
+::: {.phase-card role="listitem"}
 **02 · Dados e parâmetros**
 
 Módulos 03-06 conectam exploração, variância, herdabilidade, repetibilidade e correlações.
 :::
 
-::: {.phase-card}
+::: {.phase-card role="listitem"}
 **03 · Modelagem**
 
 Módulos 07-09 avançam para modelos mistos, BLUP, pedigree e parentesco.
 :::
 
-::: {.phase-card}
+::: {.phase-card role="listitem"}
 **04 · Genômica**
 
 Módulos 10-12 introduzem SNPs, controle de qualidade, matrizes genômicas, GWAS e predição.
@@ -92,8 +107,8 @@ Módulos 10-12 introduzem SNPs, controle de qualidade, matrizes genômicas, GWAS
 
 ## Todos os módulos
 
-::: {.module-grid}
-::: {.module-card}
+::: {.module-grid role="list" aria-label="Todos os módulos do curso"}
+::: {.module-card role="listitem"}
 **01**
 
 [Introdução ao Melhoramento Animal](modulo01-introducao-ao-melhoramento-animal.qmd)
@@ -101,7 +116,7 @@ Módulos 10-12 introduzem SNPs, controle de qualidade, matrizes genômicas, GWAS
 Objetivos, resposta à seleção e organização de programas de melhoramento.
 :::
 
-::: {.module-card}
+::: {.module-card role="listitem"}
 **02**
 
 [Bases da Genética Quantitativa](modulo02-bases-da-genetica-quantitativa.qmd)
@@ -109,7 +124,7 @@ Objetivos, resposta à seleção e organização de programas de melhoramento.
 Valor genético, fenótipo, ambiente e decomposição da variação observada.
 :::
 
-::: {.module-card}
+::: {.module-card role="listitem"}
 **03**
 
 [Estatística descritiva e exploração no R](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd)
@@ -117,7 +132,7 @@ Valor genético, fenótipo, ambiente e decomposição da variação observada.
 Primeiros diagnósticos, distribuição dos dados e interpretação exploratória.
 :::
 
-::: {.module-card}
+::: {.module-card role="listitem"}
 **04**
 
 [Médias, variâncias e componentes](modulo04-medias-variancias-e-componentes-de-variancia.qmd)
@@ -125,7 +140,7 @@ Primeiros diagnósticos, distribuição dos dados e interpretação exploratóri
 Variância fenotípica, genética e ambiental como base para decisões.
 :::
 
-::: {.module-card}
+::: {.module-card role="listitem"}
 **05**
 
 [Herdabilidade e repetibilidade](modulo05-herdabilidade-e-repetibilidade.qmd)
@@ -133,7 +148,7 @@ Variância fenotípica, genética e ambiental como base para decisões.
 Parâmetros que conectam observações individuais à previsibilidade genética.
 :::
 
-::: {.module-card}
+::: {.module-card role="listitem"}
 **06**
 
 [Correlações genéticas e fenotípicas](modulo06-correlacoes-geneticas-e-fenotipicas.qmd)
@@ -141,7 +156,7 @@ Parâmetros que conectam observações individuais à previsibilidade genética.
 Relações entre características e consequências indiretas da seleção.
 :::
 
-::: {.module-card}
+::: {.module-card role="listitem"}
 **07**
 
 [Modelos lineares e mistos](modulo07-modelos-lineares-e-modelos-mistos.qmd)
@@ -149,7 +164,7 @@ Relações entre características e consequências indiretas da seleção.
 Estrutura estatística para combinar efeitos fixos, aleatórios e erro.
 :::
 
-::: {.module-card}
+::: {.module-card role="listitem"}
 **08**
 
 [BLUP e avaliação genética](modulo08-blup-e-avaliacao-genetica.qmd)
@@ -157,7 +172,7 @@ Estrutura estatística para combinar efeitos fixos, aleatórios e erro.
 Predição de valores genéticos e comparação de candidatos à seleção.
 :::
 
-::: {.module-card}
+::: {.module-card role="listitem"}
 **09**
 
 [Pedigree e parentesco](modulo09-estrutura-de-pedigree-e-parentesco.qmd)
@@ -165,7 +180,7 @@ Predição de valores genéticos e comparação de candidatos à seleção.
 Uso de genealogia, matrizes de parentesco e conexão entre indivíduos.
 :::
 
-::: {.module-card}
+::: {.module-card role="listitem"}
 **10**
 
 [Genômica e marcadores SNP](modulo10-introducao-a-genomica-e-marcadores-snp.qmd)
@@ -173,7 +188,7 @@ Uso de genealogia, matrizes de parentesco e conexão entre indivíduos.
 Entrada dos marcadores moleculares na avaliação e no controle de dados.
 :::
 
-::: {.module-card}
+::: {.module-card role="listitem"}
 **11**
 
 [Controle de qualidade genômico](modulo11-controle-de-qualidade-de-dados-genomicos.qmd)
@@ -181,11 +196,24 @@ Entrada dos marcadores moleculares na avaliação e no controle de dados.
 Filtros, consistência dos genótipos e preparação para análises genômicas.
 :::
 
-::: {.module-card}
+::: {.module-card role="listitem"}
 **12**
 
 [Matrizes genômicas, GWAS e predição](modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd)
 
 Integração entre parentesco genômico, associação e predição genômica.
+:::
+:::
+
+::: {.modules-next-step role="region" aria-label="Próximo passo após revisar os módulos"}
+::: {.modules-next-step-copy}
+## Próximo passo recomendado
+
+Se esta é sua primeira visita, comece pelo Módulo 01. Se você já conhece a base conceitual, use o roteiro semanal para distribuir prática em R, revisão e interpretação.
+:::
+
+::: {.modules-next-step-actions role="navigation" aria-label="Ações finais do índice de módulos"}
+[Começar pelo Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
+[Planejar por semana](../semanas/index.qmd){.btn .btn-secondary}
 :::
 :::

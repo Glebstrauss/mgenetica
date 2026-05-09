@@ -457,6 +457,112 @@ footer.footer a {
 }
 
 
+// ── Dark parity for long block UX layer ───────────────────────
+.navbar .navbar-nav:last-child .nav-link[href*="modulo01"] {
+  color: #080f1a;
+  background: var(--mg-cyan-lt);
+  border-color: var(--mg-cyan-lt);
+}
+
+.navbar .navbar-nav:last-child .nav-link[href*="modulo01"]:hover,
+.navbar .navbar-nav:last-child .nav-link[href*="modulo01"]:focus {
+  color: #080f1a;
+  background: var(--mg-navy-mid);
+  border-color: var(--mg-navy-mid);
+  box-shadow: 0 0 0 3px rgba(111, 220, 255, 0.18);
+}
+
+.hero-signal,
+.orientation-copy,
+.orientation-card,
+.module-anatomy-card,
+.route-overview,
+.modules-next-step,
+.modules-support,
+.about-next-step,
+.utility-next-step,
+.discovery-card,
+.certificate-intro-card,
+.certificate-ready,
+.module-completion-note,
+.module-phase-note,
+.module-phase-start,
+.route-map-intro,
+.learning-loop-card,
+.route-overview-card {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.hero-signal,
+.orientation-copy p,
+.orientation-card p,
+.module-anatomy-card p,
+.route-overview-copy p,
+.modules-next-step-copy p,
+.modules-support-copy p,
+.about-next-step-copy p,
+.route-map-intro p,
+.discovery-card p,
+.certificate-intro-card p,
+.certificate-ready p,
+.module-completion-note p,
+.module-phase-note p,
+.module-phase-start p,
+.learning-loop-card p,
+.route-overview-card p {
+  color: var(--mg-text);
+}
+
+.orientation-copy h2,
+.orientation-card strong,
+.module-anatomy-card strong,
+.modules-next-step-copy h2,
+.modules-support-copy strong,
+.about-next-step-copy h2,
+.discovery-card strong,
+.certificate-intro-card strong,
+.certificate-ready h2,
+.module-completion-note strong,
+.module-phase-note strong,
+.module-phase-start strong,
+.learning-loop-card strong,
+.route-overview-card strong {
+  color: var(--mg-ink);
+}
+
+.learning-loop-card:hover,
+.route-overview-card:hover {
+  border-color: rgba(111, 220, 255, 0.42);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+}
+
+.certificate-progress-item {
+  color: var(--mg-text);
+}
+
+.certificate-progress-item.is-pending {
+  color: var(--mg-muted);
+}
+
+.certificate-progress-state {
+  color: var(--mg-ink);
+  background: var(--mg-bg);
+  border-color: var(--mg-line);
+}
+
+.certificate-progress-item.is-complete .certificate-progress-state {
+  color: #aff5b4;
+  background: rgba(63, 185, 80, 0.10);
+  border-color: rgba(63, 185, 80, 0.30);
+}
+
+.certificate-progress-item.is-pending .certificate-progress-state {
+  color: var(--mg-muted);
+  background: var(--mg-bg-tint);
+}
+
+
 // ── Tabelas ───────────────────────────────────────────────────
 table {
   border-color: var(--mg-line);
