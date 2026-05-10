@@ -125,6 +125,12 @@ cat(sprintf("h² teórico:          %.4f\n", va/vp))
 **Interpretação:** h² = 0,31 não significa que "31% do fenótipo de cada animal é genético". Significa que 31% da **variação** observada na população se deve a diferenças genéticas aditivas entre animais.
 :::
 
+::: {.module-evidence-path role="note" aria-label="Caminho de evidência do módulo"}
+**Caminho de evidência**
+
+Antes do exercício, conecte três pontos: qual pergunta o módulo abriu, qual saída do script sustenta a resposta e qual decisão técnica fica mais clara.
+:::
+
 ::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
 **Evidência mínima deste módulo**
 
@@ -163,6 +169,12 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
 **Transição de fase**
 
 Você concluiu a base conceitual da trilha. A partir do próximo módulo, a pergunta deixa de ser apenas o que é variação genética e passa a ser como observar, resumir e interpretar dados simulados.
+:::
+
+::: {.module-return-note role="note" aria-label="Como voltar ao fluxo depois deste módulo"}
+**Volte com uma decisão**
+
+Antes de trocar de página, registre se este módulo levou a avanço, revisão ou consulta. Use essa decisão para escolher o próximo clique no índice.
 :::
 
 ```{=html}

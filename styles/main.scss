@@ -4236,6 +4236,8 @@ code {
   .entry-decision-item,
   .home-readiness,
   .home-readiness-item,
+  .home-study-choice,
+  .home-study-choice-item,
   .home-returning,
   .home-returning-item,
   .home-continuity,
@@ -4271,12 +4273,16 @@ code {
   .modules-completion-step,
   .modules-study-check,
   .modules-study-check-item,
+  .modules-catalog-guide,
+  .modules-catalog-guide-item,
   .modules-return-path,
   .modules-return-path-item,
   .modules-certificate-route,
   .module-nav-card,
   .module-study-checkpoint,
   .module-completion-note,
+  .route-session-plan,
+  .route-session-plan-item,
   .route-map-intro,
   .modules-route,
   .certificate-noscript
@@ -4296,6 +4302,8 @@ code {
   .resource-card,
   .entry-decision-item,
   .home-readiness-item,
+  .home-study-choice,
+  .home-study-choice-item,
   .home-returning,
   .home-returning-item,
   .home-continuity,
@@ -4309,6 +4317,8 @@ code {
   .route-checkpoint,
   .modules-completion-step,
   .modules-study-check-item,
+  .modules-catalog-guide,
+  .modules-catalog-guide-item,
   .modules-return-path,
   .modules-return-path-item,
   .modules-certificate-route,
@@ -4319,6 +4329,8 @@ code {
   .phase-card,
   .routine-card,
   .module-after-quiz,
+  .route-session-plan,
+  .route-session-plan-item,
   .hero-path-step
 ) {
   overflow-wrap: anywhere;
@@ -4332,31 +4344,31 @@ code {
   white-space: normal;
 }
 
-:where(.module-card, .discovery-card, .orientation-card, .module-anatomy-card, .certificate-intro-card, .certificate-readiness-step, .about-route-step, .about-credibility-item, .resource-card, .entry-decision-item, .home-readiness-item, .home-returning-item, .home-audience-item, .home-evidence-item, .home-continuity, .entry-card, .guidance-item, .public-page-card, .utility-step, .utility-decision-item, .route-checkpoint, .route-week-decision-item, .modules-completion-step, .modules-evidence-standard-item, .modules-study-check-item, .modules-return-path-item, .modules-phase-bridge-item, .modules-certificate-route, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step, .module-study-checkpoint, .module-takeaways, .module-after-quiz, .module-completion-note, .module-phase-note, .module-phase-start, .certificate-noscript) strong {
+:where(.module-card, .discovery-card, .orientation-card, .module-anatomy-card, .certificate-intro-card, .certificate-readiness-step, .about-route-step, .about-credibility-item, .resource-card, .entry-decision-item, .home-readiness-item, .home-study-choice-item, .home-returning-item, .home-audience-item, .home-evidence-item, .home-continuity, .entry-card, .guidance-item, .public-page-card, .utility-step, .utility-decision-item, .route-checkpoint, .route-week-decision-item, .route-session-plan-item, .modules-completion-step, .modules-evidence-standard-item, .modules-study-check-item, .modules-catalog-guide-item, .modules-return-path-item, .modules-phase-bridge-item, .modules-certificate-route, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step, .module-study-checkpoint, .module-takeaways, .module-after-quiz, .module-completion-note, .module-phase-note, .module-phase-start, .certificate-noscript) strong {
   text-wrap: balance;
 }
 
-:where(.module-card, .discovery-card, .orientation-card, .module-anatomy-card, .certificate-intro-card, .certificate-readiness-step, .about-route-step, .about-credibility-item, .resource-card, .entry-decision-item, .home-readiness-item, .home-returning-item, .home-audience-item, .home-evidence-item, .home-continuity, .entry-card, .guidance-item, .public-page-card, .utility-step, .utility-decision-item, .route-checkpoint, .route-week-decision-item, .modules-completion-step, .modules-evidence-standard-item, .modules-study-check-item, .modules-return-path-item, .modules-phase-bridge-item, .modules-certificate-route, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step, .module-study-checkpoint, .module-takeaways, .module-after-quiz, .module-completion-note, .module-phase-note, .module-phase-start, .certificate-noscript) p {
+:where(.module-card, .discovery-card, .orientation-card, .module-anatomy-card, .certificate-intro-card, .certificate-readiness-step, .about-route-step, .about-credibility-item, .resource-card, .entry-decision-item, .home-readiness-item, .home-study-choice-item, .home-returning-item, .home-audience-item, .home-evidence-item, .home-continuity, .entry-card, .guidance-item, .public-page-card, .utility-step, .utility-decision-item, .route-checkpoint, .route-week-decision-item, .route-session-plan-item, .modules-completion-step, .modules-evidence-standard-item, .modules-study-check-item, .modules-catalog-guide-item, .modules-return-path-item, .modules-phase-bridge-item, .modules-certificate-route, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step, .module-study-checkpoint, .module-takeaways, .module-after-quiz, .module-completion-note, .module-phase-note, .module-phase-start, .certificate-noscript) p {
   text-wrap: pretty;
 }
 
-:where(.module-grid, .feature-grid, .entry-grid, .entry-decision-list, .home-readiness-grid, .home-returning-grid, .home-audience-grid, .home-evidence-grid, .discovery-grid, .orientation-grid, .module-anatomy-grid, .resource-grid, .about-route-steps, .about-credibility-grid, .certificate-intro, .certificate-readiness-steps, .modules-guidance, .modules-completion-steps, .modules-evidence-standard-grid, .modules-study-check-list, .modules-return-path-grid, .modules-phase-bridge-grid, .public-page-triad, .utility-flow, .utility-decision-grid, .route-checkpoints, .route-week-decision-grid, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid, .hero-learning-path) {
+:where(.module-grid, .feature-grid, .entry-grid, .entry-decision-list, .home-readiness-grid, .home-study-choice-grid, .home-returning-grid, .home-audience-grid, .home-evidence-grid, .discovery-grid, .orientation-grid, .module-anatomy-grid, .resource-grid, .about-route-steps, .about-credibility-grid, .certificate-intro, .certificate-readiness-steps, .modules-guidance, .modules-completion-steps, .modules-evidence-standard-grid, .modules-study-check-list, .modules-catalog-guide-grid, .modules-return-path-grid, .modules-phase-bridge-grid, .public-page-triad, .utility-flow, .utility-decision-grid, .route-checkpoints, .route-week-decision-grid, .route-session-plan-grid, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid, .hero-learning-path) {
   align-items: stretch;
 }
 
-:where(.feature, .entry-card, .entry-decision-item, .home-readiness-item, .home-returning-item, .home-audience-item, .home-evidence-item, .orientation-card, .module-anatomy-card, .certificate-intro-card, .certificate-readiness-step, .about-route-step, .about-credibility-item, .resource-card, .guidance-item, .public-page-card, .utility-step, .utility-decision-item, .route-checkpoint, .route-week-decision-item, .modules-completion-step, .modules-evidence-standard-item, .modules-study-check-item, .modules-return-path-item, .modules-phase-bridge-item, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step) {
+:where(.feature, .entry-card, .entry-decision-item, .home-readiness-item, .home-study-choice-item, .home-returning-item, .home-audience-item, .home-evidence-item, .orientation-card, .module-anatomy-card, .certificate-intro-card, .certificate-readiness-step, .about-route-step, .about-credibility-item, .resource-card, .guidance-item, .public-page-card, .utility-step, .utility-decision-item, .route-checkpoint, .route-week-decision-item, .route-session-plan-item, .modules-completion-step, .modules-evidence-standard-item, .modules-study-check-item, .modules-catalog-guide-item, .modules-return-path-item, .modules-phase-bridge-item, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step) {
   transition:
     border-color 160ms ease,
     box-shadow 160ms ease,
     transform 160ms ease;
 }
 
-:where(.feature, .entry-card, .entry-decision-item, .home-readiness-item, .home-returning-item, .home-audience-item, .home-evidence-item, .orientation-card, .module-anatomy-card, .certificate-intro-card, .certificate-readiness-step, .about-route-step, .about-credibility-item, .resource-card, .guidance-item, .public-page-card, .utility-step, .utility-decision-item, .route-checkpoint, .route-week-decision-item, .modules-completion-step, .modules-evidence-standard-item, .modules-study-check-item, .modules-return-path-item, .modules-phase-bridge-item, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step):hover {
+:where(.feature, .entry-card, .entry-decision-item, .home-readiness-item, .home-study-choice-item, .home-returning-item, .home-audience-item, .home-evidence-item, .orientation-card, .module-anatomy-card, .certificate-intro-card, .certificate-readiness-step, .about-route-step, .about-credibility-item, .resource-card, .guidance-item, .public-page-card, .utility-step, .utility-decision-item, .route-checkpoint, .route-week-decision-item, .route-session-plan-item, .modules-completion-step, .modules-evidence-standard-item, .modules-study-check-item, .modules-catalog-guide-item, .modules-return-path-item, .modules-phase-bridge-item, .module-card, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step):hover {
   border-color: rgba(0, 168, 214, 0.34);
   box-shadow: 0 14px 32px rgba(10, 31, 56, 0.065);
 }
 
-:where(.module-card, .entry-card, .entry-decision-item, .home-readiness-item, .home-returning-item, .home-audience-item, .home-evidence-item, .orientation-card, .module-anatomy-card, .certificate-intro-card, .certificate-readiness-step, .about-route-step, .about-credibility-item, .resource-card, .guidance-item, .public-page-card, .utility-step, .utility-decision-item, .route-checkpoint, .route-week-decision-item, .modules-completion-step, .modules-evidence-standard-item, .modules-study-check-item, .modules-return-path-item, .modules-phase-bridge-item, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step):focus-within {
+:where(.module-card, .entry-card, .entry-decision-item, .home-readiness-item, .home-study-choice-item, .home-returning-item, .home-audience-item, .home-evidence-item, .orientation-card, .module-anatomy-card, .certificate-intro-card, .certificate-readiness-step, .about-route-step, .about-credibility-item, .resource-card, .guidance-item, .public-page-card, .utility-step, .utility-decision-item, .route-checkpoint, .route-week-decision-item, .route-session-plan-item, .modules-completion-step, .modules-evidence-standard-item, .modules-study-check-item, .modules-catalog-guide-item, .modules-return-path-item, .modules-phase-bridge-item, .phase-preview-card, .phase-card, .statement-point, .lab-card, .routine-card, .hero-path-step):focus-within {
   border-color: rgba(0, 168, 214, 0.54);
   box-shadow: 0 0 0 3px rgba(0, 168, 214, 0.12);
 }
@@ -4384,7 +4396,7 @@ code {
     flex-direction: column;
   }
 
-  :where(.module-grid, .feature-grid, .entry-grid, .entry-decision-list, .home-readiness-grid, .home-returning-grid, .home-audience-grid, .home-evidence-grid, .orientation-grid, .module-anatomy-grid, .certificate-intro, .certificate-readiness-steps, .modules-guidance, .modules-completion-steps, .modules-evidence-standard-grid, .modules-study-check-list, .modules-return-path-grid, .modules-phase-bridge-grid, .about-credibility-grid, .public-page-triad, .utility-flow, .utility-decision-grid, .route-checkpoints, .route-week-decision-grid, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid, .hero-learning-path) {
+  :where(.module-grid, .feature-grid, .entry-grid, .entry-decision-list, .home-readiness-grid, .home-study-choice-grid, .home-returning-grid, .home-audience-grid, .home-evidence-grid, .orientation-grid, .module-anatomy-grid, .certificate-intro, .certificate-readiness-steps, .modules-guidance, .modules-completion-steps, .modules-evidence-standard-grid, .modules-study-check-list, .modules-catalog-guide-grid, .modules-return-path-grid, .modules-phase-bridge-grid, .about-credibility-grid, .public-page-triad, .utility-flow, .utility-decision-grid, .route-checkpoints, .route-week-decision-grid, .route-session-plan-grid, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid, .hero-learning-path) {
     grid-template-columns: 1fr;
   }
 }
@@ -5456,7 +5468,9 @@ code {
 .home-continuity,
 .modules-certificate-route,
 .modules-evidence-standard,
+.modules-catalog-guide,
 .modules-return-path,
+.home-study-choice,
 .home-returning,
 .home-evidence,
 .modules-phase-bridge,
@@ -5465,7 +5479,8 @@ code {
 .home-start-criteria,
 .certificate-scope,
 .utility-decision,
-.route-week-decision {
+.route-week-decision,
+.route-session-plan {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 1rem;
@@ -5486,7 +5501,9 @@ code {
 .home-continuity-copy p,
 .modules-certificate-route-copy p,
 .modules-evidence-standard-copy p,
+.modules-catalog-guide-copy p,
 .modules-return-path-copy p,
+.home-study-choice-copy p,
 .home-returning-copy p,
 .home-evidence-copy p,
 .modules-phase-bridge-copy p,
@@ -5495,7 +5512,8 @@ code {
 .home-start-criteria-copy p,
 .certificate-scope-copy p,
 .utility-decision-copy p,
-.route-week-decision-copy p {
+.route-week-decision-copy p,
+.route-session-plan-copy p {
   max-width: 76ch;
   margin: 0;
   color: #33465f;
@@ -5505,9 +5523,12 @@ code {
 
 .modules-certificate-route-copy strong,
 .modules-evidence-standard-copy strong,
+.modules-catalog-guide-copy strong,
 .modules-return-path-copy strong,
+.home-study-choice-copy strong,
 .home-returning-copy strong,
-.modules-phase-bridge-copy strong {
+.modules-phase-bridge-copy strong,
+.route-session-plan-copy strong {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
@@ -5518,11 +5539,14 @@ code {
 .about-credibility,
 .home-audience,
 .home-start-criteria,
+.home-study-choice,
 .home-returning,
+.modules-catalog-guide,
 .modules-return-path,
 .certificate-scope,
 .utility-decision,
-.route-week-decision {
+.route-week-decision,
+.route-session-plan {
   grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
 }
 
@@ -5545,7 +5569,9 @@ code {
 
 .home-evidence-grid,
 .modules-evidence-standard-grid,
+.modules-catalog-guide-grid,
 .modules-return-path-grid,
+.home-study-choice-grid,
 .home-returning-grid,
 .modules-phase-bridge-grid,
 .about-credibility-grid,
@@ -5553,7 +5579,8 @@ code {
 .home-start-criteria-grid,
 .certificate-scope-grid,
 .utility-decision-grid,
-.route-week-decision-grid {
+.route-week-decision-grid,
+.route-session-plan-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
@@ -5561,7 +5588,9 @@ code {
 
 .home-evidence-item,
 .modules-evidence-standard-item,
+.modules-catalog-guide-item,
 .modules-return-path-item,
+.home-study-choice-item,
 .home-returning-item,
 .modules-phase-bridge-item,
 .about-credibility-item,
@@ -5569,7 +5598,8 @@ code {
 .home-start-criteria-item,
 .certificate-scope-item,
 .utility-decision-item,
-.route-week-decision-item {
+.route-week-decision-item,
+.route-session-plan-item {
   min-height: 132px;
   padding: 1rem;
   overflow-wrap: anywhere;
@@ -5580,7 +5610,9 @@ code {
 
 .home-evidence-item strong,
 .modules-evidence-standard-item strong,
+.modules-catalog-guide-item strong,
 .modules-return-path-item strong,
+.home-study-choice-item strong,
 .home-returning-item strong,
 .modules-phase-bridge-item strong,
 .about-credibility-item strong,
@@ -5588,7 +5620,8 @@ code {
 .home-start-criteria-item strong,
 .certificate-scope-item strong,
 .utility-decision-item strong,
-.route-week-decision-item strong {
+.route-week-decision-item strong,
+.route-session-plan-item strong {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
@@ -5598,7 +5631,9 @@ code {
 
 .home-evidence-item p,
 .modules-evidence-standard-item p,
+.modules-catalog-guide-item p,
 .modules-return-path-item p,
+.home-study-choice-item p,
 .home-returning-item p,
 .modules-phase-bridge-item p,
 .about-credibility-item p,
@@ -5606,11 +5641,265 @@ code {
 .home-start-criteria-item p,
 .certificate-scope-item p,
 .utility-decision-item p,
-.route-week-decision-item p {
+.route-week-decision-item p,
+.route-session-plan-item p {
   margin: 0;
   color: #52657d;
   font-size: 0.88rem;
   line-height: 1.52;
+}
+
+.home-intent-switch,
+.home-route-strip,
+.home-trust-anchors,
+.home-first-session,
+.home-public-journey,
+.home-progress-snapshot,
+.home-path-contract,
+.home-outcome-map,
+.utility-query-plan,
+.utility-crossroads,
+.utility-examples,
+.certificate-decision,
+.certificate-recovery,
+.certificate-next-use,
+.certificate-identity-note,
+.about-editorial-boundary,
+.about-public-contract,
+.route-evidence-ladder,
+.route-recovery-plan,
+.route-phase-handoff,
+.route-weekly-output,
+.route-table-guide,
+.modules-quick-jump,
+.modules-phase-decision,
+.modules-readiness-meter,
+.modules-phase-entry,
+.modules-choice-path {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: 1rem;
+  align-items: center;
+  margin: 1.25rem 0 2.3rem;
+  padding: clamp(1.2rem, 3vw, 1.7rem);
+  border: 1px solid rgba(0, 168, 214, 0.20);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(240, 249, 255, 0.96), rgba(255, 255, 255, 0.94));
+}
+
+.home-intent-switch-copy p,
+.home-route-strip-copy p,
+.home-trust-anchors-copy p,
+.home-first-session-copy p,
+.home-public-journey-copy p,
+.home-progress-snapshot-copy p,
+.home-path-contract-copy p,
+.home-outcome-map-copy p,
+.utility-query-plan-copy p,
+.utility-crossroads-copy p,
+.utility-examples-copy p,
+.certificate-decision-copy p,
+.certificate-recovery-copy p,
+.certificate-next-use-copy p,
+.certificate-identity-copy p,
+.about-editorial-boundary-copy p,
+.about-public-contract-copy p,
+.route-evidence-ladder-copy p,
+.route-recovery-plan-copy p,
+.route-phase-handoff-copy p,
+.route-weekly-output-copy p,
+.route-table-guide-copy p,
+.modules-quick-jump-copy p,
+.modules-phase-decision-copy p,
+.modules-readiness-copy p,
+.modules-phase-entry-copy p,
+.modules-choice-path-copy p {
+  max-width: 76ch;
+  margin: 0;
+  color: #33465f;
+  font-size: 0.95rem;
+  line-height: 1.64;
+}
+
+.home-intent-switch-copy strong,
+.home-route-strip-copy strong,
+.home-trust-anchors-copy strong,
+.home-first-session-copy strong,
+.home-public-journey-copy strong,
+.home-progress-snapshot-copy strong,
+.home-path-contract-copy strong,
+.home-outcome-map-copy strong,
+.utility-query-plan-copy strong,
+.utility-crossroads-copy strong,
+.utility-examples-copy strong,
+.certificate-decision-copy strong,
+.certificate-recovery-copy strong,
+.certificate-next-use-copy strong,
+.certificate-identity-copy strong,
+.about-editorial-boundary-copy h2,
+.about-public-contract-copy strong,
+.route-evidence-ladder-copy strong,
+.route-recovery-plan-copy strong,
+.route-phase-handoff-copy strong,
+.route-weekly-output-copy strong,
+.route-table-guide-copy strong,
+.modules-quick-jump-copy strong,
+.modules-phase-decision-copy strong,
+.modules-readiness-copy strong,
+.modules-phase-entry-copy strong,
+.modules-choice-path-copy strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #0a1f38;
+  font-family: "Manrope", "Inter", sans-serif;
+}
+
+.home-intent-switch-grid,
+.home-route-strip-grid,
+.home-trust-anchors-grid,
+.home-first-session-grid,
+.home-public-journey-grid,
+.home-progress-snapshot-grid,
+.home-path-contract-grid,
+.home-outcome-map-grid,
+.utility-query-plan-grid,
+.utility-crossroads-grid,
+.utility-examples-grid,
+.certificate-decision-grid,
+.certificate-recovery-grid,
+.certificate-next-use-grid,
+.certificate-identity-grid,
+.about-editorial-boundary-grid,
+.about-public-contract-grid,
+.route-evidence-ladder-grid,
+.route-recovery-plan-grid,
+.route-phase-handoff-grid,
+.route-weekly-output-grid,
+.route-table-guide-grid,
+.modules-quick-jump-grid,
+.modules-phase-decision-grid,
+.modules-readiness-grid,
+.modules-phase-entry-grid,
+.modules-choice-path-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  align-items: stretch;
+}
+
+.home-intent-switch-item,
+.home-route-strip-item,
+.home-trust-anchors-item,
+.home-first-session-item,
+.home-public-journey-item,
+.home-progress-snapshot-item,
+.home-path-contract-item,
+.home-outcome-map-item,
+.utility-query-plan-item,
+.utility-crossroads-item,
+.utility-examples-item,
+.certificate-decision-item,
+.certificate-recovery-item,
+.certificate-next-use-item,
+.certificate-identity-item,
+.about-editorial-boundary-item,
+.about-public-contract-item,
+.route-evidence-ladder-item,
+.route-recovery-plan-item,
+.route-phase-handoff-item,
+.route-weekly-output-item,
+.route-table-guide-item,
+.modules-quick-jump-item,
+.modules-phase-decision-item,
+.modules-readiness-item,
+.modules-phase-entry-item,
+.modules-choice-path-item {
+  min-height: 132px;
+  padding: 1rem;
+  overflow-wrap: anywhere;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(196, 205, 216, 0.76);
+  border-radius: 10px;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.home-intent-switch-item strong,
+.home-route-strip-item strong,
+.home-trust-anchors-item strong,
+.home-first-session-item strong,
+.home-public-journey-item strong,
+.home-progress-snapshot-item strong,
+.home-path-contract-item strong,
+.home-outcome-map-item strong,
+.utility-query-plan-item strong,
+.utility-crossroads-item strong,
+.utility-examples-item strong,
+.certificate-decision-item strong,
+.certificate-recovery-item strong,
+.certificate-next-use-item strong,
+.certificate-identity-item strong,
+.about-editorial-boundary-item strong,
+.about-public-contract-item strong,
+.route-evidence-ladder-item strong,
+.route-recovery-plan-item strong,
+.route-phase-handoff-item strong,
+.route-weekly-output-item strong,
+.route-table-guide-item strong,
+.modules-quick-jump-item strong,
+.modules-phase-decision-item strong,
+.modules-readiness-item strong,
+.modules-phase-entry-item strong,
+.modules-choice-path-item strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #0a1f38;
+  font-family: "Manrope", "Inter", sans-serif;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.home-intent-switch-item p,
+.home-route-strip-item p,
+.home-trust-anchors-item p,
+.home-first-session-item p,
+.home-public-journey-item p,
+.home-progress-snapshot-item p,
+.home-path-contract-item p,
+.home-outcome-map-item p,
+.utility-query-plan-item p,
+.utility-crossroads-item p,
+.utility-examples-item p,
+.certificate-decision-item p,
+.certificate-recovery-item p,
+.certificate-next-use-item p,
+.certificate-identity-item p,
+.about-editorial-boundary-item p,
+.about-public-contract-item p,
+.route-evidence-ladder-item p,
+.route-recovery-plan-item p,
+.route-phase-handoff-item p,
+.route-weekly-output-item p,
+.route-table-guide-item p,
+.modules-quick-jump-item p,
+.modules-phase-decision-item p,
+.modules-readiness-item p,
+.modules-phase-entry-item p,
+.modules-choice-path-item p {
+  margin: 0;
+  color: #52657d;
+  font-size: 0.88rem;
+  line-height: 1.52;
+  text-wrap: pretty;
+}
+
+.home-route-strip-grid,
+.modules-phase-decision-grid,
+.modules-phase-entry-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .module-practice-contract {
@@ -5622,6 +5911,56 @@ code {
   border: 1px solid rgba(0, 168, 214, 0.22);
   border-left: 4px solid #00a8d6;
   border-radius: 12px;
+}
+
+.module-evidence-path {
+  margin: 1.35rem 0 1rem;
+  padding: 1.05rem 1.15rem;
+  color: #33465f;
+  background:
+    linear-gradient(135deg, rgba(247, 249, 252, 0.98), rgba(240, 249, 255, 0.94));
+  border: 1px solid rgba(10, 31, 56, 0.10);
+  border-left: 4px solid #1e5799;
+  border-radius: 12px;
+}
+
+.module-return-note {
+  margin: 1.1rem 0 1.45rem;
+  padding: 1rem 1.1rem;
+  color: #33465f;
+  background:
+    linear-gradient(135deg, rgba(248, 250, 252, 0.98), rgba(240, 249, 255, 0.92));
+  border: 1px solid rgba(10, 31, 56, 0.10);
+  border-left: 4px solid #00a8d6;
+  border-radius: 12px;
+}
+
+.module-return-note strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #0a1f38;
+  font-family: "Manrope", "Inter", sans-serif;
+}
+
+.module-return-note p {
+  margin: 0;
+  color: #33465f;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.module-evidence-path strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #0a1f38;
+  font-family: "Manrope", "Inter", sans-serif;
+}
+
+.module-evidence-path p {
+  margin: 0;
+  color: #33465f;
+  font-size: 0.94rem;
+  line-height: 1.6;
 }
 
 .module-practice-contract strong {
@@ -5879,6 +6218,24 @@ code {
   .hero-panel-proof-list,
   .home-readiness,
   .home-readiness-grid,
+  .home-intent-switch,
+  .home-intent-switch-grid,
+  .home-route-strip,
+  .home-route-strip-grid,
+  .home-trust-anchors,
+  .home-trust-anchors-grid,
+  .home-first-session,
+  .home-first-session-grid,
+  .home-public-journey,
+  .home-public-journey-grid,
+  .home-progress-snapshot,
+  .home-progress-snapshot-grid,
+  .home-path-contract,
+  .home-path-contract-grid,
+  .home-study-choice,
+  .home-study-choice-grid,
+  .home-outcome-map,
+  .home-outcome-map-grid,
   .home-returning,
   .home-returning-grid,
   .home-continuity,
@@ -5890,8 +6247,20 @@ code {
   .home-evidence-grid,
   .modules-completion-flow,
   .modules-completion-steps,
+  .modules-quick-jump,
+  .modules-quick-jump-grid,
+  .modules-phase-decision,
+  .modules-phase-decision-grid,
+  .modules-readiness-meter,
+  .modules-readiness-grid,
+  .modules-phase-entry,
+  .modules-phase-entry-grid,
+  .modules-choice-path,
+  .modules-choice-path-grid,
   .modules-evidence-standard,
   .modules-evidence-standard-grid,
+  .modules-catalog-guide,
+  .modules-catalog-guide-grid,
   .modules-study-check,
   .modules-study-check-list,
   .modules-return-path,
@@ -5899,14 +6268,44 @@ code {
   .modules-phase-bridge,
   .modules-phase-bridge-grid,
   .modules-certificate-route,
+  .about-public-contract,
+  .about-public-contract-grid,
+  .about-editorial-boundary,
+  .about-editorial-boundary-grid,
   .about-credibility,
   .about-credibility-grid,
   .certificate-scope,
   .certificate-scope-grid,
+  .certificate-decision,
+  .certificate-decision-grid,
+  .certificate-recovery,
+  .certificate-recovery-grid,
+  .certificate-next-use,
+  .certificate-next-use-grid,
+  .certificate-identity-note,
+  .certificate-identity-grid,
+  .utility-query-plan,
+  .utility-query-plan-grid,
+  .utility-crossroads,
+  .utility-crossroads-grid,
+  .utility-examples,
+  .utility-examples-grid,
   .utility-decision,
   .utility-decision-grid,
   .route-week-decision,
   .route-week-decision-grid,
+  .route-session-plan,
+  .route-session-plan-grid,
+  .route-evidence-ladder,
+  .route-evidence-ladder-grid,
+  .route-recovery-plan,
+  .route-recovery-plan-grid,
+  .route-phase-handoff,
+  .route-phase-handoff-grid,
+  .route-weekly-output,
+  .route-weekly-output-grid,
+  .route-table-guide,
+  .route-table-guide-grid,
   .utility-return-guide,
   .route-finish-band {
     grid-template-columns: 1fr;
@@ -5924,18 +6323,48 @@ code {
   }
 
   .modules-evidence-standard-item,
+  .modules-catalog-guide-item,
   .home-readiness-item,
+  .home-intent-switch-item,
+  .home-route-strip-item,
+  .home-trust-anchors-item,
+  .home-first-session-item,
+  .home-public-journey-item,
+  .home-progress-snapshot-item,
+  .home-path-contract-item,
+  .home-study-choice-item,
+  .home-outcome-map-item,
   .home-returning-item,
   .modules-study-check-item,
+  .modules-quick-jump-item,
+  .modules-phase-decision-item,
+  .modules-readiness-item,
+  .modules-phase-entry-item,
+  .modules-choice-path-item,
   .modules-return-path-item,
   .home-audience-item,
   .home-start-criteria-item,
   .home-evidence-item,
   .modules-phase-bridge-item,
+  .about-public-contract-item,
+  .about-editorial-boundary-item,
   .about-credibility-item,
   .certificate-scope-item,
+  .certificate-decision-item,
+  .certificate-recovery-item,
+  .certificate-next-use-item,
+  .certificate-identity-item,
+  .utility-query-plan-item,
+  .utility-crossroads-item,
+  .utility-examples-item,
   .utility-decision-item,
-  .route-week-decision-item {
+  .route-week-decision-item,
+  .route-session-plan-item,
+  .route-evidence-ladder-item,
+  .route-recovery-plan-item,
+  .route-phase-handoff-item,
+  .route-weekly-output-item,
+  .route-table-guide-item {
     min-height: auto;
   }
 
@@ -5969,9 +6398,23 @@ code {
   }
 
   .home-readiness,
+  .home-intent-switch,
+  .home-route-strip,
+  .home-trust-anchors,
+  .home-first-session,
+  .home-public-journey,
+  .home-progress-snapshot,
+  .home-path-contract,
+  .home-study-choice,
   .home-returning,
   .home-continuity,
   .modules-study-check,
+  .modules-quick-jump,
+  .modules-phase-decision,
+  .modules-readiness-meter,
+  .modules-phase-entry,
+  .modules-choice-path,
+  .modules-catalog-guide,
   .modules-return-path,
   .modules-certificate-route,
   .modules-evidence-standard,
@@ -5979,10 +6422,23 @@ code {
   .home-start-criteria,
   .home-evidence,
   .modules-phase-bridge,
+  .about-public-contract,
+  .about-editorial-boundary,
   .about-credibility,
   .certificate-scope,
+  .certificate-recovery,
+  .certificate-next-use,
+  .certificate-identity-note,
+  .utility-query-plan,
+  .utility-examples,
   .utility-decision,
-  .route-week-decision {
+  .route-week-decision,
+  .route-session-plan,
+  .route-evidence-ladder,
+  .route-recovery-plan,
+  .route-phase-handoff,
+  .route-weekly-output,
+  .route-table-guide {
     grid-template-columns: 1fr;
   }
 

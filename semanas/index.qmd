@@ -106,6 +106,146 @@ Use a semana para refazer script, quiz e síntese.
 :::
 :::
 
+::: {.route-recovery-plan role="region" aria-label="Como recuperar o ritmo da trilha"}
+::: {.route-recovery-plan-copy}
+**Se a semana atrasou, recupere pela evidência**
+
+Não reinicie a trilha inteira. Volte ao menor ponto verificável: pergunta, script ou quiz. Depois retome a sequência pela fase atual.
+:::
+
+::: {.route-recovery-plan-grid role="list" aria-label="Ações para recuperar uma semana atrasada"}
+::: {.route-recovery-plan-item role="listitem"}
+**Perdi a leitura**
+
+Releia objetivo, evidência mínima e takeaways do módulo.
+:::
+
+::: {.route-recovery-plan-item role="listitem"}
+**Perdi o código**
+
+Rode apenas o script principal e altere um parâmetro.
+:::
+
+::: {.route-recovery-plan-item role="listitem"}
+**Perdi o fechamento**
+
+Refaça quiz e escreva uma decisão curta antes de seguir.
+:::
+:::
+:::
+
+::: {.route-session-plan role="region" aria-label="Modelos de sessão para usar o roteiro"}
+::: {.route-session-plan-copy}
+**Transforme a semana em uma sessão clara**
+
+O roteiro pode ser usado em ritmos diferentes, desde que cada sessão termine com uma saída verificável.
+:::
+
+::: {.route-session-plan-grid role="list" aria-label="Modelos práticos de sessão"}
+::: {.route-session-plan-item role="listitem"}
+**Leitura**
+
+Use quando precisa entender a pergunta antes de executar código.
+:::
+
+::: {.route-session-plan-item role="listitem"}
+**Código**
+
+Use quando já sabe qual parâmetro quer testar no script.
+:::
+
+::: {.route-session-plan-item role="listitem"}
+**Síntese**
+
+Use quando precisa transformar resultados em uma decisão curta.
+:::
+:::
+:::
+
+::: {.route-evidence-ladder role="region" aria-label="Evidência mínima por ciclo do roteiro"}
+::: {.route-evidence-ladder-copy}
+**Transforme o roteiro em evidência acumulada**
+
+O avanço semanal deve produzir rastros pequenos e comparáveis. Ao final de cada fase, a evidência muda de leitura para interpretação e depois para decisão.
+:::
+
+::: {.route-evidence-ladder-grid role="list" aria-label="Evidências esperadas ao longo do roteiro"}
+::: {.route-evidence-ladder-item role="listitem"}
+**Semanas 1-2**
+
+Explique a pergunta biológica e o papel da variação.
+:::
+
+::: {.route-evidence-ladder-item role="listitem"}
+**Semanas 3-9**
+
+Compare parâmetros, modelos e saídas antes de avançar.
+:::
+
+::: {.route-evidence-ladder-item role="listitem"}
+**Semanas 10-12**
+
+Defenda uma decisão técnica envolvendo dados genômicos.
+:::
+:::
+:::
+
+::: {.route-phase-handoff role="region" aria-label="Como atravessar de uma fase para outra no roteiro"}
+::: {.route-phase-handoff-copy}
+**Atravesse fases com uma síntese**
+
+Ao mudar de fundamentos para dados, de dados para modelagem ou de modelagem para genômica, faça uma pausa curta. A próxima fase só fica clara quando a anterior deixou uma frase técnica defendível.
+:::
+
+::: {.route-phase-handoff-grid role="list" aria-label="Passos para atravessar fases do roteiro"}
+::: {.route-phase-handoff-item role="listitem"}
+**Fechar**
+
+Escreva o que a fase anterior permitiu decidir.
+:::
+
+::: {.route-phase-handoff-item role="listitem"}
+**Revisar**
+
+Volte ao módulo-chave se a frase ainda estiver vaga.
+:::
+
+::: {.route-phase-handoff-item role="listitem"}
+**Avançar**
+
+Abra a próxima fase com uma pergunta mais específica.
+:::
+:::
+:::
+
+::: {.route-weekly-output role="region" aria-label="Saída mínima de cada semana de estudo"}
+::: {.route-weekly-output-copy}
+**Toda semana precisa deixar uma saída**
+
+O roteiro funciona melhor quando cada semana termina com algo verificável. A saída não precisa ser longa, mas deve conectar leitura, código e interpretação.
+:::
+
+::: {.route-weekly-output-grid role="list" aria-label="Saídas mínimas semanais"}
+::: {.route-weekly-output-item role="listitem"}
+**Nota**
+
+Uma pergunta ou conceito que ficou claro.
+:::
+
+::: {.route-weekly-output-item role="listitem"}
+**Comparação**
+
+Uma mudança no script e o resultado observado.
+:::
+
+::: {.route-weekly-output-item role="listitem"}
+**Decisão**
+
+Uma frase sobre consequência técnica.
+:::
+:::
+:::
+
 ## Mapa visual de progresso
 
 ::: {.route-map-intro role="note" aria-label="Como ler o mapa visual de progresso"}
@@ -115,6 +255,34 @@ Use o mapa como marcador de avanço, não como placar. O objetivo é completar u
 ```{=html}
 <div data-learning-map></div>
 ```
+
+::: {.route-table-guide role="region" aria-label="Como usar a tabela de semanas"}
+::: {.route-table-guide-copy}
+**Leia a tabela como uma sequência de decisões**
+
+Cada linha combina semana, tema e prática. Use a coluna prática para definir a menor ação verificável antes de abrir o módulo.
+:::
+
+::: {.route-table-guide-grid role="list" aria-label="Como interpretar as colunas do roteiro"}
+::: {.route-table-guide-item role="listitem"}
+**Semana**
+
+Mantém ordem e ritmo.
+:::
+
+::: {.route-table-guide-item role="listitem"}
+**Tema**
+
+Aponta o módulo da vez.
+:::
+
+::: {.route-table-guide-item role="listitem"}
+**Prática**
+
+Define a evidência mínima.
+:::
+:::
+:::
 
 | Semana | Tema | Prática |
 |---:|---|---|

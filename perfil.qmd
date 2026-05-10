@@ -106,6 +106,62 @@ O certificado indica conclusão da trilha, não substitui formação, validaçã
 :::
 :::
 
+::: {.about-public-contract role="region" aria-label="Contrato público da experiência MGenética"}
+::: {.about-public-contract-copy}
+## O que a experiência pública deve garantir
+
+A MGenética precisa continuar clara para visitantes e previsível para manutenção. Cada área pública deve indicar o que estudar, onde buscar apoio e qual evidência fecha a etapa.
+:::
+
+::: {.about-public-contract-grid role="list" aria-label="Garantias públicas da MGenética"}
+::: {.about-public-contract-item role="listitem"}
+**Direção**
+
+Toda página importante aponta para um próximo passo de estudo.
+:::
+
+::: {.about-public-contract-item role="listitem"}
+**Contexto**
+
+Busca, glossário e roteiro existem para apoiar a trilha, não para substituir os módulos.
+:::
+
+::: {.about-public-contract-item role="listitem"}
+**Evidência**
+
+Conclusão significa quiz validado, síntese técnica e decisão aplicável.
+:::
+:::
+:::
+
+::: {.about-editorial-boundary role="region" aria-label="Fronteira entre experiência pública e gestão interna"}
+::: {.about-editorial-boundary-copy}
+## O que deve continuar público
+
+A MGenética pode ser administrada por um app interno no futuro, mas a experiência visível precisa continuar editorial. O visitante deve encontrar conteúdo, direção e evidência, não ferramentas administrativas.
+:::
+
+::: {.about-editorial-boundary-grid role="list" aria-label="Fronteiras editoriais da MGenética"}
+::: {.about-editorial-boundary-item role="listitem"}
+**Público**
+
+Páginas, módulos, roteiro, busca, glossário e certificado.
+:::
+
+::: {.about-editorial-boundary-item role="listitem"}
+**Editável**
+
+Metadados, navegação, regiões declaradas e cartões.
+:::
+
+::: {.about-editorial-boundary-item role="listitem"}
+**Interno**
+
+Publicação, revisão editorial e manutenção administrativa.
+:::
+:::
+:::
+
 ## Princípios
 
 ::: {.profile-grid}

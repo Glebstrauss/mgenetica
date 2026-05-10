@@ -30,6 +30,40 @@ number-sections: false
 </section>
 ```
 
+::: {.modules-quick-jump role="navigation" aria-label="Atalhos internos do índice de módulos"}
+::: {.modules-quick-jump-copy}
+**Atalhos do índice**
+
+Use estes pontos para decidir rápido: revisar fases, abrir o catálogo completo ou entender o fechamento da trilha.
+:::
+
+::: {.modules-quick-jump-grid role="list" aria-label="Atalhos para usar o índice de módulos"}
+::: {.modules-quick-jump-item role="listitem"}
+**Fases**
+
+Comece pela visão de fundamentos, dados, modelagem e genômica.
+
+[Ver fases](#fases-da-trilha){.entry-link}
+:::
+
+::: {.modules-quick-jump-item role="listitem"}
+**Catálogo**
+
+Abra um módulo quando a pergunta de estudo estiver definida.
+
+[Ver módulos](#todos-os-modulos){.entry-link}
+:::
+
+::: {.modules-quick-jump-item role="listitem"}
+**Conclusão**
+
+Confira o caminho até quizzes e certificado.
+
+[Ver fechamento](#próximo-passo-recomendado){.entry-link}
+:::
+:::
+:::
+
 ::: {.modules-guidance}
 ::: {.guidance-item}
 **Fluxo recomendado**
@@ -78,6 +112,62 @@ Se você chegou por um conceito específico, use busca e glossário antes de esc
 :::
 :::
 
+::: {.modules-choice-path role="region" aria-label="Como escolher o próximo módulo pela evidência disponível"}
+::: {.modules-choice-path-copy}
+**Escolha pelo que já consegue provar**
+
+Antes de abrir outro módulo, use a evidência da sessão anterior para decidir se avança, revisa ou consulta apoio. A sequência funciona melhor quando cada clique responde a uma necessidade clara.
+:::
+
+::: {.modules-choice-path-grid role="list" aria-label="Critérios para escolher o próximo módulo"}
+::: {.modules-choice-path-item role="listitem"}
+**Avance**
+
+Quando a pergunta anterior, o script e a interpretação já estão claros.
+:::
+
+::: {.modules-choice-path-item role="listitem"}
+**Revise**
+
+Quando a fase atual ainda não sustenta uma decisão técnica.
+:::
+
+::: {.modules-choice-path-item role="listitem"}
+**Consulte**
+
+Quando falta apenas localizar um termo, função ou trecho específico.
+:::
+:::
+:::
+
+::: {.modules-readiness-meter role="region" aria-label="Como saber se está pronto para abrir um módulo"}
+::: {.modules-readiness-copy}
+**Pronto para abrir um módulo?**
+
+Antes de entrar em uma página longa, verifique se a ação de estudo está clara. O índice funciona melhor quando cada abertura de módulo tem uma pergunta, um script e um fechamento planejado.
+:::
+
+::: {.modules-readiness-grid role="list" aria-label="Critérios de prontidão antes de abrir um módulo"}
+::: {.modules-readiness-item role="listitem"}
+**Pergunta**
+
+Sei qual dúvida quero resolver neste módulo.
+:::
+
+::: {.modules-readiness-item role="listitem"}
+**Tempo**
+
+Tenho uma sessão curta para leitura, script e síntese.
+:::
+
+::: {.modules-readiness-item role="listitem"}
+**Retorno**
+
+Se travar, sei voltar ao índice, busca ou roteiro.
+:::
+:::
+:::
+
 ::: {.modules-completion-flow role="region" aria-label="Como concluir a trilha MGenética"}
 ::: {.modules-completion-copy}
 **Da primeira leitura ao certificado**
@@ -113,24 +203,32 @@ Abra o certificado quando todos os módulos estiverem concluídos.
 **01 · Fundamentos**
 
 Módulos 01-02 apresentam a lógica do melhoramento animal e a decomposição genética do fenótipo.
+
+[Começar fase](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
 :::
 
 ::: {.phase-card role="listitem"}
 **02 · Dados e parâmetros**
 
 Módulos 03-06 conectam exploração, variância, herdabilidade, repetibilidade e correlações.
+
+[Começar fase](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd){.entry-link}
 :::
 
 ::: {.phase-card role="listitem"}
 **03 · Modelagem**
 
 Módulos 07-09 avançam para modelos mistos, BLUP, pedigree e parentesco.
+
+[Começar fase](modulo07-modelos-lineares-e-modelos-mistos.qmd){.entry-link}
 :::
 
 ::: {.phase-card role="listitem"}
 **04 · Genômica**
 
 Módulos 10-12 introduzem SNPs, controle de qualidade, matrizes genômicas, GWAS e predição.
+
+[Começar fase](modulo10-introducao-a-genomica-e-marcadores-snp.qmd){.entry-link}
 :::
 :::
 
@@ -158,6 +256,102 @@ Rode o script e altere um parâmetro relevante.
 **Decidir**
 
 Escreva a implicação prática antes de seguir.
+:::
+:::
+:::
+
+::: {.modules-phase-entry role="navigation" aria-label="Entradas diretas por fase da trilha"}
+::: {.modules-phase-entry-copy}
+**Entre pela fase certa**
+
+Se você já sabe onde está na trilha, use o primeiro módulo da fase como porta de entrada. Se não sabe, comece por Fundamentos.
+:::
+
+::: {.modules-phase-entry-grid role="list" aria-label="Primeiros módulos de cada fase"}
+::: {.modules-phase-entry-item role="listitem"}
+**Fundamentos**
+
+[Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+:::
+
+::: {.modules-phase-entry-item role="listitem"}
+**Dados**
+
+[Módulo 03](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd){.entry-link}
+:::
+
+::: {.modules-phase-entry-item role="listitem"}
+**Modelagem**
+
+[Módulo 07](modulo07-modelos-lineares-e-modelos-mistos.qmd){.entry-link}
+:::
+
+::: {.modules-phase-entry-item role="listitem"}
+**Genômica**
+
+[Módulo 10](modulo10-introducao-a-genomica-e-marcadores-snp.qmd){.entry-link}
+:::
+:::
+:::
+
+::: {.modules-phase-decision role="region" aria-label="Como cada fase muda a pergunta de estudo"}
+::: {.modules-phase-decision-copy}
+**Cada fase muda o tipo de decisão**
+
+Use a fase como sinal de maturidade da pergunta. A trilha começa perguntando o que é variação útil e termina perguntando como evidência genômica muda uma decisão de seleção.
+:::
+
+::: {.modules-phase-decision-grid role="list" aria-label="Decisões esperadas por fase"}
+::: {.modules-phase-decision-item role="listitem"}
+**Fundamentos**
+
+Definir a pergunta biológica e reconhecer a variação.
+:::
+
+::: {.modules-phase-decision-item role="listitem"}
+**Dados**
+
+Comparar parâmetros e interpretar incerteza.
+:::
+
+::: {.modules-phase-decision-item role="listitem"}
+**Modelagem**
+
+Separar efeitos e defender rankings.
+:::
+
+::: {.modules-phase-decision-item role="listitem"}
+**Genômica**
+
+Conectar marcadores, qualidade e predição.
+:::
+:::
+:::
+
+::: {.modules-catalog-guide role="region" aria-label="Como ler o catálogo de módulos"}
+::: {.modules-catalog-guide-copy}
+**Leia os cartões como um mapa de decisão**
+
+Cada cartão indica uma porta de entrada, mas a sequência continua sendo progressiva. Use o número do módulo, a fase e o resumo para decidir se você deve avançar, revisar ou voltar ao roteiro.
+:::
+
+::: {.modules-catalog-guide-grid role="list" aria-label="Critérios para usar o catálogo"}
+::: {.modules-catalog-guide-item role="listitem"}
+**Número**
+
+Mostra a ordem recomendada para preservar o raciocínio técnico.
+:::
+
+::: {.modules-catalog-guide-item role="listitem"}
+**Resumo**
+
+Indica a pergunta que o módulo ajuda a responder.
+:::
+
+::: {.modules-catalog-guide-item role="listitem"}
+**Próxima ação**
+
+Abra o módulo quando já houver tempo para gerar evidência.
 :::
 :::
 :::

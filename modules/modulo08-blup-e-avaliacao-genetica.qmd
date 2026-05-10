@@ -140,6 +140,12 @@ legend("topleft", c("Regressão","Linha 45°"), lty=1:2, col=c("#dc2626","#5b6b7
 **Interpretação:** DEP (Diferença Esperada na Progênie) = EBV/2. Um touro com EBV = +40 kg tem DEP = +20 kg, i.e., em média seus filhos pesarão 20 kg a mais que filhos de um touro mediano, nas mesmas condições.
 :::
 
+::: {.module-evidence-path role="note" aria-label="Caminho de evidência do módulo"}
+**Caminho de evidência**
+
+Antes do exercício, conecte três pontos: qual pergunta o módulo abriu, qual saída do script sustenta a resposta e qual decisão técnica fica mais clara.
+:::
+
 ::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
 **Evidência mínima deste módulo**
 
@@ -172,6 +178,12 @@ Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase l
 **Depois do quiz**
 
 Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e ao exercício proposto. Se estiver consistente, avance mantendo uma frase técnica registrada.
+:::
+
+::: {.module-return-note role="note" aria-label="Como voltar ao fluxo depois deste módulo"}
+**Volte com uma decisão**
+
+Antes de trocar de página, registre se este módulo levou a avanço, revisão ou consulta. Use essa decisão para escolher o próximo clique no índice.
 :::
 
 ```{=html}

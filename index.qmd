@@ -22,6 +22,7 @@ Uma plataforma aberta para estudar genética quantitativa e genômica aplicada e
 ::: {.hero-actions role="navigation" aria-label="Ações principais da página inicial"}
 [Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
 [Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
+[Planejar 12 semanas](semanas/index.qmd){.btn .btn-secondary}
 :::
 
 ::: {.hero-meta}
@@ -106,6 +107,186 @@ conclusão após os quizzes
 :::
 :::
 
+::: {.home-section .home-trust-anchors role="region" aria-label="Pilares de confiança da experiência pública"}
+::: {.home-trust-anchors-copy}
+**Por que estudar aqui é verificável**
+
+A experiência combina conteúdo aberto, execução local e interpretação curta. O visitante consegue conferir o caminho sem cadastro, sem base externa obrigatória e sem prometer aplicação automática.
+:::
+
+::: {.home-trust-anchors-grid role="list" aria-label="Pilares de confiança da MGenética"}
+::: {.home-trust-anchors-item role="listitem"}
+**Aberto**
+
+Páginas públicas, trilha visível e navegação sem login.
+:::
+
+::: {.home-trust-anchors-item role="listitem"}
+**Reprodutível**
+
+Scripts e dados simulados para repetir comparações.
+:::
+
+::: {.home-trust-anchors-item role="listitem"}
+**Responsável**
+
+Interpretação técnica antes de qualquer uso aplicado.
+:::
+:::
+:::
+
+::: {.home-section .home-first-session role="region" aria-label="Como fazer a primeira sessão de estudo"}
+::: {.home-first-session-copy}
+**Se você tem uma sessão curta agora**
+
+Não tente percorrer tudo de uma vez. Abra uma rota, produza uma evidência pequena e pare com uma decisão clara sobre o próximo passo.
+:::
+
+::: {.home-first-session-grid role="list" aria-label="Primeira sessão recomendada na MGenética"}
+::: {.home-first-session-item role="listitem"}
+**10 min**
+
+Leia a pergunta central do módulo.
+:::
+
+::: {.home-first-session-item role="listitem"}
+**15 min**
+
+Rode o trecho principal do script.
+:::
+
+::: {.home-first-session-item role="listitem"}
+**5 min**
+
+Escreva uma frase de decisão.
+:::
+:::
+:::
+
+::: {.home-section .home-route-strip role="navigation" aria-label="Rotas públicas principais da MGenética"}
+::: {.home-route-strip-copy}
+**Quatro portas de entrada públicas**
+
+Escolha a rota pelo que você precisa fazer agora. A página inicial deve levar rapidamente ao estudo, ao planejamento, à consulta ou ao fechamento da trilha.
+:::
+
+::: {.home-route-strip-grid role="list" aria-label="Rotas públicas principais"}
+::: {.home-route-strip-item role="listitem"}
+**Estudar**
+
+[Abrir módulos](modules/index.qmd){.entry-link}
+:::
+
+::: {.home-route-strip-item role="listitem"}
+**Planejar**
+
+[Ver roteiro](semanas/index.qmd){.entry-link}
+:::
+
+::: {.home-route-strip-item role="listitem"}
+**Consultar**
+
+[Usar busca](busca.qmd){.entry-link}
+:::
+
+::: {.home-route-strip-item role="listitem"}
+**Concluir**
+
+[Checar certificado](certificado.qmd){.entry-link}
+:::
+:::
+:::
+
+::: {.home-section .home-intent-switch role="navigation" aria-label="Escolha rápida por intenção de visita"}
+::: {.home-intent-switch-copy}
+**Escolha pela intenção de agora**
+
+Se você chegou sem saber onde entrar, escolha pela situação: iniciar a trilha, retomar um ponto ou resolver uma dúvida técnica curta.
+:::
+
+::: {.home-intent-switch-grid role="list" aria-label="Intenções de visita na página inicial"}
+::: {.home-intent-switch-item role="listitem"}
+**Iniciar**
+
+Comece pela sequência completa quando ainda não há contexto acumulado.
+
+[Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+:::
+
+::: {.home-intent-switch-item role="listitem"}
+**Retomar**
+
+Volte pelo índice quando já existe uma fase ou módulo em andamento.
+
+[Índice de módulos](modules/index.qmd){.entry-link}
+:::
+
+::: {.home-intent-switch-item role="listitem"}
+**Consultar**
+
+Use busca ou glossário quando a dúvida é pontual e não exige trocar de fase.
+
+[Buscar conceito](busca.qmd){.entry-link}
+:::
+:::
+:::
+
+::: {.home-section .home-public-journey role="region" aria-label="Jornada pública MGenética"}
+::: {.home-public-journey-copy}
+**Uma jornada pública, não um painel**
+
+A experiência foi desenhada para leitura aberta: entrar pela trilha, usar apoio quando necessário e concluir com evidência local. O visitante não precisa de conta, turma ou painel para avançar.
+:::
+
+::: {.home-public-journey-grid role="list" aria-label="Etapas públicas da jornada MGenética"}
+::: {.home-public-journey-item role="listitem"}
+**Estudar**
+
+Módulos em ordem, com conceito, simulação e interpretação.
+:::
+
+::: {.home-public-journey-item role="listitem"}
+**Apoiar**
+
+Busca, glossário e roteiro recuperam contexto sem quebrar a sequência.
+:::
+
+::: {.home-public-journey-item role="listitem"}
+**Concluir**
+
+Quizzes e certificado fecham a trilha no navegador.
+:::
+:::
+:::
+
+::: {.home-section .home-progress-snapshot role="region" aria-label="Como reconhecer avanço na MGenética"}
+::: {.home-progress-snapshot-copy}
+**Como saber que houve avanço**
+
+O progresso público não depende de porcentagem visível o tempo todo. Ele aparece quando a pergunta fica mais precisa, o script gera uma comparação e a decisão técnica pode ser explicada.
+:::
+
+::: {.home-progress-snapshot-grid role="list" aria-label="Sinais públicos de avanço no estudo"}
+::: {.home-progress-snapshot-item role="listitem"}
+**Pergunta mais clara**
+
+Você sabe qual conceito precisa revisar ou aplicar.
+:::
+
+::: {.home-progress-snapshot-item role="listitem"}
+**Comparação em R**
+
+Você alterou um parâmetro e observou a mudança.
+:::
+
+::: {.home-progress-snapshot-item role="listitem"}
+**Decisão defensável**
+
+Você consegue explicar a consequência prática em uma frase.
+:::
+:::
+:::
+
 ::: {.home-section .home-proof}
 ::: {.metric-grid}
 ::: {.metric}
@@ -124,6 +305,68 @@ Scripts reproduzíveis
 **100%**
 
 Dados simulados para ensino
+:::
+:::
+:::
+
+::: {.home-section .home-path-contract role="region" aria-label="Contrato público da trilha de aprendizagem"}
+::: {.home-path-contract-copy}
+**A trilha sempre pede uma evidência**
+
+O site não foi desenhado para consumo passivo. Cada rota pública deve levar a uma pequena evidência: uma pergunta melhor, uma saída em R interpretada ou uma decisão técnica escrita.
+:::
+
+::: {.home-path-contract-grid role="list" aria-label="Evidências esperadas ao usar a MGenética"}
+::: {.home-path-contract-item role="listitem"}
+**Pergunta**
+
+Abra uma página sabendo qual conceito ou decisão quer esclarecer.
+:::
+
+::: {.home-path-contract-item role="listitem"}
+**Saída**
+
+Use o script ou o apoio público para gerar contexto verificável.
+:::
+
+::: {.home-path-contract-item role="listitem"}
+**Decisão**
+
+Feche com uma frase técnica antes de avançar.
+:::
+:::
+:::
+
+::: {.home-section .home-study-choice role="region" aria-label="Escolha de sessão de estudo"}
+::: {.home-study-choice-copy}
+**Escolha a sessão de hoje**
+
+A MGenética funciona em blocos pequenos. Antes de abrir uma página, escolha o tipo de sessão para sair com uma evidência concreta.
+:::
+
+::: {.home-study-choice-grid role="list" aria-label="Tipos de sessão para estudar na MGenética"}
+::: {.home-study-choice-item role="listitem"}
+**Sessão curta**
+
+Leia o objetivo, rode um trecho do script e anote uma pergunta.
+
+[Abrir módulos](modules/index.qmd){.entry-link}
+:::
+
+::: {.home-study-choice-item role="listitem"}
+**Sessão completa**
+
+Feche leitura, script, alteração de parâmetro, interpretação e quiz.
+
+[Começar Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+:::
+
+::: {.home-study-choice-item role="listitem"}
+**Sessão de revisão**
+
+Use busca, glossário e roteiro para recuperar contexto antes de avançar.
+
+[Ver roteiro](semanas/index.qmd){.entry-link}
 :::
 :::
 :::
@@ -496,6 +739,34 @@ O script em R transforma a hipótese em uma saída reproduzível com dados simul
 **4 · Interpretação**
 
 O fechamento pede uma frase técnica ligando resultado, limite e consequência prática.
+:::
+:::
+:::
+
+::: {.home-outcome-map role="region" aria-label="Resultado esperado depois de estudar"}
+::: {.home-outcome-map-copy}
+**O que deve mudar depois de uma sessão**
+
+Uma boa sessão não termina apenas com uma página lida. Ela deve melhorar a pergunta, a interpretação do script ou a decisão técnica que você consegue defender.
+:::
+
+::: {.home-outcome-map-grid role="list" aria-label="Resultados esperados de estudo"}
+::: {.home-outcome-map-item role="listitem"}
+**Entender**
+
+Explique o conceito sem depender da resposta do quiz.
+:::
+
+::: {.home-outcome-map-item role="listitem"}
+**Testar**
+
+Altere uma simulação e compare a saída com o resultado original.
+:::
+
+::: {.home-outcome-map-item role="listitem"}
+**Decidir**
+
+Escreva uma consequência prática para seleção, avaliação ou revisão.
 :::
 :::
 :::

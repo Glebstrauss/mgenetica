@@ -611,10 +611,30 @@ footer.footer a {
 .modules-completion-step,
 .modules-evidence-standard,
 .modules-evidence-standard-item,
+.modules-catalog-guide,
+.modules-catalog-guide-item,
 .modules-return-path,
 .modules-return-path-item,
 .modules-study-check,
 .modules-study-check-item,
+.home-study-choice,
+.home-study-choice-item,
+.home-intent-switch,
+.home-intent-switch-item,
+.home-route-strip,
+.home-route-strip-item,
+.home-trust-anchors,
+.home-trust-anchors-item,
+.home-first-session,
+.home-first-session-item,
+.home-public-journey,
+.home-public-journey-item,
+.home-progress-snapshot,
+.home-progress-snapshot-item,
+.home-path-contract,
+.home-path-contract-item,
+.home-outcome-map,
+.home-outcome-map-item,
 .home-returning,
 .home-returning-item,
 .home-audience,
@@ -625,14 +645,54 @@ footer.footer a {
 .home-evidence-item,
 .modules-phase-bridge,
 .modules-phase-bridge-item,
+.modules-quick-jump,
+.modules-quick-jump-item,
+.modules-phase-decision,
+.modules-phase-decision-item,
+.modules-readiness-meter,
+.modules-readiness-item,
+.modules-phase-entry,
+.modules-phase-entry-item,
+.modules-choice-path,
+.modules-choice-path-item,
+.about-editorial-boundary,
+.about-editorial-boundary-item,
+.about-public-contract,
+.about-public-contract-item,
 .about-credibility,
 .about-credibility-item,
 .certificate-scope,
 .certificate-scope-item,
+.certificate-decision,
+.certificate-decision-item,
+.certificate-recovery,
+.certificate-recovery-item,
+.certificate-next-use,
+.certificate-next-use-item,
+.certificate-identity-note,
+.certificate-identity-item,
+.utility-query-plan,
+.utility-query-plan-item,
+.utility-crossroads,
+.utility-crossroads-item,
+.utility-examples,
+.utility-examples-item,
 .utility-decision,
 .utility-decision-item,
 .route-week-decision,
 .route-week-decision-item,
+.route-session-plan,
+.route-session-plan-item,
+.route-evidence-ladder,
+.route-evidence-ladder-item,
+.route-recovery-plan,
+.route-recovery-plan-item,
+.route-phase-handoff,
+.route-phase-handoff-item,
+.route-weekly-output,
+.route-weekly-output-item,
+.route-table-guide,
+.route-table-guide-item,
 .home-continuity,
 .modules-certificate-route {
   background: var(--mg-bg-soft);
@@ -650,6 +710,24 @@ footer.footer a {
 .home-readiness-copy p,
 .home-audience-copy h2,
 .home-audience-copy p,
+.home-study-choice-copy strong,
+.home-study-choice-copy p,
+.home-intent-switch-copy strong,
+.home-intent-switch-copy p,
+.home-route-strip-copy strong,
+.home-route-strip-copy p,
+.home-trust-anchors-copy strong,
+.home-trust-anchors-copy p,
+.home-first-session-copy strong,
+.home-first-session-copy p,
+.home-public-journey-copy strong,
+.home-public-journey-copy p,
+.home-progress-snapshot-copy strong,
+.home-progress-snapshot-copy p,
+.home-path-contract-copy strong,
+.home-path-contract-copy p,
+.home-outcome-map-copy strong,
+.home-outcome-map-copy p,
 .home-returning-copy strong,
 .home-returning-copy p,
 .home-start-criteria-copy strong,
@@ -662,56 +740,158 @@ footer.footer a {
 .modules-study-check-copy p,
 .modules-evidence-standard-copy strong,
 .modules-evidence-standard-copy p,
+.modules-catalog-guide-copy strong,
+.modules-catalog-guide-copy p,
 .modules-return-path-copy strong,
 .modules-return-path-copy p,
 .modules-phase-bridge-copy strong,
 .modules-phase-bridge-copy p,
+.modules-quick-jump-copy strong,
+.modules-quick-jump-copy p,
+.modules-phase-decision-copy strong,
+.modules-phase-decision-copy p,
+.modules-readiness-copy strong,
+.modules-readiness-copy p,
+.modules-phase-entry-copy strong,
+.modules-phase-entry-copy p,
+.modules-choice-path-copy strong,
+.modules-choice-path-copy p,
+.about-editorial-boundary-copy h2,
+.about-editorial-boundary-copy p,
+.about-public-contract-copy h2,
+.about-public-contract-copy p,
 .modules-certificate-route-copy strong,
 .modules-certificate-route-copy p,
 .about-credibility-copy h2,
 .about-credibility-copy p,
 .certificate-scope-copy strong,
 .certificate-scope-copy p,
+.certificate-decision-copy strong,
+.certificate-decision-copy p,
+.certificate-recovery-copy strong,
+.certificate-recovery-copy p,
+.certificate-next-use-copy strong,
+.certificate-next-use-copy p,
+.certificate-identity-copy strong,
+.certificate-identity-copy p,
+.utility-query-plan-copy strong,
+.utility-query-plan-copy p,
+.utility-crossroads-copy strong,
+.utility-crossroads-copy p,
+.utility-examples-copy strong,
+.utility-examples-copy p,
 .utility-decision-copy strong,
 .utility-decision-copy p,
 .route-week-decision-copy strong,
-.route-week-decision-copy p {
+.route-week-decision-copy p,
+.route-session-plan-copy strong,
+.route-session-plan-copy p,
+.route-evidence-ladder-copy strong,
+.route-evidence-ladder-copy p,
+.route-recovery-plan-copy strong,
+.route-recovery-plan-copy p,
+.route-phase-handoff-copy strong,
+.route-phase-handoff-copy p,
+.route-weekly-output-copy strong,
+.route-weekly-output-copy p,
+.route-table-guide-copy strong,
+.route-table-guide-copy p {
   color: var(--mg-ink);
 }
 
 .modules-completion-copy strong,
 .modules-completion-step strong,
 .modules-evidence-standard-item strong,
+.modules-catalog-guide-item strong,
 .modules-return-path-item strong,
 .home-readiness-item strong,
+.home-study-choice-item strong,
+.home-intent-switch-item strong,
+.home-route-strip-item strong,
+.home-trust-anchors-item strong,
+.home-first-session-item strong,
+.home-public-journey-item strong,
+.home-progress-snapshot-item strong,
+.home-path-contract-item strong,
+.home-outcome-map-item strong,
 .home-returning-item strong,
 .home-audience-item strong,
 .home-start-criteria-item strong,
 .home-evidence-item strong,
 .modules-study-check-item strong,
 .modules-phase-bridge-item strong,
+.modules-quick-jump-item strong,
+.modules-phase-decision-item strong,
+.modules-readiness-item strong,
+.modules-phase-entry-item strong,
+.modules-choice-path-item strong,
+.about-editorial-boundary-item strong,
+.about-public-contract-item strong,
 .about-credibility-item strong,
 .certificate-scope-item strong,
+.certificate-decision-item strong,
+.certificate-recovery-item strong,
+.certificate-next-use-item strong,
+.certificate-identity-item strong,
+.utility-query-plan-item strong,
+.utility-crossroads-item strong,
+.utility-examples-item strong,
 .utility-decision-item strong,
-.route-week-decision-item strong {
+.route-week-decision-item strong,
+.route-session-plan-item strong,
+.route-evidence-ladder-item strong,
+.route-recovery-plan-item strong,
+.route-phase-handoff-item strong,
+.route-weekly-output-item strong,
+.route-table-guide-item strong {
   color: var(--mg-ink);
 }
 
 .modules-completion-copy p,
 .modules-completion-step p,
 .modules-evidence-standard-item p,
+.modules-catalog-guide-item p,
 .modules-return-path-item p,
 .home-readiness-item p,
+.home-study-choice-item p,
+.home-intent-switch-item p,
+.home-route-strip-item p,
+.home-trust-anchors-item p,
+.home-first-session-item p,
+.home-public-journey-item p,
+.home-progress-snapshot-item p,
+.home-path-contract-item p,
+.home-outcome-map-item p,
 .home-returning-item p,
 .home-audience-item p,
 .home-start-criteria-item p,
 .home-evidence-item p,
 .modules-study-check-item p,
 .modules-phase-bridge-item p,
+.modules-quick-jump-item p,
+.modules-phase-decision-item p,
+.modules-readiness-item p,
+.modules-phase-entry-item p,
+.modules-choice-path-item p,
+.about-editorial-boundary-item p,
+.about-public-contract-item p,
 .about-credibility-item p,
 .certificate-scope-item p,
+.certificate-decision-item p,
+.certificate-recovery-item p,
+.certificate-next-use-item p,
+.certificate-identity-item p,
+.utility-query-plan-item p,
+.utility-crossroads-item p,
+.utility-examples-item p,
 .utility-decision-item p,
-.route-week-decision-item p {
+.route-week-decision-item p,
+.route-session-plan-item p,
+.route-evidence-ladder-item p,
+.route-recovery-plan-item p,
+.route-phase-handoff-item p,
+.route-weekly-output-item p,
+.route-table-guide-item p {
   color: var(--mg-text);
 }
 
@@ -723,11 +903,43 @@ footer.footer a {
   border-left-color: var(--mg-cyan-lt);
 }
 
+.module-return-note {
+  color: var(--mg-text);
+  background:
+    linear-gradient(135deg, var(--mg-bg-soft), rgba(10, 31, 56, 0.30));
+  border-color: rgba(111, 220, 255, 0.20);
+  border-left-color: var(--mg-cyan-lt);
+}
+
+.module-evidence-path {
+  color: var(--mg-text);
+  background:
+    linear-gradient(135deg, var(--mg-bg-soft), rgba(30, 87, 153, 0.22));
+  border-color: rgba(111, 220, 255, 0.18);
+  border-left-color: var(--mg-blue);
+}
+
+.module-evidence-path strong {
+  color: var(--mg-ink);
+}
+
+.module-evidence-path p {
+  color: var(--mg-text);
+}
+
 .module-practice-contract strong {
   color: var(--mg-ink);
 }
 
+.module-return-note strong {
+  color: var(--mg-ink);
+}
+
 .module-practice-contract p {
+  color: var(--mg-text);
+}
+
+.module-return-note p {
   color: var(--mg-text);
 }
 

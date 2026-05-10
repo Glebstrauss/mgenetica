@@ -38,20 +38,22 @@ website:
         text: Módulos
       - href: semanas/index.qmd
         text: Roteiro
-      - href: certificado.qmd
-        text: Certificado
       - href: busca.qmd
         text: Busca
       - href: glossario.qmd
         text: Glossário
+      - href: certificado.qmd
+        text: Certificado
       - href: perfil.qmd
         text: Sobre
     right:
       - href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
-        text: Começar
+        text: Começar M01
   page-footer:
-    left: "MGenética · conceito, R e interpretação"
+    left: "MGenética · estudar, consultar, concluir"
     center:
+      - href: index.qmd
+        text: Início
       - href: modules/index.qmd
         text: Módulos
       - href: semanas/index.qmd

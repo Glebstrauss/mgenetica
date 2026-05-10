@@ -85,6 +85,90 @@ A busca funciona melhor quando ajuda a recuperar contexto e depois devolve você
 :::
 :::
 
+::: {.utility-crossroads role="region" aria-label="Quando usar busca, glossário ou roteiro"}
+::: {.utility-crossroads-copy}
+**Escolha o apoio certo**
+
+Use a busca para localizar contexto, o glossário para resolver termos e o roteiro para retomar a sequência. A consulta deve sempre devolver você para uma decisão de estudo.
+:::
+
+::: {.utility-crossroads-grid role="list" aria-label="Diferenças entre apoios da trilha"}
+::: {.utility-crossroads-item role="listitem"}
+**Busca**
+
+Quando você sabe o termo, mas não sabe onde ele aparece.
+:::
+
+::: {.utility-crossroads-item role="listitem"}
+**Glossário**
+
+Quando a definição curta é suficiente para continuar lendo.
+:::
+
+::: {.utility-crossroads-item role="listitem"}
+**Roteiro**
+
+Quando a dúvida é sobre ordem, ritmo ou retomada.
+:::
+:::
+:::
+
+::: {.utility-examples role="region" aria-label="Exemplos de busca úteis"}
+::: {.utility-examples-copy}
+**Comece por uma busca pequena**
+
+Termos curtos ajudam a encontrar contexto mais rápido. Depois de abrir um resultado, volte para o módulo, roteiro ou glossário com uma pergunta definida.
+:::
+
+::: {.utility-examples-grid role="list" aria-label="Tipos de busca recomendados"}
+::: {.utility-examples-item role="listitem"}
+**Parâmetro**
+
+herdabilidade, repetibilidade, correlação genética.
+:::
+
+::: {.utility-examples-item role="listitem"}
+**Método**
+
+BLUP, GWAS, matriz genômica, controle de qualidade.
+:::
+
+::: {.utility-examples-item role="listitem"}
+**Ação em R**
+
+simulação, variância, regressão, predição.
+:::
+:::
+:::
+
+::: {.utility-query-plan role="region" aria-label="Como preparar uma busca útil"}
+::: {.utility-query-plan-copy}
+**Prepare a busca como uma pergunta**
+
+Antes de pesquisar, transforme a dúvida em uma palavra-chave e um contexto. Isso evita abrir resultados demais e ajuda a voltar para o módulo certo.
+:::
+
+::: {.utility-query-plan-grid role="list" aria-label="Plano para buscar no curso"}
+::: {.utility-query-plan-item role="listitem"}
+**Termo**
+
+Use uma palavra curta: herdabilidade, BLUP, SNP.
+:::
+
+::: {.utility-query-plan-item role="listitem"}
+**Contexto**
+
+Procure junto da fase: dados, modelo ou genômica.
+:::
+
+::: {.utility-query-plan-item role="listitem"}
+**Retorno**
+
+Abra o resultado e volte ao módulo com uma ação definida.
+:::
+:::
+:::
+
 <link href="_pagefind/pagefind-ui.css" rel="stylesheet">
 <script src="_pagefind/pagefind-ui.js"></script>
 

@@ -102,6 +102,118 @@ Informe seu nome e gere o PDF quando todos os módulos estiverem completos.
 :::
 :::
 
+::: {.certificate-decision role="region" aria-label="Como decidir se é hora de emitir o certificado"}
+::: {.certificate-decision-copy}
+**Antes de emitir, confirme a evidência**
+
+O certificado fica mais útil quando a conclusão formal acompanha uma síntese técnica. Se ainda falta clareza, volte à fase certa antes de gerar o PDF.
+:::
+
+::: {.certificate-decision-grid role="list" aria-label="Critérios antes de emitir o certificado"}
+::: {.certificate-decision-item role="listitem"}
+**Quizzes**
+
+Todos os módulos aparecem como concluídos no navegador.
+:::
+
+::: {.certificate-decision-item role="listitem"}
+**Síntese**
+
+Você consegue resumir a trilha em uma decisão técnica.
+:::
+
+::: {.certificate-decision-item role="listitem"}
+**Próximo uso**
+
+O certificado será usado como registro de estudo, não como validação formal.
+:::
+:::
+:::
+
+::: {.certificate-recovery role="region" aria-label="Como recuperar pendências antes do certificado"}
+::: {.certificate-recovery-copy}
+**Se o certificado ainda não abriu**
+
+Use a pendência como orientação de retorno. O caminho mais curto é localizar o módulo ausente, refazer a evidência mínima e validar o quiz no mesmo navegador.
+:::
+
+::: {.certificate-recovery-grid role="list" aria-label="Rotas para recuperar pendências do certificado"}
+::: {.certificate-recovery-item role="listitem"}
+**Módulo pendente**
+
+Volte ao índice e abra a fase correspondente.
+:::
+
+::: {.certificate-recovery-item role="listitem"}
+**Conceito inseguro**
+
+Use busca ou glossário antes de refazer o quiz.
+:::
+
+::: {.certificate-recovery-item role="listitem"}
+**Progresso ausente**
+
+Confira se está usando o mesmo navegador.
+:::
+:::
+:::
+
+::: {.certificate-next-use role="region" aria-label="Como usar o certificado depois da conclusão"}
+::: {.certificate-next-use-copy}
+**Depois do PDF, preserve a evidência**
+
+O certificado fecha a trilha pública, mas a evidência mais útil é a síntese que você consegue explicar. Use o PDF junto de uma nota técnica curta sobre o que aprendeu e onde aplicaria a decisão.
+:::
+
+::: {.certificate-next-use-grid role="list" aria-label="Usos responsáveis do certificado"}
+::: {.certificate-next-use-item role="listitem"}
+**Registro**
+
+Guardar a data e a carga de estudo concluída.
+:::
+
+::: {.certificate-next-use-item role="listitem"}
+**Revisão**
+
+Voltar às fases que ainda precisam de prática.
+:::
+
+::: {.certificate-next-use-item role="listitem"}
+**Aplicação**
+
+Levar a síntese para uma análise real com revisão técnica.
+:::
+:::
+:::
+
+::: {.certificate-identity-note role="region" aria-label="Como preencher o nome no certificado"}
+::: {.certificate-identity-copy}
+**Nome no certificado**
+
+O nome é usado apenas para compor o PDF no navegador. Antes de gerar, confira grafia, acentos e finalidade do registro.
+:::
+
+::: {.certificate-identity-grid role="list" aria-label="Cuidados antes de preencher o certificado"}
+::: {.certificate-identity-item role="listitem"}
+**Grafia**
+
+Use o nome como quer que apareça no PDF.
+:::
+
+::: {.certificate-identity-item role="listitem"}
+**Privacidade**
+
+O preenchimento permanece local no navegador.
+:::
+
+::: {.certificate-identity-item role="listitem"}
+**Finalidade**
+
+Use como registro de estudo, não como credencial formal.
+:::
+:::
+:::
+
 ```{=html}
 <div id="cert-gate">
   <noscript>

@@ -82,6 +82,90 @@ Depois de entender o termo, volte ao módulo em que ele aparece. A interpretaç�
 :::
 :::
 
+::: {.utility-crossroads role="region" aria-label="Quando usar glossário, busca ou roteiro"}
+::: {.utility-crossroads-copy}
+**Depois da definição, escolha o contexto**
+
+Se o termo ficou claro, volte ao módulo. Se ainda falta aplicação, use a busca para localizar exemplos ou o roteiro para recuperar a fase de estudo.
+:::
+
+::: {.utility-crossroads-grid role="list" aria-label="Caminhos depois do glossário"}
+::: {.utility-crossroads-item role="listitem"}
+**Termo claro**
+
+Retorne ao módulo e leia a aplicação no texto.
+:::
+
+::: {.utility-crossroads-item role="listitem"}
+**Termo sem contexto**
+
+Use a busca para encontrar o conceito dentro da trilha.
+:::
+
+::: {.utility-crossroads-item role="listitem"}
+**Termo recorrente**
+
+Revise a fase correspondente antes de avançar.
+:::
+:::
+:::
+
+::: {.utility-examples role="region" aria-label="Como ler termos do glossário"}
+::: {.utility-examples-copy}
+**Leia o termo pelo papel que ele ocupa**
+
+O mesmo termo pode aparecer como conceito, parâmetro ou saída. Antes de voltar ao módulo, identifique que tipo de uso está em jogo.
+:::
+
+::: {.utility-examples-grid role="list" aria-label="Papéis dos termos técnicos"}
+::: {.utility-examples-item role="listitem"}
+**Conceito**
+
+Explica a pergunta biológica ou estatística.
+:::
+
+::: {.utility-examples-item role="listitem"}
+**Parâmetro**
+
+Quantifica variação, relação ou acurácia.
+:::
+
+::: {.utility-examples-item role="listitem"}
+**Saída**
+
+Precisa ser interpretada junto ao script e ao módulo.
+:::
+:::
+:::
+
+::: {.utility-query-plan role="region" aria-label="Como sair do glossário com uma pergunta útil"}
+::: {.utility-query-plan-copy}
+**Transforme a definição em retorno**
+
+Depois de ler um termo, identifique onde ele entra na trilha. A definição curta só vira aprendizagem quando volta para o módulo, o script e a interpretação.
+:::
+
+::: {.utility-query-plan-grid role="list" aria-label="Plano para usar um termo do glossário"}
+::: {.utility-query-plan-item role="listitem"}
+**Classificar**
+
+É conceito, parâmetro, método ou saída?
+:::
+
+::: {.utility-query-plan-item role="listitem"}
+**Localizar**
+
+Use a busca se precisar encontrar o termo nos módulos.
+:::
+
+::: {.utility-query-plan-item role="listitem"}
+**Aplicar**
+
+Volte ao trecho em que o termo sustenta uma decisão.
+:::
+:::
+:::
+
 ```{=html}
 <div class="glossary-panel">
 <div data-glossary></div>

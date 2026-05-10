@@ -125,9 +125,17 @@ for (class_name in c(
   ".page-hero",
   ".profile-hero",
   ".hero-learning-path",
+  ".home-trust-anchors",
+  ".home-first-session",
+  ".home-route-strip",
+  ".home-intent-switch",
+  ".home-public-journey",
+  ".home-progress-snapshot",
+  ".home-path-contract",
   ".resource-grid",
   ".resource-card",
   ".entry-decision",
+  ".home-study-choice",
   ".home-audience",
   ".home-start-criteria",
   ".home-returning",
@@ -135,20 +143,38 @@ for (class_name in c(
   ".modules-route",
   ".home-readiness",
   ".home-continuity",
+  ".home-outcome-map",
   ".modules-completion-flow",
+  ".modules-quick-jump",
+  ".modules-phase-decision",
+  ".modules-readiness-meter",
+  ".modules-phase-entry",
+  ".modules-choice-path",
   ".modules-evidence-standard",
   ".modules-study-check",
   ".modules-phase-bridge",
+  ".modules-catalog-guide",
   ".modules-return-path",
   ".modules-certificate-route",
   ".utility-return-guide",
+  ".utility-crossroads",
+  ".utility-examples",
+  ".utility-query-plan",
   ".utility-decision",
   ".route-finish-band",
   ".route-week-decision",
+  ".route-session-plan",
+  ".route-evidence-ladder",
+  ".route-recovery-plan",
+  ".route-phase-handoff",
+  ".route-weekly-output",
+  ".route-table-guide",
   ".module-study-checkpoint",
+  ".module-evidence-path",
   ".module-practice-contract",
   ".module-takeaways",
   ".module-after-quiz",
+  ".module-return-note",
   ".module-nav",
   ".module-nav-card",
   ".certificate-preview",
@@ -156,8 +182,14 @@ for (class_name in c(
   ".certificate-noscript",
   ".certificate-readiness-guide",
   ".certificate-scope",
+  ".certificate-decision",
+  ".certificate-recovery",
+  ".certificate-next-use",
+  ".certificate-identity-note",
   ".about-route",
   ".about-credibility",
+  ".about-public-contract",
+  ".about-editorial-boundary",
   ".section-cta",
   ".final-cta-checks",
   ".modules-next-step-checks",
@@ -202,6 +234,14 @@ region_markers <- list(
     hero = "hero",
     "hero-panel-proof" = "hero-panel-proof",
     "hero-signal" = "hero-signal",
+    "trust-anchors" = "home-trust-anchors",
+    "first-session" = "home-first-session",
+    "route-strip" = "home-route-strip",
+    "intent-switch" = "home-intent-switch",
+    "public-journey" = "home-public-journey",
+    "progress-snapshot" = "home-progress-snapshot",
+    "path-contract" = "home-path-contract",
+    "study-choice" = "home-study-choice",
     orientation = "home-orientation",
     audience = "home-audience",
     "start-criteria" = "home-start-criteria",
@@ -213,6 +253,7 @@ region_markers <- list(
     discovery = "home-discovery",
     evidence = "home-evidence",
     "learning-loop" = "learning-loop-grid",
+    "outcome-map" = "home-outcome-map",
     resources = "resource-grid",
     readiness = "home-readiness",
     continuity = "home-continuity",
@@ -221,13 +262,19 @@ region_markers <- list(
   ),
   `modules-index` = list(
     hero = "modules-landing",
+    "quick-jump" = "modules-quick-jump",
     guidance = "modules-guidance",
     route = "modules-route",
     support = "modules-support",
+    "choice-path" = "modules-choice-path",
+    "readiness-meter" = "modules-readiness-meter",
+    "phase-entry" = "modules-phase-entry",
+    "phase-decision" = "modules-phase-decision",
     "completion-flow" = "modules-completion-flow",
     "evidence-standard" = "modules-evidence-standard",
     phases = "phase-grid",
     "phase-bridge" = "modules-phase-bridge",
+    "catalog-guide" = "modules-catalog-guide",
     "module-grid" = "module-grid",
     "return-path" = "modules-return-path",
     "study-check" = "modules-study-check",
@@ -239,7 +286,13 @@ region_markers <- list(
     "route-checkpoints" = "route-checkpoints",
     "route-overview" = "route-overview",
     "route-week-decision" = "route-week-decision",
+    "route-recovery-plan" = "route-recovery-plan",
+    "route-session-plan" = "route-session-plan",
+    "route-evidence-ladder" = "route-evidence-ladder",
+    "route-phase-handoff" = "route-phase-handoff",
+    "route-weekly-output" = "route-weekly-output",
     "route-map-intro" = "route-map-intro",
+    "route-table-guide" = "route-table-guide",
     routine = "routine-grid",
     "route-finish" = "route-finish-band"
   ),
@@ -248,6 +301,9 @@ region_markers <- list(
     "utility-flow" = "utility-flow",
     "utility-decision" = "utility-decision",
     "utility-return" = "utility-return-guide",
+    "utility-crossroads" = "utility-crossroads",
+    "utility-examples" = "utility-examples",
+    "utility-query-plan" = "utility-query-plan",
     "search-panel" = "search-panel",
     "utility-next-step" = "utility-next-step"
   ),
@@ -256,6 +312,9 @@ region_markers <- list(
     "utility-flow" = "utility-flow",
     "utility-decision" = "utility-decision",
     "utility-return" = "utility-return-guide",
+    "utility-crossroads" = "utility-crossroads",
+    "utility-examples" = "utility-examples",
+    "utility-query-plan" = "utility-query-plan",
     "glossary-panel" = "glossary-panel",
     "utility-next-step" = "utility-next-step"
   ),
@@ -264,6 +323,10 @@ region_markers <- list(
     "certificate-intro" = "certificate-intro",
     "certificate-scope" = "certificate-scope",
     "certificate-readiness" = "certificate-readiness-guide",
+    "certificate-decision" = "certificate-decision",
+    "certificate-recovery" = "certificate-recovery",
+    "certificate-next-use" = "certificate-next-use",
+    "certificate-identity" = "certificate-identity-note",
     "certificate-preview" = "certificate-preview",
     "certificate-form" = "certificate-form",
     "certificate-noscript" = "certificate-noscript",
@@ -274,6 +337,8 @@ region_markers <- list(
     "public-page-triad" = "public-page-triad",
     "about-route" = "about-route",
     credibility = "about-credibility",
+    "public-contract" = "about-public-contract",
+    "editorial-boundary" = "about-editorial-boundary",
     principles = "Princípios",
     "site-map" = "site-map-grid",
     "about-next-step" = "about-next-step"
@@ -331,6 +396,26 @@ for (item in primary_nav) {
 
 compare_nav_items(quarto$website$navbar$left, primary_nav, "_quarto.yml navbar.left")
 compare_nav_items(quarto$website[["page-footer"]]$center, footer_nav, "_quarto.yml page-footer.center")
+
+if (is.null(manifest$navigation$cta)) {
+  fail("navigation.cta is missing")
+}
+nav_cta <- manifest$navigation$cta
+invisible(required_scalar(nav_cta, "id", "navigation.cta"))
+invisible(required_scalar(nav_cta, "label", "navigation.cta"))
+invisible(required_scalar(nav_cta, "href", "navigation.cta"))
+invisible(required_scalar(nav_cta, "type", "navigation.cta"))
+if (length(quarto$website$navbar$right) != 1) {
+  fail("_quarto.yml navbar.right must contain exactly one journey CTA")
+}
+navbar_cta <- quarto$website$navbar$right[[1]]
+if (!identical(required_scalar(navbar_cta, "href", "_quarto.yml navbar.right"), nav_cta$href)) {
+  fail("_quarto.yml navbar.right href differs from navigation.cta")
+}
+if (!identical(required_scalar(navbar_cta, "text", "_quarto.yml navbar.right"), nav_cta$label)) {
+  fail("_quarto.yml navbar.right label differs from navigation.cta")
+}
+check_file(nav_cta$href, "navigation.cta")
 
 modules <- manifest$content_collections$modules$items
 if (length(modules) != 12) {
@@ -390,11 +475,17 @@ for (i in seq_along(modules)) {
   if (!grepl("module-takeaways", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-takeaways", item$id))
   }
+  if (!grepl("module-evidence-path", module_text, fixed = TRUE)) {
+    fail(sprintf("module %s is missing module-evidence-path", item$id))
+  }
   if (!grepl("module-practice-contract", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-practice-contract", item$id))
   }
   if (!grepl("module-after-quiz", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-after-quiz", item$id))
+  }
+  if (!grepl("module-return-note", module_text, fixed = TRUE)) {
+    fail(sprintf("module %s is missing module-return-note", item$id))
   }
   if (!identical(item$quiz, sprintf("quizzes/quiz-%s.json", module_number))) {
     fail(sprintf("module %s quiz path does not match order", item$id))

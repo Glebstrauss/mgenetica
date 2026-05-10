@@ -136,6 +136,12 @@ for (lam in c(0.5, 1, 2, 5, 10)) {
 **Dica R:** Para modelos mistos reais com pedigree, use `lme4::lmer()` para estruturas simples ou `ASReml-R` / `breedR` para o modelo animal completo.
 :::
 
+::: {.module-evidence-path role="note" aria-label="Caminho de evidência do módulo"}
+**Caminho de evidência**
+
+Antes do exercício, conecte três pontos: qual pergunta o módulo abriu, qual saída do script sustenta a resposta e qual decisão técnica fica mais clara.
+:::
+
 ::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
 **Evidência mínima deste módulo**
 
@@ -168,6 +174,12 @@ Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase l
 **Depois do quiz**
 
 Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e ao exercício proposto. Se estiver consistente, avance mantendo uma frase técnica registrada.
+:::
+
+::: {.module-return-note role="note" aria-label="Como voltar ao fluxo depois deste módulo"}
+**Volte com uma decisão**
+
+Antes de trocar de página, registre se este módulo levou a avanço, revisão ou consulta. Use essa decisão para escolher o próximo clique no índice.
 :::
 
 ```{=html}

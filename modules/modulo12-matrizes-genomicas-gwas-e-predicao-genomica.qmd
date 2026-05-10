@@ -154,6 +154,12 @@ cat(sprintf("n treinamento=%d  n validação=%d\n", length(train_id), length(val
 **Interpretação:** GWAS identifica regiões associadas, mas não necessariamente o gene causal. O SNP com maior -log10(p) pode estar em LD com o QTL verdadeiro, sem ser o QTL em si. Confirmação funcional exige outras abordagens.
 :::
 
+::: {.module-evidence-path role="note" aria-label="Caminho de evidência do módulo"}
+**Caminho de evidência**
+
+Antes do exercício, conecte três pontos: qual pergunta o módulo abriu, qual saída do script sustenta a resposta e qual decisão técnica fica mais clara.
+:::
+
 ::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
 **Evidência mínima deste módulo**
 
@@ -192,6 +198,12 @@ Se o resultado do quiz estiver consistente, revise as frases técnicas registrad
 **Fechamento da trilha**
 
 Depois deste módulo, revise a interpretação que você escreveu nos checkpoints anteriores. O certificado é o fechamento formal, mas a evidência de aprendizagem é a capacidade de explicar quando usar pedigree, matriz genômica, GWAS ou predição para uma decisão de seleção.
+:::
+
+::: {.module-return-note role="note" aria-label="Como voltar ao fluxo depois deste módulo"}
+**Volte com uma decisão**
+
+Antes de trocar de página, registre se este módulo levou a avanço, revisão ou consulta. Use essa decisão para escolher o próximo clique no índice.
 :::
 
 ```{=html}

@@ -34,6 +34,11 @@ governance:
     - archived
 
 navigation:
+  cta:
+    id: start-module-01
+    label: Começar M01
+    href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
+    type: module
   primary:
     - id: home
       label: Início
@@ -47,10 +52,6 @@ navigation:
       label: Roteiro
       href: semanas/index.qmd
       type: page
-    - id: certificate
-      label: Certificado
-      href: certificado.qmd
-      type: utility
     - id: search
       label: Busca
       href: busca.qmd
@@ -59,11 +60,18 @@ navigation:
       label: Glossário
       href: glossario.qmd
       type: reference
+    - id: certificate
+      label: Certificado
+      href: certificado.qmd
+      type: utility
     - id: about
       label: Sobre
       href: perfil.qmd
       type: page
   footer:
+    - id: home
+      label: Início
+      href: index.qmd
     - id: modules
       label: Módulos
       href: modules/index.qmd
@@ -93,6 +101,13 @@ content_pages:
     - hero-panel-proof
     - page-hero
     - hero-signal
+    - home-trust-anchors
+    - home-first-session
+    - home-route-strip
+    - home-intent-switch
+    - home-public-journey
+    - home-progress-snapshot
+    - home-path-contract
     - learning-loop
     - phase-preview
     - module-grid
@@ -101,36 +116,61 @@ content_pages:
     - resource-grid
     - modules-support
     - modules-completion-flow
+    - modules-quick-jump
+    - modules-choice-path
+    - modules-phase-decision
+    - modules-readiness-meter
+    - modules-phase-entry
     - modules-evidence-standard
     - modules-next-step
     - route-overview
     - utility-return-guide
     - route-finish-band
     - home-orientation
+    - home-study-choice
     - home-audience
     - home-start-criteria
     - home-returning
     - home-readiness
     - home-continuity
     - home-evidence
+    - home-outcome-map
+    - utility-crossroads
+    - utility-examples
+    - utility-query-plan
     - utility-decision
     - modules-study-check
     - modules-return-path
+    - modules-catalog-guide
     - modules-certificate-route
     - modules-phase-bridge
     - route-week-decision
+    - route-session-plan
+    - route-evidence-ladder
+    - route-recovery-plan
+    - route-phase-handoff
+    - route-weekly-output
+    - route-table-guide
     - certificate-preview
     - certificate-form
     - certificate-noscript
     - certificate-readiness-guide
     - certificate-scope
+    - certificate-decision
+    - certificate-recovery
+    - certificate-next-use
+    - certificate-identity-note
     - about-next-step
     - about-route
     - about-credibility
+    - about-public-contract
+    - about-editorial-boundary
     - module-phase-note
     - module-phase-start
     - module-takeaways
     - module-after-quiz
+    - module-return-note
+    - module-evidence-path
     - module-practice-contract
     - final-cta
   items:
@@ -143,6 +183,14 @@ content_pages:
         - hero
         - hero-panel-proof
         - hero-signal
+        - trust-anchors
+        - first-session
+        - route-strip
+        - intent-switch
+        - public-journey
+        - progress-snapshot
+        - path-contract
+        - study-choice
         - orientation
         - audience
         - start-criteria
@@ -154,6 +202,7 @@ content_pages:
         - discovery
         - evidence
         - learning-loop
+        - outcome-map
         - resources
         - readiness
         - continuity
@@ -169,13 +218,19 @@ content_pages:
       source_collection: modules
       editable_regions:
         - hero
+        - quick-jump
         - guidance
         - route
         - support
+        - choice-path
+        - readiness-meter
+        - phase-entry
+        - phase-decision
         - completion-flow
         - evidence-standard
         - phases
         - phase-bridge
+        - catalog-guide
         - module-grid
         - return-path
         - study-check
@@ -191,7 +246,13 @@ content_pages:
         - route-checkpoints
         - route-overview
         - route-week-decision
+        - route-recovery-plan
+        - route-session-plan
+        - route-evidence-ladder
+        - route-phase-handoff
+        - route-weekly-output
         - route-map-intro
+        - route-table-guide
         - routine
         - route-finish
     - id: search
@@ -204,6 +265,9 @@ content_pages:
         - utility-flow
         - utility-decision
         - utility-return
+        - utility-crossroads
+        - utility-examples
+        - utility-query-plan
         - search-panel
         - utility-next-step
     - id: glossary
@@ -216,6 +280,9 @@ content_pages:
         - utility-flow
         - utility-decision
         - utility-return
+        - utility-crossroads
+        - utility-examples
+        - utility-query-plan
         - glossary-panel
         - utility-next-step
     - id: certificate
@@ -228,6 +295,10 @@ content_pages:
         - certificate-intro
         - certificate-scope
         - certificate-readiness
+        - certificate-decision
+        - certificate-recovery
+        - certificate-next-use
+        - certificate-identity
         - certificate-preview
         - certificate-form
         - certificate-noscript
@@ -242,6 +313,8 @@ content_pages:
         - public-page-triad
         - about-route
         - credibility
+        - public-contract
+        - editorial-boundary
         - principles
         - site-map
         - about-next-step
@@ -260,9 +333,11 @@ content_collections:
       - orientation
       - body
       - exercise
+      - evidence-path
       - takeaways
       - quiz
       - after-quiz
+      - return-note
       - navigation
     phases:
       - id: fundamentos

@@ -132,6 +132,12 @@ cat(sprintf("\nrA < 0: selecionar peso+ → gordura diminui (desfavorável p/ ac
 **Interpretação:** r_A e r_P podem ter sinais opostos. Uma correlação fenotípica positiva pode esconder uma correlação genética negativa se os dois ambientes tiverem efeitos positivos correlacionados nas duas características.
 :::
 
+::: {.module-evidence-path role="note" aria-label="Caminho de evidência do módulo"}
+**Caminho de evidência**
+
+Antes do exercício, conecte três pontos: qual pergunta o módulo abriu, qual saída do script sustenta a resposta e qual decisão técnica fica mais clara.
+:::
+
 ::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
 **Evidência mínima deste módulo**
 
@@ -170,6 +176,12 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
 **Transição de fase**
 
 Depois de estimar parâmetros e relações entre características, a trilha avança para modelos. O próximo passo é separar efeitos fixos, efeitos aleatórios e erro para sustentar avaliação genética.
+:::
+
+::: {.module-return-note role="note" aria-label="Como voltar ao fluxo depois deste módulo"}
+**Volte com uma decisão**
+
+Antes de trocar de página, registre se este módulo levou a avanço, revisão ou consulta. Use essa decisão para escolher o próximo clique no índice.
 :::
 
 ```{=html}
