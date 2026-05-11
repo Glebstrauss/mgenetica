@@ -69,6 +69,19 @@ check_unique <- function(values, label) {
   }
 }
 
+check_entry_link_labels <- function(path) {
+  lines <- readLines(file.path(repo_root, path), warn = FALSE)
+  entry_lines <- grep("\\{\\.entry-link|class=[\"'][^\"']*entry-link", lines)
+  missing <- entry_lines[!grepl("aria-label\\s*=", lines[entry_lines])]
+  if (length(missing)) {
+    fail(sprintf(
+      "%s has .entry-link without aria-label on line(s): %s",
+      path,
+      paste(missing, collapse = ", ")
+    ))
+  }
+}
+
 compare_nav_items <- function(actual, expected, label) {
   actual_hrefs <- vapply(actual, function(item) required_scalar(item, "href", label), character(1))
   actual_labels <- vapply(actual, function(item) required_scalar(item, "text", label), character(1))
@@ -127,6 +140,14 @@ for (class_name in c(
   ".hero-learning-path",
   ".hero-action-note",
   ".hero-action-note-hint",
+  ".public-wayfinding",
+  ".public-wayfinding-grid",
+  ".public-wayfinding-item",
+  ".home-wayfinding",
+  ".public-session-check",
+  ".public-session-check-grid",
+  ".public-session-check-item",
+  ".home-session-check",
   ".home-trust-anchors",
   ".home-first-session",
   ".home-start-now",
@@ -153,6 +174,8 @@ for (class_name in c(
   ".modules-quick-jump",
   ".modules-navigation-contract",
   ".modules-navigation-contract-hint",
+  ".modules-wayfinding",
+  ".modules-session-check",
   ".modules-phase-decision",
   ".modules-readiness-meter",
   ".modules-phase-entry",
@@ -169,11 +192,15 @@ for (class_name in c(
   ".utility-crossroads",
   ".utility-examples",
   ".utility-query-plan",
+  ".utility-wayfinding",
   ".utility-start-choice",
   ".utility-no-result",
   ".utility-result-close",
   ".utility-decision",
+  ".utility-session-check",
   ".route-finish-band",
+  ".route-wayfinding",
+  ".route-session-check",
   ".route-week-decision",
   ".route-session-plan",
   ".route-start-today",
@@ -185,10 +212,19 @@ for (class_name in c(
   ".route-table-guide",
   ".module-study-checkpoint",
   ".module-reading-rhythm",
+  ".module-session-plan",
+  ".module-session-plan-grid",
+  ".module-session-plan-item",
+  ".module-technical-scan",
+  ".module-technical-scan-grid",
+  ".module-technical-scan-item",
   ".module-evidence-path",
   ".module-practice-contract",
   ".module-takeaways",
   ".module-after-quiz",
+  ".module-close-check",
+  ".module-close-check-grid",
+  ".module-close-check-item",
   ".module-return-note",
   ".module-nav",
   ".module-nav-card",
@@ -199,9 +235,11 @@ for (class_name in c(
   ".certificate-scope",
   ".certificate-decision",
   ".certificate-recovery",
+  ".certificate-wayfinding",
   ".certificate-next-use",
   ".certificate-identity-note",
   ".certificate-final-check",
+  ".certificate-session-check",
   ".certificate-pending-hint",
   ".certificate-progress-summary",
   "cert-next-pending-link",
@@ -209,6 +247,7 @@ for (class_name in c(
   ".about-credibility",
   ".about-public-contract",
   ".about-editorial-boundary",
+  ".about-wayfinding",
   ".about-visitor-path",
   ".section-cta",
   ".final-cta-hint",
@@ -258,6 +297,8 @@ region_markers <- list(
     "hero-panel-proof" = "hero-panel-proof",
     "hero-signal" = "hero-signal",
     "hero-action-note" = "hero-action-note",
+    wayfinding = "home-wayfinding",
+    "session-check" = "home-session-check",
     "start-now" = "home-start-now",
     "trust-anchors" = "home-trust-anchors",
     "first-session" = "home-first-session",
@@ -289,8 +330,10 @@ region_markers <- list(
   ),
   `modules-index` = list(
     hero = "modules-landing",
+    wayfinding = "modules-wayfinding",
     "quick-jump" = "modules-quick-jump",
     "navigation-contract" = "modules-navigation-contract",
+    "session-check" = "modules-session-check",
     guidance = "modules-guidance",
     route = "modules-route",
     support = "modules-support",
@@ -313,6 +356,7 @@ region_markers <- list(
   ),
   `study-path` = list(
     hero = "page-hero",
+    wayfinding = "route-wayfinding",
     "route-checkpoints" = "route-checkpoints",
     "route-overview" = "route-overview",
     "route-week-decision" = "route-week-decision",
@@ -326,10 +370,12 @@ region_markers <- list(
     "route-map-intro" = "route-map-intro",
     "route-table-guide" = "route-table-guide",
     routine = "routine-grid",
-    "route-finish" = "route-finish-band"
+    "route-finish" = "route-finish-band",
+    "session-check" = "route-session-check"
   ),
   search = list(
     hero = "page-hero",
+    wayfinding = "utility-wayfinding",
     "utility-flow" = "utility-flow",
     "utility-start-choice" = "utility-start-choice",
     "utility-decision" = "utility-decision",
@@ -340,10 +386,12 @@ region_markers <- list(
     "utility-no-result" = "utility-no-result",
     "utility-result-close" = "utility-result-close",
     "search-panel" = "search-panel",
-    "utility-next-step" = "utility-next-step"
+    "utility-next-step" = "utility-next-step",
+    "session-check" = "utility-session-check"
   ),
   glossary = list(
     hero = "page-hero",
+    wayfinding = "utility-wayfinding",
     "utility-flow" = "utility-flow",
     "utility-start-choice" = "utility-start-choice",
     "utility-decision" = "utility-decision",
@@ -354,10 +402,12 @@ region_markers <- list(
     "utility-no-result" = "utility-no-result",
     "utility-result-close" = "utility-result-close",
     "glossary-panel" = "glossary-panel",
-    "utility-next-step" = "utility-next-step"
+    "utility-next-step" = "utility-next-step",
+    "session-check" = "utility-session-check"
   ),
   certificate = list(
     hero = "page-hero",
+    wayfinding = "certificate-wayfinding",
     "certificate-intro" = "certificate-intro",
     "certificate-scope" = "certificate-scope",
     "certificate-readiness" = "certificate-readiness-guide",
@@ -366,6 +416,7 @@ region_markers <- list(
     "certificate-next-use" = "certificate-next-use",
     "certificate-identity" = "certificate-identity-note",
     "certificate-final-check" = "certificate-final-check",
+    "session-check" = "certificate-session-check",
     "certificate-preview" = "certificate-preview",
     "certificate-form" = "certificate-form",
     "certificate-noscript" = "certificate-noscript",
@@ -373,6 +424,7 @@ region_markers <- list(
   ),
   about = list(
     hero = "profile-hero",
+    wayfinding = "about-wayfinding",
     "public-page-triad" = "public-page-triad",
     "about-route" = "about-route",
     credibility = "about-credibility",
@@ -471,6 +523,9 @@ orders <- vapply(modules, function(item) item$order, numeric(1))
 module_hrefs <- vapply(modules, function(item) required_scalar(item, "href", paste0("module ", item$id)), character(1))
 module_scripts <- vapply(modules, function(item) required_scalar(item, "script", paste0("module ", item$id)), character(1))
 module_quizzes <- vapply(modules, function(item) required_scalar(item, "quiz", paste0("module ", item$id)), character(1))
+for (path in unique(c(page_hrefs, module_hrefs, module_index_path))) {
+  check_entry_link_labels(path)
+}
 sidebar_sections <- quarto$website$sidebar$contents
 if (length(sidebar_sections) != 1 || !identical(sidebar_sections[[1]]$section, "Módulos")) {
   fail("_quarto.yml sidebar must contain one Módulos section")
@@ -506,6 +561,12 @@ for (i in seq_along(modules)) {
   if (!grepl("module-reading-rhythm", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-reading-rhythm", item$id))
   }
+  if (!grepl("module-session-plan", module_text, fixed = TRUE)) {
+    fail(sprintf("module %s is missing module-session-plan", item$id))
+  }
+  if (!grepl("module-technical-scan", module_text, fixed = TRUE)) {
+    fail(sprintf("module %s is missing module-technical-scan", item$id))
+  }
   if (!grepl("module-nav-index", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-nav-index", item$id))
   }
@@ -526,6 +587,9 @@ for (i in seq_along(modules)) {
   }
   if (!grepl("module-after-quiz", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-after-quiz", item$id))
+  }
+  if (!grepl("module-close-check", module_text, fixed = TRUE)) {
+    fail(sprintf("module %s is missing module-close-check", item$id))
   }
   if (!grepl("module-return-note", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-return-note", item$id))

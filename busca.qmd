@@ -23,6 +23,34 @@ Localize conceitos, funções em R, parâmetros genéticos, módulos e referênc
 :::
 :::
 
+::: {.public-wayfinding .utility-wayfinding role="navigation" aria-label="Orientação pública da busca"}
+::: {.public-wayfinding-copy}
+**Você está em uma página de apoio**
+
+Use a busca para localizar contexto e voltar à trilha. O resultado precisa virar módulo, termo ou roteiro.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Rotas imediatas depois da busca"}
+::: {.public-wayfinding-item role="listitem"}
+**Módulo**
+
+[Ver módulos](modules/index.qmd){.entry-link aria-label="Abrir índice de módulos a partir da busca"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Termo**
+
+[Glossário](glossario.qmd){.entry-link aria-label="Abrir glossário a partir da busca"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Ritmo**
+
+[Roteiro](semanas/index.qmd){.entry-link aria-label="Abrir roteiro a partir da busca"}
+:::
+:::
+:::
+
 ::: {.utility-flow}
 ::: {.utility-step}
 **Busque um conceito**
@@ -54,19 +82,19 @@ A busca é mais útil quando termina em uma rota clara: estudar o módulo comple
 ::: {.utility-start-choice-item role="listitem"}
 **Aprender**
 
-[Abrir módulos](modules/index.qmd){.entry-link}
+[Abrir módulos](modules/index.qmd){.entry-link aria-label="Abrir módulos depois da busca"}
 :::
 
 ::: {.utility-start-choice-item role="listitem"}
 **Definir**
 
-[Consultar glossário](glossario.qmd){.entry-link}
+[Consultar glossário](glossario.qmd){.entry-link aria-label="Consultar glossário depois da busca"}
 :::
 
 ::: {.utility-start-choice-item role="listitem"}
 **Retomar**
 
-[Ver roteiro](semanas/index.qmd){.entry-link}
+[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro depois da busca"}
 :::
 :::
 :::
@@ -277,6 +305,34 @@ Volte ao roteiro se a dúvida era sobre ordem.
 **Depois da busca, volte para uma decisão**
 
 Use o resultado para escolher módulo, termo ou plano de estudo. Evite continuar pesquisando sem destino.
+:::
+
+::: {.public-session-check .utility-session-check role="region" aria-label="Conferência rápida depois da busca"}
+::: {.public-session-check-copy}
+**A busca resolveu a próxima ação?**
+
+Saia da busca quando o resultado indicar definição, contexto ou retomada.
+:::
+
+::: {.public-session-check-grid role="list" aria-label="Conferência de saída da busca"}
+::: {.public-session-check-item role="listitem"}
+**Definição**
+
+O termo foi entendido.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Contexto**
+
+O módulo provável foi identificado.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Retomada**
+
+A próxima etapa está no roteiro.
+:::
+:::
 :::
 
 [Voltar aos módulos](modules/index.qmd){.btn .btn-primary}

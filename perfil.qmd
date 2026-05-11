@@ -24,6 +24,34 @@ Uma publicação digital aberta para estudar melhoramento animal, genética quan
 :::
 :::
 
+::: {.public-wayfinding .about-wayfinding role="navigation" aria-label="Orientação pública da página Sobre"}
+::: {.public-wayfinding-copy}
+**Você está na explicação institucional**
+
+Use esta página para entender o papel público da MGenética e voltar para uma ação de estudo, consulta ou conclusão.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Rotas imediatas depois da página Sobre"}
+::: {.public-wayfinding-item role="listitem"}
+**Estudar**
+
+[Módulos](modules/index.qmd){.entry-link aria-label="Abrir módulos a partir da página Sobre"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Consultar**
+
+[Busca](busca.qmd){.entry-link aria-label="Abrir busca a partir da página Sobre"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Concluir**
+
+[Certificado](certificado.qmd){.entry-link aria-label="Abrir certificado a partir da página Sobre"}
+:::
+:::
+:::
+
 ## Papel do site
 
 ::: {.profile-section}

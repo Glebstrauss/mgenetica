@@ -30,6 +30,62 @@ description: "Construção da matriz G, teste de associação genômica (GWAS) e
 Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
 :::
 
+::: {.module-session-plan role="region" aria-label="Plano curto de sessão do módulo"}
+::: {.module-session-plan-copy}
+**Plano curto de sessão**
+
+Use este módulo em uma sessão fechada: entre com uma pergunta, produza uma evidência no script e saia com uma decisão técnica curta.
+:::
+
+::: {.module-session-plan-grid role="list" aria-label="Etapas da sessão de estudo do módulo"}
+::: {.module-session-plan-item role="listitem"}
+**Pergunta**
+
+Defina o que precisa ficar mais claro antes de ler.
+:::
+
+::: {.module-session-plan-item role="listitem"}
+**Evidência**
+
+Rode ou revise o trecho principal em R.
+:::
+
+::: {.module-session-plan-item role="listitem"}
+**Decisão**
+
+Escreva uma consequência técnica antes de sair.
+:::
+:::
+:::
+
+::: {.module-technical-scan role="region" aria-label="Como ler fórmulas, código e tabelas do módulo"}
+::: {.module-technical-scan-copy}
+**Leia a parte técnica em três passagens**
+
+Não tente resolver fórmula, código e tabela ao mesmo tempo. Primeiro localize o conceito, depois execute ou acompanhe o script, e por fim interprete a saída como evidência.
+:::
+
+::: {.module-technical-scan-grid role="list" aria-label="Passagens de leitura técnica do módulo"}
+::: {.module-technical-scan-item role="listitem"}
+**Fórmula**
+
+Identifique quais termos mudam a decisão.
+:::
+
+::: {.module-technical-scan-item role="listitem"}
+**Código**
+
+Veja qual parâmetro foi simulado ou comparado.
+:::
+
+::: {.module-technical-scan-item role="listitem"}
+**Tabela**
+
+Leia a diferença que sustenta a interpretação.
+:::
+:::
+:::
+
 ## Da matriz A à matriz G: parentesco esperado vs. realizado
 
 No BLUP com pedigree (Módulo 08), dois meio-irmãos têm a_ij = 0,25 — por definição. Mas o parentesco genômico real entre eles pode ser 0,18 ou 0,31, dependendo de quais segmentos foram herdados. A **matriz G** capta essa variação real:
@@ -204,6 +260,34 @@ Se o resultado do quiz estiver consistente, revise as frases técnicas registrad
 **Fechamento da trilha**
 
 Depois deste módulo, revise a interpretação que você escreveu nos checkpoints anteriores. O certificado é o fechamento formal, mas a evidência de aprendizagem é a capacidade de explicar quando usar pedigree, matriz genômica, GWAS ou predição para uma decisão de seleção.
+:::
+
+::: {.module-close-check role="region" aria-label="Conferência de fechamento do módulo"}
+::: {.module-close-check-copy}
+**Antes de trocar de página**
+
+Feche o módulo quando a leitura, o código e o quiz sustentarem a mesma conclusão. Se algum ponto ficou aberto, volte pelo índice ou pela busca antes de avançar.
+:::
+
+::: {.module-close-check-grid role="list" aria-label="Critérios de fechamento do módulo"}
+::: {.module-close-check-item role="listitem"}
+**Leitura**
+
+A pergunta central foi respondida com suas palavras.
+:::
+
+::: {.module-close-check-item role="listitem"}
+**Código**
+
+A saída principal foi interpretada, não apenas executada.
+:::
+
+::: {.module-close-check-item role="listitem"}
+**Quiz**
+
+O resultado confirma prontidão para avançar ou revisar.
+:::
+:::
 :::
 
 ::: {.module-return-note role="note" aria-label="Como voltar ao fluxo depois deste módulo"}

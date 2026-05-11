@@ -61,6 +61,447 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-11 — Public navigation accessibility and scan polish
+
+### Block objective
+
+Execute a site-only public visual/UX block focused on publication-readiness polish: improve scanability, touch/focus clarity and accessible labels across the accumulated public wayfinding, session-check and module-session patterns without changing the app or publishing.
+
+### Cycles executed
+
+1. Diagnosis: the homepage had several compact `.entry-link` actions with repeated labels such as "Ver roteiro" or "Ver módulos", which were visually useful but less explicit for assistive navigation.
+   Implementation: expanded homepage `.entry-link` actions with destination-specific `aria-label` values across start-now, route-strip, intent, study-choice, entry, returning and discovery sections.
+   Testing: rendered `index.qmd` and confirmed the expanded labels in `docs/index.html`.
+   Notes: visible link text stayed concise while the accessible name became specific.
+2. Diagnosis: public navigation surfaces on the module index, route, search and glossary pages used the same compact link style, but not every shortcut exposed a complete destination or intent.
+   Implementation: added explicit `aria-label` values to `.entry-link` actions in `modules/index.qmd`, `semanas/index.qmd`, `busca.qmd` and `glossario.qmd`.
+   Testing: source grep and rendered HTML inspection confirmed no Quarto-authored `.entry-link` remains without `aria-label`.
+   Notes: this improves keyboard/screen-reader wayfinding without adding visual noise.
+3. Diagnosis: the certificate no-JavaScript fallback used a raw HTML `.entry-link`, so the earlier source check for Quarto shorthand links did not cover it.
+   Implementation: added an explicit fallback `aria-label` in `certificado.qmd` and expanded `scripts/validate_site_manifest.R` to catch both Quarto `{.entry-link}` and HTML/script `class="entry-link"` cases without labels.
+   Testing: manifest validation caught the broader contract successfully after the certificate fix.
+   Notes: the validation now protects future public links regardless of authoring style.
+4. Diagnosis: accumulated wayfinding/session/module blocks were structurally consistent but visually similar, making fast scanning harder after many repeated three-step sections.
+   Implementation: added numbered visual badges to `.public-wayfinding-item`, `.public-session-check-item`, `.module-session-plan-item`, `.module-technical-scan-item` and `.module-close-check-item`, with dark-mode parity.
+   Testing: SCSS compilation passed and rendered representative pages confirmed the updated CSS is included.
+   Notes: the badges are CSS-only and do not introduce new content state or dependencies.
+5. Diagnosis: tablet layouts could leave three compact cards inside a one-column parent, which was acceptable but tighter than needed for the new badge padding.
+   Implementation: adjusted the public wayfinding/session and module-session grids to two columns at tablet width and one column on mobile, preserving the existing mobile collapse.
+   Testing: targeted Quarto render passed for homepage, module index, route, utilities, certificate, Sobre and representative modules; whitespace diff check passed before final validation.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `semanas/index.qmd`
+- `busca.qmd`
+- `glossario.qmd`
+- `certificado.qmd`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added explicit accessible labels to public `.entry-link` shortcuts across homepage, module index, route and utility surfaces.
+- Added validator coverage so future `.entry-link` actions must include `aria-label`, including raw HTML/script links.
+- Added numbered visual badges to public route/checklist/module-session cards for faster scanability.
+- Improved tablet behavior for newly accumulated public guidance grids.
+- Documented the accessibility and scanability contract in `PUBLIC_SITE_COMPONENTS.md`.
+
+### Problems fixed
+
+- Short repeated public links no longer depend only on surrounding visual context for meaning.
+- Certificate no-JavaScript fallback no longer has an unlabeled compact action.
+- Repeated three-card guidance blocks now have clearer visual rhythm and better tablet spacing.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `rg --pcre2 -n "\\{\\.entry-link(?![^}]*aria-label)" *.qmd modules/*.qmd semanas/*.qmd`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd semanas/index.qmd busca.qmd glossario.qmd certificado.qmd perfil.qmd modules/modulo01-introducao-ao-melhoramento-animal.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render certificado.qmd --no-execute`
+- `rg --pcre2 -n "class=\"entry-link\"(?![^>]*aria-label)|\\{\\.entry-link(?![^}]*aria-label)" docs/index.html docs/modules/index.html docs/busca.html docs/glossario.html docs/semanas/index.html docs/certificado.html *.qmd modules/*.qmd semanas/*.qmd`
+- `rg -n "counter-reset: public-wayfinding-step|counter-reset: public-session-step|counter-reset: module-session-step|entry-link without aria-label" styles/main.scss scripts/validate_site_manifest.R PUBLIC_SITE_COMPONENTS.md`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed with the expanded `.entry-link` accessibility contract.
+- SCSS compilation passed for light and dark themes.
+- Targeted Quarto render passed for homepage, module index, study route, search, glossary, certificate, Sobre and representative early/middle/final modules.
+- Rendered/source grep confirmed no `.entry-link` in checked public pages remains without `aria-label`.
+- Whitespace diff check passed before final full validation.
+- Full prepublish gate passed locally after the accessibility/scan-polish, log and NEXT updates.
+
+### Pending items
+
+- True browser screenshot QA remains pending because browser automation was not exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-11 — Module technical scan guidance
+
+### Block objective
+
+Execute a site-only public visual/UX block focused on technical readability inside module pages: help visitors read formulas, R code and tables as one evidence chain, while keeping homepage/module-index guidance and public-site contracts aligned.
+
+### Cycles executed
+
+1. Diagnosis: the homepage explained that each route should produce evidence, but did not explicitly mention tables as part of the public evidence trail.
+   Implementation: updated `.home-path-contract` copy in `index.qmd` to include interpreted R output and tables read with criteria.
+   Testing: targeted render confirmed the updated homepage copy in `docs/index.html`.
+   Notes: this keeps the homepage aligned with the technical module experience.
+2. Diagnosis: the module index explained catalog reading, but did not prepare the visitor to read formulas, code and tables as connected evidence inside module pages.
+   Implementation: updated `.modules-catalog-guide` copy in `modules/index.qmd` to frame formulas, code and tables as parts of the same evidence.
+   Testing: targeted render confirmed the updated copy in `docs/modules/index.html`.
+   Notes: this strengthens public navigation from catalog to longform technical content.
+3. Diagnosis: all 12 modules had a session plan and close check, but the technical middle of the page still lacked a compact reading aid for formulas, code and tabular output.
+   Implementation: added `.module-technical-scan` with formula, code and table passes to all 12 module pages after `.module-session-plan`.
+   Testing: source and rendered HTML inspection confirmed `.module-technical-scan` across all 12 module pages.
+   Notes: the block is editorial/static and does not alter scripts, quizzes or app behavior.
+4. Diagnosis: the new technical scan needed visual parity with module session/close blocks, including dark mode and mobile collapse.
+   Implementation: extended `styles/main.scss` and `styles/main-dark.scss` for `.module-technical-scan`, its grid and items, reusing the existing module card rhythm.
+   Testing: SCSS validation and targeted Quarto render passed.
+   Notes: the pattern supports table/code readability without adding new dependencies.
+5. Diagnosis: future edits needed validation coverage so module technical guidance does not drift or disappear from some modules.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` to document and require the technical-scan pattern.
+   Testing: manifest validation, SCSS validation, whitespace diff check, targeted Quarto render and rendered HTML inspection passed before final full validation.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added a consistent formula/code/table reading aid to all 12 module pages.
+- Aligned homepage and module-index copy with technical evidence reading.
+- Added responsive and dark-mode styling for the new module technical scan.
+- Registered and validated the new pattern in the public site contract.
+
+### Problems fixed
+
+- Reduced ambiguity around how to read formulas, scripts and output tables in long modules.
+- Improved module-page technical readability without changing scientific content or scripts.
+- Prevented partial adoption by requiring the pattern in validation.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd modules/modulo01-introducao-ao-melhoramento-animal.qmd modules/modulo02-bases-da-genetica-quantitativa.qmd modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd modules/modulo05-herdabilidade-e-repetibilidade.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo07-modelos-lineares-e-modelos-mistos.qmd modules/modulo08-blup-e-avaliacao-genetica.qmd modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `rg -n "module-technical-scan|Leia a parte técnica|Fórmula|Código|Tabela" docs/modules/*.html`
+- `rg -n "saída em R interpretada|fórmulas, código e tabelas" docs/index.html docs/modules/index.html`
+- `rg -n "module-technical-scan" styles/main.scss styles/main-dark.scss PUBLIC_SITE_COMPONENTS.md data/site-manifest.yml scripts/validate_site_manifest.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, module index and all 12 module pages.
+- Rendered HTML inspection confirmed module technical-scan blocks across generated module pages.
+- Full prepublish gate passed locally after the module technical-scan, log and NEXT updates.
+
+### Pending items
+
+- True browser screenshot QA remains pending because browser automation was not exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-11 — Module session plan and close checks
+
+### Block objective
+
+Execute a site-only public visual/UX block focused on the core learning surface: make every module page easier to enter, complete and leave with a clear study decision, while keeping homepage/module-index copy, component contracts and validations aligned.
+
+### Cycles executed
+
+1. Diagnosis: the homepage already directed visitors to modules, but did not explicitly prepare them for the new bounded study behavior inside each module page.
+   Implementation: tightened the homepage `.home-next-click` copy so opening a module means entering with question, script and decision defined.
+   Testing: targeted render confirmed the updated homepage copy in `docs/index.html`.
+   Notes: this keeps the homepage public and editorial while connecting it to module-level UX.
+2. Diagnosis: module pages had reading rhythm and evidence guidance, but no compact session plan near the start of the learning flow.
+   Implementation: added `.module-session-plan` with question, evidence and decision steps to all 12 module pages after `.module-reading-rhythm`.
+   Testing: source inspection confirmed the pattern in all module `.qmd` files; targeted render confirmed it in rendered module HTML.
+   Notes: the pattern is static/editorial and does not add app state.
+3. Diagnosis: modules had post-quiz and return notes, but the final transition could better define when a learner is ready to leave, revise or continue.
+   Implementation: added `.module-close-check` before `.module-return-note` in all 12 modules, covering reading, code and quiz readiness.
+   Testing: rendered HTML inspection confirmed `.module-close-check` and the closing copy across all generated module pages.
+   Notes: this improves internal module completion without changing quiz logic.
+4. Diagnosis: the new module blocks needed visual treatment, dark-mode parity and responsive collapse for long module pages.
+   Implementation: added shared styles for `.module-session-plan`, `.module-close-check`, their grids and items in `styles/main.scss` and `styles/main-dark.scss`, including mobile/tablet collapse.
+   Testing: SCSS validation passed and targeted module render completed.
+   Notes: styling uses the existing editorial card language and avoids a dashboard-like surface.
+5. Diagnosis: the module-level UX contract needed manifest, documentation and validator protection.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` so all module pages must expose the new session and close-check patterns.
+   Testing: manifest validation, SCSS validation, whitespace diff check, targeted Quarto render and rendered HTML inspection passed before final full validation.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added a consistent short session plan to all 12 modules.
+- Added a consistent module close-check before the final return/navigation flow.
+- Connected homepage and module-index guidance to the new module-level study behavior.
+- Added responsive and dark-mode styling for the new module patterns.
+- Registered and validated the new module patterns as part of the public site contract.
+
+### Problems fixed
+
+- Reduced ambiguity when entering a long module page.
+- Made module completion criteria clearer before leaving or advancing.
+- Prevented future module drift by requiring the new patterns in validation.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd modules/modulo01-introducao-ao-melhoramento-animal.qmd modules/modulo02-bases-da-genetica-quantitativa.qmd modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd modules/modulo05-herdabilidade-e-repetibilidade.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo07-modelos-lineares-e-modelos-mistos.qmd modules/modulo08-blup-e-avaliacao-genetica.qmd modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `rg -n "module-session-plan|module-close-check|Plano curto de sessão|Antes de trocar de página" docs/modules/*.html`
+- `rg -n "Ao abrir um módulo|Cada página de módulo agora explicita" docs/index.html docs/modules/index.html`
+- `rg -n "module-session-plan|module-close-check" styles/main.scss styles/main-dark.scss PUBLIC_SITE_COMPONENTS.md data/site-manifest.yml scripts/validate_site_manifest.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, module index and all 12 module pages.
+- Rendered HTML inspection confirmed module session and close-check blocks across generated module pages.
+- Full prepublish gate passed locally after the module-session, log and NEXT updates.
+
+### Pending items
+
+- True browser screenshot QA remains pending because browser automation was not exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-11 — Public wayfinding across key page contexts
+
+### Block objective
+
+Execute a site-only public visual/UX block after the local session-check work: add a reusable public wayfinding layer that clarifies where the visitor is, what route is immediately available and how to continue without adding app-like state or publishing automatically.
+
+### Cycles executed
+
+1. Diagnosis: the homepage had strong hero actions and session checks, but the post-hero continuation still depended on reading several downstream blocks before the visitor saw a compact route summary.
+   Implementation: added `.public-wayfinding.home-wayfinding` to `index.qmd` with immediate routes for studying, organizing the route and checking certificate status.
+   Testing: targeted Quarto render confirmed `.home-wayfinding` and its copy in `docs/index.html`.
+   Notes: this reinforces the first viewport continuation while keeping the homepage editorial.
+2. Diagnosis: the module index had quick jumps and navigation-contract guidance, but it could expose a more concise current-context strip before deeper catalog sections.
+   Implementation: added `.public-wayfinding.modules-wayfinding` to `modules/index.qmd` with direct paths to M01, phases and the weekly route.
+   Testing: targeted render confirmed `.modules-wayfinding` in `docs/modules/index.html`.
+   Notes: this strengthens public navigation without changing the manifest-backed module catalog.
+3. Diagnosis: the weekly route, search, glossary, certificate and Sobre pages each had page-specific guidance, but lacked a shared wayfinding pattern for immediate public continuation.
+   Implementation: added `.route-wayfinding`, `.utility-wayfinding`, `.certificate-wayfinding` and `.about-wayfinding` blocks to `semanas/index.qmd`, `busca.qmd`, `glossario.qmd`, `certificado.qmd` and `perfil.qmd`.
+   Testing: targeted render confirmed all page-specific wayfinding blocks in generated HTML.
+   Notes: utilities and institutional content now return more explicitly to study, consultation or conclusion.
+4. Diagnosis: the new wayfinding pattern needed responsive behavior, dark-mode parity and explicit accessibility-friendly structure before it could be considered publication-ready.
+   Implementation: added shared `.public-wayfinding` styles, mobile/tablet collapse rules, dark-mode styles and explicit page-variant classes in `styles/main.scss` and `styles/main-dark.scss`.
+   Testing: SCSS compilation and rendered HTML inspection passed.
+   Notes: the component uses semantic `role="navigation"` plus list/listitem structure and avoids backend or app state.
+5. Diagnosis: the public component contract needed to know about the new pattern so future site/app-management preparation does not treat it as undocumented page drift.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` with wayfinding patterns and editable-region checks.
+   Testing: manifest validation, SCSS validation, whitespace diff check and targeted Quarto render passed before final full validation.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `semanas/index.qmd`
+- `busca.qmd`
+- `glossario.qmd`
+- `certificado.qmd`
+- `perfil.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added reusable public wayfinding across homepage, module index, study route, search, glossary, certificate and Sobre.
+- Clarified immediate next routes for study, planning, consultation and conclusion.
+- Added responsive and dark-mode styling for the shared component.
+- Registered the new public component in manifest, docs and validation coverage.
+
+### Problems fixed
+
+- Reduced dependence on longer page blocks for basic orientation.
+- Made utility and institutional pages more explicitly connected to the public learning journey.
+- Protected the new pattern from undocumented future drift.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd semanas/index.qmd busca.qmd glossario.qmd certificado.qmd perfil.qmd --no-execute`
+- `rg -n "public-wayfinding|home-wayfinding|modules-wayfinding|route-wayfinding|utility-wayfinding|certificate-wayfinding|about-wayfinding|Você está no ponto de entrada|Você está no mapa da trilha|Você está no ritmo de estudo|Você está em uma página de apoio|Você está em uma referência curta|Você está no fechamento da trilha|Você está na explicação institucional" docs/index.html docs/modules/index.html docs/semanas/index.html docs/busca.html docs/glossario.html docs/certificado.html docs/perfil.html`
+- `rg -n "public-wayfinding|home-wayfinding|modules-wayfinding|route-wayfinding|utility-wayfinding|certificate-wayfinding|about-wayfinding" styles/main.scss styles/main-dark.scss PUBLIC_SITE_COMPONENTS.md data/site-manifest.yml scripts/validate_site_manifest.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, module index, study route, search, glossary, certificate and Sobre.
+- Rendered HTML inspection confirmed all public wayfinding placements.
+- Full prepublish gate passed locally after the wayfinding, log and NEXT updates.
+
+### Pending items
+
+- True browser screenshot QA remains pending because no browser automation tool was exposed in the latest discovery pass.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-11 — Public session checks for key exit points
+
+### Block objective
+
+Execute a site-only public visual/UX block after publication `3b92f2a`: add visitor-facing session checks to key page exits so homepage, module index, study route, utilities and certificate make the next action clear without turning the site into an app or admin surface.
+
+### Cycles executed
+
+1. Diagnosis: browser screenshot QA remained unavailable, and the homepage had several strong public routes but no compact confirmation point immediately after the hero.
+   Implementation: added `.public-session-check.home-session-check` to `index.qmd` with destination, evidence and return criteria.
+   Testing: targeted render confirmed `.home-session-check` and its copy in `docs/index.html`.
+   Notes: this improves first-viewport continuation without changing the hero or navigation hierarchy.
+2. Diagnosis: the module index had navigation-contract actions, but no compact check to help visitors decide whether they should open, compare or conclude before leaving the index.
+   Implementation: added `.public-session-check.modules-session-check` to `modules/index.qmd`.
+   Testing: targeted render confirmed `.modules-session-check` in `docs/modules/index.html`.
+   Notes: this reinforces the index as a decision hub, not only a catalog.
+3. Diagnosis: the study route explained weekly rhythm, but the closing band could better define what counts as a finished week.
+   Implementation: added `.public-session-check.route-session-check` inside the route finish band in `semanas/index.qmd`.
+   Testing: targeted render confirmed `.route-session-check` in `docs/semanas/index.html`.
+   Notes: this supports completion evidence without adding app state.
+4. Diagnosis: search and glossary had final exit copy, but visitors still needed a quick way to decide whether lookup had actually resolved the next action.
+   Implementation: added `.public-session-check.utility-session-check` to `busca.qmd` and `glossario.qmd`.
+   Testing: targeted render confirmed the utility session checks in generated HTML for both pages.
+   Notes: this reduces open-ended searching and preserves utility pages as study support.
+5. Diagnosis: the certificate page had dynamic pending state, but the static page could better define whether the visitor should resume or emit the record.
+   Implementation: added `.public-session-check.certificate-session-check` to `certificado.qmd`, styled the shared component in `styles/main.scss` and `styles/main-dark.scss`, and updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R`.
+   Testing: manifest validation, SCSS validation, whitespace diff check, targeted Quarto render and rendered HTML inspection passed.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `semanas/index.qmd`
+- `busca.qmd`
+- `glossario.qmd`
+- `certificado.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added reusable public session checks across key public exit points.
+- Improved homepage, module-index, route, utility and certificate continuation clarity.
+- Added responsive and dark-mode styling for the shared component.
+- Registered the new component in manifest, public component docs and validator coverage.
+
+### Problems fixed
+
+- Reduced ambiguity before leaving major public pages.
+- Converted the remaining lack of browser QA into a static, render-verifiable user-facing check pattern.
+- Kept the new checks editorial and public-facing, with no app/backend state.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd semanas/index.qmd busca.qmd glossario.qmd certificado.qmd --no-execute`
+- `rg -n "home-session-check|modules-session-check|route-session-check|utility-session-check|certificate-session-check|Antes de sair da página inicial|Antes de sair do índice|Antes de fechar a semana|A busca resolveu|O termo voltou|Antes de gerar ou retomar" docs/index.html docs/modules/index.html docs/semanas/index.html docs/busca.html docs/glossario.html docs/certificado.html`
+- `rg -n "public-session-check|home-session-check|modules-session-check|route-session-check|utility-session-check|certificate-session-check" styles/main.scss styles/main-dark.scss PUBLIC_SITE_COMPONENTS.md data/site-manifest.yml scripts/validate_site_manifest.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, module index, study route, search, glossary and certificate.
+- Rendered HTML inspection confirmed all five session-check placements.
+- Full prepublish gate passed locally after the log and NEXT updates.
+
+### Pending items
+
+- True browser screenshot QA remains pending because no browser automation tool was exposed by tool discovery in this session.
+- Publish only after an explicit publication request.
+
+---
+
 ## 2026-05-11 — Final-decision hints across public CTA closures
 
 ### Block objective

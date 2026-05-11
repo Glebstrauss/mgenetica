@@ -30,6 +30,34 @@ number-sections: false
 </section>
 ```
 
+::: {.public-wayfinding .modules-wayfinding role="navigation" aria-label="Orientação pública do índice de módulos"}
+::: {.public-wayfinding-copy}
+**Você está no mapa da trilha**
+
+Use o índice para escolher entre abrir um módulo, comparar fases ou voltar ao roteiro. Evite sair sem uma próxima evidência definida.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Rotas imediatas no índice de módulos"}
+::: {.public-wayfinding-item role="listitem"}
+**Abrir**
+
+[Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Comparar**
+
+[Ver fases](#fases-da-trilha){.entry-link aria-label="Ver fases da trilha"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Planejar**
+
+[Roteiro](../semanas/index.qmd){.entry-link aria-label="Abrir roteiro semanal"}
+:::
+:::
+:::
+
 ::: {.modules-quick-jump role="navigation" aria-label="Atalhos internos do índice de módulos"}
 ::: {.modules-quick-jump-copy}
 **Atalhos do índice**
@@ -43,7 +71,7 @@ Use estes pontos para decidir rápido: revisar fases, abrir o catálogo completo
 
 Comece pela visão de fundamentos, dados, modelagem e genômica.
 
-[Ver fases](#fases-da-trilha){.entry-link}
+[Ver fases](#fases-da-trilha){.entry-link aria-label="Ver fases da trilha no índice de módulos"}
 :::
 
 ::: {.modules-quick-jump-item role="listitem"}
@@ -51,7 +79,7 @@ Comece pela visão de fundamentos, dados, modelagem e genômica.
 
 Abra um módulo quando a pergunta de estudo estiver definida.
 
-[Ver módulos](#todos-os-modulos){.entry-link}
+[Ver módulos](#todos-os-modulos){.entry-link aria-label="Ver catálogo completo de módulos"}
 :::
 
 ::: {.modules-quick-jump-item role="listitem"}
@@ -59,7 +87,7 @@ Abra um módulo quando a pergunta de estudo estiver definida.
 
 Confira o caminho até quizzes e certificado.
 
-[Ver fechamento](#próximo-passo-recomendado){.entry-link}
+[Ver fechamento](#próximo-passo-recomendado){.entry-link aria-label="Ver fechamento recomendado da trilha"}
 :::
 :::
 :::
@@ -98,6 +126,34 @@ Volte às fases quando precisar escolher entre temas próximos.
 Use certificado quando a evidência já estiver fechada.
 
 [Checar certificado](../certificado.qmd){.entry-link aria-label="Checar certificado de conclusão"}
+:::
+:::
+:::
+
+::: {.public-session-check .modules-session-check role="region" aria-label="Conferência rápida antes de sair do índice de módulos"}
+::: {.public-session-check-copy}
+**Antes de sair do índice**
+
+O índice funciona melhor quando a próxima página já corresponde a uma intenção clara.
+:::
+
+::: {.public-session-check-grid role="list" aria-label="Conferência de sessão do índice de módulos"}
+::: {.public-session-check-item role="listitem"}
+**Abrir**
+
+Entre em um módulo quando a pergunta estiver pronta.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Comparar**
+
+Use fases quando a dúvida for entre temas próximos.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Concluir**
+
+Use certificado quando a pendência já for de fechamento.
 :::
 :::
 :::
@@ -247,7 +303,7 @@ O índice deve funcionar como mesa de decisão. Escolha uma rota curta conforme 
 
 Comece em fundamentos e mantenha a ordem.
 
-[Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+[Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir Módulo 01 pela rota de retomada"}
 :::
 
 ::: {.modules-resume-route-item role="listitem"}
@@ -255,7 +311,7 @@ Comece em fundamentos e mantenha a ordem.
 
 Abra a fase em que a última evidência ficou incompleta.
 
-[Ver fases](#fases-da-trilha){.entry-link}
+[Ver fases](#fases-da-trilha){.entry-link aria-label="Ver fases para retomar a trilha"}
 :::
 
 ::: {.modules-resume-route-item role="listitem"}
@@ -263,7 +319,7 @@ Abra a fase em que a última evidência ficou incompleta.
 
 Confira quiz, pendência e certificado depois do módulo final.
 
-[Checar certificado](../certificado.qmd){.entry-link}
+[Checar certificado](../certificado.qmd){.entry-link aria-label="Checar certificado pela rota de fechamento"}
 :::
 :::
 :::
@@ -304,7 +360,7 @@ Abra o certificado quando todos os módulos estiverem concluídos.
 
 Módulos 01-02 apresentam a lógica do melhoramento animal e a decomposição genética do fenótipo.
 
-[Começar fase](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+[Começar fase](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Começar a fase de fundamentos pelo Módulo 01"}
 :::
 
 ::: {.phase-card role="listitem"}
@@ -312,7 +368,7 @@ Módulos 01-02 apresentam a lógica do melhoramento animal e a decomposição ge
 
 Módulos 03-06 conectam exploração, variância, herdabilidade, repetibilidade e correlações.
 
-[Começar fase](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd){.entry-link}
+[Começar fase](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd){.entry-link aria-label="Começar a fase de dados pelo Módulo 03"}
 :::
 
 ::: {.phase-card role="listitem"}
@@ -320,7 +376,7 @@ Módulos 03-06 conectam exploração, variância, herdabilidade, repetibilidade 
 
 Módulos 07-09 avançam para modelos mistos, BLUP, pedigree e parentesco.
 
-[Começar fase](modulo07-modelos-lineares-e-modelos-mistos.qmd){.entry-link}
+[Começar fase](modulo07-modelos-lineares-e-modelos-mistos.qmd){.entry-link aria-label="Começar a fase de modelagem pelo Módulo 07"}
 :::
 
 ::: {.phase-card role="listitem"}
@@ -328,7 +384,7 @@ Módulos 07-09 avançam para modelos mistos, BLUP, pedigree e parentesco.
 
 Módulos 10-12 introduzem SNPs, controle de qualidade, matrizes genômicas, GWAS e predição.
 
-[Começar fase](modulo10-introducao-a-genomica-e-marcadores-snp.qmd){.entry-link}
+[Começar fase](modulo10-introducao-a-genomica-e-marcadores-snp.qmd){.entry-link aria-label="Começar a fase de genômica pelo Módulo 10"}
 :::
 :::
 
@@ -371,25 +427,25 @@ Se você já sabe onde está na trilha, use o primeiro módulo da fase como port
 ::: {.modules-phase-entry-item role="listitem"}
 **Fundamentos**
 
-[Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+[Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir Módulo 01 como primeiro módulo da fase fundamentos"}
 :::
 
 ::: {.modules-phase-entry-item role="listitem"}
 **Dados**
 
-[Módulo 03](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd){.entry-link}
+[Módulo 03](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd){.entry-link aria-label="Abrir Módulo 03 como primeiro módulo da fase dados"}
 :::
 
 ::: {.modules-phase-entry-item role="listitem"}
 **Modelagem**
 
-[Módulo 07](modulo07-modelos-lineares-e-modelos-mistos.qmd){.entry-link}
+[Módulo 07](modulo07-modelos-lineares-e-modelos-mistos.qmd){.entry-link aria-label="Abrir Módulo 07 como primeiro módulo da fase modelagem"}
 :::
 
 ::: {.modules-phase-entry-item role="listitem"}
 **Genômica**
 
-[Módulo 10](modulo10-introducao-a-genomica-e-marcadores-snp.qmd){.entry-link}
+[Módulo 10](modulo10-introducao-a-genomica-e-marcadores-snp.qmd){.entry-link aria-label="Abrir Módulo 10 como primeiro módulo da fase genômica"}
 :::
 :::
 :::
@@ -432,7 +488,7 @@ Conectar marcadores, qualidade e predição.
 ::: {.modules-catalog-guide-copy}
 **Leia os cartões como um mapa de decisão**
 
-Cada cartão indica uma porta de entrada, mas a sequência continua sendo progressiva. Use o número do módulo, a fase e o resumo para decidir se você deve avançar, revisar ou voltar ao roteiro.
+Cada cartão indica uma porta de entrada, mas a sequência continua sendo progressiva. Use o número do módulo, a fase e o resumo para decidir se você deve avançar, revisar ou voltar ao roteiro. Dentro do módulo, leia fórmulas, código e tabelas como partes da mesma evidência.
 :::
 
 ::: {.modules-catalog-guide-grid role="list" aria-label="Critérios para usar o catálogo"}
@@ -460,7 +516,7 @@ Abra o módulo quando já houver tempo para gerar evidência.
 ::: {.modules-evidence-standard-copy}
 **Cada módulo deve deixar uma evidência**
 
-Antes de avançar, produza uma frase técnica verificável. Ela deve conectar o conceito estudado, a mudança feita no script e a decisão aplicada que você defenderia.
+Antes de avançar, produza uma frase técnica verificável. Cada página de módulo agora explicita a sessão curta de estudo e a checagem de fechamento: pergunta, evidência em R, quiz e decisão aplicada que você defenderia.
 :::
 
 ::: {.modules-evidence-standard-grid role="list" aria-label="Padrão de evidência por módulo"}

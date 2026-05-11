@@ -1048,6 +1048,57 @@ footer.footer a {
   color: var(--mg-text);
 }
 
+.module-session-plan,
+.module-technical-scan,
+.module-close-check,
+.module-session-plan-item,
+.module-technical-scan-item,
+.module-close-check-item {
+  color: var(--mg-text);
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.module-session-plan-item::before,
+.module-technical-scan-item::before,
+.module-close-check-item::before,
+.public-wayfinding-item::before,
+.public-session-check-item::before {
+  color: var(--mg-ink);
+  background: rgba(30, 147, 225, 0.18);
+  border-color: rgba(111, 220, 255, 0.24);
+}
+
+.module-session-plan {
+  border-left-color: rgba(30, 147, 225, 0.72);
+}
+
+.module-technical-scan {
+  border-left-color: rgba(30, 147, 225, 0.58);
+}
+
+.module-close-check {
+  border-left-color: rgba(111, 220, 255, 0.62);
+}
+
+.module-session-plan-copy strong,
+.module-session-plan-item strong,
+.module-technical-scan-copy strong,
+.module-technical-scan-item strong,
+.module-close-check-copy strong,
+.module-close-check-item strong {
+  color: var(--mg-ink);
+}
+
+.module-session-plan-copy p,
+.module-session-plan-item p,
+.module-technical-scan-copy p,
+.module-technical-scan-item p,
+.module-close-check-copy p,
+.module-close-check-item p {
+  color: var(--mg-text);
+}
+
 .module-practice-contract {
   color: var(--mg-text);
   background:
@@ -1116,6 +1167,48 @@ footer.footer a {
   background:
     linear-gradient(135deg, var(--mg-bg-soft), rgba(10, 31, 56, 0.38));
   border-color: rgba(111, 220, 255, 0.24);
+}
+
+.public-wayfinding,
+.public-wayfinding-item {
+  color: var(--mg-text);
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.public-wayfinding {
+  border-left-color: rgba(30, 147, 225, 0.72);
+}
+
+.public-wayfinding-copy strong,
+.public-wayfinding-item strong {
+  color: var(--mg-ink);
+}
+
+.public-wayfinding-copy p,
+.public-wayfinding-item p {
+  color: var(--mg-text);
+}
+
+.public-session-check,
+.public-session-check-item {
+  color: var(--mg-text);
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.public-session-check {
+  border-left-color: rgba(111, 220, 255, 0.55);
+}
+
+.public-session-check-copy strong,
+.public-session-check-item strong {
+  color: var(--mg-ink);
+}
+
+.public-session-check-copy p,
+.public-session-check-item p {
+  color: var(--mg-text);
 }
 
 .utility-return-copy strong,

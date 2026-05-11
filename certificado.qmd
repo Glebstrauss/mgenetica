@@ -20,6 +20,34 @@ Complete os quizzes dos módulos em sequência. O progresso fica salvo localment
 :::
 :::
 
+::: {.public-wayfinding .certificate-wayfinding role="navigation" aria-label="Orientação pública do certificado"}
+::: {.public-wayfinding-copy}
+**Você está no fechamento da trilha**
+
+Use esta página para decidir entre recuperar pendências, emitir o PDF ou voltar à rota de estudo antes de registrar a conclusão.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Rotas imediatas no certificado"}
+::: {.public-wayfinding-item role="listitem"}
+**Pendências**
+
+[Ver módulos](modules/index.qmd){.entry-link aria-label="Ver módulos pendentes antes do certificado"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Ritmo**
+
+[Roteiro](semanas/index.qmd){.entry-link aria-label="Abrir roteiro antes do certificado"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Contexto**
+
+[Sobre](perfil.qmd){.entry-link aria-label="Entender o papel público do certificado"}
+:::
+:::
+:::
+
 ::: {.certificate-intro role="region" aria-label="Como funciona o certificado"}
 ::: {.certificate-intro-card}
 **Conclusão real**
@@ -242,13 +270,41 @@ O certificado será guardado como registro de estudo.
 :::
 :::
 
+::: {.public-session-check .certificate-session-check role="region" aria-label="Conferência rápida do estado do certificado"}
+::: {.public-session-check-copy}
+**Antes de gerar ou retomar**
+
+O certificado deve indicar claramente se a ação é continuar uma pendência ou emitir o registro.
+:::
+
+::: {.public-session-check-grid role="list" aria-label="Conferência do certificado"}
+::: {.public-session-check-item role="listitem"}
+**Pendência**
+
+O próximo módulo aparece como ação principal.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Conclusão**
+
+O PDF só aparece depois dos 12 quizzes.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Registro**
+
+O nome e o navegador foram conferidos.
+:::
+:::
+:::
+
 ```{=html}
 <div id="cert-gate">
   <noscript>
     <div class="certificate-noscript" role="status">
       <strong>JavaScript necessário</strong>
       <p>O certificado depende do progresso salvo localmente pelos quizzes. Ative JavaScript no navegador para consultar pendências ou gerar o PDF.</p>
-      <a href="modules/index.html" class="entry-link">Voltar aos módulos</a>
+      <a href="modules/index.html" class="entry-link" aria-label="Voltar aos módulos quando JavaScript estiver desativado">Voltar aos módulos</a>
     </div>
   </noscript>
 

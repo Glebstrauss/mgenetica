@@ -139,6 +139,62 @@ conclusão após os quizzes
 :::
 :::
 
+::: {.home-section .public-wayfinding .home-wayfinding role="navigation" aria-label="Orientação pública da página inicial"}
+::: {.public-wayfinding-copy}
+**Você está no ponto de entrada**
+
+Use a página inicial para escolher uma rota curta. A melhor navegação é aquela que leva a uma leitura, uma consulta ou uma conclusão clara.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Rotas imediatas a partir da página inicial"}
+::: {.public-wayfinding-item role="listitem"}
+**Estudar agora**
+
+[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Começar pelo Módulo 01"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Organizar rota**
+
+[Ver módulos](modules/index.qmd){.entry-link aria-label="Abrir o índice de módulos"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Fechar pendência**
+
+[Checar certificado](certificado.qmd){.entry-link aria-label="Checar certificado e pendências"}
+:::
+:::
+:::
+
+::: {.home-section .public-session-check .home-session-check role="region" aria-label="Conferência rápida antes de sair da página inicial"}
+::: {.public-session-check-copy}
+**Antes de sair da página inicial**
+
+A primeira sessão deve terminar com destino, evidência e retorno definidos.
+:::
+
+::: {.public-session-check-grid role="list" aria-label="Conferência de sessão da página inicial"}
+::: {.public-session-check-item role="listitem"}
+**Destino**
+
+Um módulo, roteiro ou certificado foi escolhido.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Evidência**
+
+Há uma leitura, script ou decisão curta para executar.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Retorno**
+
+O índice de módulos continua como ponto de reorganização.
+:::
+:::
+:::
+
 ::: {.home-section .home-start-now role="navigation" aria-label="Como começar agora pela página inicial"}
 ::: {.home-start-now-copy}
 **Se você vai começar agora, escolha uma rota curta**
@@ -152,7 +208,7 @@ A página inicial funciona melhor quando a primeira ação é pequena. Escolha u
 
 Abra o Módulo 01 e leia a pergunta central.
 
-[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Começar pelo Módulo 01 em uma sessão curta"}
 :::
 
 ::: {.home-start-now-item role="listitem"}
@@ -160,7 +216,7 @@ Abra o Módulo 01 e leia a pergunta central.
 
 Use o índice para entender fases e módulos.
 
-[Ver módulos](modules/index.qmd){.entry-link}
+[Ver módulos](modules/index.qmd){.entry-link aria-label="Ver o índice de módulos para escolher a trilha"}
 :::
 
 ::: {.home-start-now-item role="listitem"}
@@ -168,7 +224,7 @@ Use o índice para entender fases e módulos.
 
 Planeje a sequência pelo roteiro semanal.
 
-[Ver roteiro](semanas/index.qmd){.entry-link}
+[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver o roteiro semanal para organizar a sequência"}
 :::
 :::
 :::
@@ -240,25 +296,25 @@ Escolha a rota pelo que você precisa fazer agora. A página inicial deve levar 
 ::: {.home-route-strip-item role="listitem"}
 **Estudar**
 
-[Abrir módulos](modules/index.qmd){.entry-link}
+[Abrir módulos](modules/index.qmd){.entry-link aria-label="Abrir o índice de módulos para estudar"}
 :::
 
 ::: {.home-route-strip-item role="listitem"}
 **Planejar**
 
-[Ver roteiro](semanas/index.qmd){.entry-link}
+[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver o roteiro semanal para planejar"}
 :::
 
 ::: {.home-route-strip-item role="listitem"}
 **Consultar**
 
-[Usar busca](busca.qmd){.entry-link}
+[Usar busca](busca.qmd){.entry-link aria-label="Usar a busca para consultar conceitos"}
 :::
 
 ::: {.home-route-strip-item role="listitem"}
 **Concluir**
 
-[Checar certificado](certificado.qmd){.entry-link}
+[Checar certificado](certificado.qmd){.entry-link aria-label="Checar certificado e pendências"}
 :::
 :::
 :::
@@ -276,7 +332,7 @@ Se você chegou sem saber onde entrar, escolha pela situação: iniciar a trilha
 
 Comece pela sequência completa quando ainda não há contexto acumulado.
 
-[Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+[Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 para iniciar a trilha"}
 :::
 
 ::: {.home-intent-switch-item role="listitem"}
@@ -284,7 +340,7 @@ Comece pela sequência completa quando ainda não há contexto acumulado.
 
 Volte pelo índice quando já existe uma fase ou módulo em andamento.
 
-[Índice de módulos](modules/index.qmd){.entry-link}
+[Índice de módulos](modules/index.qmd){.entry-link aria-label="Abrir o índice de módulos para retomar a trilha"}
 :::
 
 ::: {.home-intent-switch-item role="listitem"}
@@ -292,7 +348,7 @@ Volte pelo índice quando já existe uma fase ou módulo em andamento.
 
 Use busca ou glossário quando a dúvida é pontual e não exige trocar de fase.
 
-[Buscar conceito](busca.qmd){.entry-link}
+[Buscar conceito](busca.qmd){.entry-link aria-label="Buscar um conceito no curso"}
 :::
 :::
 :::
@@ -379,7 +435,7 @@ Dados simulados para ensino
 ::: {.home-path-contract-copy}
 **A trilha sempre pede uma evidência**
 
-O site não foi desenhado para consumo passivo. Cada rota pública deve levar a uma pequena evidência: uma pergunta melhor, uma saída em R interpretada ou uma decisão técnica escrita.
+O site não foi desenhado para consumo passivo. Cada rota pública deve levar a uma pequena evidência: uma pergunta melhor, uma saída em R interpretada, uma tabela lida com critério ou uma decisão técnica escrita.
 :::
 
 ::: {.home-path-contract-grid role="list" aria-label="Evidências esperadas ao usar a MGenética"}
@@ -407,7 +463,7 @@ Feche com uma frase técnica antes de avançar.
 ::: {.home-next-click-copy}
 **Depois da evidência, escolha o próximo clique**
 
-O melhor próximo passo depende do que a sessão deixou claro. Use a frase final da sessão para decidir se você abre conteúdo novo, consulta apoio ou fecha uma pendência.
+O melhor próximo passo depende do que a sessão deixou claro. Ao abrir um módulo, use o plano curto da própria página para entrar com pergunta, script e decisão definidos antes de trocar de rota.
 :::
 
 ::: {.home-next-click-grid role="list" aria-label="Próximos cliques recomendados na MGenética"}
@@ -472,7 +528,7 @@ A MGenética funciona em blocos pequenos. Antes de abrir uma página, escolha o 
 
 Leia o objetivo, rode um trecho do script e anote uma pergunta.
 
-[Abrir módulos](modules/index.qmd){.entry-link}
+[Abrir módulos](modules/index.qmd){.entry-link aria-label="Abrir módulos para uma sessão curta"}
 :::
 
 ::: {.home-study-choice-item role="listitem"}
@@ -480,7 +536,7 @@ Leia o objetivo, rode um trecho do script e anote uma pergunta.
 
 Feche leitura, script, alteração de parâmetro, interpretação e quiz.
 
-[Começar Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+[Começar Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Começar o Módulo 01 para uma sessão completa"}
 :::
 
 ::: {.home-study-choice-item role="listitem"}
@@ -488,7 +544,7 @@ Feche leitura, script, alteração de parâmetro, interpretação e quiz.
 
 Use busca, glossário e roteiro para recuperar contexto antes de avançar.
 
-[Ver roteiro](semanas/index.qmd){.entry-link}
+[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro para uma sessão de revisão"}
 :::
 :::
 :::
@@ -652,7 +708,7 @@ Use o roteiro semanal.
 
 Siga o primeiro módulo, rode o script correspondente e registre uma interpretação curta.
 
-[Abrir Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+[Abrir Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 a partir dos pontos de partida"}
 :::
 
 ::: {.entry-card role="listitem"}
@@ -660,7 +716,7 @@ Siga o primeiro módulo, rode o script correspondente e registre uma interpreta�
 
 Veja as quatro fases editoriais antes de avançar para os módulos individuais.
 
-[Ver índice de módulos](modules/index.qmd){.entry-link}
+[Ver índice de módulos](modules/index.qmd){.entry-link aria-label="Ver índice de módulos para entender a trilha"}
 :::
 
 ::: {.entry-card role="listitem"}
@@ -668,7 +724,7 @@ Veja as quatro fases editoriais antes de avançar para os módulos individuais.
 
 Use o roteiro semanal para organizar leitura, prática em R e revisão.
 
-[Abrir roteiro](semanas/index.qmd){.entry-link}
+[Abrir roteiro](semanas/index.qmd){.entry-link aria-label="Abrir roteiro para planejar o estudo"}
 :::
 :::
 :::
@@ -686,7 +742,7 @@ Retome pela evidência que falta: escolher o próximo módulo, revisar a fase at
 
 Abra o índice e escolha o próximo módulo pela fase em que você parou.
 
-[Ver módulos](modules/index.qmd){.entry-link}
+[Ver módulos](modules/index.qmd){.entry-link aria-label="Ver módulos para continuar a trilha"}
 :::
 
 ::: {.home-returning-item role="listitem"}
@@ -694,7 +750,7 @@ Abra o índice e escolha o próximo módulo pela fase em que você parou.
 
 Use o roteiro para recuperar o contexto antes de abrir uma nova página longa.
 
-[Abrir roteiro](semanas/index.qmd){.entry-link}
+[Abrir roteiro](semanas/index.qmd){.entry-link aria-label="Abrir roteiro para revisar o contexto"}
 :::
 
 ::: {.home-returning-item role="listitem"}
@@ -702,7 +758,7 @@ Use o roteiro para recuperar o contexto antes de abrir uma nova página longa.
 
 Confira se todos os quizzes foram validados no navegador antes de emitir o certificado.
 
-[Checar certificado](certificado.qmd){.entry-link}
+[Checar certificado](certificado.qmd){.entry-link aria-label="Checar certificado antes de concluir"}
 :::
 :::
 :::
@@ -720,7 +776,7 @@ Apoio
 
 Localize termos, funções em R e trechos dos módulos quando precisar retomar um ponto específico.
 
-[Buscar no curso](busca.qmd){.entry-link}
+[Buscar no curso](busca.qmd){.entry-link aria-label="Buscar termos e funções no curso"}
 :::
 
 ::: {.discovery-card role="listitem"}
@@ -728,7 +784,7 @@ Localize termos, funções em R e trechos dos módulos quando precisar retomar u
 
 Use como referência rápida para siglas, parâmetros e métodos que aparecem ao longo da sequência.
 
-[Abrir glossário](glossario.qmd){.entry-link}
+[Abrir glossário](glossario.qmd){.entry-link aria-label="Abrir glossário para referência rápida"}
 :::
 
 ::: {.discovery-card role="listitem"}
@@ -736,7 +792,7 @@ Use como referência rápida para siglas, parâmetros e métodos que aparecem ao
 
 Distribua leitura, execução dos scripts e interpretação técnica em um plano semanal.
 
-[Ver roteiro](semanas/index.qmd){.entry-link}
+[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro para distribuir o estudo"}
 :::
 :::
 :::

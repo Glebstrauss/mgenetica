@@ -20,6 +20,34 @@ Consulte durante a leitura dos módulos quando um termo técnico aparecer fora d
 :::
 :::
 
+::: {.public-wayfinding .utility-wayfinding role="navigation" aria-label="Orientação pública do glossário"}
+::: {.public-wayfinding-copy}
+**Você está em uma referência curta**
+
+Use o glossário para resolver uma definição e devolver o termo ao contexto. A próxima página deve mostrar onde o conceito muda a interpretação.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Rotas imediatas depois do glossário"}
+::: {.public-wayfinding-item role="listitem"}
+**Aplicar**
+
+[Ver módulos](modules/index.qmd){.entry-link aria-label="Voltar aos módulos a partir do glossário"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Localizar**
+
+[Busca](busca.qmd){.entry-link aria-label="Abrir busca a partir do glossário"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Sequenciar**
+
+[Roteiro](semanas/index.qmd){.entry-link aria-label="Abrir roteiro a partir do glossário"}
+:::
+:::
+:::
+
 ::: {.utility-flow}
 ::: {.utility-step}
 **Leia o termo**
@@ -51,19 +79,19 @@ Depois de entender uma definição, volte para o lugar em que ela muda a interpr
 ::: {.utility-start-choice-item role="listitem"}
 **Aplicar**
 
-[Voltar aos módulos](modules/index.qmd){.entry-link}
+[Voltar aos módulos](modules/index.qmd){.entry-link aria-label="Voltar aos módulos depois do glossário"}
 :::
 
 ::: {.utility-start-choice-item role="listitem"}
 **Localizar**
 
-[Buscar no curso](busca.qmd){.entry-link}
+[Buscar no curso](busca.qmd){.entry-link aria-label="Buscar exemplos no curso depois do glossário"}
 :::
 
 ::: {.utility-start-choice-item role="listitem"}
 **Sequenciar**
 
-[Ver roteiro](semanas/index.qmd){.entry-link}
+[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro depois do glossário"}
 :::
 :::
 :::
@@ -273,6 +301,34 @@ Use a fase para recuperar a ordem do conceito.
 **Depois do termo, volte para o uso**
 
 Uma definição só fecha a dúvida quando volta para trecho, módulo ou roteiro onde o conceito será aplicado.
+:::
+
+::: {.public-session-check .utility-session-check role="region" aria-label="Conferência rápida depois do glossário"}
+::: {.public-session-check-copy}
+**O termo voltou para a prática?**
+
+Feche a consulta quando a definição já tiver um lugar claro na leitura.
+:::
+
+::: {.public-session-check-grid role="list" aria-label="Conferência de saída do glossário"}
+::: {.public-session-check-item role="listitem"}
+**Uso**
+
+O termo tem exemplo no curso.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Módulo**
+
+A fase de origem foi localizada.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Aplicação**
+
+A definição sustenta uma decisão.
+:::
+:::
 :::
 
 [Abrir busca](busca.qmd){.btn .btn-primary}

@@ -30,6 +30,62 @@ description: "Relações entre características, resposta correlacionada à sele
 Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
 :::
 
+::: {.module-session-plan role="region" aria-label="Plano curto de sessão do módulo"}
+::: {.module-session-plan-copy}
+**Plano curto de sessão**
+
+Use este módulo em uma sessão fechada: entre com uma pergunta, produza uma evidência no script e saia com uma decisão técnica curta.
+:::
+
+::: {.module-session-plan-grid role="list" aria-label="Etapas da sessão de estudo do módulo"}
+::: {.module-session-plan-item role="listitem"}
+**Pergunta**
+
+Defina o que precisa ficar mais claro antes de ler.
+:::
+
+::: {.module-session-plan-item role="listitem"}
+**Evidência**
+
+Rode ou revise o trecho principal em R.
+:::
+
+::: {.module-session-plan-item role="listitem"}
+**Decisão**
+
+Escreva uma consequência técnica antes de sair.
+:::
+:::
+:::
+
+::: {.module-technical-scan role="region" aria-label="Como ler fórmulas, código e tabelas do módulo"}
+::: {.module-technical-scan-copy}
+**Leia a parte técnica em três passagens**
+
+Não tente resolver fórmula, código e tabela ao mesmo tempo. Primeiro localize o conceito, depois execute ou acompanhe o script, e por fim interprete a saída como evidência.
+:::
+
+::: {.module-technical-scan-grid role="list" aria-label="Passagens de leitura técnica do módulo"}
+::: {.module-technical-scan-item role="listitem"}
+**Fórmula**
+
+Identifique quais termos mudam a decisão.
+:::
+
+::: {.module-technical-scan-item role="listitem"}
+**Código**
+
+Veja qual parâmetro foi simulado ou comparado.
+:::
+
+::: {.module-technical-scan-item role="listitem"}
+**Tabela**
+
+Leia a diferença que sustenta a interpretação.
+:::
+:::
+:::
+
 ## Quando selecionar para uma característica muda outra
 
 Um produtor seleciona bovinos para maior produção de leite. Alguns anos depois, percebe que a taxa de prenhez do rebanho diminuiu. Não é coincidência: há uma **correlação genética negativa** entre produção de leite e fertilidade. Os genes que elevam a produção frequentemente desfavorecem a reprodução. Isso é a correlação genética em ação.
@@ -182,6 +238,34 @@ Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e
 **Transição de fase**
 
 Depois de estimar parâmetros e relações entre características, a trilha avança para modelos. O próximo passo é separar efeitos fixos, efeitos aleatórios e erro para sustentar avaliação genética.
+:::
+
+::: {.module-close-check role="region" aria-label="Conferência de fechamento do módulo"}
+::: {.module-close-check-copy}
+**Antes de trocar de página**
+
+Feche o módulo quando a leitura, o código e o quiz sustentarem a mesma conclusão. Se algum ponto ficou aberto, volte pelo índice ou pela busca antes de avançar.
+:::
+
+::: {.module-close-check-grid role="list" aria-label="Critérios de fechamento do módulo"}
+::: {.module-close-check-item role="listitem"}
+**Leitura**
+
+A pergunta central foi respondida com suas palavras.
+:::
+
+::: {.module-close-check-item role="listitem"}
+**Código**
+
+A saída principal foi interpretada, não apenas executada.
+:::
+
+::: {.module-close-check-item role="listitem"}
+**Quiz**
+
+O resultado confirma prontidão para avançar ou revisar.
+:::
+:::
 :::
 
 ::: {.module-return-note role="note" aria-label="Como voltar ao fluxo depois deste módulo"}

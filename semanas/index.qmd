@@ -24,6 +24,34 @@ Esta página organiza os módulos existentes em um ritmo semanal. A proposta é 
 Use esta trilha como plano de estudo. Os links apontam para os módulos já publicados, evitando páginas vazias ou links quebrados.
 :::
 
+::: {.public-wayfinding .route-wayfinding role="navigation" aria-label="Orientação pública do roteiro semanal"}
+::: {.public-wayfinding-copy}
+**Você está no ritmo de estudo**
+
+Use o roteiro para transformar a trilha em semanas. A próxima ação deve preservar ordem, tempo e evidência mínima.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Rotas imediatas do roteiro semanal"}
+::: {.public-wayfinding-item role="listitem"}
+**Semana atual**
+
+[Abrir M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 pelo roteiro"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Reorganizar**
+
+[Ver módulos](../modules/index.qmd){.entry-link aria-label="Voltar ao índice de módulos"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Conferir fim**
+
+[Certificado](../certificado.qmd){.entry-link aria-label="Abrir certificado de conclusão"}
+:::
+:::
+:::
+
 ::: {.route-start-today role="navigation" aria-label="Como começar o roteiro hoje"}
 ::: {.route-start-today-copy}
 **Comece pelo estado de hoje**
@@ -37,7 +65,7 @@ O roteiro não precisa começar sempre na semana 1. Escolha a entrada pelo que v
 
 Use a semana 1 para entender a pergunta biológica.
 
-[Abrir M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+[Abrir M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 a partir do roteiro"}
 :::
 
 ::: {.route-start-today-item role="listitem"}
@@ -45,7 +73,7 @@ Use a semana 1 para entender a pergunta biológica.
 
 Volte à fase em que a última evidência ficou incompleta.
 
-[Ver módulos](../modules/index.qmd){.entry-link}
+[Ver módulos](../modules/index.qmd){.entry-link aria-label="Ver módulos a partir do roteiro"}
 :::
 
 ::: {.route-start-today-item role="listitem"}
@@ -53,7 +81,7 @@ Volte à fase em que a última evidência ficou incompleta.
 
 Use a tabela para localizar pendências antes do certificado.
 
-[Checar certificado](../certificado.qmd){.entry-link}
+[Checar certificado](../certificado.qmd){.entry-link aria-label="Checar certificado a partir do roteiro"}
 :::
 :::
 :::
@@ -400,6 +428,34 @@ Escreva uma conclusão técnica curta.
 **Feche cada semana com evidência**
 
 O roteiro só vira progresso real quando a leitura, o script e a interpretação curta são concluídos. Use os quizzes dos módulos como verificação local antes de avançar para o certificado.
+:::
+
+::: {.public-session-check .route-session-check role="region" aria-label="Conferência rápida antes de fechar uma semana"}
+::: {.public-session-check-copy}
+**Antes de fechar a semana**
+
+Uma semana concluída deixa rastro técnico suficiente para retomar sem reler tudo.
+:::
+
+::: {.public-session-check-grid role="list" aria-label="Conferência de fechamento semanal"}
+::: {.public-session-check-item role="listitem"}
+**Leitura**
+
+O conceito principal foi localizado no módulo.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Código**
+
+O script foi executado ou revisado.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Decisão**
+
+Uma conclusão curta foi escrita.
+:::
+:::
 :::
 
 ::: {.route-finish-actions role="navigation" aria-label="Ações para fechar a trilha"}

@@ -103,6 +103,10 @@ content_pages:
     - hero-signal
     - hero-action-note
     - hero-action-note-hint
+    - public-wayfinding
+    - home-wayfinding
+    - public-session-check
+    - home-session-check
     - home-trust-anchors
     - home-first-session
     - home-start-now
@@ -124,6 +128,8 @@ content_pages:
     - modules-quick-jump
     - modules-navigation-contract
     - modules-navigation-contract-hint
+    - modules-wayfinding
+    - modules-session-check
     - modules-choice-path
     - modules-phase-decision
     - modules-readiness-meter
@@ -136,6 +142,8 @@ content_pages:
     - route-overview
     - utility-return-guide
     - route-finish-band
+    - route-wayfinding
+    - route-session-check
     - home-orientation
     - home-study-choice
     - home-audience
@@ -148,7 +156,9 @@ content_pages:
     - utility-crossroads
     - utility-examples
     - utility-query-plan
+    - utility-wayfinding
     - utility-start-choice
+    - utility-session-check
     - utility-no-result
     - utility-result-close
     - utility-decision
@@ -173,21 +183,27 @@ content_pages:
     - certificate-scope
     - certificate-decision
     - certificate-recovery
+    - certificate-wayfinding
     - certificate-next-use
     - certificate-identity-note
     - certificate-final-check
+    - certificate-session-check
     - certificate-pending-hint
     - about-next-step
     - about-route
     - about-credibility
     - about-public-contract
     - about-editorial-boundary
+    - about-wayfinding
     - about-visitor-path
     - module-phase-note
     - module-phase-start
     - module-reading-rhythm
+    - module-session-plan
+    - module-technical-scan
     - module-takeaways
     - module-after-quiz
+    - module-close-check
     - module-return-note
     - module-evidence-path
     - module-practice-contract
@@ -204,6 +220,8 @@ content_pages:
         - hero-panel-proof
         - hero-signal
         - hero-action-note
+        - wayfinding
+        - session-check
         - start-now
         - trust-anchors
         - first-session
@@ -242,8 +260,10 @@ content_pages:
       source_collection: modules
       editable_regions:
         - hero
+        - wayfinding
         - quick-jump
         - navigation-contract
+        - session-check
         - guidance
         - route
         - support
@@ -270,6 +290,7 @@ content_pages:
       status: published
       editable_regions:
         - hero
+        - wayfinding
         - route-checkpoints
         - route-overview
         - route-week-decision
@@ -284,6 +305,7 @@ content_pages:
         - route-table-guide
         - routine
         - route-finish
+        - session-check
     - id: search
       title: Busca
       href: busca.qmd
@@ -291,6 +313,7 @@ content_pages:
       status: published
       editable_regions:
         - hero
+        - wayfinding
         - utility-flow
         - utility-start-choice
         - utility-decision
@@ -302,6 +325,7 @@ content_pages:
         - utility-result-close
         - search-panel
         - utility-next-step
+        - session-check
     - id: glossary
       title: Glossário técnico
       href: glossario.qmd
@@ -309,6 +333,7 @@ content_pages:
       status: published
       editable_regions:
         - hero
+        - wayfinding
         - utility-flow
         - utility-start-choice
         - utility-decision
@@ -320,6 +345,7 @@ content_pages:
         - utility-result-close
         - glossary-panel
         - utility-next-step
+        - session-check
     - id: certificate
       title: Certificado de Conclusão
       href: certificado.qmd
@@ -327,6 +353,7 @@ content_pages:
       status: published
       editable_regions:
         - hero
+        - wayfinding
         - certificate-intro
         - certificate-scope
         - certificate-readiness
@@ -335,6 +362,7 @@ content_pages:
         - certificate-next-use
         - certificate-identity
         - certificate-final-check
+        - session-check
         - certificate-preview
         - certificate-form
         - certificate-noscript
@@ -346,6 +374,7 @@ content_pages:
       status: published
       editable_regions:
         - hero
+        - wayfinding
         - public-page-triad
         - about-route
         - credibility
