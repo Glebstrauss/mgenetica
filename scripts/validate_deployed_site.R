@@ -19,7 +19,9 @@ pages <- c(
   route = paste0(base_url, "/semanas/"),
   about = paste0(base_url, "/perfil.html"),
   module01 = paste0(base_url, "/modules/modulo01-introducao-ao-melhoramento-animal.html"),
+  module02 = paste0(base_url, "/modules/modulo02-bases-da-genetica-quantitativa.html"),
   module06 = paste0(base_url, "/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html"),
+  module08 = paste0(base_url, "/modules/modulo08-blup-e-avaliacao-genetica.html"),
   module12 = paste0(base_url, "/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html")
 )
 
@@ -90,7 +92,7 @@ assert(grepl("profile-hero", html$about, fixed = TRUE), "about page missing prof
 assert(grepl("public-page-triad", html$about, fixed = TRUE), "about page missing public page triad")
 assert(grepl("Princípios", html$about, fixed = TRUE), "about page missing principles section")
 
-module_pages <- html[c("module01", "module06", "module12")]
+module_pages <- html[c("module01", "module02", "module06", "module08", "module12")]
 for (name in names(module_pages)) {
   page <- module_pages[[name]]
   assert(grepl("Todos os módulos", page, fixed = TRUE), paste(name, "missing module index nav"))
@@ -99,6 +101,15 @@ for (name in names(module_pages)) {
   assert(grepl("module-objectives", page, fixed = TRUE), paste(name, "missing objectives pattern"))
   assert(grepl('class="quiz-container"', page, fixed = TRUE), paste(name, "missing quiz container"))
   assert(gregexpr('class="quiz-container"', page, fixed = TRUE)[[1]][1] < gregexpr("module-nav", page, fixed = TRUE)[[1]][1], paste(name, "quiz should appear before final navigation"))
+}
+
+script_lab_pages <- html[c("module01", "module02", "module08", "module12")]
+for (name in names(script_lab_pages)) {
+  module_number <- sub("^module", "", name)
+  page <- script_lab_pages[[name]]
+  assert(grepl("module-script-lab", page, fixed = TRUE), paste(name, "missing script lab"))
+  assert(grepl(sprintf("../scripts/modulo%s.R", module_number), page, fixed = TRUE), paste(name, "missing public script link"))
+  assert(grepl(sprintf("../data/modulo%s_simulado.csv", module_number), page, fixed = TRUE), paste(name, "missing generated CSV link"))
 }
 
 assert(!grepl('class="quiz-container"', html$modules, fixed = TRUE), "module index should not expose quiz container")

@@ -7,9 +7,11 @@ project:
     - "semanas/*.qmd"
   resources:
     - "assets/"
+    - "data/modulo*_simulado.csv"
     - "data/site-manifest.yml"
     - "images/"
     - "quizzes/"
+    - "scripts/modulo*.R"
 
 website:
   title: "MGenética"

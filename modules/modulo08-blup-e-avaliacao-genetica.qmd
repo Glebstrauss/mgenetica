@@ -113,6 +113,40 @@ Onde λ = σ²_e / σ²_A. O termo **A⁻¹λ** é o que "puxa" os EBVs em dire�
 
 ## Implementação em R
 
+::: {.module-script-lab role="region" aria-label="Laboratório do script do Módulo 08"}
+::: {.module-script-lab-copy}
+**Laboratório do script**
+
+Use o script para acompanhar a construção de pedigree, matriz A, equações de Henderson e ranking por EBV. A pergunta prática é quando o ranking genético muda a decisão em relação ao fenótipo bruto.
+:::
+
+::: {.module-script-lab-grid role="list" aria-label="Como reproduzir o script do Módulo 08"}
+::: {.module-script-lab-item role="listitem"}
+**Roteiro R**
+
+[Abrir `modulo08.R`](../scripts/modulo08.R){.entry-link aria-label="Abrir o script R completo do Módulo 08"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**Saída gerada**
+
+[Ver CSV simulado](../data/modulo08_simulado.csv){.entry-link aria-label="Abrir o CSV simulado gerado pelo Módulo 08"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que alterar**
+
+Aumente `n_obs` ou reduza `h2` e compare acurácia, encolhimento dos EBVs e estabilidade do ranking.
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que interpretar**
+
+Escolha um animal do ranking e justifique se a seleção deveria seguir EBV, fenótipo ou uma combinação dos dois.
+:::
+:::
+:::
+
 ```{r}
 #| label: pedigree-a-matrix
 set.seed(108)

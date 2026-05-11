@@ -927,9 +927,11 @@ footer.footer a {
 
 .module-session-plan,
 .module-technical-scan,
+.module-script-lab,
 .module-close-check,
 .module-session-plan-item,
 .module-technical-scan-item,
+.module-script-lab-item,
 .module-close-check-item {
   color: var(--mg-text);
   background: var(--mg-bg-soft);
@@ -938,6 +940,7 @@ footer.footer a {
 
 .module-session-plan-item::before,
 .module-technical-scan-item::before,
+.module-script-lab-item::before,
 .module-close-check-item::before,
 .public-wayfinding-item::before,
 .public-session-check-item::before {
@@ -954,6 +957,25 @@ footer.footer a {
   border-left-color: rgba(30, 147, 225, 0.58);
 }
 
+.module-script-lab {
+  background:
+    linear-gradient(135deg, rgba(2, 10, 14, 0.98), rgba(30, 87, 153, 0.42));
+  border-color: rgba(111, 220, 255, 0.26);
+  border-left-color: var(--mg-cyan-lt);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+}
+
+.module-script-lab-item {
+  background: rgba(111, 220, 255, 0.08);
+  border-color: rgba(111, 220, 255, 0.24);
+}
+
+.module-script-lab-item::before {
+  color: #071521;
+  background: var(--mg-cyan-lt);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
 .module-close-check {
   border-left-color: rgba(111, 220, 255, 0.62);
 }
@@ -962,6 +984,8 @@ footer.footer a {
 .module-session-plan-item strong,
 .module-technical-scan-copy strong,
 .module-technical-scan-item strong,
+.module-script-lab-copy strong,
+.module-script-lab-item strong,
 .module-close-check-copy strong,
 .module-close-check-item strong {
   color: var(--mg-ink);
@@ -971,9 +995,15 @@ footer.footer a {
 .module-session-plan-item p,
 .module-technical-scan-copy p,
 .module-technical-scan-item p,
+.module-script-lab-copy p,
+.module-script-lab-item p,
 .module-close-check-copy p,
 .module-close-check-item p {
   color: var(--mg-text);
+}
+
+.module-script-lab-item .entry-link {
+  color: var(--mg-cyan-lt);
 }
 
 .module-practice-contract {

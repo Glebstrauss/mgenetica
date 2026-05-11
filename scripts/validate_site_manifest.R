@@ -204,6 +204,9 @@ for (class_name in c(
   ".module-technical-scan",
   ".module-technical-scan-grid",
   ".module-technical-scan-item",
+  ".module-script-lab",
+  ".module-script-lab-grid",
+  ".module-script-lab-item",
   ".module-evidence-path",
   ".module-practice-contract",
   ".module-takeaways",
@@ -256,7 +259,7 @@ if (is.null(quarto$website[["site-url"]]) || !grepl("^https://glebstrauss.github
   fail("_quarto.yml website.site-url must point to the public GitHub Pages site")
 }
 
-for (resource in c("assets/", "data/site-manifest.yml", "images/", "quizzes/")) {
+for (resource in c("assets/", "data/modulo*_simulado.csv", "data/site-manifest.yml", "images/", "quizzes/", "scripts/modulo*.R")) {
   if (!resource %in% quarto$project$resources) {
     fail(sprintf("_quarto.yml project.resources missing %s", resource))
   }
@@ -533,6 +536,18 @@ for (i in seq_along(modules)) {
   }
   if (!grepl("module-technical-scan", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-technical-scan", item$id))
+  }
+  if (item$order %in% c(1L, 2L, 8L, 12L)) {
+    if (!grepl("module-script-lab", module_text, fixed = TRUE)) {
+      fail(sprintf("module %s is missing representative module-script-lab", item$id))
+    }
+    if (!grepl(item$script, module_text, fixed = TRUE)) {
+      fail(sprintf("module %s script lab does not link to %s", item$id, item$script))
+    }
+    csv_path <- sprintf("data/modulo%02d_simulado.csv", item$order)
+    if (!grepl(csv_path, module_text, fixed = TRUE)) {
+      fail(sprintf("module %s script lab does not link to %s", item$id, csv_path))
+    }
   }
   if (!grepl("module-nav-index", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-nav-index", item$id))

@@ -61,6 +61,176 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-11 — Representative module script labs
+
+### Block objective
+
+Execute the first implementation block from `NEXT_SITE.md`, evolving representative module pages into clearer learning labs that connect rendered R examples, standalone scripts, generated CSV outputs, exercises and interpretation prompts.
+
+### Cycles executed
+
+1. Diagnosis: the active contract called for module-page learning labs, starting with Modules 01, 02, 08 and 12.
+   Implementation: audited the representative modules, existing script metadata, validation contracts and module-session styles.
+   Testing: confirmed the current worktree had only planning-file edits and unrelated untracked files before implementation.
+   Notes: no app files were touched.
+2. Diagnosis: Modules 01 and 02 had rendered R chunks, but the path from page to full script and generated output was implicit.
+   Implementation: added `module-script-lab` blocks to Modules 01 and 02 with script links, CSV links, parameter-change prompts and interpretation prompts.
+   Testing: manifest validation later confirmed the representative modules include script and CSV references.
+   Notes: the blocks keep R execution static/reproducible through Quarto and local R, not through a backend.
+3. Diagnosis: Modules 08 and 12 need the same pattern for advanced BLUP and genomics workflows, where the script is the main learning artifact.
+   Implementation: added `module-script-lab` blocks to Modules 08 and 12, tying EBV/BLUP, matrix G, GWAS and GBLUP outputs to concrete decisions.
+   Testing: targeted HTML inspection after render confirmed all four representative pages render the script-lab component and links.
+   Notes: the final module explicitly distinguishes matrix G, GWAS and prediction evidence.
+4. Diagnosis: the new component needed visual polish, dark-mode parity, responsive behavior and a protected public-site contract.
+   Implementation: added script/CSV resources to `_quarto.yml`, documented the component in `PUBLIC_SITE_COMPONENTS.md`, added it to `data/site-manifest.yml`, styled it in light/dark SCSS, and extended local/deployed validators for representative script labs.
+   Testing: manifest validation, SCSS validation, JS syntax and whitespace checks passed.
+   Notes: only teaching scripts `scripts/modulo*.R` and generated module CSVs are published as learning resources.
+5. Diagnosis: the change needed rendered proof and a next contract for rolling the pattern across the course.
+   Implementation: rendered Modules 01, 02, 08 and 12, inspected generated HTML and static resources, updated `WORKLOG_SITE.md` and `NEXT_SITE.md`.
+   Testing: targeted render, HTML/resource checks and full prepublish passed.
+   Notes: no automatic publication was performed.
+
+### Files changed in this block
+
+- `_quarto.yml`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `data/site-manifest.yml`
+- `scripts/validate_site_manifest.R`
+- `scripts/validate_deployed_site.R`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added a reusable script-lab pattern to representative module pages.
+- Published module teaching scripts and generated CSV outputs as static learning resources.
+- Made each improved module identify the script, output artifact, parameter to change and interpretation task.
+- Added light/dark styling and responsive behavior for the new component.
+- Extended validation so representative script labs stay linked to their declared scripts and CSV outputs.
+
+### Problems fixed
+
+- R scripts and generated outputs were validated internally but not clearly exposed as public learning assets from the module pages.
+- Advanced modules had strong code examples but lacked a compact reproduction panel for users who want to rerun or modify the full script.
+
+### Commands executed
+
+- `sed -n '1,220p' .agents/skills/mgenetica-site/SKILL.md`
+- `sed -n '1,220p' NEXT_SITE.md`
+- `git status --short --branch`
+- `rg -n "module-script-lab|module-practice-contract|module-evidence-path|module-study-checkpoint|module-after-quiz|module-nav|script: scripts/modulo" modules data/site-manifest.yml styles/main.scss styles/main-dark.scss scripts/validate_site_manifest.R`
+- `sed -n '1,220p' AGENTS.md`
+- `sed -n '1,220p' ROADMAP_SITE.md`
+- `sed -n '1,240p' BACKLOG_SITE.md`
+- `sed -n '1,180p' WORKLOG_SITE.md`
+- `sed -n '90,235p' modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `sed -n '90,250p' modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `sed -n '90,270p' modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `node --check assets/js/interactives.js`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/modulo01-introducao-ao-melhoramento-animal.qmd modules/modulo02-bases-da-genetica-quantitativa.qmd modules/modulo08-blup-e-avaliacao-genetica.qmd modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `rg -n "module-script-lab|../scripts/modulo|../data/modulo" docs/modules/modulo01-introducao-ao-melhoramento-animal.html docs/modules/modulo02-bases-da-genetica-quantitativa.html docs/modules/modulo08-blup-e-avaliacao-genetica.html docs/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html`
+- `find docs -maxdepth 2 \( -path 'docs/scripts/modulo01.R' -o -path 'docs/scripts/modulo02.R' -o -path 'docs/scripts/modulo08.R' -o -path 'docs/scripts/modulo12.R' -o -path 'docs/data/modulo01_simulado.csv' -o -path 'docs/data/modulo02_simulado.csv' -o -path 'docs/data/modulo08_simulado.csv' -o -path 'docs/data/modulo12_simulado.csv' \) -print | sort`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS validation passed.
+- `assets/js/interactives.js` syntax passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for Modules 01, 02, 08 and 12.
+- Rendered HTML inspection confirmed script-lab blocks and static script/CSV links.
+- Resource inspection confirmed representative scripts and CSVs were copied into `docs/`.
+- Full prepublish validation passed with `prepublish site check ok`.
+
+### Pending items
+
+- Roll the script-lab pattern across Modules 03, 04, 05, 06, 07, 09, 10 and 11.
+- Perform browser visual QA of script-lab blocks when local browser tooling is available.
+- Consider lightweight parameter mirrors only after the full static reproduction pattern is consistent across all modules.
+
+---
+
+## 2026-05-11 — Direction update for module-page learning labs
+
+### Block objective
+
+Redirect the next site-development plan toward individual module pages, with emphasis on making R scripts, rendered examples, generated outputs, exercises and quizzes work together as a clearer learning experience.
+
+### Cycles executed
+
+1. Diagnosis: the active `NEXT_SITE.md` still prioritized browser QA after public-page simplification, while the new user direction prioritizes module-page development.
+   Implementation: reviewed the active plan and replaced it with a module-focused contract.
+   Testing: checked the repository status before editing.
+   Notes: no app files were touched.
+2. Diagnosis: the roadmap and backlog already identify module pages as the core educational product and call for headers, reading rhythm, quizzes, summaries and mobile readability.
+   Implementation: aligned the new plan with those existing priorities rather than introducing a separate product direction.
+   Testing: reviewed `ROADMAP_SITE.md` and `BACKLOG_SITE.md`.
+   Notes: this keeps future work within the established public-site strategy.
+3. Diagnosis: modules already have rendered R chunks, standalone `scripts/moduloXX.R`, generated CSV outputs and quiz metadata, but the user-facing connection between these assets can be clearer.
+   Implementation: defined a reusable "script lab" direction for core question, script link, generated output, parameter change, output inspection and interpretation prompt.
+   Testing: inspected representative module structure and existing script validation flow.
+   Notes: the plan starts with Modules 01, 02, 08 and 12 before rolling across all 12.
+4. Diagnosis: GitHub Pages cannot be assumed to provide live server-side R execution for each visitor.
+   Implementation: documented a safe feasibility ladder: rendered Quarto code/output first, downloadable/reproducible scripts second, lightweight browser-side mirrors third, WebR only after a performance and stability check.
+   Testing: reviewed existing JS interactive patterns and module script validation.
+   Notes: the public site remains editorial and stable, not an app-like coding environment.
+5. Diagnosis: the next block needs concrete validation and completion criteria.
+   Implementation: updated `NEXT_SITE.md` with scope, out-of-scope items, representative first implementation block, commands and criteria.
+   Testing: final validation is limited to manifest and diff checks because this block changes planning documents only.
+   Notes: publication was not requested.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `WORKLOG_SITE.md`
+
+### Improvements implemented
+
+- Reoriented site development toward module pages and learning quality.
+- Established a concrete module "script lab" pattern for future implementation.
+- Clarified how far in-page script execution should go on a static GitHub Pages site.
+- Preserved separation between public site and app.
+
+### Problems fixed
+
+- The next plan no longer points primarily to post-simplification visual QA when the current product direction is module learning.
+- The plan now explicitly addresses the user's request for script examples to work in the module pages where feasible.
+
+### Commands executed
+
+- `sed -n '1,220p' .agents/skills/mgenetica-site/SKILL.md`
+- `sed -n '1,180p' NEXT_SITE.md`
+- `rg --files modules | sort`
+- `git status --short --branch`
+- `sed -n '1,220p' AGENTS.md`
+- `sed -n '1,220p' ROADMAP_SITE.md`
+- `sed -n '1,220p' BACKLOG_SITE.md`
+- `sed -n '1,180p' WORKLOG_SITE.md`
+- `sed -n '1,220p' scripts/run_all_modules.R`
+- `sed -n '1,220p' assets/js/interactives.js`
+- `rg -n 'source\\(|read\\.csv|read_csv|quiz|Exercício|```\\{r|data/modulo|scripts/modulo' modules scripts data/site-manifest.yml`
+
+### Test results
+
+- Planning files were updated only after local diagnosis.
+- Final manifest and whitespace checks are run after this entry.
+
+### Pending items
+
+- Implement the script-lab pattern first in Modules 01, 02, 08 and 12.
+- Decide after a feasibility pass whether any browser-side R execution is worth the load and maintenance cost.
+
+---
+
 ## 2026-05-11 — SCSS pruning after structural simplification
 
 ### Block objective

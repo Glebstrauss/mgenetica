@@ -4299,15 +4299,18 @@ code {
 
   .module-session-plan,
   .module-technical-scan,
+  .module-script-lab,
   .module-close-check,
   .module-session-plan-grid,
   .module-technical-scan-grid,
+  .module-script-lab-grid,
   .module-close-check-grid {
     grid-template-columns: 1fr;
   }
 
   .module-session-plan-item,
   .module-technical-scan-item,
+  .module-script-lab-item,
   .module-close-check-item {
     min-height: auto;
   }
@@ -6128,6 +6131,7 @@ code {
 
 .module-session-plan,
 .module-technical-scan,
+.module-script-lab,
 .module-close-check {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
@@ -6153,8 +6157,18 @@ code {
   border-left-color: rgba(12, 120, 190, 0.58);
 }
 
+.module-script-lab {
+  margin: 1.2rem 0 1.5rem;
+  background:
+    linear-gradient(135deg, rgba(10, 31, 56, 0.97), rgba(30, 87, 153, 0.88));
+  border-color: rgba(0, 168, 214, 0.30);
+  border-left-color: #6fdcff;
+  box-shadow: 0 18px 42px rgba(10, 31, 56, 0.12);
+}
+
 .module-session-plan-copy strong,
 .module-technical-scan-copy strong,
+.module-script-lab-copy strong,
 .module-close-check-copy strong {
   display: block;
   margin-bottom: 0.35rem;
@@ -6164,6 +6178,7 @@ code {
 
 .module-session-plan-copy p,
 .module-technical-scan-copy p,
+.module-script-lab-copy p,
 .module-close-check-copy p {
   max-width: 72ch;
   margin: 0;
@@ -6172,8 +6187,17 @@ code {
   line-height: 1.58;
 }
 
+.module-script-lab-copy strong {
+  color: #ffffff;
+}
+
+.module-script-lab-copy p {
+  color: rgba(232, 244, 252, 0.84);
+}
+
 .module-session-plan-grid,
 .module-technical-scan-grid,
+.module-script-lab-grid,
 .module-close-check-grid {
   display: grid;
   counter-reset: module-session-step;
@@ -6183,6 +6207,7 @@ code {
 
 .module-session-plan-item,
 .module-technical-scan-item,
+.module-script-lab-item,
 .module-close-check-item {
   position: relative;
   min-height: 96px;
@@ -6193,8 +6218,14 @@ code {
   border-radius: 10px;
 }
 
+.module-script-lab-item {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(111, 220, 255, 0.24);
+}
+
 .module-session-plan-item::before,
 .module-technical-scan-item::before,
+.module-script-lab-item::before,
 .module-close-check-item::before {
   counter-increment: module-session-step;
   content: counter(module-session-step);
@@ -6216,8 +6247,15 @@ code {
   line-height: 1;
 }
 
+.module-script-lab-item::before {
+  color: #0a1f38;
+  background: #6fdcff;
+  border-color: rgba(255, 255, 255, 0.50);
+}
+
 .module-session-plan-item strong,
 .module-technical-scan-item strong,
+.module-script-lab-item strong,
 .module-close-check-item strong {
   display: block;
   margin-bottom: 0.3rem;
@@ -6227,13 +6265,27 @@ code {
   text-wrap: balance;
 }
 
+.module-script-lab-item strong {
+  color: #ffffff;
+}
+
 .module-session-plan-item p,
 .module-technical-scan-item p,
+.module-script-lab-item p,
 .module-close-check-item p {
   margin: 0;
   color: #52657d;
   font-size: 0.84rem;
   line-height: 1.48;
+}
+
+.module-script-lab-item p {
+  color: rgba(232, 244, 252, 0.78);
+}
+
+.module-script-lab-item .entry-link {
+  margin-top: 0.25rem;
+  color: #6fdcff;
 }
 
 .module-evidence-path {
@@ -7393,6 +7445,7 @@ code {
 
   .module-session-plan,
   .module-technical-scan,
+  .module-script-lab,
   .module-close-check {
     grid-template-columns: 1fr;
   }
@@ -7406,6 +7459,7 @@ code {
   .utility-evidence-route-grid,
   .module-session-plan-grid,
   .module-technical-scan-grid,
+  .module-script-lab-grid,
   .module-close-check-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

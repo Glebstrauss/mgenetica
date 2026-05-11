@@ -117,6 +117,40 @@ Onde:
 
 ## Simulação em R
 
+::: {.module-script-lab role="region" aria-label="Laboratório do script do Módulo 01"}
+::: {.module-script-lab-copy}
+**Laboratório do script**
+
+Use o script para testar como intensidade de seleção e herdabilidade mudam o ganho genético esperado. A página renderiza os trechos principais; o arquivo completo permite repetir a simulação fora do navegador.
+:::
+
+::: {.module-script-lab-grid role="list" aria-label="Como reproduzir o script do Módulo 01"}
+::: {.module-script-lab-item role="listitem"}
+**Roteiro R**
+
+[Abrir `modulo01.R`](../scripts/modulo01.R){.entry-link aria-label="Abrir o script R completo do Módulo 01"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**Saída gerada**
+
+[Ver CSV simulado](../data/modulo01_simulado.csv){.entry-link aria-label="Abrir o CSV simulado gerado pelo Módulo 01"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que alterar**
+
+Troque o corte de seleção de 20% para 10% e compare `S`, `delta_G` e o ganho acumulado.
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que interpretar**
+
+Explique se o aumento de ganho justifica selecionar menos animais quando diversidade e intervalo de gerações também importam.
+:::
+:::
+:::
+
 ```{r}
 #| label: selecao-basica
 set.seed(101)

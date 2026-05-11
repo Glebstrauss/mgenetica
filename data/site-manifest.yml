@@ -179,6 +179,7 @@ content_pages:
     - module-reading-rhythm
     - module-session-plan
     - module-technical-scan
+    - module-script-lab
     - module-takeaways
     - module-after-quiz
     - module-close-check
