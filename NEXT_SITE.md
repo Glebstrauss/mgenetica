@@ -6,125 +6,38 @@ Work only on the public site. Do not alter the app. Do not mix site evolution wi
 
 ## Tipo do próximo bloco
 
-`browser-visual-qa-for-technical-evidence-routes-and-utility-pages`
+`browser-visual-qa-after-structural-simplification`
 
 ## Objective
 
-Review the newest local public-site technical-evidence route changes and perform visual QA when tooling is available. The already published baseline at commit `17c1a95` includes homepage trust anchors, homepage first-session guidance, public route strip, intent switching, public-journey summary, progress snapshot, path-evidence contract, session-choice guidance, outcome map, homepage 12-week planning CTA, reordered public navigation, footer home navigation, manifest-backed navbar journey CTA, module-catalog reading guidance, module-index quick jumps, direct phase-entry links, phase-card start links, module-readiness guidance, phase-decision guidance, evidence-based module-choice guidance, consistent evidence path and return note in all 12 module pages, weekly-route session models, route recovery, route evidence ladder, route phase-handoff, route weekly-output, route-table reading guidance, search/glossary utility crossroads, search/glossary example guidance, search/glossary query-planning guidance, certificate evidence-decision, recovery, identity and next-use guidance, About-page public contract plus editorial-boundary guidance, homepage hero action-choice guidance, utility recovery links, module-index navigation-contract actions, certificate pending-progress summary, public decision hints, final CTA guidance, reusable `.public-session-check`/`.public-wayfinding`, module session/technical/close checks, explicit `.entry-link` labels and numbered scan badges.
-
-The current new local site work adds `.home-output-standard`, `.home-output-standard-actions`, `.modules-output-route`, `.route-output-check`, `.certificate-evidence-review`, `.utility-evidence-route`, `.utility-panel-hint` and stronger public technical-output readability for R code, generated output, warnings, figures and tables in module pages. Documentation, manifest and validator coverage are current. These local changes are not published.
+Perform true browser-based visual QA of the simplified public-site structure, with emphasis on desktop/mobile scanning, navigation clarity, dark mode coherence and absence of visual regressions after the SCSS pruning.
 
 ## Current local state
 
-- The last publication completed successfully through GitHub Actions and deployed-site validation at commit `17c1a95`.
-- New local site changes from the technical-output readability, technical-evidence route, weekly evidence-review, certificate evidence-review and utility evidence-route blocks are not published.
-- Targeted static Quarto render for `index.qmd`, `modules/index.qmd`, representative module pages, `semanas/index.qmd`, `perfil.qmd`, `busca.qmd`, `glossario.qmd` and `certificado.qmd` passed across the current local blocks.
-- Site manifest validation, whitespace diff check, SCSS validation, targeted Quarto render and full prepublish check passed locally after the newest utility evidence-route, panel-hint, documentation and NEXT/WORKLOG updates.
-- Rendered HTML inspection confirmed:
-  - navbar order as `Início`, `Módulos`, `Roteiro`, `Busca`, `Glossário`, `Certificado`, `Sobre` in `docs/index.html`;
-  - navbar journey CTA as `Começar M01` in rendered pages;
-  - primary CTAs standardized to `Começar M01` with `aria-label="Começar pelo Módulo 01"` on homepage, module index and study route;
-  - footer copy as `MGenética · estudar, consultar, concluir` and footer `Início` link in rendered pages;
-  - homepage hero CTA `Planejar 12 semanas` in `docs/index.html`;
-  - `.hero-action-note`, `.hero-action-note-grid` and `.hero-action-note-item` in `docs/index.html`;
-  - `.hero-action-note-hint` and its session-choice copy in `docs/index.html`;
-  - hero action-note links `Abrir Módulo 01`, `Ver índice` and `Planejar` with expanded aria labels in `docs/index.html`;
-  - `.home-start-now` and `.home-start-now-grid` in `docs/index.html`;
-  - `.home-next-click` and `.home-next-click-grid` in `docs/index.html`;
-  - `.home-session-close` and `.home-session-close-grid` in `docs/index.html`;
-  - `.home-trust-anchors` and `.home-trust-anchors-grid` in `docs/index.html`;
-  - `.home-first-session` and `.home-first-session-grid` in `docs/index.html`;
-  - `.home-route-strip` and `.home-route-strip-grid` in `docs/index.html`;
-  - `.home-intent-switch` and `.home-intent-switch-grid` in `docs/index.html`;
-  - `.home-public-journey` and `.home-public-journey-grid` in `docs/index.html`;
-  - `.home-progress-snapshot` and `.home-progress-snapshot-grid` in `docs/index.html`;
-  - `.home-path-contract` and `.home-path-contract-grid` in `docs/index.html`;
-  - `.home-study-choice` and `.home-study-choice-grid` in `docs/index.html`;
-  - `.home-outcome-map` and `.home-outcome-map-grid` in `docs/index.html`;
-  - `.final-cta-hint` in `docs/index.html`;
-  - `.modules-quick-jump` and `.modules-quick-jump-grid` in `docs/modules/index.html`;
-  - `.modules-navigation-contract` and `.modules-navigation-contract-grid` in `docs/modules/index.html`;
-  - `.modules-navigation-contract-hint` in `docs/modules/index.html`;
-  - module-index navigation-contract direct links in `docs/modules/index.html`;
-  - `.modules-phase-entry` and `.modules-phase-entry-grid` in `docs/modules/index.html`;
-  - phase-card `Começar fase` links in `docs/modules/index.html`;
-  - `.modules-readiness-meter` and `.modules-readiness-grid` in `docs/modules/index.html`;
-  - `.modules-open-flow` and `.modules-open-flow-grid` in `docs/modules/index.html`;
-  - `.modules-resume-route` and `.modules-resume-route-grid` in `docs/modules/index.html`;
-  - `.modules-phase-decision` and `.modules-phase-decision-grid` in `docs/modules/index.html`;
-  - `.modules-choice-path` and `.modules-choice-path-grid` in `docs/modules/index.html`;
-  - `.modules-catalog-guide` and `.modules-catalog-guide-grid` in `docs/modules/index.html`;
-  - `.modules-next-step-hint` in `docs/modules/index.html`;
-  - `.module-evidence-path` in rendered representative module pages and in all 12 module source files;
-  - `.module-return-note` in rendered representative module pages and in all 12 module source files;
-  - `.module-reading-rhythm` in rendered representative module pages and in all 12 module source files;
-  - `.module-session-plan` and `.module-session-plan-grid` in all 12 rendered module pages and all 12 module source files;
-  - `.module-technical-scan` and `.module-technical-scan-grid` in all 12 rendered module pages and all 12 module source files;
-  - `.module-close-check` and `.module-close-check-grid` in all 12 rendered module pages and all 12 module source files;
-  - `.entry-link` public shortcuts in checked rendered/source pages have explicit `aria-label` values;
-  - numbered scan badge CSS for public wayfinding, public session checks and module session/technical/close-check items is present in the light and dark stylesheets;
-  - `.home-output-standard`, `.home-output-standard-grid` and `.home-output-standard-actions` in `docs/index.html`, including the `Planejar uma semana` route link;
-  - `.modules-output-route`, `.modules-output-route-grid` and output-route links for M01/M06/M12 in `docs/modules/index.html`;
-  - `.route-output-check`, `.route-output-check-grid` and output-check links for M01/M06/M12 in `docs/semanas/index.html`;
-  - `.certificate-evidence-review`, `.certificate-evidence-review-grid` and review links for M01/M06/M12 in `docs/certificado.html`;
-  - `.utility-evidence-route`, `.utility-evidence-route-grid` and evidence links for M01/M06/M12 in `docs/busca.html` and `docs/glossario.html`;
-  - `.utility-panel-hint` immediately before the Pagefind search panel in `docs/busca.html` and before the glossary panel in `docs/glossario.html`;
-  - technical-output CSS selectors for `div.sourceCode`, `.cell-output-stdout`, `.cell-output-stderr`, `.cell-output-display`, `.table-responsive` and `.code-copy-button:focus-visible` are present in light/dark stylesheets;
-  - `.route-start-today` and `.route-start-today-grid` in `docs/semanas/index.html`;
-  - route start-today links to M01, modules and certificate in `docs/semanas/index.html`;
-  - `.route-session-plan` and `.route-session-plan-grid` in `docs/semanas/index.html`;
-  - `.route-session-split` and `.route-session-split-grid` in `docs/semanas/index.html`;
-  - `.route-recovery-plan` and `.route-recovery-plan-grid` in `docs/semanas/index.html`;
-  - `.route-evidence-ladder` and `.route-evidence-ladder-grid` in `docs/semanas/index.html`;
-  - `.route-phase-handoff` and `.route-phase-handoff-grid` in `docs/semanas/index.html`;
-  - `.route-weekly-output` and `.route-weekly-output-grid` in `docs/semanas/index.html`;
-  - `.route-table-guide` and `.route-table-guide-grid` in `docs/semanas/index.html`;
-  - `.about-public-contract` and `.about-public-contract-grid` in `docs/perfil.html`;
-  - `.utility-crossroads` and `.utility-crossroads-grid` in `docs/busca.html` and `docs/glossario.html`;
-  - `.utility-examples` and `.utility-examples-grid` in `docs/busca.html` and `docs/glossario.html`;
-  - `.utility-query-plan` and `.utility-query-plan-grid` in `docs/busca.html` and `docs/glossario.html`;
-  - `.utility-start-choice` and `.utility-start-choice-grid` in `docs/busca.html` and `docs/glossario.html`;
-  - `.utility-no-result` and `.utility-no-result-grid` in `docs/busca.html` and `docs/glossario.html`;
-  - utility no-result direct recovery links in `docs/busca.html` and `docs/glossario.html`;
-  - destination-specific aria labels for utility no-result and result-close links in rendered utility pages;
-  - `.utility-result-close` and `.utility-result-close-grid` in `docs/busca.html` and `docs/glossario.html`;
-  - utility result-close direct links in `docs/busca.html` and `docs/glossario.html`;
-  - `.utility-next-step-copy` in `docs/busca.html` and `docs/glossario.html`;
-  - `.certificate-decision` and `.certificate-decision-grid` in `docs/certificado.html`.
-  - `.certificate-recovery` and `.certificate-recovery-grid` in `docs/certificado.html`.
-  - `.certificate-next-use` and `.certificate-next-use-grid` in `docs/certificado.html`.
-  - `.certificate-identity-note` and `.certificate-identity-grid` in `docs/certificado.html`.
-  - `.certificate-final-check` and `.certificate-final-check-grid` in `docs/certificado.html`.
-  - `.certificate-progress-summary`, `.certificate-progress-module` and `.certificate-progress-title` in `docs/certificado.html`.
-  - `.certificate-pending-hint` in `docs/certificado.html`.
-  - `.public-session-check.home-session-check` in `docs/index.html`.
-  - `.public-session-check.modules-session-check` in `docs/modules/index.html`.
-  - `.public-session-check.route-session-check` in `docs/semanas/index.html`.
-  - `.public-session-check.utility-session-check` in `docs/busca.html` and `docs/glossario.html`.
-  - `.public-session-check.certificate-session-check` in `docs/certificado.html`.
-  - `.public-wayfinding.home-wayfinding` in `docs/index.html`.
-  - `.public-wayfinding.modules-wayfinding` in `docs/modules/index.html`.
-  - `.public-wayfinding.route-wayfinding` in `docs/semanas/index.html`.
-  - `.public-wayfinding.utility-wayfinding` in `docs/busca.html` and `docs/glossario.html`.
-  - `.public-wayfinding.certificate-wayfinding` in `docs/certificado.html`.
-  - `.public-wayfinding.about-wayfinding` in `docs/perfil.html`.
-  - `#cert-progress-summary` rendered with `role="status"` and `.certificate-actions` tied to it through `aria-describedby`.
-  - `#cert-next-pending-link` and `updateNextPendingAction()` in `docs/certificado.html`.
-  - `.about-editorial-boundary` and `.about-editorial-boundary-grid` in `docs/perfil.html`.
-  - `.about-visitor-path` and `.about-visitor-path-grid` in `docs/perfil.html`.
-- The local project-level Quarto render rename failure remains resolved by serializing Quarto renders through `QUARTO_NUM_THREADS=1` in `scripts/prepublish_site_check.R`.
-- Browser tooling was not exposed in the latest tool discovery pass; no true screenshot QA was performed for the newest local technical-output, output-route, weekly output-check, certificate evidence-review and utility evidence-route changes.
+- The last publication completed successfully through GitHub Actions and deployed-site validation at commit `c7dd2e3`.
+- The current local, unpublished site-only work simplifies public page structure by removing repeated guidance blocks from:
+  - `index.qmd`;
+  - `modules/index.qmd`;
+  - `busca.qmd`;
+  - `glossario.qmd`.
+- The manifest, public component documentation and validator were updated so editable regions and required component references match the simplified structure.
+- Post-simplification CSS cleanup removed unused light/dark SCSS selectors for retired homepage, module-index and utility-page guidance blocks.
+- Targeted Quarto render passed locally for `index.qmd`, `modules/index.qmd`, `busca.qmd` and `glossario.qmd`.
+- Rendered HTML inspection confirmed retired blocks are absent from the affected rendered pages and the retained core blocks still render:
+  - homepage hero, wayfinding, output-standard, trust anchors, first-session and path-contract;
+  - module-index wayfinding, guidance, output-route, completion flow, phases and module grid;
+  - search/glossary utility evidence routes, panel hints and core query/recovery flows.
+- Manifest validation, SCSS validation, whitespace diff check and full prepublish gate passed after the CSS cleanup.
+- Browser tooling was not exposed in this session; no true desktop/mobile screenshot QA was performed.
 - Pre-existing untracked local files remain unrelated and untouched: `.agents/`, `.vscode/`, `AUTOMATION_SITE.md`.
-- Next concrete action: perform true browser visual QA (light+dark + mobile/tablet widths) for `.home-output-standard`, `.home-output-standard-actions`, `.modules-output-route`, `.route-output-check`, `.certificate-evidence-review`, `.utility-evidence-route`, `.utility-panel-hint`, technical-output code/table/output surfaces, reduced-motion behavior, numbered scan badges, `.entry-link`, `.navbar .nav-link`, footer links and `.code-copy-button` focus states, module technical-scan/session/close-check blocks and previously published decision/CTA components if browser tooling becomes available. Publish only on explicit user request, and re-run the full prepublish gate immediately before publication if any additional local edits happen first.
 
 ## In scope
 
-- Review rendered HTML for `.home-output-standard`, `.home-output-standard-actions`, `.modules-output-route`, `.route-output-check`, `.certificate-evidence-review`, `.utility-evidence-route`, `.utility-panel-hint`, technical-output code/table/output surfaces, `.code-copy-button` focus styling, header/footer focus styling, reduced-motion behavior, `.module-session-plan`, `.module-session-plan-grid`, `.module-technical-scan`, `.module-technical-scan-grid`, `.module-close-check`, `.module-close-check-grid`, numbered scan badges, `.entry-link` accessible labels/focus states, `.public-wayfinding`, `.home-wayfinding`, `.modules-wayfinding`, `.route-wayfinding`, `.utility-wayfinding`, `.certificate-wayfinding`, `.about-wayfinding`, `.public-session-check`, `.home-session-check`, `.modules-session-check`, `.route-session-check`, `.utility-session-check`, `.certificate-session-check`, `.hero-action-note`, `.hero-action-note-hint`, `.hero-action-note-grid`, clickable hero-note `.entry-link` routes, `.home-start-now`, `.home-trust-anchors`, `.home-first-session`, `.home-route-strip`, `.home-intent-switch`, `.home-public-journey`, `.home-progress-snapshot`, `.home-path-contract`, `.home-next-click`, `.home-session-close`, `.home-study-choice`, `.home-outcome-map`, `.final-cta-hint`, homepage hero CTAs, navbar journey CTA, `.modules-quick-jump`, `.modules-navigation-contract`, `.modules-navigation-contract-hint`, module-index navigation-contract direct links, `.modules-phase-entry`, phase-card start links, `.modules-readiness-meter`, `.modules-open-flow`, `.modules-resume-route`, `.modules-phase-decision`, `.modules-choice-path`, `.modules-catalog-guide`, `.modules-next-step-hint`, `.module-reading-rhythm`, `.module-evidence-path`, `.module-return-note`, `.route-start-today`, route start-today direct links, `.route-session-plan`, `.route-session-split`, `.route-recovery-plan`, `.route-evidence-ladder`, `.route-phase-handoff`, `.route-weekly-output`, `.route-table-guide`, `.about-public-contract`, `.about-editorial-boundary`, `.about-visitor-path`, `.utility-start-choice`, `.utility-no-result`, utility no-result direct recovery links, `.utility-result-close`, utility result-close direct links, `.utility-next-step-copy`, `.utility-crossroads`, `.utility-examples`, `.utility-query-plan`, `.certificate-decision`, `.certificate-recovery`, `.certificate-next-use`, `.certificate-identity-note`, `.certificate-final-check`, `.certificate-pending-hint`, `.certificate-progress-summary`, `.certificate-progress-module`, `.certificate-progress-title`, `#cert-next-pending-link`, homepage entry/returning/final CTA sections, module index, utility pages and study route.
-- Review rendered HTML and, if tooling becomes available, browser screenshots for homepage, module index, study route, representative module pages, utility pages, Sobre page, footer and certificate page.
-- Re-run `git diff --check`.
-- Re-run `Rscript --vanilla scripts/validate_site_manifest.R`.
-- Before any future publication, run `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`.
-- If publication is explicitly requested, commit and push only tracked site-related changes, then watch GitHub Actions and run deployed-site validation.
+- Perform true browser visual QA for the simplified homepage, module index, search and glossary pages at desktop, tablet and mobile widths when tooling is available.
+- Check both light and dark themes if the browser/session tooling supports theme switching.
+- Verify visual hierarchy, spacing, CTA clarity, navigation affordances and text density after the removal of repeated sections.
+- Confirm retained components do not appear too sparse after simplification and that users still understand what MGenética offers and where to go next.
+- Re-run manifest validation, SCSS validation, whitespace diff check and full prepublish gate after any visual adjustment.
 
 ## Out of scope
 
@@ -139,16 +52,13 @@ The current new local site work adds `.home-output-standard`, `.home-output-stan
 - `git diff --check`
 - `Rscript --vanilla scripts/validate_site_manifest.R`
 - `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
-- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
-- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH" HOME=/private/tmp/quarto-home quarto render`
-- `gh run list --limit 5`
-- `gh run watch`
-- `Rscript scripts/validate_deployed_site.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
 
 ## Criteria for completion
 
-- Rendered/browser review shows no broken hero, homepage study-choice/entry/returning/final CTA, module-index catalog/evidence/return path/final CTA, study-route session plan, module-page practice evidence/takeaways/quiz/navigation flow, Sobre, footer, utility decision, route rhythm or certificate layout.
-- Manifest validation, SCSS validation and whitespace diff check pass.
-- Full prepublish gate passes immediately before any future publication.
-- If published, GitHub Actions deployment completes successfully and deployed-site validation passes.
+- Simplified pages are visually coherent and easier to scan on desktop and mobile.
+- No retired blocks render in the affected pages.
+- Core navigation, module access, search/glossary support and certificate paths remain available.
+- Browser visual QA findings are either fixed or explicitly logged.
+- Manifest validation, SCSS validation, whitespace diff check and full prepublish gate pass.
 - No app files are changed.

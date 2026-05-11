@@ -71,34 +71,6 @@ Depois da consulta, retome a sequência dos módulos ou o roteiro semanal.
 :::
 :::
 
-::: {.utility-start-choice role="navigation" aria-label="Escolha rápida depois de pesquisar"}
-::: {.utility-start-choice-copy}
-**Escolha o destino pelo tipo de dúvida**
-
-A busca é mais útil quando termina em uma rota clara: estudar o módulo completo, resolver uma definição ou recuperar o ritmo semanal.
-:::
-
-::: {.utility-start-choice-grid role="list" aria-label="Destinos recomendados depois da busca"}
-::: {.utility-start-choice-item role="listitem"}
-**Aprender**
-
-[Abrir módulos](modules/index.qmd){.entry-link aria-label="Abrir módulos depois da busca"}
-:::
-
-::: {.utility-start-choice-item role="listitem"}
-**Definir**
-
-[Consultar glossário](glossario.qmd){.entry-link aria-label="Consultar glossário depois da busca"}
-:::
-
-::: {.utility-start-choice-item role="listitem"}
-**Retomar**
-
-[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro depois da busca"}
-:::
-:::
-:::
-
 ::: {.utility-decision role="region" aria-label="Como decidir o que fazer com um resultado da busca"}
 ::: {.utility-decision-copy}
 **Depois do resultado, escolha uma ação**
@@ -157,48 +129,6 @@ Use quando o resultado pedir comparação de parâmetros, variâncias ou correla
 Use quando o resultado envolver padrão visual, SNPs, GWAS ou predição.
 
 [Abrir M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir o Módulo 12 para revisar evidência visual depois da busca"}
-:::
-:::
-:::
-
-::: {.utility-return-guide role="region" aria-label="Como usar a busca sem perder a sequência do curso"}
-::: {.utility-return-copy}
-**Use a busca como desvio curto**
-
-A busca funciona melhor quando ajuda a recuperar contexto e depois devolve você para uma decisão de estudo: continuar o módulo aberto, revisar a fase correspondente ou consultar o glossário.
-:::
-
-::: {.utility-return-actions role="navigation" aria-label="Rotas depois de encontrar um resultado"}
-[Retomar módulos](modules/index.qmd){.btn .btn-secondary}
-[Ver roteiro](semanas/index.qmd){.btn .btn-secondary}
-[Abrir certificado](certificado.qmd){.btn .btn-secondary}
-:::
-:::
-
-::: {.utility-crossroads role="region" aria-label="Quando usar busca, glossário ou roteiro"}
-::: {.utility-crossroads-copy}
-**Escolha o apoio certo**
-
-Use a busca para localizar contexto, o glossário para resolver termos e o roteiro para retomar a sequência. A consulta deve sempre devolver você para uma decisão de estudo.
-:::
-
-::: {.utility-crossroads-grid role="list" aria-label="Diferenças entre apoios da trilha"}
-::: {.utility-crossroads-item role="listitem"}
-**Busca**
-
-Quando você sabe o termo, mas não sabe onde ele aparece.
-:::
-
-::: {.utility-crossroads-item role="listitem"}
-**Glossário**
-
-Quando a definição curta é suficiente para continuar lendo.
-:::
-
-::: {.utility-crossroads-item role="listitem"}
-**Roteiro**
-
-Quando a dúvida é sobre ordem, ritmo ou retomada.
 :::
 :::
 :::

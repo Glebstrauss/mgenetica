@@ -68,34 +68,6 @@ Volte ao conteúdo principal para interpretar o termo em contexto.
 :::
 :::
 
-::: {.utility-start-choice role="navigation" aria-label="Escolha rápida depois de consultar o glossário"}
-::: {.utility-start-choice-copy}
-**Escolha o próximo contexto**
-
-Depois de entender uma definição, volte para o lugar em que ela muda a interpretação: o módulo, a busca por exemplos ou o roteiro da fase.
-:::
-
-::: {.utility-start-choice-grid role="list" aria-label="Destinos recomendados depois do glossário"}
-::: {.utility-start-choice-item role="listitem"}
-**Aplicar**
-
-[Voltar aos módulos](modules/index.qmd){.entry-link aria-label="Voltar aos módulos depois do glossário"}
-:::
-
-::: {.utility-start-choice-item role="listitem"}
-**Localizar**
-
-[Buscar no curso](busca.qmd){.entry-link aria-label="Buscar exemplos no curso depois do glossário"}
-:::
-
-::: {.utility-start-choice-item role="listitem"}
-**Sequenciar**
-
-[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro depois do glossário"}
-:::
-:::
-:::
-
 ::: {.utility-decision role="region" aria-label="Como transformar um termo do glossário em estudo"}
 ::: {.utility-decision-copy}
 **Termo entendido, contexto necessário**
@@ -154,48 +126,6 @@ Use quando o termo for parâmetro, variância, correlação ou medida comparáve
 Use quando o termo aparecer em genômica, SNPs, GWAS ou predição.
 
 [Abrir M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir o Módulo 12 para revisar evidência visual depois do glossário"}
-:::
-:::
-:::
-
-::: {.utility-return-guide role="region" aria-label="Como voltar do glossário para a trilha"}
-::: {.utility-return-copy}
-**Glossário é apoio, não ponto final**
-
-Depois de entender o termo, volte ao módulo em que ele aparece. A interpretação técnica depende do contexto, da simulação e da saída em R.
-:::
-
-::: {.utility-return-actions role="navigation" aria-label="Rotas depois de consultar o glossário"}
-[Voltar aos módulos](modules/index.qmd){.btn .btn-secondary}
-[Buscar no curso](busca.qmd){.btn .btn-secondary}
-[Planejar estudo](semanas/index.qmd){.btn .btn-secondary}
-:::
-:::
-
-::: {.utility-crossroads role="region" aria-label="Quando usar glossário, busca ou roteiro"}
-::: {.utility-crossroads-copy}
-**Depois da definição, escolha o contexto**
-
-Se o termo ficou claro, volte ao módulo. Se ainda falta aplicação, use a busca para localizar exemplos ou o roteiro para recuperar a fase de estudo.
-:::
-
-::: {.utility-crossroads-grid role="list" aria-label="Caminhos depois do glossário"}
-::: {.utility-crossroads-item role="listitem"}
-**Termo claro**
-
-Retorne ao módulo e leia a aplicação no texto.
-:::
-
-::: {.utility-crossroads-item role="listitem"}
-**Termo sem contexto**
-
-Use a busca para encontrar o conceito dentro da trilha.
-:::
-
-::: {.utility-crossroads-item role="listitem"}
-**Termo recorrente**
-
-Revise a fase correspondente antes de avançar.
 :::
 :::
 :::

@@ -61,6 +61,165 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-11 — SCSS pruning after structural simplification
+
+### Block objective
+
+Complete the post-simplification cleanup requested in `NEXT_SITE.md`, removing unused public-site SCSS for retired guidance blocks while preserving the simplified page architecture and avoiding app changes or publication.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` required browser visual QA and pruning of legacy selectors left by the structural simplification.
+   Implementation: audited `styles/main.scss`, `styles/main-dark.scss`, rendered HTML and editable-region references for retired homepage, module-index and utility blocks.
+   Testing: confirmed browser tooling was not exposed in this session and scoped the block to CSS/HTML validation plus render checks.
+   Notes: no app files, deployment files or unrelated untracked files were changed.
+2. Diagnosis: light-theme CSS still contained retired homepage and old module route selectors that no longer existed in QMD or rendered HTML.
+   Implementation: removed stale `.modules-route`, homepage route/session/intent/progress/next-click selector references and related responsive rules from `styles/main.scss`.
+   Testing: SCSS compilation passed for the light and dark stylesheets.
+   Notes: retained homepage selectors for the simplified structure, including output-standard, trust anchors, first session and path contract.
+3. Diagnosis: module-index selectors for retired quick-jump, navigation-contract, readiness, phase-entry, phase-decision, open-flow, resume-route, catalog/return and study-check sections remained in shared component groups.
+   Implementation: pruned those module-index selectors from shared card, typography, grid, hover/focus and responsive groups.
+   Testing: targeted rendered HTML inspection confirmed retired module-index classes are absent from `docs/modules/index.html`.
+   Notes: retained module guidance, output route, completion flow, phase grid and module catalog styling.
+4. Diagnosis: utility-page and dark-theme CSS still referenced retired start-choice, return-guide and crossroads sections, plus stale module/home selectors.
+   Implementation: removed retired utility selectors and mirrored the simplification in `styles/main-dark.scss`.
+   Testing: `rg` confirmed no targeted retired selectors remain in the light or dark SCSS files.
+   Notes: search/glossary evidence routes, panel hints and query/recovery flows remain styled.
+5. Diagnosis: the cleanup needed final render, contract and validation checks before handoff.
+   Implementation: rendered `index.qmd`, `modules/index.qmd`, `busca.qmd` and `glossario.qmd`; inspected rendered HTML for retired and retained components; updated `WORKLOG_SITE.md` and `NEXT_SITE.md`.
+   Testing: manifest validation, SCSS validation, targeted Quarto render, whitespace diff check and full prepublish gate passed.
+   Notes: the full prepublish run included the complete Quarto render.
+
+### Files changed in this block
+
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Removed dead CSS for retired public guidance blocks across light and dark themes.
+- Reduced CSS maintenance burden after the structural simplification.
+- Kept the simplified public-page components visually supported without reintroducing old decision surfaces.
+- Verified that rendered pages no longer contain retired classes and still contain retained core components.
+
+### Problems fixed
+
+- Legacy SCSS selectors no longer described public sections that had been removed from QMD and the manifest.
+- Dark-mode styling no longer carried stale rules for retired homepage, module-index and utility-page blocks.
+
+### Commands executed
+
+- `rg -n "home-start-now|home-route-strip|home-intent-switch|home-public-journey|home-progress-snapshot|home-next-click|home-session-close|home-study-choice|modules-quick-jump|modules-navigation-contract|modules-readiness-meter|modules-open-flow|modules-resume-route|modules-phase-entry|modules-phase-decision|modules-catalog-guide|modules-return-path|modules-study-check|utility-start-choice|utility-return-guide|utility-crossroads|modules-choice-path|modules-route" styles/main.scss styles/main-dark.scss`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd busca.qmd glossario.qmd --no-execute`
+- `rg -n "home-start-now|home-route-strip|home-intent-switch|home-public-journey|home-progress-snapshot|home-next-click|home-session-close|home-study-choice|modules-quick-jump|modules-navigation-contract|modules-readiness-meter|modules-open-flow|modules-resume-route|modules-phase-entry|modules-phase-decision|modules-catalog-guide|modules-return-path|modules-study-check|utility-start-choice|utility-return-guide|utility-crossroads|modules-choice-path|modules-route" docs/index.html docs/modules/index.html docs/busca.html docs/glossario.html`
+- `rg -n "home-output-standard|home-trust-anchors|home-first-session|home-path-contract|modules-output-route|modules-completion-flow|phase-grid|module-grid|utility-evidence-route|utility-panel-hint" docs/index.html docs/modules/index.html docs/busca.html docs/glossario.html`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS validation passed.
+- Targeted Quarto render passed for homepage, module index, search and glossary.
+- Rendered HTML inspection confirmed retired classes are absent from the affected pages.
+- Rendered HTML inspection confirmed retained core public components remain present.
+- Full prepublish gate passed with `prepublish site check ok`.
+- Browser screenshot QA remains pending because local browser tooling was not exposed in this session.
+
+### Pending items
+
+- Perform true browser visual QA for desktop/tablet/mobile when browser tooling is available.
+- Publish only after an explicit user request and a fresh prepublish pass.
+
+---
+
+## 2026-05-11 — Structural simplification of public pages
+
+### Block objective
+
+Review the public site as product designer, information architect and frontend engineer, reducing repeated guidance blocks and clarifying page purpose without changing the app, rebuilding the project from scratch or removing essential academic content.
+
+### Cycles executed
+
+1. Diagnosis: the homepage repeated the same "choose a route / leave with evidence / return to the index" instruction across many adjacent card sections.
+   Implementation: removed redundant homepage blocks for session-check, start-now, route-strip, intent-switch, public-journey, progress-snapshot, next-click, session-close and study-choice.
+   Testing: targeted render confirmed the removed blocks no longer appear in `docs/index.html`, while hero, wayfinding, output-standard, trust anchors, first-session and path-contract remain.
+   Notes: hero, logo, primary CTAs, academic tone and core learning narrative were preserved.
+2. Diagnosis: search and glossary pages had overlapping start-choice, return-guide and crossroads sections that repeated the same navigation decisions already covered by wayfinding, decision, result-close and next-step blocks.
+   Implementation: removed `utility-start-choice`, `utility-return-guide` and `utility-crossroads` from both utility pages.
+   Testing: targeted render confirmed the retired utility blocks are absent from `docs/busca.html` and `docs/glossario.html`, while evidence routes, examples, query plan, recovery and panel hints remain.
+   Notes: Pagefind and glossary widget behavior were not changed.
+3. Diagnosis: the module index had become an overly long decision surface before the user reached phases or module cards.
+   Implementation: removed redundant module-index quick-jump, navigation-contract, session-check, route/support, choice-path, readiness, open-flow, resume-route, phase-entry, phase-decision, phase-bridge, catalog-guide, return-path and study-check sections.
+   Testing: targeted render confirmed retired module-index blocks are absent and retained wayfinding, guidance, output-route, completion flow, phases and module catalog still render.
+   Notes: module links, phase cards and certificate route were preserved.
+4. Diagnosis: the declared content architecture still referenced retired sections after the page simplification.
+   Implementation: updated `data/site-manifest.yml`, `scripts/validate_site_manifest.R` and `PUBLIC_SITE_COMPONENTS.md` so editable regions and documented component families match the simplified site.
+   Testing: manifest validation and SCSS validation passed after the contract update.
+   Notes: legacy CSS selectors still exist and are listed as next cleanup scope rather than removed in this safer structural pass.
+5. Diagnosis: responsiveness and desktop/mobile layout still needed validation after a large reduction in rendered sections.
+   Implementation: rendered the affected pages and inspected generated HTML for absence of retired blocks and presence of essential retained blocks.
+   Testing: targeted Quarto render, rendered HTML inspection and `git diff --check` passed.
+   Notes: browser screenshot QA remains pending because browser/local inspection tooling was not exposed in this session.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `busca.qmd`
+- `glossario.qmd`
+- `data/site-manifest.yml`
+- `scripts/validate_site_manifest.R`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Reduced homepage complexity by removing repeated route/session/progress cards.
+- Simplified search and glossary into clearer utility pages with fewer duplicated navigation explanations.
+- Shortened the module index so phases and module cards are reached faster.
+- Updated manifest and validation contracts to match the actual public structure.
+- Preserved core identity, logo, premium academic tone, module content, search/glossary tools, certificate path and responsive CSS.
+
+### Problems fixed
+
+- Multiple pages were saying the same thing with different component names.
+- The module index was overloaded before exposing the actual module catalog.
+- The manifest and public component documentation now describe the simplified page structure instead of obsolete rendered sections.
+
+### Commands executed
+
+- `tool_search` for browser/local inspection tooling
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd busca.qmd glossario.qmd --no-execute`
+- `rg -n "home-session-check|home-start-now|home-route-strip|home-intent-switch|home-public-journey|home-progress-snapshot|home-next-click|home-session-close|home-study-choice|modules-quick-jump|modules-navigation-contract|modules-session-check|modules-choice-path|modules-readiness-meter|modules-open-flow|modules-resume-route|modules-phase-entry|modules-phase-decision|modules-phase-bridge|modules-catalog-guide|modules-return-path|modules-study-check|utility-start-choice|utility-return-guide|utility-crossroads" docs/index.html docs/modules/index.html docs/busca.html docs/glossario.html`
+- `rg -n "home-output-standard|home-trust-anchors|home-first-session|home-path-contract|modules-output-route|modules-completion-flow|phase-grid|module-grid|utility-evidence-route|utility-panel-hint" docs/index.html docs/modules/index.html docs/busca.html docs/glossario.html`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, module index, search and glossary.
+- Rendered HTML inspection confirmed retired blocks are absent and retained core blocks remain present.
+- Full prepublish gate passed with `prepublish site check ok`.
+
+### Pending items
+
+- Browser screenshot QA remains pending because browser/local inspection tooling was not exposed in this session.
+- Legacy CSS selectors for retired blocks remain in the stylesheets and should be pruned in a focused follow-up.
+- Publish only after an explicit publication request.
+
+---
+
 ## 2026-05-11 — Utility evidence-route and panel-hint UX
 
 ### Block objective
