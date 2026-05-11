@@ -24,6 +24,12 @@ description: "Equações de Henderson, predição de EBV, acurácia e ranking de
 </div>
 ```
 
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
 ## O problema que Henderson resolveu
 
 Em 1949, C.R. Henderson formulou um sistema de equações que permite, simultaneamente:

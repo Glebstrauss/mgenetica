@@ -24,6 +24,12 @@ description: "Matriz de parentesco numérico A, método tabular, coeficientes de
 </div>
 ```
 
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
 ## O pedigree como informação genética
 
 Dois irmãos completos compartilham, em média, 50% dos seus genes. Dois meio-irmãos paternos compartilham 25%. Esse grau de parentesco genético — expresso como **coeficiente de parentesco (a_ij)** — é a base para conectar avaliações de animais em diferentes rebanhos e épocas.

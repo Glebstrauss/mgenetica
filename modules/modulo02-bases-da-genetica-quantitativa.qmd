@@ -24,6 +24,12 @@ description: "A equação P = G + E, decomposição do valor genético e a heran
 </div>
 ```
 
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
 ## Por que as características zootécnicas não obedecem a Mendel?
 
 Peso, produção de leite, prolificidade — essas características variam de forma contínua entre os animais. Não há "pesado" ou "leve", há uma distribuição. Isso acontece porque **muitos loci** contribuem simultaneamente, cada um com efeito pequeno, e o **ambiente** sobrepõe ruído a essa somatória genética. O resultado é a curva normal que observamos nos fenótipos zootécnicos.

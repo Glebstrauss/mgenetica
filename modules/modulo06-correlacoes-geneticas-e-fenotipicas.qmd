@@ -24,6 +24,12 @@ description: "Relações entre características, resposta correlacionada à sele
 </div>
 ```
 
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
 ## Quando selecionar para uma característica muda outra
 
 Um produtor seleciona bovinos para maior produção de leite. Alguns anos depois, percebe que a taxa de prenhez do rebanho diminuiu. Não é coincidência: há uma **correlação genética negativa** entre produção de leite e fertilidade. Os genes que elevam a produção frequentemente desfavorecem a reprodução. Isso é a correlação genética em ação.

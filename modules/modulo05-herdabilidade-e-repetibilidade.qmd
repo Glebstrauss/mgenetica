@@ -24,6 +24,12 @@ description: "Conceitos, estimação e interpretação de h² e repetibilidade. 
 </div>
 ```
 
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
 ## O que é herdabilidade — e o que não é
 
 A herdabilidade (h²) é o parâmetro mais citado e mais mal interpretado do melhoramento animal. Ela **não** diz quanto do fenótipo de um animal é genético. Ela diz qual **fração da variação fenotípica observada em uma população** é atribuível a diferenças genéticas aditivas entre animais.

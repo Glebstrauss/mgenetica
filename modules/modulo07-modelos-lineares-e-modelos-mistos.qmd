@@ -30,6 +30,12 @@ description: "Estrutura dos modelos lineares mistos, efeitos fixos vs. aleatóri
 Aqui começa a modelagem. Os parâmetros estudados antes passam a orientar a separação entre efeitos fixos, efeitos aleatórios e erro residual.
 :::
 
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
 ## Por que precisamos de modelos mistos?
 
 Em um experimento clássico de fazenda, temos:

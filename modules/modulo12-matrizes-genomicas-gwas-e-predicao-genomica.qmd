@@ -24,6 +24,12 @@ description: "Construção da matriz G, teste de associação genômica (GWAS) e
 </div>
 ```
 
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
 ## Da matriz A à matriz G: parentesco esperado vs. realizado
 
 No BLUP com pedigree (Módulo 08), dois meio-irmãos têm a_ij = 0,25 — por definição. Mas o parentesco genômico real entre eles pode ser 0,18 ou 0,31, dependendo de quais segmentos foram herdados. A **matriz G** capta essa variação real:

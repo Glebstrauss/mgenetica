@@ -24,6 +24,12 @@ description: "Decomposição de VP em componentes genéticos e ambientais. Estim
 </div>
 ```
 
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
 ## Da variância observada à variância útil
 
 Quando olhamos para o peso de 500 bovinos, vemos que eles variam. Essa variação total — a **variância fenotípica (VP)** — tem origens distintas. Parte vem de diferenças genéticas reais entre animais; parte vem do ambiente em que cada animal foi criado. A grande questão do melhoramento é: **quanto dessa variação é genético e, desse genético, quanto é transmissível?**

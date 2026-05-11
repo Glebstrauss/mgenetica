@@ -101,13 +101,18 @@ content_pages:
     - hero-panel-proof
     - page-hero
     - hero-signal
+    - hero-action-note
+    - hero-action-note-hint
     - home-trust-anchors
     - home-first-session
+    - home-start-now
     - home-route-strip
     - home-intent-switch
     - home-public-journey
     - home-progress-snapshot
     - home-path-contract
+    - home-next-click
+    - home-session-close
     - learning-loop
     - phase-preview
     - module-grid
@@ -117,12 +122,17 @@ content_pages:
     - modules-support
     - modules-completion-flow
     - modules-quick-jump
+    - modules-navigation-contract
+    - modules-navigation-contract-hint
     - modules-choice-path
     - modules-phase-decision
     - modules-readiness-meter
     - modules-phase-entry
+    - modules-open-flow
+    - modules-resume-route
     - modules-evidence-standard
     - modules-next-step
+    - modules-next-step-hint
     - route-overview
     - utility-return-guide
     - route-finish-band
@@ -138,6 +148,9 @@ content_pages:
     - utility-crossroads
     - utility-examples
     - utility-query-plan
+    - utility-start-choice
+    - utility-no-result
+    - utility-result-close
     - utility-decision
     - modules-study-check
     - modules-return-path
@@ -146,6 +159,8 @@ content_pages:
     - modules-phase-bridge
     - route-week-decision
     - route-session-plan
+    - route-start-today
+    - route-session-split
     - route-evidence-ladder
     - route-recovery-plan
     - route-phase-handoff
@@ -160,19 +175,24 @@ content_pages:
     - certificate-recovery
     - certificate-next-use
     - certificate-identity-note
+    - certificate-final-check
+    - certificate-pending-hint
     - about-next-step
     - about-route
     - about-credibility
     - about-public-contract
     - about-editorial-boundary
+    - about-visitor-path
     - module-phase-note
     - module-phase-start
+    - module-reading-rhythm
     - module-takeaways
     - module-after-quiz
     - module-return-note
     - module-evidence-path
     - module-practice-contract
     - final-cta
+    - final-cta-hint
   items:
     - id: home
       title: MGenética
@@ -183,6 +203,8 @@ content_pages:
         - hero
         - hero-panel-proof
         - hero-signal
+        - hero-action-note
+        - start-now
         - trust-anchors
         - first-session
         - route-strip
@@ -190,6 +212,8 @@ content_pages:
         - public-journey
         - progress-snapshot
         - path-contract
+        - next-click
+        - session-close
         - study-choice
         - orientation
         - audience
@@ -219,11 +243,14 @@ content_pages:
       editable_regions:
         - hero
         - quick-jump
+        - navigation-contract
         - guidance
         - route
         - support
         - choice-path
         - readiness-meter
+        - open-flow
+        - resume-route
         - phase-entry
         - phase-decision
         - completion-flow
@@ -246,8 +273,10 @@ content_pages:
         - route-checkpoints
         - route-overview
         - route-week-decision
+        - route-start-today
         - route-recovery-plan
         - route-session-plan
+        - route-session-split
         - route-evidence-ladder
         - route-phase-handoff
         - route-weekly-output
@@ -263,11 +292,14 @@ content_pages:
       editable_regions:
         - hero
         - utility-flow
+        - utility-start-choice
         - utility-decision
         - utility-return
         - utility-crossroads
         - utility-examples
         - utility-query-plan
+        - utility-no-result
+        - utility-result-close
         - search-panel
         - utility-next-step
     - id: glossary
@@ -278,11 +310,14 @@ content_pages:
       editable_regions:
         - hero
         - utility-flow
+        - utility-start-choice
         - utility-decision
         - utility-return
         - utility-crossroads
         - utility-examples
         - utility-query-plan
+        - utility-no-result
+        - utility-result-close
         - glossary-panel
         - utility-next-step
     - id: certificate
@@ -299,6 +334,7 @@ content_pages:
         - certificate-recovery
         - certificate-next-use
         - certificate-identity
+        - certificate-final-check
         - certificate-preview
         - certificate-form
         - certificate-noscript
@@ -315,6 +351,7 @@ content_pages:
         - credibility
         - public-contract
         - editorial-boundary
+        - visitor-path
         - principles
         - site-map
         - about-next-step
@@ -331,6 +368,7 @@ content_collections:
       - header
       - objectives
       - orientation
+      - reading-rhythm
       - body
       - exercise
       - evidence-path

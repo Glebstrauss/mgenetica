@@ -24,6 +24,12 @@ description: "Objetivos do melhoramento, a equação do melhorista e os fatores 
 </div>
 ```
 
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
 ## O problema antes da fórmula
 
 Imagine um rebanho de bovinos de corte com média de peso ao sobreano de 280 kg. O produtor seleciona os animais mais pesados para reprodução. Após alguns anos, o rebanho pesa, em média, 295 kg. O que aconteceu? Os genes que contribuem para maior peso ficaram mais frequentes na população. Essa mudança dirigida na média genotípica de uma população ao longo das gerações é o que chamamos de **melhoramento genético animal**.

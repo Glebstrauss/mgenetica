@@ -61,6 +61,754 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-11 — Final-decision hints across public CTA closures
+
+### Block objective
+
+Execute another site-only public visual/UX block aligned with `publication-readiness-review`: improve the public decision copy around final CTA clusters, utility exits and the certificate pending state, while keeping validation/documentation coverage current and not publishing.
+
+### Cycles executed
+
+1. Diagnosis: the homepage final CTA had good actions, but the copy did not explicitly tell visitors when to choose module, planning or certificate at the final decision point.
+   Implementation: added `.final-cta-hint` to `index.qmd` before the final CTA checks.
+   Testing: rendered `index.qmd` and confirmed `.final-cta-hint` and the `Começar M01` decision copy in `docs/index.html`.
+   Notes: this improves the homepage closing decision without changing the hero hierarchy.
+2. Diagnosis: the module-index final next-step band exposed actions, but its decision copy could be tighter for visitors returning after browsing phases/cards.
+   Implementation: added `.modules-next-step-hint` to `modules/index.qmd`.
+   Testing: rendered `modules/index.qmd` and confirmed the hint in `docs/modules/index.html`.
+   Notes: this reinforces the index as a public decision point rather than a catalog-only page.
+3. Diagnosis: search and glossary ended with button groups, but there was no immediate reminder to convert lookup into a study decision.
+   Implementation: added `.utility-next-step-copy` blocks to `busca.qmd` and `glossario.qmd` before their final utility buttons.
+   Testing: rendered both utility pages and confirmed the copy in generated HTML.
+   Notes: this reduces open-ended searching and keeps utility pages connected to the study path.
+4. Diagnosis: the certificate pending state had dynamic progress and a next-pending CTA, but the static pending copy did not explain how to use the pending list as a recovery route.
+   Implementation: added `.certificate-pending-hint` inside the incomplete certificate state in `certificado.qmd`.
+   Testing: rendered `certificado.qmd` and confirmed the pending hint in `docs/certificado.html`.
+   Notes: certificate logic remains browser-local; no backend or app work was added.
+5. Diagnosis: the new public hints needed light/dark visual coverage, component documentation, manifest registration and validator protection.
+   Implementation: styled `.final-cta-hint`, `.modules-next-step-hint`, `.utility-next-step-copy` and `.certificate-pending-hint` in `styles/main.scss` and `styles/main-dark.scss`; updated `PUBLIC_SITE_COMPONENTS.md`, `data/site-manifest.yml` and `scripts/validate_site_manifest.R`.
+   Testing: manifest validation, SCSS validation, whitespace diff check, targeted Quarto render and rendered HTML inspection passed.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `busca.qmd`
+- `glossario.qmd`
+- `certificado.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added homepage final-CTA decision guidance.
+- Added module-index final next-step decision guidance.
+- Added final utility-exit copy to search and glossary.
+- Added certificate pending-route guidance.
+- Added style, dark-mode, manifest, documentation and validator coverage for the new public hints.
+
+### Problems fixed
+
+- Reduced ambiguity around final CTA groups.
+- Kept utility pages from ending as button-only exits.
+- Made the certificate pending list easier to use as a recovery route.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd busca.qmd glossario.qmd certificado.qmd --no-execute`
+- `rg -n 'final-cta-hint|Começar M01|modules-next-step-hint|O índice fecha melhor|utility-next-step-copy|Depois da busca|Depois do termo|certificate-pending-hint|Use esta lista como rota' docs/index.html docs/modules/index.html docs/busca.html docs/glossario.html docs/certificado.html`
+- `rg -n "final-cta-hint|modules-next-step-hint|utility-next-step-copy|certificate-pending-hint" styles/main.scss styles/main-dark.scss PUBLIC_SITE_COMPONENTS.md data/site-manifest.yml scripts/validate_site_manifest.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, module index, search, glossary and certificate.
+- Rendered HTML inspection confirmed the new decision hints and certificate pending guidance.
+- Full prepublish gate passed locally after the log and NEXT updates.
+
+### Pending items
+
+- True browser screenshot QA remains pending because no browser automation tool was exposed by tool discovery in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-10 — Browser-readiness hardening for public UX actions
+
+### Block objective
+
+Execute another site-only public visual/UX block aligned with `publication-readiness-review`: harden the newly clickable public journey actions for browser review, improve microcopy and accessibility labels, and keep the component/manifest contract current without publishing.
+
+### Cycles executed
+
+1. Diagnosis: the homepage hero action-note links were clickable, but the first-viewport note did not explicitly tell visitors how to use the three choices as a session decision.
+   Implementation: added `.hero-action-note-hint` to `index.qmd` before the note grid.
+   Testing: rendered `index.qmd` and confirmed `.hero-action-note-hint` plus the copy in `docs/index.html`.
+   Notes: this keeps the first viewport public and editorial while reducing indecision between the three entry routes.
+2. Diagnosis: the module-index navigation contract had three actions, but one label was still abbreviated and the contract copy lacked a compact decision criterion.
+   Implementation: added `.modules-navigation-contract-hint`, expanded `Abrir M01` to `Abrir Módulo 01`, and added aria labels to the direct module-index actions.
+   Testing: rendered `modules/index.qmd` and confirmed the hint, expanded label and aria labels in `docs/modules/index.html`.
+   Notes: this strengthens public navigation without changing the navbar or app-facing structure.
+3. Diagnosis: search and glossary recovery/result-close links were visible, but several links lacked destination-specific aria labels.
+   Implementation: added explicit aria labels to no-result and result-close links in `busca.qmd` and `glossario.qmd`.
+   Testing: rendered both utility pages and confirmed representative aria labels in generated HTML.
+   Notes: this improves keyboard/screen-reader clarity for utility recovery flows.
+4. Diagnosis: the certificate incomplete-state summary was dynamic and actionable, but the action area was not explicitly tied to the progress summary for assistive navigation.
+   Implementation: gave `#cert-progress-summary` `role="status"` and connected `.certificate-actions` with `aria-describedby="cert-progress-summary"`.
+   Testing: rendered `certificado.qmd` and confirmed both attributes in `docs/certificado.html`.
+   Notes: the certificate flow remains browser-local and public-facing; no backend or app behavior was added.
+5. Diagnosis: the new hints and link labels needed responsive, dark-mode, documentation and manifest/validator coverage before publication review.
+   Implementation: hardened `.entry-link` wrapping, tap target and underline behavior in `styles/main.scss`, added dark-mode hint color in `styles/main-dark.scss`, documented the new hint classes, added them to `data/site-manifest.yml` editorial patterns and protected them in `scripts/validate_site_manifest.R`.
+   Testing: manifest validation, SCSS validation, whitespace diff check, targeted Quarto render and rendered HTML inspection passed.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `busca.qmd`
+- `glossario.qmd`
+- `certificado.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added first-viewport guidance for choosing one homepage action per study session.
+- Added a compact decision criterion and clearer labels in the module-index navigation contract.
+- Added destination-specific aria labels to search and glossary recovery links.
+- Connected certificate pending actions to the dynamic progress summary.
+- Improved `.entry-link` responsiveness, focus/tap readiness and dark-mode hint coverage.
+
+### Problems fixed
+
+- Reduced ambiguity in the homepage and module-index micro-action areas before browser review.
+- Improved accessibility semantics for utility and certificate action flows.
+- Added manifest, documentation and validator coverage for the new public hint classes.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd busca.qmd glossario.qmd certificado.qmd --no-execute`
+- `rg -n "hero-action-note-hint|Escolha uma ação por sessão|Abrir Módulo 01|modules-navigation-contract-hint|Ver fases da trilha|Ver exemplos de busca úteis|Abrir glossário técnico|Abrir busca do curso|role=\"status\"|aria-describedby=\"cert-progress-summary\"" docs/index.html docs/modules/index.html docs/busca.html docs/glossario.html docs/certificado.html`
+- `rg -n "hero-action-note-hint|modules-navigation-contract-hint|width: fit-content|min-height: 44px|overflow-wrap: anywhere|text-underline-offset|cert-progress-summary" styles/main.scss styles/main-dark.scss PUBLIC_SITE_COMPONENTS.md data/site-manifest.yml scripts/validate_site_manifest.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, module index, search, glossary and certificate.
+- Rendered HTML inspection confirmed the new hints, aria labels and certificate action semantics.
+- Full prepublish gate passed locally after the log and NEXT updates.
+
+### Pending items
+
+- True browser screenshot QA remains pending because no browser automation tool was exposed by tool discovery in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-10 — Actionable recovery links and next-pending certificate CTA
+
+### Block objective
+
+Execute another site-only public visual/UX block aligned with `publication-readiness-review`: make existing readiness/recovery panels more directly actionable, improve the certificate pending CTA and keep validation/documentation coverage current without publishing.
+
+### Cycles executed
+
+1. Diagnosis: the homepage hero note had clickable routes, but the shorthand `Abrir M01` label was less explicit than the expanded primary CTA contract.
+   Implementation: changed the first hero-note link to `Abrir Módulo 01` and added explicit aria labels to the three hero-note links in `index.qmd`.
+   Testing: rendered `index.qmd` and confirmed the expanded label plus aria labels in `docs/index.html`.
+   Notes: this improves accessibility and clarity while preserving the primary hero CTA hierarchy.
+2. Diagnosis: the module-index navigation contract described open/compare/conclude actions, but still required visitors to infer the actual destination.
+   Implementation: added direct `.entry-link` actions to `.modules-navigation-contract-item` in `modules/index.qmd`.
+   Testing: rendered `modules/index.qmd` and confirmed the links in `docs/modules/index.html`.
+   Notes: this strengthens the module index as a public return point without changing navbar structure.
+3. Diagnosis: search and glossary no-result panels explained recovery but did not provide direct routes to examples, modules or the study route.
+   Implementation: added direct `.entry-link` recovery actions to `.utility-no-result-item` in `busca.qmd` and `glossario.qmd`.
+   Testing: rendered both utility pages and confirmed representative no-result links in generated HTML.
+   Notes: this improves utility recovery without adding new search behavior or backend work.
+4. Diagnosis: the certificate incomplete state had a summary and module badges, but the primary action always pointed visually to a generic continuation.
+   Implementation: renamed the primary incomplete-state action to `Continuar pendência`, added `#cert-next-pending-link`, and updated JS to point it to the first pending module with an expanded aria label.
+   Testing: rendered `certificado.qmd` and confirmed `cert-next-pending-link`, `updateNextPendingAction` and dynamic aria-label logic in `docs/certificado.html`.
+   Notes: the certificate state remains entirely browser-local.
+5. Diagnosis: the new direct links and dynamic CTA needed spacing, documentation and validation coverage.
+   Implementation: updated `styles/main.scss` for link spacing and the next-pending CTA width, updated `PUBLIC_SITE_COMPONENTS.md` and extended `scripts/validate_site_manifest.R` to protect `#cert-next-pending-link`.
+   Testing: manifest validation, SCSS validation, whitespace diff check, targeted Quarto render and rendered HTML inspection passed.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `busca.qmd`
+- `glossario.qmd`
+- `certificado.qmd`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Clarified homepage hero-note link labels and aria labels.
+- Added direct module-index navigation-contract actions.
+- Added direct no-result recovery links to search and glossary.
+- Added a dynamic certificate CTA for the next pending module.
+- Added style, documentation and validator coverage for the new CTA/link states.
+
+### Problems fixed
+
+- Reduced remaining inference between recovery copy and actual navigation.
+- Made the certificate incomplete state point to the first real pending module instead of a generic starting point.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd busca.qmd glossario.qmd certificado.qmd --no-execute`
+- `rg -n "Abrir Módulo 01|aria-label=\"Abrir o índice de módulos\"|modules-navigation-contract|Checar certificado|Ver exemplos|cert-next-pending-link|Continuar pendência|updateNextPendingAction|Continuar pelo|certificate-progress-summary" docs/index.html docs/modules/index.html docs/busca.html docs/glossario.html docs/certificado.html`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed after adding style coverage for `#cert-next-pending-link`.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, module index, search, glossary and certificate.
+- Rendered HTML inspection confirmed new links and next-pending certificate CTA logic.
+- Full prepublish gate passed locally after the log and NEXT updates.
+
+### Pending items
+
+- Browser screenshot QA remains pending because no local browser tool was exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-10 — Clickable hero note, utility return links and certificate progress summary
+
+### Block objective
+
+Execute another site-only public visual/UX block aligned with `publication-readiness-review`: make the current public decision panels more actionable, improve the dynamic certificate pending state and keep validation/documentation coverage current without publishing.
+
+### Cycles executed
+
+1. Diagnosis: the homepage hero note grid was now readable, but each micro-decision still required visitors to look back up at the hero buttons.
+   Implementation: added direct `.entry-link` actions to each `.hero-action-note-item` in `index.qmd`.
+   Testing: rendered `index.qmd` and confirmed `Abrir M01`, `Ver índice` and `Planejar` links in `docs/index.html`.
+   Notes: this improves first-viewport keyboard and click flow without changing the primary CTA hierarchy.
+2. Diagnosis: the study-route start-today panel described states but did not expose direct routes for those states.
+   Implementation: added direct links to M01, module index and certificate inside `.route-start-today-item` in `semanas/index.qmd`.
+   Testing: rendered `semanas/index.qmd` and confirmed the new links in `docs/semanas/index.html`.
+   Notes: this keeps the route public and navigational, not stateful.
+3. Diagnosis: search and glossary result-close panels explained where to go next, but the actions were still text-only.
+   Implementation: added direct `.entry-link` actions to `.utility-result-close-item` in `busca.qmd` and `glossario.qmd`.
+   Testing: rendered both pages and confirmed result-close links in generated HTML.
+   Notes: this reduces dead-end utility behavior and returns visitors to the study path.
+4. Diagnosis: the certificate pending list showed module badges, but the page did not summarize completion progress before the item list.
+   Implementation: added `#cert-progress-summary` with `.certificate-progress-summary`, filled by JS as `N de 12 módulos concluídos` plus next pending module.
+   Testing: rendered `certificado.qmd` and confirmed the summary element and JS text in `docs/certificado.html`.
+   Notes: certificate state remains browser-local; no app or backend behavior was added.
+5. Diagnosis: the new interactive/linked elements needed mobile, dark-mode and documentation coverage.
+   Implementation: adjusted `styles/main.scss` and `styles/main-dark.scss` for linked micro-panels, mobile certificate progress layout and dark summary text; updated `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` for `.certificate-progress-summary`.
+   Testing: manifest validation, SCSS validation, whitespace diff check, targeted Quarto render and rendered HTML inspection passed.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `semanas/index.qmd`
+- `busca.qmd`
+- `glossario.qmd`
+- `certificado.qmd`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Made homepage hero-note decisions directly clickable.
+- Added direct start-state links to the study route.
+- Added direct return links to search/glossary result-close panels.
+- Added a dynamic certificate progress summary before the pending-module list.
+- Improved mobile layout and dark-mode coverage for the new progress and link states.
+
+### Problems fixed
+
+- Reduced friction between decision copy and actual navigation.
+- Made certificate pending state easier to understand before scanning all 12 modules.
+- Improved small-screen certificate progress layout by keeping state/module chips together and moving the title below.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd semanas/index.qmd busca.qmd glossario.qmd certificado.qmd --no-execute`
+- `rg -n "Abrir M01|Ver índice|Planejar|Checar certificado|Abrir glossário|certificate-progress-summary|formatModuleLabel|Próximo pendente|certificate-progress-title|certificate-progress-module" docs/index.html docs/semanas/index.html docs/busca.html docs/glossario.html docs/certificado.html`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, study route, search, glossary and certificate.
+- Rendered HTML inspection confirmed new links and certificate progress summary.
+- Full prepublish gate passed locally after the log and NEXT updates.
+
+### Pending items
+
+- Browser screenshot QA remains pending because no local browser tool was exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-10 — Publication readiness: hero note + certificate progress labels
+
+### Block objective
+
+Execute another site-only long block aligned with `publication-readiness-review`: fix high-impact first-viewport clarity issues, tighten CTA reliability in the navbar, improve the certificate pending-module list, and keep components documented for future app-driven management — without publishing.
+
+### Cycles executed
+
+1. Diagnosis: the homepage hero action note was styled with low-contrast (white text on a light hero copy background) and the guidance was hard to scan quickly.
+   Implementation: converted the hero action note into a 3-item micro-decision grid (`.hero-action-note-grid` / `.hero-action-note-item`) and updated the light/dark styles so the note reads as an editorial card on both themes.
+   Testing: rendered `index.qmd` and confirmed the new hero note markup in `docs/index.html`; SCSS compilation succeeded during Quarto render.
+   Notes: this restores above-the-fold guidance visibility without adding new navigation actions.
+2. Diagnosis: the navbar journey CTA (`Começar M01`) could lose its button styling when treated as an active link (selector collision with `.nav-link.active` styling).
+   Implementation: added an explicit CTA override for the active/`aria-current="page"` states in both light (`styles/main.scss`) and dark (`styles/main-dark.scss`) themes.
+   Testing: rendered `modules/modulo01-introducao-ao-melhoramento-animal.qmd` and verified the navbar markup renders and SCSS compiles.
+   Notes: this is a stability fix to keep the CTA appearance consistent across pages.
+3. Diagnosis: the certificate pending-module list linked correctly, but it was slower to map “what’s missing” to a module number at a glance.
+   Implementation: added a compact `M01…M12` badge to each item via JS (`certificate-progress-module`) and updated aria-labels to include the module code.
+   Testing: rendered `certificado.qmd` and confirmed the updated script is present in `docs/certificado.html`; SCSS compilation succeeded.
+   Notes: this improves scanning without changing the progress contract (still browser-local).
+4. Diagnosis: the new hero note grid needed better intermediate breakpoints (tablet widths) for readability.
+   Implementation: added a responsive rule to collapse the grid to 2 columns at <=980px and 1 column at <=640px.
+   Testing: re-rendered `index.qmd`; no SCSS errors.
+   Notes: keeps layout premium and avoids cramped micro-cards.
+5. Diagnosis: new subcomponents were introduced but were not yet captured in the public component documentation used as a governance contract.
+   Implementation: updated `PUBLIC_SITE_COMPONENTS.md` to include the hero note grid/item classes and the certificate progress module/title classes.
+   Testing: ran manifest and prepublish validations; no contract failures.
+   Notes: improves modular preparation for later app-managed regions without turning the site into an admin surface.
+
+### Files changed in this block
+
+- `index.qmd`
+- `certificado.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `NEXT_SITE.md`
+- `WORKLOG_SITE.md`
+
+### Improvements implemented
+
+- Hero “how to start” guidance is visible and scannable (light + dark).
+- Navbar journey CTA keeps stable styling even if marked active/current.
+- Certificate pending list now exposes `M01…M12` mapping at a glance.
+- Tablet/mobile breakpoint polish for the hero note grid.
+- Documentation updated for new public subcomponents.
+
+### Problems fixed
+
+- Fixed a high-impact contrast regression in `.hero-action-note`.
+
+### Commands executed
+
+- `git diff --check`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file(\"styles/main.scss\") |> invisible(); sass::sass_file(\"styles/main-dark.scss\") |> invisible(); cat(\"scss ok\\n\")'`
+- `PATH=\"/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH\" HOME=/private/tmp/quarto-home Rscript --vanilla scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- SCSS compilation passed.
+- Full prepublish gate passed locally after the newest edits.
+
+### Pending items
+
+- Perform true visual QA in a browser (light/dark + mobile widths), especially for the hero note grid and the certificate pending list (dynamic).
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-10 — Start-now, navigation contract and utility close block
+
+### Block objective
+
+Execute another site-only public visual/UX evolution block on top of the unpublished local work. Keep changes local and improve immediate homepage entry, module-index navigation closure, study-route starting state, utility result closure and component governance.
+
+### Cycles executed
+
+1. Diagnosis: the homepage had first-action and next-click guidance, but the first post-hero decision could still be made more immediate for visitors starting with limited time.
+   Implementation: added `.home-start-now` to `index.qmd`, offering short routes for 20-minute start, module overview and weekly planning.
+   Testing: rendered `index.qmd` and confirmed `.home-start-now` plus representative copy in `docs/index.html`.
+   Notes: this strengthens first-viewport continuation without adding app state.
+2. Diagnosis: the module index had quick jumps and resume guidance, but lacked a compact contract that every index visit should end with one clear action.
+   Implementation: added `.modules-navigation-contract` to `modules/index.qmd`, framing the index as a public return point for opening, comparing or concluding.
+   Testing: rendered `modules/index.qmd` and confirmed `.modules-navigation-contract` in `docs/modules/index.html`.
+   Notes: this improves public navigation/CTA clarity while preserving existing navbar order.
+3. Diagnosis: the study route assumed a week-based progression, but visitors returning mid-course needed a clearer way to start from their current state.
+   Implementation: added `.route-start-today` to `semanas/index.qmd`, distinguishing first contact, resumed study and final review.
+   Testing: rendered `semanas/index.qmd` and confirmed `.route-start-today` in `docs/semanas/index.html`.
+   Notes: this keeps the route practical without adding scheduling or account features.
+4. Diagnosis: search and glossary explained query planning and failed-result recovery, but not how to stop using the utility after a useful result.
+   Implementation: added `.utility-result-close` to `busca.qmd` and `glossario.qmd`, guiding visitors back to definition, context or route.
+   Testing: rendered both utility pages and confirmed `.utility-result-close` in `docs/busca.html` and `docs/glossario.html`.
+   Notes: utility pages remain public learning aids, not admin tools.
+5. Diagnosis: the new public regions needed responsive, dark-mode, manifest, documentation and validator coverage before the full gate.
+   Implementation: extended `styles/main.scss`, `styles/main-dark.scss`, `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R`.
+   Testing: manifest validation, SCSS validation, whitespace diff check, targeted Quarto render and rendered HTML inspection passed.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `semanas/index.qmd`
+- `busca.qmd`
+- `glossario.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added homepage start-now routing for short sessions.
+- Added module-index navigation-contract guidance.
+- Added study-route start-today guidance for different visitor states.
+- Added utility result-close guidance to search and glossary.
+- Added responsive, dark-mode, manifest, documentation and validator coverage for the new regions.
+
+### Problems fixed
+
+- Homepage first action now handles limited-time visitors more directly.
+- Module index now frames every visit as a decision point.
+- Study route now supports visitors who are not starting from week 1.
+- Search and glossary now provide a clearer stop-and-return point after a useful result.
+- The new public regions are protected by the site contract.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd semanas/index.qmd busca.qmd glossario.qmd --no-execute`
+- `rg -n "home-start-now|Se você vai começar agora|modules-navigation-contract|O índice deve sempre devolver|route-start-today|Comece pelo estado de hoje|utility-result-close|Feche a busca|Feche o termo" docs/index.html docs/modules/index.html docs/semanas/index.html docs/busca.html docs/glossario.html`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, module index, study route, search and glossary.
+- Rendered HTML inspection confirmed all new public components and representative copy.
+- Full prepublish gate passed locally after the log and NEXT updates.
+
+### Pending items
+
+- Browser screenshot QA remains pending because no local browser tool was exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-10 — Session closure, resume route and final-check UX block
+
+### Block objective
+
+Execute another site-only public visual/UX evolution block on top of the unpublished local work. Keep changes local and improve homepage session closure, module-index resume navigation, certificate final-check guidance, institutional UX criteria and public component governance.
+
+### Cycles executed
+
+1. Diagnosis: the homepage already explained first action and next click, but did not give a compact closing ritual before the visitor leaves for another route.
+   Implementation: added `.home-session-close` to `index.qmd`, asking visitors to register the question, choose one route and resume through the module index when appropriate.
+   Testing: rendered `index.qmd` and confirmed `.home-session-close` plus representative copy in `docs/index.html`.
+   Notes: this improves first-page learning discipline without adding progress state or app behavior.
+2. Diagnosis: the module index had opening-flow guidance, but resume navigation still depended on visitors mapping their state to phases or certificate manually.
+   Implementation: added `.modules-resume-route` to `modules/index.qmd`, with explicit first-time, resumed-study and closing routes.
+   Testing: rendered `modules/index.qmd` and confirmed `.modules-resume-route` in `docs/modules/index.html`.
+   Notes: this cycle covers public navigation/CTA flow while preserving the existing navbar.
+3. Diagnosis: the certificate page explained identity and responsible use, but the dynamic form needed a clearer final editorial check immediately before generation.
+   Implementation: added `.certificate-final-check` to `certificado.qmd`, covering browser, name and usage checks before PDF generation.
+   Testing: rendered `certificado.qmd` and confirmed `.certificate-final-check` in `docs/certificado.html`.
+   Notes: the certificate logic remains browser-local and unchanged.
+4. Diagnosis: the About page described public/editorial boundaries, but it did not define a visitor-facing criterion for future UX review.
+   Implementation: added `.about-visitor-path` to `perfil.qmd`, defining orientation, context and evidence as signs of a successful public visit.
+   Testing: rendered `perfil.qmd` and confirmed `.about-visitor-path` in `docs/perfil.html`.
+   Notes: this keeps institutional content tied to public experience quality rather than internal administration.
+5. Diagnosis: the new public blocks needed responsive, dark-mode, manifest, documentation and validator coverage.
+   Implementation: extended `styles/main.scss`, `styles/main-dark.scss`, `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R`.
+   Testing: manifest validation, SCSS validation, whitespace diff check, targeted Quarto render and rendered HTML inspection passed.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `certificado.qmd`
+- `perfil.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added homepage session-close guidance after next-click decision support.
+- Added module-index resume-route navigation for first visit, resumed study and closure.
+- Added certificate final-check guidance before PDF generation.
+- Added About-page visitor-path criteria for future public UX review.
+- Added responsive, dark-mode, manifest, documentation and validator coverage for the new regions.
+
+### Problems fixed
+
+- Homepage sessions now have a clearer close-and-route ritual.
+- The module index now better handles visitors resuming from different states.
+- Certificate generation now has a more explicit final pre-submit checkpoint.
+- The institutional page now states how public UX changes should be judged.
+- The new public regions are protected by the site contract.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd certificado.qmd perfil.qmd --no-execute`
+- `rg -n "home-session-close|Feche a sessão|modules-resume-route|Retome pelo estado|certificate-final-check|Última checagem|about-visitor-path|Como reconhecer uma boa visita" docs/index.html docs/modules/index.html docs/certificado.html docs/perfil.html`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, module index, certificate and About.
+- Rendered HTML inspection confirmed all new public components and representative copy.
+- Full prepublish gate passed locally after the log and NEXT updates.
+
+### Pending items
+
+- Browser screenshot QA remains pending because no local browser tool was exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-10 — Next-click, module opening and recovery guidance block
+
+### Block objective
+
+Execute another site-only public visual/UX evolution block on top of the current unpublished local work. Keep changes local and improve next-click decisions, module-opening flow, weekly session splitting, utility recovery and component governance.
+
+### Cycles executed
+
+1. Diagnosis: the homepage described evidence and session choices, but did not explicitly tell visitors what to do after a session leaves a useful evidence sentence.
+   Implementation: added `.home-next-click` to `index.qmd`, framing the next click as opening, consulting or closing based on the evidence just produced.
+   Testing: rendered `index.qmd` and confirmed `.home-next-click` plus representative copy in `docs/index.html`.
+   Notes: this strengthens homepage progression without changing global navigation or app behavior.
+2. Diagnosis: the module index had readiness guidance, but the transition from index to an individual long module could still be made more explicit.
+   Implementation: added `.modules-open-flow` to `modules/index.qmd`, defining read, run and verify as the expected opening sequence.
+   Testing: rendered `modules/index.qmd` and confirmed `.modules-open-flow` in `docs/modules/index.html`.
+   Notes: this improves the module collection flow while preserving the canonical catalog.
+3. Diagnosis: the study route had session models, but visitors with fragmented time needed a concrete way to split the week without losing the read-run-decide cycle.
+   Implementation: added `.route-session-split` to `semanas/index.qmd`, splitting a busy week into 20, 30 and 10 minute actions.
+   Testing: rendered `semanas/index.qmd` and confirmed `.route-session-split` in `docs/semanas/index.html`.
+   Notes: this supports responsiveness to real study schedules without adding scheduling state.
+4. Diagnosis: search and glossary had start-choice and query-planning guidance, but lacked recovery guidance for too few, too broad or insufficient results.
+   Implementation: added `.utility-no-result` to `busca.qmd` and `glossario.qmd`, giving recovery actions for failed search/definition moments.
+   Testing: rendered both utility pages and confirmed `.utility-no-result` in `docs/busca.html` and `docs/glossario.html`.
+   Notes: this keeps utility pages as public learning support, not admin tools.
+5. Diagnosis: the new public components needed style, dark-mode, manifest, documentation and validation coverage.
+   Implementation: extended `styles/main.scss`, `styles/main-dark.scss`, `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R`.
+   Testing: manifest validation, SCSS validation, whitespace diff check, targeted Quarto render and rendered HTML inspection passed.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `semanas/index.qmd`
+- `busca.qmd`
+- `glossario.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added homepage next-click guidance after evidence is produced.
+- Added module-index opening flow guidance.
+- Added study-route split-session guidance for busy weeks.
+- Added utility recovery guidance for search/glossary moments that do not resolve the question.
+- Added responsive, dark-mode, manifest, documentation and validator coverage.
+
+### Problems fixed
+
+- Homepage evidence flow now leads to a clearer next action.
+- Module index now explains what to do immediately after opening a module.
+- The weekly route now handles fragmented schedules more explicitly.
+- Utility pages now help visitors recover when search or glossary lookup is insufficient.
+- The new public regions are protected by the site contract.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd semanas/index.qmd busca.qmd glossario.qmd --no-execute`
+- `rg -n "home-next-click|Depois da evidência|modules-open-flow|Ao abrir um módulo|route-session-split|Se a semana estiver cheia|utility-no-result|Se a busca não resolver|Se a definição não bastar" docs/index.html docs/modules/index.html docs/semanas/index.html docs/busca.html docs/glossario.html`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- Whitespace diff check passed.
+- SCSS compilation passed.
+- Targeted Quarto render passed for homepage, module index, study route, search and glossary.
+- Rendered HTML inspection confirmed all new public components and representative copy.
+- Full prepublish gate passed locally after the log and NEXT updates.
+
+### Pending items
+
+- Browser screenshot QA remains pending because no local browser tool was exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-10 — Hero choice, utility routing and module reading rhythm block
+
+### Block objective
+
+Execute a new post-publication site-only public visual/UX evolution block. Keep changes local, improve first-viewport decision support, utility-page routing, module reading rhythm and the supporting manifest/style validation contract.
+
+### Cycles executed
+
+1. Diagnosis: the homepage hero had three clear CTAs, but visitors still had to infer which action matched first visit, resumed study or planning.
+   Implementation: added `.hero-action-note` to `index.qmd`, clarifying how to choose between module start, index exploration and weekly planning.
+   Testing: rendered `index.qmd` and confirmed `.hero-action-note` in `docs/index.html`.
+   Notes: this improves the first viewport without adding app state or changing the published navigation structure.
+2. Diagnosis: search and glossary pages had return guidance, but the first decision after using each utility could be more direct.
+   Implementation: added `.utility-start-choice` to `busca.qmd` and `glossario.qmd`, giving three route choices for learning, definition/context and sequencing.
+   Testing: rendered both pages and confirmed `.utility-start-choice` in `docs/busca.html` and `docs/glossario.html`.
+   Notes: this strengthens public CTAs on utility pages without turning them into dashboards.
+3. Diagnosis: module pages had orientation chips and later evidence notes, but a consistent early reading rhythm was missing across the long-form lesson pages.
+   Implementation: added `.module-reading-rhythm` to all 12 module pages after the opening orientation/phase note.
+   Testing: confirmed all 12 module sources contain `.module-reading-rhythm`; rendered modules 01, 03 and 12 and confirmed the block in generated HTML.
+   Notes: the copy is intentionally compact and does not alter scientific content or scripts.
+4. Diagnosis: the new public patterns needed light/dark styling and mobile collapse behavior consistent with existing editorial panels.
+   Implementation: extended `styles/main.scss` and `styles/main-dark.scss` for `.hero-action-note`, `.utility-start-choice` and `.module-reading-rhythm`.
+   Testing: SCSS compilation passed for light and dark styles.
+   Notes: no broad SCSS refactor was attempted in this block.
+5. Diagnosis: the new patterns needed to remain app-manageable later through the public site manifest and validator.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` to cover hero action notes, utility start choices and module reading rhythm.
+   Testing: manifest validation, whitespace diff check, targeted Quarto render and rendered HTML inspection passed.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `busca.qmd`
+- `glossario.qmd`
+- `modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added first-viewport action-selection guidance to the homepage hero.
+- Added fast route choices to search and glossary pages.
+- Added a consistent reading-rhythm note to all module pages.
+- Added responsive and dark-mode styling for the new patterns.
+- Added manifest, documentation and validator coverage.
+
+### Problems fixed
+
+- Homepage CTAs now explain which action fits each visitor situation.
+- Utility pages now route visitors back into study decisions faster.
+- Long module pages now state the intended read-run-decide rhythm before the lesson body.
+- The new public regions are protected by validation and future content-governance metadata.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\\n")'`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd busca.qmd glossario.qmd modules/modulo01-introducao-ao-melhoramento-animal.qmd modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `rg -n "hero-action-note|Primeira visita|utility-start-choice|Escolha o destino|Escolha o próximo contexto|module-reading-rhythm|Ritmo de leitura" docs/index.html docs/busca.html docs/glossario.html docs/modules/modulo01-introducao-ao-melhoramento-animal.html docs/modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.html docs/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html`
+- `rg -l "module-reading-rhythm" modules/*.qmd | wc -l`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- Whitespace diff check passed.
+- SCSS compilation passed.
+- Targeted Quarto render passed for homepage, search, glossary and representative modules 01, 03 and 12.
+- Rendered HTML inspection confirmed all new public components and representative copy.
+- Full prepublish gate passed locally after the log and NEXT updates.
+
+### Pending items
+
+- Browser screenshot QA remains pending because no local browser tool was exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
 ## 2026-05-10 — Publication-readiness UX polish and route table guide block
 
 ### Block objective
@@ -1649,6 +2397,70 @@ Continue a long site-only public visual/UX evolution block under `NEXT_SITE.md`,
 ### Pending items
 
 - Run true browser visual QA with screenshots if browser tooling becomes available.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-10 — CTA label normalization and aria-label contract block
+
+### Block objective
+
+Execute a site-only long block under the current `publication-readiness-review` contract. Keep the work local and refine public CTA consistency and accessibility semantics without publishing or touching the app.
+
+### Cycles executed
+
+1. Diagnosis: dark mode loaded `styles/main.scss` plus `styles/main-dark.scss`, but the long-block UX layer still lacked an explicit dark-parity override for `.hero-action-note`.
+   Implementation: extended `styles/main-dark.scss` to style `.hero-action-note` consistently with the dark visual system.
+   Testing: `Rscript --vanilla -e 'sass::sass_file(\"styles/main.scss\") |> invisible(); sass::sass_file(\"styles/main-dark.scss\") |> invisible(); cat(\"scss ok\\n\")'` passed; `quarto render index.qmd --no-execute` passed.
+   Notes: this stays within public-site styling parity and does not introduce app behavior.
+2. Diagnosis: the primary CTA label was inconsistent (`Começar M01` in navbar vs. `Começar pelo Módulo 01` in homepage bands), increasing visual noise in the publication-readiness stage.
+   Implementation: normalized homepage primary CTAs to `Começar M01` in the hero, learning-path band and final CTA band.
+   Testing: static render of `index.qmd` passed and rendered HTML no longer contained the old label.
+   Notes: the expanded meaning is kept in surrounding copy and later reinforced via `aria-label`.
+3. Diagnosis: internal public flows (module index + study route) still used the old primary CTA label in their decisive action bands.
+   Implementation: updated `modules/index.qmd` and `semanas/index.qmd` CTAs to `Começar M01` and updated `scripts/validate_deployed_site.R` to track the new public label.
+   Testing: static renders of `modules/index.qmd` and `semanas/index.qmd` passed; rendered outputs no longer contained `Começar pelo Módulo 01`.
+   Notes: this keeps the public journey CTA consistent across entry points.
+4. Diagnosis: `Começar M01` is concise but ambiguous for assistive tech; the primary CTA needs explicit expanded meaning.
+   Implementation: added `aria-label=\"Começar pelo Módulo 01\"` to the primary CTAs in `index.qmd`, `modules/index.qmd` and `semanas/index.qmd`.
+   Testing: static renders of all three pages passed and rendered HTML contains the new aria-label attribute.
+   Notes: this improves accessibility without changing the visible premium composition.
+5. Diagnosis: the shorthand CTA + aria-label requirement needs to be part of the public-site governance contract for future app-based management.
+   Implementation: updated `PUBLIC_SITE_COMPONENTS.md` with an explicit rule for shorthand CTA aria-labels and extended `scripts/validate_deployed_site.R` to assert the aria-label on homepage, module index and route pages.
+   Testing: `Rscript --vanilla -e 'parse(file=\"scripts/validate_deployed_site.R\"); cat(\"parse ok\\n\")'` passed.
+   Notes: this keeps the contract enforceable after any future publication.
+
+### Files changed in this block
+
+- `WORKLOG_SITE.md`
+- `index.qmd`
+- `modules/index.qmd`
+- `semanas/index.qmd`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_deployed_site.R`
+- `styles/main-dark.scss`
+
+### Commands executed
+
+- `git status --short --branch`
+- `Rscript --vanilla -e 'sass::sass_file(\"styles/main.scss\") |> invisible(); sass::sass_file(\"styles/main-dark.scss\") |> invisible(); cat(\"scss ok\\n\")'`
+- `PATH=\"/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH\" HOME=/private/tmp/quarto-home quarto render index.qmd --no-execute`
+- `PATH=\"/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH\" HOME=/private/tmp/quarto-home quarto render modules/index.qmd semanas/index.qmd --no-execute`
+- `rg` inspection of rendered HTML in `docs/index.html`, `docs/modules/index.html` and `docs/semanas/index.html`
+- `git diff --check`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `PATH=\"/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:$PATH\" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- SCSS compilation passed.
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Full prepublish site check passed (including full Quarto render).
+
+### Pending items
+
+- Perform true browser screenshot QA when browser tooling is available.
 - Publish only after explicit user request.
 
 ---

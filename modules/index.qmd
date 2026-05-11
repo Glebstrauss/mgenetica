@@ -15,7 +15,7 @@ number-sections: false
     <h1>Do fundamento biológico à avaliação genômica</h1>
     <p>Os módulos foram organizados para combinar conceito, simulação, código em R e interpretação. A sequência mantém uma estrutura previsível para leitura pública hoje e edição por painel interno no futuro.</p>
     <div class="modules-landing-actions" role="navigation" aria-label="Ações principais do índice de módulos">
-      <a class="btn btn-primary" href="modulo01-introducao-ao-melhoramento-animal.html">Começar pelo Módulo 01</a>
+      <a class="btn btn-primary" href="modulo01-introducao-ao-melhoramento-animal.html" aria-label="Começar pelo Módulo 01">Começar M01</a>
       <a class="btn btn-secondary" href="../semanas/index.html">Ver roteiro semanal</a>
       <a class="btn btn-secondary" href="../index.html">Voltar ao início</a>
     </div>
@@ -60,6 +60,44 @@ Abra um módulo quando a pergunta de estudo estiver definida.
 Confira o caminho até quizzes e certificado.
 
 [Ver fechamento](#próximo-passo-recomendado){.entry-link}
+:::
+:::
+:::
+
+::: {.modules-navigation-contract role="navigation" aria-label="Contrato de navegação do índice de módulos"}
+::: {.modules-navigation-contract-copy}
+**O índice deve sempre devolver uma ação**
+
+Use esta página como ponto de retorno. Depois de consultar fases, catálogo ou certificado, escolha uma ação concreta antes de abrir outra página.
+
+::: {.modules-navigation-contract-hint}
+Uma boa próxima ação cabe em uma destas três intenções: abrir, comparar ou concluir.
+:::
+:::
+
+::: {.modules-navigation-contract-grid role="list" aria-label="Ações de retorno no índice de módulos"}
+::: {.modules-navigation-contract-item role="listitem"}
+**Abrir**
+
+Entre em um módulo quando a pergunta de estudo estiver clara.
+
+[Abrir Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01"}
+:::
+
+::: {.modules-navigation-contract-item role="listitem"}
+**Comparar**
+
+Volte às fases quando precisar escolher entre temas próximos.
+
+[Ver fases](#fases-da-trilha){.entry-link aria-label="Ver fases da trilha de módulos"}
+:::
+
+::: {.modules-navigation-contract-item role="listitem"}
+**Concluir**
+
+Use certificado quando a evidência já estiver fechada.
+
+[Checar certificado](../certificado.qmd){.entry-link aria-label="Checar certificado de conclusão"}
 :::
 :::
 :::
@@ -164,6 +202,68 @@ Tenho uma sessão curta para leitura, script e síntese.
 **Retorno**
 
 Se travar, sei voltar ao índice, busca ou roteiro.
+:::
+:::
+:::
+
+::: {.modules-open-flow role="region" aria-label="Como abrir um módulo sem perder o fluxo de estudo"}
+::: {.modules-open-flow-copy}
+**Ao abrir um módulo, mantenha uma sequência curta**
+
+Use o índice para entrar com intenção. Cada módulo deve começar com leitura orientada, passar pelo script e terminar com uma verificação.
+:::
+
+::: {.modules-open-flow-grid role="list" aria-label="Sequência ao abrir um módulo"}
+::: {.modules-open-flow-item role="listitem"}
+**Ler**
+
+Entenda a pergunta antes da fórmula ou do código.
+:::
+
+::: {.modules-open-flow-item role="listitem"}
+**Rodar**
+
+Execute o script e altere um parâmetro relevante.
+:::
+
+::: {.modules-open-flow-item role="listitem"}
+**Verificar**
+
+Use exercício, quiz e retorno ao índice para fechar.
+:::
+:::
+:::
+
+::: {.modules-resume-route role="navigation" aria-label="Como retomar a trilha a partir do índice de módulos"}
+::: {.modules-resume-route-copy}
+**Retome pelo estado da trilha, não pela posição da página**
+
+O índice deve funcionar como mesa de decisão. Escolha uma rota curta conforme o que você já sabe, o que ficou pendente ou o que falta para concluir.
+:::
+
+::: {.modules-resume-route-grid role="list" aria-label="Rotas para retomar a trilha de módulos"}
+::: {.modules-resume-route-item role="listitem"}
+**Primeira vez**
+
+Comece em fundamentos e mantenha a ordem.
+
+[Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+:::
+
+::: {.modules-resume-route-item role="listitem"}
+**Retomada**
+
+Abra a fase em que a última evidência ficou incompleta.
+
+[Ver fases](#fases-da-trilha){.entry-link}
+:::
+
+::: {.modules-resume-route-item role="listitem"}
+**Fechamento**
+
+Confira quiz, pendência e certificado depois do módulo final.
+
+[Checar certificado](../certificado.qmd){.entry-link}
 :::
 :::
 :::
@@ -558,6 +658,10 @@ O certificado deve ser a consequência de uma sequência completa: módulo estud
 ## Próximo passo recomendado
 
 Se esta é sua primeira visita, comece pelo Módulo 01. Se você já conhece a base conceitual, use o roteiro semanal para distribuir prática em R, revisão e interpretação.
+
+::: {.modules-next-step-hint}
+O índice fecha melhor quando a próxima ação vira página aberta, semana planejada ou pendência de certificado conferida.
+:::
 :::
 
 ::: {.modules-next-step-checks role="list" aria-label="Como escolher a ação final do índice"}
@@ -581,7 +685,7 @@ Use quando a trilha já está quase completa.
 :::
 
 ::: {.modules-next-step-actions role="navigation" aria-label="Ações finais do índice de módulos"}
-[Começar pelo Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
+[Começar M01](modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
 [Planejar por semana](../semanas/index.qmd){.btn .btn-secondary}
 [Entender o certificado](../certificado.qmd){.btn .btn-secondary}
 :::

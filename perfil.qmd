@@ -162,6 +162,34 @@ Publicação, revisão editorial e manutenção administrativa.
 :::
 :::
 
+::: {.about-visitor-path role="region" aria-label="Como avaliar se a experiência pública está funcionando"}
+::: {.about-visitor-path-copy}
+## Como reconhecer uma boa visita
+
+Uma visita pública funciona quando a pessoa sai com orientação, contexto e uma evidência pequena. Esse é o critério que deve guiar futuras mudanças visuais.
+:::
+
+::: {.about-visitor-path-grid role="list" aria-label="Sinais de uma visita pública bem orientada"}
+::: {.about-visitor-path-item role="listitem"}
+**Orientação**
+
+A próxima página fica óbvia sem depender de login.
+:::
+
+::: {.about-visitor-path-item role="listitem"}
+**Contexto**
+
+Busca, glossário e roteiro reforçam a trilha principal.
+:::
+
+::: {.about-visitor-path-item role="listitem"}
+**Evidência**
+
+A sessão termina com pergunta, saída ou decisão registrada.
+:::
+:::
+:::
+
 ## Princípios
 
 ::: {.profile-grid}

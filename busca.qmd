@@ -43,6 +43,34 @@ Depois da consulta, retome a sequência dos módulos ou o roteiro semanal.
 :::
 :::
 
+::: {.utility-start-choice role="navigation" aria-label="Escolha rápida depois de pesquisar"}
+::: {.utility-start-choice-copy}
+**Escolha o destino pelo tipo de dúvida**
+
+A busca é mais útil quando termina em uma rota clara: estudar o módulo completo, resolver uma definição ou recuperar o ritmo semanal.
+:::
+
+::: {.utility-start-choice-grid role="list" aria-label="Destinos recomendados depois da busca"}
+::: {.utility-start-choice-item role="listitem"}
+**Aprender**
+
+[Abrir módulos](modules/index.qmd){.entry-link}
+:::
+
+::: {.utility-start-choice-item role="listitem"}
+**Definir**
+
+[Consultar glossário](glossario.qmd){.entry-link}
+:::
+
+::: {.utility-start-choice-item role="listitem"}
+**Retomar**
+
+[Ver roteiro](semanas/index.qmd){.entry-link}
+:::
+:::
+:::
+
 ::: {.utility-decision role="region" aria-label="Como decidir o que fazer com um resultado da busca"}
 ::: {.utility-decision-copy}
 **Depois do resultado, escolha uma ação**
@@ -169,6 +197,74 @@ Abra o resultado e volte ao módulo com uma ação definida.
 :::
 :::
 
+::: {.utility-no-result role="region" aria-label="O que fazer quando a busca não resolve"}
+::: {.utility-no-result-copy}
+**Se a busca não resolver, reduza a pergunta**
+
+Poucos resultados ou resultados amplos demais indicam que a pergunta precisa voltar para fase, módulo ou termo mais curto.
+:::
+
+::: {.utility-no-result-grid role="list" aria-label="Ajustes quando a busca falha"}
+::: {.utility-no-result-item role="listitem"}
+**Reduzir**
+
+Use uma palavra técnica em vez de uma frase longa.
+
+[Ver exemplos](#exemplos-de-busca-úteis){.entry-link aria-label="Ver exemplos de busca úteis"}
+:::
+
+::: {.utility-no-result-item role="listitem"}
+**Ancorar**
+
+Inclua fase ou módulo provável para recuperar contexto.
+
+[Ver módulos](modules/index.qmd){.entry-link aria-label="Ver índice de módulos"}
+:::
+
+::: {.utility-no-result-item role="listitem"}
+**Retomar**
+
+Volte ao roteiro se a dúvida for de sequência.
+
+[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro semanal"}
+:::
+:::
+:::
+
+::: {.utility-result-close role="region" aria-label="Como fechar uma busca útil"}
+::: {.utility-result-close-copy}
+**Feche a busca com destino definido**
+
+Depois de encontrar um resultado, não continue abrindo páginas em sequência. Escolha se a busca resolveu definição, contexto ou retomada.
+:::
+
+::: {.utility-result-close-grid role="list" aria-label="Destinos depois de uma busca útil"}
+::: {.utility-result-close-item role="listitem"}
+**Definição**
+
+Guarde o termo e volte ao trecho original.
+
+[Abrir glossário](glossario.qmd){.entry-link aria-label="Abrir glossário técnico"}
+:::
+
+::: {.utility-result-close-item role="listitem"}
+**Contexto**
+
+Abra o módulo quando a resposta exigir leitura completa.
+
+[Ver módulos](modules/index.qmd){.entry-link aria-label="Ver índice de módulos depois da busca"}
+:::
+
+::: {.utility-result-close-item role="listitem"}
+**Retomada**
+
+Volte ao roteiro se a dúvida era sobre ordem.
+
+[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro semanal depois da busca"}
+:::
+:::
+:::
+
 <link href="_pagefind/pagefind-ui.css" rel="stylesheet">
 <script src="_pagefind/pagefind-ui.js"></script>
 
@@ -177,6 +273,12 @@ Abra o resultado e volte ao módulo com uma ação definida.
 :::
 
 ::: {.utility-next-step role="navigation" aria-label="Próximos passos depois da busca"}
+::: {.utility-next-step-copy}
+**Depois da busca, volte para uma decisão**
+
+Use o resultado para escolher módulo, termo ou plano de estudo. Evite continuar pesquisando sem destino.
+:::
+
 [Voltar aos módulos](modules/index.qmd){.btn .btn-primary}
 [Consultar glossário](glossario.qmd){.btn .btn-secondary}
 [Planejar estudo](semanas/index.qmd){.btn .btn-secondary}

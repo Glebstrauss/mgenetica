@@ -20,9 +20,41 @@ Melhoramento animal,<br>do conceito ao código
 Uma plataforma aberta para estudar genética quantitativa e genômica aplicada em uma sequência guiada: primeiro a pergunta biológica, depois a simulação, o código em R e a interpretação técnica.
 
 ::: {.hero-actions role="navigation" aria-label="Ações principais da página inicial"}
-[Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
+[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
 [Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
 [Planejar 12 semanas](semanas/index.qmd){.btn .btn-secondary}
+:::
+
+::: {.hero-action-note role="note" aria-label="Como escolher a ação inicial"}
+::: {.hero-action-note-hint}
+Escolha uma ação por sessão. Todos os caminhos retornam para módulos, roteiro ou certificado.
+:::
+
+::: {.hero-action-note-grid role="list" aria-label="Guia rápido para escolher a ação inicial"}
+::: {.hero-action-note-item role="listitem"}
+**Primeira visita**
+
+Comece pelo Módulo 01.
+
+[Abrir Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01"}
+:::
+
+::: {.hero-action-note-item role="listitem"}
+**Retomada**
+
+Abra o índice de módulos.
+
+[Ver índice](modules/index.qmd){.entry-link aria-label="Abrir o índice de módulos"}
+:::
+
+::: {.hero-action-note-item role="listitem"}
+**Agenda de estudo**
+
+Use o roteiro semanal.
+
+[Planejar](semanas/index.qmd){.entry-link aria-label="Abrir o roteiro semanal"}
+:::
+:::
 :::
 
 ::: {.hero-meta}
@@ -103,6 +135,40 @@ progresso no navegador
 conclusão após os quizzes
 :::
 :::
+:::
+:::
+:::
+
+::: {.home-section .home-start-now role="navigation" aria-label="Como começar agora pela página inicial"}
+::: {.home-start-now-copy}
+**Se você vai começar agora, escolha uma rota curta**
+
+A página inicial funciona melhor quando a primeira ação é pequena. Escolha uma entrada, produza uma evidência e volte ao índice se precisar reorganizar a sequência.
+:::
+
+::: {.home-start-now-grid role="list" aria-label="Rotas curtas para começar agora"}
+::: {.home-start-now-item role="listitem"}
+**Tenho 20 minutos**
+
+Abra o Módulo 01 e leia a pergunta central.
+
+[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+:::
+
+::: {.home-start-now-item role="listitem"}
+**Quero ver a trilha**
+
+Use o índice para entender fases e módulos.
+
+[Ver módulos](modules/index.qmd){.entry-link}
+:::
+
+::: {.home-start-now-item role="listitem"}
+**Preciso de ordem**
+
+Planeje a sequência pelo roteiro semanal.
+
+[Ver roteiro](semanas/index.qmd){.entry-link}
 :::
 :::
 :::
@@ -333,6 +399,62 @@ Use o script ou o apoio público para gerar contexto verificável.
 **Decisão**
 
 Feche com uma frase técnica antes de avançar.
+:::
+:::
+:::
+
+::: {.home-section .home-next-click role="region" aria-label="Como escolher o próximo clique depois de uma evidência"}
+::: {.home-next-click-copy}
+**Depois da evidência, escolha o próximo clique**
+
+O melhor próximo passo depende do que a sessão deixou claro. Use a frase final da sessão para decidir se você abre conteúdo novo, consulta apoio ou fecha uma pendência.
+:::
+
+::: {.home-next-click-grid role="list" aria-label="Próximos cliques recomendados na MGenética"}
+::: {.home-next-click-item role="listitem"}
+**Abrir**
+
+Quando a pergunta ficou mais específica e pede o próximo módulo.
+:::
+
+::: {.home-next-click-item role="listitem"}
+**Consultar**
+
+Quando falta apenas definição, termo ou trecho de apoio.
+:::
+
+::: {.home-next-click-item role="listitem"}
+**Fechar**
+
+Quando a evidência já sustenta quiz, revisão ou certificado.
+:::
+:::
+:::
+
+::: {.home-section .home-session-close role="region" aria-label="Como fechar uma sessão de estudo na página inicial"}
+::: {.home-session-close-copy}
+**Feche a sessão com uma frase útil**
+
+Antes de sair da página inicial para outra rota, defina o que a próxima página precisa resolver. Isso evita abrir módulos, busca e roteiro como abas soltas.
+:::
+
+::: {.home-session-close-grid role="list" aria-label="Formas de fechar uma sessão de estudo"}
+::: {.home-session-close-item role="listitem"}
+**Registrar**
+
+Escreva a pergunta que ficou mais clara.
+:::
+
+::: {.home-session-close-item role="listitem"}
+**Escolher**
+
+Abra apenas a rota que responde a essa pergunta.
+:::
+
+::: {.home-session-close-item role="listitem"}
+**Retomar**
+
+Volte pelo índice quando a próxima ação for estudo.
 :::
 :::
 :::
@@ -855,7 +977,7 @@ SNPs, controle de qualidade, matrizes, GWAS e predição.
 :::
 
 ::: {.section-cta role="navigation" aria-label="Ações da trilha de aprendizado"}
-[Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
+[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
 [Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
 :::
 :::
@@ -934,6 +1056,10 @@ A experiência pública foi desenhada para manter uma linha simples: entrar pela
 ## Comece pela trilha principal
 
 O melhor caminho é seguir os módulos em ordem, executar os scripts e registrar uma interpretação curta a cada etapa. Se preferir distribuir a carga, use o roteiro semanal antes de começar.
+
+::: {.final-cta-hint}
+Escolha `Começar M01` se ainda não há evidência registrada; escolha planejamento ou certificado apenas quando a próxima sessão já estiver clara.
+:::
 :::
 
 ::: {.final-cta-checks role="list" aria-label="Critérios para escolher o próximo passo"}
@@ -957,7 +1083,7 @@ Confira pendências no certificado antes de encerrar.
 :::
 
 ::: {.final-cta-actions role="navigation" aria-label="Ações finais da página inicial"}
-[Começar pelo Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
+[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
 [Planejar por semana](semanas/index.qmd){.btn .btn-secondary}
 [Ver como concluir](certificado.qmd){.btn .btn-secondary}
 :::

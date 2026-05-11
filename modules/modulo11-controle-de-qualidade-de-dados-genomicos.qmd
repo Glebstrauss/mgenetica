@@ -24,6 +24,12 @@ description: "Filtros de MAF, call rate e HWE. Detecção de amostras problemát
 </div>
 ```
 
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
 ## Por que dados genômicos brutos não estão prontos para análise
 
 Plataformas de genotipagem produzem dados de alta qualidade, mas imperfeitos. Erros de cluster, problemas de extração de DNA, loci difíceis de genotipagem e variantes raras dificultam as análises. Um dado ruim incluído em GWAS ou na construção da matriz G pode comprometer todos os resultados.

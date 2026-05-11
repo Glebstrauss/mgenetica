@@ -3108,6 +3108,33 @@ div.sourceCode {
   line-height: 1.65;
 }
 
+.final-cta-hint,
+.modules-next-step-hint,
+.utility-next-step-copy,
+.certificate-pending-hint {
+  max-width: 64ch;
+  margin: 0.8rem 0 0;
+  color: #52657d;
+  font-size: 0.91rem;
+  line-height: 1.58;
+}
+
+.utility-next-step-copy {
+  flex: 1 1 100%;
+  margin-top: 0;
+}
+
+.utility-next-step-copy strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #0a1f38;
+  font-family: "Manrope", "Inter", sans-serif;
+}
+
+.utility-next-step-copy p {
+  margin: 0;
+}
+
 .final-cta-checks {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3435,9 +3462,14 @@ div.sourceCode {
 .entry-link {
   display: inline-flex;
   align-items: center;
+  gap: 0.15rem;
   margin-top: 1.1rem;
   color: #0a1f38;
   font-weight: 800;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
 }
 
 .entry-card-primary .entry-link {
@@ -4396,7 +4428,7 @@ code {
     flex-direction: column;
   }
 
-  :where(.module-grid, .feature-grid, .entry-grid, .entry-decision-list, .home-readiness-grid, .home-study-choice-grid, .home-returning-grid, .home-audience-grid, .home-evidence-grid, .orientation-grid, .module-anatomy-grid, .certificate-intro, .certificate-readiness-steps, .modules-guidance, .modules-completion-steps, .modules-evidence-standard-grid, .modules-study-check-list, .modules-catalog-guide-grid, .modules-return-path-grid, .modules-phase-bridge-grid, .about-credibility-grid, .public-page-triad, .utility-flow, .utility-decision-grid, .route-checkpoints, .route-week-decision-grid, .route-session-plan-grid, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid, .hero-learning-path) {
+  :where(.module-grid, .feature-grid, .entry-grid, .entry-decision-list, .home-readiness-grid, .home-study-choice-grid, .home-returning-grid, .home-audience-grid, .home-evidence-grid, .orientation-grid, .module-anatomy-grid, .certificate-intro, .certificate-readiness-steps, .modules-guidance, .modules-completion-steps, .modules-evidence-standard-grid, .modules-study-check-list, .modules-catalog-guide-grid, .modules-return-path-grid, .modules-phase-bridge-grid, .about-credibility-grid, .public-page-triad, .utility-flow, .utility-decision-grid, .route-checkpoints, .route-week-decision-grid, .route-session-plan-grid, .phase-preview, .phase-grid, .statement-points, .lab-grid, .routine-grid, .hero-learning-path, .hero-action-note-grid) {
     grid-template-columns: 1fr;
   }
 }
@@ -4432,6 +4464,14 @@ code {
 .navbar .nav-link[aria-current="page"] {
   background: rgba(0, 168, 214, 0.10);
   box-shadow: inset 0 -2px 0 #00a8d6;
+}
+
+.navbar .navbar-nav:last-child .nav-link[href*="modulo01"].active,
+.navbar .navbar-nav:last-child .nav-link[href*="modulo01"][aria-current="page"] {
+  color: #ffffff;
+  background: #0a1f38;
+  border-color: #0a1f38;
+  box-shadow: none;
 }
 
 .hero-signal {
@@ -4658,6 +4698,10 @@ code {
   line-height: 1.66;
 }
 
+.modules-next-step-hint {
+  max-width: 62ch;
+}
+
 .modules-next-step-checks {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -4877,6 +4921,13 @@ code {
   margin-bottom: 1.25rem;
 }
 
+.certificate-progress-summary {
+  margin: 0.35rem 0 0;
+  color: #33465f;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
 .certificate-progress-list {
   display: grid;
   gap: 0.45rem;
@@ -4887,11 +4938,30 @@ code {
 
 .certificate-progress-item {
   display: grid;
-  grid-template-columns: minmax(92px, auto) minmax(0, 1fr);
+  grid-template-columns: minmax(92px, auto) minmax(60px, auto) minmax(0, 1fr);
   gap: 0.75rem;
   align-items: center;
   padding: 0.45rem 0;
   color: #33465f;
+}
+
+.certificate-progress-module {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(10, 31, 56, 0.12);
+  border-radius: 999px;
+  color: #0a1f38;
+  background: rgba(240, 249, 255, 0.92);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.certificate-progress-title {
+  min-width: 0;
 }
 
 .certificate-progress-item a {
@@ -4935,7 +5005,18 @@ code {
   border-color: rgba(16, 185, 129, 0.24);
 }
 
+.certificate-progress-item.is-complete .certificate-progress-module {
+  color: #064e3b;
+  background: #ecfdf5;
+  border-color: rgba(16, 185, 129, 0.24);
+}
+
 .certificate-progress-item.is-pending .certificate-progress-state {
+  color: #475569;
+  background: #f8fafc;
+}
+
+.certificate-progress-item.is-pending .certificate-progress-module {
   color: #475569;
   background: #f8fafc;
 }
@@ -4946,6 +5027,10 @@ code {
   justify-content: center;
   gap: 0.75rem;
   margin: 0 auto 2rem;
+}
+
+#cert-next-pending-link {
+  min-width: 180px;
 }
 
 .certificate-ready {
@@ -5060,6 +5145,7 @@ code {
 
 .entry-link {
   min-height: 42px;
+  max-width: 100%;
   border-radius: 8px;
 }
 
@@ -5184,8 +5270,12 @@ code {
   }
 
   .certificate-progress-item {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
     gap: 0.3rem;
+  }
+
+  .certificate-progress-title {
+    grid-column: 1 / -1;
   }
 
   .certificate-progress-state {
@@ -5650,6 +5740,7 @@ code {
 }
 
 .home-intent-switch,
+.home-start-now,
 .home-route-strip,
 .home-trust-anchors,
 .home-first-session,
@@ -5657,24 +5748,36 @@ code {
 .home-progress-snapshot,
 .home-path-contract,
 .home-outcome-map,
+.home-next-click,
+.home-session-close,
 .utility-query-plan,
 .utility-crossroads,
 .utility-examples,
+.utility-no-result,
+.utility-result-close,
 .certificate-decision,
 .certificate-recovery,
 .certificate-next-use,
 .certificate-identity-note,
+.certificate-final-check,
 .about-editorial-boundary,
 .about-public-contract,
+.about-visitor-path,
 .route-evidence-ladder,
 .route-recovery-plan,
 .route-phase-handoff,
 .route-weekly-output,
 .route-table-guide,
+.route-start-today,
+.utility-start-choice,
+.route-session-split,
 .modules-quick-jump,
 .modules-phase-decision,
 .modules-readiness-meter,
 .modules-phase-entry,
+.modules-open-flow,
+.modules-resume-route,
+.modules-navigation-contract,
 .modules-choice-path {
   display: grid;
   grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
@@ -5689,6 +5792,7 @@ code {
 }
 
 .home-intent-switch-copy p,
+.home-start-now-copy p,
 .home-route-strip-copy p,
 .home-trust-anchors-copy p,
 .home-first-session-copy p,
@@ -5696,24 +5800,36 @@ code {
 .home-progress-snapshot-copy p,
 .home-path-contract-copy p,
 .home-outcome-map-copy p,
+.home-next-click-copy p,
+.home-session-close-copy p,
 .utility-query-plan-copy p,
 .utility-crossroads-copy p,
 .utility-examples-copy p,
+.utility-no-result-copy p,
+.utility-result-close-copy p,
 .certificate-decision-copy p,
 .certificate-recovery-copy p,
 .certificate-next-use-copy p,
 .certificate-identity-copy p,
+.certificate-final-check-copy p,
 .about-editorial-boundary-copy p,
 .about-public-contract-copy p,
+.about-visitor-path-copy p,
 .route-evidence-ladder-copy p,
 .route-recovery-plan-copy p,
 .route-phase-handoff-copy p,
 .route-weekly-output-copy p,
 .route-table-guide-copy p,
+.route-start-today-copy p,
+.utility-start-choice-copy p,
+.route-session-split-copy p,
 .modules-quick-jump-copy p,
 .modules-phase-decision-copy p,
 .modules-readiness-copy p,
 .modules-phase-entry-copy p,
+.modules-open-flow-copy p,
+.modules-resume-route-copy p,
+.modules-navigation-contract-copy p,
 .modules-choice-path-copy p {
   max-width: 76ch;
   margin: 0;
@@ -5723,6 +5839,7 @@ code {
 }
 
 .home-intent-switch-copy strong,
+.home-start-now-copy strong,
 .home-route-strip-copy strong,
 .home-trust-anchors-copy strong,
 .home-first-session-copy strong,
@@ -5730,24 +5847,36 @@ code {
 .home-progress-snapshot-copy strong,
 .home-path-contract-copy strong,
 .home-outcome-map-copy strong,
+.home-next-click-copy strong,
+.home-session-close-copy strong,
 .utility-query-plan-copy strong,
 .utility-crossroads-copy strong,
 .utility-examples-copy strong,
+.utility-no-result-copy strong,
+.utility-result-close-copy strong,
 .certificate-decision-copy strong,
 .certificate-recovery-copy strong,
 .certificate-next-use-copy strong,
 .certificate-identity-copy strong,
+.certificate-final-check-copy strong,
 .about-editorial-boundary-copy h2,
 .about-public-contract-copy strong,
+.about-visitor-path-copy h2,
 .route-evidence-ladder-copy strong,
 .route-recovery-plan-copy strong,
 .route-phase-handoff-copy strong,
 .route-weekly-output-copy strong,
 .route-table-guide-copy strong,
+.route-start-today-copy strong,
+.utility-start-choice-copy strong,
+.route-session-split-copy strong,
 .modules-quick-jump-copy strong,
 .modules-phase-decision-copy strong,
 .modules-readiness-copy strong,
 .modules-phase-entry-copy strong,
+.modules-open-flow-copy strong,
+.modules-resume-route-copy strong,
+.modules-navigation-contract-copy strong,
 .modules-choice-path-copy strong {
   display: block;
   margin-bottom: 0.45rem;
@@ -5756,6 +5885,7 @@ code {
 }
 
 .home-intent-switch-grid,
+.home-start-now-grid,
 .home-route-strip-grid,
 .home-trust-anchors-grid,
 .home-first-session-grid,
@@ -5763,24 +5893,36 @@ code {
 .home-progress-snapshot-grid,
 .home-path-contract-grid,
 .home-outcome-map-grid,
+.home-next-click-grid,
+.home-session-close-grid,
 .utility-query-plan-grid,
 .utility-crossroads-grid,
 .utility-examples-grid,
+.utility-no-result-grid,
+.utility-result-close-grid,
 .certificate-decision-grid,
 .certificate-recovery-grid,
 .certificate-next-use-grid,
 .certificate-identity-grid,
+.certificate-final-check-grid,
 .about-editorial-boundary-grid,
 .about-public-contract-grid,
+.about-visitor-path-grid,
 .route-evidence-ladder-grid,
 .route-recovery-plan-grid,
 .route-phase-handoff-grid,
 .route-weekly-output-grid,
 .route-table-guide-grid,
+.route-start-today-grid,
+.utility-start-choice-grid,
+.route-session-split-grid,
 .modules-quick-jump-grid,
 .modules-phase-decision-grid,
 .modules-readiness-grid,
 .modules-phase-entry-grid,
+.modules-open-flow-grid,
+.modules-resume-route-grid,
+.modules-navigation-contract-grid,
 .modules-choice-path-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -5789,6 +5931,7 @@ code {
 }
 
 .home-intent-switch-item,
+.home-start-now-item,
 .home-route-strip-item,
 .home-trust-anchors-item,
 .home-first-session-item,
@@ -5796,24 +5939,36 @@ code {
 .home-progress-snapshot-item,
 .home-path-contract-item,
 .home-outcome-map-item,
+.home-next-click-item,
+.home-session-close-item,
 .utility-query-plan-item,
 .utility-crossroads-item,
 .utility-examples-item,
+.utility-no-result-item,
+.utility-result-close-item,
 .certificate-decision-item,
 .certificate-recovery-item,
 .certificate-next-use-item,
 .certificate-identity-item,
+.certificate-final-check-item,
 .about-editorial-boundary-item,
 .about-public-contract-item,
+.about-visitor-path-item,
 .route-evidence-ladder-item,
 .route-recovery-plan-item,
 .route-phase-handoff-item,
 .route-weekly-output-item,
 .route-table-guide-item,
+.route-start-today-item,
+.utility-start-choice-item,
+.route-session-split-item,
 .modules-quick-jump-item,
 .modules-phase-decision-item,
 .modules-readiness-item,
 .modules-phase-entry-item,
+.modules-open-flow-item,
+.modules-resume-route-item,
+.modules-navigation-contract-item,
 .modules-choice-path-item {
   min-height: 132px;
   padding: 1rem;
@@ -5828,6 +5983,7 @@ code {
 }
 
 .home-intent-switch-item strong,
+.home-start-now-item strong,
 .home-route-strip-item strong,
 .home-trust-anchors-item strong,
 .home-first-session-item strong,
@@ -5835,24 +5991,36 @@ code {
 .home-progress-snapshot-item strong,
 .home-path-contract-item strong,
 .home-outcome-map-item strong,
+.home-next-click-item strong,
+.home-session-close-item strong,
 .utility-query-plan-item strong,
 .utility-crossroads-item strong,
 .utility-examples-item strong,
+.utility-no-result-item strong,
+.utility-result-close-item strong,
 .certificate-decision-item strong,
 .certificate-recovery-item strong,
 .certificate-next-use-item strong,
 .certificate-identity-item strong,
+.certificate-final-check-item strong,
 .about-editorial-boundary-item strong,
 .about-public-contract-item strong,
+.about-visitor-path-item strong,
 .route-evidence-ladder-item strong,
 .route-recovery-plan-item strong,
 .route-phase-handoff-item strong,
 .route-weekly-output-item strong,
 .route-table-guide-item strong,
+.route-start-today-item strong,
+.utility-start-choice-item strong,
+.route-session-split-item strong,
 .modules-quick-jump-item strong,
 .modules-phase-decision-item strong,
 .modules-readiness-item strong,
 .modules-phase-entry-item strong,
+.modules-open-flow-item strong,
+.modules-resume-route-item strong,
+.modules-navigation-contract-item strong,
 .modules-choice-path-item strong {
   display: block;
   margin-bottom: 0.45rem;
@@ -5863,6 +6031,7 @@ code {
 }
 
 .home-intent-switch-item p,
+.home-start-now-item p,
 .home-route-strip-item p,
 .home-trust-anchors-item p,
 .home-first-session-item p,
@@ -5870,24 +6039,36 @@ code {
 .home-progress-snapshot-item p,
 .home-path-contract-item p,
 .home-outcome-map-item p,
+.home-next-click-item p,
+.home-session-close-item p,
 .utility-query-plan-item p,
 .utility-crossroads-item p,
 .utility-examples-item p,
+.utility-no-result-item p,
+.utility-result-close-item p,
 .certificate-decision-item p,
 .certificate-recovery-item p,
 .certificate-next-use-item p,
 .certificate-identity-item p,
+.certificate-final-check-item p,
 .about-editorial-boundary-item p,
 .about-public-contract-item p,
+.about-visitor-path-item p,
 .route-evidence-ladder-item p,
 .route-recovery-plan-item p,
 .route-phase-handoff-item p,
 .route-weekly-output-item p,
 .route-table-guide-item p,
+.route-start-today-item p,
+.utility-start-choice-item p,
+.route-session-split-item p,
 .modules-quick-jump-item p,
 .modules-phase-decision-item p,
 .modules-readiness-item p,
 .modules-phase-entry-item p,
+.modules-open-flow-item p,
+.modules-resume-route-item p,
+.modules-navigation-contract-item p,
 .modules-choice-path-item p {
   margin: 0;
   color: #52657d;
@@ -5902,6 +6083,72 @@ code {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.hero-action-note {
+  max-width: 72ch;
+  margin-top: 1.1rem;
+  padding: 0.9rem 1.05rem;
+  color: var(--mg-text);
+  background:
+    linear-gradient(135deg, rgba(240, 249, 255, 0.88), rgba(255, 255, 255, 0.92));
+  border: 1px solid rgba(0, 168, 214, 0.18);
+  border-left: 4px solid rgba(0, 168, 214, 0.65);
+  border-radius: 12px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.hero-action-note-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.hero-action-note-hint,
+.modules-navigation-contract-hint {
+  margin: 0 0 0.8rem;
+  color: var(--mg-muted);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.hero-action-note-item {
+  margin: 0;
+}
+
+.hero-action-note-item strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--mg-ink);
+  font-family: "Manrope", "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-action-note-item p {
+  margin: 0 0 0.45rem;
+  color: var(--mg-text);
+}
+
+.hero-action-note-item .entry-link,
+.route-start-today-item .entry-link,
+.utility-no-result-item .entry-link,
+.utility-result-close-item .entry-link,
+.modules-navigation-contract-item .entry-link {
+  margin-top: 0.35rem;
+}
+
+@media (max-width: 980px) {
+  .hero-action-note-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-action-note-item:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
 .module-practice-contract {
   margin: 1.35rem 0 1.6rem;
   padding: 1.05rem 1.15rem;
@@ -5911,6 +6158,31 @@ code {
   border: 1px solid rgba(0, 168, 214, 0.22);
   border-left: 4px solid #00a8d6;
   border-radius: 12px;
+}
+
+.module-reading-rhythm {
+  margin: 1.05rem 0 1.35rem;
+  padding: 1rem 1.1rem;
+  color: #33465f;
+  background:
+    linear-gradient(135deg, rgba(240, 249, 255, 0.94), rgba(255, 255, 255, 0.96));
+  border: 1px solid rgba(0, 168, 214, 0.18);
+  border-left: 4px solid #1e5799;
+  border-radius: 12px;
+}
+
+.module-reading-rhythm strong {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #0a1f38;
+  font-family: "Manrope", "Inter", sans-serif;
+}
+
+.module-reading-rhythm p {
+  margin: 0;
+  color: #33465f;
+  font-size: 0.94rem;
+  line-height: 1.6;
 }
 
 .module-evidence-path {
@@ -6207,6 +6479,11 @@ code {
 }
 
 @media (max-width: 640px) {
+  .entry-link {
+    width: fit-content;
+    min-height: 44px;
+  }
+
   .hero-panel {
     gap: 1rem;
   }
@@ -6220,6 +6497,8 @@ code {
   .home-readiness-grid,
   .home-intent-switch,
   .home-intent-switch-grid,
+  .home-start-now,
+  .home-start-now-grid,
   .home-route-strip,
   .home-route-strip-grid,
   .home-trust-anchors,
@@ -6236,6 +6515,10 @@ code {
   .home-study-choice-grid,
   .home-outcome-map,
   .home-outcome-map-grid,
+  .home-next-click,
+  .home-next-click-grid,
+  .home-session-close,
+  .home-session-close-grid,
   .home-returning,
   .home-returning-grid,
   .home-continuity,
@@ -6249,12 +6532,18 @@ code {
   .modules-completion-steps,
   .modules-quick-jump,
   .modules-quick-jump-grid,
+  .modules-navigation-contract,
+  .modules-navigation-contract-grid,
   .modules-phase-decision,
   .modules-phase-decision-grid,
   .modules-readiness-meter,
   .modules-readiness-grid,
   .modules-phase-entry,
   .modules-phase-entry-grid,
+  .modules-open-flow,
+  .modules-open-flow-grid,
+  .modules-resume-route,
+  .modules-resume-route-grid,
   .modules-choice-path,
   .modules-choice-path-grid,
   .modules-evidence-standard,
@@ -6272,6 +6561,8 @@ code {
   .about-public-contract-grid,
   .about-editorial-boundary,
   .about-editorial-boundary-grid,
+  .about-visitor-path,
+  .about-visitor-path-grid,
   .about-credibility,
   .about-credibility-grid,
   .certificate-scope,
@@ -6284,8 +6575,14 @@ code {
   .certificate-next-use-grid,
   .certificate-identity-note,
   .certificate-identity-grid,
+  .certificate-final-check,
+  .certificate-final-check-grid,
   .utility-query-plan,
   .utility-query-plan-grid,
+  .utility-no-result,
+  .utility-no-result-grid,
+  .utility-result-close,
+  .utility-result-close-grid,
   .utility-crossroads,
   .utility-crossroads-grid,
   .utility-examples,
@@ -6296,6 +6593,10 @@ code {
   .route-week-decision-grid,
   .route-session-plan,
   .route-session-plan-grid,
+  .route-start-today,
+  .route-start-today-grid,
+  .route-session-split,
+  .route-session-split-grid,
   .route-evidence-ladder,
   .route-evidence-ladder-grid,
   .route-recovery-plan,
@@ -6306,6 +6607,8 @@ code {
   .route-weekly-output-grid,
   .route-table-guide,
   .route-table-guide-grid,
+  .utility-start-choice,
+  .utility-start-choice-grid,
   .utility-return-guide,
   .route-finish-band {
     grid-template-columns: 1fr;
@@ -6326,6 +6629,7 @@ code {
   .modules-catalog-guide-item,
   .home-readiness-item,
   .home-intent-switch-item,
+  .home-start-now-item,
   .home-route-strip-item,
   .home-trust-anchors-item,
   .home-first-session-item,
@@ -6334,12 +6638,17 @@ code {
   .home-path-contract-item,
   .home-study-choice-item,
   .home-outcome-map-item,
+  .home-next-click-item,
+  .home-session-close-item,
   .home-returning-item,
   .modules-study-check-item,
   .modules-quick-jump-item,
+  .modules-navigation-contract-item,
   .modules-phase-decision-item,
   .modules-readiness-item,
   .modules-phase-entry-item,
+  .modules-open-flow-item,
+  .modules-resume-route-item,
   .modules-choice-path-item,
   .modules-return-path-item,
   .home-audience-item,
@@ -6348,23 +6657,30 @@ code {
   .modules-phase-bridge-item,
   .about-public-contract-item,
   .about-editorial-boundary-item,
+  .about-visitor-path-item,
   .about-credibility-item,
   .certificate-scope-item,
   .certificate-decision-item,
   .certificate-recovery-item,
   .certificate-next-use-item,
   .certificate-identity-item,
+  .certificate-final-check-item,
   .utility-query-plan-item,
+  .utility-no-result-item,
+  .utility-result-close-item,
   .utility-crossroads-item,
   .utility-examples-item,
   .utility-decision-item,
   .route-week-decision-item,
   .route-session-plan-item,
+  .route-start-today-item,
+  .route-session-split-item,
   .route-evidence-ladder-item,
   .route-recovery-plan-item,
   .route-phase-handoff-item,
   .route-weekly-output-item,
-  .route-table-guide-item {
+  .route-table-guide-item,
+  .utility-start-choice-item {
     min-height: auto;
   }
 
@@ -6399,6 +6715,7 @@ code {
 
   .home-readiness,
   .home-intent-switch,
+  .home-start-now,
   .home-route-strip,
   .home-trust-anchors,
   .home-first-session,
@@ -6406,13 +6723,18 @@ code {
   .home-progress-snapshot,
   .home-path-contract,
   .home-study-choice,
+  .home-next-click,
+  .home-session-close,
   .home-returning,
   .home-continuity,
   .modules-study-check,
   .modules-quick-jump,
+  .modules-navigation-contract,
   .modules-phase-decision,
   .modules-readiness-meter,
   .modules-phase-entry,
+  .modules-open-flow,
+  .modules-resume-route,
   .modules-choice-path,
   .modules-catalog-guide,
   .modules-return-path,
@@ -6424,21 +6746,28 @@ code {
   .modules-phase-bridge,
   .about-public-contract,
   .about-editorial-boundary,
+  .about-visitor-path,
   .about-credibility,
   .certificate-scope,
   .certificate-recovery,
   .certificate-next-use,
   .certificate-identity-note,
+  .certificate-final-check,
   .utility-query-plan,
+  .utility-no-result,
+  .utility-result-close,
   .utility-examples,
   .utility-decision,
   .route-week-decision,
   .route-session-plan,
+  .route-start-today,
+  .route-session-split,
   .route-evidence-ladder,
   .route-recovery-plan,
   .route-phase-handoff,
   .route-weekly-output,
-  .route-table-guide {
+  .route-table-guide,
+  .utility-start-choice {
     grid-template-columns: 1fr;
   }
 

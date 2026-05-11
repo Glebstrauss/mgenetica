@@ -30,6 +30,12 @@ description: "Diagnóstico inicial de dados fenotípicos: resumos, distribuiçõ
 Aqui começa a passagem do conceito para o diagnóstico dos dados. Antes de estimar parâmetros, a prioridade é entender distribuição, variação e qualidade do fenótipo observado.
 :::
 
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
 ## Antes de estimar qualquer parâmetro, explore os dados
 
 Em melhoramento animal, os dados fenotípicos raramente chegam prontos para análise. Erros de digitação, medidas fora do intervalo biológico plausível, distribuições assimétricas — tudo isso distorce estimativas de médias, variâncias e herdabilidade. A análise descritiva não é uma etapa burocrática: é o primeiro diagnóstico científico dos dados.

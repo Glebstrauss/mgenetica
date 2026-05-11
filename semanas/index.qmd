@@ -24,6 +24,40 @@ Esta página organiza os módulos existentes em um ritmo semanal. A proposta é 
 Use esta trilha como plano de estudo. Os links apontam para os módulos já publicados, evitando páginas vazias ou links quebrados.
 :::
 
+::: {.route-start-today role="navigation" aria-label="Como começar o roteiro hoje"}
+::: {.route-start-today-copy}
+**Comece pelo estado de hoje**
+
+O roteiro não precisa começar sempre na semana 1. Escolha a entrada pelo que você tem agora: primeiro contato, retomada ou revisão antes do certificado.
+:::
+
+::: {.route-start-today-grid role="list" aria-label="Entradas para usar o roteiro hoje"}
+::: {.route-start-today-item role="listitem"}
+**Primeiro contato**
+
+Use a semana 1 para entender a pergunta biológica.
+
+[Abrir M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link}
+:::
+
+::: {.route-start-today-item role="listitem"}
+**Retomada**
+
+Volte à fase em que a última evidência ficou incompleta.
+
+[Ver módulos](../modules/index.qmd){.entry-link}
+:::
+
+::: {.route-start-today-item role="listitem"}
+**Revisão final**
+
+Use a tabela para localizar pendências antes do certificado.
+
+[Checar certificado](../certificado.qmd){.entry-link}
+:::
+:::
+:::
+
 ::: {.route-checkpoints}
 ::: {.route-checkpoint}
 **Antes**
@@ -158,6 +192,34 @@ Use quando já sabe qual parâmetro quer testar no script.
 **Síntese**
 
 Use quando precisa transformar resultados em uma decisão curta.
+:::
+:::
+:::
+
+::: {.route-session-split role="region" aria-label="Como dividir uma semana quando há pouco tempo"}
+::: {.route-session-split-copy}
+**Se a semana estiver cheia, divida sem quebrar o ciclo**
+
+Não é obrigatório resolver leitura, código e quiz no mesmo dia. O importante é manter a ordem e fechar com uma decisão.
+:::
+
+::: {.route-session-split-grid role="list" aria-label="Divisão curta da semana de estudo"}
+::: {.route-session-split-item role="listitem"}
+**20 min**
+
+Leia objetivo, conceito central e evidência esperada.
+:::
+
+::: {.route-session-split-item role="listitem"}
+**30 min**
+
+Rode o script e registre uma comparação.
+:::
+
+::: {.route-session-split-item role="listitem"}
+**10 min**
+
+Faça quiz ou escreva a decisão de saída.
 :::
 :::
 :::
@@ -351,7 +413,7 @@ Para validar todos os scripts de uma vez, execute `Rscript scripts/run_all_modul
 :::
 
 ::: {.section-cta role="navigation" aria-label="Ações do roteiro semanal"}
-[Começar pelo Módulo 01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary}
+[Começar M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
 [Voltar ao índice de módulos](../modules/index.qmd){.btn .btn-secondary}
 [Entender o certificado](../certificado.qmd){.btn .btn-secondary}
 :::

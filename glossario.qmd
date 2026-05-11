@@ -40,6 +40,34 @@ Volte ao conteúdo principal para interpretar o termo em contexto.
 :::
 :::
 
+::: {.utility-start-choice role="navigation" aria-label="Escolha rápida depois de consultar o glossário"}
+::: {.utility-start-choice-copy}
+**Escolha o próximo contexto**
+
+Depois de entender uma definição, volte para o lugar em que ela muda a interpretação: o módulo, a busca por exemplos ou o roteiro da fase.
+:::
+
+::: {.utility-start-choice-grid role="list" aria-label="Destinos recomendados depois do glossário"}
+::: {.utility-start-choice-item role="listitem"}
+**Aplicar**
+
+[Voltar aos módulos](modules/index.qmd){.entry-link}
+:::
+
+::: {.utility-start-choice-item role="listitem"}
+**Localizar**
+
+[Buscar no curso](busca.qmd){.entry-link}
+:::
+
+::: {.utility-start-choice-item role="listitem"}
+**Sequenciar**
+
+[Ver roteiro](semanas/index.qmd){.entry-link}
+:::
+:::
+:::
+
 ::: {.utility-decision role="region" aria-label="Como transformar um termo do glossário em estudo"}
 ::: {.utility-decision-copy}
 **Termo entendido, contexto necessário**
@@ -166,6 +194,74 @@ Volte ao trecho em que o termo sustenta uma decisão.
 :::
 :::
 
+::: {.utility-no-result role="region" aria-label="O que fazer quando o glossário não resolve"}
+::: {.utility-no-result-copy}
+**Se a definição não bastar, volte ao contexto**
+
+Um termo técnico raramente resolve sozinho uma decisão. Quando a definição ainda parecer solta, procure o uso no módulo e na saída do script.
+:::
+
+::: {.utility-no-result-grid role="list" aria-label="Ajustes quando o glossário não basta"}
+::: {.utility-no-result-item role="listitem"}
+**Exemplo**
+
+Busque o termo no curso para ver uso concreto.
+
+[Abrir busca](busca.qmd){.entry-link aria-label="Abrir busca do curso"}
+:::
+
+::: {.utility-no-result-item role="listitem"}
+**Fase**
+
+Volte à fase que introduz o conceito.
+
+[Ver módulos](modules/index.qmd){.entry-link aria-label="Ver índice de módulos"}
+:::
+
+::: {.utility-no-result-item role="listitem"}
+**Aplicação**
+
+Leia o trecho em que o termo sustenta decisão.
+
+[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro semanal"}
+:::
+:::
+:::
+
+::: {.utility-result-close role="region" aria-label="Como fechar uma consulta ao glossário"}
+::: {.utility-result-close-copy}
+**Feche o termo com aplicação**
+
+Uma definição curta só ajuda se voltar para a leitura. Depois de consultar o glossário, escolha o trecho, módulo ou roteiro onde o termo será aplicado.
+:::
+
+::: {.utility-result-close-grid role="list" aria-label="Destinos depois de consultar o glossário"}
+::: {.utility-result-close-item role="listitem"}
+**Trecho**
+
+Retorne ao parágrafo onde a dúvida apareceu.
+
+[Abrir busca](busca.qmd){.entry-link aria-label="Abrir busca para localizar o uso do termo"}
+:::
+
+::: {.utility-result-close-item role="listitem"}
+**Módulo**
+
+Abra o módulo se a definição depender de exemplo.
+
+[Ver módulos](modules/index.qmd){.entry-link aria-label="Ver índice de módulos depois do glossário"}
+:::
+
+::: {.utility-result-close-item role="listitem"}
+**Roteiro**
+
+Use a fase para recuperar a ordem do conceito.
+
+[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro semanal depois do glossário"}
+:::
+:::
+:::
+
 ```{=html}
 <div class="glossary-panel">
 <div data-glossary></div>
@@ -173,6 +269,12 @@ Volte ao trecho em que o termo sustenta uma decisão.
 ```
 
 ::: {.utility-next-step role="navigation" aria-label="Próximos passos depois do glossário"}
+::: {.utility-next-step-copy}
+**Depois do termo, volte para o uso**
+
+Uma definição só fecha a dúvida quando volta para trecho, módulo ou roteiro onde o conceito será aplicado.
+:::
+
 [Abrir busca](busca.qmd){.btn .btn-primary}
 [Voltar aos módulos](modules/index.qmd){.btn .btn-secondary}
 [Ver roteiro](semanas/index.qmd){.btn .btn-secondary}
