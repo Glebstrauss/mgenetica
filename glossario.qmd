@@ -124,6 +124,40 @@ Volte ao módulo e conecte o termo à decisão técnica.
 :::
 :::
 
+::: {.utility-evidence-route role="navigation" aria-label="Como transformar uma definição em evidência técnica"}
+::: {.utility-evidence-route-copy}
+**Da definição para a evidência**
+
+Um termo técnico só fica útil quando volta para uma saída do curso. Escolha o formato em que o conceito precisa ser conferido.
+:::
+
+::: {.utility-evidence-route-grid role="list" aria-label="Rotas de evidência depois do glossário"}
+::: {.utility-evidence-route-item role="listitem"}
+**Código**
+
+Use quando a definição depender de script, simulação ou argumento de função.
+
+[Abrir M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 para revisar evidência de código depois do glossário"}
+:::
+
+::: {.utility-evidence-route-item role="listitem"}
+**Tabela**
+
+Use quando o termo for parâmetro, variância, correlação ou medida comparável.
+
+[Abrir M06](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Abrir o Módulo 06 para revisar evidência de tabela depois do glossário"}
+:::
+
+::: {.utility-evidence-route-item role="listitem"}
+**Figura**
+
+Use quando o termo aparecer em genômica, SNPs, GWAS ou predição.
+
+[Abrir M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir o Módulo 12 para revisar evidência visual depois do glossário"}
+:::
+:::
+:::
+
 ::: {.utility-return-guide role="region" aria-label="Como voltar do glossário para a trilha"}
 ::: {.utility-return-copy}
 **Glossário é apoio, não ponto final**
@@ -291,6 +325,10 @@ Use a fase para recuperar a ordem do conceito.
 :::
 
 ```{=html}
+<p class="utility-panel-hint">
+Use o glossário abaixo para resolver o termo e voltar ao contexto técnico. A definição deve apontar para busca, módulo ou roteiro.
+</p>
+
 <div class="glossary-panel">
 <div data-glossary></div>
 </div>

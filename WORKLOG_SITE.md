@@ -61,6 +61,416 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-11 — Utility evidence-route and panel-hint UX
+
+### Block objective
+
+Execute another site-only public visual/UX block focused on search and glossary utility pages, extending the technical-evidence route pattern to discovery flows and keeping the public component contract current without publishing.
+
+### Cycles executed
+
+1. Diagnosis: search and glossary already returned visitors to modules, route and glossary/search, but did not yet explain how a query or definition should become technical evidence.
+   Implementation: added `.utility-evidence-route` to `busca.qmd` with code, table and figure routes to M01, M06 and M12.
+   Testing: rendered `busca.qmd` and confirmed `.utility-evidence-route`, its grid, links and destination-specific `aria-label` values in `docs/busca.html`.
+   Notes: the search/Pagefind script was not changed.
+2. Diagnosis: the glossary had the same evidence gap after a term definition.
+   Implementation: added `.utility-evidence-route` to `glossario.qmd`, mapping code, table and figure/genomics evidence back to representative module pages.
+   Testing: rendered `glossario.qmd` and confirmed the new evidence route and links in `docs/glossario.html`.
+   Notes: the glossary data/widget behavior was not changed.
+3. Diagnosis: the actual search and glossary panels appeared after substantial orientation, but lacked an immediate reminder at the moment of use.
+   Implementation: added `.utility-panel-hint` before the Pagefind panel and glossary panel, clarifying that the tool should lead back to evidence, module or route.
+   Testing: rendered HTML inspection confirmed `.utility-panel-hint` in both utility pages.
+   Notes: the hint is editorial, not app-like state.
+4. Diagnosis: the new utility evidence cards needed responsive and dark-mode parity before being treated as stable public components.
+   Implementation: added light, dark, reduced-motion, mobile and tablet styling for `.utility-evidence-route`, `.utility-evidence-route-grid`, `.utility-evidence-route-item` and the panel hint.
+   Testing: SCSS validation passed and source/HTML inspection confirmed the selectors.
+   Notes: browser screenshot QA remains unavailable because the browser tool was not exposed in this session.
+5. Diagnosis: future app-managed editing requires the new utility patterns to be registered in the public component contract.
+   Implementation: registered `utility-evidence-route` and `utility-panel-hint` in `data/site-manifest.yml`, `scripts/validate_site_manifest.R` and `PUBLIC_SITE_COMPONENTS.md`.
+   Testing: manifest validation, SCSS validation, whitespace diff check, targeted render and full prepublish gate passed.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `busca.qmd`
+- `glossario.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added search/glossary routes from query or definition to technical evidence by output type.
+- Added direct utility links to M01, M06 and M12 with explicit accessible labels.
+- Added panel-level hints immediately before search and glossary tools.
+- Added responsive, dark-mode and reduced-motion coverage for the new utility evidence cards.
+- Updated manifest, validator and component documentation for future modular editing.
+
+### Problems fixed
+
+- Search and glossary no longer end only in general return routes; they now guide visitors toward code, table or visual evidence.
+- The interactive utility panels now have immediate context at the point of use.
+- The new utility patterns are protected by manifest validation.
+
+### Commands executed
+
+- `tool_search` for browser/local inspection tooling
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render busca.qmd glossario.qmd --no-execute`
+- `rg -n "utility-evidence-route|utility-panel-hint|Da consulta para a evidência|Da definição para a evidência|Abrir o Módulo 12" docs/busca.html docs/glossario.html`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for search and glossary.
+- Rendered HTML inspection confirmed the utility evidence routes, panel hints, links and `aria-label` values.
+- Full prepublish gate passed locally after the utility evidence-route, WORKLOG and NEXT updates.
+
+### Pending items
+
+- True browser screenshot QA remains pending because browser/local inspection tooling was not exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-11 — Certificate evidence review and reduced-motion polish
+
+### Block objective
+
+Execute another site-only public visual/UX block on top of the unpublished technical-evidence route work, focused on extending evidence-by-output review to the certificate page, reducing motion risk in repeated public cards, and keeping the public component contract current without publishing.
+
+### Cycles executed
+
+1. Diagnosis: the homepage evidence actions now linked to module comparison and weekly planning, and the next missing closure point was the certificate path.
+   Implementation: kept the homepage route intact and treated this block as extending the same evidence loop to the certificate page rather than adding another homepage-only section.
+   Testing: rendered `index.qmd` and confirmed the `Planejar uma semana` action still appears in `docs/index.html`.
+   Notes: no homepage regressions or app-state changes were introduced.
+2. Diagnosis: public navigation had visible focus, but repeated hover lifts across route cards could still create unnecessary motion for users who prefer reduced motion.
+   Implementation: expanded the reduced-motion media query to suppress transform lifts on evidence-route cards, public wayfinding/session cards, module/phase cards, entry cards and buttons.
+   Testing: SCSS validation passed and CSS inspection confirmed the `prefers-reduced-motion` selectors.
+   Notes: normal visual styling remains unchanged for users without reduced-motion preference.
+3. Diagnosis: the certificate explained completion, recovery and responsible use, but it did not yet offer direct review by evidence type before generating the PDF.
+   Implementation: added `.certificate-evidence-review` to `certificado.qmd`, with routes to M01, M06 and M12 for code, table and figure/genomics review.
+   Testing: rendered `certificado.qmd` and confirmed `.certificate-evidence-review`, its grid and review links in `docs/certificado.html`.
+   Notes: the certificate's browser-local progress logic was not touched.
+4. Diagnosis: the new certificate evidence-review block needed responsive behavior and dark-mode parity before being considered stable.
+   Implementation: added light, dark, mobile and tablet CSS for `.certificate-evidence-review`, `.certificate-evidence-review-grid` and `.certificate-evidence-review-item`.
+   Testing: targeted render plus SCSS compilation passed.
+   Notes: true browser screenshot QA remains unavailable in this session.
+5. Diagnosis: the new certificate pattern needed manifest and validator coverage for future content management.
+   Implementation: registered `certificate-evidence-review` in `data/site-manifest.yml`, `scripts/validate_site_manifest.R` and `PUBLIC_SITE_COMPONENTS.md`.
+   Testing: manifest validation passed after the contract update.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `certificado.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added certificate-level evidence review by code, table and figure/genomics output.
+- Added direct certificate review links to M01, M06 and M12.
+- Reduced motion risk for repeated public cards and buttons when `prefers-reduced-motion` is active.
+- Added responsive and dark-mode parity for the new certificate evidence-review block.
+- Updated public component documentation and validation contracts.
+
+### Problems fixed
+
+- The certificate flow now gives visitors a concrete way to review technical evidence before generating the PDF.
+- Reduced-motion users are less exposed to hover/focus translate effects in repeated public components.
+- Future edits to `certificate-evidence-review` are protected by manifest validation.
+
+### Commands executed
+
+- `tool_search` for browser/local inspection tooling
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `git diff --check`
+- `rg -n "certificate-evidence-review|prefers-reduced-motion|home-output-standard-actions|route-output-check|certificate-evidence-review" certificado.qmd styles/main.scss styles/main-dark.scss data/site-manifest.yml scripts/validate_site_manifest.R PUBLIC_SITE_COMPONENTS.md`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd semanas/index.qmd certificado.qmd modules/modulo01-introducao-ao-melhoramento-animal.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `rg -n "certificate-evidence-review|Antes do certificado, revise|Revisar M12|Planejar uma semana|route-output-check" docs/certificado.html docs/index.html docs/semanas/index.html`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, module index, study route, certificate and representative modules 01, 06 and 12.
+- Full prepublish gate passed locally after the certificate evidence-review, WORKLOG and NEXT updates.
+- Rendered HTML inspection confirmed the certificate evidence-review block and links.
+
+### Pending items
+
+- True browser screenshot QA remains pending because browser/local inspection tooling was not exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-11 — Weekly evidence review and keyboard-focus polish
+
+### Block objective
+
+Execute another site-only public visual/UX block on top of the unpublished technical-evidence work, focused on giving the weekly study route the same evidence-by-output navigation as the homepage/module index, while improving keyboard focus visibility for public navigation and preserving the no-publish constraint.
+
+### Cycles executed
+
+1. Diagnosis: `.home-output-standard-actions` linked to a code module and module comparison, but did not yet connect evidence planning to the weekly route.
+   Implementation: added a third homepage action, `Planejar uma semana`, pointing to the study route with an explicit `aria-label`.
+   Testing: targeted render confirmed the new link in `docs/index.html`.
+   Notes: this keeps the homepage evidence section connected to weekly planning without adding new app state.
+2. Diagnosis: public nav links had active styling and touch sizing, but keyboard focus coverage did not explicitly include header links, footer links and the navbar toggler in the shared focus rule.
+   Implementation: extended the focus-visible rule to `.navbar .nav-link`, `footer.footer .nav-link` and `.navbar-toggler`.
+   Testing: SCSS compilation passed and source inspection confirmed the selectors.
+   Notes: no visible text or navigation order changed.
+3. Diagnosis: the weekly route explained weekly outputs but did not offer direct recovery by output type when a week's evidence was weak.
+   Implementation: added `.route-output-check` to `semanas/index.qmd`, linking weekly review to M01 for code, M06 for tables/correlations and M12 for figures/genomics.
+   Testing: rendered `semanas/index.qmd` and confirmed `.route-output-check`, grid items and links in `docs/semanas/index.html`.
+   Notes: this extends the evidence route to an internal public page.
+4. Diagnosis: the new weekly output-check block needed tablet/mobile behavior and dark-mode parity before being registered as a component.
+   Implementation: added responsive collapse rules in `styles/main.scss` and dark-mode parity in `styles/main-dark.scss`.
+   Testing: SCSS validation and whitespace diff check passed.
+   Notes: true browser screenshot QA remains unavailable in this session.
+5. Diagnosis: the new public pattern needed manifest and validator coverage for future app-managed editorial regions.
+   Implementation: registered `.route-output-check` in `data/site-manifest.yml`, `scripts/validate_site_manifest.R` and `PUBLIC_SITE_COMPONENTS.md`.
+   Testing: manifest validation passed after the contract update.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `semanas/index.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Connected homepage technical-evidence guidance to weekly planning.
+- Added route-level output review for code, table and figure/genomics evidence.
+- Improved visible keyboard focus coverage for header, footer and navbar toggle navigation.
+- Added responsive and dark-mode support for the new weekly output-check block.
+- Registered the new route output-check pattern in manifest, docs and validation.
+
+### Problems fixed
+
+- Weekly study planning now has a direct way to recover weak evidence by output type.
+- Public navigation focus coverage is more explicit for keyboard users.
+- Future edits to `route-output-check` are protected by manifest and component-contract validation.
+
+### Commands executed
+
+- `tool_search` for browser/local inspection tooling
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `git diff --check`
+- `rg -n "route-output-check|home-output-standard-actions|navbar.*focus-visible|code-copy-button" index.qmd semanas/index.qmd styles/main.scss styles/main-dark.scss data/site-manifest.yml scripts/validate_site_manifest.R PUBLIC_SITE_COMPONENTS.md`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd semanas/index.qmd modules/index.qmd modules/modulo01-introducao-ao-melhoramento-animal.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `rg -n "Planejar uma semana|home-output-standard-actions|route-output-check|Revise a semana pelo tipo de saída|Abrir M12" docs/index.html docs/semanas/index.html`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, study route, module index and representative modules 01, 06 and 12.
+- Full prepublish gate passed locally after the weekly evidence-review, WORKLOG and NEXT updates.
+- Rendered HTML inspection confirmed the homepage weekly-planning link and the route output-check block.
+
+### Pending items
+
+- True browser screenshot QA remains pending because browser/local inspection tooling was not exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-11 — Technical evidence route and output-surface polish
+
+### Block objective
+
+Execute a second site-only public visual/UX block on top of the unpublished local technical-output readability work, focused on making evidence routes easier to choose from the homepage and module index, and making code/output/table surfaces clearer, more keyboard-visible and more responsive without publishing.
+
+### Cycles executed
+
+1. Diagnosis: the homepage explained what counts as evidence, but the new `.home-output-standard` section ended without a direct public action.
+   Implementation: added `.home-output-standard-actions` with links to a code-first module and to the module index.
+   Testing: rendered `index.qmd` and confirmed the actions and expanded `aria-label` values in `docs/index.html`.
+   Notes: the change stays visitor-facing and does not introduce app state.
+2. Diagnosis: the module index still organized the route mostly by phase and readiness, while `NEXT_SITE.md` prioritized technical-output review.
+   Implementation: added `.modules-output-route`, a three-card navigation block for choosing modules by evidence type: code/gain, table/parameter and figure/genomics.
+   Testing: rendered `modules/index.qmd` and confirmed `.modules-output-route`, its grid and links in `docs/modules/index.html`.
+   Notes: this improves public navigation without changing module order or manifest-owned card metadata.
+3. Diagnosis: code blocks had a visible `Código R` badge, but output and display surfaces still lacked equivalent labels.
+   Implementation: added CSS labels and panel treatment for `.cell-output-stdout`, `.cell-output-stderr`, `.cell-output-display` and `.table-responsive`.
+   Testing: SCSS compilation passed; representative module render confirmed code-copy surfaces remain present.
+   Notes: scientific scripts and lesson text were not changed.
+4. Diagnosis: keyboard and small-screen affordances needed another pass after adding output panels.
+   Implementation: added visible `:focus-visible` treatment for `.code-copy-button`, preserved horizontal safety for output/table surfaces, and added mobile/tablet collapse rules for `.modules-output-route`.
+   Testing: whitespace diff check passed; source inspection confirmed responsive selectors and focus rules.
+   Notes: browser screenshot QA remains unavailable in this session.
+5. Diagnosis: the new route/pattern needed governance for future app-managed editorial regions.
+   Implementation: registered `.modules-output-route` in `data/site-manifest.yml`, `scripts/validate_site_manifest.R` and `PUBLIC_SITE_COMPONENTS.md`.
+   Testing: manifest validation passed after the new contract.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added direct homepage actions from the evidence-standard block to a code-first module and module comparison route.
+- Added a module-index route by evidence type so visitors can choose code, tables or genomic figures intentionally.
+- Added visual labels for generated output, warnings, figures/tables and responsive tables.
+- Improved focus visibility for Quarto code-copy buttons.
+- Added manifest/documentation/validator coverage for the new output-route pattern.
+
+### Problems fixed
+
+- The homepage technical-evidence section no longer ends without a clear next action.
+- The module index now supports choosing by output type, not only by phase or sequence.
+- Generated output surfaces are less visually generic and easier to scan in long modules.
+
+### Commands executed
+
+- `tool_search` for browser/local inspection tooling
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `git diff --check`
+- `rg -n "modules-output-route|home-output-standard-actions|cell-output-display::before|code-copy-button:focus-visible" index.qmd modules/index.qmd styles/main.scss styles/main-dark.scss data/site-manifest.yml scripts/validate_site_manifest.R PUBLIC_SITE_COMPONENTS.md`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd modules/modulo01-introducao-ao-melhoramento-animal.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `rg -n "home-output-standard-actions|Ver módulo com código|modules-output-route|Escolha também pelo tipo de evidência|Abrir M06" docs/index.html docs/modules/index.html`
+- `rg -n "class=\"cell-output-display|class=\"cell-output-stdout|class=\"table-responsive|class=\"code-copy-button" docs/modules/modulo01-introducao-ao-melhoramento-animal.html docs/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html docs/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage, module index and representative modules 01, 06 and 12.
+- Full prepublish gate passed locally after the technical-evidence route, output-surface, WORKLOG and NEXT updates.
+- Rendered HTML inspection confirmed `.home-output-standard-actions` and `.modules-output-route`.
+
+### Pending items
+
+- True browser screenshot QA remains pending because browser/local inspection tooling was not exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
+## 2026-05-11 — Technical output readability layer
+
+### Block objective
+
+Execute a site-only public visual/UX block after the successful publication of commit `17c1a95`, focused on making technical evidence easier to scan: clarify on the homepage what counts as code/table/output evidence, improve module code/output/table presentation, and keep the public component contract current without publishing.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` still described the previous UX package as local and unpublished even though it had been published at commit `17c1a95`.
+   Implementation: treated this block as post-publication local evolution and prepared `NEXT_SITE.md` to record `17c1a95` as the latest published baseline.
+   Testing: inspected git status and deployed validation state before editing; unrelated untracked files remained untouched.
+   Notes: no app files were changed.
+2. Diagnosis: the homepage explained the concept-to-code journey, but the visitor still had to infer what a completed technical evidence unit looked like.
+   Implementation: added `.home-output-standard` to `index.qmd`, describing the three checks for evidence: question, output and interpretation.
+   Testing: targeted render confirmed `.home-output-standard` and its copy in `docs/index.html`.
+   Notes: this is editorial guidance, not app state.
+3. Diagnosis: module pages already had technical-scan guidance, but the rendered code/output/table surfaces were still visually generic and harder to scan in long modules.
+   Implementation: improved global module-facing code/output/table styling in `styles/main.scss`, adding a `Código R` badge for source blocks, stronger code container treatment, and clearer `.cell-output-*`/table-responsive surfaces.
+   Testing: rendered representative modules 01, 06 and 12; HTML inspection confirmed source code and output markers remain present.
+   Notes: no scientific content or scripts were changed.
+4. Diagnosis: the new code/output treatments needed dark-mode parity and small-screen safety.
+   Implementation: added dark-mode rules in `styles/main-dark.scss` and responsive grid coverage for `.home-output-standard` at tablet/mobile widths.
+   Testing: SCSS compilation passed for light and dark themes; whitespace diff check passed.
+   Notes: browser screenshot QA remains unavailable in this session.
+5. Diagnosis: the new homepage pattern and technical output layer needed governance so future blocks can reuse it without drift.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` to document and validate `.home-output-standard`, including its editable-region marker.
+   Testing: manifest validation passed after the new contract.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `index.qmd`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added homepage guidance that defines evidence as a chain from question to output to interpretation.
+- Improved visual treatment for R code, generated output and responsive tables.
+- Added dark-mode parity for the new technical-output surfaces.
+- Added responsive behavior for the new homepage output-standard block.
+- Registered and validated the new homepage pattern in the public-site contract.
+
+### Problems fixed
+
+- `NEXT_SITE.md` no longer treats the already published `17c1a95` UX package as unpublished.
+- Technical evidence surfaces are less visually generic in long module pages.
+- Future `.home-output-standard` edits are protected by manifest/documentation validation.
+
+### Commands executed
+
+- `git status --short --branch`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/modulo01-introducao-ao-melhoramento-animal.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd --no-execute`
+- `rg -n "home-output-standard|O que conta como evidência técnica|Pergunta|Saída|Interpretação" docs/index.html`
+- `rg -n "Código R|cell-output-stdout|home-output-standard|sourceCode::before|home-output-step" docs/index.html docs/modules/modulo01-introducao-ao-melhoramento-animal.html docs/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html docs/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html styles/main.scss styles/main-dark.scss`
+- `rg -n "home-output-standard|output-standard" data/site-manifest.yml scripts/validate_site_manifest.R PUBLIC_SITE_COMPONENTS.md`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `tool_search` for browser/local inspection tooling
+
+### Test results
+
+- Manifest validation passed.
+- SCSS compilation passed.
+- Whitespace diff check passed.
+- Targeted Quarto render passed for homepage and representative modules 01, 06 and 12.
+- Full prepublish gate passed locally after the technical-output, worklog and NEXT updates.
+- Rendered/source inspection confirmed the homepage output-standard block and technical-output CSS selectors.
+
+### Pending items
+
+- True browser screenshot QA remains pending because browser/local inspection tooling was not exposed in this session.
+- Publish only after an explicit publication request.
+
+---
+
 ## 2026-05-11 — Public navigation accessibility and scan polish
 
 ### Block objective

@@ -195,6 +195,40 @@ O índice de módulos continua como ponto de reorganização.
 :::
 :::
 
+::: {.home-section .home-output-standard role="region" aria-label="Como transformar código e tabelas em evidência"}
+::: {.home-output-standard-copy}
+**O que conta como evidência técnica**
+
+Cada módulo alterna explicação, script, tabela e interpretação. Não basta rodar o código: a sessão fica completa quando a saída sustenta uma frase técnica curta.
+:::
+
+::: {.home-output-standard-grid role="list" aria-label="Critérios para ler saídas técnicas"}
+::: {.home-output-standard-item role="listitem"}
+**Pergunta**
+
+Qual decisão o trecho ajuda a tomar?
+:::
+
+::: {.home-output-standard-item role="listitem"}
+**Saída**
+
+Qual número, contraste ou padrão mudou?
+:::
+
+::: {.home-output-standard-item role="listitem"}
+**Interpretação**
+
+O que essa mudança altera na seleção ou no manejo?
+:::
+:::
+
+::: {.home-output-standard-actions role="navigation" aria-label="Ações para praticar leitura de evidência técnica"}
+[Ver módulo com código](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 para praticar leitura de código e saída"}
+[Comparar módulos](modules/index.qmd){.entry-link aria-label="Abrir o índice de módulos para escolher uma evidência técnica"}
+[Planejar uma semana](semanas/index.qmd){.entry-link aria-label="Abrir o roteiro semanal para planejar evidência técnica"}
+:::
+:::
+
 ::: {.home-section .home-start-now role="navigation" aria-label="Como começar agora pela página inicial"}
 ::: {.home-start-now-copy}
 **Se você vai começar agora, escolha uma rota curta**

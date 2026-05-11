@@ -158,6 +158,40 @@ O certificado será usado como registro de estudo, não como validação formal.
 :::
 :::
 
+::: {.certificate-evidence-review role="navigation" aria-label="Como revisar evidências antes do certificado"}
+::: {.certificate-evidence-review-copy}
+**Antes do certificado, revise o que sustenta a conclusão**
+
+O certificado fecha o percurso, mas a evidência técnica fica mais forte quando você consegue apontar uma saída representativa de código, tabela e figura. Use estes atalhos se a conclusão ainda estiver genérica.
+:::
+
+::: {.certificate-evidence-review-grid role="list" aria-label="Rotas de revisão técnica antes do certificado"}
+::: {.certificate-evidence-review-item role="listitem"}
+**Código**
+
+Revise uma simulação simples e a decisão que ela sustenta.
+
+[Revisar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Revisar o Módulo 01 antes do certificado"}
+:::
+
+::: {.certificate-evidence-review-item role="listitem"}
+**Tabela**
+
+Revise uma comparação de parâmetros antes de registrar conclusão.
+
+[Revisar M06](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Revisar o Módulo 06 antes do certificado"}
+:::
+
+::: {.certificate-evidence-review-item role="listitem"}
+**Figura**
+
+Revise uma saída genômica e a interpretação aplicada.
+
+[Revisar M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Revisar o Módulo 12 antes do certificado"}
+:::
+:::
+:::
+
 ::: {.certificate-recovery role="region" aria-label="Como recuperar pendências antes do certificado"}
 ::: {.certificate-recovery-copy}
 **Se o certificado ainda não abriu**

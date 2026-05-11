@@ -290,6 +290,40 @@ Use exercício, quiz e retorno ao índice para fechar.
 :::
 :::
 
+::: {.modules-output-route role="navigation" aria-label="Rotas por tipo de evidência técnica"}
+::: {.modules-output-route-copy}
+**Escolha também pelo tipo de evidência**
+
+Se a dúvida principal é técnica, entre pelo formato de saída que você precisa treinar: código básico, tabela de parâmetros ou evidência genômica. Isso reduz a sensação de catálogo longo e aproxima o módulo da decisão prática.
+:::
+
+::: {.modules-output-route-grid role="list" aria-label="Entradas por saída técnica"}
+::: {.modules-output-route-item role="listitem"}
+**Código e ganho**
+
+Comece com simulação simples e leitura de saída em texto.
+
+[Abrir M01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 para praticar código e ganho genético"}
+:::
+
+::: {.modules-output-route-item role="listitem"}
+**Tabela e parâmetro**
+
+Compare variáveis, herdabilidade ou correlações antes de avançar.
+
+[Abrir M06](modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Abrir o Módulo 06 para praticar leitura de tabelas e correlações"}
+:::
+
+::: {.modules-output-route-item role="listitem"}
+**Figura e genômica**
+
+Use marcadores, matrizes e gráficos para fechar interpretação aplicada.
+
+[Abrir M12](modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir o Módulo 12 para praticar leitura de saída genômica"}
+:::
+:::
+:::
+
 ::: {.modules-resume-route role="navigation" aria-label="Como retomar a trilha a partir do índice de módulos"}
 ::: {.modules-resume-route-copy}
 **Retome pelo estado da trilha, não pela posição da página**

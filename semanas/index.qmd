@@ -224,6 +224,40 @@ Use quando precisa transformar resultados em uma decisão curta.
 :::
 :::
 
+::: {.route-output-check role="navigation" aria-label="Como revisar a evidência técnica da semana"}
+::: {.route-output-check-copy}
+**Revise a semana pelo tipo de saída**
+
+Antes de marcar uma semana como concluída, confira se a evidência veio de código, tabela ou figura. Se um formato ficou fraco, volte ao módulo certo antes de avançar para a próxima semana.
+:::
+
+::: {.route-output-check-grid role="list" aria-label="Rotas para revisar evidências técnicas semanais"}
+::: {.route-output-check-item role="listitem"}
+**Código**
+
+Use quando a dúvida está no script ou no parâmetro alterado.
+
+[Abrir M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 para revisar evidência de código no roteiro"}
+:::
+
+::: {.route-output-check-item role="listitem"}
+**Tabela**
+
+Use quando a dúvida está em comparação, parâmetro ou correlação.
+
+[Abrir M06](../modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Abrir o Módulo 06 para revisar evidência de tabela no roteiro"}
+:::
+
+::: {.route-output-check-item role="listitem"}
+**Figura**
+
+Use quando a dúvida está em padrão visual, marcador ou predição.
+
+[Abrir M12](../modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir o Módulo 12 para revisar evidência visual e genômica no roteiro"}
+:::
+:::
+:::
+
 ::: {.route-session-split role="region" aria-label="Como dividir uma semana quando há pouco tempo"}
 ::: {.route-session-split-copy}
 **Se a semana estiver cheia, divida sem quebrar o ciclo**

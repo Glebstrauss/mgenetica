@@ -722,6 +722,14 @@ footer.footer a {
 .modules-phase-entry-item,
 .modules-open-flow,
 .modules-open-flow-item,
+.modules-output-route,
+.modules-output-route-item,
+.route-output-check,
+.route-output-check-item,
+.certificate-evidence-review,
+.certificate-evidence-review-item,
+.utility-evidence-route,
+.utility-evidence-route-item,
 .modules-resume-route,
 .modules-resume-route-item,
 .modules-choice-path,
@@ -849,6 +857,14 @@ footer.footer a {
 .modules-phase-entry-copy p,
 .modules-open-flow-copy strong,
 .modules-open-flow-copy p,
+.modules-output-route-copy strong,
+.modules-output-route-copy p,
+.route-output-check-copy strong,
+.route-output-check-copy p,
+.certificate-evidence-review-copy strong,
+.certificate-evidence-review-copy p,
+.utility-evidence-route-copy strong,
+.utility-evidence-route-copy p,
 .modules-resume-route-copy strong,
 .modules-resume-route-copy p,
 .modules-choice-path-copy strong,
@@ -940,6 +956,10 @@ footer.footer a {
 .modules-readiness-item strong,
 .modules-phase-entry-item strong,
 .modules-open-flow-item strong,
+.modules-output-route-item strong,
+.route-output-check-item strong,
+.certificate-evidence-review-item strong,
+.utility-evidence-route-item strong,
 .modules-resume-route-item strong,
 .modules-choice-path-item strong,
 .about-editorial-boundary-item strong,
@@ -1001,6 +1021,10 @@ footer.footer a {
 .modules-readiness-item p,
 .modules-phase-entry-item p,
 .modules-open-flow-item p,
+.modules-output-route-item p,
+.route-output-check-item p,
+.certificate-evidence-review-item p,
+.utility-evidence-route-item p,
 .modules-resume-route-item p,
 .modules-choice-path-item p,
 .about-editorial-boundary-item p,
@@ -1211,6 +1235,33 @@ footer.footer a {
   color: var(--mg-text);
 }
 
+.home-output-standard,
+.home-output-standard-item {
+  color: var(--mg-text);
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.home-output-standard {
+  border-left-color: rgba(30, 147, 225, 0.66);
+}
+
+.home-output-standard-item::before {
+  color: var(--mg-ink);
+  background: rgba(30, 147, 225, 0.18);
+  border-color: rgba(111, 220, 255, 0.24);
+}
+
+.home-output-standard-copy strong,
+.home-output-standard-item strong {
+  color: var(--mg-ink);
+}
+
+.home-output-standard-copy p,
+.home-output-standard-item p {
+  color: var(--mg-text);
+}
+
 .utility-return-copy strong,
 .route-finish-copy strong {
   color: var(--mg-ink);
@@ -1251,6 +1302,41 @@ thead th {
 tbody td { border-top-color: var(--mg-line); }
 
 tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
+
+div.sourceCode,
+pre.sourceCode {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+  border-top-color: rgba(30, 147, 225, 0.42);
+}
+
+div.sourceCode::before {
+  color: var(--mg-ink);
+  background: rgba(30, 147, 225, 0.18);
+  border-color: rgba(111, 220, 255, 0.24);
+}
+
+.cell-output-stdout,
+.cell-output-stderr,
+.cell-output-display {
+  color: var(--mg-text);
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+  border-left-color: rgba(111, 220, 255, 0.52);
+}
+
+.cell-output-stdout::before,
+.cell-output-stderr::before,
+.cell-output-display::before,
+.table-responsive::before {
+  color: var(--mg-ink);
+  background: rgba(30, 147, 225, 0.18);
+  border-color: rgba(111, 220, 255, 0.24);
+}
+
+.table-responsive {
+  border-color: var(--mg-line);
+}
 
 
 // ── Callouts ──────────────────────────────────────────────────

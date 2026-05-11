@@ -127,6 +127,40 @@ Use o resultado para retomar a fase certa da trilha.
 :::
 :::
 
+::: {.utility-evidence-route role="navigation" aria-label="Como transformar a consulta em evidência técnica"}
+::: {.utility-evidence-route-copy}
+**Da consulta para a evidência**
+
+A busca só resolve a sessão quando devolve você para uma saída técnica. Escolha o formato que precisa revisar antes de seguir.
+:::
+
+::: {.utility-evidence-route-grid role="list" aria-label="Rotas de evidência depois da busca"}
+::: {.utility-evidence-route-item role="listitem"}
+**Código**
+
+Use quando o resultado apontar para script, simulação ou parâmetro.
+
+[Abrir M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 para revisar evidência de código depois da busca"}
+:::
+
+::: {.utility-evidence-route-item role="listitem"}
+**Tabela**
+
+Use quando o resultado pedir comparação de parâmetros, variâncias ou correlações.
+
+[Abrir M06](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Abrir o Módulo 06 para revisar evidência de tabela depois da busca"}
+:::
+
+::: {.utility-evidence-route-item role="listitem"}
+**Figura**
+
+Use quando o resultado envolver padrão visual, SNPs, GWAS ou predição.
+
+[Abrir M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir o Módulo 12 para revisar evidência visual depois da busca"}
+:::
+:::
+:::
+
 ::: {.utility-return-guide role="region" aria-label="Como usar a busca sem perder a sequência do curso"}
 ::: {.utility-return-copy}
 **Use a busca como desvio curto**
@@ -295,6 +329,10 @@ Volte ao roteiro se a dúvida era sobre ordem.
 
 <link href="_pagefind/pagefind-ui.css" rel="stylesheet">
 <script src="_pagefind/pagefind-ui.js"></script>
+
+::: {.utility-panel-hint}
+Use o campo abaixo para localizar o termo e depois escolha uma rota de evidência ou retorno. A busca é apoio para decidir o próximo clique, não uma etapa final.
+:::
 
 ::: {.search-panel}
 <div id="search"></div>
