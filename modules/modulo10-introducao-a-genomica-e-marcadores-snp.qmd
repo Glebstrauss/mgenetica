@@ -92,6 +92,40 @@ Leia a diferença que sustenta a interpretação.
 :::
 :::
 
+::: {.module-script-lab role="region" aria-label="Laboratório do script do Módulo 10"}
+::: {.module-script-lab-copy}
+**Laboratório do script**
+
+Use o script para responder como codificação SNP, MAF e LD qualificam painel antes de análises genômicas. A página renderiza os trechos principais; o arquivo completo permite alterar tamanho e distribuição de frequências.
+:::
+
+::: {.module-script-lab-grid role="list" aria-label="Como reproduzir o script do Módulo 10"}
+::: {.module-script-lab-item role="listitem"}
+**Roteiro R**
+
+[Abrir `modulo10.R`](../scripts/modulo10.R){.entry-link aria-label="Abrir o script R completo do Módulo 10"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**Saída gerada**
+
+[Ver CSV simulado](../data/modulo10_simulado.csv){.entry-link aria-label="Abrir o CSV simulado gerado pelo Módulo 10"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que alterar**
+
+Mude distribuição de `p_alelo` e compare proporção de SNPs com MAF baixo e r² adjacente.
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que interpretar**
+
+Explique se painel gerado está apto para GWAS sem inflar ruído por SNP raro.
+:::
+:::
+:::
+
 ## Do pedigree ao DNA
 
 Os módulos anteriores usaram o pedigree para inferir parentesco. Mas o pedigree diz o que **esperamos** em média — um filho recebe, em média, 50% dos genes do pai, mas o valor real pode variar de 40% a 60% por acaso meiótico. Com **marcadores moleculares SNP**, medimos o que o animal **realmente herdou**, locus por locus.

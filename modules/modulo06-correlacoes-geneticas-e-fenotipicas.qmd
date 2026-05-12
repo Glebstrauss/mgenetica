@@ -86,6 +86,40 @@ Leia a diferença que sustenta a interpretação.
 :::
 :::
 
+::: {.module-script-lab role="region" aria-label="Laboratório do script do Módulo 06"}
+::: {.module-script-lab-copy}
+**Laboratório do script**
+
+Use o script para responder quando correlação genética ajuda ou limita resposta correlacionada à seleção. A página renderiza os trechos principais; o arquivo completo permite variar sinal e magnitude de rA.
+:::
+
+::: {.module-script-lab-grid role="list" aria-label="Como reproduzir o script do Módulo 06"}
+::: {.module-script-lab-item role="listitem"}
+**Roteiro R**
+
+[Abrir `modulo06.R`](../scripts/modulo06.R){.entry-link aria-label="Abrir o script R completo do Módulo 06"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**Saída gerada**
+
+[Ver CSV simulado](../data/modulo06_simulado.csv){.entry-link aria-label="Abrir o CSV simulado gerado pelo Módulo 06"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que alterar**
+
+Altere `rA` de negativo para positivo e compare RC, direção de mudança e decisão de seleção indireta.
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que interpretar**
+
+Explique se relação entre rP e rA sustenta seleção por índice em vez de trait único.
+:::
+:::
+:::
+
 ## Quando selecionar para uma característica muda outra
 
 Um produtor seleciona bovinos para maior produção de leite. Alguns anos depois, percebe que a taxa de prenhez do rebanho diminuiu. Não é coincidência: há uma **correlação genética negativa** entre produção de leite e fertilidade. Os genes que elevam a produção frequentemente desfavorecem a reprodução. Isso é a correlação genética em ação.

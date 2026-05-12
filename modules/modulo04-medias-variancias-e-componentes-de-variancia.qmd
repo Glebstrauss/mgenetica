@@ -86,6 +86,40 @@ Leia a diferença que sustenta a interpretação.
 :::
 :::
 
+::: {.module-script-lab role="region" aria-label="Laboratório do script do Módulo 04"}
+::: {.module-script-lab-copy}
+**Laboratório do script**
+
+Use o script para responder quanto da variância observada vira componente aditivo útil para seleção. A página renderiza os trechos principais; o arquivo completo permite reproduzir e alterar desenho amostral.
+:::
+
+::: {.module-script-lab-grid role="list" aria-label="Como reproduzir o script do Módulo 04"}
+::: {.module-script-lab-item role="listitem"}
+**Roteiro R**
+
+[Abrir `modulo04.R`](../scripts/modulo04.R){.entry-link aria-label="Abrir o script R completo do Módulo 04"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**Saída gerada**
+
+[Ver CSV simulado](../data/modulo04_simulado.csv){.entry-link aria-label="Abrir o CSV simulado gerado pelo Módulo 04"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que alterar**
+
+Mude número de filhos por touro e número de touros para comparar estabilidade da estimativa de h².
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que interpretar**
+
+Explique quando incerteza amostral impede usar estimativa de VA como base de decisão.
+:::
+:::
+:::
+
 ## Da variância observada à variância útil
 
 Quando olhamos para o peso de 500 bovinos, vemos que eles variam. Essa variação total — a **variância fenotípica (VP)** — tem origens distintas. Parte vem de diferenças genéticas reais entre animais; parte vem do ambiente em que cada animal foi criado. A grande questão do melhoramento é: **quanto dessa variação é genético e, desse genético, quanto é transmissível?**

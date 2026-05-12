@@ -537,17 +537,15 @@ for (i in seq_along(modules)) {
   if (!grepl("module-technical-scan", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-technical-scan", item$id))
   }
-  if (item$order %in% c(1L, 2L, 8L, 12L)) {
-    if (!grepl("module-script-lab", module_text, fixed = TRUE)) {
-      fail(sprintf("module %s is missing representative module-script-lab", item$id))
-    }
-    if (!grepl(item$script, module_text, fixed = TRUE)) {
-      fail(sprintf("module %s script lab does not link to %s", item$id, item$script))
-    }
-    csv_path <- sprintf("data/modulo%02d_simulado.csv", item$order)
-    if (!grepl(csv_path, module_text, fixed = TRUE)) {
-      fail(sprintf("module %s script lab does not link to %s", item$id, csv_path))
-    }
+  if (!grepl("module-script-lab", module_text, fixed = TRUE)) {
+    fail(sprintf("module %s is missing module-script-lab", item$id))
+  }
+  if (!grepl(item$script, module_text, fixed = TRUE)) {
+    fail(sprintf("module %s script lab does not link to %s", item$id, item$script))
+  }
+  csv_path <- sprintf("data/modulo%02d_simulado.csv", item$order)
+  if (!grepl(csv_path, module_text, fixed = TRUE)) {
+    fail(sprintf("module %s script lab does not link to %s", item$id, csv_path))
   }
   if (!grepl("module-nav-index", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-nav-index", item$id))

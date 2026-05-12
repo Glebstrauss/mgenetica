@@ -61,6 +61,89 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-12 — Full script-lab rollout across all modules
+
+### Block objective
+
+Execute the full site-only block requested in `NEXT_SITE.md`: roll out `module-script-lab` to all remaining modules, enforce the pattern in validation, run quality gates and register the completed block.
+
+### Cycles executed
+
+1. Diagnosis: the script-lab pattern existed only in representative modules (01, 02, 08 and 12), leaving modules 03, 04, 05, 06, 07, 09, 10 and 11 without explicit script/output interpretation paths.
+   Implementation: confirmed coverage gap and mapped insertion point after `module-technical-scan` in the eight missing modules.
+   Testing: pattern search confirmed initial partial coverage.
+   Notes: no app files were touched.
+2. Diagnosis: each missing module needed a concise but module-specific learning lab, not a generic copy block.
+   Implementation: added `module-script-lab` sections to modules 03/04/05/06/07/09/10/11 with script links, simulated CSV links, parameter-change prompts and interpretation prompts tied to each module topic.
+   Testing: repository-wide search confirmed `module-script-lab` is now present in all 12 module pages.
+   Notes: links follow the same reproducibility contract (`../scripts/moduloXX.R`, `../data/moduloXX_simulado.csv`).
+3. Diagnosis: validator still treated script-lab as representative-only (`1,2,8,12`), allowing future drift in the newly covered modules.
+   Implementation: updated `scripts/validate_site_manifest.R` to require `module-script-lab` and matching script/CSV references for every module.
+   Testing: manifest validation passed after the rule change.
+   Notes: error messages were normalized from representative wording to full-module enforcement.
+4. Diagnosis: quality gates depended on local R dependencies that were missing in this environment.
+   Implementation: restored `renv` dependencies, reran standalone manifest and SCSS checks, and executed the full prepublish gate.
+   Testing: manifest, SCSS, JS syntax, module script generation, whitespace check and full prepublish succeeded.
+   Notes: prepublish reported Quarto render skip because `quarto` was not available on PATH in this local environment.
+5. Diagnosis: the completion contract requested representative targeted render (03/06/11) plus log/next-plan updates.
+   Implementation: attempted targeted render command for modules 03/06/11, then updated `WORKLOG_SITE.md` and `NEXT_SITE.md` to close this block and define the next one.
+   Testing: targeted render attempt failed locally with `quarto: command not found`; all other gates passed.
+   Notes: no publication was performed.
+
+### Files changed in this block
+
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `scripts/validate_site_manifest.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Completed script-lab rollout to all 12 modules.
+- Added module-specific script reproduction prompts in the remaining eight modules.
+- Enforced script-lab/script/CSV consistency for every module in manifest validation.
+- Revalidated the site with restored local R dependencies and full prepublish checks.
+
+### Problems fixed
+
+- Removed partial script-lab coverage across the module collection.
+- Removed validator blind spot that only protected representative modules.
+- Restored local dependency state so validation scripts run consistently.
+
+### Commands executed
+
+- `/opt/homebrew/bin/Rscript scripts/validate_site_manifest.R` (initial run failed before dependency restore)
+- `/opt/homebrew/bin/Rscript -e 'renv::restore(prompt = FALSE)'`
+- `PATH="/opt/homebrew/bin:$PATH" /opt/homebrew/bin/Rscript scripts/validate_site_manifest.R`
+- `PATH="/opt/homebrew/bin:$PATH" /opt/homebrew/bin/Rscript -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `command -v quarto`
+- `quarto render modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `PATH="/opt/homebrew/bin:$PATH" /opt/homebrew/bin/Rscript scripts/prepublish_site_check.R`
+- `git --no-pager diff --check`
+
+### Test results
+
+- Manifest validation passed after rollout and validator update.
+- SCSS validation passed.
+- Full prepublish gate passed (`prepublish site check ok`) with Quarto render skipped due missing local Quarto binary on PATH.
+- Whitespace diff check passed.
+- Targeted Quarto render for modules 03/06/11 is currently blocked locally (`quarto: command not found`).
+
+### Pending items
+
+- Expose/install local Quarto binary and rerun targeted render for modules 03, 06 and 11.
+- Run browser visual QA for script-lab grids on desktop/tablet/mobile when browser tooling is available.
+- Publish only after explicit user request.
+
+---
+
 ## 2026-05-11 — Representative module script labs
 
 ### Block objective

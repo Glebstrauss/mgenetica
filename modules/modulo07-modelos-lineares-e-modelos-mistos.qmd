@@ -92,6 +92,40 @@ Leia a diferença que sustenta a interpretação.
 :::
 :::
 
+::: {.module-script-lab role="region" aria-label="Laboratório do script do Módulo 07"}
+::: {.module-script-lab-copy}
+**Laboratório do script**
+
+Use o script para responder como escolha fixo/aleatório altera BLUP, shrinkage e interpretação dos efeitos. A página renderiza os trechos principais; o arquivo completo permite ajustar λ e comparar cenários.
+:::
+
+::: {.module-script-lab-grid role="list" aria-label="Como reproduzir o script do Módulo 07"}
+::: {.module-script-lab-item role="listitem"}
+**Roteiro R**
+
+[Abrir `modulo07.R`](../scripts/modulo07.R){.entry-link aria-label="Abrir o script R completo do Módulo 07"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**Saída gerada**
+
+[Ver CSV simulado](../data/modulo07_simulado.csv){.entry-link aria-label="Abrir o CSV simulado gerado pelo Módulo 07"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que alterar**
+
+Mude `va` e `ve` para observar efeito de λ no encolhimento do BLUP.
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que interpretar**
+
+Explique quando ajuste de efeito fixo separa viés ambiental de sinal genético útil.
+:::
+:::
+:::
+
 ## Por que precisamos de modelos mistos?
 
 Em um experimento clássico de fazenda, temos:
