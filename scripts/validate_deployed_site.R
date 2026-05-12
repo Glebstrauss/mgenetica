@@ -2,7 +2,7 @@
   if (is.null(x) || length(x) == 0) y else x
 }
 
-base_url <- Sys.getenv("MGENETICA_SITE_URL", "https://glebstrauss.github.io/mgenetica")
+base_url <- Sys.getenv("MGENETICA_SITE_URL", "https://mgenetica.github.io")
 base_url <- sub("/+$", "", base_url)
 
 args <- commandArgs(trailingOnly = FALSE)

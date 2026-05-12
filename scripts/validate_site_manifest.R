@@ -255,7 +255,7 @@ for (class_name in c(
 
 if (!identical(quarto$project$type, "website")) fail("_quarto.yml project.type must be website")
 if (!identical(quarto$project[["output-dir"]], "docs")) fail("_quarto.yml project.output-dir must be docs")
-if (is.null(quarto$website[["site-url"]]) || !grepl("^https://glebstrauss.github.io/mgenetica/?$", quarto$website[["site-url"]])) {
+if (is.null(quarto$website[["site-url"]]) || !grepl("^https://mgenetica.github.io/?$", quarto$website[["site-url"]])) {
   fail("_quarto.yml website.site-url must point to the public GitHub Pages site")
 }
 

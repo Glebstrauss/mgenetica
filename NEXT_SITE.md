@@ -36,7 +36,7 @@ Finalize publication-readiness after the full script-lab rollout by restoring lo
 ## In scope
 
 - Verify the next `Render and Publish Quarto Site` workflow reaches `Deploy to GitHub Pages` successfully after the artifact-name fix.
-- Confirm `https://glebstrauss.github.io/mgenetica/` returns `200` after deployment.
+- Confirm `https://mgenetica.github.io/` returns `200` after deployment.
 - Restore/expose local Quarto binary in the shell path used for validation runs.
 - Run targeted Quarto render for representative modules:
   - `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
