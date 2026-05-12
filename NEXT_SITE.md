@@ -14,6 +14,8 @@ Finalize publication-readiness after the full script-lab rollout by restoring lo
 
 ## Current local state
 
+- GitHub Actions deployment failure on 2026-05-12 was diagnosed as a rerun artifact collision, not a Quarto/R/Pagefind content failure.
+- `.github/workflows/quarto-publish.yml` now uses an attempt-specific Pages artifact name (`github-pages-${{ github.run_attempt }}`) for both upload and deploy.
 - The script-lab pattern is now present in all 12 module pages.
 - `scripts/validate_site_manifest.R` now enforces `module-script-lab` plus matching script/CSV links for every module.
 - Full prepublish validation passed locally after dependency restore, including manifest, YAML, SCSS, JS, module scripts and whitespace checks.
@@ -33,6 +35,8 @@ Finalize publication-readiness after the full script-lab rollout by restoring lo
 
 ## In scope
 
+- Verify the next `Render and Publish Quarto Site` workflow reaches `Deploy to GitHub Pages` successfully after the artifact-name fix.
+- Confirm `https://glebstrauss.github.io/mgenetica/` returns `200` after deployment.
 - Restore/expose local Quarto binary in the shell path used for validation runs.
 - Run targeted Quarto render for representative modules:
   - `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
@@ -65,6 +69,8 @@ Finalize publication-readiness after the full script-lab rollout by restoring lo
 
 ## Criteria for completion
 
+- Latest GitHub Actions deployment completes successfully with the attempt-specific Pages artifact.
+- Public GitHub Pages URL returns `200`.
 - Quarto is available locally for the validation shell path.
 - Targeted render passes for modules 03, 06 and 11.
 - Rendered HTML confirms script-lab block and correct script/CSV links in representative modules.

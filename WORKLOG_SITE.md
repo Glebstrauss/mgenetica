@@ -61,6 +61,80 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-12 — GitHub Pages rerun deployment fix
+
+### Block objective
+
+Fix the failed GitHub Pages deployment for the public site without changing site content or app code.
+
+### Cycles executed
+
+1. Diagnosis: inspected the repository state, workflow file and latest GitHub Actions history for `Render and Publish Quarto Site`.
+   Implementation: confirmed the worktree was clean and the workflow has the required Pages permissions.
+   Testing: `gh run list` showed the latest run failed while earlier May 11 runs had deployed successfully.
+   Notes: no app files were touched.
+2. Diagnosis: pulled the failed run logs for run `25752783641`.
+   Implementation: identified the failure in `actions/deploy-pages@v5`, not in Quarto, R, Pagefind or site rendering.
+   Testing: failed-step logs showed `Multiple artifacts named "github-pages" were unexpectedly found for this workflow run. Artifact count is 2.`
+   Notes: the original Pages-source setting hypothesis was outdated for the current failure.
+3. Diagnosis: listed artifacts attached to the failed workflow run.
+   Implementation: confirmed two `github-pages` artifacts existed for the same run, one from an earlier attempt and one from the rerun.
+   Testing: artifact listing showed IDs `6952077120` and `6955872300`, both named `github-pages`.
+   Notes: rerunning the failed job can leave a stale Pages artifact attached to the run.
+4. Diagnosis: verified official action inputs for `actions/upload-pages-artifact@v5` and `actions/deploy-pages@v5`.
+   Implementation: changed the workflow to upload `github-pages-${{ github.run_attempt }}` and deploy the same attempt-specific artifact name.
+   Testing: workflow syntax was reviewed against the action metadata.
+   Notes: this keeps deployment deterministic across reruns.
+5. Diagnosis: the deployment fix needed local validation and publication proof after push.
+   Implementation: kept the change scoped to the workflow plus status documents.
+   Testing: local validation and remote rerun results are recorded below.
+   Notes: no public-site editorial content was changed.
+
+### Files changed in this block
+
+- `.github/workflows/quarto-publish.yml`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Made GitHub Pages artifact names unique per workflow run attempt.
+- Matched `deploy-pages` to the attempt-specific artifact so stale rerun artifacts cannot collide.
+
+### Problems fixed
+
+- Fixed deployment rerun failure caused by duplicate `github-pages` artifacts in the same workflow run.
+
+### Commands executed
+
+- `git status --short --branch`
+- `find .github -maxdepth 3 -type f -print`
+- `gh run list --repo Glebstrauss/mgenetica --workflow quarto-publish.yml --limit 5`
+- `gh run view 25752783641 --repo Glebstrauss/mgenetica --log-failed`
+- `gh api repos/Glebstrauss/mgenetica/actions/runs/25752783641/artifacts --jq '.artifacts[] | [.id,.name,.size_in_bytes,.created_at,.expired] | @tsv'`
+- `gh api 'repos/actions/upload-pages-artifact/contents/action.yml?ref=v5' --jq '.content'`
+- `gh api 'repos/actions/deploy-pages/contents/action.yml?ref=v5' --jq '.content'`
+- `PATH="/opt/homebrew/bin:$PATH" /opt/homebrew/bin/Rscript scripts/prepublish_site_check.R` (stopped after several minutes without output)
+- `R_PROFILE_USER=/dev/null PATH="/opt/homebrew/bin:$PATH" /opt/homebrew/bin/Rscript --vanilla scripts/validate_site_manifest.R` (blocked by missing local `yaml` package without project profile)
+- `ruby -e 'require "yaml"; YAML.load_file(".github/workflows/quarto-publish.yml"); puts "workflow yaml ok"'`
+- `git diff --check`
+- `curl -I https://glebstrauss.github.io/mgenetica/`
+
+### Test results
+
+- Workflow YAML parses successfully.
+- Whitespace diff check passed.
+- The full local prepublish command was attempted but stopped after several minutes without output from local R/renv startup; rerunning with `R_PROFILE_USER=/dev/null` avoids the hang but does not load the local `yaml` package.
+- Current public URL returned `404` before the workflow fix was pushed.
+
+### Pending items
+
+- Commit and push the workflow fix.
+- Confirm the next `Render and Publish Quarto Site` run deploys successfully.
+- Confirm `https://glebstrauss.github.io/mgenetica/` returns `200`.
+
+---
+
 ## 2026-05-12 — Full script-lab rollout across all modules
 
 ### Block objective
