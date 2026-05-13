@@ -1,15 +1,26 @@
-<a class="skip-link" href="#quarto-document-content">Pular para o conteúdo</a>
+<a class="skip-link" href="#quarto-document-content" data-i18n="skip.content">Pular para o conteúdo</a>
 
 <script>
 // ── Carrega scripts globais (compatível com subpath do GH Pages) ──
 (function () {
-  var pageDir  = window.location.pathname.endsWith('/')
-    ? window.location.pathname
-    : window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-  var inSubdir = ['modules', 'semanas'].some(function (d) {
-    return pageDir.indexOf('/' + d) >= 0;
-  });
-  var prefix = inSubdir ? '../' : '';
+  function stripFileSegment(path) {
+    var clean = path || '/';
+    if (!clean.endsWith('/')) {
+      var last = clean.substring(clean.lastIndexOf('/') + 1);
+      if (last.indexOf('.') >= 0) clean = clean.substring(0, clean.lastIndexOf('/')) || '/';
+    }
+    return clean;
+  }
+
+  function getPrefixFromDepth(pathname) {
+    var dir = stripFileSegment(pathname).replace(/^\/+|\/+$/g, '');
+    if (!dir) return '';
+    var depth = dir.split('/').length;
+    return '../'.repeat(depth);
+  }
+
+  var prefix = getPrefixFromDepth(window.location.pathname);
+  window.mgeneticaAssetPrefix = prefix;
 
   function load(files) {
     if (files.length === 0) return;
@@ -21,7 +32,7 @@
     document.body.appendChild(s);
   }
 
-  var files = ['progress.js', 'darkmode.js'];
+  var files = ['i18n.js', 'progress.js', 'darkmode.js'];
   var hasQuiz = document.querySelector('.quiz-container');
 
   if (document.querySelector('[data-viz], [data-learning-map], [data-glossary], .mg-viz')) files.push('interactives.js');

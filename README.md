@@ -64,6 +64,7 @@ Checks úteis durante desenvolvimento:
 Rscript scripts/validate_site_manifest.R
 Rscript scripts/run_all_modules.R
 node --check assets/js/progress.js
+node --check assets/js/i18n.js
 node --check assets/js/darkmode.js
 node --check assets/js/interactives.js
 node --check assets/js/quiz.js
@@ -82,6 +83,8 @@ mgenetica/
 ├── busca.qmd                    # Busca Pagefind
 ├── glossario.qmd                # Glossário técnico
 ├── perfil.qmd                   # Página Sobre
+├── en/                          # Wave 1 locale pages (English)
+├── es/                          # Wave 1 locale pages (Español)
 ├── semanas/                     # Roteiro de estudo
 ├── modules/                     # 12 módulos do curso
 ├── scripts/                     # Simulações, validações e prepublish
@@ -94,6 +97,15 @@ mgenetica/
 ├── renv/ e renv.lock            # Ambiente R reproduzível
 └── .github/workflows/           # Publicação no GitHub Pages
 ```
+
+## Internacionalização
+
+- Runtime i18n ativo via `assets/js/i18n.js` e dicionários em `assets/i18n/`.
+- Idiomas disponíveis: `pt-BR` (padrão), `en`, `es`.
+- Rotas localizadas (cobertura completa de páginas públicas):
+  - `pt-BR`: `/`, `/modules/`, `/semanas/`, `/busca.html`, `/glossario.html`, `/perfil.html`
+  - `en`: `/en/`, `/en/modules/` (índice + módulos 01–12), `/en/semanas/`, `/en/search.html`, `/en/glossary.html`, `/en/about.html`, `/en/certificate.html`
+  - `es`: `/es/`, `/es/modules/` (índice + módulos 01–12), `/es/semanas/`, `/es/busqueda.html`, `/es/glosario.html`, `/es/sobre.html`, `/es/certificado.html`
 
 ## Desenvolvimento com VS Code
 

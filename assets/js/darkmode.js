@@ -5,6 +5,20 @@
   var LIGHT_LOGO = 'images/mgenetica-logo-correct.png';
   var DARK_LOGO = 'images/mgenetica-logo-dark.svg';
 
+  function t(key, fallback) {
+    if (window.mgeneticaI18n && typeof window.mgeneticaI18n.t === 'function') {
+      return window.mgeneticaI18n.t(key, fallback);
+    }
+    return fallback;
+  }
+
+  function getAssetPrefix() {
+    if (window.mgeneticaI18n && typeof window.mgeneticaI18n.getAssetPrefix === 'function') {
+      return window.mgeneticaI18n.getAssetPrefix();
+    }
+    return window.location.pathname.indexOf('/modules/') >= 0 || window.location.pathname.indexOf('/semanas/') >= 0 ? '../' : '';
+  }
+
   function isDarkTheme() {
     var html = document.documentElement;
     var body = document.body;
@@ -16,21 +30,12 @@
       classes.indexOf('dark') >= 0;
   }
 
-  function normalizeLogoPath(path, logo) {
-    var inModule = window.location.pathname.indexOf('/modules/') >= 0 ||
-      window.location.pathname.indexOf('/semanas/') >= 0;
-    var prefix = inModule ? '../' : '';
-    return prefix + path + '/' + logo;
-  }
-
   function updateLogo() {
     var logo = document.querySelector('.navbar-brand img');
     if (!logo) return;
 
-    var src = logo.getAttribute('src') || '';
-    var path = src.indexOf('../images/') >= 0 ? '../images' : 'images';
     var next = isDarkTheme() ? DARK_LOGO : LIGHT_LOGO;
-    logo.setAttribute('src', normalizeLogoPath(path.replace('../', ''), next.replace('images/', '')));
+    logo.setAttribute('src', getAssetPrefix() + next);
   }
 
   function persistTheme() {
@@ -41,7 +46,7 @@
 
   function enhanceToggle() {
     document.querySelectorAll('.quarto-color-scheme-toggle').forEach(function (toggle) {
-      toggle.setAttribute('aria-label', 'Alternar tema claro ou escuro');
+      toggle.setAttribute('aria-label', t('darkmode.toggle', 'Alternar tema claro ou escuro'));
       toggle.addEventListener('click', function () {
         setTimeout(function () {
           persistTheme();
@@ -71,4 +76,8 @@
   } else {
     init();
   }
+
+  document.addEventListener('mgenetica:i18n-ready', function () {
+    enhanceToggle();
+  });
 })();

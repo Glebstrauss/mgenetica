@@ -34,6 +34,7 @@ run_r(
 )
 
 for (file in c(
+  "assets/js/i18n.js",
   "assets/js/progress.js",
   "assets/js/darkmode.js",
   "assets/js/interactives.js",

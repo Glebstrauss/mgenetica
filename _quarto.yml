@@ -5,6 +5,12 @@ project:
     - "*.qmd"
     - "modules/*.qmd"
     - "semanas/*.qmd"
+    - "en/*.qmd"
+    - "en/modules/*.qmd"
+    - "en/semanas/*.qmd"
+    - "es/*.qmd"
+    - "es/modules/*.qmd"
+    - "es/semanas/*.qmd"
   resources:
     - "assets/"
     - "data/modulo*_simulado.csv"

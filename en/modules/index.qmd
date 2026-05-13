@@ -1,0 +1,357 @@
+---
+title: "Modules"
+subtitle: "Public trail in quantitative genetics and applied genomics."
+description: "Index of the 12 MGenética modules, organized by learning phases, practice in R and technical progression."
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+lang: en
+---
+
+```{=html}
+<section class="modules-landing">
+  <div class="modules-landing-copy">
+    <span class="module-badge">COMPLETE TRAIL</span>
+    <h1>From biological foundation to genomic assessment</h1>
+    <p>The modules were organized to combine concept, simulation, R code and interpretation. The sequence maintains a predictable structure for public reading today and internal panel editing in the future.</p>
+    <div class="modules-landing-actions" role="navigation" aria-label="Module Index Top Actions">
+      <a class="btn btn-primary" href="modulo01-introducao-ao-melhoramento-animal.html" aria-label="Start with Module 01">Start M01</a>
+      <a class="btn btn-secondary" href="../semanas/index.html">See weekly roadmap</a>
+      <a class="btn btn-secondary" href="../index.html">Back to top</a>
+    </div>
+  </div>
+  <div class="modules-landing-panel" role="note" aria-label="Trail summary">
+    <strong>12 modules</strong>
+    <span>4 editorial phases</span>
+    <span>Reproducible scripts in R</span>
+    <span>Certificate after completing the quizzes</span>
+    <span>Sequence registered in the website manifest</span>
+  </div>
+</section>
+```
+
+::: {.public-wayfinding .modules-wayfinding role="navigation" aria-label="Public guidance for the module index"}
+::: {.public-wayfinding-copy}
+**You are on the trail map**
+
+Use the index to choose between opening a module, comparing phases or returning to the roadmap. Avoid leaving without a clear next step.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Immediate routes in the module index"}
+::: {.public-wayfinding-item role="listitem"}
+**Open**
+
+[Module 01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Open Module 01"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Compare**
+
+[See phases](#trail-phases){.entry-link aria-label="See trail phases"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Plan**
+
+[Roadmap](../semanas/index.qmd){.entry-link aria-label="Open the weekly roadmap"}
+:::
+:::
+:::
+
+::: {.modules-guidance}
+::: {.guidance-item}
+**Recommended flow**
+
+Read the concept, run the module script and compare the interpretation with the objectives stated on the page.
+:::
+
+::: {.guidance-item}
+**Editorial management**
+
+Order, phases, cards and publication status are described in the website manifest for future editing via the internal panel.
+:::
+
+::: {.guidance-item}
+**Progression**
+
+Each module page maintains previous navigation, next step, and return to this index.
+:::
+:::
+
+::: {.modules-output-route role="navigation" aria-label="Routes by technical evidence type"}
+::: {.modules-output-route-copy}
+**Also choose the type of evidence**
+
+If the main question is technical, enter the output format you need to train: basic code, parameter table or genomic evidence. This reduces the feeling of a long catalog and brings the module closer to practical decision-making.
+:::
+
+::: {.modules-output-route-grid role="list" aria-label="Entries by technical output"}
+::: {.modules-output-route-item role="listitem"}
+**Code and gain**
+
+Start with simple simulation and reading text output.
+
+[Open M01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Open Module 01 to practice code and genetic gain"}
+:::
+
+::: {.modules-output-route-item role="listitem"}
+**Table and parameter**
+
+Compare variables, heritability, or correlations before moving forward.
+
+[Open M06](modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Open Module 06 to practice reading tables and correlations"}
+:::
+
+::: {.modules-output-route-item role="listitem"}
+**Figure and genomics**
+
+Use markers, matrices and graphs to close applied interpretation.
+
+[Open M12](modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Open Module 12 to practice reading genomic output"}
+:::
+:::
+:::
+
+::: {.modules-completion-flow role="region" aria-label="How to complete the MGenética trail"}
+::: {.modules-completion-copy}
+**From first reading to certificate**
+
+The public trail closes when the visitor completes the quizzes in the 12 modules. The conclusion remains local to the browser, without registration and without sending data.
+:::
+
+::: {.modules-completion-steps role="list" aria-label="Completion steps"}
+::: {.modules-completion-step role="listitem"}
+**1 · Study**
+
+Read the module and run the corresponding script.
+:::
+
+::: {.modules-completion-step role="listitem"}
+**2 · Validate**
+
+Take the quiz and record local progress.
+:::
+
+::: {.modules-completion-step role="listitem"}
+**3 · Generate**
+
+Open the certificate when all modules are complete.
+:::
+:::
+:::
+
+## Trail phases
+
+::: {.phase-grid role="list" aria-label="Trail phases"}
+::: {.phase-card role="listitem"}
+**01 · Fundamentals**
+
+Modules 01-02 present the logic of animal breeding and the genetic decomposition of the phenotype.
+
+[Start phase](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Start the fundamentals phase with Module 01"}
+:::
+
+::: {.phase-card role="listitem"}
+**02 · Data and parameters**
+
+Modules 03-06 connect exploration, variance, heritability, repeatability, and correlations.
+
+[Start phase](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd){.entry-link aria-label="Start the data and parameters phase with Module 03"}
+:::
+
+::: {.phase-card role="listitem"}
+**03 · Modeling**
+
+Modules 07-09 move into linear mixed models, BLUP, pedigree and parentage.
+
+[Start phase](modulo07-modelos-lineares-e-modelos-mistos.qmd){.entry-link aria-label="Start the modeling phase with Module 07"}
+:::
+
+::: {.phase-card role="listitem"}
+**04 · Genomics**
+
+Modules 10-12 introduce SNPs, quality control, genomic arrays, GWAS and prediction.
+
+[Start phase](modulo10-introducao-a-genomica-e-marcadores-snp.qmd){.entry-link aria-label="Start the genomics phase with Module 10"}
+:::
+:::
+
+::: {.modules-evidence-standard role="region" aria-label="Expected evidence in each module"}
+::: {.modules-evidence-standard-copy}
+**Each module must leave evidence**
+
+Before moving forward, produce a verifiable technical sentence. Each module page now spells out the short study session and closing check: question, R evidence, quiz, and applied decision you would defend.
+:::
+
+::: {.modules-evidence-standard-grid role="list" aria-label="Evidence standard per module"}
+::: {.modules-evidence-standard-item role="listitem"}
+**Concept**
+
+Which biological or statistical question was clearer?
+:::
+
+::: {.modules-evidence-standard-item role="listitem"}
+**Variation**
+
+Which parameter did you change in the script?
+:::
+
+::: {.modules-evidence-standard-item role="listitem"}
+**Decision**
+
+What practical consequence did you record before the quiz?
+:::
+:::
+:::
+
+## All modules
+
+::: {.module-grid role="list" aria-label="All course modules"}
+::: {.module-card role="listitem"}
+**01**
+
+[Introduction to Animal Improvement](modulo01-introducao-ao-melhoramento-animal.qmd)
+
+Objectives, response to selection and organization of breeding programs.
+:::
+
+::: {.module-card role="listitem"}
+**02**
+
+[Bases of Quantitative Genetics](modulo02-bases-da-genetica-quantitativa.qmd)
+
+Genetic value, phenotype, environment and decomposition of observed variation.
+:::
+
+::: {.module-card role="listitem"}
+**03**
+
+[Descriptive statistics and exploration in R](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd)
+
+First diagnoses, data distribution and exploratory interpretation.
+:::
+
+::: {.module-card role="listitem"}
+**04**
+
+[Means, variances and components](modulo04-medias-variancias-e-componentes-de-variancia.qmd)
+
+Phenotypic, genetic and environmental variance as a basis for decisions.
+:::
+
+::: {.module-card role="listitem"}
+**05**
+
+[Heritability and repeatability](modulo05-herdabilidade-e-repetibilidade.qmd)
+
+Parameters that connect individual observations to genetic predictability.
+:::
+
+::: {.module-card role="listitem"}
+**06**
+
+[Genetic and phenotypic correlations](modulo06-correlacoes-geneticas-e-fenotipicas.qmd)
+
+Relationships between characteristics and indirect consequences of selection.
+:::
+
+::: {.module-card role="listitem"}
+**07**
+
+[Linear and mixed models](modulo07-modelos-lineares-e-modelos-mistos.qmd)
+
+Statistical structure to combine fixed, random and error effects.
+:::
+
+::: {.module-card role="listitem"}
+**08**
+
+[BLUP and genetic evaluation](modulo08-blup-e-avaliacao-genetica.qmd)
+
+Prediction of genetic values ​​and comparison of selection candidates.
+:::
+
+::: {.module-card role="listitem"}
+**09**
+
+[Pedigree and kinship](modulo09-estrutura-de-pedigree-e-parentesco.qmd)
+
+Use of pedigree, relationship matrices and connections between individuals.
+:::
+
+::: {.module-card role="listitem"}
+**10**
+
+[Genomics and SNP markers](modulo10-introducao-a-genomica-e-marcadores-snp.qmd)
+
+Input of molecular markers in data evaluation and control.
+:::
+
+::: {.module-card role="listitem"}
+**11**
+
+[Genomic quality control](modulo11-controle-de-qualidade-de-dados-genomicos.qmd)
+
+Filters, genotype consistency and preparation for genomic analysis.
+:::
+
+::: {.module-card role="listitem"}
+**12**
+
+[Genomic arrays, GWAS and prediction](modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd)
+
+Integration between genomic relatedness, association and genomic prediction.
+:::
+:::
+
+::: {.modules-certificate-route role="region" aria-label="Trail closure and certificate"}
+::: {.modules-certificate-route-copy}
+**Close trail with evidence**
+
+The certificate must be the result of a complete sequence: module studied, script executed, written interpretation and validated quiz. If you haven't completed everything yet, use the certificate as a backlog.
+:::
+
+::: {.modules-certificate-route-actions role="navigation" aria-label="Actions for tracking completion"}
+[Open certificate](../certificate.qmd){.btn .btn-primary}
+[Review script](../semanas/index.qmd){.btn .btn-secondary}
+:::
+:::
+
+::: {.modules-next-step role="region" aria-label="Next step after reviewing the modules"}
+::: {.modules-next-step-copy}
+## Recommended next step
+
+If this is your first visit, start with Module 01. If you already know the conceptual basis, use the weekly script to distribute R practice, review and interpretation.
+
+::: {.modules-next-step-hint}
+The index closes best when the next action becomes an open page, planned week or pending certificate checked.
+:::
+:::
+
+::: {.modules-next-step-checks role="list" aria-label="How to choose the final action from the index"}
+::: {.modules-next-step-check role="listitem"}
+**To start**
+
+Use when there is no completed module yet.
+:::
+
+::: {.modules-next-step-check role="listitem"}
+**Plan**
+
+Use when you need to distribute reading, code, and review.
+:::
+
+::: {.modules-next-step-check role="listitem"}
+**Finish**
+
+Use when the trail is almost complete.
+:::
+:::
+
+::: {.modules-next-step-actions role="navigation" aria-label="Final actions in the module index"}
+[Start M01](modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Start with Module 01"}
+[Plan by week](../semanas/index.qmd){.btn .btn-secondary}
+[Understand the certificate](../certificate.qmd){.btn .btn-secondary}
+:::
+:::

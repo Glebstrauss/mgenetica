@@ -1,6 +1,13 @@
 (function () {
   'use strict';
 
+  function t(key, fallback) {
+    if (window.mgeneticaI18n && typeof window.mgeneticaI18n.t === 'function') {
+      return window.mgeneticaI18n.t(key, fallback);
+    }
+    return fallback;
+  }
+
   const MODULES = [
     'modulo01', 'modulo02', 'modulo03', 'modulo04',
     'modulo05', 'modulo06', 'modulo07', 'modulo08',
@@ -43,7 +50,7 @@
     bar.className = 'mg-sidebar-progress';
     bar.innerHTML =
       '<div class="mg-progress-label">' +
-        '<span>Progresso</span>' +
+        '<span>' + t('progress.label', 'Progresso') + '</span>' +
         '<span class="mg-progress-count">0/12</span>' +
       '</div>' +
       '<div class="mg-progress-bar-track">' +
@@ -86,7 +93,7 @@
       if (completed.includes(moduleId)) {
         const indicator = document.createElement('span');
         indicator.className = 'mg-progress-indicator mg-done';
-        indicator.setAttribute('aria-label', 'Concluído');
+        indicator.setAttribute('aria-label', t('progress.done', 'Concluído'));
         indicator.textContent = '✓';
         container.appendChild(indicator);
       }
@@ -121,4 +128,6 @@
   } else {
     updateUI();
   }
+
+  document.addEventListener('mgenetica:i18n-ready', updateUI);
 })();

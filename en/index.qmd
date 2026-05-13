@@ -1,0 +1,914 @@
+---
+title: "MGenética"
+subtitle: "Animal breeding, quantitative genetics and applied genomics with simulated data"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+lang: en
+---
+
+::: {.hero}
+::: {.hero-copy}
+::: {.hero-kicker}
+MGenética Academy · public platform
+:::
+
+::: {.hero-title}
+Animal breeding,<br>from concept to code
+:::
+
+An open platform to study quantitative genetics and applied genomics in a guided sequence: first the biological question, then the simulation, the R code and the technical interpretation.
+
+::: {.hero-actions role="navigation" aria-label="Main actions on the home page"}
+[Start M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Start with Module 01"}
+[Explore the 12 modules](modules/index.qmd){.btn .btn-secondary}
+[Plan 12 weeks](semanas/index.qmd){.btn .btn-secondary}
+:::
+
+::: {.hero-action-note role="note" aria-label="How to choose the initial action"}
+::: {.hero-action-note-hint}
+Choose one action per session. All paths return to modules, script, or certificate.
+:::
+
+::: {.hero-action-note-grid role="list" aria-label="Quick guide for choosing the initial action"}
+::: {.hero-action-note-item role="listitem"}
+**First visit**
+
+Start with Module 01.
+
+[Open Module 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Open Module 01"}
+:::
+
+::: {.hero-action-note-item role="listitem"}
+**Resumption**
+
+Open the module index.
+
+[View modules](modules/index.qmd){.entry-link aria-label="Open the module index"}
+:::
+
+::: {.hero-action-note-item role="listitem"}
+**Study plan**
+
+Use the weekly roadmap.
+
+[Plan](semanas/index.qmd){.entry-link aria-label="Open the weekly roadmap"}
+:::
+:::
+:::
+
+::: {.hero-meta}
+::: {.hero-meta-item}
+**Open**
+
+Static and accessible publishing
+:::
+
+::: {.hero-meta-item}
+**Applied**
+
+Exercises with simulated data
+:::
+
+::: {.hero-meta-item}
+**Modular**
+
+Structure ready for editorial management
+:::
+:::
+
+::: {.hero-learning-path role="list" aria-label="Learning sequence"}
+::: {.hero-path-step role="listitem"}
+**Concept**
+
+Biological question
+:::
+
+::: {.hero-path-step role="listitem"}
+**Simulation**
+
+Controlled data
+:::
+
+::: {.hero-path-step role="listitem"}
+**R**
+
+Reproducible code
+:::
+
+::: {.hero-path-step role="listitem"}
+**Decision**
+
+Applied interpretation
+:::
+:::
+
+::: {.hero-signal role="note" aria-label="Recommended study mode"}
+Each module was designed to complete a short cycle: read the concept, run the script, adjust a parameter and write a technical decision. By completing the quizzes, the track can be closed on the certificate.
+:::
+:::
+
+::: {.hero-panel}
+![](../images/mgenetica-logo-correct.png){fig-alt="Original MGenética logo on a dark background with a cyan geometric monogram"}
+
+::: {.hero-panel-proof role="note" aria-label="MGenética trail summary"}
+**12 guided modules**
+
+Concept, simulation, R and interpretation in a public study sequence.
+
+::: {.hero-panel-proof-list role="list" aria-label="Trail indicators"}
+::: {.hero-panel-proof-item role="listitem"}
+**36h**
+
+estimated pace
+:::
+
+::: {.hero-panel-proof-item role="listitem"}
+**Location**
+
+browser progress
+:::
+
+::: {.hero-panel-proof-item .hero-panel-proof-item--wide role="listitem"}
+**Certificate**
+
+conclusion after quizzes
+:::
+:::
+:::
+:::
+:::
+
+::: {.home-section .public-wayfinding .home-wayfinding role="navigation" aria-label="Public guidance for the home page"}
+::: {.public-wayfinding-copy}
+**You are at the entry point**
+
+Use the home page to choose a short route. The best navigation is the one that leads to a reading, a consultation or a clear conclusion.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Immediate routes from the home page"}
+::: {.public-wayfinding-item role="listitem"}
+**Study now**
+
+[Start M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Start with Module 01"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Plan route**
+
+[View modules](modules/index.qmd){.entry-link aria-label="Open the module index"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Close pending item**
+
+[Check certificate](certificate.qmd){.entry-link aria-label="Check the certificate and pending issues"}
+:::
+:::
+:::
+
+::: {.home-section .home-output-standard role="region" aria-label="How to turn code and tables into evidence"}
+::: {.home-output-standard-copy}
+**What counts as technical evidence**
+
+Each module alternates explanation, script, table and interpretation. It's not enough to run the code: the session is complete when the output contains a short technical phrase.
+:::
+
+::: {.home-output-standard-grid role="list" aria-label="Criteria for reading technical outputs"}
+::: {.home-output-standard-item role="listitem"}
+**Question**
+
+What decision does the excerpt help you make?
+:::
+
+::: {.home-output-standard-item role="listitem"}
+**Exit**
+
+What number, contrast or pattern has changed?
+:::
+
+::: {.home-output-standard-item role="listitem"}
+**Interpretation**
+
+What does this imply for selection or management?
+:::
+:::
+
+::: {.home-output-standard-actions role="navigation" aria-label="Actions to practice technical evidence reading"}
+[View module with code](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Open Module 01 to practice reading code and output"}
+[Compare modules](modules/index.qmd){.entry-link aria-label="Open the module index to choose a technical piece of evidence"}
+[Plan a week](semanas/index.qmd){.entry-link aria-label="Open the weekly roadmap to plan technical evidence"}
+:::
+:::
+
+::: {.home-section .home-trust-anchors role="region" aria-label="Trust pillars of the public experience"}
+::: {.home-trust-anchors-copy}
+**Why studying here is verifiable**
+
+The experience combines open content, local execution and short-form interpretation. The visitor can check the route without registering, without a mandatory external dependency and without promising automatic application.
+:::
+
+::: {.home-trust-anchors-grid role="list" aria-label="Trust pillars of MGenética"}
+::: {.home-trust-anchors-item role="listitem"}
+**Open**
+
+Public pages, visible breadcrumbs, and login-free browsing.
+:::
+
+::: {.home-trust-anchors-item role="listitem"}
+**Reproducible**
+
+Scripts and simulated data to repeat comparisons.
+:::
+
+::: {.home-trust-anchors-item role="listitem"}
+**Responsible**
+
+Technical interpretation before any applied use.
+:::
+:::
+:::
+
+::: {.home-section .home-first-session role="region" aria-label="How to run the first study session"}
+::: {.home-first-session-copy}
+**If you have a short session now**
+
+Don't try to go through everything at once. Open a route, produce a small piece of evidence, and stop with a clear decision about the next step.
+:::
+
+::: {.home-first-session-grid role="list" aria-label="Recommended first session at MGenética"}
+::: {.home-first-session-item role="listitem"}
+**10 min**
+
+Read the module's central question.
+:::
+
+::: {.home-first-session-item role="listitem"}
+**15 min**
+
+Run the main part of the script.
+:::
+
+::: {.home-first-session-item role="listitem"}
+**5 min**
+
+Write a decision sentence.
+:::
+:::
+:::
+
+::: {.home-section .home-proof}
+::: {.metric-grid}
+::: {.metric}
+**12**
+
+Progressive modules
+:::
+
+::: {.metric}
+**R**
+
+Reproducible scripts
+:::
+
+::: {.metric}
+**100%**
+
+Simulated data for teaching
+:::
+:::
+:::
+
+::: {.home-section .home-path-contract role="region" aria-label="Public contract of the learning trail"}
+::: {.home-path-contract-copy}
+**The trail always asks for evidence**
+
+The site was not designed for passive consumption. Each public route should lead to a small piece of evidence: a better question, an interpreted output in R, a table read with criteria, or a written technical decision.
+:::
+
+::: {.home-path-contract-grid role="list" aria-label="Expected evidence when using MGenética"}
+::: {.home-path-contract-item role="listitem"}
+**Question**
+
+Open a page knowing which concept or decision you want to clarify.
+:::
+
+::: {.home-path-contract-item role="listitem"}
+**Exit**
+
+Use script or public support to generate verifiable context.
+:::
+
+::: {.home-path-contract-item role="listitem"}
+**Decision**
+
+Close with a technical sentence before moving on.
+:::
+:::
+:::
+
+::: {.home-section .home-orientation role="region" aria-label="Initial course guidance"}
+::: {.orientation-copy}
+## Before you start
+
+The course works best when the visitor understands the role of each step: choosing an entry point, studying with support and closing each module with their own interpretation.
+:::
+
+::: {.orientation-grid role="list" aria-label="How to navigate MGenética"}
+::: {.orientation-card role="listitem"}
+**Entry point**
+
+Start with Module 01 if this is your first trip along the trail.
+:::
+
+::: {.orientation-card role="listitem"}
+**Support during reading**
+
+Use search, glossary, and script to retrieve context without abandoning the main sequence.
+:::
+
+::: {.orientation-card role="listitem"}
+**Closing**
+
+At the end, the certificate records the completion after the quizzes of the 12 modules.
+:::
+:::
+:::
+
+::: {.home-section .home-audience role="region" aria-label="Para quem a MGenética foi desenhada"}
+::: {.home-audience-copy}
+## Who this trail works best for
+
+MGenética was designed for those who need to connect theory, analysis and applied decision-making. The course does not replace a formal discipline, but organizes a public route to study with method and evidence.
+:::
+
+::: {.home-audience-grid role="list" aria-label="Perfis que podem usar a MGenética"}
+::: {.home-audience-item role="listitem"}
+**Students**
+
+To transform quantitative genetics concepts into reproducible practice.
+:::
+
+::: {.home-audience-item role="listitem"}
+**Researchers in training**
+
+To review parameters, models, and genomics with controlled examples.
+:::
+
+::: {.home-audience-item role="listitem"}
+**Technical professionals**
+
+To resume fundamentals before interpreting selection and evaluation outputs.
+:::
+:::
+:::
+
+::: {.home-section .home-start-criteria role="region" aria-label="Criteria for starting to study"}
+::: {.home-start-criteria-copy}
+**Start when there is time to complete a cycle**
+
+Each session works best when it ends with a small piece of evidence. Before opening the first module, take the time to read, run the script, and write a technical sentence.
+:::
+
+::: {.home-start-criteria-grid role="list" aria-label="Criteria for starting a module"}
+::: {.home-start-criteria-item role="listitem"}
+**30 to 45 min**
+
+Sufficient time for reading, execution and short synthesis.
+:::
+
+::: {.home-start-criteria-item role="listitem"}
+**R available**
+
+Environment ready to run the module script.
+:::
+
+::: {.home-start-criteria-item role="listitem"}
+**Clear question**
+
+A biological or technical decision to accompany the reading.
+:::
+:::
+:::
+
+::: {.home-section .home-module-anatomy role="region" aria-label="Structure of each module"}
+::: {.section-label}
+Anatomy
+:::
+
+## What is repeated in each module
+
+::: {.module-anatomy-grid role="list" aria-label="Recurring parts of the modules"}
+::: {.module-anatomy-card role="listitem"}
+**Purpose**
+
+The module begins with the technical question that guides the reading.
+:::
+
+::: {.module-anatomy-card role="listitem"}
+**Practice**
+
+The R script transforms the question into simulated data and comparable outputs.
+:::
+
+::: {.module-anatomy-card role="listitem"}
+**Interpretation**
+
+Closing asks for a short decision connecting result, limit and application.
+:::
+
+::: {.module-anatomy-card role="listitem"}
+**Quiz**
+
+The final check records local progress before moving forward.
+:::
+:::
+:::
+
+::: {.home-section .home-entry}
+::: {.section-label}
+Prohibited
+:::
+
+## Choose the best starting point
+
+::: {.entry-decision role="region" aria-label="How to choose an entry route"}
+::: {.entry-decision-copy}
+**Choose based on current situation**
+
+The main track continues to be Module 01. Use the alternative routes when you already know the content, need to regain context or want to organize the study before starting.
+:::
+
+::: {.entry-decision-list role="list" aria-label="Criteria for choosing a route"}
+::: {.entry-decision-item role="listitem"}
+**First time**
+
+Start with Module 01.
+:::
+
+::: {.entry-decision-item role="listitem"}
+**Revision**
+
+Open the index and choose the phase.
+:::
+
+::: {.entry-decision-item role="listitem"}
+**Planning**
+
+Use the weekly roadmap.
+:::
+:::
+:::
+
+::: {.entry-grid role="list" aria-label="Pontos de partida no curso"}
+::: {.entry-card .entry-card-primary role="listitem"}
+**Start now**
+
+Follow the first module, run the corresponding script and record a short interpretation.
+
+[Open Module 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Open Module 01 from the entry points"}
+:::
+
+::: {.entry-card role="listitem"}
+**Understand the trail**
+
+View the four editorial phases before moving on to the individual modules.
+
+[See module index](modules/index.qmd){.entry-link aria-label="View the module index to understand the trail"}
+:::
+
+::: {.entry-card role="listitem"}
+**Plan the study**
+
+Use the weekly script to organize reading, R practice, and review.
+
+[Open script](semanas/index.qmd){.entry-link aria-label="Open the roadmap to plan the study"}
+:::
+:::
+:::
+
+::: {.home-section .home-returning role="region" aria-label="How to resume the MGenética trail"}
+::: {.home-returning-copy}
+**If you are returning to the course**
+
+Return to the missing evidence: choose the next module, review the current phase or check pending issues before the certificate.
+:::
+
+::: {.home-returning-grid role="list" aria-label="Routes to resume study"}
+::: {.home-returning-item role="listitem"}
+**Continue**
+
+Open the index and choose the next module based on the stage you left off at.
+
+[View modules](modules/index.qmd){.entry-link aria-label="View modules to continue the trail"}
+:::
+
+::: {.home-returning-item role="listitem"}
+**Review**
+
+Use script to retrieve context before opening a new long page.
+
+[Open script](semanas/index.qmd){.entry-link aria-label="Open the roadmap to review context"}
+:::
+
+::: {.home-returning-item role="listitem"}
+**Finish**
+
+Check that all quizzes have been validated in the browser before issuing the certificate.
+
+[Check certificate](certificate.qmd){.entry-link aria-label="Check the certificate before finishing"}
+:::
+:::
+:::
+
+::: {.home-section .home-discovery}
+::: {.section-label}
+Support
+:::
+
+## Find the right concept without going off track
+
+::: {.discovery-grid role="list" aria-label="Study support tools"}
+::: {.discovery-card role="listitem"}
+**Search**
+
+Find terms, functions in R and excerpts from modules when you need to return to a specific point.
+
+[Search the course](search.qmd){.entry-link aria-label="Search terms and functions in the course"}
+:::
+
+::: {.discovery-card role="listitem"}
+**Glossary**
+
+Use as a quick reference for acronyms, parameters, and methods that appear throughout the sequence.
+
+[Open glossary](glossary.qmd){.entry-link aria-label="Open the glossary for quick reference"}
+:::
+
+::: {.discovery-card role="listitem"}
+**Roadmap**
+
+Distribute reading, script execution and technical interpretation into a weekly plan.
+
+[See roadmap](semanas/index.qmd){.entry-link aria-label="View the roadmap to distribute study"}
+:::
+:::
+:::
+
+::: {.home-section .home-evidence role="region" aria-label="Study experience evidence"}
+::: {.home-evidence-copy}
+## Why the trail is reliable
+
+The public experiment combines scientific content, controlled simulation and spot checking. This allows you to study complex concepts in a predictable sequence, without depending on registration, an external database or an administrative panel.
+:::
+
+::: {.home-evidence-grid role="list" aria-label="Evidence for the MGenética proposal"}
+::: {.home-evidence-item role="listitem"}
+**Scientific basis**
+
+The path follows classic references in quantitative genetics, genetic assessment and applied genomics.
+:::
+
+::: {.home-evidence-item role="listitem"}
+**Verifiable practice**
+
+Scripts allow you to repeat the simulation, change parameters and compare the interpretation.
+:::
+
+::: {.home-evidence-item role="listitem"}
+**Private progress**
+
+Quizzes and certificates work in the browser, without sending personal data.
+:::
+:::
+:::
+
+::: {.home-section .platform-statement}
+::: {.statement-copy}
+## Public platform for applied science education
+
+MGenética organizes content, computational practice and technical progression into a public study experience. The administrative layer must support maintenance, projects and publishing; the visitor experience remains editorial, clear and learning-oriented.
+:::
+
+::: {.statement-points}
+::: {.statement-point}
+**Modular content**
+
+Pages and modules with predictable structure for future editing.
+:::
+
+::: {.statement-point}
+**Reproducible practice**
+
+Scripts and simulated data connected to the objectives of each module.
+:::
+
+::: {.statement-point}
+**Static publication**
+
+Performance and stability suitable for GitHub Pages.
+:::
+:::
+:::
+
+::: {.home-section .home-sequence}
+::: {.section-label}
+Route
+:::
+
+## A sequence designed to move beyond intuition and reach a decision
+
+::: {.study-flow}
+::: {.flow-step}
+**01**
+
+Fundamentals
+:::
+
+::: {.flow-step}
+**02**
+
+Simulation
+:::
+
+::: {.flow-step}
+**03**
+
+Modeling
+:::
+
+::: {.flow-step}
+**04**
+
+Decision
+:::
+:::
+:::
+
+::: {.home-section .home-learning-loop}
+::: {.section-label}
+Method
+:::
+
+## The same cycle is repeated in all modules
+
+::: {.learning-loop-grid}
+::: {.learning-loop-card}
+**1 · Question**
+
+The content begins with the biological or selection decision that needs to be understood.
+:::
+
+::: {.learning-loop-card}
+**2 · Parameter**
+
+The module introduces the quantitative concept that explains the observed variation.
+:::
+
+::: {.learning-loop-card}
+**3 · Code**
+
+The R script transforms the hypothesis into reproducible output with simulated data.
+:::
+
+::: {.learning-loop-card}
+**4 · Interpretation**
+
+The closure requires a technical phrase linking result, limit and practical consequence.
+:::
+:::
+:::
+
+::: {.home-outcome-map role="region" aria-label="Resultado esperado depois de estudar"}
+::: {.home-outcome-map-copy}
+**What should change after a session**
+
+A good session doesn't just end with a page read. It should improve the question, script interpretation, or technical decision you can defend.
+:::
+
+::: {.home-outcome-map-grid role="list" aria-label="Resultados esperados de estudo"}
+::: {.home-outcome-map-item role="listitem"}
+**To understand**
+
+Explain the concept without relying on the quiz answer.
+:::
+
+::: {.home-outcome-map-item role="listitem"}
+**Test**
+
+Change a simulation and compare the output to the original result.
+:::
+
+::: {.home-outcome-map-item role="listitem"}
+**Decide**
+
+Write a practical consequence for selection, evaluation, or review.
+:::
+:::
+:::
+
+::: {.home-section .home-lab}
+::: {.lab-copy}
+## Public content, platform structure
+
+The website presents the study experience. Behind it, the organization needs to remain simple enough that pages, modules, scripts, and posts are maintained by an internal dashboard without contaminating the public experience.
+:::
+
+::: {.lab-grid}
+::: {.lab-card}
+**Signal**
+
+Biological concepts appear before formulas, to preserve context.
+:::
+
+::: {.lab-card}
+**Model**
+
+R scripts connect simulation, parameters and interpretation.
+:::
+
+::: {.lab-card}
+**Decision**
+
+Each module points to practical consequences in selection and assessment.
+:::
+:::
+:::
+
+::: {.home-section .home-method}
+## How to use the course
+
+::: {.feature-grid}
+::: {.feature}
+### 1. Study the concept
+
+Each module introduces a central block of animal improvement, avoiding starting with the formula before the biological question.
+:::
+
+::: {.feature}
+### 2. Run the practice
+
+The scripts in `scripts/` generate simulated data and help observe variation, selection, variance components, and genetic evaluation.
+:::
+
+::: {.feature}
+### 3. Interpret the result
+
+The activities ask for comparison between estimates, hypotheses and implications for decision-making in improvement programs.
+:::
+:::
+:::
+
+::: {.home-section .home-modules}
+## Learning trail
+
+An overview of the four editorial phases. The complete catalog is in the module index.
+
+::: {#learning-trail .phase-preview}
+::: {.phase-preview-card}
+**01 · Fundamentals**
+
+Animal improvement and bases of quantitative genetics.
+:::
+
+::: {.phase-preview-card}
+**02 · Data and parameters**
+
+Exploration, variances, heritability and correlations.
+:::
+
+::: {.phase-preview-card}
+**03 · Modeling**
+
+Mixed models, BLUP, pedigree and kinship.
+:::
+
+::: {.phase-preview-card}
+**04 · Genomics**
+
+SNPs, quality control, matrices, GWAS and prediction.
+:::
+:::
+
+::: {.section-cta role="navigation" aria-label="Learning trail actions"}
+[Start M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Start with Module 01"}
+[Explore the 12 modules](modules/index.qmd){.btn .btn-secondary}
+:::
+:::
+
+::: {.home-section .home-resources}
+::: {.section-label}
+Materials
+:::
+
+## Practical support to study without losing your sequence
+
+::: {.resource-grid role="list" aria-label="Recursos práticos de apoio ao estudo"}
+::: {.resource-card role="listitem"}
+**Scripts in R**
+
+Each module has a corresponding script to transform the question into simulation, output and interpretation.
+:::
+
+::: {.resource-card role="listitem"}
+**Simulated data**
+
+Examples are controlled for teaching, comparison and repetition without depending on external bases.
+:::
+
+::: {.resource-card role="listitem"}
+**Local quizzes**
+
+Progress checking happens in the browser and helps you decide when to move forward or review.
+:::
+:::
+:::
+
+::: {.home-section .home-readiness role="region" aria-label="Public checklist before starting"}
+::: {.home-readiness-copy}
+## Before starting the next module
+
+Use this checkpoint to keep the studying objective: each session should end with a small technical output, not just passive reading.
+:::
+
+::: {.home-readiness-grid role="list" aria-label="Checklist para estudar com a MGenética"}
+::: {.home-readiness-item role="listitem"}
+**Question**
+
+Identify which biological or selection decision the module helps answer.
+:::
+
+::: {.home-readiness-item role="listitem"}
+**Code**
+
+Run the corresponding script and change at least one simulation parameter.
+:::
+
+::: {.home-readiness-item role="listitem"}
+**Synthesis**
+
+Write a technical sentence before moving on to the quiz or the next module.
+:::
+:::
+:::
+
+::: {.home-section .home-continuity role="region" aria-label="How the trail closes after study"}
+::: {.home-continuity-copy}
+## From first class to certificate
+
+The public experience was designed to maintain a simple line: enter through the main trail, consult support when necessary, record progress in the quizzes and issue a certificate when the sequence is complete.
+:::
+
+::: {.home-continuity-actions role="navigation" aria-label="Actions to continue or complete the trail"}
+[Continue through modules](modules/index.qmd){.btn .btn-primary}
+[See how to complete](certificate.qmd){.btn .btn-secondary}
+:::
+:::
+
+::: {.home-section .home-final-cta}
+::: {.final-cta-copy}
+## Start on the main trail
+
+The best way is to follow the modules in order, run the scripts and record a short interpretation at each step. If you prefer to spread the load, use the weekly roadmap before you start.
+
+::: {.final-cta-hint}
+Choose `Começar M01` if there is no evidence recorded yet; choose planning or certificate only when the next session is already clear.
+:::
+:::
+
+::: {.final-cta-checks role="list" aria-label="Criteria for choosing the next step"}
+::: {.final-cta-check role="listitem"}
+**First session**
+
+Open Module 01 and close a short evidence.
+:::
+
+::: {.final-cta-check role="listitem"}
+**Resumption**
+
+Go back to the index and choose the current phase.
+:::
+
+::: {.final-cta-check role="listitem"}
+**Conclusion**
+
+Check the certificate for pending issues before closing.
+:::
+:::
+
+::: {.final-cta-actions role="navigation" aria-label="Ações finais da página inicial"}
+[Start M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Start with Module 01"}
+[Plan by week](semanas/index.qmd){.btn .btn-secondary}
+[See how to complete](certificate.qmd){.btn .btn-secondary}
+:::
+:::
+
+::: {.home-section .home-references}
+## Base references
+
+- Falconer, D. S.; Mackay, T. F. C. *Introduction to Quantitative Genetics*.
+- Lynch, M.; Walsh, B. *Genetics and Analysis of Quantitative Traits*.
+- Mrode, R. A. *Linear Models for the Prediction of Animal Breeding Values*.
+- Legarra, A.; Misztal, I. Technical materials on genetic and genomic assessment.
+:::
