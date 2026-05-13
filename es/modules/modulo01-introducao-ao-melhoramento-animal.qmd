@@ -1,0 +1,311 @@
+---
+title: "Módulo 01 — Introducción al mejoramiento animal"
+description: "Objetivos de mejoramiento, la ecuación del obtentor y los factores que determinan la ganancia genética."
+lang: es
+---
+
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 01 · FUNDAMENTOS</span>
+  <div class="module-meta"><span>⏱ ~25 minutos</span><span>Nivel: Introductorio</span></div>
+</div>
+<div class="module-objectives">
+  <h3>¿Qué aprenderás?</h3>
+  <ul>
+    <li>Qué es la cría de animales y cuál es su objetivo biológico</li>
+    <li>La ecuación del criador: ΔG = i × h × σ<sub>EL</sub>/L</li>
+    <li>Cómo afecta cada componente de la ecuación a la ganancia genética anual</li>
+    <li>Simule la respuesta a la selección a lo largo de generaciones con R</li>
+  </ul>
+</div>
+<div class="module-orientation" aria-label="Cómo estudiar este módulo">
+  <span>Lectura</span>
+  <span>Simulación en R</span>
+  <span>Interpretación</span>
+</div>
+```
+
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de lectura del módulo"}
+**Ritmo de lectura**
+
+Lea primero para comprender la pregunta, ejecute el guión para generar evidencia y solo luego continúe con el ejercicio y la prueba.
+:::
+
+::: {.module-session-plan role="region" aria-label="Plan corto de sesión del módulo"}
+::: {.module-session-plan-copy}
+**Plan de sesión corta**
+
+Utilice este módulo en una sesión cerrada: ingrese con una pregunta, presente evidencia escrita y salga con una breve decisión técnica.
+:::
+
+::: {.module-session-plan-grid role="list" aria-label="Etapas de la sesión de estudio del módulo"}
+::: {.module-session-plan-item role="listitem"}
+**Pregunta**
+
+Defina lo que necesita quedar más claro antes de leer.
+:::
+
+::: {.module-session-plan-item role="listitem"}
+**Evidencia**
+
+Rotar o revisar la sección principal en R.
+:::
+
+::: {.module-session-plan-item role="listitem"}
+**Decisión**
+
+Escribe una consecuencia técnica antes de partir.
+:::
+:::
+:::
+
+::: {.module-technical-scan role="region" aria-label="Cómo leer fórmulas, código y tablas del módulo"}
+::: {.module-technical-scan-copy}
+**Lea la parte técnica en tres pasajes**
+
+No intentes resolver fórmulas, códigos y tablas al mismo tiempo. Primero ubique el concepto, luego ejecute o siga el script y finalmente interprete el resultado como evidencia.
+:::
+
+::: {.module-technical-scan-grid role="list" aria-label="Pasajes de lectura técnica del módulo"}
+::: {.module-technical-scan-item role="listitem"}
+**Fórmula**
+
+Identificar qué términos cambian la decisión.
+:::
+
+::: {.module-technical-scan-item role="listitem"}
+**Código**
+
+Vea qué parámetro fue simulado o comparado.
+:::
+
+::: {.module-technical-scan-item role="listitem"}
+**Mesa**
+
+Lea la diferencia que sustenta la interpretación.
+:::
+:::
+:::
+
+## El problema antes de la fórmula
+
+Imaginemos un rebaño de ganado vacuno con un peso medio anual de 280 kg. El productor selecciona los animales más pesados ​​para la cría. Al cabo de unos años, el rebaño pesa, en promedio, 295 kg. ¿Qué pasó? Los genes que contribuyen a un mayor peso se han vuelto más frecuentes en la población. Este cambio dirigido en el promedio genotípico de una población a lo largo de generaciones es lo que llamamos **mejora genética animal**.
+
+::: {.callout-note}
+**Concepto central:** La cría de animales es la alteración intencional de la frecuencia de alelos favorables en una población, mediante selección dirigida y apareamiento, con el objetivo de desplazar el promedio genotípico en la dirección deseada.
+:::
+
+El objetivo no es un animal campeón individual, sino la **población**. Lo que importa es cuánto cambia el promedio genético de generación en generación.
+
+## La ecuación del criador.
+
+La ganancia genética anual (ΔG) se describe mediante la ecuación:
+
+$$\Delta G = \frac{i \times r_{TI} \times \sigma_A}{L}$$
+
+Donde:
+
+| Símbolo | Significado | Cómo aumentar |
+|---|---|---|
+| **i** | Intensidad de selección (función del % seleccionado) | Seleccione una fracción menor |
+| **r** | Precisión de la evaluación genética | Más descendientes, mejor método |
+| **σ_A** | Desviación estándar genética aditiva | Mantener la diversidad |
+| **L** | Intervalo generacional medio (años) | Utilice criadores más jóvenes |
+
+::: {.callout-tip}
+**Consejo práctico:** Para la selección masiva (es decir, basada únicamente en el fenotipo propio del animal), la precisión r ≈ √h², por lo que ΔG = i × h² × σ_P — la ecuación simplificada más común en los libros.
+:::
+
+## Simulación en R
+
+::: {.module-script-lab role="region" aria-label="Laboratorio del script del Módulo 01"}
+::: {.module-script-lab-copy}
+**Laboratorio de guiones**
+
+Utilice el guión para probar cómo la intensidad de la selección y la heredabilidad cambian la ganancia genética esperada. La página muestra los fragmentos principales; el archivo completo le permite repetir la simulación fuera del navegador.
+:::
+
+::: {.module-script-lab-grid role="list" aria-label="Cómo reproducir el script del Módulo 01"}
+::: {.module-script-lab-item role="listitem"}
+**Itinerario**
+
+[Open `modulo01.R`](../../scripts/modulo01.R){.entry-link aria-label="Open the full R script for Module 01"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**Salida generada**
+
+[View simulated CSV](../../data/modulo01_simulado.csv){.entry-link aria-label="Open the simulated CSV generated by Module 01"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**Qué cambiar**
+
+Cambie el límite de selección del 20% al 10% y compare `S`, `delta_G` y la ganancia acumulada.
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**Qué interpretar**
+
+Explique si una mayor ganancia justifica seleccionar menos animales cuando la diversidad y el período generacional también importan.
+:::
+:::
+:::
+
+```{r}
+#| label: selecao-basica
+set.seed(101)
+
+# Parâmetros populacionais
+n     <- 1000   # animais
+mu    <- 300    # média inicial (kg)
+h2    <- 0.35   # herdabilidade
+vp    <- 900    # variância fenotípica (σP = 30 kg)
+va    <- h2 * vp
+ve    <- vp - va
+
+# Gera população base
+a <- rnorm(n, 0, sqrt(va))   # valores genéticos
+e <- rnorm(n, 0, sqrt(ve))   # desvios ambientais
+p <- mu + a + e               # fenótipos
+
+# Seleciona top 20%
+sel      <- p >= quantile(p, 0.80)
+S        <- mean(p[sel]) - mean(p)   # diferencial de seleção
+delta_G  <- h2 * S
+
+cat("Média da população:      ", round(mean(p), 2), "kg\n")
+cat("Média dos selecionados:  ", round(mean(p[sel]), 2), "kg\n")
+cat("Diferencial (S):         ", round(S, 2), "kg\n")
+cat("Ganho genético (ΔG):     ", round(delta_G, 2), "kg\n")
+```
+
+```{r}
+#| label: progressao-geracoes
+# Simula 5 gerações de seleção
+n_ger     <- 5
+med_ger   <- numeric(n_ger + 1)
+med_ger[1] <- mean(p)
+
+for (g in seq_len(n_ger)) {
+  p_nova <- (med_ger[1] + delta_G * g) + rnorm(n, 0, sqrt(va)) + rnorm(n, 0, sqrt(ve))
+  med_ger[g + 1] <- mean(p_nova)
+}
+
+resultado <- data.frame(
+  Geração          = 0:n_ger,
+  Média_kg         = round(med_ger, 2),
+  Ganho_acumulado  = round(med_ger - med_ger[1], 2)
+)
+print(resultado)
+```
+
+```{r}
+#| label: efeito-herdabilidade
+# ¿Cómo afecta la heredabilidad a la ganancia genética?
+h2_vals <- c(0.10, 0.20, 0.35, 0.50, 0.70)
+cat("\n--- Ganho genético para diferentes h² (S fixo) ---\n")
+for (h in h2_vals) {
+  cat(sprintf("h² = %.2f  →  ΔG = %.2f kg  (%.1f%% da média)\n",
+              h, h * S, 100 * h * S / mu))
+}
+```
+
+## Interpretación
+
+Mirando la tabla de progresión:
+
+- La ganancia acumulada aumenta aproximadamente **linealmente** con cada generación, porque la intensidad de la selección se mantuvo constante y la varianza genética no se redujo (no hay endogamia en esta simple simulación).
+- Con h² = 0,35 y la selección del 20% superior, la ganancia por generación es de ~4,5 kg, aproximadamente **1,5% del promedio** por generación.
+- Los rasgos de baja heredabilidad (fertilidad, supervivencia) responden mucho más lentamente a la selección directa.
+
+::: {.callout-warning}
+**Atención:** La ecuación del obtentor supone que la variación genética permanece constante a lo largo de generaciones. En la práctica, la selección intensa y la endogamia reducen esta variación: la ganancia real tiende a disminuir.
+:::
+
+::: {.module-evidence-path role="note" aria-label="Caminho de evidência do módulo"}
+**Camino de la evidencia**
+
+Antes del ejercicio, conecte tres puntos: qué pregunta abrió el módulo, qué resultado del guión respalda la respuesta y qué decisión técnica es más clara.
+:::
+
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidencia mínima para este módulo**
+
+Antes de continuar, compare dos intensidades de selección y escriba qué decisión aumenta la ganancia sin ignorar el intervalo de generación y la varianza disponible.
+:::
+
+## Ejercicio propuesto
+
+1. Modifique el código para seleccionar el **10% superior** en lugar del 20%. ¿Cómo cambian S y ΔG?
+2. Mantenga la intensidad original, pero cambie `h2` a 0,15 (característica de reproducción). ¿Cuál es la ganancia esperada?
+3. Si L = 5 años (el toro se usó durante 5 años), ¿cuál es la ganancia genética **anual** usando la ecuación ΔG/L?
+
+::: {.module-study-checkpoint role="note" aria-label="Checkpoint de estudo antes do quiz"}
+**Antes del cuestionario**
+
+Revise la pregunta biológica, ejecute la sección principal en R y escriba una oración que vincule el resultado con la decisión de selección. Luego pasa al cuestionario con esa frase en mente.
+:::
+
+::: {.module-takeaways role="note" aria-label="Resumo técnico do módulo"}
+**Qué aprender de este módulo**
+
+- La ganancia genética depende de la variación disponible, la intensidad de la selección, la precisión y el intervalo intergeneracional.
+- La ecuación del obtentor es más útil cuando se convierte en una comparación entre posibles decisiones de selección.
+:::
+
+::: {.quiz-container data-module="01"}
+:::
+
+::: {.module-after-quiz role="note" aria-label="Próximo passo depois do quiz"}
+**Después del cuestionario**
+
+Si el resultado del cuestionario no refleja su interpretación, regrese al extracto de R y al ejercicio propuesto. Si es coherente, siga adelante manteniendo grabada una frase técnica.
+:::
+
+::: {.module-close-check role="region" aria-label="Revisión de cierre del módulo"}
+::: {.module-close-check-copy}
+**Antes de cambiar de página**
+
+Cierre el módulo cuando la lectura, el código y el cuestionario apoyen la misma conclusión. Si queda algún punto abierto, retroceda en el índice o busque antes de seguir adelante.
+:::
+
+::: {.module-close-check-grid role="list" aria-label="Criterios de cierre del módulo"}
+::: {.module-close-check-item role="listitem"}
+**Lectura**
+
+La pregunta central fue respondida con sus palabras.
+:::
+
+::: {.module-close-check-item role="listitem"}
+**Código**
+
+El resultado principal fue interpretado, no solo ejecutado.
+:::
+
+::: {.module-close-check-item role="listitem"}
+**Prueba**
+
+El resultado confirma la disposición a avanzar o revisar.
+:::
+:::
+:::
+
+::: {.module-return-note role="note" aria-label="Cómo volver al flujo después de este módulo"}
+**Vuelve con una decisión**
+
+Antes de cambiar de página, registre si este módulo generó avance, revisión o consulta. Utilice esta decisión para elegir el siguiente clic en el índice.
+:::
+
+```{=html}
+<nav class="module-nav" aria-label="Navegación entre módulos">
+  <a class="module-nav-card module-nav-index" href="index.html">
+    <span>Índice</span>
+    <strong>Todos los módulos</strong>
+  </a>
+  <a class="module-nav-card module-nav-next" href="modulo02-bases-da-genetica-quantitativa.html">
+    <span>Siguiente · Módulo 02</span>
+    <strong>Bases de la Genética Cuantitativa</strong>
+  </a>
+</nav>
+```

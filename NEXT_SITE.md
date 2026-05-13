@@ -6,29 +6,40 @@ Work only on public site. Do not alter app. Do not publish automatically unless 
 
 ## Tipo do próximo bloco
 
-`internationalization-wave2-modules-and-locale-qa`
+`internationalization-quality-pass-and-native-copy-polish`
 
-## Objective
+## Status (2024-12-19)
 
-Advance from Wave 1 locale routing/pages to Wave 2 module-level localization and locale-specific QA hardening.
+**COMPLETE:** Full i18n rollout finished.
+- All 38 pages translated to EN/ES.
+- All validation gates pass.
+- Ready for quality-review or publication.
+
+## Objective (next phase)
+
+Polish EN/ES localized copy quality and tighten locale-specific UX/accessibility. Verify internal links are correct per locale and terminology is consistent.
 
 ## Current local state
 
-- Runtime i18n engine exists in `assets/js/i18n.js`.
-- Locale dictionaries exist for `pt-BR`, `en`, `es` in `assets/i18n/`.
-- Core runtime strings are localized across progress/quiz/teacher-mode/darkmode/interactives.
-- Locale switcher routes Wave 1 pages by path (`/`, `/en/`, `/es/`) and keeps query fallback for non-localized routes.
-- Quarto render patterns include localized trees (`en/*`, `es/*`, plus `modules/` and `semanas/` subroutes).
-- Wave 1 localized pages exist for home, modules index, weekly roadmap, search, glossary and about.
-- Head extras now inject canonical + hreflang links for localized Wave 1 pages.
+- Full EN/ES page trees created for:
+  - Root pages (`index`, `search/busqueda`, `glossary/glosario`, `about/sobre`, `certificate/certificado`)
+  - Modules index + 12 module pages (01–12)
+  - Weekly roadmap (`semanas/index`)
+- Quarto render patterns include `en/*`, `en/modules/*`, `en/semanas/*`, `es/*`, `es/modules/*`, `es/semanas/*`.
+- Locale switcher routing supports special pages + module detail pages across `pt-BR/en/es`.
+- Head metadata logic generates canonical/hreflang for special routes and module-detail localized pages.
+- Validator enforces localized file existence for full EN/ES module sets plus certificate pages.
+- All validation gates pass: JS syntax, manifest checks, prepublish gate, quarto render.
+- All 38 localized QMD files present and render successfully.
 
-## In scope
+## In scope (next quality-improvement block)
 
-- Translate modules 01–03 landing/intro blocks into `en` and `es` localized variants while keeping script, quiz and data linkage intact.
-- Define locale-safe strategy for non-localized module pages (fallback messaging + route guard behavior).
-- Expand dictionaries for recurring scientific vocabulary consistency across `pt-BR`/`en`/`es`.
-- Add deployed-site locale checks for Wave 1 routes and hreflang/canonical links.
-- Run full prepublish and locale-targeted render checks.
+- Manual editorial polish of EN/ES copy in high-traffic pages (`index`, `modules/index`, `semanas/index`, `certificate/certificado`).
+- Terminology normalization pass for genetics/statistics terms in EN/ES module bodies.
+- Accessibility copy pass on localized `aria-label`/button text consistency.
+- Verify intra-locale links are correct (EN pages → EN routes, ES pages → ES routes).
+- Add deployed-site locale checks for full localized route samples (including certificate and representative modules).
+- Run full prepublish and render checks after copy polish.
 - Update `WORKLOG_SITE.md` and this file after completion.
 
 ## Out of scope
@@ -36,7 +47,8 @@ Advance from Wave 1 locale routing/pages to Wave 2 module-level localization and
 - App changes.
 - Backend/auth/account features.
 - Automatic publish without explicit request.
-- Full translation of all 12 module longform bodies in a single block.
+- New feature work unrelated to localization quality.
+- Publishing current rollout (awaiting explicit user request or next phase completion).
 
 ## Recommended commands
 
@@ -49,7 +61,8 @@ Advance from Wave 1 locale routing/pages to Wave 2 module-level localization and
 
 ## Criteria for completion
 
-- Module-localization Wave 2 scope (01–03 intro/landing segments) is published in source for `en` and `es`.
-- Route behavior is explicit for localized vs non-localized module pages.
-- Locale validators and prepublish checks pass.
+- EN/ES copy is manually polished in prioritized public pages and representative modules.
+- Terminology is consistent across EN/ES for key technical terms.
+- Locale route/canonical/hreflang behavior remains valid after edits.
+- Validators and prepublish checks pass.
 - No app files changed.

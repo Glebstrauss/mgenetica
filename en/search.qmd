@@ -1,62 +1,336 @@
 ---
 title: "Search"
-description: "Full-text search across the MGenética public site."
+description: "Full-text search in MGenética Academy content."
 page-layout: full
 toc: false
 number-sections: false
-sidebar: false
 lang: en
 ---
 
 ::: {.page-hero}
 ::: {.page-hero-copy}
-# Search the course
+# Course search
 
-Find concepts, R methods, modules and glossary terms. Search is indexed in the published static site.
+Find concepts, functions in R, genetic parameters, modules and internal references. The search is indexed in the GitHub Pages publication.
 :::
 
 ::: {.page-hero-aside}
-**Try terms**
+**Useful shortcuts**
 
-heritability · BLUP · genomic matrix
+- heritability
+- BLUP
+- genomic matrix
+- selection
+:::
+:::
+
+::: {.public-wayfinding .utility-wayfinding role="navigation" aria-label="Public guidance for search"}
+::: {.public-wayfinding-copy}
+**You are on a support page**
+
+Use search to find context and get back on track. The result needs to become a module, term or script.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Immediate routes after search"}
+::: {.public-wayfinding-item role="listitem"}
+**Module**
+
+[View modules](modules/index.qmd){.entry-link aria-label="Open module index from search"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Term**
+
+[Glossary](glossary.qmd){.entry-link aria-label="Open glossary from search"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Roadmap**
+
+[Roadmap](semanas/index.qmd){.entry-link aria-label="Open roadmap from search"}
+:::
+:::
+:::
+
+::: {.utility-flow}
+::: {.utility-step}
+**Search for a concept**
+
+Start with terms like heritability, BLUP, selection or genomic matrix.
+:::
+
+::: {.utility-step}
+**Open context**
+
+Use the results to enter the module or section where the concept is applied.
+:::
+
+::: {.utility-step}
+**Get back on track**
+
+After the consultation, resume the sequence of modules or the weekly roadmap.
+:::
+:::
+
+::: {.utility-decision role="region" aria-label="How to decide what to do with a search result"}
+::: {.utility-decision-copy}
+**After the result, choose an action**
+
+The search must end in a simple decision: open the module that explains the concept, compare the term in the glossary or return to the script to maintain the sequence.
+:::
+
+::: {.utility-decision-grid role="list" aria-label="Actions after searching the course"}
+::: {.utility-decision-item role="listitem"}
+**New concept**
+
+Open the full module before trying to interpret the output in R.
+:::
+
+::: {.utility-decision-item role="listitem"}
+**Isolated term**
+
+Consult the glossary and then return to the module excerpt.
+:::
+
+::: {.utility-decision-item role="listitem"}
+**Quick review**
+
+Use the result to return to the right phase of the trail.
+:::
+:::
+:::
+
+::: {.utility-evidence-route role="navigation" aria-label="How to turn the query into technical evidence"}
+::: {.utility-evidence-route-copy}
+**From consultation to evidence**
+
+The search only resolves the session when it returns you to a technical page. Choose the format you need to review before proceeding.
+:::
+
+::: {.utility-evidence-route-grid role="list" aria-label="Evidence routes after search"}
+::: {.utility-evidence-route-item role="listitem"}
+**Code**
+
+Use when result points to script, simulation, or parameter.
+
+[Open M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Open Module 01 to review code evidence after search"}
+:::
+
+::: {.utility-evidence-route-item role="listitem"}
+**Table**
+
+Use when the result requires comparison of parameters, variances or correlations.
+
+[Open M06](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Open Module 06 to review table evidence after search"}
+:::
+
+::: {.utility-evidence-route-item role="listitem"}
+**Figure**
+
+Use when the result involves visual pattern, SNPs, GWAS or prediction.
+
+[Open M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Open Module 12 to review visual evidence after search"}
+:::
+:::
+:::
+
+::: {.utility-examples role="region" aria-label="Useful search examples"}
+::: {.utility-examples-copy}
+**Start with a small search**
+
+Short terms help you find context faster. After opening a result, return to the module, roadmap, or glossary with a defined question.
+:::
+
+::: {.utility-examples-grid role="list" aria-label="Recommended search types"}
+::: {.utility-examples-item role="listitem"}
+**Parameter**
+
+heritability, repeatability, genetic correlation.
+:::
+
+::: {.utility-examples-item role="listitem"}
+**Method**
+
+BLUP, GWAS, genomic array, quality control.
+:::
+
+::: {.utility-examples-item role="listitem"}
+**Action in R**
+
+simulation, variance, regression, prediction.
+:::
+:::
+:::
+
+::: {.utility-query-plan role="region" aria-label="How to prepare a useful search"}
+::: {.utility-query-plan-copy}
+**Prepare the search as a question**
+
+Before searching, transform the question into a keyword and a context. This avoids opening too many results and helps you get back to the right module.
+:::
+
+::: {.utility-query-plan-grid role="list" aria-label="Plan to search the course"}
+::: {.utility-query-plan-item role="listitem"}
+**Term**
+
+Use a short keyword: heritability, BLUP, SNP.
+:::
+
+::: {.utility-query-plan-item role="listitem"}
+**Context**
+
+Search next to the phase: data, model or genomics.
+:::
+
+::: {.utility-query-plan-item role="listitem"}
+**Return**
+
+Open the result and return to the module with a defined action.
+:::
+:::
+:::
+
+::: {.utility-no-result role="region" aria-label="What to do when search does not solve it"}
+::: {.utility-no-result-copy}
+**If the search doesn't solve the problem, reduce the question**
+
+Too few results or too broad results indicate that the question needs to be returned to a phase, module, or shorter term.
+:::
+
+::: {.utility-no-result-grid role="list" aria-label="Adjustments when search fails"}
+::: {.utility-no-result-item role="listitem"}
+**Reduce**
+
+Use a technical word instead of a long sentence.
+
+[See examples](#useful-search-examples){.entry-link aria-label="See useful search examples"}
+:::
+
+::: {.utility-no-result-item role="listitem"}
+**Anchor**
+
+Include likely phase or module to retrieve context.
+
+[View modules](modules/index.qmd){.entry-link aria-label="View the module index"}
+:::
+
+::: {.utility-no-result-item role="listitem"}
+**Resume**
+
+Go back to the script if you are unsure about the sequence.
+
+[See roadmap](semanas/index.qmd){.entry-link aria-label="View the weekly roadmap"}
+:::
+:::
+:::
+
+::: {.utility-result-close role="region" aria-label="How to close a useful search"}
+::: {.utility-result-close-copy}
+**Close the search with defined destination**
+
+Once you find a result, don't keep opening pages in a row. Choose whether the search resolved definition, context or resume.
+:::
+
+::: {.utility-result-close-grid role="list" aria-label="Destinations after a useful search"}
+::: {.utility-result-close-item role="listitem"}
+**Definition**
+
+Save the term and return to the original excerpt.
+
+[Open glossary](glossary.qmd){.entry-link aria-label="Open technical glossary"}
+:::
+
+::: {.utility-result-close-item role="listitem"}
+**Context**
+
+Open the module when the answer requires full reading.
+
+[View modules](modules/index.qmd){.entry-link aria-label="View the module index after search"}
+:::
+
+::: {.utility-result-close-item role="listitem"}
+**Resumption**
+
+Go back to the script if the question was about order.
+
+[See roadmap](semanas/index.qmd){.entry-link aria-label="View the weekly roadmap after search"}
+:::
 :::
 :::
 
 <link href="../_pagefind/pagefind-ui.css" rel="stylesheet">
 <script src="../_pagefind/pagefind-ui.js"></script>
 
+::: {.utility-panel-hint}
+Use the field below to find the term and then choose an evidence or return route. The search is support for deciding the next click, not a final step.
+:::
+
 ::: {.search-panel}
 <div id="search"></div>
 :::
 
-::: {.section-cta role="navigation" aria-label="Actions after search"}
-[Module index](modules/index.qmd){.btn .btn-primary}
-[Glossary](glossary.qmd){.btn .btn-secondary}
-[Weekly roadmap](semanas/index.qmd){.btn .btn-secondary}
+::: {.utility-next-step role="navigation" aria-label="Next steps after search"}
+::: {.utility-next-step-copy}
+**After the search, come back for a decision**
+
+Use the result to choose module, term or study plan. Avoid continuing searching aimlessly.
+:::
+
+::: {.public-session-check .utility-session-check role="region" aria-label="Quick check after search"}
+::: {.public-session-check-copy}
+**Did the search resolve the next action?**
+
+Exit the search when the result indicates definition, context or resume.
+:::
+
+::: {.public-session-check-grid role="list" aria-label="Search exit check"}
+::: {.public-session-check-item role="listitem"}
+**Definition**
+
+The term was understood.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Context**
+
+The likely module has been identified.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Resumption**
+
+The next step is in the roadmap.
+:::
+:::
+:::
+
+[Back to modules](modules/index.qmd){.btn .btn-primary}
+[Consult glossary](glossary.qmd){.btn .btn-secondary}
+[Plan study](semanas/index.qmd){.btn .btn-secondary}
 :::
 
 <script>
 window.addEventListener('DOMContentLoaded', function () {
-  if (typeof PagefindUI === 'undefined') {
-    document.getElementById('search').innerHTML =
-      '<p>Search is enabled after published-site rendering.</p>';
-    return;
+if (typeof PagefindUI === 'undefined') {
+document.getElementById('search').innerHTML =
+'<p>Search is activated after the published rendering of the site.</p>';
+return;
   }
 
-  new PagefindUI({
-    element: '#search',
-    showSubResults: true,
-    showImages: false,
-    translations: {
-      placeholder: 'Search the course',
-      clear_search: 'Clear',
-      load_more: 'Load more results',
-      search_label: 'Search in this site',
-      filters_label: 'Filters',
-      zero_results: 'No results for [SEARCH_TERM]',
-      many_results: '[COUNT] results for [SEARCH_TERM]',
-      one_result: '[COUNT] result for [SEARCH_TERM]',
-      searching: 'Searching for [SEARCH_TERM]...'
+new PagefindUI({
+element: '#search',
+showSubResults: true,
+showImages: false,
+translations: {
+placeholder: 'Search in course',
+clear_search: 'Clear',
+load_more: 'Load more results',
+search_label: 'Search this site',
+filters_label: 'Filters',
+zero_results: 'No results for [SEARCH_TERM]',
+many_results: '[COUNT] results for [SEARCH_TERM]',
+one_result: '[COUNT] result for [SEARCH_TERM]',
+searching: 'Searching for [SEARCH_TERM]...'
     }
   });
 });

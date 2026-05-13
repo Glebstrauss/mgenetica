@@ -102,10 +102,10 @@ mgenetica/
 
 - Runtime i18n ativo via `assets/js/i18n.js` e dicionários em `assets/i18n/`.
 - Idiomas disponíveis: `pt-BR` (padrão), `en`, `es`.
-- Rotas localizadas Wave 1:
+- Rotas localizadas (cobertura completa de páginas públicas):
   - `pt-BR`: `/`, `/modules/`, `/semanas/`, `/busca.html`, `/glossario.html`, `/perfil.html`
-  - `en`: `/en/`, `/en/modules/`, `/en/semanas/`, `/en/search.html`, `/en/glossary.html`, `/en/about.html`
-  - `es`: `/es/`, `/es/modules/`, `/es/semanas/`, `/es/busqueda.html`, `/es/glosario.html`, `/es/sobre.html`
+  - `en`: `/en/`, `/en/modules/` (índice + módulos 01–12), `/en/semanas/`, `/en/search.html`, `/en/glossary.html`, `/en/about.html`, `/en/certificate.html`
+  - `es`: `/es/`, `/es/modules/` (índice + módulos 01–12), `/es/semanas/`, `/es/busqueda.html`, `/es/glosario.html`, `/es/sobre.html`, `/es/certificado.html`
 
 ## Desenvolvimento com VS Code
 

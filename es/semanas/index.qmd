@@ -1,76 +1,510 @@
 ---
-title: "Ruta de estudio"
-subtitle: "Progresión en 12 semanas"
-description: "Guía semanal para avanzar por los módulos de MGenética con práctica reproducible."
+title: "Pista de estudio"
+subtitle: "Hoja de ruta de 12 semanas para avanzar en los módulos"
 page-layout: full
 toc: false
-sidebar: false
 number-sections: false
 lang: es
 ---
 
 ::: {.page-hero}
 ::: {.page-hero-copy}
-# Ruta de estudio en 12 semanas
+# Guía de estudio en 12 semanas.
 
-Transforma la ruta completa en ciclos semanales: leer, ejecutar script, comparar salida y registrar una decisión técnica corta.
+Esta página organiza los módulos existentes en un ritmo semanal. La propuesta es estudiar un tema por semana, ejecutar el script correspondiente y registrar una breve interpretación de los resultados.
 :::
 
 ::: {.page-hero-aside}
 **Ritmo sugerido**
 
-1 módulo por semana con una evidencia verificable.
+1 módulo por semana, con lectura, ejecución de guion y breve síntesis técnica.
 :::
 :::
 
-::: {.route-overview role="region" aria-label="Fases de estudio"}
+::: {.callout-tip}
+Utilice esta pista como plan de estudio. Los enlaces apuntan a módulos ya publicados, evitando páginas vacías o enlaces rotos.
+:::
+
+::: {.public-wayfinding .route-wayfinding role="navigation" aria-label="Orientación pública de la hoja de ruta semanal"}
+::: {.public-wayfinding-copy}
+**Estás en el ritmo de estudio**
+
+Utilice la hoja de ruta para convertir el recorrido en semanas. La siguiente acción debe preservar el orden, el tiempo y la mínima evidencia.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Rutas inmediatas de la hoja de ruta semanal"}
+::: {.public-wayfinding-item role="listitem"}
+**Semana actual**
+
+[Abrir M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir el Módulo 01 desde la hoja de ruta"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Reorganizar**
+
+[Ver módulos](../modules/index.qmd){.entry-link aria-label="Volver al índice de módulos"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Revisar cierre**
+
+[Certificado](../certificate.qmd){.entry-link aria-label="Abrir el certificado de finalización"}
+:::
+:::
+:::
+
+::: {.route-start-today role="navigation" aria-label="Cómo empezar el itinerario hoy"}
+::: {.route-start-today-copy}
+**Comience con el estado de hoy**
+
+No siempre es necesario que la hoja de ruta comience en la semana 1. Elija la entrada según lo que tiene ahora: primer contacto, repetición o revisión antes del certificado.
+:::
+
+::: {.route-start-today-grid role="list" aria-label="Entradas para usar el itinerario hoy"}
+::: {.route-start-today-item role="listitem"}
+**Primer contacto**
+
+Utilice la semana 1 para comprender la cuestión biológica.
+
+[Abrir M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir el Módulo 01 desde la hoja de ruta"}
+:::
+
+::: {.route-start-today-item role="listitem"}
+**Reanudación**
+
+Regrese al escenario donde la última prueba estaba incompleta.
+
+[Ver módulos](../modules/index.qmd){.entry-link aria-label="Ver módulos desde la hoja de ruta"}
+:::
+
+::: {.route-start-today-item role="listitem"}
+**Revisión final**
+
+Utilice la tabla para encontrar asuntos pendientes antes del certificado.
+
+[Revisar certificado](../certificate.qmd){.entry-link aria-label="Revisar el certificado desde la hoja de ruta"}
+:::
+:::
+:::
+
+::: {.route-checkpoints}
+::: {.route-checkpoint}
+**Antes**
+
+Lea el objetivo del módulo e identifique la pregunta biológica central.
+:::
+
+::: {.route-checkpoint}
+**Durante**
+
+Ejecute el script, cambie un parámetro y compare el resultado.
+:::
+
+::: {.route-checkpoint}
+**Después**
+
+Grabe una breve interpretación y pase al siguiente módulo.
+:::
+:::
+
+::: {.route-overview role="region" aria-label="Ritmo editorial del recorrido de 12 semanas"}
 ::: {.route-overview-copy}
-## Ritmo por fases
+## Ritmo sugerido por fase
 
-Avanza de fundamentos a genómica manteniendo evidencia semanal.
+Utilice la hoja de ruta como secuencia de consolidación: cada bloque de semanas culmina un cambio de escala, de la intuición biológica a los modelos y luego a la genómica.
 :::
 
 ::: {.route-overview-grid}
 ::: {.route-overview-card}
 **Semanas 1-2**
 
-Fundamentos de mejoramiento y genética cuantitativa.
+Fundamentos de mejora y descomposición genética del fenotipo.
 :::
+
 ::: {.route-overview-card}
 **Semanas 3-6**
 
-Exploración de datos, varianza, heredabilidad y correlaciones.
+Exploración de datos, varianzas, heredabilidad, repetibilidad y correlaciones.
 :::
+
 ::: {.route-overview-card}
 **Semanas 7-9**
 
-Modelos, BLUP, pedigree y parentesco.
+Modelos lineales, BLUP, pedigrí y parentesco como base de evaluación.
 :::
+
 ::: {.route-overview-card}
 **Semanas 10-12**
 
-SNPs, control de calidad, GWAS y predicción genómica.
+Marcadores SNP, control de calidad, arrays genómicos, GWAS y predicción.
+:::
+:::
+:::
+
+::: {.route-week-decision role="region" aria-label="Cómo elegir el ritmo semanal de estudio"}
+::: {.route-week-decision-copy}
+**Ajusta el ritmo sin romper la secuencia**
+
+Una semana por módulo es una guía. Lo importante es preservar el ciclo completo: lectura, script, cambio de parámetros, interpretación y cuestionario.
+:::
+
+::: {.route-week-decision-grid role="list" aria-label="Ritmos posibles para usar el itinerario"}
+::: {.route-week-decision-item role="listitem"}
+**Ritmo ligero**
+
+Separe la lectura y el script en dos días.
+:::
+
+::: {.route-week-decision-item role="listitem"}
+**Ritmo estándar**
+
+Complete un módulo completo por semana.
+:::
+
+::: {.route-week-decision-item role="listitem"}
+**Ritmo de revisión**
+
+Aprovecha la semana para rehacer el script, el cuestionario y la síntesis.
+:::
+:::
+:::
+
+::: {.route-recovery-plan role="region" aria-label="Cómo recuperar el ritmo del recorrido"}
+::: {.route-recovery-plan-copy}
+**Si la semana se retrasa, recuperar mediante evidencia**
+
+No reinicies toda la pista. Vuelva al punto verificable más pequeño: pregunta, script o cuestionario. Luego reanude la secuencia a través de la fase actual.
+:::
+
+::: {.route-recovery-plan-grid role="list" aria-label="Acciones para recuperar una semana atrasada"}
+::: {.route-recovery-plan-item role="listitem"}
+**Me perdí la lectura**
+
+Revise el objetivo, la evidencia mínima y las conclusiones del módulo.
+:::
+
+::: {.route-recovery-plan-item role="listitem"}
+**Perdí el código**
+
+Simplemente ejecute el script principal y cambie un parámetro.
+:::
+
+::: {.route-recovery-plan-item role="listitem"}
+**Me perdí el cierre**
+
+Vuelva a realizar el cuestionario y escriba una breve decisión antes de continuar.
+:::
+:::
+:::
+
+::: {.route-session-plan role="region" aria-label="Modelos de sesión para usar el itinerario"}
+::: {.route-session-plan-copy}
+**Convierte la semana en una sesión clara**
+
+El script se puede utilizar a diferentes ritmos, siempre que cada sesión finalice con un resultado verificable.
+:::
+
+::: {.route-session-plan-grid role="list" aria-label="Modelos práticos de sessão"}
+::: {.route-session-plan-item role="listitem"}
+**Lectura**
+
+Úselo cuando necesite comprender la pregunta antes de ejecutar el código.
+:::
+
+::: {.route-session-plan-item role="listitem"}
+**Código**
+
+Úselo cuando ya sepa qué parámetro desea probar en el script.
+:::
+
+::: {.route-session-plan-item role="listitem"}
+**Síntesis**
+
+Úselo cuando necesite convertir los resultados en una decisión breve.
+:::
+:::
+:::
+
+::: {.route-output-check role="navigation" aria-label="Cómo revisar la evidencia técnica de la semana"}
+::: {.route-output-check-copy}
+**Revisar la semana por tipo de salida**
+
+Antes de marcar una semana como completa, verifique si la evidencia proviene de un código, tabla o figura. Si un formato es débil, regrese al módulo correcto antes de pasar a la próxima semana.
+:::
+
+::: {.route-output-check-grid role="list" aria-label="Rutas para revisar evidencias técnicas semanales"}
+::: {.route-output-check-item role="listitem"}
+**Código**
+
+Úselo cuando la duda esté en el script o en un parámetro modificado.
+
+[Abrir M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir el Módulo 01 para revisar evidencia de código en la hoja de ruta"}
+:::
+
+::: {.route-output-check-item role="listitem"}
+**Tabla**
+
+Úselo cuando la duda sea de comparación, parámetro o correlación.
+
+[Abrir M06](../modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Abrir el Módulo 06 para revisar evidencia de tabla en la hoja de ruta"}
+:::
+
+::: {.route-output-check-item role="listitem"}
+**Figura**
+
+Úselo cuando la duda esté en un patrón visual, marcador o predicción.
+
+[Abrir M12](../modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir el Módulo 12 para revisar evidencia visual y genómica en la hoja de ruta"}
+:::
+:::
+:::
+
+::: {.route-session-split role="region" aria-label="Cómo dividir una semana cuando hay poco tiempo"}
+::: {.route-session-split-copy}
+**Si la semana está llena, divídela sin romper el ciclo**
+
+No es obligatorio resolver la lectura, el código y el cuestionario el mismo día. Lo importante es mantener el orden y cerrar con una decisión.
+:::
+
+::: {.route-session-split-grid role="list" aria-label="División corta de la semana de estudio"}
+::: {.route-session-split-item role="listitem"}
+**20 minutos**
+
+Lea el objetivo, el concepto central y la evidencia esperada.
+:::
+
+::: {.route-session-split-item role="listitem"}
+**30 minutos**
+
+Ejecute el script y registre una comparación.
+:::
+
+::: {.route-session-split-item role="listitem"}
+**10 minutos**
+
+Realice una prueba o escriba su decisión de salida.
+:::
+:::
+:::
+
+::: {.route-evidence-ladder role="region" aria-label="Evidencia mínima por ciclo del itinerario"}
+::: {.route-evidence-ladder-copy}
+**Convierte el script en evidencia acumulada**
+
+El avance semanal debería producir pistas pequeñas y comparables. Al final de cada fase, la evidencia pasa de la lectura a la interpretación y luego a la decisión.
+:::
+
+::: {.route-evidence-ladder-grid role="list" aria-label="Evidencias esperadas a lo largo del itinerario"}
+::: {.route-evidence-ladder-item role="listitem"}
+**Semanas 1-2**
+
+Explicar la cuestión biológica y el papel de la variación.
+:::
+
+::: {.route-evidence-ladder-item role="listitem"}
+**Semanas 3-9**
+
+Compare parámetros, modelos y resultados antes de seguir adelante.
+:::
+
+::: {.route-evidence-ladder-item role="listitem"}
+**Semanas 10-12**
+
+Defender una decisión técnica que involucre datos genómicos.
+:::
+:::
+:::
+
+::: {.route-phase-handoff role="region" aria-label="Cómo pasar de una fase a otra en el itinerario"}
+::: {.route-phase-handoff-copy}
+**Pasa por fases con una síntesis**
+
+Al pasar de los fundamentos a los datos, de los datos al modelado, o del modelado a la genómica, tómate un breve descanso. La siguiente fase sólo queda clara cuando la anterior dejó una sentencia técnica defendible.
+:::
+
+::: {.route-phase-handoff-grid role="list" aria-label="Pasos para atravesar fases del itinerario"}
+::: {.route-phase-handoff-item role="listitem"}
+**Para cerrar**
+
+Escribe lo que la fase anterior te permitió decidir.
+:::
+
+::: {.route-phase-handoff-item role="listitem"}
+**Revisar**
+
+Regrese al módulo clave si la oración aún es vaga.
+:::
+
+::: {.route-phase-handoff-item role="listitem"}
+**Próximo**
+
+Abra la siguiente fase con una pregunta más específica.
+:::
+:::
+:::
+
+::: {.route-weekly-output role="region" aria-label="Saída mínima de cada semana de estudo"}
+::: {.route-weekly-output-copy}
+**Cada semana necesitas dejar una salida**
+
+El script funciona mejor cuando cada semana termina con algo verificable. No es necesario que el resultado sea largo, pero debe conectar lectura, código e interpretación.
+:::
+
+::: {.route-weekly-output-grid role="list" aria-label="Saídas mínimas semanais"}
+::: {.route-weekly-output-item role="listitem"}
+**Aviso**
+
+Una pregunta o concepto que ha quedado claro.
+:::
+
+::: {.route-weekly-output-item role="listitem"}
+**Comparación**
+
+Un cambio en el script y el resultado observado.
+:::
+
+::: {.route-weekly-output-item role="listitem"}
+**Decisión**
+
+Una frase sobre consecuencias técnicas.
+:::
+:::
+:::
+
+## Mapa de progreso visual
+
+::: {.route-map-intro role="note" aria-label="Cómo leer el mapa visual de progreso"}
+Utilice el mapa como marcador de avance, no como marcador. El objetivo es completar un ciclo de lectura, ejecución e interpretación por semana.
+:::
+
+```{=html}
+<div data-learning-map></div>
+```
+
+::: {.route-table-guide role="region" aria-label="Cómo usar la tabla de semanas"}
+::: {.route-table-guide-copy}
+**Lea la tabla como una secuencia de decisiones**
+
+Cada línea combina semana, tema y práctica. Utilice la práctica columna para definir la acción más pequeña verificable antes de abrir el módulo.
+:::
+
+::: {.route-table-guide-grid role="list" aria-label="Cómo interpretar las columnas del itinerario"}
+::: {.route-table-guide-item role="listitem"}
+**Semana**
+
+Mantiene el orden y el ritmo.
+:::
+
+::: {.route-table-guide-item role="listitem"}
+**Tema**
+
+Señale el módulo actual.
+:::
+
+::: {.route-table-guide-item role="listitem"}
+**Práctica**
+
+Define evidencia mínima.
 :::
 :::
 :::
 
 | Semana | Tema | Práctica |
 |---:|---|---|
-| 1 | [Módulo 01](../../modules/modulo01-introducao-ao-melhoramento-animal.qmd) | Ejecutar `scripts/modulo01.R` y comparar grupos de selección. |
-| 2 | [Módulo 02](../../modules/modulo02-bases-da-genetica-quantitativa.qmd) | Relacionar fenotipo, valor genético y ambiente. |
-| 3 | [Módulo 03](../../modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd) | Describir distribución y dispersión de datos simulados. |
-| 4 | [Módulo 04](../../modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd) | Interpretar cambios de fuentes de varianza. |
-| 5 | [Módulo 05](../../modules/modulo05-herdabilidade-e-repetibilidade.qmd) | Probar sensibilidad de estimativas de heredabilidad. |
-| 6 | [Módulo 06](../../modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd) | Discutir respuestas correlacionadas a la selección. |
-| 7 | [Módulo 07](../../modules/modulo07-modelos-lineares-e-modelos-mistos.qmd) | Separar efectos fijos y aleatorios. |
-| 8 | [Módulo 08](../../modules/modulo08-blup-e-avaliacao-genetica.qmd) | Interpretar ranking de candidatos con BLUP. |
-| 9 | [Módulo 09](../../modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd) | Evaluar impacto del parentesco en comparación. |
-| 10 | [Módulo 10](../../modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd) | Revisar entrada de SNPs en el flujo analítico. |
-| 11 | [Módulo 11](../../modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd) | Definir filtros de calidad genómica. |
-| 12 | [Módulo 12](../../modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd) | Conectar matriz G, GWAS y predicción genómica. |
+| 1 | [Introduction to Animal Improvement](../modules/modulo01-introducao-ao-melhoramento-animal.qmd) | Ejecute `scripts/modulo01.R` y compare grupos de selección. |
+| 2 | [Bases of Quantitative Genetics](../modules/modulo02-bases-da-genetica-quantitativa.qmd) | Relacionar fenotipo, valor genético y entorno. |
+| 3 | [Descriptive statistics and exploration in R](../modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd) | Describir la distribución, media y dispersión de los datos simulados. |
+| 4 | [Means, variances, and variance components](../modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd) | Comparar fuentes de variación e interpretación biológica. |
+| 5 | [Heritability and repeatability](../modules/modulo05-herdabilidade-e-repetibilidade.qmd) | Pruebe cómo los cambios en la varianza alteran las estimaciones. |
+| 6 | [Genetic and phenotypic correlations](../modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd) | Discuta las respuestas correlacionadas con la selección. |
+| 7 | [Linear models and mixed models](../modules/modulo07-modelos-lineares-e-modelos-mistos.qmd) | Separe los efectos fijos, aleatorios y el error residual. |
+| 8 | [BLUP and genetic evaluation](../modules/modulo08-blup-e-avaliacao-genetica.qmd) | Interpretar el ranking de los candidatos a la selección. |
+| 9 | [Pedigree and kinship structure](../modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd) | Evaluar cómo el parentesco cambia la comparación entre individuos. |
+| 10 | [Genomics and SNP markers](../modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd) | Revisar la entrada de marcadores SNP en el flujo analítico. |
+| 11 | [Genomic quality control](../modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd) | Planificar filtros para datos genómicos simulados. |
+| 12 | [Genomic arrays, GWAS and prediction](../modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd) | Conectar matriz genómica, asociación y predicción. |
 
-::: {.section-cta role="navigation" aria-label="Acciones de ruta semanal"}
-[Comenzar M01](../../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Comenzar Módulo 01"}
-[Volver a módulos](../modules/index.qmd){.btn .btn-secondary}
-[Revisar certificado](../../certificado.qmd){.btn .btn-secondary}
+## Rutina recomendada
+
+::: {.routine-grid}
+::: {.routine-card}
+**01**
+
+Lea el módulo antes de abrir el script.
+:::
+
+::: {.routine-card}
+**02**
+
+Ejecute el script correspondiente.
+:::
+
+::: {.routine-card}
+**03**
+
+Cambiar un parámetro de simulación.
+:::
+
+::: {.routine-card}
+**04**
+
+Compare la nueva salida con la original.
+:::
+
+::: {.routine-card}
+**05**
+
+Escribe una breve conclusión técnica.
+:::
+:::
+
+::: {.route-finish-band role="region" aria-label="Cierre del recorrido de estudio"}
+::: {.route-finish-copy}
+**Cierra cada semana con evidencia**
+
+El script sólo se convierte en un progreso real cuando se completan la lectura, el guion y la interpretación breve. Utilice las pruebas del módulo como prueba aleatoria antes de pasar al certificado.
+:::
+
+::: {.public-session-check .route-session-check role="region" aria-label="Revisión rápida antes de cerrar una semana"}
+::: {.public-session-check-copy}
+**Antes de cerrar la semana**
+
+Una semana completa deja suficiente rastro técnico para retomar sin releerlo todo.
+:::
+
+::: {.public-session-check-grid role="list" aria-label="Revisión de cierre semanal"}
+::: {.public-session-check-item role="listitem"}
+**Lectura**
+
+El concepto principal se ubicó en el módulo.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Código**
+
+El script ha sido ejecutado o revisado.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Decisión**
+
+Se escribió una breve conclusión.
+:::
+:::
+:::
+
+::: {.route-finish-actions role="navigation" aria-label="Acciones para cerrar el recorrido"}
+[Revisar módulos](../modules/index.qmd){.btn .btn-secondary}
+[Entender el certificado](../certificate.qmd){.btn .btn-secondary}
+:::
+:::
+
+::: {.callout-note}
+Para validar todos los scripts a la vez, ejecute `Rscript scripts/run_all_modules.R` en la raíz del proyecto.
+:::
+
+::: {.section-cta role="navigation" aria-label="Acciones del hoja de ruta semanal"}
+[Iniciar M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Iniciar el Módulo 01"}
+[Volver al índice de módulos](../modules/index.qmd){.btn .btn-secondary}
+[Entender el certificado](../certificate.qmd){.btn .btn-secondary}
 :::

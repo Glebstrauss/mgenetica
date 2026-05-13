@@ -295,12 +295,14 @@ check_contains(body_extras_text, "if (hasQuiz) files.push('teacher-mode.js', 'qu
 check_contains(body_extras_text, "[data-viz], [data-learning-map], [data-glossary], .mg-viz", "body-extras.html")
 check_contains(body_extras_text, "getPrefixFromDepth", "body-extras.html")
 check_contains(head_extras_text, "hreflang", "head-extras.html")
-check_contains(head_extras_text, "routes = {", "head-extras.html")
+check_contains(head_extras_text, "specialRoutes", "head-extras.html")
+check_contains(head_extras_text, "mapPathToLocale", "head-extras.html")
 
 for (dict_path in c("assets/i18n/pt-BR.json", "assets/i18n/en.json", "assets/i18n/es.json")) {
   check_file(dict_path, "i18n dictionary")
 }
 
+localized_modules <- basename(Sys.glob(file.path(repo_root, "modules", "modulo*.qmd")))
 for (localized_page in c(
   "en/index.qmd",
   "en/modules/index.qmd",
@@ -308,12 +310,16 @@ for (localized_page in c(
   "en/search.qmd",
   "en/glossary.qmd",
   "en/about.qmd",
+  "en/certificate.qmd",
+  file.path("en", "modules", localized_modules),
   "es/index.qmd",
   "es/modules/index.qmd",
   "es/semanas/index.qmd",
   "es/busqueda.qmd",
   "es/glosario.qmd",
-  "es/sobre.qmd"
+  "es/sobre.qmd",
+  "es/certificado.qmd",
+  file.path("es", "modules", localized_modules)
 )) {
   check_file(localized_page, "localized page")
 }

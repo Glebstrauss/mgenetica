@@ -5,22 +5,36 @@
   var DEFAULT_LOCALE = 'pt-BR';
   var SUPPORTED = ['pt-BR', 'en', 'es'];
   var ALIAS = { pt: 'pt-BR', 'pt-br': 'pt-BR', en: 'en', es: 'es' };
-  var ROUTES = {
-    home: { 'pt-BR': '/', en: '/en/', es: '/es/' },
-    modules: { 'pt-BR': '/modules/', en: '/en/modules/', es: '/es/modules/' },
-    studyPath: { 'pt-BR': '/semanas/', en: '/en/semanas/', es: '/es/semanas/' },
-    search: { 'pt-BR': '/busca.html', en: '/en/search.html', es: '/es/busqueda.html' },
-    glossary: { 'pt-BR': '/glossario.html', en: '/en/glossary.html', es: '/es/glosario.html' },
-    about: { 'pt-BR': '/perfil.html', en: '/en/about.html', es: '/es/sobre.html' }
-  };
-  var ROUTE_PATTERNS = {
-    home: [/^\/$/, /^\/index\.(html|qmd)$/i, /^\/en\/?$/i, /^\/en\/index\.(html|qmd)$/i, /^\/es\/?$/i, /^\/es\/index\.(html|qmd)$/i],
-    modules: [/^\/modules(\/index\.(html|qmd))?\/?$/i, /^\/en\/modules(\/index\.(html|qmd))?\/?$/i, /^\/es\/modules(\/index\.(html|qmd))?\/?$/i],
-    studyPath: [/^\/semanas(\/index\.(html|qmd))?\/?$/i, /^\/en\/semanas(\/index\.(html|qmd))?\/?$/i, /^\/es\/semanas(\/index\.(html|qmd))?\/?$/i],
-    search: [/^\/busca\.(html|qmd)$/i, /^\/en\/search\.(html|qmd)$/i, /^\/es\/busqueda\.(html|qmd)$/i],
-    glossary: [/^\/glossario\.(html|qmd)$/i, /^\/en\/glossary\.(html|qmd)$/i, /^\/es\/glosario\.(html|qmd)$/i],
-    about: [/^\/perfil\.(html|qmd)$/i, /^\/en\/about\.(html|qmd)$/i, /^\/es\/sobre\.(html|qmd)$/i]
-  };
+  var SPECIAL_ROUTES = [
+    {
+      test: /^\/$|^\/index\.(html|qmd)$/i,
+      paths: { 'pt-BR': '/', en: '/en/', es: '/es/' }
+    },
+    {
+      test: /^\/modules(\/index\.(html|qmd))?\/?$/i,
+      paths: { 'pt-BR': '/modules/', en: '/en/modules/', es: '/es/modules/' }
+    },
+    {
+      test: /^\/semanas(\/index\.(html|qmd))?\/?$/i,
+      paths: { 'pt-BR': '/semanas/', en: '/en/semanas/', es: '/es/semanas/' }
+    },
+    {
+      test: /^\/busca\.(html|qmd)$/i,
+      paths: { 'pt-BR': '/busca.html', en: '/en/search.html', es: '/es/busqueda.html' }
+    },
+    {
+      test: /^\/glossario\.(html|qmd)$/i,
+      paths: { 'pt-BR': '/glossario.html', en: '/en/glossary.html', es: '/es/glosario.html' }
+    },
+    {
+      test: /^\/perfil\.(html|qmd)$/i,
+      paths: { 'pt-BR': '/perfil.html', en: '/en/about.html', es: '/es/sobre.html' }
+    },
+    {
+      test: /^\/certificado\.(html|qmd)$/i,
+      paths: { 'pt-BR': '/certificado.html', en: '/en/certificate.html', es: '/es/certificado.html' }
+    }
+  ];
   var FALLBACK = {};
   var dict = {};
   var locale = DEFAULT_LOCALE;
@@ -42,22 +56,28 @@
     return path || '/';
   }
 
-  function matchRouteId(pathname) {
-    var path = normalizePath(pathname);
-    var ids = Object.keys(ROUTE_PATTERNS);
-    for (var i = 0; i < ids.length; i++) {
-      var routeId = ids[i];
-      var patterns = ROUTE_PATTERNS[routeId];
-      for (var j = 0; j < patterns.length; j++) {
-        if (patterns[j].test(path)) return routeId;
-      }
-    }
-    return null;
+  function stripLocalePrefix(path) {
+    var normalized = normalizePath(path);
+    if (normalized === '/en' || normalized === '/en/') return '/';
+    if (normalized === '/es' || normalized === '/es/') return '/';
+    return normalized.replace(/^\/(en|es)(?=\/)/i, '');
   }
 
-  function localizedRoutePath(routeId, targetLocale) {
-    if (!routeId || !ROUTES[routeId]) return null;
-    return ROUTES[routeId][targetLocale] || ROUTES[routeId][DEFAULT_LOCALE] || null;
+  function mapPathToLocale(pathname, targetLocale) {
+    var path = stripLocalePrefix(pathname);
+    for (var i = 0; i < SPECIAL_ROUTES.length; i++) {
+      if (SPECIAL_ROUTES[i].test.test(path)) {
+        return SPECIAL_ROUTES[i].paths[targetLocale] || SPECIAL_ROUTES[i].paths[DEFAULT_LOCALE];
+      }
+    }
+
+    var moduleMatch = path.match(/^\/modules\/(modulo[0-9]{2}[^/]*\.(html|qmd))$/i);
+    if (moduleMatch) {
+      var prefix = targetLocale === DEFAULT_LOCALE ? '' : '/' + targetLocale;
+      return prefix + '/modules/' + moduleMatch[1];
+    }
+
+    return null;
   }
 
   function normalizeLocale(value) {
@@ -160,13 +180,13 @@
 
   function translateNavAndFooter() {
     var rules = [
-      { routeId: 'home', key: 'nav.home' },
-      { routeId: 'modules', key: 'nav.modules' },
-      { routeId: 'studyPath', key: 'nav.route' },
-      { routeId: 'search', key: 'nav.search' },
-      { routeId: 'glossary', key: 'nav.glossary' },
+      { re: /(^\/?$|\/index\.(html|qmd)$|^\/(en|es)\/?$|^\/(en|es)\/index\.(html|qmd)$)/i, key: 'nav.home' },
+      { re: /\/modules(\/index\.(html|qmd))?\/?$/i, key: 'nav.modules' },
+      { re: /\/semanas(\/index\.(html|qmd))?\/?$/i, key: 'nav.route' },
+      { re: /\/(busca|search|busqueda)\.(html|qmd)$/i, key: 'nav.search' },
+      { re: /\/(glossario|glossary|glosario)\.(html|qmd)$/i, key: 'nav.glossary' },
       { re: /certificado\.(html|qmd)$/, key: 'nav.certificate' },
-      { routeId: 'about', key: 'nav.about' },
+      { re: /\/(perfil|about|sobre)\.(html|qmd)$/i, key: 'nav.about' },
       { re: /modulo01-introducao-ao-melhoramento-animal\.(html|qmd)$/, key: 'nav.start_m01' },
       { re: /github\.com\/Glebstrauss\/mgenetica\/issues\/new$/, key: 'nav.feedback' }
     ];
@@ -176,14 +196,10 @@
       if (!href) return;
       for (var i = 0; i < rules.length; i++) {
         var rule = rules[i];
-        var routeId = rule.routeId ? matchRouteId(href) : null;
-        var matches = rule.routeId ? routeId === rule.routeId : rule.re.test(href);
-        if (matches) {
+        if (rule.re.test(href)) {
           anchor.textContent = t(rule.key, anchor.textContent);
-          if (rule.routeId) {
-            var target = localizedRoutePath(rule.routeId, locale);
-            if (target) anchor.setAttribute('href', target);
-          }
+          var target = mapPathToLocale(href, locale);
+          if (target) anchor.setAttribute('href', target);
           break;
         }
       }
@@ -206,8 +222,7 @@
       button.addEventListener('click', function () {
         if (code === locale) return;
         saveLocale(code);
-        var currentRouteId = matchRouteId(window.location.pathname);
-        var targetPath = localizedRoutePath(currentRouteId, code);
+        var targetPath = mapPathToLocale(window.location.pathname, code);
         if (targetPath) {
           window.location.assign(targetPath + window.location.hash);
           return;
