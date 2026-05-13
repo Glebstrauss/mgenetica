@@ -1,0 +1,65 @@
+---
+title: "Modules"
+subtitle: "12-module technical track"
+description: "Structured progression from biological foundations to genomic evaluation with R."
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+lang: en
+---
+
+::: {.modules-landing}
+::: {.modules-landing-copy}
+<span class="module-badge">FULL TRACK</span>
+
+# From breeding principles to genomic prediction
+
+Modules keep a stable pattern: concept, script execution, output interpretation and quiz closure.
+
+::: {.modules-landing-actions role="navigation" aria-label="Main module index actions"}
+<a class="btn btn-primary" href="../../modules/modulo01-introducao-ao-melhoramento-animal.html" aria-label="Start at Module 01">Start M01</a>
+<a class="btn btn-secondary" href="../semanas/index.html">Weekly roadmap</a>
+<a class="btn btn-secondary" href="../index.html">Back to home</a>
+:::
+:::
+
+::: {.modules-landing-panel role="note" aria-label="Track summary"}
+<strong>12 modules</strong>
+<span>4 learning phases</span>
+<span>Reproducible R scripts</span>
+<span>Local completion and certificate</span>
+:::
+:::
+
+::: {.phase-grid role="list" aria-label="Learning phases"}
+::: {.phase-card role="listitem"}
+**01 · Foundations**
+
+Modules 01-02: breeding logic, phenotype decomposition, response to selection.
+:::
+
+::: {.phase-card role="listitem"}
+**02 · Data and parameters**
+
+Modules 03-06: descriptive statistics, variance components, heritability and correlations.
+:::
+
+::: {.phase-card role="listitem"}
+**03 · Modeling**
+
+Modules 07-09: linear/mixed models, BLUP, pedigree and relationship structures.
+:::
+
+::: {.phase-card role="listitem"}
+**04 · Genomics**
+
+Modules 10-12: SNP markers, QC, genomic matrices, GWAS and prediction.
+:::
+:::
+
+::: {.modules-next-step-actions role="navigation" aria-label="Next actions from module index"}
+[Start M01](../../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Start Module 01"}
+[Plan by week](../semanas/index.qmd){.btn .btn-secondary}
+[Check certificate](../../certificado.qmd){.btn .btn-secondary}
+:::

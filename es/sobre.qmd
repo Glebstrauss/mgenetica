@@ -1,0 +1,49 @@
+---
+title: "Sobre"
+subtitle: "Capa pública editorial y alcance científico"
+page-layout: full
+toc: false
+number-sections: false
+sidebar: false
+lang: es
+---
+
+::: {.profile-hero}
+::: {.profile-logo}
+![](../images/mgenetica-logo-correct.png){fig-alt="Logo de MGenética"}
+:::
+
+::: {.profile-copy}
+# Sobre MGenética
+
+MGenética es publicación educativa pública enfocada en mejoramiento animal, genética cuantitativa y genómica aplicada con práctica reproducible en R.
+
+::: {.profile-actions}
+[Ver módulos](modules/index.qmd){.btn .btn-primary}
+[Abrir ruta](semanas/index.qmd){.btn .btn-secondary}
+[Buscar contenido](busqueda.qmd){.btn .btn-secondary}
+:::
+:::
+:::
+
+## Principios públicos
+
+::: {.profile-grid}
+::: {.profile-card}
+### Claridad científica
+
+Cada salida técnica debe responder pregunta biológica o estadística.
+:::
+
+::: {.profile-card}
+### Reproducibilidad
+
+Módulos conectan scripts y datos simulados para repetir análisis.
+:::
+
+::: {.profile-card}
+### Experiencia editorial
+
+Sitio público permanece orientado a contenido; gestión interna queda en panel interno.
+:::
+:::

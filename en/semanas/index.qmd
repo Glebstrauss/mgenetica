@@ -1,0 +1,76 @@
+---
+title: "Study roadmap"
+subtitle: "12-week progression"
+description: "Weekly guide to move through the MGenética modules with reproducible practice."
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+lang: en
+---
+
+::: {.page-hero}
+::: {.page-hero-copy}
+# 12-week study roadmap
+
+Use this page to convert the full module track into weekly cycles: read, run script, compare output, write one technical decision.
+:::
+
+::: {.page-hero-aside}
+**Suggested rhythm**
+
+1 module per week with one evidence output.
+:::
+:::
+
+::: {.route-overview role="region" aria-label="Study phases"}
+::: {.route-overview-copy}
+## Phase rhythm
+
+Follow progression from foundations to genomics while keeping each week tied to one verifiable output.
+:::
+
+::: {.route-overview-grid}
+::: {.route-overview-card}
+**Weeks 1-2**
+
+Foundations of breeding and quantitative genetics.
+:::
+::: {.route-overview-card}
+**Weeks 3-6**
+
+Data exploration, variance, heritability, repeatability and correlations.
+:::
+::: {.route-overview-card}
+**Weeks 7-9**
+
+Modeling, BLUP, pedigree and relationship interpretation.
+:::
+::: {.route-overview-card}
+**Weeks 10-12**
+
+SNPs, quality control, GWAS and genomic prediction.
+:::
+:::
+:::
+
+| Week | Topic | Practice |
+|---:|---|---|
+| 1 | [Module 01](../../modules/modulo01-introducao-ao-melhoramento-animal.qmd) | Run `scripts/modulo01.R` and compare selection groups. |
+| 2 | [Module 02](../../modules/modulo02-bases-da-genetica-quantitativa.qmd) | Connect phenotype, breeding value and environment. |
+| 3 | [Module 03](../../modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd) | Describe distribution and dispersion in simulated data. |
+| 4 | [Module 04](../../modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd) | Interpret variance-source changes. |
+| 5 | [Module 05](../../modules/modulo05-herdabilidade-e-repetibilidade.qmd) | Test sensitivity of heritability estimates. |
+| 6 | [Module 06](../../modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd) | Discuss correlated responses to selection. |
+| 7 | [Module 07](../../modules/modulo07-modelos-lineares-e-modelos-mistos.qmd) | Separate fixed and random effects. |
+| 8 | [Module 08](../../modules/modulo08-blup-e-avaliacao-genetica.qmd) | Interpret candidate ranking with BLUP outputs. |
+| 9 | [Module 09](../../modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd) | Evaluate pedigree impact on comparisons. |
+| 10 | [Module 10](../../modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd) | Revisit SNP integration in workflow. |
+| 11 | [Module 11](../../modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd) | Define genomic quality filters. |
+| 12 | [Module 12](../../modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd) | Connect G matrix, GWAS and genomic prediction. |
+
+::: {.section-cta role="navigation" aria-label="Roadmap actions"}
+[Start M01](../../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Start Module 01"}
+[Back to module index](../modules/index.qmd){.btn .btn-secondary}
+[Review certificate](../../certificado.qmd){.btn .btn-secondary}
+:::

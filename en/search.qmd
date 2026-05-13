@@ -1,0 +1,63 @@
+---
+title: "Search"
+description: "Full-text search across the MGenética public site."
+page-layout: full
+toc: false
+number-sections: false
+sidebar: false
+lang: en
+---
+
+::: {.page-hero}
+::: {.page-hero-copy}
+# Search the course
+
+Find concepts, R methods, modules and glossary terms. Search is indexed in the published static site.
+:::
+
+::: {.page-hero-aside}
+**Try terms**
+
+heritability · BLUP · genomic matrix
+:::
+:::
+
+<link href="../_pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="../_pagefind/pagefind-ui.js"></script>
+
+::: {.search-panel}
+<div id="search"></div>
+:::
+
+::: {.section-cta role="navigation" aria-label="Actions after search"}
+[Module index](modules/index.qmd){.btn .btn-primary}
+[Glossary](glossary.qmd){.btn .btn-secondary}
+[Weekly roadmap](semanas/index.qmd){.btn .btn-secondary}
+:::
+
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  if (typeof PagefindUI === 'undefined') {
+    document.getElementById('search').innerHTML =
+      '<p>Search is enabled after published-site rendering.</p>';
+    return;
+  }
+
+  new PagefindUI({
+    element: '#search',
+    showSubResults: true,
+    showImages: false,
+    translations: {
+      placeholder: 'Search the course',
+      clear_search: 'Clear',
+      load_more: 'Load more results',
+      search_label: 'Search in this site',
+      filters_label: 'Filters',
+      zero_results: 'No results for [SEARCH_TERM]',
+      many_results: '[COUNT] results for [SEARCH_TERM]',
+      one_result: '[COUNT] result for [SEARCH_TERM]',
+      searching: 'Searching for [SEARCH_TERM]...'
+    }
+  });
+});
+</script>

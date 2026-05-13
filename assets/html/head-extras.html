@@ -26,6 +26,7 @@
       link = document.createElement("a");
       link.className = "skip-link";
       link.href = "#quarto-document-content";
+      link.setAttribute("data-i18n", "skip.content");
       link.textContent = "Pular para o conteúdo";
       document.body.appendChild(link);
     }
@@ -54,4 +55,69 @@
       subtree: true
     });
   });
+</script>
+
+<script>
+  (function () {
+    var origin = "https://mgenetica.github.io";
+    var routes = {
+      home: { "pt-BR": "/", en: "/en/", es: "/es/" },
+      modules: { "pt-BR": "/modules/", en: "/en/modules/", es: "/es/modules/" },
+      studyPath: { "pt-BR": "/semanas/", en: "/en/semanas/", es: "/es/semanas/" },
+      search: { "pt-BR": "/busca.html", en: "/en/search.html", es: "/es/busqueda.html" },
+      glossary: { "pt-BR": "/glossario.html", en: "/en/glossary.html", es: "/es/glosario.html" },
+      about: { "pt-BR": "/perfil.html", en: "/en/about.html", es: "/es/sobre.html" }
+    };
+    var routePatterns = {
+      home: [/^\/$/, /^\/index\.(html|qmd)$/i, /^\/en\/?$/i, /^\/en\/index\.(html|qmd)$/i, /^\/es\/?$/i, /^\/es\/index\.(html|qmd)$/i],
+      modules: [/^\/modules(\/index\.(html|qmd))?\/?$/i, /^\/en\/modules(\/index\.(html|qmd))?\/?$/i, /^\/es\/modules(\/index\.(html|qmd))?\/?$/i],
+      studyPath: [/^\/semanas(\/index\.(html|qmd))?\/?$/i, /^\/en\/semanas(\/index\.(html|qmd))?\/?$/i, /^\/es\/semanas(\/index\.(html|qmd))?\/?$/i],
+      search: [/^\/busca\.(html|qmd)$/i, /^\/en\/search\.(html|qmd)$/i, /^\/es\/busqueda\.(html|qmd)$/i],
+      glossary: [/^\/glossario\.(html|qmd)$/i, /^\/en\/glossary\.(html|qmd)$/i, /^\/es\/glosario\.(html|qmd)$/i],
+      about: [/^\/perfil\.(html|qmd)$/i, /^\/en\/about\.(html|qmd)$/i, /^\/es\/sobre\.(html|qmd)$/i]
+    };
+
+    function normalizePath(pathname) {
+      var path = String(pathname || "/").split("?")[0].split("#")[0];
+      path = path.replace(/\/index\.html$/i, "/").replace(/\/index\.qmd$/i, "/");
+      if (!path.startsWith("/")) path = "/" + path;
+      if (path.length > 1 && path.endsWith("/")) path = path.slice(0, -1);
+      if (path === "/en" || path === "/es") path += "/";
+      return path || "/";
+    }
+
+    function matchRoute(pathname) {
+      var path = normalizePath(pathname);
+      var ids = Object.keys(routePatterns);
+      for (var i = 0; i < ids.length; i++) {
+        var routeId = ids[i];
+        var patterns = routePatterns[routeId];
+        for (var j = 0; j < patterns.length; j++) {
+          if (patterns[j].test(path)) return routeId;
+        }
+      }
+      return null;
+    }
+
+    function setLink(rel, href, hreflang) {
+      var selector = hreflang ? 'link[rel="' + rel + '"][hreflang="' + hreflang + '"]' : 'link[rel="' + rel + '"]';
+      var existing = document.head.querySelector(selector);
+      var node = existing || document.createElement("link");
+      node.setAttribute("rel", rel);
+      node.setAttribute("href", href);
+      if (hreflang) node.setAttribute("hreflang", hreflang);
+      if (!existing) document.head.appendChild(node);
+    }
+
+    var routeId = matchRoute(window.location.pathname);
+    if (!routeId || !routes[routeId]) return;
+
+    var canonicalPath = routes[routeId]["pt-BR"];
+    setLink("canonical", origin + canonicalPath);
+
+    setLink("alternate", origin + routes[routeId]["pt-BR"], "pt-BR");
+    setLink("alternate", origin + routes[routeId].en, "en");
+    setLink("alternate", origin + routes[routeId].es, "es");
+    setLink("alternate", origin + canonicalPath, "x-default");
+  })();
 </script>

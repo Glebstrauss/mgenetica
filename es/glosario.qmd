@@ -1,0 +1,39 @@
+---
+title: "Glosario técnico"
+description: "Glosario rápido de términos clave para mejoramiento animal y genómica aplicada."
+page-layout: full
+toc: false
+number-sections: false
+sidebar: false
+lang: es
+---
+
+::: {.page-hero}
+::: {.page-hero-copy}
+# Glosario técnico
+
+Referencia rápida para términos, siglas y parámetros usados en los módulos.
+:::
+
+::: {.page-hero-aside}
+**Uso recomendado**
+
+Resolver definición y volver al contexto del módulo.
+:::
+:::
+
+```{=html}
+<p class="utility-panel-hint">
+Usa el glosario para resolver definiciones y volver al uso técnico en módulo o búsqueda.
+</p>
+
+<div class="glossary-panel">
+  <div data-glossary></div>
+</div>
+```
+
+::: {.section-cta role="navigation" aria-label="Acciones después del glosario"}
+[Abrir búsqueda](busqueda.qmd){.btn .btn-primary}
+[Ver módulos](modules/index.qmd){.btn .btn-secondary}
+[Ruta semanal](semanas/index.qmd){.btn .btn-secondary}
+:::

@@ -114,6 +114,21 @@ code {
   }
 }
 
+.mg-locale-switcher {
+  border-color: rgba(111, 220, 255, 0.24);
+  background: rgba(8, 15, 26, 0.94);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.44);
+}
+
+.mg-locale-btn {
+  color: var(--mg-text);
+}
+
+.mg-locale-btn[aria-pressed="true"] {
+  color: #080f1a;
+  background: var(--mg-cyan-lt);
+}
+
 
 // ── Sidebar ───────────────────────────────────────────────────
 #quarto-sidebar {

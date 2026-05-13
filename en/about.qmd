@@ -1,0 +1,49 @@
+---
+title: "About"
+subtitle: "Public editorial layer and scientific scope"
+page-layout: full
+toc: false
+number-sections: false
+sidebar: false
+lang: en
+---
+
+::: {.profile-hero}
+::: {.profile-logo}
+![](../images/mgenetica-logo-correct.png){fig-alt="MGenética logo"}
+:::
+
+::: {.profile-copy}
+# About MGenética
+
+MGenética is a public educational publication focused on animal breeding, quantitative genetics and applied genomics with reproducible R practice.
+
+::: {.profile-actions}
+[Explore modules](modules/index.qmd){.btn .btn-primary}
+[Open roadmap](semanas/index.qmd){.btn .btn-secondary}
+[Search content](search.qmd){.btn .btn-secondary}
+:::
+:::
+:::
+
+## Public principles
+
+::: {.profile-grid}
+::: {.profile-card}
+### Scientific clarity
+
+Each technical output should map to a biological/statistical question.
+:::
+
+::: {.profile-card}
+### Reproducibility
+
+Modules keep links to scripts and simulated data for re-execution.
+:::
+
+::: {.profile-card}
+### Editorial-first experience
+
+Public site stays content-focused; internal management stays internal.
+:::
+:::

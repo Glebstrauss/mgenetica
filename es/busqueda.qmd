@@ -1,0 +1,63 @@
+---
+title: "Búsqueda"
+description: "Búsqueda full-text en el contenido público de MGenética."
+page-layout: full
+toc: false
+number-sections: false
+sidebar: false
+lang: es
+---
+
+::: {.page-hero}
+::: {.page-hero-copy}
+# Buscar en el curso
+
+Localiza conceptos, métodos en R, módulos y términos técnicos. Índice generado en la publicación estática.
+:::
+
+::: {.page-hero-aside}
+**Prueba términos**
+
+heredabilidad · BLUP · matriz genómica
+:::
+:::
+
+<link href="../_pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="../_pagefind/pagefind-ui.js"></script>
+
+::: {.search-panel}
+<div id="search"></div>
+:::
+
+::: {.section-cta role="navigation" aria-label="Acciones después de buscar"}
+[Ver módulos](modules/index.qmd){.btn .btn-primary}
+[Abrir glosario](glosario.qmd){.btn .btn-secondary}
+[Ver ruta semanal](semanas/index.qmd){.btn .btn-secondary}
+:::
+
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  if (typeof PagefindUI === 'undefined') {
+    document.getElementById('search').innerHTML =
+      '<p>La búsqueda se activa después de la publicación renderizada.</p>';
+    return;
+  }
+
+  new PagefindUI({
+    element: '#search',
+    showSubResults: true,
+    showImages: false,
+    translations: {
+      placeholder: 'Buscar en el curso',
+      clear_search: 'Limpiar',
+      load_more: 'Cargar más resultados',
+      search_label: 'Buscar en este sitio',
+      filters_label: 'Filtros',
+      zero_results: 'Sin resultados para [SEARCH_TERM]',
+      many_results: '[COUNT] resultados para [SEARCH_TERM]',
+      one_result: '[COUNT] resultado para [SEARCH_TERM]',
+      searching: 'Buscando [SEARCH_TERM]...'
+    }
+  });
+});
+</script>

@@ -61,6 +61,183 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-13 — Internationalization routing + Wave 1 locale pages
+
+### Block objective
+
+Implement full site-side internationalization wave with locale routing, Wave 1 translated pages and locale-aware validation for `pt-BR`, `en`, `es`.
+
+### Cycles executed
+
+1. Diagnosis: runtime i18n foundation existed, but route-level locale pages were missing and Quarto still rendered single-locale structure.
+   Implementation: mapped gaps in `_quarto.yml`, `assets/js/i18n.js`, head metadata and validators.
+   Testing: reviewed changed files and current repository state before editing.
+   Notes: scope stayed in public site only.
+2. Diagnosis: locale switcher still used query parameter only and navbar/footer links were not route-localized.
+   Implementation: updated `assets/js/i18n.js` with route map, route matching, locale-path switching and locale-aware nav/footer href rewriting.
+   Testing: JS syntax checks passed for i18n and all dependent runtime files.
+   Notes: query-param fallback remains for non-localized routes.
+3. Diagnosis: localized source pages for Wave 1 did not exist.
+   Implementation: added English and Spanish pages for home, modules index, weekly roadmap, search, glossary and about under `en/` and `es/` trees.
+   Testing: full Quarto render generated all localized outputs without errors.
+   Notes: module longform pages remain in Portuguese for now.
+4. Diagnosis: canonical/hreflang metadata was not locale-aware.
+   Implementation: added route-based canonical + hreflang injection in `assets/html/head-extras.html`.
+   Testing: manifest validation now checks for hreflang routing references.
+   Notes: implemented for Wave 1 localized routes.
+5. Diagnosis: validation gate needed awareness of locale routes and localized source files.
+   Implementation: expanded `scripts/validate_site_manifest.R` checks for localized render patterns, dictionaries and localized Wave 1 source files.
+   Testing: full `scripts/prepublish_site_check.R` passed after changes.
+   Notes: no app files modified.
+
+### Files changed in this block
+
+- `_quarto.yml`
+- `README.md`
+- `NEXT_SITE.md`
+- `WORKLOG_SITE.md`
+- `assets/html/head-extras.html`
+- `assets/js/i18n.js`
+- `scripts/validate_site_manifest.R`
+- `en/index.qmd`
+- `en/modules/index.qmd`
+- `en/semanas/index.qmd`
+- `en/search.qmd`
+- `en/glossary.qmd`
+- `en/about.qmd`
+- `es/index.qmd`
+- `es/modules/index.qmd`
+- `es/semanas/index.qmd`
+- `es/busqueda.qmd`
+- `es/glosario.qmd`
+- `es/sobre.qmd`
+
+### Improvements implemented
+
+- Added locale-route rendering support for `en` and `es` trees in Quarto.
+- Delivered Wave 1 localized public pages in English and Spanish.
+- Migrated locale switch behavior from query-only to route-aware switching where localized routes exist.
+- Added locale-aware canonical/hreflang metadata generation for localized Wave 1 routes.
+- Strengthened manifest validation with locale render/file contracts.
+
+### Problems fixed
+
+- Missing localized route structure prevented real path-based internationalized navigation.
+- Locale switcher did not route users to translated pages.
+- No validator guarantees existed for localized Wave 1 sources.
+
+### Commands executed
+
+- `node --check assets/js/i18n.js`
+- `node --check assets/js/progress.js`
+- `node --check assets/js/darkmode.js`
+- `node --check assets/js/interactives.js`
+- `node --check assets/js/quiz.js`
+- `node --check assets/js/teacher-mode.js`
+- `Rscript -e 'renv::restore(prompt = FALSE)'`
+- `Rscript scripts/validate_site_manifest.R`
+- `Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- JS syntax checks passed.
+- `scripts/validate_site_manifest.R` passed.
+- `scripts/prepublish_site_check.R` passed, including full Quarto render of localized pages.
+
+### Pending items
+
+- Wave 2 localization for module-level longform content.
+- Locale-aware deployed-site validator extension for runtime checks in production.
+
+---
+
+## 2026-05-12 — Internationalization foundation (pt-BR/en/es)
+
+### Block objective
+
+Implement first production-safe i18n foundation for the public site runtime, including language dictionaries, localized JS chrome strings, and locale switcher.
+
+### Cycles executed
+
+1. Diagnosis: mapped translatable surface across `_quarto.yml`, manifest, JS runtime strings and validators.
+   Implementation: documented i18n architecture and priority order in session plan.
+   Testing: validated current baseline through repository checks.
+   Notes: focused on public site only.
+2. Diagnosis: runtime strings were hardcoded in `progress.js`, `quiz.js`, `teacher-mode.js`, `darkmode.js`, `interactives.js`.
+   Implementation: created `assets/js/i18n.js` with locale detection (`lang` query, localStorage, HTML lang), translation lookup, and DOM application hooks.
+   Testing: syntax checked all JS after refactor.
+   Notes: default locale remains `pt-BR`.
+3. Diagnosis: no locale dictionaries existed.
+   Implementation: added `assets/i18n/pt-BR.json`, `assets/i18n/en.json`, `assets/i18n/es.json` with key parity for runtime/common UI labels.
+   Testing: validated dictionary loading path through runtime loader integration.
+   Notes: coverage targets runtime and chrome labels first.
+4. Diagnosis: script loading and asset-prefix logic was limited to `/modules` and `/semanas`.
+   Implementation: upgraded `assets/html/body-extras.html` loader to depth-based prefix resolution and loaded `i18n.js` before other scripts.
+   Testing: full prepublish run confirmed render and checks remain green.
+   Notes: keeps compatibility with nested paths and future locale subpaths.
+5. Diagnosis: accessibility and UI needed visible locale control.
+   Implementation: added floating locale switcher styles (light/dark), skip-link i18n attributes, and i18n hooks for navbar/footer labels + interactive placeholders.
+   Testing: executed full `scripts/prepublish_site_check.R` after all changes.
+   Notes: no app files modified.
+
+### Files changed in this block
+
+- `README.md`
+- `assets/html/body-extras.html`
+- `assets/html/head-extras.html`
+- `assets/i18n/pt-BR.json`
+- `assets/i18n/en.json`
+- `assets/i18n/es.json`
+- `assets/js/i18n.js`
+- `assets/js/darkmode.js`
+- `assets/js/interactives.js`
+- `assets/js/progress.js`
+- `assets/js/quiz.js`
+- `assets/js/teacher-mode.js`
+- `scripts/prepublish_site_check.R`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+
+### Improvements implemented
+
+- Added runtime i18n engine with locale persistence and translation hooks.
+- Added trilingual dictionaries (`pt-BR`, `en`, `es`) for runtime/chrome UI strings.
+- Added locale switcher component with dark/light compatible styling.
+- Localized key runtime UX strings (progress, quiz, teacher mode, darkmode label, glossary search states).
+- Made global script loader path-depth aware and included i18n loader in bootstrap chain.
+
+### Problems fixed
+
+- Hardcoded JS UI strings blocking multi-language runtime behavior.
+- Script-path prefix logic too narrow for deeper nested routes.
+
+### Commands executed
+
+- `git --no-pager branch --show-current`
+- `git checkout -b feat/internationalization-plan`
+- `node --check assets/js/i18n.js`
+- `node --check assets/js/progress.js`
+- `node --check assets/js/darkmode.js`
+- `node --check assets/js/interactives.js`
+- `node --check assets/js/quiz.js`
+- `node --check assets/js/teacher-mode.js`
+- `Rscript scripts/prepublish_site_check.R`
+- `git --no-pager status --short`
+- `git --no-pager diff --stat`
+
+### Test results
+
+- `scripts/prepublish_site_check.R` passed (manifest, YAML, SCSS, JS syntax, module scripts, whitespace, full Quarto render).
+
+### Pending items
+
+- Implement route-level locale outputs (`/en/`, `/es/`) in Quarto build strategy.
+- Translate longform QMD content (core pages first, then modules 01–12).
+- Refactor deployed validators and CI to locale-aware assertions and matrix checks.
+
+---
+
 ## 2026-05-12 — GitHub Pages rerun deployment fix
 
 ### Block objective

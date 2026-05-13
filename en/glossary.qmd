@@ -1,0 +1,39 @@
+---
+title: "Technical glossary"
+description: "Quick glossary for core terms in animal breeding and applied genomics."
+page-layout: full
+toc: false
+number-sections: false
+sidebar: false
+lang: en
+---
+
+::: {.page-hero}
+::: {.page-hero-copy}
+# Technical glossary
+
+Fast reference for terms, acronyms and parameters used across modules.
+:::
+
+::: {.page-hero-aside}
+**Recommended use**
+
+Check a term, then return to module context.
+:::
+:::
+
+```{=html}
+<p class="utility-panel-hint">
+Use the glossary to resolve definitions and return to module interpretation.
+</p>
+
+<div class="glossary-panel">
+  <div data-glossary></div>
+</div>
+```
+
+::: {.section-cta role="navigation" aria-label="Actions after glossary lookup"}
+[Open search](search.qmd){.btn .btn-primary}
+[View modules](modules/index.qmd){.btn .btn-secondary}
+[Follow roadmap](semanas/index.qmd){.btn .btn-secondary}
+:::

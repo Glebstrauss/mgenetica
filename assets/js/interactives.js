@@ -1,6 +1,57 @@
 (function () {
   'use strict';
 
+  function t(key, fallback) {
+    if (window.mgeneticaI18n && typeof window.mgeneticaI18n.t === 'function') {
+      return window.mgeneticaI18n.t(key, fallback);
+    }
+    return fallback;
+  }
+
+  function getLocale() {
+    if (window.mgeneticaI18n && typeof window.mgeneticaI18n.locale === 'function') {
+      return window.mgeneticaI18n.locale();
+    }
+    return 'pt-BR';
+  }
+
+  function moduleLabels() {
+    var locale = getLocale();
+    if (locale === 'en') {
+      return [
+        ['01', 'Introduction', 'Fundamentals'],
+        ['02', 'P = G + E', 'Fundamentals'],
+        ['03', 'Exploration', 'Statistics'],
+        ['04', 'Variances', 'Parameters'],
+        ['05', 'h2 and r', 'Parameters'],
+        ['06', 'Correlations', 'Parameters'],
+        ['07', 'Models', 'Modeling'],
+        ['08', 'BLUP', 'Evaluation'],
+        ['09', 'Pedigree', 'Kinship'],
+        ['10', 'SNPs', 'Genomics'],
+        ['11', 'Genomic QC', 'Genomics'],
+        ['12', 'GWAS/GBLUP', 'Genomics']
+      ];
+    }
+    if (locale === 'es') {
+      return [
+        ['01', 'Introducción', 'Fundamentos'],
+        ['02', 'P = G + E', 'Fundamentos'],
+        ['03', 'Exploración', 'Estadística'],
+        ['04', 'Varianzas', 'Parámetros'],
+        ['05', 'h2 y r', 'Parámetros'],
+        ['06', 'Correlaciones', 'Parámetros'],
+        ['07', 'Modelos', 'Modelado'],
+        ['08', 'BLUP', 'Evaluación'],
+        ['09', 'Pedigrí', 'Parentesco'],
+        ['10', 'SNPs', 'Genómica'],
+        ['11', 'QC genómico', 'Genómica'],
+        ['12', 'GWAS/GBLUP', 'Genómica']
+      ];
+    }
+    return MODULES;
+  }
+
   var MODULES = [
     ['01', 'Introducao', 'Fundamentos'],
     ['02', 'P = G + E', 'Fundamentos'],
@@ -189,7 +240,8 @@
 
   function initLearningMap(el) {
     var done = completedModules();
-    el.innerHTML = '<div class="learning-map-grid">' + MODULES.map(function (m, i) {
+    var labels = moduleLabels();
+    el.innerHTML = '<div class="learning-map-grid">' + labels.map(function (m, i) {
       var id = 'modulo' + m[0];
       var status = done.indexOf(id) >= 0 ? 'complete' : 'pending';
       return '<a class="learning-node ' + status + '" href="../modules/' + MODULE_LINKS[i] + '">' +
@@ -212,7 +264,7 @@
       ['Call rate', 'Proporcao de genotipos observados, sem dados faltantes.'],
       ['QTL', 'Regiao genomica associada a variacao de uma caracteristica quantitativa.']
     ];
-    el.innerHTML = '<input class="glossary-search" type="search" placeholder="Buscar termo, sigla ou conceito" aria-label="Buscar no glossário" aria-controls="glossary-results"><div class="glossary-results" id="glossary-results" role="status" aria-live="polite"></div>';
+    el.innerHTML = '<input class="glossary-search" type="search" placeholder="' + t('interactive.glossary.placeholder', 'Buscar termo, sigla ou conceito') + '" aria-label="' + t('interactive.glossary.aria', 'Buscar no glossário') + '" aria-controls="glossary-results"><div class="glossary-results" id="glossary-results" role="status" aria-live="polite"></div>';
     var input = el.querySelector('input');
     var results = el.querySelector('.glossary-results');
     function draw() {
@@ -220,7 +272,7 @@
       var filtered = items.filter(function (item) { return (item[0] + ' ' + item[1]).toLowerCase().indexOf(q) >= 0; });
       results.innerHTML = filtered.map(function (item) {
         return '<article class="glossary-item"><h3>' + item[0] + '</h3><p>' + item[1] + '</p></article>';
-      }).join('') || '<p>Nenhum termo encontrado.</p>';
+      }).join('') || '<p>' + t('interactive.glossary.empty', 'Nenhum termo encontrado.') + '</p>';
     }
     input.addEventListener('input', draw);
     draw();
@@ -240,4 +292,6 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+
+  document.addEventListener('mgenetica:i18n-ready', init);
 })();

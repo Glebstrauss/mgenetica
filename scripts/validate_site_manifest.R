@@ -25,6 +25,10 @@ body_extras_text <- paste(
   readLines(file.path(repo_root, "assets", "html", "body-extras.html"), warn = FALSE),
   collapse = "\n"
 )
+head_extras_text <- paste(
+  readLines(file.path(repo_root, "assets", "html", "head-extras.html"), warn = FALSE),
+  collapse = "\n"
+)
 
 check_file <- function(path, label) {
   full_path <- file.path(repo_root, path)
@@ -259,6 +263,23 @@ if (is.null(quarto$website[["site-url"]]) || !grepl("^https://mgenetica.github.i
   fail("_quarto.yml website.site-url must point to the public GitHub Pages site")
 }
 
+required_render_patterns <- c(
+  "*.qmd",
+  "modules/*.qmd",
+  "semanas/*.qmd",
+  "en/*.qmd",
+  "en/modules/*.qmd",
+  "en/semanas/*.qmd",
+  "es/*.qmd",
+  "es/modules/*.qmd",
+  "es/semanas/*.qmd"
+)
+for (pattern in required_render_patterns) {
+  if (!pattern %in% quarto$project$render) {
+    fail(sprintf("_quarto.yml project.render missing %s", pattern))
+  }
+}
+
 for (resource in c("assets/", "data/modulo*_simulado.csv", "data/site-manifest.yml", "images/", "quizzes/", "scripts/modulo*.R")) {
   if (!resource %in% quarto$project$resources) {
     fail(sprintf("_quarto.yml project.resources missing %s", resource))
@@ -268,10 +289,34 @@ for (resource in c("assets/", "data/modulo*_simulado.csv", "data/site-manifest.y
 check_contains(body_extras_text, 'class="skip-link"', "body-extras.html")
 check_contains(body_extras_text, "progress.js", "body-extras.html")
 check_contains(body_extras_text, "darkmode.js", "body-extras.html")
+check_contains(body_extras_text, "i18n.js", "body-extras.html")
 check_contains(body_extras_text, "var hasQuiz = document.querySelector('.quiz-container')", "body-extras.html")
 check_contains(body_extras_text, "if (hasQuiz) files.push('teacher-mode.js', 'quiz.js')", "body-extras.html")
 check_contains(body_extras_text, "[data-viz], [data-learning-map], [data-glossary], .mg-viz", "body-extras.html")
-check_contains(body_extras_text, "['modules', 'semanas']", "body-extras.html")
+check_contains(body_extras_text, "getPrefixFromDepth", "body-extras.html")
+check_contains(head_extras_text, "hreflang", "head-extras.html")
+check_contains(head_extras_text, "routes = {", "head-extras.html")
+
+for (dict_path in c("assets/i18n/pt-BR.json", "assets/i18n/en.json", "assets/i18n/es.json")) {
+  check_file(dict_path, "i18n dictionary")
+}
+
+for (localized_page in c(
+  "en/index.qmd",
+  "en/modules/index.qmd",
+  "en/semanas/index.qmd",
+  "en/search.qmd",
+  "en/glossary.qmd",
+  "en/about.qmd",
+  "es/index.qmd",
+  "es/modules/index.qmd",
+  "es/semanas/index.qmd",
+  "es/busqueda.qmd",
+  "es/glosario.qmd",
+  "es/sobre.qmd"
+)) {
+  check_file(localized_page, "localized page")
+}
 
 pages <- manifest$content_pages$items
 if (!length(pages)) fail("content_pages.items is empty")

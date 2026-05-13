@@ -1,0 +1,62 @@
+---
+title: "MGenética"
+subtitle: "Open course in animal breeding, quantitative genetics and applied genomics"
+description: "Public scientific track with 12 progressive modules, reproducible R scripts and local-progress certification."
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+lang: en
+---
+
+::: {.hero}
+::: {.hero-copy}
+# Learn genetics with code and scientific context
+
+MGenética is a public editorial learning layer: concept, simulation, R script, interpretation and technical decisions.
+
+::: {.hero-actions role="navigation" aria-label="Main actions"}
+[Start M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Start Module 01"}
+[Browse modules](modules/index.qmd){.btn .btn-secondary}
+[Study roadmap](semanas/index.qmd){.btn .btn-secondary}
+:::
+:::
+
+::: {.hero-panel-proof}
+**12 modules** · **4 phases** · **R scripts + simulated CSVs** · **Local certificate**
+:::
+:::
+
+::: {.public-wayfinding .home-wayfinding role="navigation" aria-label="Public orientation"}
+::: {.public-wayfinding-copy}
+**You are at the course entry point**
+
+Choose one direct route: open the full module track, follow the weekly roadmap, or use support pages before returning to study flow.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Immediate routes"}
+::: {.public-wayfinding-item role="listitem"}
+**Study**
+
+[Modules](modules/index.qmd){.entry-link aria-label="Open module index"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Plan**
+
+[Roadmap](semanas/index.qmd){.entry-link aria-label="Open weekly roadmap"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Support**
+
+[Search](search.qmd){.entry-link aria-label="Open course search"}
+:::
+:::
+:::
+
+::: {.section-cta role="navigation" aria-label="Secondary actions"}
+[Glossary](glossary.qmd){.btn .btn-secondary}
+[About MGenética](about.qmd){.btn .btn-secondary}
+[Certificate](../certificado.qmd){.btn .btn-secondary}
+:::

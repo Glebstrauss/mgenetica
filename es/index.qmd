@@ -1,0 +1,62 @@
+---
+title: "MGenética"
+subtitle: "Curso abierto de mejoramiento animal, genética cuantitativa y genómica aplicada"
+description: "Ruta científica pública con 12 módulos progresivos, scripts en R y certificado local."
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+lang: es
+---
+
+::: {.hero}
+::: {.hero-copy}
+# Aprender genética con código y contexto científico
+
+MGenética es capa pública editorial: concepto, simulación, script en R, interpretación y decisión técnica.
+
+::: {.hero-actions role="navigation" aria-label="Acciones principales"}
+[Comenzar M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Comenzar Módulo 01"}
+[Ver módulos](modules/index.qmd){.btn .btn-secondary}
+[Ver ruta semanal](semanas/index.qmd){.btn .btn-secondary}
+:::
+:::
+
+::: {.hero-panel-proof}
+**12 módulos** · **4 fases** · **Scripts R + CSV simulados** · **Certificado local**
+:::
+:::
+
+::: {.public-wayfinding .home-wayfinding role="navigation" aria-label="Orientación pública"}
+::: {.public-wayfinding-copy}
+**Estás en punto de entrada del curso**
+
+Elige ruta directa: abrir módulos, seguir ruta semanal o usar páginas de apoyo y volver a la secuencia.
+:::
+
+::: {.public-wayfinding-grid role="list" aria-label="Rutas inmediatas"}
+::: {.public-wayfinding-item role="listitem"}
+**Estudiar**
+
+[Módulos](modules/index.qmd){.entry-link aria-label="Abrir índice de módulos"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Planificar**
+
+[Ruta](semanas/index.qmd){.entry-link aria-label="Abrir ruta semanal"}
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Consultar**
+
+[Búsqueda](busqueda.qmd){.entry-link aria-label="Abrir búsqueda del curso"}
+:::
+:::
+:::
+
+::: {.section-cta role="navigation" aria-label="Acciones secundarias"}
+[Glosario](glosario.qmd){.btn .btn-secondary}
+[Sobre MGenética](sobre.qmd){.btn .btn-secondary}
+[Certificado](../certificado.qmd){.btn .btn-secondary}
+:::

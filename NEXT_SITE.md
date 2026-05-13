@@ -2,78 +2,54 @@
 
 ## Next recommended site-only block
 
-Work only on the public site. Do not alter the app. Do not mix site evolution with app evolution. Do not publish automatically unless explicitly requested.
+Work only on public site. Do not alter app. Do not publish automatically unless explicitly requested.
 
 ## Tipo do próximo bloco
 
-`script-lab-rollout-proof-and-publication-readiness`
+`internationalization-wave2-modules-and-locale-qa`
 
 ## Objective
 
-Finalize publication-readiness after the full script-lab rollout by restoring local Quarto availability, producing targeted render proof for representative modules, and running browser QA for script-lab UX consistency.
+Advance from Wave 1 locale routing/pages to Wave 2 module-level localization and locale-specific QA hardening.
 
 ## Current local state
 
-- GitHub Actions deployment failure on 2026-05-12 was diagnosed as a rerun artifact collision, not a Quarto/R/Pagefind content failure.
-- `.github/workflows/quarto-publish.yml` now uses an attempt-specific Pages artifact name (`github-pages-${{ github.run_attempt }}`) for both upload and deploy.
-- The script-lab pattern is now present in all 12 module pages.
-- `scripts/validate_site_manifest.R` now enforces `module-script-lab` plus matching script/CSV links for every module.
-- Full prepublish validation passed locally after dependency restore, including manifest, YAML, SCSS, JS, module scripts and whitespace checks.
-- `scripts/prepublish_site_check.R` skipped Quarto render because `quarto` is not currently available on local `PATH`.
-- A direct targeted render attempt for modules 03, 06 and 11 failed locally with `quarto: command not found`.
-- `WORKLOG_SITE.md` includes the completed rollout block and current validation status.
-- The site remains static on GitHub Pages; no backend runtime should be assumed.
-
-## Product direction for module pages
-
-- Keep modules as public editorial learning labs: concept -> script -> output -> interpretation -> exercise -> quiz -> next decision.
-- Preserve the current static reproducibility strategy:
-  - rendered Quarto code/output in-page;
-  - downloadable `scripts/moduloXX.R`;
-  - downloadable `data/moduloXX_simulado.csv`.
-- Avoid app-like interaction or backend assumptions unless explicitly requested.
+- Runtime i18n engine exists in `assets/js/i18n.js`.
+- Locale dictionaries exist for `pt-BR`, `en`, `es` in `assets/i18n/`.
+- Core runtime strings are localized across progress/quiz/teacher-mode/darkmode/interactives.
+- Locale switcher routes Wave 1 pages by path (`/`, `/en/`, `/es/`) and keeps query fallback for non-localized routes.
+- Quarto render patterns include localized trees (`en/*`, `es/*`, plus `modules/` and `semanas/` subroutes).
+- Wave 1 localized pages exist for home, modules index, weekly roadmap, search, glossary and about.
+- Head extras now inject canonical + hreflang links for localized Wave 1 pages.
 
 ## In scope
 
-- Verify the next `Render and Publish Quarto Site` workflow reaches `Deploy to GitHub Pages` successfully after the artifact-name fix.
-- Confirm `https://mgenetica.github.io/` returns `200` after deployment.
-- Restore/expose local Quarto binary in the shell path used for validation runs.
-- Run targeted Quarto render for representative modules:
-  - `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
-  - `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
-  - `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
-- Inspect generated HTML for script-lab links and structural consistency.
-- Run browser QA (desktop/tablet/mobile) for representative modules focusing on:
-  - script-lab readability,
-  - CTA wrapping/focus visibility,
-  - no document-level horizontal overflow.
-- Run full prepublish validation again with Quarto render actually executed.
-- Update `WORKLOG_SITE.md` and `NEXT_SITE.md` with outcomes.
+- Translate modules 01–03 landing/intro blocks into `en` and `es` localized variants while keeping script, quiz and data linkage intact.
+- Define locale-safe strategy for non-localized module pages (fallback messaging + route guard behavior).
+- Expand dictionaries for recurring scientific vocabulary consistency across `pt-BR`/`en`/`es`.
+- Add deployed-site locale checks for Wave 1 routes and hreflang/canonical links.
+- Run full prepublish and locale-targeted render checks.
+- Update `WORKLOG_SITE.md` and this file after completion.
 
 ## Out of scope
 
 - App changes.
-- Backend execution, authentication, notebooks-as-a-service or user account features.
-- New large dependencies unrelated to render/QA proof.
-- Automatic publication without explicit user request.
+- Backend/auth/account features.
+- Automatic publish without explicit request.
+- Full translation of all 12 module longform bodies in a single block.
 
 ## Recommended commands
 
 - `git status --short --branch`
-- `command -v quarto`
-- `quarto render modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd --no-execute`
 - `Rscript --vanilla scripts/validate_site_manifest.R`
-- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `node --check assets/js/i18n.js && node --check assets/js/progress.js && node --check assets/js/darkmode.js && node --check assets/js/interactives.js && node --check assets/js/quiz.js && node --check assets/js/teacher-mode.js`
+- `quarto render`
 - `Rscript scripts/prepublish_site_check.R`
 - `git diff --check`
 
 ## Criteria for completion
 
-- Latest GitHub Actions deployment completes successfully with the attempt-specific Pages artifact.
-- Public GitHub Pages URL returns `200`.
-- Quarto is available locally for the validation shell path.
-- Targeted render passes for modules 03, 06 and 11.
-- Rendered HTML confirms script-lab block and correct script/CSV links in representative modules.
-- Browser QA confirms responsive readability and no document-level overflow on representative modules.
-- Full prepublish gate passes with Quarto render executed (not skipped).
-- No app files are changed.
+- Module-localization Wave 2 scope (01–03 intro/landing segments) is published in source for `en` and `es`.
+- Route behavior is explicit for localized vs non-localized module pages.
+- Locale validators and prepublish checks pass.
+- No app files changed.
