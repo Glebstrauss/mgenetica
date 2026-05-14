@@ -138,7 +138,7 @@ Explique quando a decisão depende mais de matriz G, de um pico de GWAS ou da ac
 :::
 :::
 
-```{r}
+```r
 #| label: simula-genomica
 set.seed(112)
 n_anim <- 200; n_snp <- 300
@@ -153,7 +153,7 @@ for (j in 1:n_snp) {
 cat(sprintf("Dados: %d animais × %d SNPs\n", n_anim, n_snp))
 ```
 
-```{r}
+```r
 #| label: constroi-G
 # VanRaden (2008) Method 1
 p2    <- colMeans(Z_raw)/2
@@ -169,7 +169,7 @@ cat(sprintf("Off-diagonal: média=%.4f  DP=%.4f\n",
             mean(G[upper.tri(G)]), sd(G[upper.tri(G)])))
 ```
 
-```{r}
+```r
 #| label: simula-fenotipos-qtl
 # Simula fenótipos com 10 QTLs de efeito moderado
 n_qtl  <- 10
@@ -184,7 +184,7 @@ cat(sprintf("\nh² simulado: %.3f  QTLs em SNPs: %s\n",
             h2_real, paste(qtl_id[1:5], collapse=",")))
 ```
 
-```{r}
+```r
 #| label: gwas
 # GWAS: regressão do fenótipo em cada SNP individualmente
 y_std <- scale(y)[,1]   # padroniza
@@ -205,7 +205,7 @@ cat(sprintf("QTLs detectados (p<0.05/n):     %d de %d\n",
             sum(pvals[qtl_id] < 0.05/n_snp), n_qtl))
 ```
 
-```{r}
+```r
 #| fig-height: 3.5
 #| label: manhattan-plot
 plot(gwas_res$snp, gwas_res$logp, pch=20, col="#4a9fd1",
@@ -218,7 +218,7 @@ legend("topright", c("Todos os SNPs","SNPs QTL verdadeiros","Limiar Bonferroni")
        pch=c(20,20,NA), lty=c(NA,NA,2), col=c("#4a9fd1","#dc2626","#dc2626"), bty="n", cex=0.85)
 ```
 
-```{r}
+```r
 #| label: gblup
 # GBLUP: predição com validação cruzada simples
 train_id <- 1:(n_anim/2); val_id <- (n_anim/2+1):n_anim

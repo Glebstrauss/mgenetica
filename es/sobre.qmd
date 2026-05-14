@@ -36,7 +36,7 @@ Utilice esta página para comprender el papel público de MGenética y regresar 
 ::: {.public-wayfinding-item role="listitem"}
 **Para estudiar**
 
-[Buscar contenido](search.qmd){.btn .btn-secondary}
+[Buscar contenido](busqueda.qmd){.btn .btn-secondary}
 :::
 
 ::: {.public-wayfinding-item role="listitem"}
@@ -48,7 +48,7 @@ Utilice esta página para comprender el papel público de MGenética y regresar 
 ::: {.public-wayfinding-item role="listitem"}
 **Finalizar**
 
-[Buscar](search.qmd){.entry-link aria-label="Abrir la búsqueda desde la página Acerca de"}
+[Buscar](busqueda.qmd){.entry-link aria-label="Abrir la búsqueda desde la página Acerca de"}
 :::
 :::
 :::
@@ -280,8 +280,8 @@ Si estás conociendo MGenética ahora, comienza con la descripción general de l
 :::
 
 ::: {.about-next-step-actions}
-[Certificado](certificate.qmd){.entry-link aria-label="Abrir el certificado desde la página Acerca de"}
+[Certificado](certificado.qmd){.entry-link aria-label="Abrir el certificado desde la página Acerca de"}
 [Ver módulos](modules/index.qmd){.btn .btn-primary}
-[Buscar contenido](search.qmd){.btn .btn-secondary}
+[Buscar contenido](busqueda.qmd){.btn .btn-secondary}
 :::
 :::

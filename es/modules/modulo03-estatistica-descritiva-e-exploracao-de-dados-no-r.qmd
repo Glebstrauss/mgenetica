@@ -147,7 +147,7 @@ En la cría de animales, los datos fenotípicos rara vez llegan listos para su a
 
 ## Simulación y exploración en R
 
-```{r}
+```r
 #| label: simula-dados
 set.seed(103)
 n <- 400
@@ -163,7 +163,7 @@ peso    <- pmax(peso, 150)
 dados <- data.frame(raca=raca, fazenda=fazenda, idade_dias=idade, peso_kg=round(peso,1))
 ```
 
-```{r}
+```r
 #| label: descritivas-gerais
 cat("=== Resumo do conjunto de dados ===\n")
 cat(sprintf("n = %d animais\n\n", nrow(dados)))
@@ -174,7 +174,7 @@ cat(sprintf("Assimetria aprox.: %.4f\n",
             (mean(dados$peso_kg) - median(dados$peso_kg)) / sd(dados$peso_kg)))
 ```
 
-```{r}
+```r
 #| label: descritivas-por-grupo
 cat("=== Médias por raça ===\n")
 stats_raca <- aggregate(peso_kg ~ raca, data=dados,
@@ -186,7 +186,7 @@ cat("\n=== Correlação peso × idade (covariável) ===\n")
 cat(sprintf("r = %.4f\n", cor(dados$peso_kg, dados$idade_dias)))
 ```
 
-```{r}
+```r
 #| label: outliers
 cat("=== Detecção de outliers (|z| > 3) ===\n")
 z_scores <- scale(dados$peso_kg)
@@ -199,7 +199,7 @@ if (nrow(outliers) > 0) {
 }
 ```
 
-```{r}
+```r
 #| label: visualizacao
 #| fig-height: 4
 par(mfrow=c(1,2), mar=c(4,4,2,1))

@@ -151,7 +151,7 @@ $$h_x \cdot r_A > h_y$$
 
 ## Simulation in R
 
-```{r}
+```r
 #| label: simula-bivariado
 set.seed(106)
 n <- 800
@@ -174,7 +174,7 @@ colnames(P) <- c("peso_kg","gordura_mm")
 colnames(A) <- c("a_peso","a_gordura")
 ```
 
-```{r}
+```r
 #| label: estima-correlacoes
 rA_obs <- cor(A)[1,2]
 rP_obs <- cor(P)[1,2]
@@ -188,7 +188,7 @@ cat(sprintf("h1 (peso):    %6.4f\n", h1))
 cat(sprintf("h2 (gordura): %6.4f\n", h2))
 ```
 
-```{r}
+```r
 #| fig-height: 4
 #| label: plot-bivariado
 par(mfrow=c(1,2), mar=c(4,4,2,1))
@@ -204,7 +204,7 @@ plot(A[,1], A[,2], pch=20, col=adjustcolor("#4a9fd1",0.4),
 abline(lm(A[,2]~A[,1]), col="#dc2626", lwd=2)
 ```
 
-```{r}
+```r
 #| label: resposta-correlacionada
 # Selecionar top 20% em peso → como muda a gordura?
 i_sel  <- 1.40

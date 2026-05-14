@@ -8,44 +8,37 @@ sidebar: false
 number-sections: false
 ---
 
+::: {.modules-redesign}
 ```{=html}
 <section class="modules-landing">
   <div class="modules-landing-copy">
     <span class="module-badge">TRILHA COMPLETA</span>
-    <h1>Do fundamento biológico à avaliação genômica</h1>
-    <p>Os módulos foram organizados para combinar conceito, simulação, código em R e interpretação. A sequência mantém uma estrutura previsível para leitura pública hoje e edição por painel interno no futuro.</p>
+    <h1>Escolha fase. Abra módulo. Produza evidência.</h1>
+    <p>12 módulos em ordem curta: fundamento, dados, modelagem e genômica. Cada módulo entrega conceito, script em R, interpretação e quiz.</p>
     <div class="modules-landing-actions" role="navigation" aria-label="Ações principais do índice de módulos">
       <a class="btn btn-primary" href="modulo01-introducao-ao-melhoramento-animal.html" aria-label="Começar pelo Módulo 01">Começar M01</a>
-      <a class="btn btn-secondary" href="../semanas/index.html">Ver roteiro semanal</a>
-      <a class="btn btn-secondary" href="../index.html">Voltar ao início</a>
+      <a class="btn btn-secondary" href="../semanas/index.html" aria-label="Abrir roteiro semanal">Ver roteiro</a>
     </div>
   </div>
   <div class="modules-landing-panel" role="note" aria-label="Resumo da trilha">
     <strong>12 módulos</strong>
-    <span>4 fases editoriais</span>
-    <span>Scripts reproduzíveis em R</span>
-    <span>Certificado ao concluir os quizzes</span>
-    <span>Sequência registrada no manifesto do site</span>
+    <span>4 fases</span>
+    <span>R scripts</span>
+    <span>Quiz por módulo</span>
   </div>
 </section>
 ```
 
 ::: {.public-wayfinding .modules-wayfinding role="navigation" aria-label="Orientação pública do índice de módulos"}
-::: {.public-wayfinding-copy}
-**Você está no mapa da trilha**
-
-Use o índice para escolher entre abrir um módulo, comparar fases ou voltar ao roteiro. Evite sair sem uma próxima evidência definida.
-:::
-
 ::: {.public-wayfinding-grid role="list" aria-label="Rotas imediatas no índice de módulos"}
 ::: {.public-wayfinding-item role="listitem"}
-**Abrir**
+**Começar**
 
 [Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01"}
 :::
 
 ::: {.public-wayfinding-item role="listitem"}
-**Comparar**
+**Escolher fase**
 
 [Ver fases](#fases-da-trilha){.entry-link aria-label="Ver fases da trilha"}
 :::
@@ -53,43 +46,35 @@ Use o índice para escolher entre abrir um módulo, comparar fases ou voltar ao 
 ::: {.public-wayfinding-item role="listitem"}
 **Planejar**
 
-[Roteiro](../semanas/index.qmd){.entry-link aria-label="Abrir roteiro semanal"}
+[Roteiro semanal](../semanas/index.qmd){.entry-link aria-label="Abrir roteiro semanal"}
 :::
 :::
 :::
 
 ::: {.modules-guidance}
 ::: {.guidance-item}
-**Fluxo recomendado**
+**Fluxo**
 
-Leia o conceito, execute o script do módulo e compare a interpretação com os objetivos declarados na página.
+Leia, rode script, interprete saída.
 :::
 
 ::: {.guidance-item}
-**Gestão editorial**
+**Critério**
 
-Ordem, fases, cartões e status de publicação ficam descritos no manifesto do site para futura edição pelo painel interno.
+Avance só com uma frase técnica clara.
 :::
 
 ::: {.guidance-item}
-**Progressão**
+**Fechamento**
 
-Cada página de módulo mantém navegação anterior, próxima etapa e retorno para este índice.
+Quiz registra progresso local. Sem cadastro.
 :::
 :::
 
 ::: {.modules-output-route role="navigation" aria-label="Rotas por tipo de evidência técnica"}
-::: {.modules-output-route-copy}
-**Escolha também pelo tipo de evidência**
-
-Se a dúvida principal é técnica, entre pelo formato de saída que você precisa treinar: código básico, tabela de parâmetros ou evidência genômica. Isso reduz a sensação de catálogo longo e aproxima o módulo da decisão prática.
-:::
-
 ::: {.modules-output-route-grid role="list" aria-label="Entradas por saída técnica"}
 ::: {.modules-output-route-item role="listitem"}
 **Código e ganho**
-
-Comece com simulação simples e leitura de saída em texto.
 
 [Abrir M01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 para praticar código e ganho genético"}
 :::
@@ -97,15 +82,11 @@ Comece com simulação simples e leitura de saída em texto.
 ::: {.modules-output-route-item role="listitem"}
 **Tabela e parâmetro**
 
-Compare variáveis, herdabilidade ou correlações antes de avançar.
-
 [Abrir M06](modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Abrir o Módulo 06 para praticar leitura de tabelas e correlações"}
 :::
 
 ::: {.modules-output-route-item role="listitem"}
 **Figura e genômica**
-
-Use marcadores, matrizes e gráficos para fechar interpretação aplicada.
 
 [Abrir M12](modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir o Módulo 12 para praticar leitura de saída genômica"}
 :::
@@ -113,29 +94,23 @@ Use marcadores, matrizes e gráficos para fechar interpretação aplicada.
 :::
 
 ::: {.modules-completion-flow role="region" aria-label="Como concluir a trilha MGenética"}
-::: {.modules-completion-copy}
-**Da primeira leitura ao certificado**
-
-O percurso público fecha quando o visitante completa os quizzes dos 12 módulos. A conclusão continua local ao navegador, sem cadastro e sem envio de dados.
-:::
-
 ::: {.modules-completion-steps role="list" aria-label="Etapas de conclusão"}
 ::: {.modules-completion-step role="listitem"}
 **1 · Estudar**
 
-Leia o módulo e execute o script correspondente.
+Abrir módulo.
 :::
 
 ::: {.modules-completion-step role="listitem"}
 **2 · Validar**
 
-Responda ao quiz e registre o progresso local.
+Responder quiz.
 :::
 
 ::: {.modules-completion-step role="listitem"}
 **3 · Emitir**
 
-Abra o certificado quando todos os módulos estiverem concluídos.
+Gerar certificado.
 :::
 :::
 :::
@@ -177,29 +152,23 @@ Módulos 10-12 introduzem SNPs, controle de qualidade, matrizes genômicas, GWAS
 :::
 
 ::: {.modules-evidence-standard role="region" aria-label="Evidência esperada em cada módulo"}
-::: {.modules-evidence-standard-copy}
-**Cada módulo deve deixar uma evidência**
-
-Antes de avançar, produza uma frase técnica verificável. Cada página de módulo agora explicita a sessão curta de estudo e a checagem de fechamento: pergunta, evidência em R, quiz e decisão aplicada que você defenderia.
-:::
-
 ::: {.modules-evidence-standard-grid role="list" aria-label="Padrão de evidência por módulo"}
 ::: {.modules-evidence-standard-item role="listitem"}
 **Conceito**
 
-Qual pergunta biológica ou estatística ficou mais clara?
+Pergunta técnica.
 :::
 
 ::: {.modules-evidence-standard-item role="listitem"}
-**Variação**
+**Script**
 
-Qual parâmetro você alterou no script?
+Saída reproduzível.
 :::
 
 ::: {.modules-evidence-standard-item role="listitem"}
 **Decisão**
 
-Qual consequência prática você registrou antes do quiz?
+Interpretação aplicada.
 :::
 :::
 :::
@@ -305,52 +274,37 @@ Integração entre parentesco genômico, associação e predição genômica.
 :::
 
 ::: {.modules-certificate-route role="region" aria-label="Fechamento da trilha e certificado"}
-::: {.modules-certificate-route-copy}
-**Feche a trilha com evidência**
+**Fechar trilha**
 
-O certificado deve ser a consequência de uma sequência completa: módulo estudado, script executado, interpretação escrita e quiz validado. Se você ainda não concluiu tudo, use o certificado como mapa de pendências.
-:::
-
-::: {.modules-certificate-route-actions role="navigation" aria-label="Ações para acompanhar conclusão"}
 [Abrir certificado](../certificado.qmd){.btn .btn-primary}
 [Revisar roteiro](../semanas/index.qmd){.btn .btn-secondary}
 :::
-:::
 
 ::: {.modules-next-step role="region" aria-label="Próximo passo após revisar os módulos"}
-::: {.modules-next-step-copy}
 ## Próximo passo recomendado
 
-Se esta é sua primeira visita, comece pelo Módulo 01. Se você já conhece a base conceitual, use o roteiro semanal para distribuir prática em R, revisão e interpretação.
-
 ::: {.modules-next-step-hint}
-O índice fecha melhor quando a próxima ação vira página aberta, semana planejada ou pendência de certificado conferida.
-:::
+Primeira visita: comece M01. Retorno: escolha fase ou revise certificado.
 :::
 
 ::: {.modules-next-step-checks role="list" aria-label="Como escolher a ação final do índice"}
 ::: {.modules-next-step-check role="listitem"}
 **Começar**
-
-Use quando ainda não há módulo concluído.
 :::
 
 ::: {.modules-next-step-check role="listitem"}
 **Planejar**
-
-Use quando precisa distribuir leitura, código e revisão.
 :::
 
 ::: {.modules-next-step-check role="listitem"}
 **Concluir**
-
-Use quando a trilha já está quase completa.
 :::
 :::
 
 ::: {.modules-next-step-actions role="navigation" aria-label="Ações finais do índice de módulos"}
 [Começar M01](modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
 [Planejar por semana](../semanas/index.qmd){.btn .btn-secondary}
-[Entender o certificado](../certificado.qmd){.btn .btn-secondary}
+[Entender certificado](../certificado.qmd){.btn .btn-secondary}
+:::
 :::
 :::

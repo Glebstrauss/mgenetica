@@ -147,7 +147,7 @@ Esta estructura es la base del método de estimación clásico: si medimos a los
 
 ## Estimación por ANOVA — Modelo de toro
 
-```{r}
+```r
 #| label: simula-estrutura
 set.seed(104)
 n_touro  <- 20   # reprodutores (sires)
@@ -169,7 +169,7 @@ cat(sprintf("n grupos (touros):      %d\n", n_touro))
 cat(sprintf("VP observada: %.2f  (esperado: %.1f)\n", var(y), vp))
 ```
 
-```{r}
+```r
 #| label: anova-sire
 # ANOVA clássica (método Sire)
 modelo    <- lm(y ~ as.factor(touro_id))
@@ -189,7 +189,7 @@ cat(sprintf("VP estimada:               %8.2f  (verdadeiro: %d)\n", VP_est, vp))
 cat(sprintf("h² estimado (VA/VP):       %8.4f  (verdadeiro: %.4f)\n", h2_est, va/vp))
 ```
 
-```{r}
+```r
 #| label: efeito-tamanho-grupo
 # ¿Cómo afecta el número de hijos por toro a la precisión de la estimación?
 cat("\n=== Precisão da estimativa de h² vs. n de filhos ===\n")

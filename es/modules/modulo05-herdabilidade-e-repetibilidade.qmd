@@ -154,7 +154,7 @@ Donde **V_PE** es la variación ambiental permanente: efectos que persisten dura
 
 ## Estimación de regresión entre padres e hijos
 
-```{r}
+```r
 #| label: regressao-pf
 set.seed(105)
 n <- 600; va <- 300; ve <- 580; vd <- 80; vpe <- 60
@@ -179,7 +179,7 @@ cat(sprintf("b observado:  %.4f\n", b))
 cat(sprintf("2b (= h²):    %.4f\n", 2*b))
 ```
 
-```{r}
+```r
 #| fig-height: 4
 #| label: plot-regressao
 plot(p_pai, p_filho, pch=20, col=adjustcolor("#0d2642", 0.3),
@@ -189,7 +189,7 @@ abline(reg, col="#dc2626", lwd=2)
 legend("topleft", sprintf("h² teórico = %.3f", h2), bty="n", cex=0.9)
 ```
 
-```{r}
+```r
 #| label: repeatability-icc
 # Repetibilidade estimada pelo coeficiente de correlação intraclasse (ICC)
 n_anim <- 200; n_med <- 4
@@ -210,7 +210,7 @@ cat("=== Repetibilidade (ICC) ===\n")
 cat(sprintf("r estimado: %.4f  (teórico: %.4f)\n", r_est, rep))
 ```
 
-```{r}
+```r
 #| label: k-medidas
 cat("\n=== Acurácia cumulativa com k medidas ===\n")
 cat("(r acumulada = √[k×r / (1+(k-1)r)])\n\n")

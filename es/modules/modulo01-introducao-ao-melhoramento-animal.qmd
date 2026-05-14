@@ -152,7 +152,7 @@ Explique si una mayor ganancia justifica seleccionar menos animales cuando la di
 :::
 :::
 
-```{r}
+```r
 #| label: selecao-basica
 set.seed(101)
 
@@ -180,7 +180,7 @@ cat("Diferencial (S):         ", round(S, 2), "kg\n")
 cat("Ganho genético (ΔG):     ", round(delta_G, 2), "kg\n")
 ```
 
-```{r}
+```r
 #| label: progressao-geracoes
 # Simula 5 gerações de seleção
 n_ger     <- 5
@@ -200,7 +200,7 @@ resultado <- data.frame(
 print(resultado)
 ```
 
-```{r}
+```r
 #| label: efeito-herdabilidade
 # ¿Cómo afecta la heredabilidad a la ganancia genética?
 h2_vals <- c(0.10, 0.20, 0.35, 0.50, 0.70)

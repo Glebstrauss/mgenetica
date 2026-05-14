@@ -138,6 +138,11 @@ for (reference in c(
 
 for (class_name in c(
   ".hero",
+  ".home-redesign",
+  ".home-hero",
+  ".home-paths",
+  ".home-curriculum",
+  ".home-proof-strip",
   ".hero-panel-proof",
   ".page-hero",
   ".profile-hero",
@@ -259,7 +264,7 @@ for (class_name in c(
 
 if (!identical(quarto$project$type, "website")) fail("_quarto.yml project.type must be website")
 if (!identical(quarto$project[["output-dir"]], "docs")) fail("_quarto.yml project.output-dir must be docs")
-if (is.null(quarto$website[["site-url"]]) || !grepl("^https://mgenetica.github.io/?$", quarto$website[["site-url"]])) {
+if (is.null(quarto$website[["site-url"]]) || !grepl("^https://mgenetica.github.io/mgenetica/?$", quarto$website[["site-url"]])) {
   fail("_quarto.yml website.site-url must point to the public GitHub Pages site")
 }
 
@@ -336,31 +341,11 @@ check_unique(page_hrefs, "content_pages.items.href")
 
 region_markers <- list(
   home = list(
-    hero = "hero",
-    "hero-panel-proof" = "hero-panel-proof",
-    "hero-signal" = "hero-signal",
-    "hero-action-note" = "hero-action-note",
-    wayfinding = "home-wayfinding",
-    "trust-anchors" = "home-trust-anchors",
-    "first-session" = "home-first-session",
-    "output-standard" = "home-output-standard",
-    "path-contract" = "home-path-contract",
-    orientation = "home-orientation",
-    audience = "home-audience",
-    "start-criteria" = "home-start-criteria",
-    "module-anatomy" = "home-module-anatomy",
-    "entry-decision" = "entry-decision",
-    "entry-points" = "home-entry",
-    returning = "home-returning",
-    "platform-statement" = "platform-statement",
-    discovery = "home-discovery",
-    evidence = "home-evidence",
-    "learning-loop" = "learning-loop-grid",
-    "outcome-map" = "home-outcome-map",
-    resources = "resource-grid",
-    readiness = "home-readiness",
-    continuity = "home-continuity",
-    "phase-preview" = "phase-preview",
+    "home-redesign" = "home-redesign",
+    "home-hero" = "home-hero",
+    "home-paths" = "home-paths",
+    "home-curriculum" = "home-curriculum",
+    "home-proof-strip" = "home-proof-strip",
     "final-cta" = "home-final-cta"
   ),
   `modules-index` = list(

@@ -1,21 +1,21 @@
 /*-- scss:defaults --*/
 
 // ── Bootstrap variables ───────────────────────────────────────
-$primary:                   #0a1f38;
-$secondary:                 #1e5799;
+$primary:                   #0F2447;
+$secondary:                 #3B82C4;
 $success:                   #16a34a;
 $warning:                   #d97706;
 $danger:                    #dc2626;
 $info:                      #00a8d6;
 
-$body-bg:                   #ffffff;
-$body-color:                #2c4058;
-$headings-color:            #0d1b2a;
-$link-color:                #1e5799;
-$link-hover-color:          #0a1f38;
+$body-bg:                   #F7F9FC;
+$body-color:                #2D3F55;
+$headings-color:            #0F2447;
+$link-color:                #2C5282;
+$link-hover-color:          #0F2447;
 $link-decoration:           none;
 
-$font-family-sans-serif:    "Inter", -apple-system, BlinkMacSystemFont,
+$font-family-sans-serif:    "DM Sans", -apple-system, BlinkMacSystemFont,
                             "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 $font-family-monospace:     "JetBrains Mono", "Fira Code", "Cascadia Code",
                             ui-monospace, "SFMono-Regular", monospace;
@@ -24,17 +24,17 @@ $line-height-base:          1.7;
 $headings-font-weight:      700;
 $headings-letter-spacing:   -0.02em;
 
-$border-radius:             12px;
+$border-radius:             8px;
 $border-radius-sm:          8px;
-$border-radius-lg:          18px;
+$border-radius-lg:          8px;
 
-$navbar-light-color:        #2c4058;
-$navbar-light-hover-color:  #0d1b2a;
-$navbar-light-active-color: #0a1f38;
-$navbar-bg:                 #ffffff;
+$navbar-light-color:        #2D3F55;
+$navbar-light-hover-color:  #0F2447;
+$navbar-light-active-color: #0F2447;
+$navbar-bg:                 #F7F9FC;
 
-$code-color:                #0a1f38;
-$code-bg:                   #eef3f9;
+$code-color:                #0F2447;
+$code-bg:                   #E8F2FC;
 
 /*-- scss:rules --*/
 
@@ -47,52 +47,53 @@ $code-bg:                   #eef3f9;
 
 // ── 01. Tokens ────────────────────────────────────────────────
 :root {
-  // Marca
-  --mg-navy:       #0a1f38;
-  --mg-navy-mid:   #122844;
-  --mg-blue:       #1e5799;
-  --mg-cyan:       #00a8d6;   // accent primário — do gradiente da logo
-  --mg-cyan-lt:    #6fdcff;   // cyan claro — do gradiente da logo
+  // Official MGenética brand palette
+  --mg-navy-dark:  #0F2447;
+  --mg-navy:       #1B3A6B;
+  --mg-navy-mid:   #2C5282;
+  --mg-blue:       #3B82C4;
+  --mg-blue-light: #B5D4F4;
+  --mg-blue-xlight:#E8F2FC;
+  --mg-off-white:  #F7F9FC;
+  --mg-muted-blue: #6B809A;
+  --mg-body:       #2D3F55;
   --mg-green:      #16a34a;
   --mg-amber:      #d97706;
   --mg-red:        #dc2626;
 
   // Texto
-  --mg-ink:        #0d1b2a;
-  --mg-text:       #2c4058;
-  --mg-muted:      #6b7a8d;
+  --mg-ink:        #0F2447;
+  --mg-text:       #2D3F55;
+  --mg-muted:      #6B809A;
 
   // Superfícies
   --mg-bg:         #ffffff;
-  --mg-bg-soft:    #f7f9fc;
-  --mg-bg-tint:    #eef3f9;
+  --mg-bg-soft:    #F7F9FC;
+  --mg-bg-tint:    #E8F2FC;
 
   // Bordas
-  --mg-line:       #dde4ed;
-  --mg-line-strong:#c4cdd8;
+  --mg-line:       #d9e6f4;
+  --mg-line-strong:#B5D4F4;
 
   // Sombras — azuis de baixo contraste, não cinza
-  --shadow-sm:  0 1px 3px rgba(10, 31, 56, .06),
-                0 1px 2px rgba(10, 31, 56, .04);
-  --shadow-md:  0 4px 16px rgba(10, 31, 56, .09),
-                0 2px 6px rgba(10, 31, 56, .05);
-  --shadow-lg:  0 12px 40px rgba(10, 31, 56, .12),
-                0 4px 12px rgba(10, 31, 56, .06);
-  --shadow-xl:  0 24px 80px rgba(10, 31, 56, .16),
-                0 8px 24px rgba(10, 31, 56, .08);
+  --shadow-sm:  0 1px 2px rgba(15, 36, 71, .06);
+  --shadow-md:  0 8px 20px rgba(15, 36, 71, .08);
+  --shadow-lg:  0 18px 38px rgba(15, 36, 71, .10);
+  --shadow-xl:  0 24px 54px rgba(15, 36, 71, .12);
 
   // Raios
   --radius-sm:  8px;
-  --radius:     12px;
-  --radius-lg:  18px;
-  --radius-xl:  24px;
+  --radius:     8px;
+  --radius-lg:  8px;
+  --radius-xl:  8px;
 }
 
 
 // ── 02. Base ──────────────────────────────────────────────────
 body {
   color: var(--mg-text);
-  background: var(--mg-bg);
+  background: var(--mg-off-white);
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -106,7 +107,7 @@ a {
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--mg-ink);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 h2 {
@@ -1256,7 +1257,7 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
   margin-top: 0;
   margin-bottom: 0.65rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .about-route-copy p {
@@ -1284,7 +1285,7 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .about-route-step p {
@@ -1757,7 +1758,7 @@ html {
 body {
   color: var(--mg-text-premium);
   background: var(--mg-white);
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 body::before {
@@ -1774,7 +1775,7 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--mg-ink-premium);
-  font-family: "Manrope", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   letter-spacing: 0;
 }
 
@@ -1820,7 +1821,7 @@ main.content {
 
 .navbar-title {
   color: var(--mg-navy-premium);
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 1.04rem;
   font-weight: 800;
   letter-spacing: 0;
@@ -1918,7 +1919,7 @@ main.content {
   max-width: 700px;
   margin: 0;
   color: var(--mg-ink-premium);
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: clamp(3.9rem, 6.4vw, 5.05rem);
   font-weight: 800;
   line-height: 1.01;
@@ -2071,7 +2072,7 @@ main.content {
 .metric strong {
   margin-bottom: 0.3rem;
   color: var(--mg-navy-premium);
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: clamp(2.1rem, 3vw, 2.65rem);
   font-weight: 800;
   line-height: 1;
@@ -2154,7 +2155,7 @@ main.content {
 .module-card > p:first-child {
   margin-bottom: 1.05rem;
   color: var(--mg-blue-premium);
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.78rem;
   font-weight: 800;
   line-height: 1;
@@ -2446,7 +2447,7 @@ body:has(.hero) h2 {
 .hero-title p {
   max-width: 760px;
   color: #0b1726;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: clamp(3.15rem, 5.4vw, 4.85rem);
   font-weight: 800;
   line-height: 1.02;
@@ -2641,7 +2642,7 @@ body:has(.hero) h2 {
   display: block;
   margin-bottom: 0.65rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.98rem;
 }
 
@@ -2883,7 +2884,7 @@ body:has(.hero) h2 {
   display: block;
   margin-bottom: 0.55rem;
   color: #0b1726;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 1rem;
   line-height: 1.25;
 }
@@ -2957,7 +2958,7 @@ body:has(.hero) h2 {
   display: block;
   margin-bottom: 0.55rem;
   color: #0b1726;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 1.02rem;
 }
 
@@ -3128,7 +3129,7 @@ div.sourceCode {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .utility-next-step-copy p {
@@ -3155,7 +3156,7 @@ div.sourceCode {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
 }
 
@@ -3191,7 +3192,7 @@ div.sourceCode {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .resource-card p {
@@ -3242,7 +3243,7 @@ div.sourceCode {
   max-width: 760px;
   margin: 1.05rem 0 1rem;
   color: #0b1726;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: clamp(2.5rem, 5vw, 4.6rem);
   font-weight: 800;
   line-height: 1.02;
@@ -3292,7 +3293,7 @@ div.sourceCode {
 .modules-landing-panel strong {
   display: block;
   margin-bottom: 0.5rem;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 2rem;
   line-height: 1;
 }
@@ -3321,7 +3322,7 @@ div.sourceCode {
   display: block;
   margin-bottom: 0.6rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.98rem;
 }
 
@@ -3357,7 +3358,7 @@ div.sourceCode {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .entry-decision-copy p {
@@ -3383,7 +3384,7 @@ div.sourceCode {
   display: block;
   margin-bottom: 0.3rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .entry-decision-item p {
@@ -3439,7 +3440,7 @@ div.sourceCode {
   display: block;
   margin-bottom: 0.65rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 1.05rem;
 }
 
@@ -3607,7 +3608,7 @@ footer.footer a:hover {
   max-width: 780px;
   margin-bottom: 1rem;
   color: #0b1726;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: clamp(2.4rem, 4.8vw, 4.25rem);
   font-weight: 800;
   line-height: 1.04;
@@ -3649,7 +3650,7 @@ footer.footer a:hover {
   display: block;
   margin-bottom: 0.65rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .page-hero-aside ul,
@@ -3679,7 +3680,7 @@ footer.footer a:hover {
   display: block;
   margin-bottom: 0.7rem;
   color: #1e5799;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 1.2rem;
 }
 
@@ -3731,7 +3732,7 @@ footer.footer a:hover {
   display: block;
   margin-bottom: 0.55rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 1rem;
 }
 
@@ -4057,7 +4058,7 @@ div.sourceCode::before {
   background: rgba(111, 220, 255, 0.22);
   border: 1px solid rgba(0, 168, 214, 0.24);
   border-radius: 999px;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -4131,7 +4132,7 @@ code {
   background: rgba(30, 87, 153, 0.08);
   border: 1px solid rgba(30, 87, 153, 0.16);
   border-radius: 999px;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.67rem;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -4189,7 +4190,7 @@ code {
   background: rgba(0, 168, 214, 0.12);
   border: 1px solid rgba(0, 168, 214, 0.20);
   border-radius: 999px;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.67rem;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -4231,7 +4232,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .module-study-checkpoint p {
@@ -4259,7 +4260,7 @@ code {
   display: block;
   margin-bottom: 0.55rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .module-takeaways ul {
@@ -4289,7 +4290,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .module-after-quiz p {
@@ -4706,7 +4707,7 @@ code {
   display: block;
   margin-bottom: 0.55rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .orientation-card p,
@@ -4751,7 +4752,7 @@ code {
   display: block;
   margin-bottom: 0.55rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .module-anatomy-card p {
@@ -4795,7 +4796,7 @@ code {
   display: block;
   margin-bottom: 0.62rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 1rem;
   line-height: 1.24;
   text-wrap: balance;
@@ -4881,7 +4882,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
 }
 
@@ -4916,7 +4917,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .modules-support-copy p {
@@ -4961,7 +4962,7 @@ code {
   display: block;
   margin-bottom: 0.6rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 1.02rem;
 }
 
@@ -4996,7 +4997,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .module-completion-note p {
@@ -5030,7 +5031,7 @@ code {
   margin-top: 0;
   margin-bottom: 0.65rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .certificate-readiness-copy p {
@@ -5058,7 +5059,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .certificate-readiness-step p {
@@ -5207,7 +5208,7 @@ code {
   margin-top: 0.35rem;
   margin-bottom: 0.65rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: clamp(1.75rem, 4vw, 2.65rem);
   line-height: 1.08;
   text-wrap: balance;
@@ -5237,7 +5238,7 @@ code {
   margin-top: 0;
   margin-bottom: 0.65rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .about-next-step-copy p {
@@ -5268,7 +5269,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .module-phase-note p {
@@ -5292,7 +5293,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .module-phase-start p {
@@ -5471,7 +5472,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #ffffff;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.98rem;
 }
 
@@ -5538,7 +5539,7 @@ code {
   display: block;
   margin-bottom: 0.5rem;
   color: #ffffff;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .modules-completion-copy p {
@@ -5578,7 +5579,7 @@ code {
   display: block;
   margin-bottom: 0.5rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
 }
 
@@ -5606,7 +5607,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #7c2d12;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .certificate-noscript p {
@@ -5686,7 +5687,7 @@ code {
   display: block;
   margin-bottom: 0.5rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
 }
 
@@ -5752,7 +5753,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .home-evidence,
@@ -5781,7 +5782,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .home-evidence-grid,
@@ -5830,7 +5831,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
 }
 
@@ -5941,7 +5942,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .home-trust-anchors-grid,
@@ -6034,7 +6035,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
   text-wrap: balance;
 }
@@ -6105,7 +6106,7 @@ code {
   display: block;
   margin-bottom: 0.25rem;
   color: var(--mg-ink);
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -6160,7 +6161,7 @@ code {
   display: block;
   margin-bottom: 0.4rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .module-reading-rhythm p {
@@ -6214,7 +6215,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .module-session-plan-copy p,
@@ -6282,7 +6283,7 @@ code {
   background: rgba(111, 220, 255, 0.22);
   border: 1px solid rgba(0, 168, 214, 0.28);
   border-radius: 999px;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.7rem;
   font-weight: 800;
   line-height: 1;
@@ -6301,7 +6302,7 @@ code {
   display: block;
   margin-bottom: 0.3rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
   text-wrap: balance;
 }
@@ -6355,7 +6356,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .module-return-note p {
@@ -6369,7 +6370,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .module-evidence-path p {
@@ -6383,7 +6384,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .module-practice-contract p {
@@ -6445,7 +6446,7 @@ code {
   display: block;
   margin-bottom: 0.38rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .public-wayfinding-copy p {
@@ -6488,7 +6489,7 @@ code {
   background: rgba(111, 220, 255, 0.24);
   border: 1px solid rgba(0, 168, 214, 0.32);
   border-radius: 999px;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.72rem;
   font-weight: 800;
   line-height: 1;
@@ -6498,7 +6499,7 @@ code {
   display: block;
   margin-bottom: 0.32rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
   text-wrap: balance;
 }
@@ -6547,7 +6548,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .public-session-check-copy p {
@@ -6591,7 +6592,7 @@ code {
   background: rgba(0, 168, 214, 0.14);
   border: 1px solid rgba(0, 168, 214, 0.30);
   border-radius: 999px;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.72rem;
   font-weight: 800;
   line-height: 1;
@@ -6601,7 +6602,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
 }
 
@@ -6631,7 +6632,7 @@ code {
   display: block;
   margin-bottom: 0.38rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .home-output-standard-copy p {
@@ -6683,7 +6684,7 @@ code {
   background: rgba(111, 220, 255, 0.24);
   border: 1px solid rgba(0, 168, 214, 0.32);
   border-radius: 999px;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.72rem;
   font-weight: 800;
   line-height: 1;
@@ -6693,7 +6694,7 @@ code {
   display: block;
   margin-bottom: 0.35rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
 }
 
@@ -6721,7 +6722,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .modules-output-route-copy p {
@@ -6763,7 +6764,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
   text-wrap: balance;
 }
@@ -6792,7 +6793,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .route-output-check-copy p {
@@ -6834,7 +6835,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
   text-wrap: balance;
 }
@@ -6863,7 +6864,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .certificate-evidence-review-copy p {
@@ -6905,7 +6906,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
   text-wrap: balance;
 }
@@ -6934,7 +6935,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .utility-evidence-route-copy p {
@@ -6976,7 +6977,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
   text-wrap: balance;
 }
@@ -6993,7 +6994,7 @@ code {
   display: block;
   margin-bottom: 0.45rem;
   color: #0a1f38;
-  font-family: "Manrope", "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .utility-return-copy p,
@@ -7526,5 +7527,468 @@ code {
 
   .navbar .navbar-nav:last-child .nav-link[href*="modulo01"] {
     padding-inline: 0.72rem;
+  }
+}
+
+// ── Brand refresh layer · Phase 1 + 2 ────────────────────────
+:root {
+  --mg-cyan: var(--mg-blue);
+  --mg-cyan-lt: var(--mg-blue-light);
+}
+
+.navbar {
+  background: rgba(247, 249, 252, 0.96);
+  border-bottom-color: rgba(15, 36, 71, 0.10);
+  box-shadow: none;
+}
+
+.navbar-brand img {
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.navbar-brand-container {
+  display: none;
+}
+
+.navbar-title,
+.navbar .nav-link,
+.btn,
+.entry-link {
+  letter-spacing: 0;
+}
+
+.mg-locale-switcher {
+  position: static;
+  right: auto;
+  bottom: auto;
+  z-index: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-left: 0.7rem;
+  padding: 0.2rem;
+  background: #ffffff;
+  border: 1px solid var(--mg-line);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.mg-locale-btn {
+  min-width: 2.25rem;
+  min-height: 2rem;
+  padding: 0 0.55rem;
+  color: var(--mg-muted-blue);
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mg-locale-btn:hover,
+.mg-locale-btn:focus-visible {
+  color: var(--mg-navy-dark);
+  background: var(--mg-blue-xlight);
+  outline: 2px solid transparent;
+}
+
+.mg-locale-btn[aria-pressed="true"] {
+  color: #ffffff;
+  background: var(--mg-navy-dark);
+}
+
+.home-redesign {
+  --home-max: 1120px;
+  max-width: var(--home-max);
+  margin: 0 auto;
+  padding: 1rem 0 4rem;
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  min-height: 520px;
+  overflow: hidden;
+  background: var(--mg-navy-dark);
+  border-radius: 8px;
+}
+
+.home-hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 6vw, 5rem);
+  color: #ffffff;
+}
+
+.home-kicker {
+  margin-bottom: 1.2rem;
+  color: var(--mg-blue-light);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-kicker p,
+.home-title p,
+.home-summary p {
+  margin: 0;
+}
+
+.home-title p {
+  max-width: 12ch;
+  color: #ffffff;
+  font-size: clamp(2.75rem, 7vw, 5.25rem);
+  font-weight: 700;
+  line-height: 0.96;
+}
+
+.home-title em {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+}
+
+.home-summary {
+  max-width: 46rem;
+  margin-top: 1.5rem;
+  color: var(--mg-blue-xlight);
+  font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+  line-height: 1.65;
+}
+
+.home-actions,
+.home-final-cta p:has(.btn) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.home-hero-mark {
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+  padding: 0;
+  background: #020a0e;
+}
+
+.home-hero-mark p {
+  display: contents;
+}
+
+.home-hero-mark img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link[aria-current="page"] {
+  color: var(--mg-muted-blue);
+  background: transparent;
+  box-shadow: none;
+}
+
+.navbar .nav-link.active::after,
+.navbar .nav-link[aria-current="page"]::after {
+  opacity: 0;
+  transform: scaleX(0.45);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus-visible {
+  color: var(--mg-navy-dark);
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.home-paths,
+.home-curriculum-grid,
+.home-proof-strip {
+  display: grid;
+  gap: 1rem;
+}
+
+.home-paths {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1rem 0 4rem;
+}
+
+.home-path-card,
+.home-curriculum-item,
+.home-proof-item {
+  padding: 1.45rem;
+  background: #ffffff;
+  border: 1px solid var(--mg-line);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.home-path-card {
+  border-top: 4px solid var(--mg-blue);
+}
+
+.path-label {
+  margin-bottom: 1rem;
+  color: var(--mg-blue);
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.path-label p {
+  margin: 0;
+}
+
+.home-path-card strong,
+.home-curriculum-item strong,
+.home-proof-item strong {
+  color: var(--mg-navy-dark);
+  font-size: 1.02rem;
+}
+
+.home-path-card p,
+.home-curriculum-item p,
+.home-proof-item p {
+  color: var(--mg-body);
+}
+
+.home-curriculum,
+.home-final-cta {
+  margin: 0 0 4rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background: #ffffff;
+  border: 1px solid var(--mg-line);
+  border-radius: 8px;
+}
+
+.section-eyebrow {
+  color: var(--mg-blue);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-eyebrow p {
+  margin: 0;
+}
+
+.home-curriculum h2,
+.home-final-cta h2 {
+  max-width: 760px;
+  margin-top: 0.4rem;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.05;
+}
+
+.home-curriculum h2::after,
+.home-final-cta h2::after {
+  background: var(--mg-blue);
+}
+
+.home-curriculum-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 1.5rem 0;
+}
+
+.home-proof-strip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 4rem;
+}
+
+.home-final-cta {
+  background: var(--mg-blue-xlight);
+}
+
+@media (max-width: 980px) {
+  .home-hero,
+  .home-paths,
+  .home-curriculum-grid,
+  .home-proof-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero {
+    min-height: auto;
+  }
+
+  .home-title p {
+    max-width: 12ch;
+  }
+
+  .mg-locale-switcher {
+    width: max-content;
+    margin: 0.55rem 0 0;
+  }
+}
+
+// Brand refresh layer · Phase 3
+.modules-redesign {
+  --modules-max: 1120px;
+  max-width: var(--modules-max);
+  margin: 0 auto;
+  padding: 1rem 0 4rem;
+}
+
+.modules-redesign .modules-landing {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: clamp(2rem, 5vw, 4rem);
+  background: var(--mg-navy-dark);
+  border-radius: 8px;
+}
+
+.modules-redesign .modules-landing-copy,
+.modules-redesign .modules-landing-panel {
+  color: #ffffff;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.modules-redesign .modules-landing-copy h1 {
+  max-width: 12ch;
+  margin: 1rem 0;
+  color: #ffffff;
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+  line-height: 0.98;
+}
+
+.modules-redesign .modules-landing-copy p {
+  max-width: 44rem;
+  color: var(--mg-blue-xlight);
+  font-size: clamp(1rem, 1.6vw, 1.16rem);
+  line-height: 1.65;
+}
+
+.modules-redesign .modules-landing-panel {
+  display: grid;
+  align-content: center;
+  gap: 0.7rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+}
+
+.modules-redesign .modules-landing-panel strong {
+  color: #ffffff;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+}
+
+.modules-redesign .modules-landing-panel span {
+  color: var(--mg-blue-xlight);
+}
+
+.modules-redesign .public-wayfinding,
+.modules-redesign .modules-guidance,
+.modules-redesign .modules-output-route,
+.modules-redesign .modules-completion-flow,
+.modules-redesign .modules-evidence-standard,
+.modules-redesign .modules-certificate-route,
+.modules-redesign .modules-next-step {
+  margin: 0 0 1rem;
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+  background: #ffffff;
+  border: 1px solid var(--mg-line);
+  border-radius: 8px;
+}
+
+.modules-redesign .module-grid,
+.modules-redesign .phase-grid,
+.modules-redesign .public-wayfinding-grid,
+.modules-redesign .modules-guidance,
+.modules-redesign .modules-output-route-grid,
+.modules-redesign .modules-completion-steps,
+.modules-redesign .modules-evidence-standard-grid,
+.modules-redesign .modules-next-step-checks {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.modules-redesign .phase-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 2rem;
+}
+
+.modules-redesign .module-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 2rem;
+}
+
+.modules-redesign .module-card,
+.modules-redesign .phase-card,
+.modules-redesign .public-wayfinding-item,
+.modules-redesign .guidance-item,
+.modules-redesign .modules-output-route-item,
+.modules-redesign .modules-completion-step,
+.modules-redesign .modules-evidence-standard-item,
+.modules-redesign .modules-next-step-check {
+  min-height: 0;
+  padding: 1.2rem;
+  background: #ffffff;
+  border: 1px solid var(--mg-line);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.modules-redesign .phase-card,
+.modules-redesign .module-card {
+  border-top: 4px solid var(--mg-blue);
+}
+
+.modules-redesign h2 {
+  margin: 2.5rem 0 1rem;
+  color: var(--mg-navy-dark);
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+}
+
+.modules-redesign .module-card > p:first-child,
+.modules-redesign .phase-card > p:first-child {
+  color: var(--mg-blue);
+  font-weight: 800;
+}
+
+.modules-redesign .module-card p,
+.modules-redesign .phase-card p,
+.modules-redesign .public-wayfinding-item p,
+.modules-redesign .guidance-item p,
+.modules-redesign .modules-output-route-item p,
+.modules-redesign .modules-completion-step p,
+.modules-redesign .modules-evidence-standard-item p,
+.modules-redesign .modules-next-step-check p {
+  color: var(--mg-body);
+  line-height: 1.55;
+}
+
+.modules-redesign .modules-certificate-route,
+.modules-redesign .modules-next-step {
+  background: var(--mg-blue-xlight);
+}
+
+@media (max-width: 980px) {
+  .modules-redesign .modules-landing,
+  .modules-redesign .module-grid,
+  .modules-redesign .phase-grid,
+  .modules-redesign .public-wayfinding-grid,
+  .modules-redesign .modules-guidance,
+  .modules-redesign .modules-output-route-grid,
+  .modules-redesign .modules-completion-steps,
+  .modules-redesign .modules-evidence-standard-grid,
+  .modules-redesign .modules-next-step-checks {
+    grid-template-columns: 1fr;
   }
 }

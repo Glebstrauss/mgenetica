@@ -52,14 +52,6 @@ navigation:
       label: Roteiro
       href: semanas/index.qmd
       type: page
-    - id: search
-      label: Busca
-      href: busca.qmd
-      type: utility
-    - id: glossary
-      label: Glossário
-      href: glossario.qmd
-      type: reference
     - id: certificate
       label: Certificado
       href: certificado.qmd
@@ -78,12 +70,6 @@ navigation:
     - id: study-path
       label: Roteiro
       href: semanas/index.qmd
-    - id: search
-      label: Busca
-      href: busca.qmd
-    - id: glossary
-      label: Glossário
-      href: glossario.qmd
     - id: certificate
       label: Certificado
       href: certificado.qmd
@@ -92,12 +78,17 @@ navigation:
       href: perfil.qmd
     - id: feedback
       label: Feedback
-      href: https://github.com/Glebstrauss/mgenetica/issues/new
+      href: https://github.com/Mgenetica/mgenetica/issues/new
 
 content_pages:
   editable_by_app: true
   editorial_patterns:
     - hero
+    - home-redesign
+    - home-hero
+    - home-paths
+    - home-curriculum
+    - home-proof-strip
     - hero-panel-proof
     - page-hero
     - hero-signal
@@ -195,31 +186,11 @@ content_pages:
       role: public-home
       status: published
       editable_regions:
-        - hero
-        - hero-panel-proof
-        - hero-signal
-        - hero-action-note
-        - wayfinding
-        - trust-anchors
-        - first-session
-        - output-standard
-        - path-contract
-        - orientation
-        - audience
-        - start-criteria
-        - module-anatomy
-        - entry-decision
-        - entry-points
-        - returning
-        - platform-statement
-        - discovery
-        - evidence
-        - learning-loop
-        - outcome-map
-        - resources
-        - readiness
-        - continuity
-        - phase-preview
+        - home-redesign
+        - home-hero
+        - home-paths
+        - home-curriculum
+        - home-proof-strip
         - final-cta
       source_collections:
         - modules

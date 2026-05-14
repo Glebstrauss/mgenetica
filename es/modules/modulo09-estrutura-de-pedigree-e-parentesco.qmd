@@ -148,7 +148,7 @@ La **Matriz de relaciones numéricas (A)**, también llamada Matriz de relacione
 
 ## método tabular de Henderson
 
-```{r}
+```r
 #| label: constroi-A
 # Pedigree de 10 animais (ordem cronológica obrigatória)
 ped <- data.frame(
@@ -176,7 +176,7 @@ for (i in 1:n) {
 }
 ```
 
-```{r}
+```r
 #| label: interpreta-A
 cat("=== Matriz A (arredondada) ===\n")
 print(round(A, 4))
@@ -189,7 +189,7 @@ for (i in 1:n)
 if (all(Fi == 0)) cat("Nenhum animal endogâmico neste pedigree.\n")
 ```
 
-```{r}
+```r
 #| label: verifica-parentescos
 cat("=== Verificação de coeficientes de parentesco ===\n")
 pares <- list(
@@ -204,7 +204,7 @@ for (p in pares)
   cat(sprintf("a[%d,%d] = %.4f  ← %s\n", p$i, p$j, A[p$i,p$j], p$relacao))
 ```
 
-```{r}
+```r
 #| label: inversa-A
 cat("\n=== Inversa de A (5×5 primeiros) ===\n")
 Ainv <- solve(A)
@@ -212,7 +212,7 @@ print(round(Ainv[1:5,1:5], 4))
 cat("\n(Valores fora da diagonal de A⁻¹ conectam parentes nas MME)\n")
 ```
 
-```{r}
+```r
 #| label: media-endogamia-geracoes
 cat("\n=== Coeficiente médio de parentesco (diagonal média de A) ===\n")
 for (g in list(1:3, 4:5, 6:7, 8:9, 10)) {

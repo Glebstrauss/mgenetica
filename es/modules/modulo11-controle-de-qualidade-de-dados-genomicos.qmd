@@ -142,7 +142,7 @@ El protocolo de control de calidad estándar aplica filtros en dos niveles: **po
 
 ## Simulación y aplicación de QC en R.
 
-```{r}
+```r
 #| label: simula-dados-qc
 set.seed(111)
 n_anim <- 300; n_snp <- 1000
@@ -167,7 +167,7 @@ cat(sprintf("Dados brutos: %d animais × %d SNPs\n", n_anim, n_snp))
 cat(sprintf("Missings totais: %.1f%%\n", 100*mean(is.na(G))))
 ```
 
-```{r}
+```r
 #| label: filtro-snp-cr
 # 1. Call rate por SNP
 snp_cr <- 1 - colMeans(is.na(G))
@@ -177,7 +177,7 @@ cat(sprintf("SNPs removidos: %d / %d (%.1f%%)\n",
 print(quantile(snp_cr, c(0,0.05,0.25,0.5,0.75,0.95,1)))
 ```
 
-```{r}
+```r
 #| label: filtro-maf
 # 2. MAF
 p_obs <- colMeans(G, na.rm=TRUE)/2
@@ -187,7 +187,7 @@ cat(sprintf("SNPs removidos: %d / %d (%.1f%%)\n",
             sum(maf<.05,na.rm=TRUE), n_snp, 100*mean(maf<.05,na.rm=TRUE)))
 ```
 
-```{r}
+```r
 #| label: filtro-hwe
 # 3. Teste HWE por SNP
 hwe_p <- numeric(n_snp)
@@ -205,7 +205,7 @@ cat(sprintf("SNPs fora de HWE: %d / %d (%.1f%%)\n",
             sum(hwe_p<1e-6), n_snp, 100*mean(hwe_p<1e-6)))
 ```
 
-```{r}
+```r
 #| label: filtro-anim
 # 4. Call rate por animal
 anim_cr <- 1 - rowMeans(is.na(G))
@@ -214,7 +214,7 @@ cat(sprintf("Animais removidos: %d / %d (%.1f%%)\n",
             sum(anim_cr<.90), n_anim, 100*mean(anim_cr<.90)))
 ```
 
-```{r}
+```r
 #| label: aplica-qc
 # Aplica todos os filtros
 keep_snp  <- snp_cr >= .95 & !is.na(maf) & maf >= .05 & hwe_p >= 1e-6
@@ -230,7 +230,7 @@ cat(sprintf("Animais retidos: %.1f%%   SNPs retidos: %.1f%%\n",
 cat(sprintf("Missings após QC: %.2f%%\n", 100*mean(is.na(G_qc))))
 ```
 
-```{r}
+```r
 #| fig-height: 3.5
 #| label: plot-qc
 par(mfrow=c(1,2), mar=c(4,4,2,1))

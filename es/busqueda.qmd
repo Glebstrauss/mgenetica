@@ -41,7 +41,7 @@ Utilice la búsqueda para encontrar contexto y retomar el rumbo. El resultado de
 ::: {.public-wayfinding-item role="listitem"}
 **Término**
 
-[Glosario](glossary.qmd){.entry-link aria-label="Abrir el glosario desde la búsqueda"}
+[Glosario](glosario.qmd){.entry-link aria-label="Abrir el glosario desde la búsqueda"}
 :::
 
 ::: {.public-wayfinding-item role="listitem"}
@@ -237,7 +237,7 @@ Una vez que encuentre un resultado, no siga abriendo páginas seguidas. Elija si
 
 Guarde el término y regrese al extracto original.
 
-[Abrir glosario](glossary.qmd){.entry-link aria-label="Abrir el glosario técnico"}
+[Abrir glosario](glosario.qmd){.entry-link aria-label="Abrir el glosario técnico"}
 :::
 
 ::: {.utility-result-close-item role="listitem"}
@@ -305,7 +305,7 @@ El siguiente paso está en la hoja de ruta.
 :::
 
 [Volver a módulos](modules/index.qmd){.btn .btn-primary}
-[Consult glossary](glossary.qmd){.btn .btn-secondary}
+[Consult glossary](glosario.qmd){.btn .btn-secondary}
 [Plan study](semanas/index.qmd){.btn .btn-secondary}
 :::
 

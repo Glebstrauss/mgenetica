@@ -21,21 +21,21 @@ project:
 
 website:
   title: "MGenética"
-  site-url: "https://mgenetica.github.io/"
-  repo-url: "https://github.com/Glebstrauss/mgenetica"
+  site-url: "https://mgenetica.github.io/mgenetica/"
+  repo-url: "https://github.com/Mgenetica/mgenetica"
   repo-actions: []
   description: "Curso aberto de melhoramento animal, genética quantitativa e genômica aplicada com R. 12 módulos progressivos, scripts reproduzíveis e dados simulados."
   favicon: images/favicon/favicon.ico
   open-graph:
     title: "MGenética Academy"
     description: "Melhoramento animal, do conceito ao código. 12 módulos progressivos com R."
-    image: https://mgenetica.github.io/images/og-card.png
+    image: https://mgenetica.github.io/mgenetica/images/og-card.png
     locale: pt_BR
   twitter-card:
     card-style: summary_large_image
     title: "MGenética Academy"
     description: "Melhoramento animal, do conceito ao código. 12 módulos progressivos com R."
-    image: https://mgenetica.github.io/images/og-card.png
+    image: https://mgenetica.github.io/mgenetica/images/og-card.png
   navbar:
     logo: images/mgenetica-logo-correct.png
     logo-alt: "Logo MGenética"
@@ -46,10 +46,6 @@ website:
         text: Módulos
       - href: semanas/index.qmd
         text: Roteiro
-      - href: busca.qmd
-        text: Busca
-      - href: glossario.qmd
-        text: Glossário
       - href: certificado.qmd
         text: Certificado
       - href: perfil.qmd
@@ -66,18 +62,14 @@ website:
         text: Módulos
       - href: semanas/index.qmd
         text: Roteiro
-      - href: busca.qmd
-        text: Busca
-      - href: glossario.qmd
-        text: Glossário
       - href: certificado.qmd
         text: Certificado
       - href: perfil.qmd
         text: Sobre
-      - href: https://github.com/Glebstrauss/mgenetica/issues/new
+      - href: https://github.com/Mgenetica/mgenetica/issues/new
         text: Feedback
     right:
-      - href: https://github.com/Glebstrauss/mgenetica
+      - href: https://github.com/Mgenetica/mgenetica
         text: GitHub
   sidebar:
     style: "docked"
@@ -115,6 +107,7 @@ format:
     lang: pt-BR
 
 execute:
+  eval: false
   warning: false
   message: false
   echo: true

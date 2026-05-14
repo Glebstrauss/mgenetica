@@ -153,7 +153,7 @@ With:
 
 ## Simulation in R
 
-```{r}
+```r
 #| label: simula-modelo-misto
 set.seed(107)
 n_anim <- 300
@@ -173,7 +173,7 @@ dados <- data.frame(y=y, fazenda=as.factor(farm), sexo=as.factor(sex))
 cat(sprintf("n=%d  h²=%.3f  λ=σe²/σa²=%.3f\n\n", n_anim, h2, lambda))
 ```
 
-```{r}
+```r
 #| label: modelo-fixo
 cat("=== Modelo FIXO: y ~ fazenda + sexo ===\n")
 mod_fixo <- lm(y ~ fazenda + sexo, data=dados)
@@ -185,7 +185,7 @@ cat(sprintf("Sexo 2:        %.2f  (verdadeiro: %.2f)\n", cf[4], sex_ef[2]-sex_ef
 cat(sprintf("R²:            %.4f\n", summary(mod_fixo)$r.squared))
 ```
 
-```{r}
+```r
 #| label: blup-simplificado
 # BLUP de um animal isolado (sem pedigree): u_hat = VA/(VA+VE) × y_ajustado
 # Equivale ao "shrinkage" para a média da população
@@ -200,7 +200,7 @@ cat("(BLUP sempre tem correlação igual ao fenótipo com o valor verdadeiro,\n"
 cat(" mas com variância reduzida — é o 'encolhimento' para a média)\n")
 ```
 
-```{r}
+```r
 #| fig-height: 4
 #| label: plot-blup-vs-a
 par(mar=c(4,4,2,1))
@@ -213,7 +213,7 @@ legend("topleft", c("Regressão BLUP~a", "Linha 45°"), lty=c(1,2),
        col=c("#dc2626","#5b6b7d"), bty="n")
 ```
 
-```{r}
+```r
 #| label: efeito-lambda
 cat("\n=== Efeito do λ no encolhimento do BLUP ===\n")
 cat("(λ alto = h² baixo = maior regressão para a média)\n\n")

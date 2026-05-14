@@ -1,913 +1,138 @@
 ---
 title: "MGenética"
-subtitle: "Melhoramento animal, genética quantitativa e genômica aplicada com dados simulados"
+subtitle: "Educação aplicada em melhoramento genético animal"
 page-layout: full
 toc: false
 sidebar: false
 number-sections: false
 ---
 
-::: {.hero}
-::: {.hero-copy}
-::: {.hero-kicker}
-MGenética Academy · plataforma pública
+::: {.home-redesign}
+::: {.home-hero}
+::: {.home-hero-copy}
+::: {.home-kicker}
+Educação aplicada · Melhoramento genético animal
 :::
 
-::: {.hero-title}
-Melhoramento animal,<br>do conceito ao código
+::: {.home-title}
+Genética que vira decisão no campo.
 :::
 
-Uma plataforma aberta para estudar genética quantitativa e genômica aplicada em uma sequência guiada: primeiro a pergunta biológica, depois a simulação, o código em R e a interpretação técnica.
-
-::: {.hero-actions role="navigation" aria-label="Ações principais da página inicial"}
-[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
-[Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
-[Planejar 12 semanas](semanas/index.qmd){.btn .btn-secondary}
+::: {.home-summary}
+Estude genética quantitativa e genômica aplicada com uma trilha curta, prática e verificável: conceito, dados simulados, código em R e interpretação técnica.
 :::
 
-::: {.hero-action-note role="note" aria-label="Como escolher a ação inicial"}
-::: {.hero-action-note-hint}
-Escolha uma ação por sessão. Todos os caminhos retornam para módulos, roteiro ou certificado.
-:::
-
-::: {.hero-action-note-grid role="list" aria-label="Guia rápido para escolher a ação inicial"}
-::: {.hero-action-note-item role="listitem"}
-**Primeira visita**
-
-Comece pelo Módulo 01.
-
-[Abrir Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01"}
-:::
-
-::: {.hero-action-note-item role="listitem"}
-**Retomada**
-
-Abra o índice de módulos.
-
-[Ver índice](modules/index.qmd){.entry-link aria-label="Abrir o índice de módulos"}
-:::
-
-::: {.hero-action-note-item role="listitem"}
-**Agenda de estudo**
-
-Use o roteiro semanal.
-
-[Planejar](semanas/index.qmd){.entry-link aria-label="Abrir o roteiro semanal"}
-:::
+::: {.home-actions role="navigation" aria-label="Ações principais da página inicial"}
+[Acessar curso](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
+[Ver módulos](modules/index.qmd){.btn .btn-secondary aria-label="Abrir índice de módulos"}
 :::
 :::
 
-::: {.hero-meta}
-::: {.hero-meta-item}
-**Aberto**
-
-Publicação estática e acessível
-:::
-
-::: {.hero-meta-item}
-**Aplicado**
-
-Exercícios com dados simulados
-:::
-
-::: {.hero-meta-item}
-**Modular**
-
-Estrutura pronta para gestão editorial
+::: {.home-hero-mark}
+![](images/mgenetica-logo-correct.png){fig-alt="Logo MGenética"}
 :::
 :::
 
-::: {.hero-learning-path role="list" aria-label="Sequência de aprendizagem"}
-::: {.hero-path-step role="listitem"}
-**Conceito**
-
-Pergunta biológica
+::: {.home-paths role="list" aria-label="Rotas principais da MGenética"}
+::: {.home-path-card role="listitem"}
+::: {.path-label}
+01
 :::
 
-::: {.hero-path-step role="listitem"}
-**Simulação**
+**Estudar**
 
-Dados controlados
-:::
-
-::: {.hero-path-step role="listitem"}
-**R**
-
-Código reproduzível
-:::
-
-::: {.hero-path-step role="listitem"}
-**Decisão**
-
-Interpretação aplicada
-:::
-:::
-
-::: {.hero-signal role="note" aria-label="Forma de estudo recomendada"}
-Cada módulo foi desenhado para fechar um ciclo curto: leia o conceito, rode o script, ajuste um parâmetro e escreva uma decisão técnica. Ao completar os quizzes, a trilha pode ser fechada no certificado.
-:::
-:::
-
-::: {.hero-panel}
-![](images/mgenetica-logo-correct.png){fig-alt="Logo original da MGenética em fundo escuro com monograma geométrico cyan"}
-
-::: {.hero-panel-proof role="note" aria-label="Resumo da trilha MGenética"}
-**12 módulos guiados**
-
-Conceito, simulação, R e interpretação em uma sequência pública de estudo.
-
-::: {.hero-panel-proof-list role="list" aria-label="Indicadores da trilha"}
-::: {.hero-panel-proof-item role="listitem"}
-**36h**
-
-ritmo estimado
-:::
-
-::: {.hero-panel-proof-item role="listitem"}
-**Local**
-
-progresso no navegador
-:::
-
-::: {.hero-panel-proof-item .hero-panel-proof-item--wide role="listitem"}
-**Certificado**
-
-conclusão após os quizzes
-:::
-:::
-:::
-:::
-:::
-
-::: {.home-section .public-wayfinding .home-wayfinding role="navigation" aria-label="Orientação pública da página inicial"}
-::: {.public-wayfinding-copy}
-**Você está no ponto de entrada**
-
-Use a página inicial para escolher uma rota curta. A melhor navegação é aquela que leva a uma leitura, uma consulta ou uma conclusão clara.
-:::
-
-::: {.public-wayfinding-grid role="list" aria-label="Rotas imediatas a partir da página inicial"}
-::: {.public-wayfinding-item role="listitem"}
-**Estudar agora**
+Siga os módulos em ordem, com uma pergunta técnica por sessão.
 
 [Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Começar pelo Módulo 01"}
 :::
 
-::: {.public-wayfinding-item role="listitem"}
-**Organizar rota**
-
-[Ver módulos](modules/index.qmd){.entry-link aria-label="Abrir o índice de módulos"}
-:::
-
-::: {.public-wayfinding-item role="listitem"}
-**Fechar pendência**
-
-[Checar certificado](certificado.qmd){.entry-link aria-label="Checar certificado e pendências"}
-:::
-:::
-:::
-
-::: {.home-section .home-output-standard role="region" aria-label="Como transformar código e tabelas em evidência"}
-::: {.home-output-standard-copy}
-**O que conta como evidência técnica**
-
-Cada módulo alterna explicação, script, tabela e interpretação. Não basta rodar o código: a sessão fica completa quando a saída sustenta uma frase técnica curta.
-:::
-
-::: {.home-output-standard-grid role="list" aria-label="Critérios para ler saídas técnicas"}
-::: {.home-output-standard-item role="listitem"}
-**Pergunta**
-
-Qual decisão o trecho ajuda a tomar?
-:::
-
-::: {.home-output-standard-item role="listitem"}
-**Saída**
-
-Qual número, contraste ou padrão mudou?
-:::
-
-::: {.home-output-standard-item role="listitem"}
-**Interpretação**
-
-O que essa mudança altera na seleção ou no manejo?
-:::
-:::
-
-::: {.home-output-standard-actions role="navigation" aria-label="Ações para praticar leitura de evidência técnica"}
-[Ver módulo com código](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 para praticar leitura de código e saída"}
-[Comparar módulos](modules/index.qmd){.entry-link aria-label="Abrir o índice de módulos para escolher uma evidência técnica"}
-[Planejar uma semana](semanas/index.qmd){.entry-link aria-label="Abrir o roteiro semanal para planejar evidência técnica"}
-:::
-:::
-
-::: {.home-section .home-trust-anchors role="region" aria-label="Pilares de confiança da experiência pública"}
-::: {.home-trust-anchors-copy}
-**Por que estudar aqui é verificável**
-
-A experiência combina conteúdo aberto, execução local e interpretação curta. O visitante consegue conferir o caminho sem cadastro, sem base externa obrigatória e sem prometer aplicação automática.
-:::
-
-::: {.home-trust-anchors-grid role="list" aria-label="Pilares de confiança da MGenética"}
-::: {.home-trust-anchors-item role="listitem"}
-**Aberto**
-
-Páginas públicas, trilha visível e navegação sem login.
-:::
-
-::: {.home-trust-anchors-item role="listitem"}
-**Reprodutível**
-
-Scripts e dados simulados para repetir comparações.
-:::
-
-::: {.home-trust-anchors-item role="listitem"}
-**Responsável**
-
-Interpretação técnica antes de qualquer uso aplicado.
-:::
-:::
-:::
-
-::: {.home-section .home-first-session role="region" aria-label="Como fazer a primeira sessão de estudo"}
-::: {.home-first-session-copy}
-**Se você tem uma sessão curta agora**
-
-Não tente percorrer tudo de uma vez. Abra uma rota, produza uma evidência pequena e pare com uma decisão clara sobre o próximo passo.
-:::
-
-::: {.home-first-session-grid role="list" aria-label="Primeira sessão recomendada na MGenética"}
-::: {.home-first-session-item role="listitem"}
-**10 min**
-
-Leia a pergunta central do módulo.
-:::
-
-::: {.home-first-session-item role="listitem"}
-**15 min**
-
-Rode o trecho principal do script.
-:::
-
-::: {.home-first-session-item role="listitem"}
-**5 min**
-
-Escreva uma frase de decisão.
-:::
-:::
-:::
-
-::: {.home-section .home-proof}
-::: {.metric-grid}
-::: {.metric}
-**12**
-
-Módulos progressivos
-:::
-
-::: {.metric}
-**R**
-
-Scripts reproduzíveis
-:::
-
-::: {.metric}
-**100%**
-
-Dados simulados para ensino
-:::
-:::
-:::
-
-::: {.home-section .home-path-contract role="region" aria-label="Contrato público da trilha de aprendizagem"}
-::: {.home-path-contract-copy}
-**A trilha sempre pede uma evidência**
-
-O site não foi desenhado para consumo passivo. Cada rota pública deve levar a uma pequena evidência: uma pergunta melhor, uma saída em R interpretada, uma tabela lida com critério ou uma decisão técnica escrita.
-:::
-
-::: {.home-path-contract-grid role="list" aria-label="Evidências esperadas ao usar a MGenética"}
-::: {.home-path-contract-item role="listitem"}
-**Pergunta**
-
-Abra uma página sabendo qual conceito ou decisão quer esclarecer.
-:::
-
-::: {.home-path-contract-item role="listitem"}
-**Saída**
-
-Use o script ou o apoio público para gerar contexto verificável.
-:::
-
-::: {.home-path-contract-item role="listitem"}
-**Decisão**
-
-Feche com uma frase técnica antes de avançar.
-:::
-:::
-:::
-
-::: {.home-section .home-orientation role="region" aria-label="Orientação inicial do curso"}
-::: {.orientation-copy}
-## Antes de começar
-
-O curso funciona melhor quando o visitante entende o papel de cada etapa: escolher um ponto de entrada, estudar com apoio e fechar cada módulo com uma interpretação própria.
-:::
-
-::: {.orientation-grid role="list" aria-label="Como se orientar no MGenética"}
-::: {.orientation-card role="listitem"}
-**Ponto de entrada**
-
-Comece pelo Módulo 01 se esta for a primeira passagem pela trilha.
-:::
-
-::: {.orientation-card role="listitem"}
-**Apoio durante a leitura**
-
-Use busca, glossário e roteiro para recuperar contexto sem abandonar a sequência principal.
-:::
-
-::: {.orientation-card role="listitem"}
-**Fechamento**
-
-Ao final, o certificado registra a conclusão após os quizzes dos 12 módulos.
-:::
-:::
-:::
-
-::: {.home-section .home-audience role="region" aria-label="Para quem a MGenética foi desenhada"}
-::: {.home-audience-copy}
-## Para quem esta trilha funciona melhor
-
-A MGenética foi pensada para quem precisa ligar teoria, análise e decisão aplicada. O curso não substitui uma disciplina formal, mas organiza uma rota pública para estudar com método e evidência.
-:::
-
-::: {.home-audience-grid role="list" aria-label="Perfis que podem usar a MGenética"}
-::: {.home-audience-item role="listitem"}
-**Estudantes**
-
-Para transformar conceitos de genética quantitativa em prática reproduzível.
-:::
-
-::: {.home-audience-item role="listitem"}
-**Pesquisadores em formação**
-
-Para revisar parâmetros, modelos e genômica com exemplos controlados.
-:::
-
-::: {.home-audience-item role="listitem"}
-**Profissionais técnicos**
-
-Para retomar fundamentos antes de interpretar saídas de seleção e avaliação.
-:::
-:::
-:::
-
-::: {.home-section .home-start-criteria role="region" aria-label="Critérios para começar a estudar"}
-::: {.home-start-criteria-copy}
-**Comece quando houver tempo para fechar um ciclo**
-
-Cada sessão funciona melhor quando termina com uma evidência pequena. Antes de abrir o primeiro módulo, reserve tempo para ler, executar o script e escrever uma frase técnica.
-:::
-
-::: {.home-start-criteria-grid role="list" aria-label="Critérios para começar um módulo"}
-::: {.home-start-criteria-item role="listitem"}
-**30 a 45 min**
-
-Tempo suficiente para leitura, execução e síntese curta.
-:::
-
-::: {.home-start-criteria-item role="listitem"}
-**R disponível**
-
-Ambiente pronto para rodar o script do módulo.
-:::
-
-::: {.home-start-criteria-item role="listitem"}
-**Pergunta clara**
-
-Uma decisão biológica ou técnica para acompanhar a leitura.
-:::
-:::
-:::
-
-::: {.home-section .home-module-anatomy role="region" aria-label="Estrutura de cada módulo"}
-::: {.section-label}
-Anatomia
-:::
-
-## O que se repete em cada módulo
-
-::: {.module-anatomy-grid role="list" aria-label="Partes recorrentes dos módulos"}
-::: {.module-anatomy-card role="listitem"}
-**Objetivo**
-
-O módulo começa com a pergunta técnica que orienta a leitura.
-:::
-
-::: {.module-anatomy-card role="listitem"}
-**Prática**
-
-O script em R transforma a pergunta em dados simulados e saídas comparáveis.
-:::
-
-::: {.module-anatomy-card role="listitem"}
-**Interpretação**
-
-O fechamento pede uma decisão curta conectando resultado, limite e aplicação.
-:::
-
-::: {.module-anatomy-card role="listitem"}
-**Quiz**
-
-A checagem final registra o progresso local antes de avançar.
-:::
-:::
-:::
-
-::: {.home-section .home-entry}
-::: {.section-label}
-Entrada
-:::
-
-## Escolha o melhor ponto de partida
-
-::: {.entry-decision role="region" aria-label="Como escolher uma rota de entrada"}
-::: {.entry-decision-copy}
-**Escolha pela situação atual**
-
-A trilha principal continua sendo o Módulo 01. Use as rotas alternativas quando você já conhece o conteúdo, precisa retomar contexto ou quer organizar o estudo antes de começar.
-:::
-
-::: {.entry-decision-list role="list" aria-label="Critérios para escolher uma rota"}
-::: {.entry-decision-item role="listitem"}
-**Primeira vez**
-
-Comece pelo Módulo 01.
-:::
-
-::: {.entry-decision-item role="listitem"}
-**Revisão**
-
-Abra o índice e escolha a fase.
-:::
-
-::: {.entry-decision-item role="listitem"}
-**Planejamento**
-
-Use o roteiro semanal.
-:::
-:::
-:::
-
-::: {.entry-grid role="list" aria-label="Pontos de partida no curso"}
-::: {.entry-card .entry-card-primary role="listitem"}
-**Começar agora**
-
-Siga o primeiro módulo, rode o script correspondente e registre uma interpretação curta.
-
-[Abrir Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 a partir dos pontos de partida"}
-:::
-
-::: {.entry-card role="listitem"}
-**Entender a trilha**
-
-Veja as quatro fases editoriais antes de avançar para os módulos individuais.
-
-[Ver índice de módulos](modules/index.qmd){.entry-link aria-label="Ver índice de módulos para entender a trilha"}
+::: {.home-path-card role="listitem"}
+::: {.path-label}
+02
 :::
 
-::: {.entry-card role="listitem"}
-**Planejar o estudo**
+**Praticar**
 
-Use o roteiro semanal para organizar leitura, prática em R e revisão.
+Use dados simulados e scripts em R para transformar conceito em evidência.
 
-[Abrir roteiro](semanas/index.qmd){.entry-link aria-label="Abrir roteiro para planejar o estudo"}
+[Explorar trilha](modules/index.qmd){.entry-link aria-label="Explorar trilha de módulos"}
 :::
-:::
-:::
-
-::: {.home-section .home-returning role="region" aria-label="Como retomar a trilha MGenética"}
-::: {.home-returning-copy}
-**Se você está voltando ao curso**
-
-Retome pela evidência que falta: escolher o próximo módulo, revisar a fase atual ou conferir pendências antes do certificado.
-:::
-
-::: {.home-returning-grid role="list" aria-label="Rotas para retomar o estudo"}
-::: {.home-returning-item role="listitem"}
-**Continuar**
-
-Abra o índice e escolha o próximo módulo pela fase em que você parou.
-
-[Ver módulos](modules/index.qmd){.entry-link aria-label="Ver módulos para continuar a trilha"}
-:::
-
-::: {.home-returning-item role="listitem"}
-**Revisar**
-
-Use o roteiro para recuperar o contexto antes de abrir uma nova página longa.
 
-[Abrir roteiro](semanas/index.qmd){.entry-link aria-label="Abrir roteiro para revisar o contexto"}
+::: {.home-path-card role="listitem"}
+::: {.path-label}
+03
 :::
 
-::: {.home-returning-item role="listitem"}
 **Concluir**
 
-Confira se todos os quizzes foram validados no navegador antes de emitir o certificado.
+Valide os quizzes e emita o certificado quando a trilha estiver completa.
 
-[Checar certificado](certificado.qmd){.entry-link aria-label="Checar certificado antes de concluir"}
-:::
-:::
-:::
-
-::: {.home-section .home-discovery}
-::: {.section-label}
-Apoio
-:::
-
-## Encontre o conceito certo sem sair da trilha
-
-::: {.discovery-grid role="list" aria-label="Ferramentas de apoio ao estudo"}
-::: {.discovery-card role="listitem"}
-**Busca**
-
-Localize termos, funções em R e trechos dos módulos quando precisar retomar um ponto específico.
-
-[Buscar no curso](busca.qmd){.entry-link aria-label="Buscar termos e funções no curso"}
-:::
-
-::: {.discovery-card role="listitem"}
-**Glossário**
-
-Use como referência rápida para siglas, parâmetros e métodos que aparecem ao longo da sequência.
-
-[Abrir glossário](glossario.qmd){.entry-link aria-label="Abrir glossário para referência rápida"}
-:::
-
-::: {.discovery-card role="listitem"}
-**Roteiro**
-
-Distribua leitura, execução dos scripts e interpretação técnica em um plano semanal.
-
-[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro para distribuir o estudo"}
-:::
+[Ver certificado](certificado.qmd){.entry-link aria-label="Abrir certificado"}
 :::
 :::
 
-::: {.home-section .home-evidence role="region" aria-label="Evidências da experiência de estudo"}
-::: {.home-evidence-copy}
-## Por que a trilha é confiável
-
-A experiência pública combina conteúdo científico, simulação controlada e checagem local. Isso permite estudar conceitos complexos com uma sequência previsível, sem depender de cadastro, base externa ou painel administrativo.
+::: {.home-curriculum}
+::: {.section-eyebrow}
+Trilha
 :::
 
-::: {.home-evidence-grid role="list" aria-label="Evidências da proposta MGenética"}
-::: {.home-evidence-item role="listitem"}
-**Base científica**
+## Do fundamento biológico à genômica aplicada
 
-O percurso segue referências clássicas de genética quantitativa, avaliação genética e genômica aplicada.
+::: {.home-curriculum-grid role="list" aria-label="Fases da trilha MGenética"}
+::: {.home-curriculum-item role="listitem"}
+**Fundamentos**
+
+Melhoramento animal, fenótipo, ambiente e bases da genética quantitativa.
 :::
 
-::: {.home-evidence-item role="listitem"}
-**Prática verificável**
+::: {.home-curriculum-item role="listitem"}
+**Parâmetros**
 
-Os scripts permitem repetir a simulação, alterar parâmetros e comparar a interpretação.
+Exploração de dados, variância, herdabilidade, repetibilidade e correlações.
 :::
 
-::: {.home-evidence-item role="listitem"}
-**Progresso privado**
+::: {.home-curriculum-item role="listitem"}
+**Modelos**
 
-Quizzes e certificado funcionam no navegador, sem envio de dados pessoais.
-:::
-:::
+Modelos lineares, BLUP, pedigree, parentesco e avaliação genética.
 :::
 
-::: {.home-section .platform-statement}
-::: {.statement-copy}
-## Plataforma pública para educação científica aplicada
+::: {.home-curriculum-item role="listitem"}
+**Genômica**
 
-O MGenética organiza conteúdo, prática computacional e progressão técnica em uma experiência pública de estudo. A camada administrativa deve apoiar manutenção, projetos e publicação; a experiência do visitante permanece editorial, clara e orientada ao aprendizado.
+Marcadores SNP, controle de qualidade, GWAS e predição genômica.
+:::
 :::
 
-::: {.statement-points}
-::: {.statement-point}
-**Conteúdo modular**
-
-Páginas e módulos com estrutura previsível para edição futura.
+[Ver os 12 módulos](modules/index.qmd){.btn .btn-secondary aria-label="Ver todos os módulos"}
 :::
 
-::: {.statement-point}
+::: {.home-proof-strip role="list" aria-label="Pilares de confiança da MGenética"}
+::: {.home-proof-item role="listitem"}
+**Rigor científico**
+
+Conteúdo baseado em genética quantitativa, estatística e aplicação no campo.
+:::
+
+::: {.home-proof-item role="listitem"}
+**Linguagem clara**
+
+Explicações diretas, sem excesso de jargão e com interpretação curta.
+:::
+
+::: {.home-proof-item role="listitem"}
 **Prática reproduzível**
 
-Scripts e dados simulados conectados aos objetivos de cada módulo.
+Scripts e dados simulados para estudar sem depender de bases externas.
 :::
-
-::: {.statement-point}
-**Publicação estática**
-
-Performance e estabilidade adequadas para GitHub Pages.
-:::
-:::
-:::
-
-::: {.home-section .home-sequence}
-::: {.section-label}
-Percurso
-:::
-
-## Uma sequência pensada para sair da intuição e chegar à decisão
-
-::: {.study-flow}
-::: {.flow-step}
-**01**
-
-Fundamentos
-:::
-
-::: {.flow-step}
-**02**
-
-Simulação
-:::
-
-::: {.flow-step}
-**03**
-
-Modelagem
-:::
-
-::: {.flow-step}
-**04**
-
-Decisão
-:::
-:::
-:::
-
-::: {.home-section .home-learning-loop}
-::: {.section-label}
-Método
-:::
-
-## O mesmo ciclo se repete em todos os módulos
-
-::: {.learning-loop-grid}
-::: {.learning-loop-card}
-**1 · Pergunta**
-
-O conteúdo começa pela decisão biológica ou de seleção que precisa ser entendida.
-:::
-
-::: {.learning-loop-card}
-**2 · Parâmetro**
-
-O módulo introduz o conceito quantitativo que explica a variação observada.
-:::
-
-::: {.learning-loop-card}
-**3 · Código**
-
-O script em R transforma a hipótese em uma saída reproduzível com dados simulados.
-:::
-
-::: {.learning-loop-card}
-**4 · Interpretação**
-
-O fechamento pede uma frase técnica ligando resultado, limite e consequência prática.
-:::
-:::
-:::
-
-::: {.home-outcome-map role="region" aria-label="Resultado esperado depois de estudar"}
-::: {.home-outcome-map-copy}
-**O que deve mudar depois de uma sessão**
-
-Uma boa sessão não termina apenas com uma página lida. Ela deve melhorar a pergunta, a interpretação do script ou a decisão técnica que você consegue defender.
-:::
-
-::: {.home-outcome-map-grid role="list" aria-label="Resultados esperados de estudo"}
-::: {.home-outcome-map-item role="listitem"}
-**Entender**
-
-Explique o conceito sem depender da resposta do quiz.
-:::
-
-::: {.home-outcome-map-item role="listitem"}
-**Testar**
-
-Altere uma simulação e compare a saída com o resultado original.
-:::
-
-::: {.home-outcome-map-item role="listitem"}
-**Decidir**
-
-Escreva uma consequência prática para seleção, avaliação ou revisão.
-:::
-:::
-:::
-
-::: {.home-section .home-lab}
-::: {.lab-copy}
-## Conteúdo público, estrutura de plataforma
-
-O site apresenta a experiência de estudo. Por trás dele, a organização precisa continuar simples o bastante para que páginas, módulos, scripts e publicações sejam mantidos por um painel interno sem contaminar a experiência pública.
-:::
-
-::: {.lab-grid}
-::: {.lab-card}
-**Sinal**
-
-Conceitos biológicos aparecem antes das fórmulas, para preservar contexto.
-:::
-
-::: {.lab-card}
-**Modelo**
-
-Roteiros em R conectam simulação, parâmetros e interpretação.
-:::
-
-::: {.lab-card}
-**Decisão**
-
-Cada módulo aponta para consequências práticas em seleção e avaliação.
-:::
-:::
-:::
-
-::: {.home-section .home-method}
-## Como usar o curso
-
-::: {.feature-grid}
-::: {.feature}
-### 1. Estude o conceito
-
-Cada módulo introduz um bloco central do melhoramento animal, evitando começar pela fórmula antes da pergunta biológica.
-:::
-
-::: {.feature}
-### 2. Rode a prática
-
-Os scripts em `scripts/` geram dados simulados e ajudam a observar variação, seleção, componentes de variância e avaliação genética.
 :::
 
-::: {.feature}
-### 3. Interprete o resultado
+::: {.home-final-cta role="navigation" aria-label="Próxima ação recomendada"}
+## Pronto para começar?
 
-As atividades pedem comparação entre estimativas, hipóteses e implicações para tomada de decisão em programas de melhoramento.
-:::
-:::
-:::
-
-::: {.home-section .home-modules}
-## Trilha de aprendizado
-
-Um panorama das quatro fases editoriais. O catálogo completo fica no índice de módulos.
-
-::: {#trilha-de-aprendizado .phase-preview}
-::: {.phase-preview-card}
-**01 · Fundamentos**
-
-Melhoramento animal e bases da genética quantitativa.
-:::
-
-::: {.phase-preview-card}
-**02 · Dados e parâmetros**
-
-Exploração, variâncias, herdabilidade e correlações.
-:::
-
-::: {.phase-preview-card}
-**03 · Modelagem**
-
-Modelos mistos, BLUP, pedigree e parentesco.
-:::
-
-::: {.phase-preview-card}
-**04 · Genômica**
-
-SNPs, controle de qualidade, matrizes, GWAS e predição.
-:::
-:::
-
-::: {.section-cta role="navigation" aria-label="Ações da trilha de aprendizado"}
-[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
-[Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
-:::
-:::
-
-::: {.home-section .home-resources}
-::: {.section-label}
-Materiais
-:::
-
-## Apoio prático para estudar sem perder a sequência
-
-::: {.resource-grid role="list" aria-label="Recursos práticos de apoio ao estudo"}
-::: {.resource-card role="listitem"}
-**Scripts em R**
-
-Cada módulo tem um script correspondente para transformar a pergunta em simulação, saída e interpretação.
-:::
-
-::: {.resource-card role="listitem"}
-**Dados simulados**
-
-Os exemplos são controlados para ensino, comparação e repetição sem depender de bases externas.
-:::
-
-::: {.resource-card role="listitem"}
-**Quizzes locais**
-
-A checagem de progresso acontece no navegador e ajuda a decidir quando avançar ou revisar.
-:::
-:::
-:::
-
-::: {.home-section .home-readiness role="region" aria-label="Checklist público antes de começar"}
-::: {.home-readiness-copy}
-## Antes de iniciar o próximo módulo
+Abra o primeiro módulo, rode o script principal e feche a sessão com uma decisão técnica.
 
-Use este checkpoint para manter o estudo objetivo: cada sessão deve terminar com uma saída técnica pequena, não apenas com leitura passiva.
+[Acessar Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Acessar Módulo 01"}
+[Planejar 12 semanas](semanas/index.qmd){.btn .btn-secondary aria-label="Abrir roteiro de 12 semanas"}
 :::
-
-::: {.home-readiness-grid role="list" aria-label="Checklist para estudar com a MGenética"}
-::: {.home-readiness-item role="listitem"}
-**Pergunta**
-
-Identifique qual decisão biológica ou de seleção o módulo ajuda a responder.
-:::
-
-::: {.home-readiness-item role="listitem"}
-**Código**
-
-Rode o script correspondente e altere pelo menos um parâmetro da simulação.
-:::
-
-::: {.home-readiness-item role="listitem"}
-**Síntese**
-
-Escreva uma frase técnica antes de avançar para o quiz ou para o próximo módulo.
-:::
-:::
-:::
-
-::: {.home-section .home-continuity role="region" aria-label="Como a trilha fecha depois do estudo"}
-::: {.home-continuity-copy}
-## Da primeira aula ao certificado
-
-A experiência pública foi desenhada para manter uma linha simples: entrar pela trilha principal, consultar apoio quando necessário, registrar progresso nos quizzes e emitir o certificado quando a sequência estiver completa.
-:::
-
-::: {.home-continuity-actions role="navigation" aria-label="Ações para continuar ou concluir a trilha"}
-[Continuar pelos módulos](modules/index.qmd){.btn .btn-primary}
-[Ver como concluir](certificado.qmd){.btn .btn-secondary}
-:::
-:::
-
-::: {.home-section .home-final-cta}
-::: {.final-cta-copy}
-## Comece pela trilha principal
-
-O melhor caminho é seguir os módulos em ordem, executar os scripts e registrar uma interpretação curta a cada etapa. Se preferir distribuir a carga, use o roteiro semanal antes de começar.
-
-::: {.final-cta-hint}
-Escolha `Começar M01` se ainda não há evidência registrada; escolha planejamento ou certificado apenas quando a próxima sessão já estiver clara.
-:::
-:::
-
-::: {.final-cta-checks role="list" aria-label="Critérios para escolher o próximo passo"}
-::: {.final-cta-check role="listitem"}
-**Primeira sessão**
-
-Abra o Módulo 01 e feche uma evidência curta.
-:::
-
-::: {.final-cta-check role="listitem"}
-**Retomada**
-
-Volte ao índice e escolha pela fase atual.
-:::
-
-::: {.final-cta-check role="listitem"}
-**Conclusão**
-
-Confira pendências no certificado antes de encerrar.
-:::
-:::
-
-::: {.final-cta-actions role="navigation" aria-label="Ações finais da página inicial"}
-[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
-[Planejar por semana](semanas/index.qmd){.btn .btn-secondary}
-[Ver como concluir](certificado.qmd){.btn .btn-secondary}
-:::
-:::
-
-::: {.home-section .home-references}
-## Referências de base
-
-- Falconer, D. S.; Mackay, T. F. C. *Introduction to Quantitative Genetics*.
-- Lynch, M.; Walsh, B. *Genetics and Analysis of Quantitative Traits*.
-- Mrode, R. A. *Linear Models for the Prediction of Animal Breeding Values*.
-- Legarra, A.; Misztal, I. Materiais técnicos sobre avaliação genética e genômica.
 :::

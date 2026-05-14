@@ -38,7 +38,7 @@ Utilice el glosario para resolver una definición y devolver el término al cont
 ::: {.public-wayfinding-item role="listitem"}
 **Localizar**
 
-[Buscar](search.qmd){.entry-link aria-label="Abrir la búsqueda desde el glosario"}
+[Buscar](busqueda.qmd){.entry-link aria-label="Abrir la búsqueda desde el glosario"}
 :::
 
 ::: {.public-wayfinding-item role="listitem"}
@@ -200,7 +200,7 @@ Un término técnico rara vez resuelve por sí solo una decisión. Cuando la def
 
 Busque el término en el curso para ver su uso concreto.
 
-[Abrir búsqueda](search.qmd){.entry-link aria-label="Abrir la búsqueda del curso"}
+[Abrir búsqueda](busqueda.qmd){.entry-link aria-label="Abrir la búsqueda del curso"}
 :::
 
 ::: {.utility-no-result-item role="listitem"}
@@ -234,7 +234,7 @@ Una definición breve sólo ayuda si vuelves a leer. Luego de consultar el glosa
 
 Regrese al párrafo donde apareció la pregunta.
 
-[Abrir búsqueda](search.qmd){.entry-link aria-label="Abrir la búsqueda para localizar el uso del término"}
+[Abrir búsqueda](busqueda.qmd){.entry-link aria-label="Abrir la búsqueda para localizar el uso del término"}
 :::
 
 ::: {.utility-result-close-item role="listitem"}
@@ -300,7 +300,7 @@ La definición apoya una decisión.
 :::
 :::
 
-[Abrir búsqueda](search.qmd){.btn .btn-primary}
+[Abrir búsqueda](busqueda.qmd){.btn .btn-primary}
 [Volver a módulos](modules/index.qmd){.btn .btn-secondary}
 [Ver hoja de ruta](semanas/index.qmd){.btn .btn-secondary}
 :::

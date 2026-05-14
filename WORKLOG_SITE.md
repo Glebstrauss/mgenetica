@@ -2,6 +2,210 @@
 
 Use this file to register site-only work blocks. Do not use it for app work.
 
+## 2026-05-14 — Header active-state and homepage logo correction
+
+### Block objective
+
+Correct the visual regressions reported after the Phase 1-4 pass: the Home navigation item changing color near search and the homepage logo/background treatment looking worse than the original.
+
+### Cycles executed
+
+1. Diagnosis: active navbar styling forced background and underline on the current page link, making Home look like a changing colored button.
+   Implementation: neutralized active/aria-current navbar styling and kept the underline/color treatment only for hover and keyboard focus.
+   Testing: targeted homepage render, manifest validation and diff check passed.
+   Notes: the primary `Começar M01` CTA keeps its distinct button styling.
+
+2. Diagnosis: the homepage hero placed the original logo image inside an extra navy panel, creating a double-background effect.
+   Implementation: restored the original logo visual as the full hero media panel with no extra inset background.
+   Testing: targeted PT/EN/ES homepage render passed.
+   Notes: this keeps the simplified copy but brings back the cleaner original logo treatment.
+
+### Files changed in this block
+
+- `WORKLOG_SITE.md`
+- `styles/main.scss`
+
+### Commands executed
+
+- `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib RENV_CONFIG_AUTOLOADER_ENABLED=FALSE quarto render index.qmd en/index.qmd es/index.qmd --no-execute`
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+
+### Test results
+
+- Targeted PT/EN/ES homepage render passed.
+- Manifest validation passed.
+- Whitespace/diff check passed.
+
+---
+
+## 2026-05-14 — Phase 1-4 completion: render, QA, navigation and modules
+
+### Block objective
+
+Complete the requested Phase 1-4 public-site implementation: clear the full-render blocker, finish visible QA, simplify public navigation and footer, redesign the module index in PT/EN/ES and run final local gates. Work only on the public site.
+
+### Cycles executed
+
+1. Diagnosis: full-tree Quarto render stalled on localized module pages because the Quarto child process entered the project R autoloader path.
+   Implementation: made the official prepublish render run with `RENV_CONFIG_AUTOLOADER_ENABLED=FALSE`, set Quarto execution defaults to non-evaluating output and converted module teaching chunks from executable `{r}` chunks to static `r` fences.
+   Testing: full `scripts/prepublish_site_check.R` completed with Quarto rendering all 57 pages.
+   Notes: module scripts remain executable through `scripts/run_all_modules.R`, which still runs during prepublish.
+
+2. Diagnosis: public navigation exposed too many utility choices for a simplified editorial site.
+   Implementation: reduced navbar and footer priorities to home, modules, roadmap, certificate, about and the primary start CTA.
+   Testing: manifest validation and full prepublish passed after navigation sync.
+   Notes: search and glossary pages remain available as utility pages, but no longer compete in the main navigation.
+
+3. Diagnosis: module index was too dense for the redesigned brand direction.
+   Implementation: rebuilt `modules/index.qmd`, `en/modules/index.qmd` and `es/modules/index.qmd` with concise hero, phase overview, evidence standard, scan-friendly module cards and final CTA.
+   Testing: targeted browser QA confirmed PT and EN module index loading; full prepublish rendered localized module index pages.
+   Notes: exact module titles/summaries still come from the manifest-backed public catalog.
+
+4. Diagnosis: localized ES links still pointed to PT/EN slugs in some utility and roadmap pages.
+   Implementation: corrected ES links to `busqueda.qmd`, `glosario.qmd`, `sobre.qmd` and `certificado.qmd`.
+   Testing: full render completed without localized-link warnings.
+   Notes: route/canonical behavior remains locale-aware.
+
+5. Diagnosis: language-switcher route labelling overmatched nested `index.qmd` pages as the homepage.
+   Implementation: tightened the homepage route regex in `assets/js/i18n.js`.
+   Testing: `node --check assets/js/i18n.js` passed, full prepublish copied the fixed script into `docs/`.
+   Notes: language switcher remains visible in the navbar across PT/EN/ES routes.
+
+6. Diagnosis: browser loading needed real local confirmation after the render fix.
+   Implementation: served `docs/` locally and checked primary localized routes.
+   Testing: browser QA confirmed PT homepage, ES homepage, PT module index, EN module index and visible `PT/EN/ES` language controls.
+   Notes: final HTTP spot checks also returned `200` for PT/EN/ES homepages and PT/EN/ES module index pages.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `_quarto.yml`
+- `assets/js/i18n.js`
+- `data/site-manifest.yml`
+- `en/modules/index.qmd`
+- `es/busqueda.qmd`
+- `es/certificado.qmd`
+- `es/glosario.qmd`
+- `es/modules/index.qmd`
+- `es/semanas/index.qmd`
+- `es/sobre.qmd`
+- `modules/index.qmd`
+- `scripts/prepublish_site_check.R`
+- `styles/main.scss`
+- Module lesson QMD files under `modules/`, `en/modules/` and `es/modules/`
+
+### Commands executed
+
+- `node --check assets/js/i18n.js`
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `env HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib RENV_CONFIG_AUTOLOADER_ENABLED=FALSE quarto render --no-execute`
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib Rscript --vanilla scripts/prepublish_site_check.R`
+- `python3 -m http.server 4876 --directory docs`
+- Local HTTP checks for `/`, `/en/`, `/es/`, `/modules/`, `/en/modules/` and `/es/modules/`
+
+### Test results
+
+- JS syntax gate passed.
+- Manifest validation passed.
+- Whitespace/diff check passed.
+- Full Quarto render passed with all 57 pages.
+- Full prepublish gate passed.
+- Browser QA confirmed key public routes load locally with simplified navigation and visible language controls.
+
+### Pending items
+
+- Publish only after explicit user request.
+- Optional next block: polish internal module detail page density and run a wider browser pass across representative module pages.
+
+---
+
+## 2026-05-14 — Brand-led frontend redesign: Phase 1 and Phase 2
+
+### Block objective
+
+Start the public-site frontend redesign using the MGenética brand book. Work only on the public site. Implement Phase 1 design-system reset, Phase 2 homepage simplification and a visible language button.
+
+### Cycles executed
+
+1. Diagnosis: current homepage had many repeated route, evidence and guidance sections, creating too much information before the visitor could choose a path.
+   Implementation: replaced the 900-line homepage with a concise brand hero, three route cards, compact curriculum preview, proof strip and final CTA.
+   Testing: `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib quarto render index.qmd --no-execute` passed.
+   Notes: public editorial site stays clear, not app-like.
+
+2. Diagnosis: styles used the older Inter/Manrope visual feel and non-brand color tokens.
+   Implementation: moved the public shell toward official brand tokens from the PDF and switched typography to DM Sans with DM Serif Display available for editorial emphasis.
+   Testing: SCSS validation passed inside `scripts/prepublish_site_check.R`.
+   Notes: old component groups remain for untouched pages, with a new Phase 1/2 brand layer overriding the homepage and shell. The external Google Fonts request was removed from the shared head so page rendering does not depend on a third-party stylesheet.
+
+3. Diagnosis: existing locale switcher was generated by JS but route mapping assumed the site lived at domain root, while GitHub Pages serves it at `/mgenetica/`.
+   Implementation: made `assets/js/i18n.js` base-path aware, fixed asset-prefix depth for localized pages and mounted the switcher into the navbar as visible `PT/EN/ES` buttons.
+   Testing: full JS syntax gate passed.
+   Notes: language routing now works for project Pages paths.
+
+4. Diagnosis: canonical, favicon and OG URLs still pointed to `https://mgenetica.github.io/` or the old GitHub owner.
+   Implementation: updated `_quarto.yml`, `assets/html/head-extras.html`, `data/site-manifest.yml` and validators to use `https://mgenetica.github.io/mgenetica/` and `https://github.com/Mgenetica/mgenetica`.
+   Testing: manifest validation passed.
+   Notes: this follows the current Pages deployment URL.
+
+5. Diagnosis: validation contracts still required removed homepage sections.
+   Implementation: updated `data/site-manifest.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` to register the concise homepage regions: `home-redesign`, `home-hero`, `home-paths`, `home-curriculum`, `home-proof-strip` and `final-cta`.
+   Testing: `R_LIBS_USER=/private/tmp/mgenetica-r-lib Rscript --vanilla scripts/validate_site_manifest.R` passed.
+   Notes: future app-management metadata now matches the simplified public surface.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `_quarto.yml`
+- `assets/html/head-extras.html`
+- `assets/js/i18n.js`
+- `data/site-manifest.yml`
+- `en/index.qmd`
+- `es/index.qmd`
+- `index.qmd`
+- `scripts/prepublish_site_check.R`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+
+### Commands executed
+
+- `pdftotext /Users/rausth/workspace/mgenetica/MGenerica_BrandBook_v2.pdf -`
+- `node --check assets/js/i18n.js`
+- `node --check assets/js/i18n.js && node --check assets/js/progress.js && node --check assets/js/darkmode.js && node --check assets/js/interactives.js && node --check assets/js/quiz.js && node --check assets/js/teacher-mode.js`
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R`
+- `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib quarto render index.qmd --no-execute`
+- `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib quarto render en/index.qmd es/index.qmd --no-execute`
+- `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib quarto render index.qmd en/index.qmd es/index.qmd --no-execute`
+- `curl -s -o /private/tmp/mgenetica-pt.html -w '%{http_code} %{size_download} %{time_total}\n' 'http://127.0.0.1:4876/'`
+- `curl -s -o /private/tmp/mgenetica-en.html -w '%{http_code} %{size_download} %{time_total}\n' 'http://127.0.0.1:4876/en/index.html'`
+- `curl -s -o /private/tmp/mgenetica-es.html -w '%{http_code} %{size_download} %{time_total}\n' 'http://127.0.0.1:4876/es/index.html'`
+
+### Test results
+
+- JS syntax gate passed.
+- Manifest validation passed.
+- Whitespace/diff check passed.
+- Prepublish gate passed with `SKIP_QUARTO_RENDER=1`.
+- Targeted homepage renders passed for PT, EN and ES homepages.
+- Local HTTP delivery returned `200` for PT, EN and ES homepages.
+- Browser visual QA confirmed the PT homepage and navbar language switcher after render; the Chrome session then stalled while loading localized pages, while the generated EN/ES HTML and HTTP responses were valid.
+- Full `quarto render` and full `quarto render --no-execute` both hung on existing localized module page `en/modules/modulo01-introducao-ao-melhoramento-animal.qmd`; stopped the hung processes and recorded this for the next block.
+
+### Pending items
+
+- Complete browser visual QA for EN and ES localized homepages after the Chrome loading stall is isolated.
+- Investigate full-render hang before publication.
+- Continue Phase 3 navigation and module-index simplification.
+
+---
+
 ## Full i18n rollout (pt-BR/en/es) — Wave 2
 
 ### Date

@@ -148,7 +148,7 @@ Choose an animal from the ranking and justify whether the selection should follo
 :::
 :::
 
-```{r}
+```r
 #| label: pedigree-a-matrix
 set.seed(108)
 
@@ -169,7 +169,7 @@ cat("Dimensão de A:", nrow(A), "×", ncol(A), "\n")
 cat("Diagonal de A (primeiros 10):", round(diag(A)[1:10], 3), "\n")
 ```
 
-```{r}
+```r
 #| label: simula-fenotipos
 # Simula fenótipos (apenas animais não-fundadores observados)
 va <- 400; ve <- 600; h2 <- va/(va+ve); lambda <- ve/va
@@ -181,7 +181,7 @@ y      <- 300 + a_true[obs_id] + rnorm(n_obs, 0, sqrt(ve))
 cat(sprintf("\nh²=%.3f  λ=%.3f  n observados=%d\n", h2, lambda, n_obs))
 ```
 
-```{r}
+```r
 #| label: resolve-mme
 # Monta e resolve as MME de Henderson
 # Modelo: y = 1μ + Za + e (apenas intercepto como efeito fixo)
@@ -202,7 +202,7 @@ cat(sprintf("μ estimado:     %.2f  (verdadeiro: 300)\n", mu_hat))
 cat(sprintf("Cor(EBV, a_verd): %.4f\n", cor(a_hat[obs_id], a_true[obs_id])))
 ```
 
-```{r}
+```r
 #| label: ranking-ebv
 ebv_df <- data.frame(
   animal       = obs_id,
@@ -216,7 +216,7 @@ cat("\n=== Top 8 animais por EBV ===\n")
 print(head(ebv_df, 8), row.names=FALSE)
 ```
 
-```{r}
+```r
 #| fig-height: 4
 #| label: plot-ebv
 par(mar=c(4,4,2,1))

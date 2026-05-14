@@ -44,7 +44,7 @@ Utilice esta página para decidir si recuperar los asuntos pendientes, emitir el
 ::: {.public-wayfinding-item role="listitem"}
 **Contexto**
 
-[Acerca de](about.qmd){.entry-link aria-label="Entender el papel público del certificado"}
+[Acerca de](sobre.qmd){.entry-link aria-label="Entender el papel público del certificado"}
 :::
 :::
 :::
@@ -127,7 +127,7 @@ Ingrese su nombre y genere el PDF cuando todos los módulos estén completos.
 ::: {.certificate-readiness-actions role="navigation" aria-label="Rutas antes de emitir el certificado"}
 [Ver módulos](modules/index.qmd){.btn .btn-primary}
 [Plan study](semanas/index.qmd){.btn .btn-secondary}
-[Search a concept](search.qmd){.btn .btn-secondary}
+[Search a concept](busqueda.qmd){.btn .btn-secondary}
 :::
 :::
 

@@ -148,7 +148,7 @@ SNPs com MAF muito baixo (< 0,05) são pouco informativos e propensos a erros de
 
 ## Simulação em R
 
-```{r}
+```r
 #| label: simula-snp
 set.seed(110)
 n_anim <- 200; n_snp <- 500
@@ -169,7 +169,7 @@ cat(sprintf("Primeiros 3 animais, 8 SNPs:\n"))
 print(G_mat[1:3, 1:8])
 ```
 
-```{r}
+```r
 #| label: frequencias
 p_obs <- colMeans(G_mat) / 2
 maf   <- pmin(p_obs, 1 - p_obs)
@@ -180,7 +180,7 @@ cat(sprintf("SNPs com MAF < 0.05: %d (%.1f%%)\n", sum(maf<.05), 100*mean(maf<.05
 cat(sprintf("SNPs com MAF > 0.40: %d (%.1f%%)\n", sum(maf>.40), 100*mean(maf>.40)))
 ```
 
-```{r}
+```r
 #| fig-height: 3.5
 #| label: plot-maf
 hist(maf, breaks=30, col="#e8f1f8", border="#0d2642",
@@ -189,7 +189,7 @@ abline(v=0.05, col="#dc2626", lty=2, lwd=2)
 legend("topright", "Limiar MAF=0.05", lty=2, col="#dc2626", bty="n")
 ```
 
-```{r}
+```r
 #| label: hwe-test
 # Teste de Equilíbrio de Hardy-Weinberg para o SNP 1
 j     <- 1
@@ -207,7 +207,7 @@ cat(sprintf("χ²=%.4f  p-valor=%.4f  %s\n", chi2, pval,
             if(pval>0.05) "→ HWE não rejeitado" else "→ FORA do HWE"))
 ```
 
-```{r}
+```r
 #| label: ld
 # Desequilíbrio de ligação entre SNPs adjacentes
 r2_adj <- sapply(1:(n_snp-1), function(j) cor(G_mat[,j], G_mat[,j+1])^2)

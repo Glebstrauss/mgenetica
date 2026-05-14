@@ -10,9 +10,9 @@ if (!nzchar(Sys.getenv("QUARTO_NUM_THREADS"))) {
   Sys.setenv(QUARTO_NUM_THREADS = "1")
 }
 
-run <- function(label, command, args = character(), required = TRUE) {
+run <- function(label, command, args = character(), required = TRUE, env = character()) {
   cat(sprintf("\n==> %s\n", label))
-  status <- system2(command, args)
+  status <- system2(command, args, env = env)
   if (!identical(status, 0L) && required) {
     stop(sprintf("%s failed", label), call. = FALSE)
   }
@@ -51,7 +51,17 @@ if (identical(Sys.getenv("SKIP_QUARTO_RENDER"), "1")) {
   cat("\n==> Quarto render\n")
   cat("skipped: SKIP_QUARTO_RENDER=1\n")
 } else if (nzchar(Sys.which("quarto"))) {
-  run("Quarto render", "quarto", "render")
+  quarto_home <- Sys.getenv("QUARTO_RENDER_HOME", "/private/tmp/quarto-home")
+  dir.create(quarto_home, recursive = TRUE, showWarnings = FALSE)
+  run(
+    "Quarto render",
+    "quarto",
+    "render",
+    env = c(
+      sprintf("HOME=%s", quarto_home),
+      "RENV_CONFIG_AUTOLOADER_ENABLED=FALSE"
+    )
+  )
 } else {
   cat("\n==> Quarto render\n")
   cat("skipped: quarto is not available on PATH\n")

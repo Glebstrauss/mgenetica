@@ -161,7 +161,7 @@ Escriba una conclusión sobre por qué una alta variación fenotípica no es suf
 :::
 :::
 
-```{r}
+```r
 #| label: decomposicao-vp
 set.seed(102)
 n  <- 500
@@ -178,7 +178,7 @@ for (i in seq_along(comps))
 cat(sprintf("\nh² = VA/VP = %.4f\n", va/vp))
 ```
 
-```{r}
+```r
 #| label: simulacao-pge
 # Simula animais com P = A + D + I + E
 a_sim <- rnorm(n, 0, sqrt(va))
@@ -197,7 +197,7 @@ cat(sprintf("h² obs (cor²):  %6.4f\n", cor(p_sim, a_sim)^2))
 cat(sprintf("h² teórico:     %6.4f\n", va/vp))
 ```
 
-```{r}
+```r
 #| label: regressao-pai-filho
 # Regressão filho ~ pai: o coeficiente b estima h²/2
 a_pai   <- rnorm(n, 0, sqrt(va))

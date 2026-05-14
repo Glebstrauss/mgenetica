@@ -40,11 +40,22 @@
   var locale = DEFAULT_LOCALE;
   var ready = false;
   var listeners = [];
+  var PROJECT_BASE = '/mgenetica';
+
+  function getBasePath() {
+    var path = window.location.pathname || '/';
+    if (path === PROJECT_BASE || path.indexOf(PROJECT_BASE + '/') === 0) return PROJECT_BASE;
+    return '';
+  }
 
   function getAssetPrefix() {
     if (typeof window.mgeneticaAssetPrefix === 'string') return window.mgeneticaAssetPrefix;
-    var path = window.location.pathname;
-    return path.indexOf('/modules/') >= 0 || path.indexOf('/semanas/') >= 0 ? '../' : '';
+    var base = getBasePath();
+    var path = window.location.pathname || '/';
+    if (base && path.indexOf(base) === 0) path = path.slice(base.length) || '/';
+    var clean = path.replace(/\/[^/]+\.(html|qmd)$/i, '/');
+    var depth = clean.split('/').filter(Boolean).length;
+    return depth === 0 ? '' : '../'.repeat(depth);
   }
 
   function normalizePath(pathname) {
@@ -58,23 +69,35 @@
 
   function stripLocalePrefix(path) {
     var normalized = normalizePath(path);
+    var base = getBasePath();
+    if (base && (normalized === base || normalized.indexOf(base + '/') === 0)) {
+      normalized = normalized.slice(base.length) || '/';
+      normalized = normalizePath(normalized);
+    }
     if (normalized === '/en' || normalized === '/en/') return '/';
     if (normalized === '/es' || normalized === '/es/') return '/';
     return normalized.replace(/^\/(en|es)(?=\/)/i, '');
+  }
+
+  function withBase(path) {
+    var base = getBasePath();
+    if (!base) return path;
+    if (path === '/') return base + '/';
+    return base + path;
   }
 
   function mapPathToLocale(pathname, targetLocale) {
     var path = stripLocalePrefix(pathname);
     for (var i = 0; i < SPECIAL_ROUTES.length; i++) {
       if (SPECIAL_ROUTES[i].test.test(path)) {
-        return SPECIAL_ROUTES[i].paths[targetLocale] || SPECIAL_ROUTES[i].paths[DEFAULT_LOCALE];
+        return withBase(SPECIAL_ROUTES[i].paths[targetLocale] || SPECIAL_ROUTES[i].paths[DEFAULT_LOCALE]);
       }
     }
 
     var moduleMatch = path.match(/^\/modules\/(modulo[0-9]{2}[^/]*\.(html|qmd))$/i);
     if (moduleMatch) {
       var prefix = targetLocale === DEFAULT_LOCALE ? '' : '/' + targetLocale;
-      return prefix + '/modules/' + moduleMatch[1];
+      return withBase(prefix + '/modules/' + moduleMatch[1]);
     }
 
     return null;
@@ -95,7 +118,9 @@
   }
 
   function getLocaleFromPath() {
-    var first = window.location.pathname.split('/').filter(Boolean)[0];
+    var parts = window.location.pathname.split('/').filter(Boolean);
+    if (parts[0] === PROJECT_BASE.slice(1)) parts.shift();
+    var first = parts[0];
     return normalizeLocale(first);
   }
 
@@ -180,7 +205,7 @@
 
   function translateNavAndFooter() {
     var rules = [
-      { re: /(^\/?$|\/index\.(html|qmd)$|^\/(en|es)\/?$|^\/(en|es)\/index\.(html|qmd)$)/i, key: 'nav.home' },
+      { re: /(^\/?$|^\/index\.(html|qmd)$|^\/(en|es)\/?$|^\/(en|es)\/index\.(html|qmd)$)/i, key: 'nav.home' },
       { re: /\/modules(\/index\.(html|qmd))?\/?$/i, key: 'nav.modules' },
       { re: /\/semanas(\/index\.(html|qmd))?\/?$/i, key: 'nav.route' },
       { re: /\/(busca|search|busqueda)\.(html|qmd)$/i, key: 'nav.search' },
@@ -188,10 +213,11 @@
       { re: /certificado\.(html|qmd)$/, key: 'nav.certificate' },
       { re: /\/(perfil|about|sobre)\.(html|qmd)$/i, key: 'nav.about' },
       { re: /modulo01-introducao-ao-melhoramento-animal\.(html|qmd)$/, key: 'nav.start_m01' },
-      { re: /github\.com\/Glebstrauss\/mgenetica\/issues\/new$/, key: 'nav.feedback' }
+      { re: /github\.com\/(Glebstrauss|Mgenetica)\/mgenetica\/issues\/new$/i, key: 'nav.feedback' }
     ];
 
     document.querySelectorAll('a[href]').forEach(function (anchor) {
+      if (anchor.closest('.navbar-brand')) return;
       var href = localHref(anchor.getAttribute('href') || '');
       if (!href) return;
       for (var i = 0; i < rules.length; i++) {
@@ -233,7 +259,12 @@
       });
       holder.appendChild(button);
     });
-    document.body.appendChild(holder);
+    var navbar = document.querySelector('.navbar .navbar-collapse') || document.querySelector('.navbar .container-fluid') || document.querySelector('.navbar');
+    if (navbar) {
+      navbar.appendChild(holder);
+    } else {
+      document.body.appendChild(holder);
+    }
   }
 
   function applyLocale() {

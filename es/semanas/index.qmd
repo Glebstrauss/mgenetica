@@ -48,7 +48,7 @@ Utilice la hoja de ruta para convertir el recorrido en semanas. La siguiente acc
 ::: {.public-wayfinding-item role="listitem"}
 **Revisar cierre**
 
-[Certificado](../certificate.qmd){.entry-link aria-label="Abrir el certificado de finalización"}
+[Certificado](../certificado.qmd){.entry-link aria-label="Abrir el certificado de finalización"}
 :::
 :::
 :::
@@ -82,7 +82,7 @@ Regrese al escenario donde la última prueba estaba incompleta.
 
 Utilice la tabla para encontrar asuntos pendientes antes del certificado.
 
-[Revisar certificado](../certificate.qmd){.entry-link aria-label="Revisar el certificado desde la hoja de ruta"}
+[Revisar certificado](../certificado.qmd){.entry-link aria-label="Revisar el certificado desde la hoja de ruta"}
 :::
 :::
 :::
@@ -495,7 +495,7 @@ Se escribió una breve conclusión.
 
 ::: {.route-finish-actions role="navigation" aria-label="Acciones para cerrar el recorrido"}
 [Revisar módulos](../modules/index.qmd){.btn .btn-secondary}
-[Entender el certificado](../certificate.qmd){.btn .btn-secondary}
+[Entender el certificado](../certificado.qmd){.btn .btn-secondary}
 :::
 :::
 
@@ -506,5 +506,5 @@ Para validar todos los scripts a la vez, ejecute `Rscript scripts/run_all_module
 ::: {.section-cta role="navigation" aria-label="Acciones del hoja de ruta semanal"}
 [Iniciar M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Iniciar el Módulo 01"}
 [Volver al índice de módulos](../modules/index.qmd){.btn .btn-secondary}
-[Entender el certificado](../certificate.qmd){.btn .btn-secondary}
+[Entender el certificado](../certificado.qmd){.btn .btn-secondary}
 :::
