@@ -1,0 +1,230 @@
+---
+title: "Bloco temático 4.4 — Modelos lineares e modelos mistos"
+subtitle: "Módulo 4: Parentesco, cruzamentos e avaliação genética"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 4: Parentesco, cruzamentos e avaliação genética · Bloco 4.4</span>
+<h1>Modelos lineares e modelos mistos</h1>
+<p>Separar efeitos fixos, aleatórios e resíduo.</p>
+</div>
+<div class="study-hero-meta">
+<span>120 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 4: Parentesco, cruzamentos e avaliação genética · Bloco temático 4.4</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo16" data-next-href="modulo17-blup-e-modelo-animal.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 4.4</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Como tirar efeito da fazenda?" aria-current="step"><strong>Pergunta simples: Como tirar efeito da fazenda?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Como tirar efeito da fazenda?
+
+**Intuição**
+
+Pense assim: Ajustar uma régua torta antes de comparar animais.
+
+Modelos ajudam separar efeito fixo de manejo e efeito genético dos animais.
+
+**Por que isso importa no melhoramento**
+
+Modelos lineares e mistos são ponte entre estatística e avaliação genética. Eles permitem comparar animais corrigindo efeitos previsíveis de manejo.
+
+**Como pensar antes da fórmula**
+
+Imagine separar vozes em gravação. Fazenda, sexo e lote fazem ruído sistemático; modelo tenta separar essas vozes antes de estimar animal.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Modelo linear representa média mais efeitos. Modelo misto combina efeitos fixos e aleatórios.
+
+**Ponto técnico:** Fazenda, sexo e lote costumam ser efeitos fixos; animal pode ser efeito aleatório.
+
+**Passo a passo mental:**
+
+- Defina resposta.
+- Liste efeitos fixos.
+- Liste efeitos aleatórios.
+- Ajuste modelo simples.
+- Interprete efeito sem confundir com causalidade automática.
+
+Tópicos principais:
+
+- y = Xb + Zu + e
+- efeito fixo
+- efeito aleatório
+- resíduo
+
+**Termos para consultar no glossário:**
+
+- modelo linear
+- modelo misto
+- efeito fixo
+- efeito aleatório
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **Fenótipo ajustado = observado - efeito fixo.**
+
+Passo guiado: peso ~ fazenda + sexo separa parte sistemática antes de comparar animais.
+
+**Termos da fórmula:**
+
+- Efeito fixo representa fonte sistemática de variação, como fazenda ou sexo.
+- Efeito aleatório representa variação atribuída a unidades amostradas, como animal.
+- Modelo linear simples ajusta efeitos fixos; modelo misto acrescenta efeitos aleatórios, como animal.
+- Modelo ajustado evita confundir manejo com mérito genético.
+
+**Cálculo comentado:**
+
+Se uma fazenda tem média 20 kg acima de outra por manejo, animal dessa fazenda pode parecer superior no fenótipo bruto.
+Modelo com fazenda e sexo ajusta parte sistemática antes de comparar resíduos. Em avaliação genética, o próximo passo é tratar animal como efeito aleatório.
+
+**Resultado esperado:** Ajuste por fazenda/sexo muda comparação quando grupos têm ambientes diferentes; o exemplo é uma ponte para modelos mistos, não uma avaliação genética completa.
+
+Leitura do resultado: peso ~ fazenda + sexo compara animais depois de considerar diferenças médias entre fazendas e sexos.
+
+Exemplo animal: Peso corrigido por fazenda e sexo.
+
+Erro comum: Colocar efeito de manejo como mérito genético ou interpretar coeficiente sem contexto experimental.
+
+Visual sugerido: Resíduos por grupo.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Ajustar modelo simples e comparar médias ajustadas.
+
+[Script R](../scripts/modulo16.R){.entry-link aria-label="Abrir script R do bloco temático 4.4"} · [CSV simulado](../data/modulo16_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 4.4"}
+
+`lm(peso ~ fazenda + sexo, data = dados)`
+
+**Variação obrigatória:** Comparar ranking bruto e ajustado.
+
+**Observe:** Efeito de fazenda não deve virar mérito genético.
+
+**Interpretação esperada:** Efeito de fazenda não deve ser interpretado como valor genético; este laboratório usa modelo linear como etapa didática antes do modelo misto.
+:::
+
+```r
+dados <- data.frame(peso = c(200,210,230,240), fazenda = c("A","A","B","B"), sexo = c("F","M","F","M"))
+coef(lm(peso ~ fazenda + sexo, data = dados))
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Distinguir efeito fixo e aleatório.
+
+**Decisão guiada:** Explique por que ranking bruto pode ser injusto quando fazendas diferem.
+
+**Evidência mínima:** Mudança de ranking explicada.
+
+**Antes do quiz:** Dizer o que é fixo e o que é aleatório.
+
+::: {.quiz-container data-module="16"}
+:::
+
+Depois, avance para Bloco temático 4.5.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo15-avaliac-ao-gen-etica-dep-ebv-e-ranking-de-animais.html" aria-label="Voltar para Bloco temático 4.3">Bloco temático 4.3</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo17-blup-e-modelo-animal.html" aria-label="Avançar para Bloco temático 4.5">Bloco temático 4.5</a>
+</nav>
+</div>
+</div>

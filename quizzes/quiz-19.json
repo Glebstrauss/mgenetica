@@ -1,0 +1,33 @@
+{
+  "module": "19",
+  "title": "Quiz — Controle de qualidade de dados genômicos",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "Uma falta em quatro genótipos dá missing rate de...",
+      "options": ["0,25", "0,75", "4"],
+      "correct": 0
+    },
+    {
+      "text": "Call rate correspondente é...",
+      "options": ["0,75", "0,25", "1,25"],
+      "correct": 0
+    },
+    {
+      "text": "MAF baixa indica marcador...",
+      "options": ["pouco informativo em muitas análises.", "sempre melhor para GWAS.", "sem genótipo ausente obrigatoriamente."],
+      "correct": 0
+    },
+    {
+      "text": "Filtro deve ser registrado por quê?",
+      "options": ["Para reprodutibilidade.", "Para esconder decisão.", "Para impedir validação."],
+      "correct": 0
+    },
+    {
+      "text": "Qual erro comum deve ser evitado?",
+      "options": ["Aplicar filtro sem critério claro.", "Calcular call rate.", "Verificar dados faltantes."],
+      "correct": 0
+    }
+  ]
+}

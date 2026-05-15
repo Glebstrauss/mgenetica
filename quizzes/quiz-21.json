@@ -1,0 +1,33 @@
+{
+  "module": "21",
+  "title": "Quiz — Projeto final: pipeline completo de seleção",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "Por que maior DEP isolada pode não vencer no projeto final?",
+      "options": ["Porque parentesco alto ou baixa acurácia podem aumentar risco da decisão.", "Porque DEP nunca deve ser usada.", "Porque acurácia substitui todo fenótipo."],
+      "correct": 0
+    },
+    {
+      "text": "No índice score = DEP - 10*parentesco + 2*acurácia, o que a penalidade faz?",
+      "options": ["Reduz prioridade de animais mais aparentados ao lote.", "Aumenta pontuação de parentesco alto.", "Remove necessidade de justificar decisão."],
+      "correct": 0
+    },
+    {
+      "text": "Qual evidência mínima do projeto final?",
+      "options": ["Ranking, regra usada e justificativa dos animais escolhidos.", "Apenas maior DEP copiada.", "Só gráfico sem decisão."],
+      "correct": 0
+    },
+    {
+      "text": "Qual prática torna pipeline reprodutível?",
+      "options": ["Salvar dados, script, regra de score e interpretação.", "Alterar pesos sem registrar.", "Escolher animal por preferência visual."],
+      "correct": 0
+    },
+    {
+      "text": "Qual decisão é mais defensável?",
+      "options": ["Escolher animais com bom mérito, acurácia aceitável e parentesco controlado.", "Escolher sempre maior DEP mesmo com parentesco extremo.", "Ignorar acurácia se score parece alto."],
+      "correct": 0
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+glossary:
+  - term: Gene
+    definition: "Região herdável do DNA associada a uma função biológica."
+  - term: Alelo
+    definition: "Versão de um gene. Animais podem carregar versões diferentes no mesmo loco."
+  - term: Genótipo
+    definition: "Combinação de alelos de um animal em um ou mais locos."
+  - term: Fenótipo
+    definition: "Característica observada ou medida, resultado de genética, ambiente e erro."
+  - term: Segregação
+    definition: "Separação dos alelos na formação dos gametas, gerando combinações nos descendentes."
+  - term: Aditividade
+    definition: "Parte do efeito gênico que se comporta como soma média dos alelos."
+  - term: Dominância
+    definition: "Desvio do heterozigoto em relação à média dos homozigotos."
+  - term: Epistasia
+    definition: "Interação em que um loco modifica o efeito de outro."
+  - term: Valor genotípico
+    definition: "Valor esperado associado ao genótipo de um animal para uma característica, antes de separar ambiente e erro."
+  - term: Valor genético
+    definition: "Parte do mérito de um animal atribuída aos efeitos genéticos relevantes para seleção."
+  - term: Valor de acasalamento
+    definition: "Componente aditivo do valor genético que representa o que o animal tende a transmitir à progênie."
+  - term: Frequência alélica
+    definition: "Proporção de um alelo entre todas as cópias alélicas da população."
+  - term: Frequência genotípica
+    definition: "Proporção de cada genótipo na população."
+  - term: Hardy-Weinberg
+    definition: "Modelo de referência que prevê frequências genotípicas p², 2pq e q² sob condições ideais."
+  - term: Deriva genética
+    definition: "Mudança aleatória de frequências alélicas, mais forte em populações pequenas."
+  - term: Tamanho efetivo
+    definition: "Número idealizado de reprodutores que explica a intensidade de deriva e endogamia."
+  - term: Variância aditiva
+    definition: "Parte da variância genética associada a efeitos médios transmitidos dos alelos."
+  - term: Variância ambiental
+    definition: "Parte da variação fenotípica causada por diferenças de ambiente e manejo."
+  - term: Herdabilidade
+    definition: "Proporção da variância fenotípica explicada por variância genética aditiva."
+  - term: Acurácia
+    definition: "Grau de confiança em uma estimativa genética, dependente de quantidade e qualidade da informação."
+  - term: Repetibilidade
+    definition: "Correlação esperada entre medidas repetidas do mesmo animal."
+  - term: Intensidade de seleção
+    definition: "Força da seleção aplicada ao escolher proporção menor ou maior de animais como pais."
+  - term: Intervalo de geração
+    definition: "Tempo médio entre nascimento dos pais selecionados e nascimento de seus descendentes."
+  - term: Diferencial de seleção
+    definition: "Diferença entre a média dos selecionados e a média da população."
+  - term: Ganho genético
+    definition: "Mudança esperada no mérito genético médio após seleção."
+  - term: Correlação genética
+    definition: "Associação entre efeitos genéticos de duas características."
+  - term: Resposta correlacionada
+    definition: "Mudança em uma característica causada pela seleção aplicada em outra."
+  - term: Limiar
+    definition: "Ponto em uma escala subjacente que transforma variação contínua em resposta categórica."
+  - term: Parentesco
+    definition: "Grau esperado de compartilhamento genético por ancestralidade."
+  - term: Endogamia
+    definition: "Aumento de homozygose por acasalamento entre aparentados."
+  - term: Matriz A
+    definition: "Matriz de parentesco baseada em pedigree."
+  - term: Consanguinidade
+    definition: "Sinônimo prático de endogamia, usado para indicar aumento de homozigose por parentesco."
+  - term: Heterose
+    definition: "Superioridade do cruzado em relação à média dos grupos parentais."
+  - term: EBV
+    definition: "Valor genético estimado de um animal para uma característica."
+  - term: DEP
+    definition: "Diferença esperada na progênie; em geral corresponde a metade do EBV aditivo."
+  - term: Modelo misto
+    definition: "Modelo que combina efeitos fixos e aleatórios, útil para avaliação genética."
+  - term: Efeito fixo
+    definition: "Efeito sistemático estimado diretamente, como fazenda, sexo, lote ou estação de nascimento."
+  - term: Efeito aleatório
+    definition: "Efeito tratado como amostra de uma população de efeitos, como animal ou ambiente permanente."
+  - term: Variância residual
+    definition: "Parte da variação não explicada pelos efeitos incluídos no modelo."
+  - term: BLUP
+    definition: "Preditor linear não viesado usado para estimar efeitos aleatórios, como valor genético."
+  - term: BLUE
+    definition: "Estimador linear não viesado usado para efeitos fixos em modelos lineares e mistos."
+  - term: Modelo animal
+    definition: "Modelo de avaliação que usa dados de animais e parentesco entre eles."
+  - term: SNP
+    definition: "Variação de uma base no DNA usada como marcador molecular."
+  - term: Call rate
+    definition: "Proporção de genótipos observados sem dados faltantes."
+  - term: Missing rate
+    definition: "Proporção de genótipos ausentes em um marcador ou animal genotipado."
+  - term: MAF
+    definition: "Frequência do alelo menos comum em um marcador."
+  - term: Matriz G
+    definition: "Matriz de parentesco estimada com marcadores genômicos."
+  - term: GWAS
+    definition: "Estudo de associação genômica ampla entre marcadores e fenótipo."
+  - term: GBLUP
+    definition: "Avaliação genômica que usa matriz G em vez de matriz A."
+  - term: Predição genômica
+    definition: "Predição de mérito genético usando muitos marcadores distribuídos pelo genoma."
+  - term: Validação cruzada
+    definition: "Estratégia de testar predição em dados separados dos usados para ajuste, avaliando capacidade preditiva."

@@ -1,58 +1,33 @@
 {
   "module": "01",
-  "title": "Quiz — Módulo 01",
-  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "title": "Quiz — Revisão de genética básica",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
   "passMark": 4,
   "questions": [
     {
-      "text": "O objetivo principal do melhoramento animal é:",
-      "options": [
-        "Maximizar a produção de um único animal campeão.",
-        "Modificar a média genotípica da população ao longo das gerações.",
-        "Eliminar toda variação genética da população.",
-        "Padronizar os fenótipos para facilitar a comercialização."
-      ],
-      "correct": 1
+      "text": "Em Aa x Aa, qual expectativa genotípica é correta?",
+      "options": ["1 AA : 2 Aa : 1 aa", "1 AA : 1 Aa : 1 aa", "Todos Aa, porque ambos os pais carregam A e a"],
+      "correct": 0
     },
     {
-      "text": "Na equação do melhorista ΔG = i × h × σA / L, a letra \"i\" representa:",
-      "options": [
-        "A acurácia da avaliação genética.",
-        "A intensidade de seleção (função do percentual selecionado).",
-        "O intervalo de gerações em anos.",
-        "O desvio padrão fenotípico."
-      ],
-      "correct": 1
+      "text": "Em 20 descendentes, observar 4 AA, 11 Aa e 5 aa significa necessariamente erro?",
+      "options": ["Não. Amostra pequena pode oscilar ao redor da expectativa.", "Sim. Toda amostra deve repetir 5, 10 e 5 exatamente.", "Sim. Heterozigotos não podem ser maioria."],
+      "correct": 0
     },
     {
-      "text": "Um aumento no intervalo de gerações (L) tende a:",
-      "options": [
-        "Aumentar o ganho genético anual.",
-        "Não alterar o ganho genético.",
-        "Reduzir o ganho genético anual.",
-        "Aumentar a herdabilidade da característica."
-      ],
-      "correct": 2
+      "text": "Qual frase separa melhor genótipo e fenótipo?",
+      "options": ["Genótipo é combinação alélica; fenótipo é característica observada sob genética e ambiente.", "Fenótipo é sempre cópia exata do genótipo.", "Genótipo só existe em características quantitativas."],
+      "correct": 0
     },
     {
-      "text": "Para maximizar a resposta à seleção, qual combinação é mais favorável?",
-      "options": [
-        "Alta h², baixa intensidade de seleção, longo intervalo de gerações.",
-        "Baixa h², alta intensidade de seleção, longo intervalo de gerações.",
-        "Alta h², alta intensidade de seleção, curto intervalo de gerações.",
-        "Baixa h², baixa intensidade de seleção, curto intervalo de gerações."
-      ],
-      "correct": 2
+      "text": "Qual erro comum deve ser evitado?",
+      "options": ["Concluir mérito genético só pelo fenótipo observado.", "Usar quadro de Punnett para prever proporções.", "Contar AA, Aa e aa em tabela."],
+      "correct": 0
     },
     {
-      "text": "O diferencial de seleção (S) é definido como:",
-      "options": [
-        "A variância genética aditiva da população.",
-        "O número de animais selecionados para reprodução.",
-        "A diferença entre a média dos selecionados e a média da população.",
-        "A acurácia da avaliação genética dos candidatos."
-      ],
-      "correct": 2
+      "text": "No laboratório, por que aumentar n ajuda?",
+      "options": ["Porque reduz oscilação amostral relativa.", "Porque muda a regra de segregação.", "Porque transforma aa em Aa."],
+      "correct": 0
     }
   ]
 }

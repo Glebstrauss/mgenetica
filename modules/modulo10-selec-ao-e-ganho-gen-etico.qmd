@@ -1,0 +1,233 @@
+---
+title: "Bloco temático 3.5 — Seleção e ganho genético"
+subtitle: "Módulo 3: Genética quantitativa"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 3: Genética quantitativa · Bloco 3.5</span>
+<h1>Seleção e ganho genético</h1>
+<p>Calcular diferencial, resposta e ganho por geração.</p>
+</div>
+<div class="study-hero-meta">
+<span>100 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 3: Genética quantitativa · Bloco temático 3.5</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo10" data-next-href="modulo11-correlac-oes-gen-eticas-fenot-ipicas-e-ambientais.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 3.5</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Escolher os melhores muda a próxima geração quanto?" aria-current="step"><strong>Pergunta simples: Escolher os melhores muda a próxima geração quanto?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Escolher os melhores muda a próxima geração quanto?
+
+**Intuição**
+
+Pense assim: Peneira mais fina deixa passar menos animais.
+
+Seleção muda a próxima geração quando os escolhidos diferem da média e essa diferença tem base herdável.
+
+**Por que isso importa no melhoramento**
+
+Seleção precisa virar ganho mensurável. R = h²S conecta intensidade de escolha com resposta esperada e mostra limites da seleção fenotípica.
+
+**Como pensar antes da fórmula**
+
+Escolher melhores animais é puxar média da próxima geração. Mas elástico só move se diferença escolhida tiver componente herdável.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Resposta esperada pode ser aproximada por R = h²S.
+
+**Ponto técnico:** Ganho por ano também depende do intervalo de geração.
+
+**Passo a passo mental:**
+
+- Calcule média da população.
+- Calcule média dos selecionados.
+- Obtenha S.
+- Multiplique por h² para prever R.
+- Considere intervalo de geração.
+
+Tópicos principais:
+
+- seleção
+- S
+- R
+- intensidade
+- intervalo de geração
+
+**Termos para consultar no glossário:**
+
+- diferencial de seleção
+- resposta à seleção
+- ganho genético
+- intervalo de geração
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **R = h2 * S.**
+
+Passo guiado: Se h²=0,30 e S=20 kg, R=6 kg por geração.
+
+**Termos da fórmula:**
+
+- S é diferencial de seleção: média dos selecionados menos média da população.
+- h² indica quanto do diferencial fenotípico tende a aparecer como resposta aditiva.
+- R é resposta esperada por geração; ganho por ano depende do intervalo de geração.
+
+**Cálculo comentado:**
+
+Considere pesos de 10 touros: 180, 190, 195, 200, 205, 210, 215, 220, 225 e 230 kg. A média populacional é 207 kg. Selecionando os três maiores, média dos selecionados é 225 kg.
+O diferencial é S = 225 - 207 = 18 kg. Com h² = 0,30, resposta esperada é R = 5,4 kg por geração. Se intervalo de geração for 3 anos, ganho aproximado é 1,8 kg/ano.
+
+**Resultado esperado:** S = 18 kg; R = 5,4 kg/geração; ganho anual aproximado = 1,8 kg/ano.
+
+Leitura do resultado: R=6 kg por geração significa expectativa média, não promessa para todo descendente. Ganho por ano depende de quanto tempo cada geração leva.
+
+Exemplo animal: Seleção dos 20% melhores touros.
+
+Erro comum: Aumentar intensidade de seleção sem considerar endogamia, número de pais e intervalo de geração.
+
+Visual sugerido: Linha de ganho por geração.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Alterar h² e S para comparar resposta esperada.
+
+[Script R](../scripts/modulo10.R){.entry-link aria-label="Abrir script R do bloco temático 3.5"} · [CSV simulado](../data/modulo10_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 3.5"}
+
+`h2 <- .3; S <- 20; h2 * S`
+
+**Variação obrigatória:** Mudar proporção selecionada.
+
+**Observe:** Selecionar muito forte pode aumentar ganho, mas reduz número de pais.
+
+**Interpretação esperada:** Selecionar poucos animais aumenta S, mas reduz número de pais e pode aumentar endogamia.
+:::
+
+```r
+peso <- c(180,190,195,200,205,210,215,220,225,230)
+selecionados <- sort(peso, decreasing = TRUE)[1:3]
+S <- mean(selecionados) - mean(peso)
+R <- 0.30 * S
+R
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Interpretar seleção como decisão com ganho e risco.
+
+**Decisão guiada:** Compare top 30% e top 50% e escolha estratégia considerando ganho e risco.
+
+**Evidência mínima:** Ganho esperado interpretado.
+
+**Antes do quiz:** Relacionar intensidade e risco.
+
+::: {.quiz-container data-module="10"}
+:::
+
+Depois, avance para Bloco temático 3.6.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo09-herdabilidade-e-repetibilidade.html" aria-label="Voltar para Bloco temático 3.4">Bloco temático 3.4</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo11-correlac-oes-gen-eticas-fenot-ipicas-e-ambientais.html" aria-label="Avançar para Bloco temático 3.6">Bloco temático 3.6</a>
+</nav>
+</div>
+</div>

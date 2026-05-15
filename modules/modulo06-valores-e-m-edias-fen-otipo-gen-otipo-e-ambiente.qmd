@@ -1,0 +1,230 @@
+---
+title: "Bloco temático 3.1 — Valores e médias: fenótipo, genótipo e ambiente"
+subtitle: "Módulo 3: Genética quantitativa"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 3: Genética quantitativa · Bloco 3.1</span>
+<h1>Valores e médias: fenótipo, genótipo e ambiente</h1>
+<p>Separar P, G e E em exemplos pequenos.</p>
+</div>
+<div class="study-hero-meta">
+<span>90 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 3: Genética quantitativa · Bloco temático 3.1</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo06" data-next-href="modulo07-noc-oes-de-gen-etica-quantitativa.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 3.1</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Animal bom é gene bom ou ambiente bom?" aria-current="step"><strong>Pergunta simples: Animal bom é gene bom ou ambiente bom?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Animal bom é gene bom ou ambiente bom?
+
+**Intuição**
+
+Pense assim: Nota final mistura preparo, condição do dia e ruído.
+
+Fenótipo observado mistura potencial genético, ambiente e erro de medida.
+
+**Por que isso importa no melhoramento**
+
+Todo programa de seleção começa com fenótipo, mas decisão genética exige descontar ambiente. Sem isso, reprodutor de fazenda melhor manejada pode parecer geneticamente superior.
+
+**Como pensar antes da fórmula**
+
+Fenótipo é nota final em prova feita em salas diferentes. Um aluno pode ter nota alta por saber mais, por prova mais fácil ou por ajuda externa. O desafio é estimar competência real.
+
+### Conceito técnico {#item-leitura-conceito}
+
+P = G + E resume a ideia: o desempenho observado não é apenas genética.
+
+**Ponto técnico:** Comparar animais sem ajustar ambiente pode trocar mérito genético por efeito de manejo.
+
+**Passo a passo mental:**
+
+- Escreva P = G + E.
+- Liste fatores ambientais prováveis.
+- Compare animais em condições semelhantes.
+- Interprete ranking com cuidado.
+
+Tópicos principais:
+
+- P = G + E
+- média
+- desvio
+- ambiente
+
+**Termos para consultar no glossário:**
+
+- fenótipo
+- genótipo
+- ambiente
+- desvio
+- ranking
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **P = G + E para três animais.**
+
+Passo guiado: Animal A tem G=10 e E=3; animal B tem G=12 e E=-1. O ranking fenotípico pode enganar.
+
+**Termos da fórmula:**
+
+- P é fenótipo observado.
+- G é componente genético do valor.
+- E é ambiente e erro; comparação genética exige reduzir ou ajustar E.
+
+**Cálculo comentado:**
+
+Animal A tem G = 10 e E = 3, então P = 13. Animal B tem G = 12 e E = -1, então P = 11.
+Ranking fenotípico coloca A acima de B, mas ranking genético coloca B acima de A. Isso mostra por que ajuste ambiental é central.
+
+**Resultado esperado:** A: P = 13, G = 10; B: P = 11, G = 12. Fenótipo e mérito genético podem discordar.
+
+Leitura do resultado: Animal B pode ter G maior mesmo com fenótipo menor se recebeu ambiente desfavorável. Ajuste ambiental muda conclusão.
+
+Exemplo animal: Peso à desmama em fazendas diferentes.
+
+Erro comum: Escolher reprodutor só por maior peso observado, sem olhar idade, lote, sexo, fazenda ou manejo.
+
+Visual sugerido: Tabela P, G, E.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Alterar ambiente e observar mudança no ranking fenotípico.
+
+[Script R](../scripts/modulo06.R){.entry-link aria-label="Abrir script R do bloco temático 3.1"} · [CSV simulado](../data/modulo06_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 3.1"}
+
+`G <- c(10, 12, 8); E <- c(1, -2, 3); G + E`
+
+**Variação obrigatória:** Alterar ambiente e comparar ranking.
+
+**Observe:** Correção ambiental protege a comparação genética.
+
+**Interpretação esperada:** Ambiente favorável pode inverter ranking fenotípico e mascarar mérito genético.
+:::
+
+```r
+dados <- data.frame(animal = c("A","B"), G = c(10,12), E = c(3,-1))
+dados$P <- dados$G + dados$E
+dados
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Distinguir fenótipo alto de mérito genético alto.
+
+**Decisão guiada:** Escolha animal por P e depois por G; explique por que decisões diferem.
+
+**Evidência mínima:** Ranking antes/depois do ajuste.
+
+**Antes do quiz:** Interpretar animal com P alto e G moderado.
+
+::: {.quiz-container data-module="06"}
+:::
+
+Depois, avance para Bloco temático 3.2.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo05-fatores-que-alteram-frequ-encias-g-enicas.html" aria-label="Voltar para Bloco temático 2.3">Bloco temático 2.3</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo07-noc-oes-de-gen-etica-quantitativa.html" aria-label="Avançar para Bloco temático 3.2">Bloco temático 3.2</a>
+</nav>
+</div>
+</div>

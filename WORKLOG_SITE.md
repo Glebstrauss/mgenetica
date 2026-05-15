@@ -61,6 +61,1278 @@ Briefly describe the goal of the site work block.
 
 ---
 
+## 2026-05-15 — MGenética identity package
+
+### Block objective
+
+Create a complete initial identity package for MGenética from the existing reference folder, logo and site system. Keep work site-only, do not alter app files, do not publish.
+
+### Cycles executed
+
+1. Diagnosis: identified `identidade_visual/`, confirmed `identidade_visual/logo_Mgenetica.png` matches `images/mgenetica-logo-correct.png`, and read repository governance files.
+   Implementation: mapped the reference set by type and folder, inspected the NEMO manual, Ufes Sans PDF, PPTX slide structure, SVG color usage, logo dimensions and current Quarto/SCSS system.
+   Testing: confirmed logo dimensions, matching MD5, reference counts and current site architecture.
+   Notes: `.ai` files were assessed through related PNG/SVG/manual evidence rather than direct vector rendering.
+2. Diagnosis: the brand needed strategy before colors/components.
+   Implementation: created `brand/01-auditoria-visual.md` and `brand/02-estrategia-de-marca.md`.
+   Testing: reviewed the files for required sections from the brief.
+   Notes: direction avoids generic DNA/lab/veterinary/online-course aesthetics.
+3. Diagnosis: the visual system needed a concrete direction derived from the logo but broader than navy/cyan alone.
+   Implementation: created `brand/03-direcao-visual.md` with concept, palettes, contrast rules, typography, icon, illustration, chart and UI guidance.
+   Testing: checked contrast for key text tokens; adjusted muted text to `#5B6B7E` and dark muted to `#A9C0D3`.
+   Notes: logo remains unchanged and is treated as strongest in a dark panel.
+4. Diagnosis: implementation needed reusable tokens and components without disturbing the current SCSS.
+   Implementation: created `brand/04-design-system.md`, `brand/05-guia-de-implementacao.md`, `brand/06-aplicacoes-praticas.md`, `styles/brand-tokens.css`, `styles/brand-system.css`, `styles/typography.css` and `styles/components.css`.
+   Testing: SCSS compilation for existing `styles/main.scss` and `styles/main-dark.scss` passed.
+   Notes: CSS is isolated and namespaced with `.mg-brand-*`; no active page imports it yet.
+5. Diagnosis: requested `docs/brand/` conflicts with Quarto because `docs/` is generated output and render deletes manual files there; the user also clarified that no published/global site files should be connected to the identity package.
+   Implementation: kept versionable source in `brand/`, did not keep any `_quarto.yml` resource wiring, and added an isolated `brand/preview.html` that imports only the isolated brand CSS.
+   Testing: full `prepublish_site_check.R` with local Quarto path passed and rendered 29 pages without wiring the brand package into public pages.
+   Notes: no app files, commit, push, publication, navbar changes or homepage/course/layout integration.
+
+### Files changed
+
+- `brand/README.md`
+- `brand/01-auditoria-visual.md`
+- `brand/02-estrategia-de-marca.md`
+- `brand/03-direcao-visual.md`
+- `brand/04-design-system.md`
+- `brand/05-guia-de-implementacao.md`
+- `brand/06-aplicacoes-praticas.md`
+- `brand/preview.html`
+- `styles/brand-tokens.css`
+- `styles/brand-system.css`
+- `styles/typography.css`
+- `styles/components.css`
+- `NEXT_SITE.md`
+- `WORKLOG_SITE.md`
+
+### Improvements implemented
+
+- Established a professional brand strategy and visual direction for MGenética.
+- Added design tokens and isolated component CSS for future integration.
+- Added implementable examples for hero, course, consulting, article, certificate and landing use cases.
+- Added an isolated preview file that is not linked from the public navigation.
+
+### Problems fixed
+
+- Avoided maintaining source documentation inside generated `docs/`.
+- Prevented brand CSS from colliding with the current public site before review.
+- Adjusted muted text token for practical contrast.
+
+### Commands executed
+
+- `git status --short --branch`
+- `rg --files`
+- `pdftotext identidade_visual/House\ Style/Marca\ \(favor\ ler\ o\ manual\)/Manual\ da\ Marca\ -\ NEMO.pdf -`
+- `pdftotext identidade_visual/House\ Style/Fontes\ \(necessário\ instalar\)/UfesSans/Apresentacao-UfesSans.pdf -`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `node -e` contrast checks for muted and primary button tokens
+- `PATH="/Users/glebstrauss/Library/Application Support/Lexis Local/vendor/quarto-1.9.37/bin:/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript --vanilla scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- Existing SCSS compilation passed.
+- Contrast checks passed for muted-light, muted-dark and primary-button tokens.
+- Full prepublish site check passed, including Quarto render of 29 pages.
+- Full render confirmed no active public page depends on the new brand package.
+
+### Pending items
+
+- Review the identity package visually.
+- Create official vector logo variants.
+- Choose one controlled page/section pilot before importing brand CSS into active pages.
+- Resume the separate scientific course-practice review before commit, merge or publication.
+
+---
+
+## 2026-05-14 — Large UX block execution
+
+### Block objective
+
+Execute the robust six-cycle course UX plan on branch `refactor/ux-minimalista-cursos`. Keep the current architecture, do not alter the homepage intentionally, do not commit, merge, push or publish.
+
+### Cycles executed
+
+1. Diagnosis: course/study pages were structurally clear, but still needed stronger visual affordance for the next action and less support-page repetition.
+   Implementation: audited `modules/index.qmd`, representative module pages, Busca, Glossário and Roteiro against the six-cycle plan.
+   Testing: inspected rendered HTML markers and current QMD structure before edits.
+   Notes: architecture remains `Curso -> Módulo -> Bloco temático -> Item de estudo`.
+2. Diagnosis: course rows were readable but the action in each row was implicit.
+   Implementation: added hero facts, cleaner course essentials, a short module-list intro and a visible `Estudar` action in each course block row.
+   Testing: rendered `modules/index.qmd`; scan confirmed 21 `course-block-action` markers and the `course-hero-facts` strip.
+   Notes: no new pages or card grid added.
+3. Diagnosis: the lateral study list needed clearer guidance and stronger accessibility state.
+   Implementation: changed the lateral heading to “Neste bloco”, added `study-side-hint`, rendered initial `aria-current="step"` and updated `assets/js/progress.js` to maintain `aria-current` as progress changes.
+   Testing: rendered M1, M7 and M21; scan confirmed `study-side-hint`, `aria-current="step"` and `study-shell`.
+   Notes: laboratory remains inside the study flow.
+4. Diagnosis: Busca and Glossário repeated route cards and bottom next-step blocks, increasing visual noise.
+   Implementation: removed repeated route grids/session checks and replaced them with compact `support-actions`; corrected Roteiro to point at `#modulos-do-curso`.
+   Testing: rendered Busca, Glossário and Roteiro; scan confirmed `support-actions` and no stale `#sequencia-de-estudo` in rendered pages.
+   Notes: each support page now has one clear job.
+5. Diagnosis: new refinements needed mobile/accessibility contract.
+   Implementation: added responsive rules for course row actions, lateral study hint, support actions and dark-mode parity; added validation checks for lateral hint, `aria-current` and row actions.
+   Testing: manifest validation, JS syntax and `git diff --check` passed.
+   Notes: visual browser review still needed because automated browser tooling is unavailable in this environment.
+6. Diagnosis: final state needed full local gate and project notes.
+   Implementation: regenerated course pages and ran the full prepublish gate.
+   Testing: `prepublish_site_check.R` passed; final scans confirmed 21 `study-shell`, 21 `aria-current="step"` module pages and 21 course row actions.
+   Notes: no publication, merge, commit or push.
+
+### Files changed
+
+- `scripts/generate_undergrad_redesign.R`
+- `assets/js/progress.js`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `busca.qmd`
+- `glossario.qmd`
+- `semanas/index.qmd`
+- `scripts/validate_site_manifest.R`
+- `data/site-manifest.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `modules/index.qmd`
+- `modules/modulo01-*.qmd` through `modules/modulo21-*.qmd`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Course page has clearer facts, calmer essentials and visible action in each block row.
+- Study pages expose lateral item guidance and current-step semantics.
+- Progress JS now updates `aria-current` when the current study item changes.
+- Search and glossary are lighter and less repetitive.
+- Roteiro compatibility page links to the current course module section.
+- Validators now protect the new UX refinements.
+
+### Problems fixed
+
+- Reduced support-page route duplication.
+- Removed stale `#sequencia-de-estudo` rendered link.
+- Made row-level study action explicit.
+- Improved accessibility state for the current study item.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/index.qmd modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd modules/modulo07-noc-oes-de-gen-etica-quantitativa.qmd modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd busca.qmd glossario.qmd semanas/index.qmd --no-execute`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `node --check assets/js/progress.js`
+- `git diff --check`
+- `Rscript --vanilla scripts/run_all_modules.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `rg` scans for new refined markers and removed stale patterns
+
+### Test results
+
+- Manifest validation passed.
+- JS syntax passed.
+- Whitespace check passed.
+- All 21 R module scripts passed.
+- Targeted render passed.
+- Full prepublish site check passed.
+- Rendered HTML contains 21 `course-block-action`, 21 `study-shell` module pages and 21 module pages with initial `aria-current="step"`.
+- Rendered support pages no longer contain stale `#sequencia-de-estudo`, `utility-wayfinding`, `utility-next-step` or `utility-session-check` markers.
+
+### Pending items
+
+- Manual browser/mobile visual review.
+- Commit only after approval.
+- Merge or publish only after explicit authorization.
+
+---
+
+## 2026-05-14 — Lateral study item list and large-block plan
+
+### Block objective
+
+Move “Itens de estudo deste bloco temático” to a lateral study list on module study pages and define a robust plan for future large UX work blocks. Keep the current hierarchy, do not alter the homepage, do not merge and do not publish.
+
+### Cycles executed
+
+1. Diagnosis: the item list was useful, but placed in the main column it interrupted the reading flow before the content began.
+   Implementation: wrapped module study pages in `study-shell`, with `study-side-panel` for the item list/glossary and `study-main-content` for reading, exercise, lab and quiz.
+   Testing: rendered M1, M7 and M21; HTML scan confirmed `study-shell`, `study-side-panel`, `study-main-content` and `module-glossary-support`.
+   Notes: architecture remains `Curso -> Módulo -> Bloco temático -> Item de estudo`.
+2. Diagnosis: lateral item list needed to behave as navigation, not another heavy card.
+   Implementation: changed the item list region to `role="navigation"`, shortened heading to “Itens de estudo” and styled rows as compact lateral links.
+   Testing: rendered HTML keeps `data-study-item-id` markers required by progress JS.
+   Notes: progress state still updates current/done/pending rows.
+3. Diagnosis: mobile should not squeeze content into two columns.
+   Implementation: `study-shell` becomes one column below 760px; side panel becomes static and item rows remain touch-friendly.
+   Testing: CSS media rules added and sampled render completed.
+   Notes: no new page added.
+4. Diagnosis: future large UX requests need a fixed execution rhythm to avoid shallow single-pass edits.
+   Implementation: added a six-cycle robust plan to `NEXT_SITE.md`: audit, course polish, study polish, support pages, accessibility/mobile, validation/docs.
+   Testing: plan saved in project state for future site-only blocks.
+   Notes: plan explicitly forbids automatic publication.
+5. Diagnosis: changes needed validation before review.
+   Implementation: regenerated module pages and ran targeted render plus manifest validation.
+   Testing: full prepublish site check passed after adding `study-shell` and `study-side-panel` checks.
+   Notes: no commit, push, merge or publication.
+
+### Files changed
+
+- `scripts/generate_undergrad_redesign.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `scripts/validate_site_manifest.R`
+- `data/site-manifest.yml`
+- `modules/modulo01-*.qmd` through `modules/modulo21-*.qmd`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Study item list now sits beside the study content on desktop.
+- Glossary stays near the item list, still secondary.
+- Main reading flow starts cleaner and feels less interrupted.
+- Mobile falls back to one column.
+- Large UX work now has a durable six-cycle execution plan.
+
+### Problems fixed
+
+- Removed main-column interruption caused by the item list.
+- Reduced visual weight of the study item list.
+- Added explicit validation contract for the new study layout.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd modules/modulo07-noc-oes-de-gen-etica-quantitativa.qmd modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd --no-execute`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `node --check assets/js/progress.js`
+- `git diff --check`
+- `Rscript --vanilla scripts/run_all_modules.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `rg` scans for `study-shell`, `study-side-panel`, `study-main-content` and required study markers
+
+### Test results
+
+- Targeted render passed for M1, M7 and M21.
+- Manifest validation passed.
+- JS syntax passed.
+- Whitespace check passed.
+- All 21 R module scripts passed.
+- Full prepublish site check passed.
+- Rendered HTML contains `study-shell` and `study-side-panel` in all 21 module pages and no old Quarto sidebar in sampled pages.
+
+### Pending items
+
+- Manual browser/mobile review of lateral item list behavior.
+- Commit only after approval.
+- Merge or publish only after explicit authorization.
+
+---
+
+## 2026-05-14 — Course UX visual refinement pass
+
+### Block objective
+
+Refine the current course experience on branch `refactor/ux-minimalista-cursos` without reorganizing the architecture again. Keep `Curso -> Módulo -> Bloco temático -> Item de estudo`, do not change the homepage, do not merge and do not publish.
+
+### Cycles executed
+
+1. Diagnosis: the architecture was clearer, but the course page still felt visually raw and needed stronger hierarchy, better spacing and a more polished first impression.
+   Implementation: refined the course hero, progress card, primary actions and essential course information with a lighter visual system and clearer microcopy.
+   Testing: rendered `modules/index.qmd`; HTML scan confirmed the course still uses `course-minimal-hero`, `course-essentials`, 5 `course-module` groups and 21 `course-block-row` links.
+   Notes: no new pages or extra sections were added.
+2. Diagnosis: expandable modules worked structurally, but rows needed more comfortable tap targets, quieter metadata and cleaner separation between module, block and study action.
+   Implementation: refined `course-module`, `course-block-row`, `course-block-index`, metadata and hover/focus states in the light and dark themes.
+   Testing: HTML scan confirmed the 21 compact rows remain inside the 5 modules and old card-grid markers are absent.
+   Notes: this keeps the current hierarchy and only improves presentation.
+3. Diagnosis: study pages had the right flow, but reading rhythm needed more respiro and stronger separation between leitura, exercício, laboratório and quiz.
+   Implementation: refined `study-hero`, `study-step`, toolbar spacing, text rhythm, lab block integration and navigation emphasis.
+   Testing: rendered representative study pages M1, M7 and M21; HTML scan confirmed `study-hero`, `module-study-toolbar`, `study-step`, `module-script-lab` and glossary hooks.
+   Notes: laboratory remains an item inside the study flow.
+4. Diagnosis: glossary access was useful but should stay secondary and not compete with study content.
+   Implementation: kept the discrete glossary quick link/support block and adjusted styling so it remains available without becoming the main visual action.
+   Testing: sampled module HTML contains `module-glossary-fab`, `module-glossary-support` and `data-glossary`.
+   Notes: standalone glossary page remains only as fallback/support.
+5. Diagnosis: refinements needed the same local gate before review.
+   Implementation: regenerated pages and ran targeted render plus full local validation.
+   Testing: manifest validation, JS syntax, whitespace check, all 21 R module scripts and prepublish site check passed.
+   Notes: no commit, push, merge or publication.
+
+### Files changed
+
+- `modules/index.qmd`
+- `modules/modulo01-*.qmd` through `modules/modulo21-*.qmd`
+- `scripts/generate_undergrad_redesign.R`
+- `scripts/validate_site_manifest.R`
+- `data/site-manifest.yml`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Course page now has cleaner hero, clearer progress area and calmer course essentials.
+- Expandable modules are more polished, more readable and easier to scan.
+- Study pages have better rhythm, spacing and section hierarchy.
+- R lab remains integrated into the module study flow.
+- Glossary access remains quick but visually secondary.
+- Mobile spacing and touch targets were improved for module rows and study sections.
+
+### Problems fixed
+
+- Reduced raw/unfinished feel of the course pages.
+- Improved distinction between course, module, thematic block and study item without changing the architecture.
+- Reduced visual weight around progress, rows, toolbar and glossary.
+- Added stronger focus/hover states for keyboard and pointer navigation.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/index.qmd modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd modules/modulo07-noc-oes-de-gen-etica-quantitativa.qmd modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd busca.qmd glossario.qmd semanas/index.qmd --no-execute`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `node --check assets/js/progress.js`
+- `git diff --check`
+- `Rscript --vanilla scripts/run_all_modules.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `rg` HTML scans for obsolete heavy patterns and required refined markers
+
+### Test results
+
+- Manifest validation passed.
+- JS syntax passed.
+- Whitespace check passed.
+- All 21 R module scripts passed.
+- Full prepublish site check passed.
+- Rendered HTML scan found no old module card grid, no study sidebar and no old heavy study panels in sampled pages.
+
+### Pending items
+
+- Manual browser review of the refined visual feel.
+- Mobile review of module rows, study toolbar, R lab, quiz and glossary.
+- Commit only after manual approval.
+- Merge or publish only after explicit authorization.
+
+---
+
+## 2026-05-14 — Deep minimal course UX pass
+
+### Block objective
+
+Respond to user feedback that the course still felt heavy, card-heavy and unclear. Implement a deeper course UX simplification on `refactor/ux-minimalista-cursos`, without changing the homepage, merging or publishing.
+
+### Cycles executed
+
+1. Diagnosis: the course page still behaved like a catalog: many cards, duplicated about/skills/info blocks and too much scanning before study.
+   Implementation: replaced the course index with a minimal product-like flow: hero, progress/continue card, short about/skills text, and 5 native expandable modules.
+   Testing: rendered `modules/index.qmd`; HTML scan confirmed 5 `course-module` groups and 21 `course-block-row` rows, with no `module-card` or `thematic-block-card`.
+   Notes: 21 blocks remain available, but as compact rows instead of cards.
+2. Diagnosis: module study pages still had sidebar, TOC, numbering and many support panels competing with content.
+   Implementation: disabled sidebar/TOC/numbering for all study pages and rebuilt each page as `study-hero`, toolbar, item list, glossary and four linear `study-step` sections.
+   Testing: rendered M1, M7 and M21; HTML scan confirmed no sidebar navigation and no old `module-session-plan`, `module-technical-scan` or `module-close-check`.
+   Notes: hierarchy remains visible in the study hero and module orientation line.
+3. Diagnosis: laboratory needed to remain inside the learning flow without looking like a separate dashboard.
+   Implementation: kept `module-script-lab` as a compact lab section inside the `Laboratório R` study step, with script link, CSV link, command and required variation.
+   Testing: HTML scan confirmed one `module-script-lab` per sampled module and no raw escaped HTML.
+   Notes: R code remains visible and copyable.
+4. Diagnosis: validation still expected the previous heavier page patterns.
+   Implementation: updated `data/site-manifest.yml` and `scripts/validate_site_manifest.R` to validate `course-minimal`, `course-module-list`, `study-hero`, `study-step` and `module-study-toolbar`.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` passed.
+   Notes: contract now matches the simplified UX.
+5. Diagnosis: changes needed full local gate before review.
+   Implementation: regenerated the 21 pages and ran the full local validation/render gate.
+   Testing: `node --check assets/js/progress.js`, `git diff --check`, `Rscript --vanilla scripts/run_all_modules.R` and `Rscript scripts/prepublish_site_check.R` passed.
+   Notes: no commit, push, merge or publication.
+
+### Files changed
+
+- `modules/index.qmd`
+- `modules/modulo01-*.qmd` through `modules/modulo21-*.qmd`
+- `scripts/generate_undergrad_redesign.R`
+- `scripts/validate_site_manifest.R`
+- `data/site-manifest.yml`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Course page now reads as a clean course product, not a card catalog.
+- 21 thematic blocks are compact rows inside 5 expandable modules.
+- Study pages removed sidebar, TOC and numbering to reduce visual load.
+- Study flow now has four clear steps: leitura, exercício, laboratório R, interpretação/quiz.
+- Glossary stays accessible without competing with content.
+
+### Problems fixed
+
+- Removed heavy course card grid from the main course page.
+- Removed repeated support grids from study pages.
+- Removed old sidebar/TOC noise on study pages.
+- Updated validators to the new minimal architecture.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `node --check assets/js/progress.js`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/index.qmd modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd modules/modulo07-noc-oes-de-gen-etica-quantitativa.qmd modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd busca.qmd glossario.qmd semanas/index.qmd --no-execute`
+- `Rscript --vanilla scripts/run_all_modules.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `rg` HTML scans for old card/sidebar/panel patterns and new minimal markers
+
+### Test results
+
+- Manifest validation passed.
+- JS syntax passed.
+- Whitespace check passed.
+- All 21 R module scripts passed.
+- Full prepublish site check passed.
+- Rendered HTML scan found no course card grid, no study sidebar, no old heavy study panels and no raw `.qmd` links in sampled pages.
+
+### Pending items
+
+- Manual browser review of `docs/modules/index.html` and representative study pages.
+- Check mobile feel for expandable module rows and sticky toolbar.
+- Commit only after approval.
+- Merge/publish only after explicit authorization.
+
+---
+
+## 2026-05-14 — Continuous study flow UX execution
+
+### Block objective
+
+Implement the approved UX plan for a lower-friction course experience on branch `refactor/ux-minimalista-cursos`, without publishing, merging or changing the homepage.
+
+### Cycles executed
+
+1. Diagnosis: the course page exposed 21 thematic blocks plus repeated per-item detail, making the first study decision heavier than needed.
+   Implementation: replaced repeated mini item lists with a compact `study-item-summary` per thematic block and added a course progress/continue card at the top.
+   Testing: rendered `modules/index.qmd`; HTML scan confirmed 5 `course-block`, 21 `thematic-block-card`, 21 `study-item-summary` and `data-course-continue`.
+   Notes: course page remains the single entry point.
+2. Diagnosis: study pages showed item status but did not make the next action persistent.
+   Implementation: added a sticky `module-study-toolbar` with block progress, `Marcar item atual`, and `Próximo item`; wired item status through `assets/js/progress.js`.
+   Testing: rendered M1 and M21; fixed an HTML escaping bug, then confirmed toolbar markup rendered as real HTML, not code.
+   Notes: quiz completion still marks the full block complete.
+3. Diagnosis: glossary existed inside modules but required scrolling back to its block.
+   Implementation: added a discrete `Glossário` quick link on study pages and kept the inline `Glossário rápido` panel.
+   Testing: rendered HTML confirmed `module-glossary-fab`, `module-glossary-support` and `data-glossary`.
+   Notes: standalone glossary remains as fallback.
+4. Diagnosis: support pages still had public meta-review blocks or course sidebar noise.
+   Implementation: removed visible `Avaliação da seção` blocks from Course/Roteiro/Busca/Glossário output and disabled sidebars for Busca, Glossário and Roteiro compatibility page.
+   Testing: HTML scan confirmed no `Avaliação da seção`, no `.qmd` raw links and no sidebar navigation on support pages.
+   Notes: module pages keep the sidebar because it supports study navigation.
+5. Diagnosis: validator contract needed to know about the new course progress region and removed section-review regions.
+   Implementation: updated `data/site-manifest.yml` and `scripts/validate_site_manifest.R`.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R`, `git diff --check`, `Rscript --vanilla scripts/run_all_modules.R` and full `prepublish_site_check.R` passed.
+   Notes: no commit, push, merge or publication.
+
+### Files changed
+
+- `assets/js/progress.js`
+- `busca.qmd`
+- `data/site-manifest.yml`
+- `glossario.qmd`
+- `modules/index.qmd`
+- `modules/modulo01-*.qmd` through `modules/modulo21-*.qmd`
+- `scripts/generate_undergrad_redesign.R`
+- `scripts/validate_site_manifest.R`
+- `semanas/index.qmd`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+- `NEXT_SITE.md`
+- `WORKLOG_SITE.md`
+
+### Improvements implemented
+
+- Course now has explicit continue/progress card.
+- Thematic block cards are denser and less repetitive.
+- Study pages now show current item, block progress and next item.
+- Study item completion persists locally with existing browser progress logic.
+- Glossary access is faster during study.
+- Search, glossary and route pages are quieter support pages.
+
+### Problems fixed
+
+- Removed public-facing meta-review copy from course/support pages.
+- Fixed raw HTML toolbar that first rendered as escaped code.
+- Removed `.qmd` links from raw HTML buttons in rendered course/study pages.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `node --check assets/js/progress.js`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/index.qmd modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd modules/modulo07-noc-oes-de-gen-etica-quantitativa.qmd modules/modulo14-cruzamentos-heterose-e-complementaridade.qmd modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd busca.qmd glossario.qmd semanas/index.qmd --no-execute`
+- `Rscript --vanilla scripts/run_all_modules.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `rg` HTML scans in `docs/modules`, `docs/busca.html`, `docs/glossario.html` and `docs/semanas/index.html`
+
+### Test results
+
+- JS syntax passed.
+- Site manifest validation passed.
+- Whitespace check passed.
+- All 21 R module scripts passed.
+- Full prepublish site check passed.
+- Rendered HTML scan found no raw `.qmd` links in relevant course controls and no public `Avaliação da seção` copy.
+
+### Pending items
+
+- Manual browser review in GitKraken/browser for desktop and mobile feel.
+- Commit only after review.
+- Merge/publish only after explicit authorization.
+
+---
+
+## 2026-05-14 — Minimal course support pages
+
+### Block objective
+
+Evaluate and simplify the Módulos, Roteiro, Busca and Glossário pages so the study experience is cleaner, less repetitive and more focused.
+
+### Cycles executed
+
+1. Diagnosis: `modules/index.qmd` duplicated the block structure by showing phase cards and then the same blocks again with module cards.
+   Implementation: removed the separate phase-card block from the generator and kept one course structure: about, skills, quick info and modules grouped by block.
+   Testing: rendered `docs/modules/index.html` and confirmed there is no `phase-grid` or "Fases da trilha" block.
+   Notes: the course page remains the main study hub.
+2. Diagnosis: `semanas/index.qmd` repeated block descriptions already present in the course page.
+   Implementation: simplified the route generator to a table-only checklist plus visual progress map.
+   Testing: rendered `docs/semanas/index.html` and confirmed the route table and progress map remain.
+   Notes: the route now answers only "what next?".
+3. Diagnosis: `busca.qmd` had multiple advice blocks repeating the same guidance: search, open context, return to course.
+   Implementation: reduced it to hero, three return routes, search panel, one review note and final actions.
+   Testing: rendered `docs/busca.html` and confirmed removed utility-heavy sections are absent.
+   Notes: the search page now does one job.
+4. Diagnosis: `glossario.qmd` repeated the same learning-flow guidance as search.
+   Implementation: reduced it to hero, routes, glossary panel, one review note and final actions.
+   Testing: rendered `docs/glossario.html` and confirmed removed utility-heavy sections are absent.
+   Notes: glossary now acts as a quick reference, not a second course guide.
+5. Diagnosis: manifest and validators still expected removed sections.
+   Implementation: updated `data/site-manifest.yml`, `scripts/validate_site_manifest.R`, and added `.section-review` styling for light/dark themes.
+   Testing: `scripts/prepublish_site_check.R` passed with `prepublish site check ok`.
+   Notes: homepage was not edited in this block.
+
+### Files changed
+
+- `busca.qmd`
+- `data/site-manifest.yml`
+- `glossario.qmd`
+- `modules/index.qmd`
+- `scripts/generate_undergrad_redesign.R`
+- `scripts/validate_site_manifest.R`
+- `semanas/index.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Removed redundant phase cards from module index.
+- Simplified route page into a study checklist.
+- Simplified search into search + return routes.
+- Simplified glossary into definitions + return routes.
+- Added small visible evaluation notes per simplified block.
+- Kept page coherence: Módulos = course hub, Roteiro = order, Busca = locate, Glossário = define.
+
+### Problems fixed
+
+- Search and glossary repeated nearly identical instructional blocks.
+- Roteiro repeated block summaries already available in Módulos.
+- Módulos repeated the same 5-block structure twice.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `Rscript --vanilla scripts/finalize_undergrad_links.R`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `rg -n "utility-flow|utility-decision|utility-evidence-route|utility-examples|utility-query-plan|utility-no-result|utility-result-close|Mapa dos blocos|Fases da trilha|phase-grid" docs/modules/index.html docs/semanas/index.html docs/busca.html docs/glossario.html`
+- `rg -n "section-review|Avaliação do bloco|course-nav-tabs|course-about|route-table-guide|search-panel|glossary-panel" docs/modules/index.html docs/semanas/index.html docs/busca.html docs/glossario.html`
+
+### Test results
+
+- Full prepublish validation passed with `prepublish site check ok`.
+- Removed repeated utility sections are absent from rendered Módulos, Roteiro, Busca and Glossário pages.
+- Essential sections remain: module cards, route table, search panel and glossary panel.
+
+### Pending items
+
+- Manual browser/visual QA before commit.
+- Publish only after explicit authorization.
+
+---
+
+## 2026-05-14 — Move course info into course pages and module lab
+
+### Block objective
+
+Refocus the experience on the course pages: remove the new about/skills/lab/assessment sections from the homepage, place course information in the module index, and make the R lab a module-level study item.
+
+### Cycles executed
+
+1. Diagnosis: the previous addition put course-specific about, skills, lab and assessment blocks on the homepage, making the public entry page heavier.
+   Implementation: removed those new sections from `index.qmd`; the homepage now returns to routing and orientation only.
+   Testing: scanned `docs/index.html` for the removed section classes and headings.
+   Notes: only the sections added in the prior block were removed.
+2. Diagnosis: the course page needed a course-like structure with about, skills and quick information near the top.
+   Implementation: added `course-nav-tabs`, `course-about`, `course-skills` and `course-info-strip` to `modules/index.qmd` and to the generator.
+   Testing: rendered `docs/modules/index.html` and confirmed the course sections.
+   Notes: this follows general online-course IA patterns without copying third-party UI.
+3. Diagnosis: the lab belonged inside each study module, not as a homepage block.
+   Implementation: changed generated module pages from `## Script R mínimo` to `## Laboratório R`, preserving script, data, command and interpretation cards.
+   Testing: checked rendered M1 and M21 HTML for `Laboratório R` and `module-script-lab`.
+   Notes: all 21 modules now expose the lab as part of study flow.
+4. Diagnosis: manifest and validator needed the new course-page regions, not homepage regions.
+   Implementation: moved editable-region markers to `modules-index` in `data/site-manifest.yml` and updated `scripts/validate_site_manifest.R`.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` passed.
+   Notes: app untouched.
+5. Diagnosis: CSS needed course-page-specific styling and responsive/dark-mode coverage.
+   Implementation: added `course-*` styles for tabs, about grid, skill pills and info strip.
+   Testing: `scripts/prepublish_site_check.R` passed with `prepublish site check ok`.
+   Notes: no commit, push, merge or publication was performed.
+
+### Files changed
+
+- `data/site-manifest.yml`
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo01-*.qmd` through `modules/modulo21-*.qmd`
+- `scripts/generate_undergrad_redesign.R`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Homepage no longer carries the course about/skills/lab/assessment blocks.
+- Course page now has a compact online-course-style structure: Sobre, Habilidades, Módulos, Avaliação, Certificado.
+- R lab is now a module-level item in every study module.
+- Module generator preserves the new structure.
+
+### Problems fixed
+
+- Course-specific content was placed too early on the homepage.
+- Lab appeared as global marketing content instead of module study work.
+- Manifest temporarily assigned course sections to the wrong page; corrected.
+
+### Commands executed
+
+- `python3 /Users/glebstrauss/.agents/skills/ui-ux-pro-max/scripts/search.py "online course education scientific learning accessibility" --design-system -p "MGenética Course"`
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `Rscript --vanilla scripts/finalize_undergrad_links.R`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `rg -n "O que você vai aprender|Habilidades que você terá|Laboratório para rodar os scripts|Teste para certificado|home-course-about|home-r-lab|home-certificate-assessment" docs/index.html`
+- `rg -n "Sobre o curso|Habilidades que você terá|Laboratório R em cada módulo|course-nav-tabs|course-about|course-skills|course-info-strip" docs/modules/index.html`
+- `rg -n "<h2.*Laboratório R|module-script-lab|Script R mínimo" docs/modules/modulo01-revis-ao-de-gen-etica-b-asica.html docs/modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.html`
+
+### Test results
+
+- Homepage scan found none of the removed course-specific blocks.
+- Course page scan confirmed Sobre, Habilidades, Info and course tabs.
+- Module pages scan confirmed `Laboratório R` inside M1 and M21.
+- Site manifest validation passed.
+- Full prepublish validation passed with `prepublish site check ok`.
+
+### Pending items
+
+- Manual browser/visual QA before commit.
+- Publish only after explicit authorization.
+
+---
+
+## 2026-05-14 — Add course outcomes, R lab and certificate assessment
+
+### Block objective
+
+Add three course-experience areas requested from the reference screenshots: course information/outcomes, skills gained, R laboratory guidance and a practical assessment path for certificate completion.
+
+### Cycles executed
+
+1. Diagnosis: the homepage explained the learning path but did not expose a compact "what you will learn" section or skill chips.
+   Implementation: added `home-course-about` with learning outcomes and `home-skill-cloud` with skills such as genética quantitativa, herdabilidade, avaliação genética, R and genômica aplicada.
+   Testing: rendered homepage and confirmed the sections in `docs/index.html`.
+   Notes: content is original and adapted to MGenética; no third-party copy or visual clone.
+2. Diagnosis: students needed clearer guidance on whether a lab is required to run R scripts.
+   Implementation: added `home-r-lab` with the 3-step script workflow: open script, run/compare and register decision.
+   Testing: full prepublish validation ran all 21 module scripts successfully.
+   Notes: the lab uses local R scripts and simulated data already in the project.
+3. Diagnosis: the certificate page only described quiz completion; it needed a clearer assessment route.
+   Implementation: added `avaliacao.qmd`, navbar/footer link `Avaliação`, and a certificate callout linking quizzes, R lab and project-final decision.
+   Testing: rendered `avaliacao.html`, `certificado.html` and scanned HTML for assessment sections and links.
+   Notes: certificate remains local/browser-based; no backend or publication added.
+4. Diagnosis: site manifest and validator needed to recognize the new page and editable regions.
+   Implementation: updated `data/site-manifest.yml` and `scripts/validate_site_manifest.R` for `assessment`, new homepage sections and certificate assessment callout.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` passed.
+   Notes: app untouched.
+5. Diagnosis: final render and gate needed to pass after navigation and CSS changes.
+   Implementation: added responsive/dark-mode styles for new sections.
+   Testing: `scripts/prepublish_site_check.R` passed with `prepublish site check ok`.
+   Notes: no commit, push, merge or publication was performed.
+
+### Files changed
+
+- `_quarto.yml`
+- `avaliacao.qmd`
+- `certificado.qmd`
+- `data/site-manifest.yml`
+- `index.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added "O que você vai aprender" and "Habilidades que você terá" to the homepage.
+- Added R laboratory guidance for scripts and simulated data.
+- Added a certificate assessment page with practical rubric and M21 project route.
+- Added assessment callout to certificate page.
+- Added `Avaliação` to public navigation and footer.
+
+### Problems fixed
+
+- Homepage still had one stale "12 módulos" metric; updated to 21.
+- Certificate helper text still referenced 12 quizzes; updated to 21.
+- Old "quatro fases" language updated to the 5-block structure.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `rg -n "O que você vai aprender|Habilidades que você terá|Laboratório para rodar os scripts|Teste para certificado|Avaliação para certificado|pipeline completo de seleção|O PDF só aparece depois dos 21 quizzes" docs/index.html docs/avaliacao.html docs/certificado.html`
+- `rg -n "home-course-about|home-r-lab|home-certificate-assessment|certificate-assessment-overview|certificate-assessment-callout" docs/index.html docs/avaliacao.html docs/certificado.html`
+
+### Test results
+
+- Site manifest validation passed.
+- SCSS validation passed.
+- JS syntax checks passed.
+- All 21 module scripts ran successfully.
+- Quarto rendered 29 pages, including `avaliacao.qmd`.
+- Full prepublish validation passed with `prepublish site check ok`.
+- Rendered HTML contains the new homepage, R lab, assessment and certificate callout sections.
+
+### Pending items
+
+- Manual browser/visual QA before commit.
+- Publish only after explicit authorization.
+
+---
+
+## 2026-05-14 — Clarify 5-block / 21-module grouping
+
+### Block objective
+
+Remove confusion between blocks and modules by keeping the public course at exactly 5 blocks and 21 modules, with modules visibly grouped inside their own block.
+
+### Cycles executed
+
+1. Diagnosis: the previous generated sequence still carried an extra introductory M0, producing 22 learning units and confusing the approved 21-module structure.
+   Implementation: removed M0 from the curriculum source and regenerated the undergraduate pages as M1-M21.
+   Testing: scanned public course files for stale `M0`, `22 módulos` and `modulo22`.
+   Notes: M1 now starts with no prerequisite; M21 depends on M1-M20.
+2. Diagnosis: the module index could still read as flat because the phase cards and module cards were visually separate.
+   Implementation: updated `scripts/generate_undergrad_redesign.R` so `modules/index.qmd` writes `Módulos por bloco` and nests each module card inside the correct block section.
+   Testing: inspected `modules/index.qmd`; Fundamentos has M1-M2, Populações has M3-M5, Quantitativa has M6-M12, Avaliação has M13-M17 and Genômica has M18-M21.
+   Notes: this keeps 5 blocks as the course architecture and 21 modules as the lessons.
+3. Diagnosis: the study route needed the same grouping language.
+   Implementation: kept `semanas/index.qmd` as a 21-row table with visible `Bloco` column.
+   Testing: inspected the generated route table.
+   Notes: the route now reinforces the block/module relationship.
+4. Diagnosis: local planning files still described the superseded 22-module state.
+   Implementation: updated `NEXT_SITE.md` and this worklog with the current 21-module grouped state.
+   Testing: scanned source files again for stale course-count language.
+   Notes: no commit, push, merge or publication was performed.
+
+### Files changed
+
+- `data/course-structure-redesign.yml`
+- `modules/index.qmd`
+- `modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd`
+- `modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd`
+- `scripts/generate_undergrad_redesign.R`
+- `NEXT_SITE.md`
+- `WORKLOG_SITE.md`
+
+### Improvements implemented
+
+- Public module index now groups 21 modules inside 5 named blocks.
+- Removed confusing M0 prerequisite remnants from course source and generated pages.
+- Updated planning notes to match the current structure: M1-M21.
+
+### Problems fixed
+
+- 5 blocks and 21 modules previously looked inconsistent because an extra M0 existed.
+- Planning notes still referenced the superseded 22-module draft.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `Rscript --vanilla scripts/finalize_undergrad_links.R`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla scripts/run_all_modules.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/index.qmd semanas/index.qmd index.qmd certificado.qmd --no-execute`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `rg -n "M0|22 módulos|modulo22|quiz-22|55 horas" data/course-structure-redesign.yml modules semanas index.qmd busca.qmd glossario.qmd certificado.qmd data/site-manifest.yml _quarto.yml assets/js`
+- `rg -n "22 módulos|M0|modulo22|quiz-22|55 horas" docs/index.html docs/modules/index.html docs/semanas/index.html docs/certificado.html docs/modules`
+- `find docs/modules -maxdepth 1 -type f -name 'modulo*.html' | wc -l`
+
+### Test results
+
+- Public course source scan found no remaining `M0`, `22 módulos`, `modulo22`, `quiz-22` or stale `55 horas`.
+- Targeted render passed for module index, route, homepage and certificate.
+- Full prepublish validation passed with `prepublish site check ok`.
+- Rendered HTML scan found no stale `M0`, `22 módulos`, `modulo22`, `quiz-22` or `55 horas`.
+- `docs/modules` contains 21 rendered module HTML files.
+
+### Pending items
+
+- Manual browser/visual QA before commit.
+- Publish only after explicit authorization.
+
+---
+
+## 2026-05-14 — Complete undergraduate 21-module migration
+
+### Block objective
+
+Continue the approved redesign until the public site uses the new undergraduate sequence end to end, still without commit, push, merge or publication.
+
+### Cycles executed
+
+1. Diagnosis: the previous block had only the curriculum source and preview sections; the site still used the old 12-module files, progress logic, route and certificate assumptions.
+   Implementation: added `scripts/generate_undergrad_redesign.R` and generated 21 module pages from M1 to M21, replacing the old 12-module sequence.
+   Testing: ran the generator and checked `git status --short --branch`.
+   Notes: the generator reads `data/course-structure-redesign.yml` so the sequence remains reproducible.
+2. Diagnosis: module scripts, CSV resources and quizzes needed to match the 21-module manifest contract.
+   Implementation: generated `scripts/modulo01.R` through `scripts/modulo21.R`, `quizzes/quiz-01.json` through `quizzes/quiz-21.json`, and generated all matching `data/moduloXX_simulado.csv` files through `scripts/run_all_modules.R`.
+   Testing: `scripts/run_all_modules.R` completed successfully.
+   Notes: scripts are deliberately minimal, base-R and didactic; they provide reproducible evidence for each module.
+3. Diagnosis: manifest, sidebar and validators still assumed 12 modules.
+   Implementation: updated `data/site-manifest.yml`, `_quarto.yml`, `assets/js/progress.js`, `assets/js/interactives.js`, certificate module arrays and `scripts/validate_site_manifest.R` for the 21-module sequence.
+   Testing: site manifest validation, YAML parsing, JS syntax checks and `git diff --check` passed.
+   Notes: fixed Quarto YAML boolean formatting after `write_yaml()` emitted `yes/no`.
+4. Diagnosis: public pages still linked to old module filenames and old 12-module copy.
+   Implementation: added `scripts/finalize_undergrad_links.R`, updated homepage, search, glossary and certificate links/copy to M1, M11 and M21 review routes, and updated deployed-site validator assertions to the new copy and 21 cards.
+   Testing: targeted render passed for homepage, module index, route, certificate, M1, M7 and M21; no old critical links remained in the rendered/public source scan.
+   Notes: the route now uses the 5-block study table and learning map.
+5. Diagnosis: the full site gate needed to pass after the migration.
+   Implementation: ran full prepublish validation with all 29 rendered pages.
+   Testing: `scripts/prepublish_site_check.R` passed with `prepublish site check ok`; `docs/modules` contains exactly 21 rendered module HTML files; deployed validator parsed successfully.
+   Notes: `renv` slow-activation and out-of-sync warnings remained non-blocking; no publication was performed.
+
+### Files changed
+
+- `_quarto.yml`
+- `assets/js/interactives.js`
+- `assets/js/progress.js`
+- `busca.qmd`
+- `certificado.qmd`
+- `data/course-structure-redesign.yml`
+- `data/site-manifest.yml`
+- `glossario.qmd`
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo01-*.qmd` through `modules/modulo21-*.qmd`
+- `quizzes/quiz-01.json` through `quizzes/quiz-21.json`
+- `scripts/finalize_undergrad_links.R`
+- `scripts/generate_undergrad_redesign.R`
+- `scripts/modulo01.R` through `scripts/modulo21.R`
+- `scripts/validate_deployed_site.R`
+- `scripts/validate_site_manifest.R`
+- `semanas/index.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Replaced the public learning sequence with 5 blocks and 21 modules from M1 to M21.
+- Added consistent module structure: question, intuition, concept, calculation, R script, interpretation, quiz, task and close checklist.
+- Updated progress, learning map, certificate and validators for 21 modules.
+- Generated matching scripts, quizzes and simulated CSVs for every module.
+- Preserved branch-only workflow with no publish action.
+
+### Problems fixed
+
+- Old 12-module assumptions remained in route, certificate, progress, deployed validation and public links.
+- Quarto render failed after generated YAML booleans were emitted as `yes/no`; corrected to strict `true/false`.
+- One lingering old module link in certificate/search/glossary was updated to current module paths.
+
+### Commands executed
+
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `Rscript --vanilla scripts/finalize_undergrad_links.R`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla scripts/run_all_modules.R`
+- `Rscript --vanilla -e 'yaml::read_yaml("data/site-manifest.yml"); yaml::read_yaml("_quarto.yml"); invisible(yaml::read_yaml("data/course-structure-redesign.yml")); cat("yaml ok\n")'`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `node --check assets/js/progress.js && node --check assets/js/interactives.js && node --check assets/js/quiz.js`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd semanas/index.qmd certificado.qmd modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd modules/modulo07-noc-oes-de-gen-etica-quantitativa.qmd modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd --no-execute`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `Rscript --vanilla -e 'parse("scripts/validate_deployed_site.R"); cat("deployed validator syntax ok\n")'`
+- `find docs/modules -maxdepth 1 -type f -name 'modulo*.html' | wc -l`
+
+### Test results
+
+- Site manifest validation passed.
+- YAML validation passed.
+- SCSS validation passed.
+- JS syntax checks passed.
+- All 21 module scripts ran successfully.
+- Targeted render passed.
+- Full prepublish validation passed with `prepublish site check ok`.
+- `docs/modules` contains 21 module HTML files.
+- Deployed-site validator syntax check passed.
+
+### Pending items
+
+- Manual browser/visual QA of the 21-module route, certificate and mobile layout.
+- Review scientific depth and examples module by module; current generated pages are complete didactic scaffolds, not final textbook-length lessons.
+- Commit/push only after manual review.
+- Publish only after explicit authorization.
+
+---
+
+## 2026-05-14 — Undergraduate course-structure redesign kickoff
+
+### Block objective
+
+Start the approved site-only redesign of the MGenética course structure for undergraduate students, keeping the work in review branches and not publishing.
+
+### Cycles executed
+
+1. Diagnosis: the current public site has 12 published modules, a 12-week route, quizzes, progress, certificate, scripts and a manifest, but the sequence starts too high for undergraduate students with uneven genetics/R background.
+   Implementation: created review branches `feature/course-structure-redesign` and `content/undergrad-module-sequence` before editing.
+   Testing: checked `git status --short --branch`.
+   Notes: the work remains site-only; no app files, commits, pushes, merges or publication actions were made.
+2. Diagnosis: the new 5-block/21-module plan needed a durable metadata source before page-by-page migration.
+   Implementation: added `data/course-structure-redesign.yml` with blocks, all 22 learning units from M0 to M21, Feynman-style question, objective, prerequisites, topics, analogy, animal example, manual calculation, minimal R script, suggested visual, checkpoint, task, completion evidence, time and expected status.
+   Testing: parsed the YAML with `yaml::read_yaml`.
+   Notes: the file is marked as draft and branch-review-only.
+3. Diagnosis: the public module index needed to expose the approved direction without breaking the current 12-module path.
+   Implementation: added a "Nova sequência em preparação" section to `modules/index.qmd`, showing the 5 blocks and preserving the current published 12-module cards.
+   Testing: rendered `modules/index.qmd`.
+   Notes: no links to non-existing new module pages were added.
+4. Diagnosis: the study-route page needed to explain the coming undergraduate progression while keeping the existing 12-week route usable.
+   Implementation: added a "Roteiro de graduação em preparação" section to `semanas/index.qmd` with the five-step learning progression and a safe-branch note.
+   Testing: rendered `semanas/index.qmd` and confirmed the generated HTML contains the new sections without leaked fenced-div markup.
+   Notes: fixed a fenced-div class typo that initially caused Quarto warnings.
+5. Diagnosis: the new preview sections needed responsive and dark-mode styling.
+   Implementation: added `.undergrad-redesign`, block-card and route-step styles in `styles/main.scss` and dark-theme parity in `styles/main-dark.scss`; added `data/course-structure-redesign.yml` as a Quarto resource.
+   Testing: ran SCSS validation, `git diff --check`, site manifest validation and full `scripts/prepublish_site_check.R`.
+   Notes: `renv` activation warnings remained expected non-blocking noise; prepublish passed.
+
+### Files changed
+
+- `_quarto.yml`
+- `data/course-structure-redesign.yml`
+- `modules/index.qmd`
+- `semanas/index.qmd`
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Added a structured, app-ready draft curriculum source for the approved 5-block/21-module undergraduate redesign.
+- Added public preview sections to the module index and study route while preserving the current published 12-module learning path.
+- Added responsive and dark-mode styling for the new redesign preview.
+- Kept all changes isolated in branches and did not publish.
+
+### Problems fixed
+
+- The redesign previously existed only as analysis; it now has a machine-readable draft source and visible review surface.
+- A Quarto fenced-div typo in the new route preview was corrected before completion.
+
+### Commands executed
+
+- `git switch -c feature/course-structure-redesign`
+- `git switch -c content/undergrad-module-sequence`
+- `Rscript --vanilla -e 'yaml::read_yaml("data/course-structure-redesign.yml"); yaml::read_yaml("_quarto.yml"); cat("yaml ok\n")'`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/index.qmd semanas/index.qmd --no-execute`
+- `git diff --check`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `rg -n "Nova sequência em preparação|Roteiro de graduação em preparação|data/course-structure-redesign|undergrad-redesign|:::" docs/modules/index.html docs/semanas/index.html`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- YAML validation passed.
+- SCSS validation passed.
+- Targeted Quarto render passed for `modules/index.qmd` and `semanas/index.qmd`.
+- `git diff --check` passed.
+- Site manifest validation passed.
+- Full prepublish validation passed with `prepublish site check ok`.
+
+### Pending items
+
+- Create the actual new module pages/scripts/quizzes in smaller batches, starting with M0-M2.
+- Update progress, certificate and validators only after the new module pages exist.
+- Keep all work off `main` until manual review and approval.
+- Do not publish until explicit authorization.
+
+---
+
+## 2026-05-11 — Prepublication review for script-lab rollout
+
+### Block objective
+
+Execute another site-only long block against the current `NEXT_SITE.md` contract, reviewing the unpublished script-lab rollout, tightening public navigation accessibility, expanding deployed-site validation coverage to all module pages, and leaving the site ready for review without publishing.
+
+### Cycles executed
+
+1. Diagnosis: `NEXT_SITE.md` had moved from implementation to review/publish readiness, while the user requested no automatic publication.
+   Implementation: re-read the site skill, `AGENTS.md`, roadmap, backlog, worklog and `NEXT_SITE.md`; confirmed the work remained site-only and that publication was out of scope.
+   Testing: checked `git status --short --branch` and `git diff --stat`.
+   Notes: no app files were touched; unrelated untracked local files stayed untouched.
+2. Diagnosis: browser/live viewport tooling was still unavailable through tool discovery, so the remaining review needed to rely on render, static HTML inspection and validation hardening.
+   Implementation: audited homepage CTAs, module-index CTAs, script-lab markup across modules, component documentation and deployed-site validation.
+   Testing: confirmed all module pages contain the expected script-lab structure and that the current deployed validator still covered only representative modules.
+   Notes: the public experience already had the script-lab rollout; the main review gap was future deploy protection.
+3. Diagnosis: the local validator required script labs across all 12 modules, but `scripts/validate_deployed_site.R` fetched and checked only Modules 01, 02, 06, 08 and 12.
+   Implementation: changed deployed validation to derive module page URLs from `data/site-manifest.yml`, then check module structure and script/CSV links for all 12 modules.
+   Testing: parsed `scripts/validate_deployed_site.R` successfully and re-ran local site manifest validation.
+   Notes: this keeps the post-publication contract aligned with the local prepublish contract.
+4. Diagnosis: several existing high-level CTAs in the homepage and module index had clear visible text but lacked explicit `aria-label` metadata, which made public navigation less consistent than the newly tightened module links.
+   Implementation: added accessible labels to secondary/final CTAs in `index.qmd` and `modules/index.qmd` without changing layout, visual hierarchy or CTA count.
+   Testing: SCSS and manifest validations passed; targeted render confirmed the labels appear in generated HTML.
+   Notes: this is a small UX/accessibility polish, not a content restructure.
+5. Diagnosis: the block needed the same final readiness gate as publication prep, while still not publishing.
+   Implementation: rendered homepage, module index and representative Modules 03, 06 and 11; inspected generated HTML for CTA labels and script-lab links; ran full prepublish.
+   Testing: targeted render, static HTML checks, `git diff --check` and full prepublish passed.
+   Notes: `renv` sandbox activation warnings and the known YAML coercion warning remained non-blocking.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `scripts/validate_deployed_site.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Expanded deployed-site validation so all 12 module pages are fetched from the manifest and checked for module structure plus script/CSV lab links.
+- Added accessible labels to important homepage and module-index CTAs.
+- Reconfirmed rendered script-lab HTML for representative early/middle/late modules.
+- Preserved the static GitHub Pages learning-resource model.
+
+### Problems fixed
+
+- Future deployed validation could miss script-lab regressions on modules outside the old representative subset.
+- Some prominent CTAs had less explicit accessible names than the surrounding navigation pattern.
+
+### Commands executed
+
+- `git status --short --branch`
+- `git diff --stat`
+- `rg -n "module-script-lab|scripts/modulo..\\.R|data/modulo.._simulado\\.csv" modules data scripts styles _quarto.yml`
+- `Rscript --vanilla -e 'parse("scripts/validate_deployed_site.R"); cat("deployed validator syntax ok\n")'`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd --no-execute`
+- `rg -n 'aria-label="Explorar o índice com os 12 módulos"|aria-label="Abrir o roteiro de estudo de 12 semanas"|aria-label="Continuar pelo índice de módulos"|aria-label="Abrir o roteiro semanal de estudo"|aria-label="Entender como concluir a trilha e emitir o certificado"' docs/index.html docs/modules/index.html`
+- `rg -n 'module-script-lab|scripts/modulo03\.R|data/modulo03_simulado\.csv|scripts/modulo06\.R|data/modulo06_simulado\.csv|scripts/modulo11\.R|data/modulo11_simulado\.csv' docs/modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.html docs/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html docs/modules/modulo11-controle-de-qualidade-de-dados-genomicos.html`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Deployed validator syntax check passed.
+- Site manifest validation passed.
+- SCSS validation passed.
+- Targeted Quarto render passed for homepage, module index and Modules 03, 06 and 11.
+- Static HTML inspection confirmed the new CTA labels and script-lab links.
+- `git diff --check` passed.
+- Full prepublish validation passed with `prepublish site check ok`.
+
+### Pending items
+
+- Publish only after explicit user request.
+- If browser tooling becomes available before publication, run a live light/dark/mobile/focus pass on representative modules.
+
+---
+
+## 2026-05-11 — Visual QA and polish for module script labs
+
+### Block objective
+
+Run the `NEXT_SITE.md` visual/UX QA block for the public site after the full `module-script-lab` rollout, focusing on script-lab consistency, accessibility affordances, static resources, responsive behavior by CSS contract, and prepublish readiness. No app changes. No publication.
+
+### Cycles executed
+
+1. Diagnosis: the active contract required browser-style visual QA and polish for the new script-lab pattern, while the worktree already contained unpublished site-only rollout changes across modules.
+   Implementation: re-read the site skill, `AGENTS.md`, roadmap, backlog, worklog and `NEXT_SITE.md`; confirmed the scope remained site-only and identified the script-lab component as the current public UX surface.
+   Testing: checked `git status --short --branch` and `git diff --stat`.
+   Notes: pre-existing untracked `.agents/`, `.vscode/` and `AUTOMATION_SITE.md` remained untouched.
+2. Diagnosis: all 12 module pages contained `module-script-lab`, but the QA pass needed to verify markup, ARIA labels, script/CSV links and CSS behavior before adding any further polish.
+   Implementation: audited representative modules, generated HTML snippets, `styles/main.scss`, `styles/main-dark.scss` and `scripts/validate_site_manifest.R`.
+   Testing: confirmed the module pages expose `role="region"`, list semantics, `aria-label` on `.entry-link`, and script/CSV links for representative early/middle/late modules.
+   Notes: browser MCP tooling was not available in this session after tool discovery, so the QA used Quarto render plus static HTML/CSS/resource inspection.
+3. Diagnosis: links such as `Abrir moduloXX.R` include inline `code` inside a dark script-lab panel, which could inherit the generic code pill style and reduce contrast; focused links also did not visually lift the surrounding card.
+   Implementation: added `.module-script-lab-item:focus-within` in light and dark styles and made `.module-script-lab-item .entry-link code` inherit the link color with a subtle cyan background/border.
+   Testing: SCSS compilation passed for `styles/main.scss` and `styles/main-dark.scss`; manifest validation passed.
+   Notes: the change is localized to public module script-lab presentation and does not change content or app behavior.
+4. Diagnosis: the component needed generated-page proof after the CSS/a11y polish.
+   Implementation: rendered the homepage, module index and Modules 03, 06 and 11 as representative early/middle/late module pages.
+   Testing: targeted render passed; static inspection confirmed script-lab HTML, script links, CSV links and generated resources under `docs/scripts` and `docs/data`; `git diff --check` passed.
+   Notes: targeted render emitted only known non-blocking `renv` sandbox activation warnings.
+5. Diagnosis: the block needed the full site gate before updating planning files.
+   Implementation: ran `scripts/prepublish_site_check.R`, then updated `WORKLOG_SITE.md` and `NEXT_SITE.md` to reflect readiness and remaining browser/manual QA caveat.
+   Testing: full prepublish passed with `prepublish site check ok`.
+   Notes: no commit, push or publication was performed.
+
+### Files changed in this block
+
+- `styles/main.scss`
+- `styles/main-dark.scss`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Improvements implemented
+
+- Improved keyboard-focus feedback on script-lab cards through `:focus-within`.
+- Improved contrast consistency for inline script filenames inside `.entry-link` in script-lab cards.
+- Verified representative rendered module pages and static script/CSV assets after the all-module rollout.
+- Kept the work site-only, static, and compatible with GitHub Pages.
+
+### Problems fixed
+
+- Script-lab cards did not visually respond as a card when a nested link received keyboard focus.
+- Inline `code` inside script-lab links could visually fight the dark premium panel style.
+
+### Commands executed
+
+- `git status --short --branch`
+- `git diff --stat`
+- `rg -n "module-script-lab|scripts/modulo..\\.R|data/modulo.._simulado\\.csv" modules data scripts styles _quarto.yml`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render index.qmd modules/index.qmd modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd --no-execute`
+- `rg -n 'module-script-lab|module-script-lab-grid|scripts/modulo03\.R|data/modulo03_simulado\.csv|scripts/modulo06\.R|data/modulo06_simulado\.csv|scripts/modulo11\.R|data/modulo11_simulado\.csv' docs/index.html docs/modules/index.html docs/modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.html docs/modules/modulo06-correlacoes-geneticas-e-fenotipicas.html docs/modules/modulo11-controle-de-qualidade-de-dados-genomicos.html`
+- `find docs/scripts docs/data -maxdepth 1 -name 'modulo*.R' -o -name 'modulo*_simulado.csv'`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- SCSS validation passed.
+- Targeted Quarto render passed for homepage, module index and Modules 03, 06 and 11.
+- Static HTML/resource inspection confirmed script-lab markup and links for representative modules, plus all 12 published scripts and 12 CSVs in `docs/`.
+- `git diff --check` passed.
+- Full prepublish validation passed with `prepublish site check ok`.
+
+### Pending items
+
+- If browser tooling becomes available, do a live viewport pass for light/dark/mobile/focus screenshots before or during publication review.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-11 — Script-lab rollout across all modules
+
+### Block objective
+
+Complete the `NEXT_SITE.md` script-lab rollout by adding the `module-script-lab` learning pattern to the remaining module pages (03–07 and 09–11), tighten the public guidance copy that points to it, harden validation to require the pattern across all 12 modules, and re-run the full prepublish gate. No app changes. No publication.
+
+### Cycles executed
+
+1. Diagnosis: the homepage learning cue mentioned “rode o script” but did not explicitly acknowledge that the page also renders script excerpts, which will be more important once every module has a script-lab panel.
+   Implementation: refined the hero signal sentence to clarify “rode o script (ou acompanhe os trechos na página)”.
+   Testing: confirmed the updated sentence exists in `index.qmd`.
+   Notes: copy remains premium/editorial; no new CTAs were added.
+2. Diagnosis: the module index explained the recommended flow but did not explicitly name the new “laboratório do script” pattern that modules now rely on.
+   Implementation: updated the “Fluxo recomendado” guidance sentence in `modules/index.qmd` to point visitors to the script-lab panel.
+   Testing: verified the guidance copy is present and still scannable.
+   Notes: navigation structure was not changed.
+3. Diagnosis: Modules 03–07 included rendered R chunks and generated outputs but did not expose a compact reproduction panel (script + CSV + parameter-change + interpretation prompt).
+   Implementation: added `module-script-lab` blocks to Modules 03, 04, 05, 06 and 07, each with module-specific “what to change / what to interpret” prompts.
+   Testing: confirmed each module contains `.module-script-lab` and the expected script/CSV links.
+   Notes: the pattern stays static/reproducible via Quarto + local R execution.
+4. Diagnosis: Modules 09–11 also lacked the reproduction panel, breaking consistency for pedigree and genomics phases.
+   Implementation: added `module-script-lab` blocks to Modules 09, 10 and 11, aligning pedigree, SNP simulation and QC filters with concrete parameter-change tasks.
+   Testing: rendered representative early/middle/late modules (03/06/11) and inspected generated HTML for script-lab markup and links.
+   Notes: this keeps genomics pages editorial and avoids app-like interactivity.
+5. Diagnosis: the script-lab grid always has 4 items; the default 3-column grid leads to a visually uneven 3+1 layout on desktop.
+   Implementation: updated `styles/main.scss` so `.module-script-lab-grid` uses a 2×2 layout on widths > 640px while preserving the 1-column mobile rule.
+   Testing: recompiled SCSS and confirmed responsive rules still collapse to 1 column at <= 640px.
+   Notes: dark-mode overrides remain in `styles/main-dark.scss` unchanged.
+6. Diagnosis: local validation only required script-lab presence/links for the representative modules (01/02/08/12), allowing drift on the remaining pages.
+   Implementation: strengthened `scripts/validate_site_manifest.R` to require a script-lab block and matching script + CSV links for all 12 modules.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R` passed after the rollout.
+   Notes: this keeps the public learning contract enforceable before publication.
+7. Diagnosis: the block needed a full “ready for review” validation gate after touching many public pages.
+   Implementation: ran the full prepublish site check (module scripts, SCSS, JS syntax, full render).
+   Testing: `prepublish site check ok` and `git diff --check` stayed clean.
+   Notes: YAML validation still emits a non-blocking coercion warning; results remain OK.
+
+### Files changed in this block
+
+- `index.qmd`
+- `modules/index.qmd`
+- `modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `scripts/validate_site_manifest.R`
+- `styles/main.scss`
+
+### Improvements implemented
+
+- Rolled out the `module-script-lab` pattern to every remaining module page, so all 12 modules now expose script + CSV + parameter-change + interpretation prompts.
+- Updated module index guidance to reference the script-lab panel as the canonical “execute the module” entry point.
+- Refined homepage learning cue copy to reflect the rendered-excerpt + full-script workflow.
+- Tuned the script-lab grid to a more balanced 2×2 layout on desktop while preserving mobile collapse.
+- Hardened manifest validation to require script-labs for every module.
+
+### Problems fixed
+
+- Most module pages still required guesswork to find the full script, output artifact and a concrete parameter-change task.
+- The script-lab grid layout was visually uneven for a consistent 4-item panel.
+
+### Commands executed
+
+- `git status --short --branch`
+- `git diff --check`
+- `rg -n "module-script-lab" modules`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla -e 'sass::sass_file("styles/main.scss") |> invisible(); sass::sass_file("styles/main-dark.scss") |> invisible(); cat("scss ok\n")'`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd --no-execute`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript --vanilla scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- SCSS validation passed.
+- Targeted static render passed for Modules 03, 06 and 11.
+- Full prepublish site check passed, including module scripts, JS syntax checks and complete Quarto render.
+
+### Pending items
+
+- Perform a true browser visual QA (light/dark + mobile widths + keyboard focus) now that every module has a script-lab panel.
+- Publish only after explicit user request.
+
 ## 2026-05-11 — Representative module script labs
 
 ### Block objective
@@ -3578,6 +4850,403 @@ Continue a long site-only public visual/UX evolution block under `NEXT_SITE.md`,
 
 - Run true browser visual QA with screenshots if browser tooling becomes available.
 - Publish only after explicit user request.
+
+---
+
+## 2026-05-14 — Study content insertion block for the redesigned course
+
+### Block objective
+
+Execute the approved plan for inserting study content into the current course structure without changing the homepage, publishing, merging or committing. Keep the hierarchy `Curso -> Módulo -> Bloco temático -> Item de estudo` and keep laboratories inside the study flow.
+
+### Cycles executed
+
+1. Diagnosis: the UX structure existed, but module content was still too dependent on generated placeholders and not centralized.
+   Implementation: added `data/course-content.yml` as the course content source for the 21 thematic blocks, with introduction, core explanation, technical note, guided example, lab objective, lab observation, quiz focus and glossary terms.
+   Testing: regenerated the course and checked rendered M1, M7, M13, M18 and M21 for the new study markers.
+   Notes: reference PDFs were used only as technical orientation; no long text was copied.
+
+2. Diagnosis: glossary terms were duplicated inside JavaScript instead of being a maintainable content source.
+   Implementation: added `data/glossary.yml` with concise definitions and wired `scripts/generate_undergrad_redesign.R` to inject those terms into `assets/js/interactives.js`.
+   Testing: rendered assets contain key terms such as Gene, Herdabilidade, BLUP and Predição genômica.
+   Notes: glossary remains accessible during study and as a simple fallback page.
+
+3. Diagnosis: laboratories needed clearer purpose inside each block rather than feeling like a separate generic attachment.
+   Implementation: updated generated module pages and `scripts/modulo*.R` output to show lab objective and what the student should observe.
+   Testing: `Rscript --vanilla scripts/run_all_modules.R` executed all 21 module scripts successfully.
+   Notes: the R scripts remain minimal, aligned with the course's beginner-friendly scope.
+
+4. Diagnosis: quizzes needed to reflect the new study model more consistently.
+   Implementation: expanded generated quizzes to 5 questions per block with pass mark 4, covering question, evidence, calculation, lab observation and practical interpretation.
+   Testing: validator now requires exactly 5 questions per quiz and valid pass marks.
+   Notes: quizzes remain formative checkpoints, not high-stakes assessment.
+
+5. Diagnosis: the new content sources needed governance so future edits do not break the course silently.
+   Implementation: updated `_quarto.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` to validate content files, glossary records, required fields, rendered module markers and quiz structure.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R`, JS syntax checks, `git diff --check`, targeted Quarto render and full prepublish check passed.
+   Notes: no branch merge, commit, push or publication was performed.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `_quarto.yml`
+- `assets/js/interactives.js`
+- `data/course-content.yml`
+- `data/glossary.yml`
+- `modules/modulo01-*.qmd` through `modules/modulo21-*.qmd`
+- `quizzes/quiz-01.json` through `quizzes/quiz-21.json`
+- `scripts/generate_undergrad_redesign.R`
+- `scripts/modulo01.R` through `scripts/modulo21.R`
+- `scripts/validate_site_manifest.R`
+
+### Commands executed
+
+- `git branch --show-current`
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `node --check assets/js/interactives.js`
+- `node --check assets/js/progress.js`
+- `Rscript --vanilla scripts/run_all_modules.R`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/index.qmd modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd modules/modulo07-noc-oes-de-gen-etica-quantitativa.qmd modules/modulo13-endogamia-e-parentesco.qmd modules/modulo18-gen-omica-marcadores-snp-e-dados-moleculares.qmd modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd glossario.qmd busca.qmd --no-execute`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- JavaScript syntax checks passed for the touched interactive/progress files.
+- All 21 R module scripts executed successfully.
+- Whitespace/diff check passed.
+- Targeted Quarto render passed for the course page, representative study pages, search and glossary.
+- Full prepublish site check passed, including full Quarto render.
+- Rendered module pages contain the expected content markers: glossary terms, guided example, lab objective, lab observation and practical interpretation.
+
+### Pending items
+
+- Manual scientific review of all 21 content records in `data/course-content.yml`.
+- Manual review of quizzes for wording, difficulty and correctness.
+- Manual browser review of the rendered study flow before committing.
+- Publish only after explicit user request.
+
+---
+
+## 2026-05-14 — Expanded study content after review feedback
+
+### Block objective
+
+Respond to feedback that the course content was too summarized. Expand study text across all 21 thematic blocks without changing the approved architecture, homepage, navigation model, or publication state.
+
+### Cycles executed
+
+1. Diagnosis: the content source had useful module scaffolding, but the rendered pages still read like concise summaries.
+   Implementation: added `data/course-content-expansion.yml` as a separate expansion layer for the 21 blocks.
+   Testing: regenerated modules and inspected M1, M7, M13 and M21 for new expanded markers.
+   Notes: base map remains in `data/course-content.yml`; expansion stays separate for easier future editing.
+
+2. Diagnosis: study pages needed more instructional depth without adding cards or changing layout.
+   Implementation: updated `scripts/generate_undergrad_redesign.R` to render `Por que isso importa no melhoramento`, `Como pensar antes da fórmula`, `Passo a passo mental`, `Leitura do resultado` and `Erro comum`.
+   Testing: rendered HTML confirms those sections in representative module pages.
+   Notes: structure remains `Curso -> Módulo -> Bloco temático -> Item de estudo`.
+
+3. Diagnosis: new expansion content needed validation.
+   Implementation: updated `_quarto.yml`, `PUBLIC_SITE_COMPONENTS.md` and `scripts/validate_site_manifest.R` for the expansion file and required fields.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R`, `Rscript --vanilla scripts/run_all_modules.R`, `node --check assets/js/interactives.js`, `git diff --check`, targeted render and full prepublish check passed.
+   Notes: no commit, merge, push or publication was performed.
+
+### Files changed in this block
+
+- `_quarto.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `data/course-content-expansion.yml`
+- `modules/modulo01-*.qmd` through `modules/modulo21-*.qmd`
+- `scripts/generate_undergrad_redesign.R`
+- `scripts/validate_site_manifest.R`
+
+### Commands executed
+
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `Rscript --vanilla scripts/run_all_modules.R`
+- `node --check assets/js/interactives.js`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd modules/modulo07-noc-oes-de-gen-etica-quantitativa.qmd modules/modulo13-endogamia-e-parentesco.qmd modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd --no-execute`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- Module scripts passed.
+- JS syntax check passed for interactive glossary file.
+- Whitespace/diff check passed.
+- Targeted render passed.
+- Full prepublish site check passed.
+- Rendered pages now show expanded study sections in sampled modules.
+
+### Pending items
+
+- Manual content review: check if expanded text is now deep enough for graduação.
+- Manual browser review: confirm expanded reading does not make pages visually heavy.
+- Next likely refinement: add richer worked examples/labs module by module, starting with M1, M3, M7, M9, M13, M18 and M21.
+
+---
+
+## 2026-05-14 — Scientific content upgrade: priority modules
+
+### Block objective
+
+Execute the approved scientific-content plan without changing homepage, branch model, publication state or course architecture. Convert the course from summarized outline toward real undergraduate study material by strengthening priority modules first.
+
+### Cycles executed
+
+1. Diagnosis: course pages had expanded prose but still lacked robust worked examples, formula interpretation and realistic formative assessment.
+   Implementation: added `data/course-practice.yml` with rich practice records for M1, M3, M7, M9, M10, M13 and M21.
+   Testing: regenerated course pages and confirmed rich markers in sampled modules.
+   Notes: these 7 modules now define the scientific/didactic standard for remaining modules.
+
+2. Diagnosis: R laboratories were generic in high-impact modules.
+   Implementation: replaced generated generic scripts in priority modules with concept-specific labs: Mendelian counts, allele frequencies, polygenic distribution, herdability scenarios, selection response, relationship/endogamy and final selection ranking.
+   Testing: `Rscript --vanilla scripts/run_all_modules.R` passed; priority scripts print `INTERPRETACAO:` and write CSV outputs.
+   Notes: non-priority modules still use simpler generated labs and should be upgraded next.
+
+3. Diagnosis: quizzes used overly obvious distractors and did not test real misunderstandings.
+   Implementation: priority modules now have custom quiz questions with real conceptual distractors; generic fallback quiz wording was also improved to remove public-site/deployment distractors.
+   Testing: scan confirmed old distractors such as `GitHub Pages`, `pacote avançado`, `Pular o quiz` and `Publicar a página` no longer appear in quizzes.
+   Notes: next pass should custom-write quizzes for all remaining modules.
+
+4. Diagnosis: glossary was useful but missing core technical terms used by the content.
+   Implementation: expanded `data/glossary.yml` with terms such as valor genético, valor de acasalamento, acurácia, intensidade de seleção, intervalo de geração, efeito fixo, efeito aleatório, variância residual, BLUE, missing rate and validação cruzada.
+   Testing: generator rebuilt `assets/js/interactives.js`; JS syntax check passed.
+   Notes: glossary still needs examples per term in a future pass.
+
+5. Diagnosis: new practice layer needed validation.
+   Implementation: updated `_quarto.yml`, `PUBLIC_SITE_COMPONENTS.md`, `data/README.md` and `scripts/validate_site_manifest.R` to include `data/course-practice.yml` and validate priority-module practice fields.
+   Testing: manifest validation, JS checks, all module scripts, targeted render, `git diff --check` and full prepublish check passed.
+   Notes: no commit, merge, push or publication was performed.
+
+### Files changed in this block
+
+- `_quarto.yml`
+- `PUBLIC_SITE_COMPONENTS.md`
+- `WORKLOG_SITE.md`
+- `data/README.md`
+- `data/course-practice.yml`
+- `data/glossary.yml`
+- `modules/modulo01-*.qmd`, `modules/modulo03-*.qmd`, `modules/modulo07-*.qmd`, `modules/modulo09-*.qmd`, `modules/modulo10-*.qmd`, `modules/modulo13-*.qmd`, `modules/modulo21-*.qmd`
+- `quizzes/quiz-01.json`, `quiz-03.json`, `quiz-07.json`, `quiz-09.json`, `quiz-10.json`, `quiz-13.json`, `quiz-21.json`
+- `scripts/generate_undergrad_redesign.R`
+- `scripts/modulo01.R`, `modulo03.R`, `modulo07.R`, `modulo09.R`, `modulo10.R`, `modulo13.R`, `modulo21.R`
+- `scripts/validate_site_manifest.R`
+
+### Commands executed
+
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `node --check assets/js/interactives.js`
+- `node --check assets/js/progress.js`
+- `Rscript --vanilla scripts/run_all_modules.R`
+- `rg -n "GitHub Pages|pacote avançado|Pular o quiz|Trocar a ordem|Publicar a página" quizzes`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd modules/modulo03-gen-etica-de-populac-oes-i-frequ-encias-al-elicas-e-genot-ipicas.qmd modules/modulo07-noc-oes-de-gen-etica-quantitativa.qmd modules/modulo09-herdabilidade-e-repetibilidade.qmd modules/modulo10-selec-ao-e-ganho-gen-etico.qmd modules/modulo13-endogamia-e-parentesco.qmd modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd --no-execute`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- JS syntax checks passed.
+- All 21 module scripts executed successfully.
+- Old artificial quiz distractors were absent from all quiz files.
+- Targeted render passed for priority modules.
+- Full prepublish site check passed.
+
+### Pending items
+
+- Upgrade remaining modules with rich practice records: M2, M4, M5, M6, M8, M11, M12, M14, M15, M16, M17, M18, M19 and M20.
+- Add richer glossary examples per term.
+- Add small visual/table expectations for each R lab.
+- Manual scientific review of formulas, assumptions and terminology before commit.
+
+---
+
+## 2026-05-14 — Scientific content upgrade: all modules
+
+### Block objective
+
+Continue the scientific-content upgrade on `refactor/ux-minimalista-cursos` by extending the rich practice layer from the first priority modules to all 21 modules. Keep the work site-only, do not change the homepage content, do not commit, do not merge and do not publish.
+
+### Cycles executed
+
+1. Diagnosis: the course already had a richer didactic pattern, but 14 modules still depended on lighter generated practice.
+   Implementation: expanded `data/course-practice.yml` so `priority_modules` now covers M1 through M21.
+   Testing: regenerated the undergraduate course pages, scripts and quizzes.
+   Notes: the generator now treats every module as part of the rich scientific practice layer.
+
+2. Diagnosis: remaining modules needed concrete undergraduate examples instead of short placeholders.
+   Implementation: added rich practice records for M2, M4, M5, M6, M8, M11, M12, M14, M15, M16, M17, M18, M19 and M20.
+   Testing: rendered module pages now include formula terms, commented manual calculation, expected result and decision prompt across all 21 modules.
+   Notes: examples cover gene action, Hardy-Weinberg, selection/drift, P=G+E, variance components, correlations, threshold traits, heterosis, EBV/DEP, linear models, BLUP/model animal, SNP coding, genomic QC and genomic matrices.
+
+3. Diagnosis: R labs needed to match the biological question in each module.
+   Implementation: replaced fallback labs in the remaining modules with concept-specific R scripts and explicit `INTERPRETACAO:` output.
+   Testing: `Rscript --vanilla scripts/run_all_modules.R` executed all 21 module scripts successfully.
+   Notes: M16, M17 and M20 remain intentionally simplified for undergraduate introduction and need manual scientific review before publication.
+
+4. Diagnosis: quizzes needed to test interpretation, not only recall or generic site behavior.
+   Implementation: added module-specific scientific quiz questions for all remaining modules.
+   Testing: scan confirmed old artificial distractors such as `GitHub Pages`, `pacote avançado`, `Pular o quiz`, `Trocar a ordem`, `Publicar a página` and `Confirmar apenas que o script` are absent from quiz files.
+   Notes: quiz difficulty should still be reviewed by an instructor.
+
+5. Diagnosis: the new all-module practice layer needed a full local gate.
+   Implementation: regenerated the site and reran the local validation/render sequence.
+   Testing: manifest validation, rich-marker counts, script interpretation counts, JS syntax checks, all module scripts, whitespace check and full prepublish check passed.
+   Notes: no commit, push, merge or publication was performed.
+
+### Files changed in this block
+
+- `data/course-practice.yml`
+- `modules/modulo01-*.qmd` through `modules/modulo21-*.qmd`
+- `quizzes/quiz-01.json` through `quizzes/quiz-21.json`
+- `scripts/modulo01.R` through `scripts/modulo21.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+
+### Commands executed
+
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `rg "Termos da fórmula|Cálculo comentado|Resultado esperado|Decisão guiada" modules | wc -l`
+- `rg "INTERPRETACAO:" scripts/modulo*.R | wc -l`
+- `node --check assets/js/interactives.js`
+- `node --check assets/js/progress.js`
+- `Rscript --vanilla scripts/run_all_modules.R`
+- `rg -n "GitHub Pages|pacote avançado|Pular o quiz|Trocar a ordem|Publicar a página|Confirmar apenas que o script" quizzes`
+- `git diff --check`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+
+### Test results
+
+- Site manifest validation passed.
+- All 21 modules have the 4 rich practice markers, totaling 84 marker hits.
+- All 21 generated R scripts include `INTERPRETACAO:`.
+- JS syntax checks passed for glossary/interactives and progress scripts.
+- All 21 module scripts executed successfully.
+- Old artificial quiz distractors are absent from quiz files.
+- `git diff --check` passed.
+- Full prepublish site check passed, including Quarto render of 29 pages.
+
+### Scientific review addendum
+
+- M16 now states that the `lm()` example is a didactic bridge to mixed models, not a complete genetic evaluation.
+- M17 had an internal inconsistency corrected: the manual result now matches the script by applying h² and relative information, giving EBV simplificado = 0.75 for the high-deviation, low-information animal.
+- M17 now explicitly says the calculation is an analogy and that real BLUP uses mixed-model equations and a relationship matrix.
+- M20 now explicitly says the genomic matrix example is pedagogical and that real evaluations require many SNPs, QC and validation.
+- Regenerated course pages, scripts and quizzes after these corrections.
+- Re-ran manifest validation, all module scripts, rich-marker count, script interpretation count, JS syntax checks, `git diff --check` and full prepublish check; all passed.
+
+### Pending items
+
+- Manual scientific review of all 21 rich practice records before commit.
+- Review whether the M16, M17 and M20 simplification warnings are enough for undergraduate use.
+- Review quiz difficulty and wording for undergraduate students with uneven statistics/R background.
+- Optionally add richer visual/table expectations to each R lab after the scientific review.
+
+---
+
+## 2026-05-14 — Branch UX minimalista para páginas de curso
+
+### Block objective
+
+Create and use branch `refactor/ux-minimalista-cursos` for a deeper site-only UX restructuring of Módulos, Roteiro, Busca, Glossário and internal module pages. Do not merge, do not publish and do not edit the homepage content.
+
+### Cycles executed
+
+1. Diagnosis: `Roteiro` and `Glossário` competed with `Módulos` in the primary navigation and repeated the study flow.
+   Implementation: removed `Roteiro` and `Glossário` from primary navbar/footer while keeping their URLs available as support pages.
+   Testing: rendered HTML scan found no `Roteiro`/`Glossário` menu labels in main pages.
+   Notes: homepage source content was not edited; only global navigation changed.
+
+2. Diagnosis: the route page repeated the module sequence and increased cognitive load.
+   Implementation: incorporated the useful route into `modules/index.qmd` as a compact `course-study-sequence` by 5 blocks; reduced `semanas/index.qmd` to a compatibility page pointing back to Módulos.
+   Testing: `docs/modules/index.html` contains `course-study-sequence`; `docs/semanas/index.html` contains "Roteiro agora está em Módulos".
+   Notes: existing `/semanas/` links remain alive for review and old references.
+
+3. Diagnosis: glossary was isolated from the moment of study.
+   Implementation: added a collapsible `Glossário rápido` with `data-glossary` to every module page via `scripts/generate_undergrad_redesign.R`.
+   Testing: rendered M1 and M21 contain `module-glossary-support`, `Glossário rápido` and `data-glossary`.
+   Notes: glossary remains available as standalone fallback but is no longer primary navigation.
+
+4. Diagnosis: Busca and Glossário still sent users to the separate route and repeated return actions.
+   Implementation: simplified their return routes to Módulos, Glossário/Busca and Avaliação; removed redundant route CTAs.
+   Testing: source/render scan found no `Ver roteiro`, `Planejar estudo`, `Abrir roteiro`, `data-learning-map` or `route-map-intro` in the simplified pages.
+   Notes: each page now has one main job: search, define terms or study modules.
+
+5. Diagnosis: new UX contracts needed validation and responsive/dark style coverage.
+   Implementation: updated `data/site-manifest.yml`, `scripts/validate_site_manifest.R`, `scripts/validate_deployed_site.R`, `styles/main.scss` and `styles/main-dark.scss`.
+   Testing: `Rscript --vanilla scripts/validate_site_manifest.R`, `git diff --check`, `Rscript --vanilla scripts/run_all_modules.R` and full `scripts/prepublish_site_check.R` passed.
+   Notes: no commit, push, merge or publication was performed.
+
+6. Diagnosis: module cards were grouped after headings, but each block did not have a clear visual/semantic container around its own modules.
+   Implementation: wrapped every block in `modules/index.qmd` with `.course-block`, `.course-block-header` and its own nested `.module-grid`; added styles and manifest validation for `course-block`.
+   Testing: targeted render of `modules/index.qmd` passed; rendered HTML contains exactly 5 `course-block` containers, each with the expected first module for that block.
+   Notes: keeps the 21 modules visibly inside their own 5 blocks.
+
+7. Diagnosis: visible naming still mixed `módulo`, `bloco`, laboratory and study content.
+   Implementation: standardized the public hierarchy as `Curso -> Módulo -> Bloco temático -> Item de estudo`. The 5 previous blocks are now course modules; the 21 previous modules are thematic blocks; each thematic block exposes study items for Leitura, Exercício, Laboratório and Quiz.
+   Testing: rendered course page contains 5 module containers and 21 thematic block cards; rendered thematic block page contains a clean `study-item` list with type, duration and status and no literal fenced-div markers.
+   Notes: file paths stay stable for links, but visible labels are now hierarchical.
+
+### Files changed in this block
+
+- `_quarto.yml`
+- `busca.qmd`
+- `data/site-manifest.yml`
+- `glossario.qmd`
+- `modules/index.qmd`
+- `modules/modulo01-*.qmd` through `modules/modulo21-*.qmd`
+- `scripts/generate_undergrad_redesign.R`
+- `scripts/validate_deployed_site.R`
+- `scripts/validate_site_manifest.R`
+- `semanas/index.qmd`
+- `styles/main-dark.scss`
+- `styles/main.scss`
+- `assets/js/quiz.js`
+- `avaliacao.qmd`
+- `certificado.qmd`
+- `NEXT_SITE.md`
+- `WORKLOG_SITE.md`
+
+### Commands executed
+
+- `git status --short --branch`
+- `git switch -c refactor/ux-minimalista-cursos`
+- `Rscript --vanilla scripts/generate_undergrad_redesign.R`
+- `Rscript --vanilla scripts/finalize_undergrad_links.R`
+- `Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+- `Rscript --vanilla scripts/run_all_modules.R`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home Rscript scripts/prepublish_site_check.R`
+- `rg` inspections of rendered HTML in `docs/`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/index.qmd --no-execute`
+- `PATH="/Applications/RStudio.app/Contents/Resources/app/quarto/bin:/Users/glebstrauss/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" HOME=/private/tmp/quarto-home quarto render modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd --no-execute`
+
+### Test results
+
+- Site manifest validation passed.
+- Whitespace/diff check passed.
+- All 21 module scripts executed and regenerated CSV data.
+- Full prepublish site check passed and rendered 29 pages.
+- Rendered HTML confirmed the consolidated study sequence, route compatibility page and module-level glossary support.
+- Rendered HTML confirmed 5 `course-block` containers, one per bloco.
+- Rendered HTML confirmed 21 `thematic-block-card` cards and clean study-item markup.
+
+### Pending items
+
+- Manual visual QA in browser/GitKraken before commit.
+- Decide whether to keep `semanas/index.qmd` as a compatibility page long term or remove it after published links are no longer needed.
+- Review M1, M7, M14, M18 and M21 on mobile for density after adding the glossary panel.
+- No merge to `main` and no publication until explicit approval.
 
 ---
 

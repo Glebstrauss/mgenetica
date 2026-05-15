@@ -1,0 +1,33 @@
+{
+  "module": "20",
+  "title": "Quiz — Matrizes genômicas, GWAS e predição genômica",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "Matriz G resume...",
+      "options": ["semelhança genômica entre animais.", "apenas média fenotípica.", "somente heterose."],
+      "correct": 0
+    },
+    {
+      "text": "GWAS busca...",
+      "options": ["associação marcador a marcador.", "apenas parentesco de pedigree.", "somente h² por fórmula simples."],
+      "correct": 0
+    },
+    {
+      "text": "Predição genômica usa...",
+      "options": ["muitos marcadores simultaneamente.", "um único SNP sem validação.", "apenas nome do animal."],
+      "correct": 0
+    },
+    {
+      "text": "Por que padronizar SNPs?",
+      "options": ["Para evitar escalas diferentes entre marcadores.", "Para remover todos os alelos.", "Para transformar fenótipo em sexo."],
+      "correct": 0
+    },
+    {
+      "text": "Qual erro comum deve ser evitado?",
+      "options": ["Confundir GWAS com predição genômica.", "Calcular matriz.", "Usar QC antes da análise."],
+      "correct": 0
+    }
+  ]
+}

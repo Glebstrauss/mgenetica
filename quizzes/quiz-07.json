@@ -1,58 +1,33 @@
 {
   "module": "07",
-  "title": "Quiz — Módulo 07",
-  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "title": "Quiz — Noções de genética quantitativa",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
   "passMark": 4,
   "questions": [
     {
-      "text": "Em um modelo misto y = Xb + Zu + e, o vetor u representa:",
-      "options": [
-        "Efeitos fixos conhecidos e estimáveis (ex.: fazenda, sexo).",
-        "Efeitos aleatórios com distribuição u ~ N(0, Gσ²) (ex.: valores genéticos).",
-        "Os resíduos do modelo com distribuição normal.",
-        "As variáveis ambientais mensuráveis usadas como covariáveis."
-      ],
-      "correct": 1
+      "text": "Por que peso não costuma seguir proporção mendeliana simples?",
+      "options": ["Porque muitos genes e ambiente contribuem juntos.", "Porque peso não tem base genética.", "Porque todo peso é determinado por um único gene."],
+      "correct": 0
     },
     {
-      "text": "A distinção fundamental entre BLUE e BLUP é que:",
-      "options": [
-        "BLUE prediz efeitos aleatórios e BLUP estima efeitos fixos.",
-        "BLUE estima efeitos fixos (b) e BLUP prediz efeitos aleatórios (u).",
-        "BLUE e BLUP produzem resultados idênticos para qualquer modelo.",
-        "BLUE usa a matriz A de parentesco enquanto BLUP não usa pedigree."
-      ],
-      "correct": 1
+      "text": "O que acontece ao aumentar número de loci pequenos?",
+      "options": ["Aumenta número de valores intermediários.", "Todos os animais ficam iguais.", "A variância necessariamente vira zero."],
+      "correct": 0
     },
     {
-      "text": "Por que \"fazenda\", \"sexo\" e \"ano de nascimento\" são modelados como efeitos fixos?",
-      "options": [
-        "Porque têm distribuição normal com variância conhecida.",
-        "Porque afetam a média dos grupos e queremos estimar seus efeitos específicos sem assumir distribuição.",
-        "Porque têm variância igual a zero no modelo.",
-        "Porque são sempre ortogonais aos efeitos genéticos."
-      ],
-      "correct": 1
+      "text": "Qual medida resume dispersão entre animais?",
+      "options": ["Variância", "Nome do animal", "Número da fazenda sem dados"],
+      "correct": 0
     },
     {
-      "text": "No modelo animal básico y = Xb + Za + e, a estrutura de variância assumida para o vetor a é:",
-      "options": [
-        "Var(a) = I σ²e (animais independentes entre si)",
-        "Var(a) = A σ²A (animais relacionados conforme pedigree)",
-        "Var(a) = X σ²b",
-        "Var(a) = 0"
-      ],
-      "correct": 1
+      "text": "No laboratório, por que fenótipo pode sobrepor animais com valores genéticos diferentes?",
+      "options": ["Porque ambiente adiciona variação.", "Porque genótipo não existe.", "Porque R remove todos os efeitos."],
+      "correct": 0
     },
     {
-      "text": "O pressuposto e ~ N(0, I σ²e) para os resíduos implica que:",
-      "options": [
-        "Todos os animais têm exatamente o mesmo valor genético.",
-        "Os erros residuais são independentes entre observações e têm variância homogênea.",
-        "Não existe efeito de ambiente permanente entre medidas do mesmo animal.",
-        "A herdabilidade da característica é necessariamente 1,0."
-      ],
-      "correct": 1
+      "text": "Qual decisão prática depende desse conceito?",
+      "options": ["Usar média e variância para selecionar características contínuas.", "Classificar peso só em AA, Aa e aa.", "Ignorar registros ambientais."],
+      "correct": 0
     }
   ]
 }

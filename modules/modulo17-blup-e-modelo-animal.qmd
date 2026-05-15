@@ -1,0 +1,234 @@
+---
+title: "Bloco temático 4.5 — BLUP e modelo animal"
+subtitle: "Módulo 4: Parentesco, cruzamentos e avaliação genética"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 4: Parentesco, cruzamentos e avaliação genética · Bloco 4.5</span>
+<h1>BLUP e modelo animal</h1>
+<p>Entender BLUP, encolhimento, matriz A e modelo animal.</p>
+</div>
+<div class="study-hero-meta">
+<span>120 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 4: Parentesco, cruzamentos e avaliação genética · Bloco temático 4.5</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo17" data-next-href="modulo18-gen-omica-marcadores-snp-e-dados-moleculares.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 4.5</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Como parentes ajudam predizer animal?" aria-current="step"><strong>Pergunta simples: Como parentes ajudam predizer animal?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Como parentes ajudam predizer animal?
+
+**Intuição**
+
+Pense assim: Testemunhas familiares ajudam quando prova individual é fraca.
+
+BLUP usa parentesco e dados para predizer valor genético de forma mais estável.
+
+**Por que isso importa no melhoramento**
+
+BLUP e modelo animal são base da avaliação moderna. Eles usam parentesco para emprestar informação e evitar rankings extremos com poucos dados.
+
+**Como pensar antes da fórmula**
+
+Animal jovem sem muitos registros é como aluno com poucas provas. Notas de parentes ajudam estimar desempenho esperado, mas modelo reduz exagero quando informação é fraca.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Modelo animal usa matriz de parentesco para conectar informações entre animais.
+
+**Ponto técnico:** BLUP encolhe estimativas quando há pouca informação, reduzindo excesso de confiança.
+
+**Passo a passo mental:**
+
+- Identifique registros próprios.
+- Inclua parentesco.
+- Compare ranking bruto e ajustado.
+- Observe encolhimento.
+- Use acurácia para medir confiança.
+
+Tópicos principais:
+
+- BLUP
+- MME
+- matriz A
+- lambda
+- acurácia
+
+**Termos para consultar no glossário:**
+
+- BLUP
+- modelo animal
+- matriz A
+- encolhimento
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **Predição encolhida com h2 simples.**
+
+Passo guiado: Animal com poucos registros extremos pode ter EBV menos extremo após ajuste.
+
+**Termos da fórmula:**
+
+- BLUP prediz efeitos aleatórios usando dados e estrutura de variância.
+- Modelo animal conecta animais pela matriz de parentesco.
+- Encolhimento reduz estimativas extremas quando evidência é fraca.
+- O exemplo abaixo é uma analogia numérica; BLUP real resolve equações de modelo misto.
+
+**Cálculo comentado:**
+
+Animal com desvio fenotípico alto, mas poucos registros, não deve receber EBV extremo sem cautela. BLUP tende a aproximar estimativa da média quando informação é limitada.
+Parentes ajudam porque compartilham informação genética esperada. Isso é essencial para animais jovens ou pouco medidos.
+Neste exemplo didático, h² reduz o desvio fenotípico e a confiança relativa reduz ainda mais quando há poucos registros.
+
+**Resultado esperado:** Com h² = 0,30, desvio 20 e apenas 1/8 da informação máxima, EBV simplificado = 0,75; o fenótipo extremo vira estimativa cautelosa.
+
+Leitura do resultado: EBV menos extremo não é punição; é prudência estatística quando evidência direta é pequena.
+
+Exemplo animal: Jovem touro com parentes avaliados.
+
+Erro comum: Achar que BLUP sempre confirma ranking fenotípico.
+
+Visual sugerido: Matriz A e ranking EBV.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Comparar ranking com e sem informação de parentesco.
+
+[Script R](../scripts/modulo17.R){.entry-link aria-label="Abrir script R do bloco temático 4.5"} · [CSV simulado](../data/modulo17_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 4.5"}
+
+`y <- 20; h2 <- .3; h2 * y`
+
+**Variação obrigatória:** Mudar h2 e observar EBV.
+
+**Observe:** Parentes ajudam predizer animais jovens ou pouco medidos.
+
+**Interpretação esperada:** Encolhimento não é erro; é controle de incerteza. O cálculo é didático e não substitui BLUP por modelo animal.
+:::
+
+```r
+desvio <- 20
+h2 <- 0.30
+confianca_relativa <- 1/8
+ebv_simplificado <- h2 * desvio * confianca_relativa
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Entender por que BLUP não é apenas média fenotípica.
+
+**Decisão guiada:** Explique por que animal jovem com parentes bons pode ganhar informação antes de ter muitos registros.
+
+**Evidência mínima:** EBV interpretado com parentesco.
+
+**Antes do quiz:** Explicar encolhimento para média.
+
+::: {.quiz-container data-module="17"}
+:::
+
+Depois, avance para Bloco temático 5.1.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo16-modelos-lineares-e-modelos-mistos.html" aria-label="Voltar para Bloco temático 4.4">Bloco temático 4.4</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo18-gen-omica-marcadores-snp-e-dados-moleculares.html" aria-label="Avançar para Bloco temático 5.1">Bloco temático 5.1</a>
+</nav>
+</div>
+</div>

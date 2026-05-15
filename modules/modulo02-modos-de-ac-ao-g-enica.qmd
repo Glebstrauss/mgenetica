@@ -1,0 +1,229 @@
+---
+title: "Bloco temático 1.2 — Modos de ação gênica"
+subtitle: "Módulo 1: Fundamentos"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 1: Fundamentos · Bloco 1.2</span>
+<h1>Modos de ação gênica</h1>
+<p>Entender efeitos aditivos, dominância e epistasia antes da genética quantitativa.</p>
+</div>
+<div class="study-hero-meta">
+<span>90 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 1: Fundamentos · Bloco temático 1.2</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo02" data-next-href="modulo03-gen-etica-de-populac-oes-i-frequ-encias-al-elicas-e-genot-ipicas.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 1.2</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Um gene sempre soma do mesmo jeito?" aria-current="step"><strong>Pergunta simples: Um gene sempre soma do mesmo jeito?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Um gene sempre soma do mesmo jeito?
+
+**Intuição**
+
+Pense assim: Alguns botões somam volume, outros escondem ou mudam o efeito de outro botão.
+
+Nem todo efeito gênico aparece como soma simples. O heterozigoto pode ficar no meio, perto de um homozigoto ou depender de outro gene.
+
+**Por que isso importa no melhoramento**
+
+Seleção funciona melhor quando entendemos qual parte do efeito gênico passa de forma previsível para descendentes. Aditividade sustenta ganho acumulado; dominância e epistasia ajudam explicar desvios.
+
+**Como pensar antes da fórmula**
+
+Pense em blocos de montar. Às vezes cada peça adiciona altura parecida; às vezes uma combinação encaixa melhor que a soma das peças; às vezes uma peça só funciona se outra estiver presente.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Aditividade soma efeitos médios dos alelos; dominância muda o valor do heterozigoto; epistasia ocorre quando um loco altera o efeito de outro.
+
+**Ponto técnico:** A parte aditiva é central porque é a fração mais diretamente transmitida e usada na seleção.
+
+**Passo a passo mental:**
+
+- Compare valores dos dois homozigotos.
+- Calcule ponto médio esperado.
+- Veja onde heterozigoto cai.
+- Relacione desvio com dominância ou interação.
+
+Tópicos principais:
+
+- aditividade
+- dominância
+- epistasia
+- valor genotípico
+
+**Termos para consultar no glossário:**
+
+- aditividade
+- dominância
+- epistasia
+- valor genotípico
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **Comparar valores AA, Aa e aa com efeito aditivo e dominância.**
+
+Passo guiado: Compare AA=10, Aa=8 e aa=4. O heterozigoto não está exatamente no meio, indicando dominância.
+
+**Termos da fórmula:**
+
+- Ponto médio entre homozigotos é referência para avaliar aditividade.
+- Desvio do heterozigoto em relação ao ponto médio indica dominância.
+- Epistasia exige comparar combinação de locos, não apenas um genótipo isolado.
+
+**Cálculo comentado:**
+
+Com AA = 10 e aa = 4, o ponto médio aditivo é (10 + 4)/2 = 7. Se Aa = 8, heterozigoto está 1 unidade acima do ponto médio.
+Esse desvio sugere dominância parcial favorável. Para seleção de longo prazo, efeito aditivo ainda é central porque responde melhor ao acúmulo entre gerações.
+
+**Resultado esperado:** Ponto médio = 7; desvio de dominância em Aa = +1.
+
+Leitura do resultado: AA=10 e aa=4 têm ponto médio 7. Se Aa=8, heterozigoto está acima do ponto médio; há desvio de dominância favorável.
+
+Exemplo animal: Diferenças de ganho de peso entre genótipos.
+
+Erro comum: Chamar qualquer diferença entre genótipos de aditiva. Aditividade exige padrão de soma média dos alelos.
+
+Visual sugerido: Barras por genótipo.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Alterar valores por genótipo e observar como muda a interpretação da ação gênica.
+
+[Script R](../scripts/modulo02.R){.entry-link aria-label="Abrir script R do bloco temático 1.2"} · [CSV simulado](../data/modulo02_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 1.2"}
+
+`data.frame(gen = c("AA", "Aa", "aa"), valor = c(10, 8, 4))`
+
+**Variação obrigatória:** Alterar dominância e interpretar o novo valor.
+
+**Observe:** Quando Aa foge da média de AA e aa, a dominância passa a importar.
+
+**Interpretação esperada:** Aa acima do ponto médio indica dominância; isso não substitui estimativa da fração aditiva.
+:::
+
+```r
+valores <- data.frame(genotipo = c("AA","Aa","aa"), valor = c(10,8,4))
+media_homozigotos <- mean(c(10,4))
+valores$desvio <- valores$valor - media_homozigotos
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Reconhecer ação aditiva, dominância e epistasia em exemplos simples.
+
+**Decisão guiada:** Explique por que dominância pode favorecer cruzamento, mas aditividade orienta seleção acumulada.
+
+**Evidência mínima:** Frase ligando ação gênica à resposta esperada.
+
+**Antes do quiz:** Dizer quando heterozigoto foge da média dos homozigotos.
+
+::: {.quiz-container data-module="02"}
+:::
+
+Depois, avance para Bloco temático 2.1.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo01-revis-ao-de-gen-etica-b-asica.html" aria-label="Voltar para Bloco temático 1.1">Bloco temático 1.1</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo03-gen-etica-de-populac-oes-i-frequ-encias-al-elicas-e-genot-ipicas.html" aria-label="Avançar para Bloco temático 2.1">Bloco temático 2.1</a>
+</nav>
+</div>
+</div>

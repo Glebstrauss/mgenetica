@@ -1,0 +1,231 @@
+---
+title: "Bloco temático 4.3 — Avaliação genética: DEP/EBV e ranking de animais"
+subtitle: "Módulo 4: Parentesco, cruzamentos e avaliação genética"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 4: Parentesco, cruzamentos e avaliação genética · Bloco 4.3</span>
+<h1>Avaliação genética: DEP/EBV e ranking de animais</h1>
+<p>Entender EBV, DEP e acurácia como decisão corrigida.</p>
+</div>
+<div class="study-hero-meta">
+<span>100 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 4: Parentesco, cruzamentos e avaliação genética · Bloco temático 4.3</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo15" data-next-href="modulo16-modelos-lineares-e-modelos-mistos.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 4.3</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Ranking por fenótipo basta?" aria-current="step"><strong>Pergunta simples: Ranking por fenótipo basta?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Ranking por fenótipo basta?
+
+**Intuição**
+
+Pense assim: Boletim corrigido por dificuldade da prova.
+
+Ranking por fenótipo mistura genética, ambiente e quantidade de informação.
+
+**Por que isso importa no melhoramento**
+
+Avaliação genética transforma dados imperfeitos em ranking mais justo. EBV e DEP reduzem risco de escolher animal só pelo ambiente favorável.
+
+**Como pensar antes da fórmula**
+
+Ranking fenotípico é placar bruto. EBV tenta descontar jogo em campo diferente. DEP traduz parte transmissível esperada para filhos.
+
+### Conceito técnico {#item-leitura-conceito}
+
+EBV estima valor genético; DEP expressa diferença esperada na progênie.
+
+**Ponto técnico:** DEP é aproximadamente metade do EBV para características aditivas.
+
+**Passo a passo mental:**
+
+- Compare fenótipo bruto.
+- Ajuste informação ambiental e familiar.
+- Interprete EBV.
+- Converta para DEP quando necessário.
+- Olhe acurácia antes de decidir.
+
+Tópicos principais:
+
+- EBV
+- DEP
+- acurácia
+- ranking
+- fenótipo corrigido
+
+**Termos para consultar no glossário:**
+
+- EBV
+- DEP
+- acurácia
+- ranking
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **DEP = EBV / 2.**
+
+Passo guiado: EBV=20 implica DEP aproximada de 10.
+
+**Termos da fórmula:**
+
+- EBV estima valor genético do animal.
+- DEP representa diferença esperada na progênie, geralmente metade do EBV aditivo.
+- Acurácia indica confiança na estimativa e deve acompanhar ranking.
+
+**Cálculo comentado:**
+
+Se EBV = 20 kg, DEP aproximada é 10 kg. Isso significa que progênie desse animal tende a superar base de comparação em 10 kg, em média.
+Um animal com DEP alta e baixa acurácia pode ser mais incerto que outro com DEP moderada e alta acurácia.
+
+**Resultado esperado:** EBV = 20 kg implica DEP aproximada = 10 kg.
+
+Leitura do resultado: EBV=20 e DEP=10 indicam expectativa média de progênie superior em 10 unidades, se comparação e base forem adequadas.
+
+Exemplo animal: Comparar touros por DEP.
+
+Erro comum: Ler DEP sem unidade, base de comparação ou acurácia.
+
+Visual sugerido: Tabela de ranking.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Comparar ranking por fenótipo, EBV e DEP.
+
+[Script R](../scripts/modulo15.R){.entry-link aria-label="Abrir script R do bloco temático 4.3"} · [CSV simulado](../data/modulo15_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 4.3"}
+
+`ebv <- c(20, 8, -4); ebv / 2`
+
+**Variação obrigatória:** Escolher animal com EBV, DEP e acurácia.
+
+**Observe:** Mais informação melhora confiança no ranking.
+
+**Interpretação esperada:** Ranking por DEP deve ser lido junto com acurácia e base de comparação.
+:::
+
+```r
+ebv <- c(20, 8, -4)
+dep <- ebv / 2
+dep
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Interpretar EBV/DEP como decisão de seleção.
+
+**Decisão guiada:** Compare animal de maior DEP com animal de maior acurácia e justifique escolha.
+
+**Evidência mínima:** Ranking defendido.
+
+**Antes do quiz:** Explicar por que maior fenótipo não basta.
+
+::: {.quiz-container data-module="15"}
+:::
+
+Depois, avance para Bloco temático 4.4.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo14-cruzamentos-heterose-e-complementaridade.html" aria-label="Voltar para Bloco temático 4.2">Bloco temático 4.2</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo16-modelos-lineares-e-modelos-mistos.html" aria-label="Avançar para Bloco temático 4.4">Bloco temático 4.4</a>
+</nav>
+</div>
+</div>

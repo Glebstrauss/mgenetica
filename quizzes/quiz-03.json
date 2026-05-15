@@ -1,58 +1,33 @@
 {
   "module": "03",
-  "title": "Quiz — Módulo 03",
-  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "title": "Quiz — Genética de populações I: frequências alélicas e genotípicas",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
   "passMark": 4,
   "questions": [
     {
-      "text": "O coeficiente de variação (CV) é útil para comparar variabilidades entre características distintas porque:",
-      "options": [
-        "Remove a influência da média, expressando a dispersão em termos percentuais.",
-        "É sempre maior que o desvio padrão independente da escala.",
-        "Independe da distribuição dos dados e pode ser negativo.",
-        "É equivalente à variância e facilmente comparável."
-      ],
+      "text": "Com 10 AA, 5 Aa e 5 aa, qual é p para alelo A?",
+      "options": ["0,625", "0,500", "0,250"],
       "correct": 0
     },
     {
-      "text": "Em uma distribuição fenotípica com assimetria positiva (skewness > 0):",
-      "options": [
-        "A média é menor que a mediana e a moda.",
-        "A cauda da distribuição estende-se para a direita, com poucos valores muito altos.",
-        "Os dados são perfeitamente simétricos ao redor da média.",
-        "A variância é necessariamente negativa."
-      ],
-      "correct": 1
+      "text": "Por que Aa entra uma vez no numerador de p?",
+      "options": ["Porque carrega uma cópia de A.", "Porque carrega duas cópias de A.", "Porque não contribui para frequência alélica."],
+      "correct": 0
     },
     {
-      "text": "Qual medida de dispersão é diretamente utilizada no cálculo da herdabilidade?",
-      "options": [
-        "Amplitude total",
-        "Intervalo interquartil (IIQ)",
-        "Variância",
-        "Moda"
-      ],
-      "correct": 2
+      "text": "O que p + q deve valer em sistema com dois alelos?",
+      "options": ["1", "2N", "Número de genótipos"],
+      "correct": 0
     },
     {
-      "text": "Na análise exploratória de dados fenotípicos, o gráfico mais eficaz para identificar outliers é:",
-      "options": [
-        "Gráfico de pizza",
-        "Diagrama de caixa (boxplot)",
-        "Gráfico de barras simples",
-        "Histograma de frequências acumuladas"
-      ],
-      "correct": 1
+      "text": "Alelo mais frequente deve ser selecionado automaticamente?",
+      "options": ["Não. Frequência não informa sozinha efeito produtivo.", "Sim. Frequência alta sempre indica superioridade.", "Sim. Alelo raro sempre é prejudicial."],
+      "correct": 0
     },
     {
-      "text": "O desvio padrão amostral de um conjunto de fenótipos é:",
-      "options": [
-        "O quadrado da variância amostral.",
-        "A raiz quadrada da variância amostral.",
-        "A média dos valores absolutos dos desvios em relação à mediana.",
-        "A metade da amplitude total dos dados."
-      ],
-      "correct": 1
+      "text": "Qual evidência fecha melhor este bloco?",
+      "options": ["Tabela com frequências genotípicas, p, q e interpretação.", "Lista de animais sem cálculo.", "Gráfico sem explicar alelos."],
+      "correct": 0
     }
   ]
 }

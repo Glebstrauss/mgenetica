@@ -1,0 +1,129 @@
+course_content_expansion:
+  purpose: "Expandir aulas sem mudar arquitetura. Cada bloco ganha contexto, raciocínio guiado, interpretação e erro comum."
+  modules:
+    M1:
+      why_it_matters: "Aluno chega ao melhoramento com nomes soltos: gene, alelo, genótipo e fenótipo. Este bloco organiza essa base para que seleção não pareça mágica: animal transmite alelos, mas o que medimos é fenótipo."
+      intuition_expansion: "Imagine uma receita herdada e uma cozinha real. O genótipo é parte da receita; o ambiente é cozinha, manejo, alimentação e medição; o fenótipo é o prato final. Melhoramento tenta inferir a receita a partir do prato."
+      study_steps: ["Identifique característica observada.", "Separe palavra herdável de palavra observável.", "Use cruzamento simples para prever proporções.", "Explique por que fenótipo não é sinônimo de genótipo."]
+      example_interpretation: "A proporção 1:2:1 mostra expectativa mendeliana, não garantia em lote pequeno. Se poucos bezerros nascerem, contagem real pode fugir da expectativa por acaso."
+      common_mistake: "Dizer que animal com melhor fenótipo tem sempre melhor genótipo. Pode ser só ambiente melhor."
+    M2:
+      why_it_matters: "Seleção funciona melhor quando entendemos qual parte do efeito gênico passa de forma previsível para descendentes. Aditividade sustenta ganho acumulado; dominância e epistasia ajudam explicar desvios."
+      intuition_expansion: "Pense em blocos de montar. Às vezes cada peça adiciona altura parecida; às vezes uma combinação encaixa melhor que a soma das peças; às vezes uma peça só funciona se outra estiver presente."
+      study_steps: ["Compare valores dos dois homozigotos.", "Calcule ponto médio esperado.", "Veja onde heterozigoto cai.", "Relacione desvio com dominância ou interação."]
+      example_interpretation: "AA=10 e aa=4 têm ponto médio 7. Se Aa=8, heterozigoto está acima do ponto médio; há desvio de dominância favorável."
+      common_mistake: "Chamar qualquer diferença entre genótipos de aditiva. Aditividade exige padrão de soma média dos alelos."
+    M3:
+      why_it_matters: "Antes de perguntar se seleção mudou rebanho, é preciso saber estado inicial da população. Frequências são painel de controle da genética populacional."
+      intuition_expansion: "Imagine estoque de peças. Contar animais AA, Aa e aa informa prateleiras por genótipo; contar alelos A e a informa quantas peças de cada tipo existem para formar próxima geração."
+      study_steps: ["Conte genótipos.", "Transforme heterozigotos em uma cópia de cada alelo.", "Divida pelo total de cópias alélicas.", "Interprete frequência sem confundir com mérito."]
+      example_interpretation: "p=0,625 diz que 62,5% das cópias alélicas são A. Isso não diz sozinho se A é bom, ruim ou neutro."
+      common_mistake: "Dividir número de AA pelo número de animais e chamar isso de frequência alélica."
+    M4:
+      why_it_matters: "Hardy-Weinberg é régua de comparação. Ele ajuda detectar se acasalamento, seleção, estrutura de rebanho ou erro de genotipagem podem estar alterando proporções."
+      intuition_expansion: "Pense em sortear duas bolas de uma urna muito grande. Se a urna tem 70% A e 30% a, a chance de formar AA, Aa ou aa vem das combinações possíveis desses sorteios."
+      study_steps: ["Defina p e q.", "Calcule p², 2pq e q².", "Converta proporções em números esperados.", "Compare observado e esperado com cautela."]
+      example_interpretation: "Com p=0,7, heterozigotos esperados são 42%. Se observado for muito menor, pode existir endogamia, subdivisão ou seleção contra heterozigotos."
+      common_mistake: "Usar Hardy-Weinberg como verdade obrigatória. É modelo nulo para investigação."
+    M5:
+      why_it_matters: "Melhoramento muda frequências gênicas de propósito, mas deriva, migração e mutação também mudam. Separar forças evita atribuir todo resultado à seleção."
+      intuition_expansion: "Imagine volante e vento. Seleção é volante: direção escolhida. Deriva é vento: empurra sem intenção, mais forte em população pequena. Migração troca peças entre rebanhos."
+      study_steps: ["Identifique força possível.", "Veja se mudança tem direção consistente.", "Considere tamanho efetivo.", "Relacione mudança com risco ou ganho de longo prazo."]
+      example_interpretation: "p subir de 0,40 para 0,65 sob seleção sugere pressão direcional. Em população pequena, parte dessa mudança ainda pode ter componente aleatório."
+      common_mistake: "Ignorar tamanho efetivo e achar que população pequena responde sempre de forma previsível."
+    M6:
+      why_it_matters: "Todo programa de seleção começa com fenótipo, mas decisão genética exige descontar ambiente. Sem isso, reprodutor de fazenda melhor manejada pode parecer geneticamente superior."
+      intuition_expansion: "Fenótipo é nota final em prova feita em salas diferentes. Um aluno pode ter nota alta por saber mais, por prova mais fácil ou por ajuda externa. O desafio é estimar competência real."
+      study_steps: ["Escreva P = G + E.", "Liste fatores ambientais prováveis.", "Compare animais em condições semelhantes.", "Interprete ranking com cuidado."]
+      example_interpretation: "Animal B pode ter G maior mesmo com fenótipo menor se recebeu ambiente desfavorável. Ajuste ambiental muda conclusão."
+      common_mistake: "Escolher reprodutor só por maior peso observado, sem olhar idade, lote, sexo, fazenda ou manejo."
+    M7:
+      why_it_matters: "Peso, leite, ganho diário e fertilidade não cabem bem em categorias simples. Genética quantitativa permite trabalhar com variação contínua sem abandonar biologia."
+      intuition_expansion: "Muitos genes pequenos funcionam como muitos botões de volume. Cada botão altera pouco; juntos criam uma escala contínua, não apenas ligado/desligado."
+      study_steps: ["Observe distribuição da característica.", "Procure média e dispersão.", "Conecte muitos efeitos pequenos ao valor final.", "Use variação para planejar seleção."]
+      example_interpretation: "Somar três loci já cria vários valores intermediários. Com dezenas ou centenas, valores parecem contínuos."
+      common_mistake: "Esperar proporções mendelianas simples em características controladas por muitos genes e ambiente."
+    M8:
+      why_it_matters: "Variância total mistura fontes úteis e não úteis para seleção. Separar componentes mostra quanto sinal genético existe dentro do ruído."
+      intuition_expansion: "Pense em orçamento. VP é gasto total; VA, VD, VI e VE são categorias. Para seleção, VA é dinheiro que mais volta em ganho previsível na próxima geração."
+      study_steps: ["Some componentes para obter VP.", "Divida VA por VP quando precisar fração aditiva.", "Aumente VE mentalmente e veja h² cair.", "Relacione ambiente uniforme com melhor comparação."]
+      example_interpretation: "VA=40 em VP=100 indica 40% de variação aditiva. Se VE subir, VP cresce e essa fração cai."
+      common_mistake: "Achar que variância ambiental alta torna genética inexistente. Ela pode apenas esconder sinal."
+    M9:
+      why_it_matters: "Herdabilidade orienta quanto a seleção fenotípica tende a funcionar. Repetibilidade orienta se uma nova medida do mesmo animal ainda traz informação."
+      intuition_expansion: "Herdabilidade pergunta: quanto da diferença entre animais ajuda prever descendentes? Repetibilidade pergunta: quanto uma medida hoje ajuda prever outra medida do mesmo animal?"
+      study_steps: ["Calcule h² = VA/VP.", "Classifique resposta esperada como baixa, média ou alta.", "Separe efeito permanente de efeito temporário.", "Decida se mede mais animais ou repete medida."]
+      example_interpretation: "h²=0,40 sugere resposta moderada à seleção. Não significa que 40% do peso de um animal veio dos genes; fala sobre variação entre animais."
+      common_mistake: "Interpretar herdabilidade como porcentagem genética de um indivíduo."
+    M10:
+      why_it_matters: "Seleção precisa virar ganho mensurável. R = h²S conecta intensidade de escolha com resposta esperada e mostra limites da seleção fenotípica."
+      intuition_expansion: "Escolher melhores animais é puxar média da próxima geração. Mas elástico só move se diferença escolhida tiver componente herdável."
+      study_steps: ["Calcule média da população.", "Calcule média dos selecionados.", "Obtenha S.", "Multiplique por h² para prever R.", "Considere intervalo de geração."]
+      example_interpretation: "R=6 kg por geração significa expectativa média, não promessa para todo descendente. Ganho por ano depende de quanto tempo cada geração leva."
+      common_mistake: "Aumentar intensidade de seleção sem considerar endogamia, número de pais e intervalo de geração."
+    M11:
+      why_it_matters: "Programas reais selecionam várias características. Correlações mostram quando melhorar uma pode ajudar ou atrapalhar outra."
+      intuition_expansion: "Pense em dois indicadores ligados por engrenagem. Girar peso pode girar gordura, fertilidade ou consumo na mesma direção, direção oposta ou quase nada."
+      study_steps: ["Defina duas características.", "Separe correlação fenotípica de genética.", "Interprete sinal positivo ou negativo.", "Procure trade-off antes de decidir índice."]
+      example_interpretation: "Correlação positiva peso-gordura indica que selecionar só peso pode elevar gordura. Isso pode ser desejado ou problema, conforme objetivo."
+      common_mistake: "Usar correlação fenotípica como se fosse genética e concluir resposta hereditária sem evidência."
+    M12:
+      why_it_matters: "Muitas características importantes são registradas como sim/não: prenhe, doente, sobrevivente. O modelo de limiar ajuda ligar essa observação discreta a risco contínuo."
+      intuition_expansion: "Imagine termômetro escondido. Você só vê se alarme tocou ou não, mas por trás existe uma escala contínua de suscetibilidade."
+      study_steps: ["Defina categoria observada.", "Imagine escala subjacente contínua.", "Escolha limiar.", "Calcule proporção acima ou abaixo.", "Interprete prevalência."]
+      example_interpretation: "Mover limiar muda prevalência observada. População pode melhorar geneticamente mesmo se poucos indivíduos mudarem de categoria no curto prazo."
+      common_mistake: "Tratar dado binário como se não tivesse variação quantitativa por trás."
+    M13:
+      why_it_matters: "Parentesco ajuda avaliação genética, mas também aumenta risco de endogamia. Melhoramento precisa usar informação de família sem fechar população demais."
+      intuition_expansion: "Pedigree é mapa de estradas por onde alelos passaram. Quanto mais rotas comuns entre dois animais, maior chance de carregarem cópias vindas do mesmo ancestral."
+      study_steps: ["Identifique ancestrais comuns.", "Classifique tipo de parentesco.", "Relacione parentesco com matriz A.", "Use F para avaliar risco de homozigose."]
+      example_interpretation: "Meio-irmãos compartilham um dos pais; irmãos completos compartilham dois. Por isso parentesco esperado difere."
+      common_mistake: "Achar que todo parentesco é ruim. Problema é usar parentesco sem controle, aumentando endogamia."
+    M14:
+      why_it_matters: "Cruzamentos podem combinar adaptação, produção e heterose. Eles não substituem seleção; organizam como populações diferentes entram no sistema."
+      intuition_expansion: "Pense em duas caixas de ferramentas. Uma raça pode trazer rusticidade; outra, produção. Cruzamento tenta usar ferramentas complementares e recuperar desempenho em F1."
+      study_steps: ["Calcule média parental.", "Compare F1 com média.", "Expresse heterose em proporção ou porcentagem.", "Separe heterose de complementaridade."]
+      example_interpretation: "Heterose positiva indica que F1 superou média dos pais. A decisão prática depende de manter sistema de cruzamento organizado."
+      common_mistake: "Confundir heterose com superioridade permanente de uma raça ou esquecer reposição de matrizes."
+    M15:
+      why_it_matters: "Avaliação genética transforma dados imperfeitos em ranking mais justo. EBV e DEP reduzem risco de escolher animal só pelo ambiente favorável."
+      intuition_expansion: "Ranking fenotípico é placar bruto. EBV tenta descontar jogo em campo diferente. DEP traduz parte transmissível esperada para filhos."
+      study_steps: ["Compare fenótipo bruto.", "Ajuste informação ambiental e familiar.", "Interprete EBV.", "Converta para DEP quando necessário.", "Olhe acurácia antes de decidir."]
+      example_interpretation: "EBV=20 e DEP=10 indicam expectativa média de progênie superior em 10 unidades, se comparação e base forem adequadas."
+      common_mistake: "Ler DEP sem unidade, base de comparação ou acurácia."
+    M16:
+      why_it_matters: "Modelos lineares e mistos são ponte entre estatística e avaliação genética. Eles permitem comparar animais corrigindo efeitos previsíveis de manejo."
+      intuition_expansion: "Imagine separar vozes em gravação. Fazenda, sexo e lote fazem ruído sistemático; modelo tenta separar essas vozes antes de estimar animal."
+      study_steps: ["Defina resposta.", "Liste efeitos fixos.", "Liste efeitos aleatórios.", "Ajuste modelo simples.", "Interprete efeito sem confundir com causalidade automática."]
+      example_interpretation: "peso ~ fazenda + sexo compara animais depois de considerar diferenças médias entre fazendas e sexos."
+      common_mistake: "Colocar efeito de manejo como mérito genético ou interpretar coeficiente sem contexto experimental."
+    M17:
+      why_it_matters: "BLUP e modelo animal são base da avaliação moderna. Eles usam parentesco para emprestar informação e evitar rankings extremos com poucos dados."
+      intuition_expansion: "Animal jovem sem muitos registros é como aluno com poucas provas. Notas de parentes ajudam estimar desempenho esperado, mas modelo reduz exagero quando informação é fraca."
+      study_steps: ["Identifique registros próprios.", "Inclua parentesco.", "Compare ranking bruto e ajustado.", "Observe encolhimento.", "Use acurácia para medir confiança."]
+      example_interpretation: "EBV menos extremo não é punição; é prudência estatística quando evidência direta é pequena."
+      common_mistake: "Achar que BLUP sempre confirma ranking fenotípico."
+    M18:
+      why_it_matters: "Marcadores SNP permitem observar semelhança genômica com mais detalhe que pedigree. Isso antecipa seleção em animais jovens e melhora controle de parentesco."
+      intuition_expansion: "Pedigree diz parentesco esperado; SNPs mostram pedaços reais herdados. Dois irmãos completos têm mesma expectativa, mas podem compartilhar proporções diferentes do genoma."
+      study_steps: ["Codifique genótipos 0/1/2.", "Calcule frequência alélica.", "Verifique dados faltantes.", "Relacione SNPs com parentesco ou característica."]
+      example_interpretation: "Média dos códigos dividida por 2 estima frequência do alelo contado. Frequência extrema tende a carregar pouca informação para comparação."
+      common_mistake: "Achar que um SNP sozinho define animal superior."
+    M19:
+      why_it_matters: "Controle de qualidade evita conclusões falsas. Genotipagem com falhas pode criar associação artificial, parentesco errado e avaliação genômica instável."
+      intuition_expansion: "Antes de usar balança, você confere se ela mede. QC faz isso com SNPs e animais: remove medições com muita falha ou pouca informação."
+      study_steps: ["Calcule falta por animal.", "Calcule falta por SNP.", "Avalie MAF.", "Remova extremos com regra clara.", "Registre filtro aplicado."]
+      example_interpretation: "Uma falta em quatro genótipos é 25%. Se limite for 10%, esse marcador ou animal exigiria revisão ou remoção."
+      common_mistake: "Aplicar filtro sem registrar critério, tornando resultado impossível de reproduzir."
+    M20:
+      why_it_matters: "Matriz G, GWAS e predição genômica usam mesmo tipo de dado para perguntas diferentes: parentesco, regiões associadas e valor genético futuro."
+      intuition_expansion: "Pense no genoma como tabela grande. Matriz G compara linhas; GWAS procura colunas associadas; predição usa muitas colunas juntas para prever desempenho."
+      study_steps: ["Padronize matriz SNP.", "Calcule semelhança entre animais.", "Separe pergunta de associação e predição.", "Valide resultado em dados não usados no ajuste."]
+      example_interpretation: "Produto cruzado de SNPs padronizados resume semelhança genômica. Sem QC e validação, matriz bonita ainda pode levar a decisão ruim."
+      common_mistake: "Confundir GWAS com predição genômica: um busca sinal por marcador; outro prediz mérito com muitos marcadores."
+    M21:
+      why_it_matters: "Projeto final força integração. Melhoramento real não termina em fórmula; termina em decisão justificada, reprodutível e biologicamente defensável."
+      intuition_expansion: "Pipeline é linha de montagem. Dados entram, passam por controle, cálculo, ranking, restrições e justificativa. Se uma etapa falha, decisão final perde confiança."
+      study_steps: ["Defina objetivo de seleção.", "Cheque fenótipo, pedigree e genômica.", "Calcule ou importe métricas.", "Monte ranking com restrições.", "Explique decisão final."]
+      example_interpretation: "Penalizar parentesco pode tirar animal de maior DEP do topo se uso dele aumentar risco de endogamia no conjunto."
+      common_mistake: "Escolher maior número isolado e ignorar objetivo, acurácia, parentesco e qualidade dos dados."

@@ -20,9 +20,9 @@ Melhoramento animal,<br>do conceito ao código
 Uma plataforma aberta para estudar genética quantitativa e genômica aplicada em uma sequência guiada: primeiro a pergunta biológica, depois a simulação, o código em R e a interpretação técnica.
 
 ::: {.hero-actions role="navigation" aria-label="Ações principais da página inicial"}
-[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
-[Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
-[Planejar 12 semanas](semanas/index.qmd){.btn .btn-secondary}
+[Começar M1](modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd){.btn .btn-primary aria-label="Começar pelo Módulo M1"}
+[Explorar os 21 módulos](modules/index.qmd){.btn .btn-secondary aria-label="Explorar o índice com os 21 módulos"}
+[Planejar 5 blocos](semanas/index.qmd){.btn .btn-secondary aria-label="Abrir o roteiro de estudo de 5 blocos"}
 :::
 
 ::: {.hero-action-note role="note" aria-label="Como escolher a ação inicial"}
@@ -34,9 +34,9 @@ Escolha uma ação por sessão. Todos os caminhos retornam para módulos, roteir
 ::: {.hero-action-note-item role="listitem"}
 **Primeira visita**
 
-Comece pelo Módulo 01.
+Comece pelo Módulo M1.
 
-[Abrir Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01"}
+[Abrir Módulo M1](modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd){.entry-link aria-label="Abrir o Módulo M1"}
 :::
 
 ::: {.hero-action-note-item role="listitem"}
@@ -104,7 +104,7 @@ Interpretação aplicada
 :::
 
 ::: {.hero-signal role="note" aria-label="Forma de estudo recomendada"}
-Cada módulo foi desenhado para fechar um ciclo curto: leia o conceito, rode o script, ajuste um parâmetro e escreva uma decisão técnica. Ao completar os quizzes, a trilha pode ser fechada no certificado.
+Cada módulo foi desenhado para fechar um ciclo curto: leia o conceito, rode o script (ou acompanhe os trechos na página), ajuste um parâmetro e escreva uma decisão técnica. Ao completar os quizzes, a trilha pode ser fechada no certificado.
 :::
 :::
 
@@ -112,7 +112,7 @@ Cada módulo foi desenhado para fechar um ciclo curto: leia o conceito, rode o s
 ![](images/mgenetica-logo-correct.png){fig-alt="Logo original da MGenética em fundo escuro com monograma geométrico cyan"}
 
 ::: {.hero-panel-proof role="note" aria-label="Resumo da trilha MGenética"}
-**12 módulos guiados**
+**21 módulos guiados**
 
 Conceito, simulação, R e interpretação em uma sequência pública de estudo.
 
@@ -150,7 +150,7 @@ Use a página inicial para escolher uma rota curta. A melhor navegação é aque
 ::: {.public-wayfinding-item role="listitem"}
 **Estudar agora**
 
-[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Começar pelo Módulo 01"}
+[Começar M1](modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd){.entry-link aria-label="Começar pelo Módulo M1"}
 :::
 
 ::: {.public-wayfinding-item role="listitem"}
@@ -195,7 +195,7 @@ O que essa mudança altera na seleção ou no manejo?
 :::
 
 ::: {.home-output-standard-actions role="navigation" aria-label="Ações para praticar leitura de evidência técnica"}
-[Ver módulo com código](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 para praticar leitura de código e saída"}
+[Ver módulo com código](modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd){.entry-link aria-label="Abrir o Módulo M1 para praticar leitura de código e saída"}
 [Comparar módulos](modules/index.qmd){.entry-link aria-label="Abrir o índice de módulos para escolher uma evidência técnica"}
 [Planejar uma semana](semanas/index.qmd){.entry-link aria-label="Abrir o roteiro semanal para planejar evidência técnica"}
 :::
@@ -260,7 +260,7 @@ Escreva uma frase de decisão.
 ::: {.home-section .home-proof}
 ::: {.metric-grid}
 ::: {.metric}
-**12**
+**21**
 
 Módulos progressivos
 :::
@@ -318,7 +318,7 @@ O curso funciona melhor quando o visitante entende o papel de cada etapa: escolh
 ::: {.orientation-card role="listitem"}
 **Ponto de entrada**
 
-Comece pelo Módulo 01 se esta for a primeira passagem pela trilha.
+Comece pelo Módulo M1 se esta for a primeira passagem pela trilha.
 :::
 
 ::: {.orientation-card role="listitem"}
@@ -330,7 +330,7 @@ Use busca, glossário e roteiro para recuperar contexto sem abandonar a sequênc
 ::: {.orientation-card role="listitem"}
 **Fechamento**
 
-Ao final, o certificado registra a conclusão após os quizzes dos 12 módulos.
+Ao final, o certificado registra a conclusão após os quizzes dos 21 módulos.
 :::
 :::
 :::
@@ -436,14 +436,14 @@ Entrada
 ::: {.entry-decision-copy}
 **Escolha pela situação atual**
 
-A trilha principal continua sendo o Módulo 01. Use as rotas alternativas quando você já conhece o conteúdo, precisa retomar contexto ou quer organizar o estudo antes de começar.
+A trilha principal continua sendo o Módulo M1. Use as rotas alternativas quando você já conhece o conteúdo, precisa retomar contexto ou quer organizar o estudo antes de começar.
 :::
 
 ::: {.entry-decision-list role="list" aria-label="Critérios para escolher uma rota"}
 ::: {.entry-decision-item role="listitem"}
 **Primeira vez**
 
-Comece pelo Módulo 01.
+Comece pelo Módulo M1.
 :::
 
 ::: {.entry-decision-item role="listitem"}
@@ -466,13 +466,13 @@ Use o roteiro semanal.
 
 Siga o primeiro módulo, rode o script correspondente e registre uma interpretação curta.
 
-[Abrir Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 a partir dos pontos de partida"}
+[Abrir Módulo M1](modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd){.entry-link aria-label="Abrir o Módulo M1 a partir dos pontos de partida"}
 :::
 
 ::: {.entry-card role="listitem"}
 **Entender a trilha**
 
-Veja as quatro fases editoriais antes de avançar para os módulos individuais.
+Veja os 5 blocos antes de avançar para os módulos individuais.
 
 [Ver índice de módulos](modules/index.qmd){.entry-link aria-label="Ver índice de módulos para entender a trilha"}
 :::
@@ -762,37 +762,43 @@ As atividades pedem comparação entre estimativas, hipóteses e implicações p
 ::: {.home-section .home-modules}
 ## Trilha de aprendizado
 
-Um panorama das quatro fases editoriais. O catálogo completo fica no índice de módulos.
+Um panorama dos 5 blocos. O catálogo completo fica no índice de módulos.
 
 ::: {#trilha-de-aprendizado .phase-preview}
 ::: {.phase-preview-card}
 **01 · Fundamentos**
 
-Melhoramento animal e bases da genética quantitativa.
+Genética básica e modos de ação gênica.
 :::
 
 ::: {.phase-preview-card}
-**02 · Dados e parâmetros**
+**02 · Populações**
 
-Exploração, variâncias, herdabilidade e correlações.
+Frequências, equilíbrio e forças que mudam alelos.
 :::
 
 ::: {.phase-preview-card}
-**03 · Modelagem**
+**03 · Quantitativa**
 
-Modelos mistos, BLUP, pedigree e parentesco.
+Fenótipo, variância, parâmetros e resposta à seleção.
 :::
 
 ::: {.phase-preview-card}
-**04 · Genômica**
+**04 · Avaliação**
+
+Parentesco, cruzamentos, modelos mistos e BLUP.
+:::
+
+::: {.phase-preview-card}
+**05 · Genômica**
 
 SNPs, controle de qualidade, matrizes, GWAS e predição.
 :::
 :::
 
 ::: {.section-cta role="navigation" aria-label="Ações da trilha de aprendizado"}
-[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
-[Explorar os 12 módulos](modules/index.qmd){.btn .btn-secondary}
+[Começar M1](modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd){.btn .btn-primary aria-label="Começar pelo Módulo M1"}
+[Explorar os 21 módulos](modules/index.qmd){.btn .btn-secondary aria-label="Explorar o índice com os 21 módulos"}
 :::
 :::
 
@@ -860,8 +866,8 @@ A experiência pública foi desenhada para manter uma linha simples: entrar pela
 :::
 
 ::: {.home-continuity-actions role="navigation" aria-label="Ações para continuar ou concluir a trilha"}
-[Continuar pelos módulos](modules/index.qmd){.btn .btn-primary}
-[Ver como concluir](certificado.qmd){.btn .btn-secondary}
+[Continuar pelos módulos](modules/index.qmd){.btn .btn-primary aria-label="Continuar pelo índice de módulos"}
+[Ver como concluir](certificado.qmd){.btn .btn-secondary aria-label="Ver como concluir a trilha e emitir o certificado"}
 :::
 :::
 
@@ -872,7 +878,7 @@ A experiência pública foi desenhada para manter uma linha simples: entrar pela
 O melhor caminho é seguir os módulos em ordem, executar os scripts e registrar uma interpretação curta a cada etapa. Se preferir distribuir a carga, use o roteiro semanal antes de começar.
 
 ::: {.final-cta-hint}
-Escolha `Começar M01` se ainda não há evidência registrada; escolha planejamento ou certificado apenas quando a próxima sessão já estiver clara.
+Escolha `Começar M1` se ainda não há evidência registrada; escolha planejamento ou certificado apenas quando a próxima sessão já estiver clara.
 :::
 :::
 
@@ -880,7 +886,7 @@ Escolha `Começar M01` se ainda não há evidência registrada; escolha planejam
 ::: {.final-cta-check role="listitem"}
 **Primeira sessão**
 
-Abra o Módulo 01 e feche uma evidência curta.
+Abra o Módulo M1 e feche uma evidência curta.
 :::
 
 ::: {.final-cta-check role="listitem"}
@@ -897,9 +903,9 @@ Confira pendências no certificado antes de encerrar.
 :::
 
 ::: {.final-cta-actions role="navigation" aria-label="Ações finais da página inicial"}
-[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
-[Planejar por semana](semanas/index.qmd){.btn .btn-secondary}
-[Ver como concluir](certificado.qmd){.btn .btn-secondary}
+[Começar M1](modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd){.btn .btn-primary aria-label="Começar pelo Módulo M1"}
+[Planejar por semana](semanas/index.qmd){.btn .btn-secondary aria-label="Abrir o roteiro semanal de estudo"}
+[Ver como concluir](certificado.qmd){.btn .btn-secondary aria-label="Ver como concluir a trilha e emitir o certificado"}
 :::
 :::
 

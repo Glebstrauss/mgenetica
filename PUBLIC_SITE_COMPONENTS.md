@@ -9,6 +9,10 @@ The public site uses editorial components to explain the MGenetica learning path
 ## Source Of Truth
 
 - `data/site-manifest.yml`: public navigation, page registry, module order, module summaries, phase membership and editable-region metadata.
+- `data/course-content.yml`: study content map for readings, concepts, exercises, labs, quiz focus and reference alignment.
+- `data/course-content-expansion.yml`: expanded study prose for why the topic matters, intuition, mental steps, interpretation and common mistakes.
+- `data/course-practice.yml`: richer worked examples, formula terms, R laboratories and realistic formative quizzes for priority modules.
+- `data/glossary.yml`: glossary terms used by the in-study quick glossary and standalone glossary page.
 - `.qmd` pages: longform teaching content, page-specific editorial copy, exercises and scientific explanation.
 - `styles/main.scss` and `styles/main-dark.scss`: visual system, public components, responsive behavior and dark-mode parity.
 - `assets/js/`: public interactions only, loaded conditionally where possible.
@@ -26,7 +30,7 @@ The public site uses editorial components to explain the MGenetica learning path
 
 - Hero components: `.hero`, `.hero-panel-proof`, `.page-hero`, `.profile-hero` introduce the page and should not coexist with Quarto's automatic title block.
 - Card components: module, phase, evidence, statement, resource, profile, public-page and routine cards share border, hover, focus and wrapping behavior through the final public component layer.
-- CTA groups: `.hero-actions`, `.section-cta`, `.modules-landing-actions`, `.home-continuity-actions`, `.modules-certificate-route-actions`, `.utility-next-step`, `.utility-next-step-copy`, `.route-finish-actions`, `.final-cta-hint`, `.final-cta-checks`, `.final-cta-actions`, `.modules-next-step-hint`, `.modules-next-step-checks`, `.about-next-step-actions`, navbar journey CTA and `.profile-actions` should expose a clear primary path and restrained secondary actions.
+- CTA groups: `.hero-actions`, `.section-cta`, `.modules-landing-actions`, `.home-continuity-actions`, `.modules-certificate-route-actions`, `.utility-next-step`, `.utility-next-step-copy`, `.support-actions`, `.route-finish-actions`, `.final-cta-hint`, `.final-cta-checks`, `.final-cta-actions`, `.modules-next-step-hint`, `.modules-next-step-checks`, `.about-next-step-actions`, navbar journey CTA and `.profile-actions` should expose a clear primary path and restrained secondary actions.
 - Wayfinding components: `.public-wayfinding`, `.public-wayfinding-grid`, `.public-wayfinding-item`, `.home-wayfinding`, `.modules-wayfinding`, `.route-wayfinding`, `.utility-wayfinding`, `.certificate-wayfinding` and `.about-wayfinding` identify the visitor's current public context and offer three immediate routes without adding app-like state; route items use numbered visual badges for faster scanning.
 - Session-check components: `.public-session-check`, `.public-session-check-grid`, `.public-session-check-item`, `.route-session-check`, `.utility-session-check` and `.certificate-session-check` provide visitor-facing confirmation points for leaving a page with destination, evidence and return route clear; checklist items use numbered visual badges for consistent scan rhythm.
 - Module session components: `.module-session-plan`, `.module-session-plan-grid`, `.module-session-plan-item`, `.module-technical-scan`, `.module-technical-scan-grid`, `.module-technical-scan-item`, `.module-script-lab`, `.module-script-lab-grid`, `.module-script-lab-item`, `.module-close-check`, `.module-close-check-grid` and `.module-close-check-item` keep each module session bounded by question, R evidence, script reproduction, technical reading, quiz readiness and closing decision; each grid uses the same numbered visual language as public wayfinding.

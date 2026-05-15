@@ -1,0 +1,33 @@
+{
+  "module": "18",
+  "title": "Quiz — Genômica, marcadores SNP e dados moleculares",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "No código SNP 0/1/2, o que significa 2?",
+      "options": ["Duas cópias do alelo contado.", "Dois animais.", "Dois ambientes."],
+      "correct": 0
+    },
+    {
+      "text": "Para 0,1,2,1,0, qual frequência do alelo contado?",
+      "options": ["0,40", "0,80", "2,00"],
+      "correct": 0
+    },
+    {
+      "text": "Um SNP isolado decide seleção sozinho?",
+      "options": ["Não. Decisão robusta usa muitos marcadores e validação.", "Sim. Um SNP sempre basta.", "Sim. Frequência alta é DEP."],
+      "correct": 0
+    },
+    {
+      "text": "Marcadores ajudam estimar...",
+      "options": ["parentesco genômico realizado.", "apenas idade.", "somente sexo."],
+      "correct": 0
+    },
+    {
+      "text": "Qual erro comum deve ser evitado?",
+      "options": ["Confundir código SNP com valor genético final.", "Calcular média do código.", "Registrar dados faltantes."],
+      "correct": 0
+    }
+  ]
+}

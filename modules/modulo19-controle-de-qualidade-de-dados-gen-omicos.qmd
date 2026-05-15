@@ -1,0 +1,230 @@
+---
+title: "Bloco temático 5.2 — Controle de qualidade de dados genômicos"
+subtitle: "Módulo 5: Genômica aplicada ao melhoramento"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 5: Genômica aplicada ao melhoramento · Bloco 5.2</span>
+<h1>Controle de qualidade de dados genômicos</h1>
+<p>Aplicar filtros de call rate, MAF e HWE.</p>
+</div>
+<div class="study-hero-meta">
+<span>100 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 5: Genômica aplicada ao melhoramento · Bloco temático 5.2</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo19" data-next-href="modulo20-matrizes-gen-omicas-gwas-e-predic-ao-gen-omica.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 5.2</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Todo SNP serve?" aria-current="step"><strong>Pergunta simples: Todo SNP serve?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Todo SNP serve?
+
+**Intuição**
+
+Pense assim: Limpar balança antes de pesar.
+
+Dado genômico ruim cria sinal falso e parentesco distorcido.
+
+**Por que isso importa no melhoramento**
+
+Controle de qualidade evita conclusões falsas. Genotipagem com falhas pode criar associação artificial, parentesco errado e avaliação genômica instável.
+
+**Como pensar antes da fórmula**
+
+Antes de usar balança, você confere se ela mede. QC faz isso com SNPs e animais: remove medições com muita falha ou pouca informação.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Controle de qualidade remove SNPs ou animais com muita falha, frequência extrema ou inconsistência.
+
+**Ponto técnico:** Call rate e MAF são filtros iniciais comuns.
+
+**Passo a passo mental:**
+
+- Calcule falta por animal.
+- Calcule falta por SNP.
+- Avalie MAF.
+- Remova extremos com regra clara.
+- Registre filtro aplicado.
+
+Tópicos principais:
+
+- call rate
+- missing
+- MAF
+- HWE
+- filtro por animal
+
+**Termos para consultar no glossário:**
+
+- call rate
+- MAF
+- missing
+- controle de qualidade
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **Proporção de genótipos faltantes.**
+
+Passo guiado: Se 1 de 4 genótipos falta, a taxa de falta é 0,25.
+
+**Termos da fórmula:**
+
+- Call rate é proporção de genótipos observados.
+- Missing rate é proporção de genótipos ausentes.
+- MAF é frequência do alelo menos comum e indica informatividade do marcador.
+
+**Cálculo comentado:**
+
+Em vetor 0, 1, NA e 2, há uma falta em quatro observações; missing rate = 0,25 e call rate = 0,75.
+Filtro muito frouxo deixa erro; filtro rígido demais remove informação. Critério precisa ser registrado.
+
+**Resultado esperado:** Missing rate = 0,25; call rate = 0,75.
+
+Leitura do resultado: Uma falta em quatro genótipos é 25%. Se limite for 10%, esse marcador ou animal exigiria revisão ou remoção.
+
+Exemplo animal: Remover marcadores ruins antes de GWAS.
+
+Erro comum: Aplicar filtro sem registrar critério, tornando resultado impossível de reproduzir.
+
+Visual sugerido: Tabela antes/depois dos filtros.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Calcular falta e MAF em matriz pequena.
+
+[Script R](../scripts/modulo19.R){.entry-link aria-label="Abrir script R do bloco temático 5.2"} · [CSV simulado](../data/modulo19_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 5.2"}
+
+`mean(is.na(c(0, 1, NA, 2)))`
+
+**Variação obrigatória:** Definir thresholds e observar retenção.
+
+**Observe:** Filtro rígido demais também pode remover informação útil.
+
+**Interpretação esperada:** Controle de qualidade protege matriz genômica contra sinal falso.
+:::
+
+```r
+x <- c(0, 1, NA, 2)
+mean(is.na(x))
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Escolher filtros básicos sem exagero.
+
+**Decisão guiada:** Decida se marcador com 25% de falta passa em filtro de 10%.
+
+**Evidência mínima:** Conjunto limpo descrito.
+
+**Antes do quiz:** Justificar filtro sem exagero.
+
+::: {.quiz-container data-module="19"}
+:::
+
+Depois, avance para Bloco temático 5.3.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo18-gen-omica-marcadores-snp-e-dados-moleculares.html" aria-label="Voltar para Bloco temático 5.1">Bloco temático 5.1</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo20-matrizes-gen-omicas-gwas-e-predic-ao-gen-omica.html" aria-label="Avançar para Bloco temático 5.3">Bloco temático 5.3</a>
+</nav>
+</div>
+</div>

@@ -1,0 +1,229 @@
+---
+title: "Bloco temático 3.6 — Correlações genéticas, fenotípicas e ambientais"
+subtitle: "Módulo 3: Genética quantitativa"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 3: Genética quantitativa · Bloco 3.6</span>
+<h1>Correlações genéticas, fenotípicas e ambientais</h1>
+<p>Interpretar rA, rP e rE.</p>
+</div>
+<div class="study-hero-meta">
+<span>100 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 3: Genética quantitativa · Bloco temático 3.6</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo11" data-next-href="modulo12-caracter-isticas-de-limiar.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 3.6</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Melhorar peso pode piorar outra característica?" aria-current="step"><strong>Pergunta simples: Melhorar peso pode piorar outra característica?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Melhorar peso pode piorar outra característica?
+
+**Intuição**
+
+Pense assim: Dois termômetros ligados por cabos diferentes.
+
+Uma característica pode responder quando outra é selecionada.
+
+**Por que isso importa no melhoramento**
+
+Programas reais selecionam várias características. Correlações mostram quando melhorar uma pode ajudar ou atrapalhar outra.
+
+**Como pensar antes da fórmula**
+
+Pense em dois indicadores ligados por engrenagem. Girar peso pode girar gordura, fertilidade ou consumo na mesma direção, direção oposta ou quase nada.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Correlação genética mede associação entre efeitos genéticos de duas características.
+
+**Ponto técnico:** Resposta correlacionada pode ajudar ou criar trade-off.
+
+**Passo a passo mental:**
+
+- Defina duas características.
+- Separe correlação fenotípica de genética.
+- Interprete sinal positivo ou negativo.
+- Procure trade-off antes de decidir índice.
+
+Tópicos principais:
+
+- covariância
+- correlação
+- resposta correlacionada
+- trade-off
+
+**Termos para consultar no glossário:**
+
+- correlação genética
+- correlação fenotípica
+- correlação ambiental
+- resposta correlacionada
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **correlação = covxy / sqrt(vx * vy).**
+
+Passo guiado: Correlação positiva entre peso e gordura pode aumentar ambas quando peso é selecionado.
+
+**Termos da fórmula:**
+
+- Correlação fenotípica mede associação observada entre características.
+- Correlação genética mede associação entre efeitos genéticos.
+- Resposta correlacionada ocorre quando seleção em uma característica muda outra.
+
+**Cálculo comentado:**
+
+Se peso e gordura têm correlação genética positiva, selecionar peso pode aumentar gordura. Isso pode ser bom, neutro ou ruim conforme objetivo de seleção.
+Correlação fenotípica pode refletir ambiente compartilhado. Por isso não deve substituir correlação genética em decisão de seleção.
+
+**Resultado esperado:** Correlação positiva indica mudança na mesma direção; correlação negativa indica trade-off potencial.
+
+Leitura do resultado: Correlação positiva peso-gordura indica que selecionar só peso pode elevar gordura. Isso pode ser desejado ou problema, conforme objetivo.
+
+Exemplo animal: Peso e espessura de gordura.
+
+Erro comum: Usar correlação fenotípica como se fosse genética e concluir resposta hereditária sem evidência.
+
+Visual sugerido: Heatmap de correlações.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Calcular correlação e interpretar direção da resposta.
+
+[Script R](../scripts/modulo11.R){.entry-link aria-label="Abrir script R do bloco temático 3.6"} · [CSV simulado](../data/modulo11_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 3.6"}
+
+`cor(c(1,2,3), c(1,3,5))`
+
+**Variação obrigatória:** Interpretar resposta correlacionada.
+
+**Observe:** Correlação fenotípica não substitui correlação genética.
+
+**Interpretação esperada:** Correlação observada é alerta inicial; decisão genética exige separar fontes de covariância.
+:::
+
+```r
+peso <- c(180, 190, 205, 210, 225)
+gordura <- c(3, 4, 5, 5, 7)
+cor(peso, gordura)
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Separar correlação genética, fenotípica e ambiental.
+
+**Decisão guiada:** Explique se selecionar peso isoladamente pode prejudicar objetivo de carcaça.
+
+**Evidência mínima:** Trade-off descrito.
+
+**Antes do quiz:** Separar correlação genética de fenotípica.
+
+::: {.quiz-container data-module="11"}
+:::
+
+Depois, avance para Bloco temático 3.7.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo10-selec-ao-e-ganho-gen-etico.html" aria-label="Voltar para Bloco temático 3.5">Bloco temático 3.5</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo12-caracter-isticas-de-limiar.html" aria-label="Avançar para Bloco temático 3.7">Bloco temático 3.7</a>
+</nav>
+</div>
+</div>

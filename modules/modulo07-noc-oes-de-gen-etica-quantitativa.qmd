@@ -1,0 +1,230 @@
+---
+title: "Bloco temático 3.2 — Noções de genética quantitativa"
+subtitle: "Módulo 3: Genética quantitativa"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 3: Genética quantitativa · Bloco 3.2</span>
+<h1>Noções de genética quantitativa</h1>
+<p>Entender muitos genes pequenos mais ambiente.</p>
+</div>
+<div class="study-hero-meta">
+<span>100 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 3: Genética quantitativa · Bloco temático 3.2</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo07" data-next-href="modulo08-componentes-de-vari-ancia.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 3.2</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Por que peso não parece ervilha de Mendel?" aria-current="step"><strong>Pergunta simples: Por que peso não parece ervilha de Mendel?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Por que peso não parece ervilha de Mendel?
+
+**Intuição**
+
+Pense assim: Muitos botões pequenos regulam o mesmo resultado.
+
+Características como peso e leite variam de forma contínua porque muitos genes e o ambiente atuam juntos.
+
+**Por que isso importa no melhoramento**
+
+Peso, leite, ganho diário e fertilidade não cabem bem em categorias simples. Genética quantitativa permite trabalhar com variação contínua sem abandonar biologia.
+
+**Como pensar antes da fórmula**
+
+Muitos genes pequenos funcionam como muitos botões de volume. Cada botão altera pouco; juntos criam uma escala contínua, não apenas ligado/desligado.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Genética quantitativa estuda variação contínua e usa médias, variâncias e covariâncias para apoiar seleção.
+
+**Ponto técnico:** Quanto mais loci pequenos, mais a distribuição se aproxima de uma curva contínua.
+
+**Passo a passo mental:**
+
+- Observe distribuição da característica.
+- Procure média e dispersão.
+- Conecte muitos efeitos pequenos ao valor final.
+- Use variação para planejar seleção.
+
+Tópicos principais:
+
+- poligenia
+- distribuição contínua
+- média
+- variação
+
+**Termos para consultar no glossário:**
+
+- poligenia
+- distribuição contínua
+- média
+- variância
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **Somar efeitos de três loci.**
+
+Passo guiado: Some efeitos 0, 1 e 2 em três loci. A soma gera vários valores intermediários.
+
+**Termos da fórmula:**
+
+- Valor quantitativo pode ser soma de muitos efeitos pequenos mais ambiente.
+- Média resume centro da distribuição; variância resume dispersão.
+- Mais loci segregando tendem a gerar mais classes fenotípicas.
+
+**Cálculo comentado:**
+
+Use três loci codificados como 0, 1 e 2. Um animal com soma 0 tem poucos alelos favoráveis; outro com soma 6 tem muitos. Valores intermediários aparecem por combinações diferentes.
+Quando o número de loci aumenta, categorias discretas ficam numerosas e a característica passa a parecer contínua, como peso, leite ou ganho diário.
+
+**Resultado esperado:** Três loci 0/1/2 produzem soma entre 0 e 6; mais loci aumentam número de valores possíveis.
+
+Leitura do resultado: Somar três loci já cria vários valores intermediários. Com dezenas ou centenas, valores parecem contínuos.
+
+Exemplo animal: Produção de leite.
+
+Erro comum: Esperar proporções mendelianas simples em características controladas por muitos genes e ambiente.
+
+Visual sugerido: Histograma de valores.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Simular soma de loci e visualizar a distribuição.
+
+[Script R](../scripts/modulo07.R){.entry-link aria-label="Abrir script R do bloco temático 3.2"} · [CSV simulado](../data/modulo07_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 3.2"}
+
+`rowSums(matrix(sample(0:2, 30, TRUE), ncol = 3))`
+
+**Variação obrigatória:** Mudar número de loci simulados.
+
+**Observe:** Aumentar número de loci aumenta continuidade dos valores.
+
+**Interpretação esperada:** Distribuição contínua surge da soma de muitos efeitos; ambiente amplia sobreposição entre animais.
+:::
+
+```r
+set.seed(7)
+genotipos <- matrix(sample(0:2, 60, replace = TRUE), ncol = 3)
+valor_genetico <- rowSums(genotipos)
+summary(valor_genetico)
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Explicar por que características quantitativas não seguem categorias simples.
+
+**Decisão guiada:** Explique por que seleção para peso usa médias e variâncias, não classes mendelianas simples.
+
+**Evidência mínima:** Histograma interpretado.
+
+**Antes do quiz:** Explicar por que distribuição fica contínua.
+
+::: {.quiz-container data-module="07"}
+:::
+
+Depois, avance para Bloco temático 3.3.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo06-valores-e-m-edias-fen-otipo-gen-otipo-e-ambiente.html" aria-label="Voltar para Bloco temático 3.1">Bloco temático 3.1</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo08-componentes-de-vari-ancia.html" aria-label="Avançar para Bloco temático 3.3">Bloco temático 3.3</a>
+</nav>
+</div>
+</div>

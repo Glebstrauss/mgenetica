@@ -1,58 +1,33 @@
 {
   "module": "12",
-  "title": "Quiz — Módulo 12",
-  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "title": "Quiz — Características de limiar",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
   "passMark": 4,
   "questions": [
     {
-      "text": "A matriz de relacionamento genômico (G) é construída a partir de:",
-      "options": [
-        "Pedigree de múltiplas gerações e coeficientes de parentesco esperados.",
-        "Informações de marcadores SNP distribuídos pelo genoma.",
-        "Fenótipos dos animais e estimativas de herdabilidade.",
-        "Dados de expressão gênica por RNA-seq."
-      ],
-      "correct": 1
+      "text": "Com dois afetados em cinco animais, qual é prevalência?",
+      "options": ["0,40", "2,5", "1,00"],
+      "correct": 0
     },
     {
-      "text": "A vantagem principal da matriz G em relação à A (baseada em pedigree) é que:",
-      "options": [
-        "G é sempre simétrica e definida positiva, enquanto A não é.",
-        "G captura o parentesco genômico real (IBS), enquanto A expressa apenas o parentesco esperado.",
-        "G pode ser calculada sem necessidade de computadores modernos.",
-        "G é mais barata de construir do que A em programas nacionais."
-      ],
-      "correct": 1
+      "text": "O que representa escala subjacente?",
+      "options": ["Risco ou suscetibilidade contínua.", "Nome do animal.", "DEP obrigatória."],
+      "correct": 0
     },
     {
-      "text": "Em um estudo GWAS (Genome-Wide Association Study), o objetivo é:",
-      "options": [
-        "Predizer os valores genéticos de animais sem fenótipo disponível.",
-        "Identificar regiões do genoma associadas a variação em características de interesse.",
-        "Construir a matriz de relacionamento G para uso em avaliação genética.",
-        "Estimar componentes de variância por máxima verossimilhança."
-      ],
-      "correct": 1
+      "text": "Característica binária pode ter base quantitativa?",
+      "options": ["Sim. O limiar transforma escala contínua em categoria.", "Não. Binário nunca tem genética.", "Não. Só existe AA e aa."],
+      "correct": 0
     },
     {
-      "text": "O método ssGBLUP (single-step GBLUP) inova em relação ao GBLUP clássico porque:",
-      "options": [
-        "Utiliza apenas animais genotipados, eliminando dados de pedigree.",
-        "Combina informações de animais genotipados e não-genotipados em uma única análise via H matrix.",
-        "Ignora completamente o pedigree e usa apenas dados de SNP.",
-        "Usa apenas SNPs com MAF > 0,50 para maximizar informatividade."
-      ],
-      "correct": 1
+      "text": "Prevalência baixa exige cuidado por quê?",
+      "options": ["Pode exigir amostra maior para estimativa estável.", "Dispensa registro.", "Prova ausência de variação."],
+      "correct": 0
     },
     {
-      "text": "A predição genômica (GBLUP) geralmente supera o BLUP tradicional (ABLUP) em acurácia porque:",
-      "options": [
-        "Usa menor quantidade de informação, tornando o modelo mais parcimonioso.",
-        "Captura o efeito agregado de todos os SNPs do genoma, incluindo os de pequeno efeito.",
-        "Não necessita de fenótipos para treinamento do modelo preditivo.",
-        "Assume que toda variação genética é de natureza aditiva e mensurável."
-      ],
-      "correct": 1
+      "text": "Qual erro comum deve ser evitado?",
+      "options": ["Tratar categoria observada como se não houvesse escala subjacente.", "Calcular proporção.", "Definir limiar."],
+      "correct": 0
     }
   ]
 }

@@ -1,0 +1,229 @@
+---
+title: "Bloco temático 3.7 — Características de limiar"
+subtitle: "Módulo 3: Genética quantitativa"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 3: Genética quantitativa · Bloco 3.7</span>
+<h1>Características de limiar</h1>
+<p>Entender escala subjacente para características categóricas.</p>
+</div>
+<div class="study-hero-meta">
+<span>100 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 3: Genética quantitativa · Bloco temático 3.7</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo12" data-next-href="modulo13-endogamia-e-parentesco.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 3.7</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Como genética muda uma resposta sim/não?" aria-current="step"><strong>Pergunta simples: Como genética muda uma resposta sim/não?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Como genética muda uma resposta sim/não?
+
+**Intuição**
+
+Pense assim: Nota invisível define aprovado ou reprovado.
+
+Algumas respostas aparecem como sim/não, mas podem vir de uma escala quantitativa invisível.
+
+**Por que isso importa no melhoramento**
+
+Muitas características importantes são registradas como sim/não: prenhe, doente, sobrevivente. O modelo de limiar ajuda ligar essa observação discreta a risco contínuo.
+
+**Como pensar antes da fórmula**
+
+Imagine termômetro escondido. Você só vê se alarme tocou ou não, mas por trás existe uma escala contínua de suscetibilidade.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Características de limiar assumem suscetibilidade contínua e observação categórica quando o limiar é ultrapassado.
+
+**Ponto técnico:** Prevalência muda quando a média populacional ou o limiar muda.
+
+**Passo a passo mental:**
+
+- Defina categoria observada.
+- Imagine escala subjacente contínua.
+- Escolha limiar.
+- Calcule proporção acima ou abaixo.
+- Interprete prevalência.
+
+Tópicos principais:
+
+- limiar
+- suscetibilidade
+- prevalência
+- escala subjacente
+
+**Termos para consultar no glossário:**
+
+- limiar
+- suscetibilidade
+- prevalência
+- escala subjacente
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **Contar proporção acima de um limiar.**
+
+Passo guiado: Conte proporção de valores acima de 1 em uma distribuição normal.
+
+**Termos da fórmula:**
+
+- Escala subjacente representa risco ou suscetibilidade contínua.
+- Limiar separa classes observadas, como doente/não doente ou prenhe/não prenhe.
+- Prevalência é proporção de animais acima ou abaixo do limiar.
+
+**Cálculo comentado:**
+
+Imagine valores de suscetibilidade -1, 0, 0,5, 1,2 e 1,8. Com limiar 1, dois de cinco animais passam do limite.
+A prevalência observada é 2/5 = 0,40. Mudar limiar ou média populacional muda proporção observada sem tornar a característica simples.
+
+**Resultado esperado:** Com limiar 1, prevalência = 0,40 no exemplo de cinco animais.
+
+Leitura do resultado: Mover limiar muda prevalência observada. População pode melhorar geneticamente mesmo se poucos indivíduos mudarem de categoria no curto prazo.
+
+Exemplo animal: Prenhez, sobrevivência ou doença.
+
+Erro comum: Tratar dado binário como se não tivesse variação quantitativa por trás.
+
+Visual sugerido: Curva normal com limiar.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Mover limiar e observar prevalência.
+
+[Script R](../scripts/modulo12.R){.entry-link aria-label="Abrir script R do bloco temático 3.7"} · [CSV simulado](../data/modulo12_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 3.7"}
+
+`x <- rnorm(100); mean(x > 1)`
+
+**Variação obrigatória:** Mudar limiar e observar prevalência.
+
+**Observe:** Menor prevalência pode exigir amostra maior para estimar bem.
+
+**Interpretação esperada:** Categoria observada pode esconder variação contínua importante para seleção.
+:::
+
+```r
+x <- c(-1, 0, 0.5, 1.2, 1.8)
+mean(x > 1)
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Explicar por que um traço binário pode ter base quantitativa.
+
+**Decisão guiada:** Explique por que baixa prevalência exige cuidado com tamanho de amostra.
+
+**Evidência mínima:** Prevalência interpretada.
+
+**Antes do quiz:** Explicar por que sim/não ainda pode ter base quantitativa.
+
+::: {.quiz-container data-module="12"}
+:::
+
+Depois, avance para Bloco temático 4.1.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo11-correlac-oes-gen-eticas-fenot-ipicas-e-ambientais.html" aria-label="Voltar para Bloco temático 3.6">Bloco temático 3.6</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo13-endogamia-e-parentesco.html" aria-label="Avançar para Bloco temático 4.1">Bloco temático 4.1</a>
+</nav>
+</div>
+</div>

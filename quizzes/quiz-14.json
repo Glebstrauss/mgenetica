@@ -1,0 +1,33 @@
+{
+  "module": "14",
+  "title": "Quiz — Cruzamentos, heterose e complementaridade",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "Com pais 210 e 220 kg, qual é média parental?",
+      "options": ["215 kg", "430 kg", "230 kg"],
+      "correct": 0
+    },
+    {
+      "text": "Com F1 = 230 kg, qual heterose absoluta?",
+      "options": ["15 kg", "7 kg", "215 kg"],
+      "correct": 0
+    },
+    {
+      "text": "Heterose percentual é aproximadamente...",
+      "options": ["7,0%", "15%", "230%"],
+      "correct": 0
+    },
+    {
+      "text": "Heterose substitui seleção?",
+      "options": ["Não. Complementa estratégia de acasalamento.", "Sim. Elimina necessidade de seleção.", "Sim. Remove todo risco."],
+      "correct": 0
+    },
+    {
+      "text": "Complementaridade significa...",
+      "options": ["combinar forças de grupos diferentes.", "usar sempre uma única raça.", "ignorar ambiente."],
+      "correct": 0
+    }
+  ]
+}

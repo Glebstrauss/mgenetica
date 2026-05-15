@@ -1,7 +1,7 @@
 ---
-title: "Módulos"
-subtitle: "Trilha pública de genética quantitativa e genômica aplicada"
-description: "Índice dos 12 módulos do MGenética, organizado por fases de aprendizagem, prática em R e progressão técnica."
+title: "Curso"
+subtitle: "Trilha de graduação em melhoramento genético animal"
+description: "Curso MGenética organizado em 5 módulos, 21 blocos temáticos e itens de estudo."
 page-layout: full
 toc: false
 sidebar: false
@@ -9,348 +9,255 @@ number-sections: false
 ---
 
 ```{=html}
-<section class="modules-landing">
-  <div class="modules-landing-copy">
-    <span class="module-badge">TRILHA COMPLETA</span>
-    <h1>Do fundamento biológico à avaliação genômica</h1>
-    <p>Os módulos foram organizados para combinar conceito, simulação, código em R e interpretação. A sequência mantém uma estrutura previsível para leitura pública hoje e edição por painel interno no futuro.</p>
-    <div class="modules-landing-actions" role="navigation" aria-label="Ações principais do índice de módulos">
-      <a class="btn btn-primary" href="modulo01-introducao-ao-melhoramento-animal.html" aria-label="Começar pelo Módulo 01">Começar M01</a>
-      <a class="btn btn-secondary" href="../semanas/index.html">Ver roteiro semanal</a>
-      <a class="btn btn-secondary" href="../index.html">Voltar ao início</a>
-    </div>
-  </div>
-  <div class="modules-landing-panel" role="note" aria-label="Resumo da trilha">
-    <strong>12 módulos</strong>
-    <span>4 fases editoriais</span>
-    <span>Scripts reproduzíveis em R</span>
-    <span>Certificado ao concluir os quizzes</span>
-    <span>Sequência registrada no manifesto do site</span>
-  </div>
+<main class="course-minimal" aria-label="Curso MGenética">
+<section class="course-minimal-hero">
+<div>
+<span class="module-badge">CURSO</span>
+<h1>Melhoramento genético animal</h1>
+<p>Uma trilha enxuta para estudar melhoramento genético animal: genética, seleção, avaliação genética, R e genômica no mesmo fluxo.</p>
+<div class="course-hero-facts" aria-label="Resumo da trilha"><span>5 módulos</span><span>21 blocos</span><span>Laboratório R em cada bloco</span></div>
+<div class="course-minimal-actions" role="navigation" aria-label="Ações principais">
+<a class="btn btn-primary" href="modulo01-revis-ao-de-gen-etica-b-asica.html" aria-label="Começar curso pelo primeiro bloco">Começar curso</a>
+<a class="btn btn-secondary" href="#modulos-do-curso" aria-label="Ver módulos do curso">Ver módulos</a>
+</div>
+</div>
+<aside class="course-progress-card course-minimal-progress" role="region" aria-label="Progresso do curso" data-course-progress-card>
+<strong>Continuar</strong>
+<span data-course-progress-summary>0/21 blocos temáticos concluídos</span>
+<div class="course-progress-track" aria-hidden="true"><i data-course-progress-fill style="width:0%"></i></div>
+<a class="btn btn-primary" href="modulo01-revis-ao-de-gen-etica-b-asica.html" data-course-continue aria-label="Continuar estudo pelo próximo bloco">Começar curso</a>
+</aside>
 </section>
+<section class="course-essentials" aria-label="Sobre e habilidades">
+<div><strong>Sobre</strong><p>Progressão de genética básica até genômica aplicada, com pergunta simples, cálculo curto, R e interpretação animal.</p></div>
+<div><strong>Habilidades</strong><p>Frequências gênicas, variância, herdabilidade, seleção, parentesco, BLUP, genômica e leitura de resultados em R.</p></div>
+</section>
+<section id="modulos-do-curso" class="course-module-list" aria-label="Módulos do curso">
+<div class="course-module-list-head"><h2>Módulos do curso</h2><p>Abra um módulo, escolha o próximo bloco e continue a sequência.</p></div>
+<details class="course-module" open>
+<summary><span>Módulo 1: Fundamentos</span><small>2 blocos</small></summary>
+<p>Revisão de base genética antes de entrar em populações e genética quantitativa.</p>
+<div class="course-block-list" role="list">
+<a class="course-block-row" role="listitem" href="modulo01-revis-ao-de-gen-etica-b-asica.html">
+<span class="course-block-index">1.1</span>
+<span class="course-block-main">
+<strong>Revisão de genética básica</strong>
+<em>Revisar gene, alelo, genótipo, fenótipo e segregação.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo02-modos-de-ac-ao-g-enica.html">
+<span class="course-block-index">1.2</span>
+<span class="course-block-main">
+<strong>Modos de ação gênica</strong>
+<em>Entender efeitos aditivos, dominância e epistasia antes da genética quantitativa.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+</div>
+</details>
+<details class="course-module" >
+<summary><span>Módulo 2: Genética de populações</span><small>3 blocos</small></summary>
+<p>Frequências, equilíbrio e forças que mudam alelos em rebanhos.</p>
+<div class="course-block-list" role="list">
+<a class="course-block-row" role="listitem" href="modulo03-gen-etica-de-populac-oes-i-frequ-encias-al-elicas-e-genot-ipicas.html">
+<span class="course-block-index">2.1</span>
+<span class="course-block-main">
+<strong>Genética de populações I: frequências alélicas e genotípicas</strong>
+<em>Calcular frequências alélicas e genotípicas.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo04-hardy-weinberg-alelos-m-ultiplos-e-genes-ligados-ao-sexo.html">
+<span class="course-block-index">2.2</span>
+<span class="course-block-main">
+<strong>Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo</strong>
+<em>Usar Hardy-Weinberg como expectativa, não como dogma.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo05-fatores-que-alteram-frequ-encias-g-enicas.html">
+<span class="course-block-index">2.3</span>
+<span class="course-block-main">
+<strong>Fatores que alteram frequências gênicas</strong>
+<em>Comparar seleção, migração, mutação e deriva.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+</div>
+</details>
+<details class="course-module" >
+<summary><span>Módulo 3: Genética quantitativa</span><small>7 blocos</small></summary>
+<p>Variação contínua, parâmetros, seleção e consequências entre características.</p>
+<div class="course-block-list" role="list">
+<a class="course-block-row" role="listitem" href="modulo06-valores-e-m-edias-fen-otipo-gen-otipo-e-ambiente.html">
+<span class="course-block-index">3.1</span>
+<span class="course-block-main">
+<strong>Valores e médias: fenótipo, genótipo e ambiente</strong>
+<em>Separar P, G e E em exemplos pequenos.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo07-noc-oes-de-gen-etica-quantitativa.html">
+<span class="course-block-index">3.2</span>
+<span class="course-block-main">
+<strong>Noções de genética quantitativa</strong>
+<em>Entender muitos genes pequenos mais ambiente.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo08-componentes-de-vari-ancia.html">
+<span class="course-block-index">3.3</span>
+<span class="course-block-main">
+<strong>Componentes de variância</strong>
+<em>Entender VA, VD, VI, VE e VP.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo09-herdabilidade-e-repetibilidade.html">
+<span class="course-block-index">3.4</span>
+<span class="course-block-main">
+<strong>Herdabilidade e repetibilidade</strong>
+<em>Diferenciar h2 e repetibilidade.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo10-selec-ao-e-ganho-gen-etico.html">
+<span class="course-block-index">3.5</span>
+<span class="course-block-main">
+<strong>Seleção e ganho genético</strong>
+<em>Calcular diferencial, resposta e ganho por geração.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo11-correlac-oes-gen-eticas-fenot-ipicas-e-ambientais.html">
+<span class="course-block-index">3.6</span>
+<span class="course-block-main">
+<strong>Correlações genéticas, fenotípicas e ambientais</strong>
+<em>Interpretar rA, rP e rE.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo12-caracter-isticas-de-limiar.html">
+<span class="course-block-index">3.7</span>
+<span class="course-block-main">
+<strong>Características de limiar</strong>
+<em>Entender escala subjacente para características categóricas.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+</div>
+</details>
+<details class="course-module" >
+<summary><span>Módulo 4: Parentesco, cruzamentos e avaliação genética</span><small>5 blocos</small></summary>
+<p>Pedigree, endogamia, cruzamentos, ranking, modelos mistos e BLUP.</p>
+<div class="course-block-list" role="list">
+<a class="course-block-row" role="listitem" href="modulo13-endogamia-e-parentesco.html">
+<span class="course-block-index">4.1</span>
+<span class="course-block-main">
+<strong>Endogamia e parentesco</strong>
+<em>Calcular parentesco simples e interpretar F.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo14-cruzamentos-heterose-e-complementaridade.html">
+<span class="course-block-index">4.2</span>
+<span class="course-block-main">
+<strong>Cruzamentos, heterose e complementaridade</strong>
+<em>Entender heterose e complementaridade sem vender milagre.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo15-avaliac-ao-gen-etica-dep-ebv-e-ranking-de-animais.html">
+<span class="course-block-index">4.3</span>
+<span class="course-block-main">
+<strong>Avaliação genética: DEP/EBV e ranking de animais</strong>
+<em>Entender EBV, DEP e acurácia como decisão corrigida.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo16-modelos-lineares-e-modelos-mistos.html">
+<span class="course-block-index">4.4</span>
+<span class="course-block-main">
+<strong>Modelos lineares e modelos mistos</strong>
+<em>Separar efeitos fixos, aleatórios e resíduo.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo17-blup-e-modelo-animal.html">
+<span class="course-block-index">4.5</span>
+<span class="course-block-main">
+<strong>BLUP e modelo animal</strong>
+<em>Entender BLUP, encolhimento, matriz A e modelo animal.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+</div>
+</details>
+<details class="course-module" >
+<summary><span>Módulo 5: Genômica aplicada ao melhoramento</span><small>4 blocos</small></summary>
+<p>Marcadores SNP, controle de qualidade, matriz G, GWAS, predição e projeto final.</p>
+<div class="course-block-list" role="list">
+<a class="course-block-row" role="listitem" href="modulo18-gen-omica-marcadores-snp-e-dados-moleculares.html">
+<span class="course-block-index">5.1</span>
+<span class="course-block-main">
+<strong>Genômica, marcadores SNP e dados moleculares</strong>
+<em>Entender SNP, genótipo 0/1/2 e frequência alélica.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo19-controle-de-qualidade-de-dados-gen-omicos.html">
+<span class="course-block-index">5.2</span>
+<span class="course-block-main">
+<strong>Controle de qualidade de dados genômicos</strong>
+<em>Aplicar filtros de call rate, MAF e HWE.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo20-matrizes-gen-omicas-gwas-e-predic-ao-gen-omica.html">
+<span class="course-block-index">5.3</span>
+<span class="course-block-main">
+<strong>Matrizes genômicas, GWAS e predição genômica</strong>
+<em>Diferenciar matriz G, GWAS e predição.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+<a class="course-block-row" role="listitem" href="modulo21-projeto-final-pipeline-completo-de-selec-ao.html">
+<span class="course-block-index">5.4</span>
+<span class="course-block-main">
+<strong>Projeto final: pipeline completo de seleção</strong>
+<em>Integrar fenótipo, pedigree, genômica, QC, EBV/DEP e decisão.</em>
+</span>
+<span class="course-block-meta"><strong>70 min</strong><em>5 itens</em></span>
+<span class="course-block-action">Estudar</span>
+</a>
+</div>
+</details>
+</section>
+<section class="course-final-action" aria-label="Conclusão do curso">
+<strong>Fechamento</strong>
+<p>Conclua os blocos, faça a avaliação final e emita o certificado.</p>
+<a class="btn btn-secondary" href="../avaliacao.html">Avaliação final</a>
+</section>
+</main>
 ```
-
-::: {.public-wayfinding .modules-wayfinding role="navigation" aria-label="Orientação pública do índice de módulos"}
-::: {.public-wayfinding-copy}
-**Você está no mapa da trilha**
-
-Use o índice para escolher entre abrir um módulo, comparar fases ou voltar ao roteiro. Evite sair sem uma próxima evidência definida.
-:::
-
-::: {.public-wayfinding-grid role="list" aria-label="Rotas imediatas no índice de módulos"}
-::: {.public-wayfinding-item role="listitem"}
-**Abrir**
-
-[Módulo 01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01"}
-:::
-
-::: {.public-wayfinding-item role="listitem"}
-**Comparar**
-
-[Ver fases](#fases-da-trilha){.entry-link aria-label="Ver fases da trilha"}
-:::
-
-::: {.public-wayfinding-item role="listitem"}
-**Planejar**
-
-[Roteiro](../semanas/index.qmd){.entry-link aria-label="Abrir roteiro semanal"}
-:::
-:::
-:::
-
-::: {.modules-guidance}
-::: {.guidance-item}
-**Fluxo recomendado**
-
-Leia o conceito, execute o script do módulo e compare a interpretação com os objetivos declarados na página.
-:::
-
-::: {.guidance-item}
-**Gestão editorial**
-
-Ordem, fases, cartões e status de publicação ficam descritos no manifesto do site para futura edição pelo painel interno.
-:::
-
-::: {.guidance-item}
-**Progressão**
-
-Cada página de módulo mantém navegação anterior, próxima etapa e retorno para este índice.
-:::
-:::
-
-::: {.modules-output-route role="navigation" aria-label="Rotas por tipo de evidência técnica"}
-::: {.modules-output-route-copy}
-**Escolha também pelo tipo de evidência**
-
-Se a dúvida principal é técnica, entre pelo formato de saída que você precisa treinar: código básico, tabela de parâmetros ou evidência genômica. Isso reduz a sensação de catálogo longo e aproxima o módulo da decisão prática.
-:::
-
-::: {.modules-output-route-grid role="list" aria-label="Entradas por saída técnica"}
-::: {.modules-output-route-item role="listitem"}
-**Código e ganho**
-
-Comece com simulação simples e leitura de saída em texto.
-
-[Abrir M01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 para praticar código e ganho genético"}
-:::
-
-::: {.modules-output-route-item role="listitem"}
-**Tabela e parâmetro**
-
-Compare variáveis, herdabilidade ou correlações antes de avançar.
-
-[Abrir M06](modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Abrir o Módulo 06 para praticar leitura de tabelas e correlações"}
-:::
-
-::: {.modules-output-route-item role="listitem"}
-**Figura e genômica**
-
-Use marcadores, matrizes e gráficos para fechar interpretação aplicada.
-
-[Abrir M12](modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir o Módulo 12 para praticar leitura de saída genômica"}
-:::
-:::
-:::
-
-::: {.modules-completion-flow role="region" aria-label="Como concluir a trilha MGenética"}
-::: {.modules-completion-copy}
-**Da primeira leitura ao certificado**
-
-O percurso público fecha quando o visitante completa os quizzes dos 12 módulos. A conclusão continua local ao navegador, sem cadastro e sem envio de dados.
-:::
-
-::: {.modules-completion-steps role="list" aria-label="Etapas de conclusão"}
-::: {.modules-completion-step role="listitem"}
-**1 · Estudar**
-
-Leia o módulo e execute o script correspondente.
-:::
-
-::: {.modules-completion-step role="listitem"}
-**2 · Validar**
-
-Responda ao quiz e registre o progresso local.
-:::
-
-::: {.modules-completion-step role="listitem"}
-**3 · Emitir**
-
-Abra o certificado quando todos os módulos estiverem concluídos.
-:::
-:::
-:::
-
-## Fases da trilha
-
-::: {.phase-grid role="list" aria-label="Fases da trilha MGenética"}
-::: {.phase-card role="listitem"}
-**01 · Fundamentos**
-
-Módulos 01-02 apresentam a lógica do melhoramento animal e a decomposição genética do fenótipo.
-
-[Começar fase](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Começar a fase de fundamentos pelo Módulo 01"}
-:::
-
-::: {.phase-card role="listitem"}
-**02 · Dados e parâmetros**
-
-Módulos 03-06 conectam exploração, variância, herdabilidade, repetibilidade e correlações.
-
-[Começar fase](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd){.entry-link aria-label="Começar a fase de dados pelo Módulo 03"}
-:::
-
-::: {.phase-card role="listitem"}
-**03 · Modelagem**
-
-Módulos 07-09 avançam para modelos mistos, BLUP, pedigree e parentesco.
-
-[Começar fase](modulo07-modelos-lineares-e-modelos-mistos.qmd){.entry-link aria-label="Começar a fase de modelagem pelo Módulo 07"}
-:::
-
-::: {.phase-card role="listitem"}
-**04 · Genômica**
-
-Módulos 10-12 introduzem SNPs, controle de qualidade, matrizes genômicas, GWAS e predição.
-
-[Começar fase](modulo10-introducao-a-genomica-e-marcadores-snp.qmd){.entry-link aria-label="Começar a fase de genômica pelo Módulo 10"}
-:::
-:::
-
-::: {.modules-evidence-standard role="region" aria-label="Evidência esperada em cada módulo"}
-::: {.modules-evidence-standard-copy}
-**Cada módulo deve deixar uma evidência**
-
-Antes de avançar, produza uma frase técnica verificável. Cada página de módulo agora explicita a sessão curta de estudo e a checagem de fechamento: pergunta, evidência em R, quiz e decisão aplicada que você defenderia.
-:::
-
-::: {.modules-evidence-standard-grid role="list" aria-label="Padrão de evidência por módulo"}
-::: {.modules-evidence-standard-item role="listitem"}
-**Conceito**
-
-Qual pergunta biológica ou estatística ficou mais clara?
-:::
-
-::: {.modules-evidence-standard-item role="listitem"}
-**Variação**
-
-Qual parâmetro você alterou no script?
-:::
-
-::: {.modules-evidence-standard-item role="listitem"}
-**Decisão**
-
-Qual consequência prática você registrou antes do quiz?
-:::
-:::
-:::
-
-## Todos os módulos
-
-::: {.module-grid role="list" aria-label="Todos os módulos do curso"}
-::: {.module-card role="listitem"}
-**01**
-
-[Introdução ao Melhoramento Animal](modulo01-introducao-ao-melhoramento-animal.qmd)
-
-Objetivos, resposta à seleção e organização de programas de melhoramento.
-:::
-
-::: {.module-card role="listitem"}
-**02**
-
-[Bases da Genética Quantitativa](modulo02-bases-da-genetica-quantitativa.qmd)
-
-Valor genético, fenótipo, ambiente e decomposição da variação observada.
-:::
-
-::: {.module-card role="listitem"}
-**03**
-
-[Estatística descritiva e exploração no R](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd)
-
-Primeiros diagnósticos, distribuição dos dados e interpretação exploratória.
-:::
-
-::: {.module-card role="listitem"}
-**04**
-
-[Médias, variâncias e componentes](modulo04-medias-variancias-e-componentes-de-variancia.qmd)
-
-Variância fenotípica, genética e ambiental como base para decisões.
-:::
-
-::: {.module-card role="listitem"}
-**05**
-
-[Herdabilidade e repetibilidade](modulo05-herdabilidade-e-repetibilidade.qmd)
-
-Parâmetros que conectam observações individuais à previsibilidade genética.
-:::
-
-::: {.module-card role="listitem"}
-**06**
-
-[Correlações genéticas e fenotípicas](modulo06-correlacoes-geneticas-e-fenotipicas.qmd)
-
-Relações entre características e consequências indiretas da seleção.
-:::
-
-::: {.module-card role="listitem"}
-**07**
-
-[Modelos lineares e mistos](modulo07-modelos-lineares-e-modelos-mistos.qmd)
-
-Estrutura estatística para combinar efeitos fixos, aleatórios e erro.
-:::
-
-::: {.module-card role="listitem"}
-**08**
-
-[BLUP e avaliação genética](modulo08-blup-e-avaliacao-genetica.qmd)
-
-Predição de valores genéticos e comparação de candidatos à seleção.
-:::
-
-::: {.module-card role="listitem"}
-**09**
-
-[Pedigree e parentesco](modulo09-estrutura-de-pedigree-e-parentesco.qmd)
-
-Uso de genealogia, matrizes de parentesco e conexão entre indivíduos.
-:::
-
-::: {.module-card role="listitem"}
-**10**
-
-[Genômica e marcadores SNP](modulo10-introducao-a-genomica-e-marcadores-snp.qmd)
-
-Entrada dos marcadores moleculares na avaliação e no controle de dados.
-:::
-
-::: {.module-card role="listitem"}
-**11**
-
-[Controle de qualidade genômico](modulo11-controle-de-qualidade-de-dados-genomicos.qmd)
-
-Filtros, consistência dos genótipos e preparação para análises genômicas.
-:::
-
-::: {.module-card role="listitem"}
-**12**
-
-[Matrizes genômicas, GWAS e predição](modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd)
-
-Integração entre parentesco genômico, associação e predição genômica.
-:::
-:::
-
-::: {.modules-certificate-route role="region" aria-label="Fechamento da trilha e certificado"}
-::: {.modules-certificate-route-copy}
-**Feche a trilha com evidência**
-
-O certificado deve ser a consequência de uma sequência completa: módulo estudado, script executado, interpretação escrita e quiz validado. Se você ainda não concluiu tudo, use o certificado como mapa de pendências.
-:::
-
-::: {.modules-certificate-route-actions role="navigation" aria-label="Ações para acompanhar conclusão"}
-[Abrir certificado](../certificado.qmd){.btn .btn-primary}
-[Revisar roteiro](../semanas/index.qmd){.btn .btn-secondary}
-:::
-:::
-
-::: {.modules-next-step role="region" aria-label="Próximo passo após revisar os módulos"}
-::: {.modules-next-step-copy}
-## Próximo passo recomendado
-
-Se esta é sua primeira visita, comece pelo Módulo 01. Se você já conhece a base conceitual, use o roteiro semanal para distribuir prática em R, revisão e interpretação.
-
-::: {.modules-next-step-hint}
-O índice fecha melhor quando a próxima ação vira página aberta, semana planejada ou pendência de certificado conferida.
-:::
-:::
-
-::: {.modules-next-step-checks role="list" aria-label="Como escolher a ação final do índice"}
-::: {.modules-next-step-check role="listitem"}
-**Começar**
-
-Use quando ainda não há módulo concluído.
-:::
-
-::: {.modules-next-step-check role="listitem"}
-**Planejar**
-
-Use quando precisa distribuir leitura, código e revisão.
-:::
-
-::: {.modules-next-step-check role="listitem"}
-**Concluir**
-
-Use quando a trilha já está quase completa.
-:::
-:::
-
-::: {.modules-next-step-actions role="navigation" aria-label="Ações finais do índice de módulos"}
-[Começar M01](modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
-[Planejar por semana](../semanas/index.qmd){.btn .btn-secondary}
-[Entender o certificado](../certificado.qmd){.btn .btn-secondary}
-:::
-:::

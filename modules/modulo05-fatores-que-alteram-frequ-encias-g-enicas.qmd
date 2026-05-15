@@ -1,0 +1,231 @@
+---
+title: "Bloco temático 2.3 — Fatores que alteram frequências gênicas"
+subtitle: "Módulo 2: Genética de populações"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 2: Genética de populações · Bloco 2.3</span>
+<h1>Fatores que alteram frequências gênicas</h1>
+<p>Comparar seleção, migração, mutação e deriva.</p>
+</div>
+<div class="study-hero-meta">
+<span>100 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 2: Genética de populações · Bloco temático 2.3</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo05" data-next-href="modulo06-valores-e-m-edias-fen-otipo-gen-otipo-e-ambiente.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 2.3</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Por que alelos mudam com o tempo?" aria-current="step"><strong>Pergunta simples: Por que alelos mudam com o tempo?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Por que alelos mudam com o tempo?
+
+**Intuição**
+
+Pense assim: Correnteza muda direção de folhas no rio.
+
+Frequências mudam quando algum processo favorece, remove, mistura ou sorteia alelos.
+
+**Por que isso importa no melhoramento**
+
+Melhoramento muda frequências gênicas de propósito, mas deriva, migração e mutação também mudam. Separar forças evita atribuir todo resultado à seleção.
+
+**Como pensar antes da fórmula**
+
+Imagine volante e vento. Seleção é volante: direção escolhida. Deriva é vento: empurra sem intenção, mais forte em população pequena. Migração troca peças entre rebanhos.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Seleção é mudança dirigida; migração mistura populações; mutação cria variação nova; deriva altera frequências por acaso.
+
+**Ponto técnico:** Tamanho efetivo pequeno aumenta deriva e reduz previsibilidade.
+
+**Passo a passo mental:**
+
+- Identifique força possível.
+- Veja se mudança tem direção consistente.
+- Considere tamanho efetivo.
+- Relacione mudança com risco ou ganho de longo prazo.
+
+Tópicos principais:
+
+- seleção
+- migração
+- mutação
+- deriva genética
+- tamanho efetivo
+
+**Termos para consultar no glossário:**
+
+- seleção
+- migração
+- mutação
+- deriva genética
+- tamanho efetivo
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **Mudança simples de p após seleção contra aa.**
+
+Passo guiado: Se p aumenta 0,05 por geração sob seleção, em cinco gerações p muda de 0,40 para 0,65.
+
+**Termos da fórmula:**
+
+- Seleção muda frequência de forma direcional quando genótipos têm sucesso reprodutivo diferente.
+- Deriva muda frequência por acaso, com efeito mais forte em tamanho efetivo pequeno.
+- Migração mistura frequências entre populações; mutação cria alelos novos, geralmente em baixa taxa.
+
+**Cálculo comentado:**
+
+Se p começa em 0,40 e seleção aumenta p em 0,05 por geração, após cinco gerações p esperado é 0,65.
+Em população pequena, sorteio de gametas pode levar p para cima ou para baixo mesmo sem vantagem. Por isso resposta observada precisa separar força direcional de ruído.
+
+**Resultado esperado:** Trajetória direcional simples: 0,40 -> 0,45 -> 0,50 -> 0,55 -> 0,60 -> 0,65.
+
+Leitura do resultado: p subir de 0,40 para 0,65 sob seleção sugere pressão direcional. Em população pequena, parte dessa mudança ainda pode ter componente aleatório.
+
+Exemplo animal: Aumento de alelo favorável por seleção artificial.
+
+Erro comum: Ignorar tamanho efetivo e achar que população pequena responde sempre de forma previsível.
+
+Visual sugerido: Linha de frequência por geração.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Comparar trajetória dirigida e oscilação aleatória de p.
+
+[Script R](../scripts/modulo05.R){.entry-link aria-label="Abrir script R do bloco temático 2.3"} · [CSV simulado](../data/modulo05_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 2.3"}
+
+`p <- .4; for(i in 1:5) p <- p + .05; p`
+
+**Variação obrigatória:** Simular população pequena e grande.
+
+**Observe:** Populações pequenas flutuam mais, mesmo sem vantagem biológica.
+
+**Interpretação esperada:** População pequena mostra maior variação aleatória; seleção cria tendência, deriva cria incerteza.
+:::
+
+```r
+p <- 0.40
+for (g in 1:5) p <- p + 0.05
+p
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Separar mudança dirigida de mudança aleatória.
+
+**Decisão guiada:** Compare trajetória dirigida e trajetória por sorteio; diga qual exige controle de tamanho efetivo.
+
+**Evidência mínima:** Comparação entre seleção e deriva.
+
+**Antes do quiz:** Separar mudança dirigida de mudança aleatória.
+
+::: {.quiz-container data-module="05"}
+:::
+
+Depois, avance para Bloco temático 3.1.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo04-hardy-weinberg-alelos-m-ultiplos-e-genes-ligados-ao-sexo.html" aria-label="Voltar para Bloco temático 2.2">Bloco temático 2.2</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo06-valores-e-m-edias-fen-otipo-gen-otipo-e-ambiente.html" aria-label="Avançar para Bloco temático 3.1">Bloco temático 3.1</a>
+</nav>
+</div>
+</div>

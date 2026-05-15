@@ -1,0 +1,232 @@
+---
+title: "Bloco temático 2.2 — Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo"
+subtitle: "Módulo 2: Genética de populações"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 2: Genética de populações · Bloco 2.2</span>
+<h1>Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo</h1>
+<p>Usar Hardy-Weinberg como expectativa, não como dogma.</p>
+</div>
+<div class="study-hero-meta">
+<span>100 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 2: Genética de populações · Bloco temático 2.2</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo04" data-next-href="modulo05-fatores-que-alteram-frequ-encias-g-enicas.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 2.2</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Quando uma população fica previsível?" aria-current="step"><strong>Pergunta simples: Quando uma população fica previsível?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Quando uma população fica previsível?
+
+**Intuição**
+
+Pense assim: Baralho bem embaralhado gera proporções esperadas.
+
+Hardy-Weinberg é uma expectativa de referência para perguntar se a população parece aleatória.
+
+**Por que isso importa no melhoramento**
+
+Hardy-Weinberg é régua de comparação. Ele ajuda detectar se acasalamento, seleção, estrutura de rebanho ou erro de genotipagem podem estar alterando proporções.
+
+**Como pensar antes da fórmula**
+
+Pense em sortear duas bolas de uma urna muito grande. Se a urna tem 70% A e 30% a, a chance de formar AA, Aa ou aa vem das combinações possíveis desses sorteios.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Com acasalamento ao acaso e ausência de forças evolutivas, genótipos esperados seguem p², 2pq e q².
+
+**Ponto técnico:** Desvio entre observado e esperado sugere seleção, estrutura, erro de amostragem ou outro fator.
+
+**Passo a passo mental:**
+
+- Defina p e q.
+- Calcule p², 2pq e q².
+- Converta proporções em números esperados.
+- Compare observado e esperado com cautela.
+
+Tópicos principais:
+
+- p2
+- 2pq
+- q2
+- equilíbrio
+- alelos múltiplos
+- ligação ao sexo
+
+**Termos para consultar no glossário:**
+
+- Hardy-Weinberg
+- equilíbrio
+- p²
+- 2pq
+- q²
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **Para p = 0,7, calcular p2, 2pq e q2.**
+
+Passo guiado: Com p=0,7 e q=0,3, espere AA=0,49, Aa=0,42 e aa=0,09.
+
+**Termos da fórmula:**
+
+- p² é frequência esperada de AA sob acasalamento ao acaso.
+- 2pq é frequência esperada de heterozigotos.
+- q² é frequência esperada de aa; p + q = 1 em sistema bialélico.
+
+**Cálculo comentado:**
+
+Com p = 0,70 e q = 0,30, calcule AA = 0,49, Aa = 0,42 e aa = 0,09. Em 100 animais, espere 49, 42 e 9.
+Se observado for 45, 46 e 9, diferença existe, mas é pequena. Interpretação deve considerar tamanho amostral, estrutura e erro de genotipagem.
+
+**Resultado esperado:** Esperado em 100 animais: 49 AA, 42 Aa, 9 aa.
+
+Leitura do resultado: Com p=0,7, heterozigotos esperados são 42%. Se observado for muito menor, pode existir endogamia, subdivisão ou seleção contra heterozigotos.
+
+Exemplo animal: Frequência esperada de genótipos em rebanho grande.
+
+Erro comum: Usar Hardy-Weinberg como verdade obrigatória. É modelo nulo para investigação.
+
+Visual sugerido: Barras observado versus esperado.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Gerar proporções esperadas e comparar com contagem observada.
+
+[Script R](../scripts/modulo04.R){.entry-link aria-label="Abrir script R do bloco temático 2.2"} · [CSV simulado](../data/modulo04_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 2.2"}
+
+`p <- .7; c(AA = p^2, Aa = 2*p*(1-p), aa = (1-p)^2)`
+
+**Variação obrigatória:** Testar se uma contagem pequena parece em equilíbrio.
+
+**Observe:** Diferença grande pede investigação; diferença pequena pode ser ruído amostral.
+
+**Interpretação esperada:** Hardy-Weinberg serve como referência; desvio observado abre pergunta, não fecha diagnóstico sozinho.
+:::
+
+```r
+p <- 0.7
+esperado <- c(AA = p^2, Aa = 2*p*(1-p), aa = (1-p)^2) * 100
+esperado
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Usar Hardy-Weinberg como referência, não como regra absoluta.
+
+**Decisão guiada:** Diga se diferença pequena entre observado e esperado justifica concluir seleção imediatamente.
+
+**Evidência mínima:** Tabela esperado/observado interpretada.
+
+**Antes do quiz:** Explicar diferença entre observado e esperado.
+
+::: {.quiz-container data-module="04"}
+:::
+
+Depois, avance para Bloco temático 2.3.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo03-gen-etica-de-populac-oes-i-frequ-encias-al-elicas-e-genot-ipicas.html" aria-label="Voltar para Bloco temático 2.1">Bloco temático 2.1</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo05-fatores-que-alteram-frequ-encias-g-enicas.html" aria-label="Avançar para Bloco temático 2.3">Bloco temático 2.3</a>
+</nav>
+</div>
+</div>

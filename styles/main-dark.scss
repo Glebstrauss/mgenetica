@@ -649,6 +649,21 @@ footer.footer a {
 .home-trust-anchors-item,
 .home-first-session,
 .home-first-session-item,
+.home-course-about,
+.home-course-about-item,
+.home-r-lab,
+.home-r-lab-item,
+.home-certificate-assessment,
+.home-certificate-assessment-meta-item,
+.certificate-assessment-overview,
+.certificate-assessment-overview-item,
+.certificate-assessment-lab,
+.certificate-assessment-lab-item,
+.certificate-assessment-rubric,
+.certificate-assessment-flow,
+.certificate-assessment-flow-item,
+.certificate-assessment-callout,
+.certificate-assessment-callout-item,
 .home-path-contract,
 .home-path-contract-item,
 .home-outcome-map,
@@ -736,6 +751,20 @@ footer.footer a {
 .home-readiness-copy p,
 .home-audience-copy h2,
 .home-audience-copy p,
+.home-course-about-copy h2,
+.home-course-about-copy p,
+.home-certificate-assessment-copy h2,
+.home-certificate-assessment-copy p,
+.certificate-assessment-overview-copy strong,
+.certificate-assessment-overview-copy p,
+.certificate-assessment-lab-copy h2,
+.certificate-assessment-lab-copy p,
+.certificate-assessment-rubric-copy h2,
+.certificate-assessment-rubric-copy p,
+.certificate-assessment-flow-copy strong,
+.certificate-assessment-flow-copy p,
+.certificate-assessment-callout-copy strong,
+.certificate-assessment-callout-copy p,
 .home-trust-anchors-copy strong,
 .home-trust-anchors-copy p,
 .home-first-session-copy strong,
@@ -831,6 +860,14 @@ footer.footer a {
 .home-audience-item strong,
 .home-start-criteria-item strong,
 .home-evidence-item strong,
+.home-course-about-item strong,
+.home-skill-cloud-title strong,
+.home-skill-pill,
+.home-certificate-assessment-meta-item strong,
+.certificate-assessment-overview-item strong,
+.certificate-assessment-lab-item strong,
+.certificate-assessment-flow-item strong,
+.certificate-assessment-callout-item strong,
 .modules-phase-bridge-item strong,
 .modules-readiness-item strong,
 .modules-output-route-item strong,
@@ -876,6 +913,12 @@ footer.footer a {
 .home-audience-item p,
 .home-start-criteria-item p,
 .home-evidence-item p,
+.home-course-about-item p,
+.home-certificate-assessment-meta-item p,
+.certificate-assessment-overview-item p,
+.certificate-assessment-lab-item p,
+.certificate-assessment-flow-item p,
+.certificate-assessment-callout-item p,
 .modules-phase-bridge-item p,
 .modules-readiness-item p,
 .modules-output-route-item p,
@@ -965,9 +1008,102 @@ footer.footer a {
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
 }
 
+.home-r-lab {
+  background:
+    linear-gradient(135deg, rgba(2, 10, 14, 0.98), rgba(30, 87, 153, 0.42));
+  border-color: rgba(111, 220, 255, 0.26);
+  border-left-color: var(--mg-cyan-lt);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+}
+
+.home-r-lab-item {
+  background: rgba(111, 220, 255, 0.08);
+  border-color: rgba(111, 220, 255, 0.24);
+}
+
+.home-r-lab-copy h2,
+.home-r-lab-copy p,
+.home-r-lab-item strong,
+.home-r-lab-item p {
+  color: var(--mg-ink);
+}
+
+.home-r-lab-copy p,
+.home-r-lab-item p {
+  color: var(--mg-text);
+}
+
+.home-skill-pill {
+  background: rgba(111, 220, 255, 0.10);
+  border-color: rgba(111, 220, 255, 0.22);
+}
+
+.course-nav-tabs {
+  border-bottom-color: var(--mg-line);
+}
+
+.course-nav-tab,
+.course-about,
+.course-about-item,
+.course-info-item,
+.course-info-strip,
+.course-block,
+.course-study-sequence-item,
+.course-skill-pill {
+  color: var(--mg-ink);
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.course-nav-tab:hover,
+.course-nav-tab:focus-visible {
+  color: var(--mg-cyan-lt);
+  background: rgba(111, 220, 255, 0.10);
+  border-color: rgba(111, 220, 255, 0.32);
+}
+
+.course-about-copy p,
+.course-about-item p,
+.course-info-item p,
+.course-block-header p,
+.course-study-sequence-item p {
+  color: var(--mg-text);
+}
+
+.course-block {
+  border-left-color: var(--mg-cyan-lt);
+}
+
+.course-about-item strong,
+.course-info-item strong,
+.course-study-sequence-item strong {
+  color: var(--mg-ink);
+}
+
+.course-skill-pill {
+  background: rgba(111, 220, 255, 0.10);
+  border-color: rgba(111, 220, 255, 0.22);
+}
+
+.section-review {
+  color: var(--mg-text);
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+  border-left-color: var(--mg-cyan-lt);
+}
+
+.section-review strong {
+  color: var(--mg-ink);
+}
+
 .module-script-lab-item {
   background: rgba(111, 220, 255, 0.08);
   border-color: rgba(111, 220, 255, 0.24);
+}
+
+.module-script-lab-item:focus-within {
+  border-color: rgba(111, 220, 255, 0.70);
+  box-shadow: 0 0 0 3px rgba(111, 220, 255, 0.18);
 }
 
 .module-script-lab-item::before {
@@ -1003,6 +1139,117 @@ footer.footer a {
 }
 
 .module-script-lab-item .entry-link {
+  color: var(--mg-cyan-lt);
+}
+
+.module-script-lab-item .entry-link code {
+  color: inherit;
+  background: rgba(111, 220, 255, 0.12);
+  border-color: rgba(111, 220, 255, 0.24);
+}
+
+.module-glossary-details {
+  color: var(--mg-text);
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.module-glossary-details summary {
+  color: var(--mg-ink);
+}
+
+.module-glossary-details p {
+  color: var(--mg-text);
+}
+
+.module-glossary-fab,
+.module-study-toolbar,
+.study-item-summary,
+.course-progress-card {
+  color: var(--mg-text);
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.module-glossary-fab {
+  color: var(--mg-ink);
+  background: rgba(111, 220, 255, 0.12);
+  border-color: rgba(111, 220, 255, 0.26);
+}
+
+.module-glossary-fab:hover,
+.module-glossary-fab:focus-visible {
+  color: var(--mg-cyan-lt);
+  background: rgba(111, 220, 255, 0.08);
+  border-color: rgba(111, 220, 255, 0.38);
+}
+
+.module-study-toolbar-copy strong {
+  color: var(--mg-ink);
+}
+
+.module-study-toolbar-copy span,
+.module-study-toolbar-progress span,
+.course-progress-hint {
+  color: var(--mg-text);
+}
+
+.module-study-toolbar-track,
+.course-progress-track {
+  background: rgba(148, 163, 184, 0.24);
+}
+
+.study-item-panel,
+.study-item,
+.study-item-mini {
+  color: var(--mg-text);
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.study-item-panel h3,
+.study-item-panel > strong,
+.study-item strong {
+  color: var(--mg-ink);
+}
+
+.study-side-panel .study-item {
+  background: transparent;
+  border-top-color: var(--mg-line);
+}
+
+.study-side-panel .study-item.is-current {
+  color: var(--mg-ink);
+  background: rgba(111, 220, 255, 0.10);
+  box-shadow: inset 3px 0 0 rgba(111, 220, 255, 0.72);
+}
+
+.study-side-panel .study-item.is-done {
+  background: rgba(74, 222, 128, 0.08);
+}
+
+.study-item-type {
+  color: var(--mg-ink);
+  background: rgba(111, 220, 255, 0.12);
+  border-color: rgba(111, 220, 255, 0.26);
+}
+
+.study-item-meta {
+  color: var(--mg-text);
+}
+
+.study-item.is-current {
+  border-color: rgba(111, 220, 255, 0.52);
+  box-shadow: 0 0 0 3px rgba(111, 220, 255, 0.12);
+}
+
+.study-item.is-done {
+  background: rgba(22, 101, 52, 0.16);
+  border-color: rgba(74, 222, 128, 0.24);
+}
+
+.study-item-link:hover,
+.study-item-link:focus-visible {
   color: var(--mg-cyan-lt);
 }
 
@@ -1502,6 +1749,7 @@ select:focus-visible,
 textarea:focus-visible,
 [tabindex]:focus-visible,
 .btn:focus-visible,
+.course-module summary:focus-visible,
 .quiz-option:focus-visible,
 .teacher-mode-toggle:focus-visible {
   outline: 3px solid rgba(111, 220, 255, 0.86);
@@ -1524,6 +1772,88 @@ textarea:focus-visible,
 .glossary-search {
   min-height: 48px;
   border-radius: 10px;
+}
+
+.course-minimal-hero,
+.course-essentials,
+.study-hero,
+.study-step {
+  border-color: var(--mg-line);
+}
+
+.course-minimal-hero h1,
+.course-essentials strong,
+.course-module-list h2,
+.course-module-list-head p,
+.course-block-main strong,
+.study-hero h1,
+.study-step h2 {
+  color: var(--mg-ink);
+}
+
+.course-minimal-hero p,
+.course-essentials p,
+.course-module > p,
+.course-block-row,
+.course-block-main em,
+.course-final-action p,
+.study-hero p,
+.study-step p,
+.study-step li {
+  color: var(--mg-text);
+}
+
+.course-minimal-progress,
+.course-module,
+.course-final-action,
+.study-hero-meta span {
+  background: var(--mg-bg-soft);
+  border-color: var(--mg-line);
+}
+
+.course-hero-facts span,
+.course-block-index,
+.course-block-action {
+  color: var(--mg-ink);
+  background: rgba(111, 220, 255, 0.10);
+  border-color: rgba(111, 220, 255, 0.24);
+}
+
+.course-block-row:hover .course-block-action,
+.course-block-row:focus-visible .course-block-action {
+  color: #061421;
+  background: var(--mg-cyan-lt);
+  border-color: var(--mg-cyan-lt);
+}
+
+.course-block-meta em,
+.study-side-hint {
+  color: var(--mg-text);
+}
+
+.course-module summary {
+  color: var(--mg-ink);
+}
+
+.course-block-list,
+.course-block-row {
+  border-color: var(--mg-line);
+}
+
+.course-block-row:hover,
+.course-block-row:focus-visible {
+  background: rgba(111, 220, 255, 0.08);
+}
+
+.course-block-meta,
+.course-module summary small,
+.study-kicker,
+.study-hero-meta span {
+  color: var(--mg-text);
+}
+
+.support-actions {
+  border-top-color: var(--mg-line);
 }
 
 @media (max-width: 640px) {
@@ -1564,4 +1894,36 @@ textarea:focus-visible,
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+// ── Undergraduate course redesign preview ─────────────────────
+.undergrad-redesign {
+  border-color: var(--mg-line);
+  background:
+    linear-gradient(135deg, rgba(111, 220, 255, 0.10), rgba(45, 212, 191, 0.07)),
+    var(--mg-bg-soft);
+}
+
+.undergrad-redesign-copy {
+  h2 { color: var(--mg-ink); }
+  p  { color: var(--mg-text); }
+}
+
+.undergrad-block-card,
+.route-redesign-step {
+  border-color: var(--mg-line);
+  background: rgba(10, 20, 34, 0.76);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+
+  strong { color: var(--mg-cyan-lt); }
+  p      { color: var(--mg-text); }
+}
+
+.undergrad-module-standard,
+.route-redesign-note {
+  border-color: rgba(111, 220, 255, 0.28);
+  background: rgba(17, 54, 70, 0.52);
+  color: var(--mg-text);
+
+  strong { color: var(--mg-ink); }
 }

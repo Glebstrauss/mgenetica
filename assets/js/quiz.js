@@ -57,7 +57,7 @@
       return;
     }
 
-    var html = '<div class="quiz-title" id="quiz-title-' + moduleId + '">' + escapeHtml(data.title || ('Quiz - Módulo ' + moduleId)) + '</div>';
+    var html = '<div class="quiz-title" id="quiz-title-' + moduleId + '">' + escapeHtml(data.title || ('Quiz - Bloco temático ' + moduleId)) + '</div>';
     html += '<p class="quiz-subtitle">' +
       escapeHtml(data.subtitle || ('Responda as questões abaixo. São necessários ' + data.passMark + ' acertos.')) +
       '</p>';
@@ -94,7 +94,7 @@
       var note = document.createElement('div');
       note.className = 'teacher-answer';
       note.innerHTML = '<strong>Gabarito:</strong> ' + escapeHtml(answer) +
-        '<br><span>Comentario: esta alternativa preserva a definicao tecnica usada no modulo e deve ser conectada ao resultado da simulacao em R.</span>';
+        '<br><span>Comentario: esta alternativa preserva a definicao tecnica usada no bloco tematico e deve ser conectada ao resultado da simulacao em R.</span>';
       qEl.appendChild(note);
     });
   }
@@ -165,7 +165,7 @@
       resultEl.className = 'quiz-result result-pass';
       resultEl.innerHTML =
         'Você acertou ' + correct + ' de ' + data.questions.length +
-        ' questões e concluiu o Módulo ' + moduleId + '.';
+        ' questões e concluiu o bloco temático ' + moduleId + '.';
       if (window.mgenetica) {
         window.mgenetica.markModuleComplete('modulo' + moduleId);
       }

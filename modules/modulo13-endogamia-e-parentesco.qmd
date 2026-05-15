@@ -1,0 +1,229 @@
+---
+title: "Bloco temático 4.1 — Endogamia e parentesco"
+subtitle: "Módulo 4: Parentesco, cruzamentos e avaliação genética"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 4: Parentesco, cruzamentos e avaliação genética · Bloco 4.1</span>
+<h1>Endogamia e parentesco</h1>
+<p>Calcular parentesco simples e interpretar F.</p>
+</div>
+<div class="study-hero-meta">
+<span>100 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 4: Parentesco, cruzamentos e avaliação genética · Bloco temático 4.1</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo13" data-next-href="modulo14-cruzamentos-heterose-e-complementaridade.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 4.1</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Parentes aumentam semelhança ou risco?" aria-current="step"><strong>Pergunta simples: Parentes aumentam semelhança ou risco?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Parentes aumentam semelhança ou risco?
+
+**Intuição**
+
+Pense assim: Receber a mesma carta pelos dois lados da família.
+
+Parentes compartilham alelos por ancestralidade; isso aumenta semelhança e risco de endogamia.
+
+**Por que isso importa no melhoramento**
+
+Parentesco ajuda avaliação genética, mas também aumenta risco de endogamia. Melhoramento precisa usar informação de família sem fechar população demais.
+
+**Como pensar antes da fórmula**
+
+Pedigree é mapa de estradas por onde alelos passaram. Quanto mais rotas comuns entre dois animais, maior chance de carregarem cópias vindas do mesmo ancestral.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Parentesco mede compartilhamento genético esperado. Endogamia aumenta homozygose por origem comum.
+
+**Ponto técnico:** A diagonal da matriz A representa 1 + F.
+
+**Passo a passo mental:**
+
+- Identifique ancestrais comuns.
+- Classifique tipo de parentesco.
+- Relacione parentesco com matriz A.
+- Use F para avaliar risco de homozigose.
+
+Tópicos principais:
+
+- pedigree
+- matriz A
+- parentesco
+- endogamia
+
+**Termos para consultar no glossário:**
+
+- parentesco
+- endogamia
+- matriz A
+- pedigree
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **Parentesco esperado entre meio-irmãos.**
+
+Passo guiado: Meio-irmãos têm parentesco esperado menor que irmãos completos.
+
+**Termos da fórmula:**
+
+- Parentesco esperado mede compartilhamento de alelos por ancestralidade.
+- F mede probabilidade de dois alelos em um indivíduo serem idênticos por descendência.
+- Na matriz A, diagonal 1 + F indica endogamia individual.
+
+**Cálculo comentado:**
+
+Dois meio-irmãos compartilham um progenitor. A expectativa de parentesco aditivo entre eles é 0,25. Irmãos completos compartilham pai e mãe, então expectativa é 0,50.
+Se acasalamento usa animais muito aparentados repetidamente, F aumenta. Isso pode expor alelos recessivos desfavoráveis e reduzir desempenho médio.
+
+**Resultado esperado:** Parentesco esperado: meio-irmãos = 0,25; irmãos completos = 0,50; diagonal de animal endogâmico = 1 + F.
+
+Leitura do resultado: Meio-irmãos compartilham um dos pais; irmãos completos compartilham dois. Por isso parentesco esperado difere.
+
+Exemplo animal: Acasalamento entre aparentados.
+
+Erro comum: Achar que todo parentesco é ruim. Problema é usar parentesco sem controle, aumentando endogamia.
+
+Visual sugerido: Pedigree pequeno e matriz.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Montar matriz simples de parentesco.
+
+[Script R](../scripts/modulo13.R){.entry-link aria-label="Abrir script R do bloco temático 4.1"} · [CSV simulado](../data/modulo13_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 4.1"}
+
+`matrix(c(1,.25,.25,1), 2)`
+
+**Variação obrigatória:** Comparar pares aparentados e não aparentados.
+
+**Observe:** Pares aparentados pedem cuidado no acasalamento.
+
+**Interpretação esperada:** Parentesco não é sempre ruim; risco surge quando ele limita diversidade e aumenta F.
+:::
+
+```r
+A <- matrix(c(1, .25, .25, 1), nrow = 2)
+rownames(A) <- colnames(A) <- c("Animal1", "Animal2")
+A
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Interpretar parentesco e risco de endogamia.
+
+**Decisão guiada:** Explique por que melhor animal por DEP pode não ser melhor acasalamento se parentesco com fêmeas for alto.
+
+**Evidência mínima:** Parentesco e risco de endogamia descritos.
+
+**Antes do quiz:** Identificar diagonal 1 + F.
+
+::: {.quiz-container data-module="13"}
+:::
+
+Depois, avance para Bloco temático 4.2.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo12-caracter-isticas-de-limiar.html" aria-label="Voltar para Bloco temático 3.7">Bloco temático 3.7</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo14-cruzamentos-heterose-e-complementaridade.html" aria-label="Avançar para Bloco temático 4.2">Bloco temático 4.2</a>
+</nav>
+</div>
+</div>

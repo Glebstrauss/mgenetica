@@ -1,8 +1,9 @@
 ---
 title: "Busca"
-description: "Busca full-text no conteúdo do MGenética Academy."
+description: "Busca no conteúdo do MGenética Academy."
 page-layout: full
 toc: false
+sidebar: false
 number-sections: false
 ---
 
@@ -10,302 +11,30 @@ number-sections: false
 ::: {.page-hero-copy}
 # Busca no curso
 
-Localize conceitos, funções em R, parâmetros genéticos, módulos e referências internas. A busca é indexada na publicação do GitHub Pages.
+Encontre bloco temático, conceito ou função em R. Use a busca como apoio rápido e volte ao estudo.
 :::
 
 ::: {.page-hero-aside}
-**Atalhos úteis**
+**Atalho**
 
-- herdabilidade
-- BLUP
-- matriz genômica
-- seleção
+herdabilidade · BLUP · SNP · seleção
 :::
 :::
 
-::: {.public-wayfinding .utility-wayfinding role="navigation" aria-label="Orientação pública da busca"}
-::: {.public-wayfinding-copy}
-**Você está em uma página de apoio**
-
-Use a busca para localizar contexto e voltar à trilha. O resultado precisa virar módulo, termo ou roteiro.
-:::
-
-::: {.public-wayfinding-grid role="list" aria-label="Rotas imediatas depois da busca"}
-::: {.public-wayfinding-item role="listitem"}
-**Módulo**
-
-[Ver módulos](modules/index.qmd){.entry-link aria-label="Abrir índice de módulos a partir da busca"}
-:::
-
-::: {.public-wayfinding-item role="listitem"}
-**Termo**
-
-[Glossário](glossario.qmd){.entry-link aria-label="Abrir glossário a partir da busca"}
-:::
-
-::: {.public-wayfinding-item role="listitem"}
-**Ritmo**
-
-[Roteiro](semanas/index.qmd){.entry-link aria-label="Abrir roteiro a partir da busca"}
-:::
-:::
-:::
-
-::: {.utility-flow}
-::: {.utility-step}
-**Busque um conceito**
-
-Comece por termos como herdabilidade, BLUP, seleção ou matriz genômica.
-:::
-
-::: {.utility-step}
-**Abra o contexto**
-
-Use os resultados para entrar no módulo ou seção em que o conceito é aplicado.
-:::
-
-::: {.utility-step}
-**Volte à trilha**
-
-Depois da consulta, retome a sequência dos módulos ou o roteiro semanal.
-:::
-:::
-
-::: {.utility-decision role="region" aria-label="Como decidir o que fazer com um resultado da busca"}
-::: {.utility-decision-copy}
-**Depois do resultado, escolha uma ação**
-
-A busca deve terminar em uma decisão simples: abrir o módulo que explica o conceito, comparar o termo no glossário ou voltar ao roteiro para manter a sequência.
-:::
-
-::: {.utility-decision-grid role="list" aria-label="Ações depois de buscar no curso"}
-::: {.utility-decision-item role="listitem"}
-**Conceito novo**
-
-Abra o módulo completo antes de tentar interpretar a saída em R.
-:::
-
-::: {.utility-decision-item role="listitem"}
-**Termo isolado**
-
-Consulte o glossário e depois retorne ao trecho do módulo.
-:::
-
-::: {.utility-decision-item role="listitem"}
-**Revisão rápida**
-
-Use o resultado para retomar a fase certa da trilha.
-:::
-:::
-:::
-
-::: {.utility-evidence-route role="navigation" aria-label="Como transformar a consulta em evidência técnica"}
-::: {.utility-evidence-route-copy}
-**Da consulta para a evidência**
-
-A busca só resolve a sessão quando devolve você para uma saída técnica. Escolha o formato que precisa revisar antes de seguir.
-:::
-
-::: {.utility-evidence-route-grid role="list" aria-label="Rotas de evidência depois da busca"}
-::: {.utility-evidence-route-item role="listitem"}
-**Código**
-
-Use quando o resultado apontar para script, simulação ou parâmetro.
-
-[Abrir M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 para revisar evidência de código depois da busca"}
-:::
-
-::: {.utility-evidence-route-item role="listitem"}
-**Tabela**
-
-Use quando o resultado pedir comparação de parâmetros, variâncias ou correlações.
-
-[Abrir M06](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Abrir o Módulo 06 para revisar evidência de tabela depois da busca"}
-:::
-
-::: {.utility-evidence-route-item role="listitem"}
-**Figura**
-
-Use quando o resultado envolver padrão visual, SNPs, GWAS ou predição.
-
-[Abrir M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir o Módulo 12 para revisar evidência visual depois da busca"}
-:::
-:::
-:::
-
-::: {.utility-examples role="region" aria-label="Exemplos de busca úteis"}
-::: {.utility-examples-copy}
-**Comece por uma busca pequena**
-
-Termos curtos ajudam a encontrar contexto mais rápido. Depois de abrir um resultado, volte para o módulo, roteiro ou glossário com uma pergunta definida.
-:::
-
-::: {.utility-examples-grid role="list" aria-label="Tipos de busca recomendados"}
-::: {.utility-examples-item role="listitem"}
-**Parâmetro**
-
-herdabilidade, repetibilidade, correlação genética.
-:::
-
-::: {.utility-examples-item role="listitem"}
-**Método**
-
-BLUP, GWAS, matriz genômica, controle de qualidade.
-:::
-
-::: {.utility-examples-item role="listitem"}
-**Ação em R**
-
-simulação, variância, regressão, predição.
-:::
-:::
-:::
-
-::: {.utility-query-plan role="region" aria-label="Como preparar uma busca útil"}
-::: {.utility-query-plan-copy}
-**Prepare a busca como uma pergunta**
-
-Antes de pesquisar, transforme a dúvida em uma palavra-chave e um contexto. Isso evita abrir resultados demais e ajuda a voltar para o módulo certo.
-:::
-
-::: {.utility-query-plan-grid role="list" aria-label="Plano para buscar no curso"}
-::: {.utility-query-plan-item role="listitem"}
-**Termo**
-
-Use uma palavra curta: herdabilidade, BLUP, SNP.
-:::
-
-::: {.utility-query-plan-item role="listitem"}
-**Contexto**
-
-Procure junto da fase: dados, modelo ou genômica.
-:::
-
-::: {.utility-query-plan-item role="listitem"}
-**Retorno**
-
-Abra o resultado e volte ao módulo com uma ação definida.
-:::
-:::
-:::
-
-::: {.utility-no-result role="region" aria-label="O que fazer quando a busca não resolve"}
-::: {.utility-no-result-copy}
-**Se a busca não resolver, reduza a pergunta**
-
-Poucos resultados ou resultados amplos demais indicam que a pergunta precisa voltar para fase, módulo ou termo mais curto.
-:::
-
-::: {.utility-no-result-grid role="list" aria-label="Ajustes quando a busca falha"}
-::: {.utility-no-result-item role="listitem"}
-**Reduzir**
-
-Use uma palavra técnica em vez de uma frase longa.
-
-[Ver exemplos](#exemplos-de-busca-úteis){.entry-link aria-label="Ver exemplos de busca úteis"}
-:::
-
-::: {.utility-no-result-item role="listitem"}
-**Ancorar**
-
-Inclua fase ou módulo provável para recuperar contexto.
-
-[Ver módulos](modules/index.qmd){.entry-link aria-label="Ver índice de módulos"}
-:::
-
-::: {.utility-no-result-item role="listitem"}
-**Retomar**
-
-Volte ao roteiro se a dúvida for de sequência.
-
-[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro semanal"}
-:::
-:::
-:::
-
-::: {.utility-result-close role="region" aria-label="Como fechar uma busca útil"}
-::: {.utility-result-close-copy}
-**Feche a busca com destino definido**
-
-Depois de encontrar um resultado, não continue abrindo páginas em sequência. Escolha se a busca resolveu definição, contexto ou retomada.
-:::
-
-::: {.utility-result-close-grid role="list" aria-label="Destinos depois de uma busca útil"}
-::: {.utility-result-close-item role="listitem"}
-**Definição**
-
-Guarde o termo e volte ao trecho original.
-
-[Abrir glossário](glossario.qmd){.entry-link aria-label="Abrir glossário técnico"}
-:::
-
-::: {.utility-result-close-item role="listitem"}
-**Contexto**
-
-Abra o módulo quando a resposta exigir leitura completa.
-
-[Ver módulos](modules/index.qmd){.entry-link aria-label="Ver índice de módulos depois da busca"}
-:::
-
-::: {.utility-result-close-item role="listitem"}
-**Retomada**
-
-Volte ao roteiro se a dúvida era sobre ordem.
-
-[Ver roteiro](semanas/index.qmd){.entry-link aria-label="Ver roteiro semanal depois da busca"}
-:::
-:::
+::: {.utility-panel-hint}
+Digite termo curto. Abra o resultado. Volte ao bloco ou consulte definição.
 :::
 
 <link href="_pagefind/pagefind-ui.css" rel="stylesheet">
 <script src="_pagefind/pagefind-ui.js"></script>
 
-::: {.utility-panel-hint}
-Use o campo abaixo para localizar o termo e depois escolha uma rota de evidência ou retorno. A busca é apoio para decidir o próximo clique, não uma etapa final.
-:::
-
 ::: {.search-panel}
 <div id="search"></div>
 :::
 
-::: {.utility-next-step role="navigation" aria-label="Próximos passos depois da busca"}
-::: {.utility-next-step-copy}
-**Depois da busca, volte para uma decisão**
-
-Use o resultado para escolher módulo, termo ou plano de estudo. Evite continuar pesquisando sem destino.
-:::
-
-::: {.public-session-check .utility-session-check role="region" aria-label="Conferência rápida depois da busca"}
-::: {.public-session-check-copy}
-**A busca resolveu a próxima ação?**
-
-Saia da busca quando o resultado indicar definição, contexto ou retomada.
-:::
-
-::: {.public-session-check-grid role="list" aria-label="Conferência de saída da busca"}
-::: {.public-session-check-item role="listitem"}
-**Definição**
-
-O termo foi entendido.
-:::
-
-::: {.public-session-check-item role="listitem"}
-**Contexto**
-
-O módulo provável foi identificado.
-:::
-
-::: {.public-session-check-item role="listitem"}
-**Retomada**
-
-A próxima etapa está no roteiro.
-:::
-:::
-:::
-
-[Voltar aos módulos](modules/index.qmd){.btn .btn-primary}
+::: {.support-actions role="navigation" aria-label="Rotas depois da busca"}
+[Voltar ao curso](modules/index.qmd){.btn .btn-primary}
 [Consultar glossário](glossario.qmd){.btn .btn-secondary}
-[Planejar estudo](semanas/index.qmd){.btn .btn-secondary}
 :::
 
 <script>

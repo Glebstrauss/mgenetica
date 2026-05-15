@@ -1,0 +1,231 @@
+---
+title: "Bloco temático 5.3 — Matrizes genômicas, GWAS e predição genômica"
+subtitle: "Módulo 5: Genômica aplicada ao melhoramento"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 5: Genômica aplicada ao melhoramento · Bloco 5.3</span>
+<h1>Matrizes genômicas, GWAS e predição genômica</h1>
+<p>Diferenciar matriz G, GWAS e predição.</p>
+</div>
+<div class="study-hero-meta">
+<span>130 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 5: Genômica aplicada ao melhoramento · Bloco temático 5.3</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo20" data-next-href="modulo21-projeto-final-pipeline-completo-de-selec-ao.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 5.3</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: DNA aponta parentesco, região ou valor futuro?" aria-current="step"><strong>Pergunta simples: DNA aponta parentesco, região ou valor futuro?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+DNA aponta parentesco, região ou valor futuro?
+
+**Intuição**
+
+Pense assim: DNA como mapa de parentesco e pistas de regiões importantes.
+
+A mesma matriz genômica pode apoiar parentesco, associação e predição.
+
+**Por que isso importa no melhoramento**
+
+Matriz G, GWAS e predição genômica usam mesmo tipo de dado para perguntas diferentes: parentesco, regiões associadas e valor genético futuro.
+
+**Como pensar antes da fórmula**
+
+Pense no genoma como tabela grande. Matriz G compara linhas; GWAS procura colunas associadas; predição usa muitas colunas juntas para prever desempenho.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Matriz G resume semelhança genômica; GWAS busca regiões associadas; predição genômica estima mérito usando muitos marcadores.
+
+**Ponto técnico:** GWAS olha marcador a marcador; predição usa sinal distribuído.
+
+**Passo a passo mental:**
+
+- Padronize matriz SNP.
+- Calcule semelhança entre animais.
+- Separe pergunta de associação e predição.
+- Valide resultado em dados não usados no ajuste.
+
+Tópicos principais:
+
+- matriz G
+- GWAS
+- GBLUP
+- validação
+- predição
+
+**Termos para consultar no glossário:**
+
+- matriz G
+- GWAS
+- predição genômica
+- GBLUP
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **Parentesco genômico simplificado por marcadores centrados.**
+
+Passo guiado: Padronize matriz 0/1/2 e calcule produto cruzado para obter semelhança.
+
+**Termos da fórmula:**
+
+- Matriz G resume semelhança genômica entre animais.
+- GWAS testa associação marcador a marcador.
+- Predição genômica usa muitos marcadores simultaneamente para predizer mérito.
+- A matriz do laboratório é pequena e pedagógica; avaliações reais usam milhares de marcadores e validação.
+
+**Cálculo comentado:**
+
+Padronizar matriz 0/1/2 evita comparar marcadores em escalas diferentes. Produto cruzado entre linhas gera medida simples de semelhança.
+GWAS e predição respondem perguntas diferentes: localizar sinais específicos ou predizer valor genético distribuído.
+Sem controle de qualidade e validação, matriz genômica ou predição pode parecer precisa sem ser confiável.
+
+**Resultado esperado:** Matriz G pequena mostra quais animais são mais semelhantes pelo conjunto de SNPs; o exemplo é didático e não representa uma rotina comercial completa.
+
+Leitura do resultado: Produto cruzado de SNPs padronizados resume semelhança genômica. Sem QC e validação, matriz bonita ainda pode levar a decisão ruim.
+
+Exemplo animal: Mérito genômico para seleção precoce.
+
+Erro comum: Confundir GWAS com predição genômica: um busca sinal por marcador; outro prediz mérito com muitos marcadores.
+
+Visual sugerido: Heatmap G e Manhattan plot.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Construir matriz genômica simples e simular sinal de associação.
+
+[Script R](../scripts/modulo20.R){.entry-link aria-label="Abrir script R do bloco temático 5.3"} · [CSV simulado](../data/modulo20_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 5.3"}
+
+`scale(matrix(sample(0:2, 20, TRUE), nrow = 5)) |> tcrossprod()`
+
+**Variação obrigatória:** Interpretar pico e acurácia de predição.
+
+**Observe:** Resultado deve ser interpretado com controle de qualidade e validação.
+
+**Interpretação esperada:** Matriz G depende de QC e padronização; sem validação, predição pode parecer melhor do que é.
+:::
+
+```r
+M <- matrix(c(0,1,2,1,1,0,2,1,0), nrow = 3)
+G <- tcrossprod(scale(M))
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Diferenciar matriz G, GWAS e predição genômica.
+
+**Decisão guiada:** Diferencie quando usar GWAS e quando usar predição genômica.
+
+**Evidência mínima:** Decisão sobre uso de informação genômica.
+
+**Antes do quiz:** Separar pergunta de parentesco, associação e predição.
+
+::: {.quiz-container data-module="20"}
+:::
+
+Depois, avance para Bloco temático 5.4.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo19-controle-de-qualidade-de-dados-gen-omicos.html" aria-label="Voltar para Bloco temático 5.2">Bloco temático 5.2</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo21-projeto-final-pipeline-completo-de-selec-ao.html" aria-label="Avançar para Bloco temático 5.4">Bloco temático 5.4</a>
+</nav>
+</div>
+</div>

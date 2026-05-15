@@ -10,13 +10,13 @@ number-sections: false
 ::: {.page-hero-copy}
 # Certificado de conclusão
 
-O certificado é o fechamento público da trilha MGenética. Ele fica disponível no navegador quando os 12 módulos constam como concluídos nos quizzes.
+O certificado é o fechamento público da trilha MGenética. Ele fica disponível no navegador quando os 21 blocos temáticos constam como concluídos nos quizzes.
 :::
 
 ::: {.page-hero-aside}
 **Critério**
 
-Complete os quizzes dos módulos em sequência. O progresso fica salvo localmente no seu navegador.
+Complete os quizzes dos blocos temáticos em sequência. O progresso fica salvo localmente no seu navegador.
 :::
 :::
 
@@ -31,7 +31,7 @@ Use esta página para decidir entre recuperar pendências, emitir o PDF ou volta
 ::: {.public-wayfinding-item role="listitem"}
 **Pendências**
 
-[Ver módulos](modules/index.qmd){.entry-link aria-label="Ver módulos pendentes antes do certificado"}
+[Ver curso](modules/index.qmd){.entry-link aria-label="Ver blocos temáticos pendentes antes do certificado"}
 :::
 
 ::: {.public-wayfinding-item role="listitem"}
@@ -52,7 +52,7 @@ Use esta página para decidir entre recuperar pendências, emitir o PDF ou volta
 ::: {.certificate-intro-card}
 **Conclusão real**
 
-O certificado só aparece quando todos os módulos estão marcados como completos.
+O certificado só aparece quando todos os blocos temáticos estão marcados como completos.
 :::
 
 ::: {.certificate-intro-card}
@@ -64,7 +64,7 @@ Nome e data são armazenados localmente no navegador para gerar o PDF.
 ::: {.certificate-intro-card}
 **Continuidade**
 
-Se ainda houver pendências, a página indica os módulos que faltam.
+Se ainda houver pendências, a página indica os blocos temáticos que faltam.
 :::
 :::
 
@@ -79,7 +79,7 @@ Use o certificado como fechamento da trilha pública: ele indica que os quizzes 
 ::: {.certificate-scope-item role="listitem"}
 **Evidência de percurso**
 
-Mostra que a sequência de módulos foi concluída localmente.
+Mostra que a sequência de blocos temáticos foi concluída localmente.
 :::
 
 ::: {.certificate-scope-item role="listitem"}
@@ -100,14 +100,14 @@ Não é validação profissional, institucional ou regulatória.
 ::: {.certificate-readiness-copy}
 ## Antes de gerar o certificado
 
-O certificado não é uma página isolada: ele fecha uma rota pública de estudo. Use esta tela para conferir pendências, voltar aos módulos certos e emitir o PDF apenas quando a trilha estiver completa.
+O certificado não é uma página isolada: ele fecha uma rota pública de estudo. Use esta tela para conferir pendências, voltar aos blocos temáticos certos e emitir o PDF apenas quando a trilha estiver completa.
 :::
 
 ::: {.certificate-readiness-steps role="list" aria-label="Etapas para desbloquear o certificado"}
 ::: {.certificate-readiness-step role="listitem"}
 **1 · Estude**
 
-Siga os 12 módulos em ordem ou retome a fase em que parou.
+Siga os 21 blocos temáticos em ordem ou retome o módulo do curso em que parou.
 :::
 
 ::: {.certificate-readiness-step role="listitem"}
@@ -119,14 +119,48 @@ Conclua os quizzes para registrar o progresso local no navegador.
 ::: {.certificate-readiness-step role="listitem"}
 **3 · Emita**
 
-Informe seu nome e gere o PDF quando todos os módulos estiverem completos.
+Informe seu nome e gere o PDF quando todos os blocos temáticos estiverem completos.
 :::
 :::
 
 ::: {.certificate-readiness-actions role="navigation" aria-label="Rotas antes de emitir o certificado"}
-[Ver módulos](modules/index.qmd){.btn .btn-primary}
+[Ver curso](modules/index.qmd){.btn .btn-primary}
 [Planejar estudo](semanas/index.qmd){.btn .btn-secondary}
+[Ver avaliação](avaliacao.qmd){.btn .btn-secondary}
 [Buscar conceito](busca.qmd){.btn .btn-secondary}
+:::
+:::
+
+::: {.certificate-assessment-callout role="region" aria-label="Avaliação prática antes do certificado"}
+::: {.certificate-assessment-callout-copy}
+**Avaliação para certificado**
+
+Antes de emitir o PDF, revise se você completou os quizzes e consegue defender uma decisão técnica do projeto final. A avaliação prática usa o M21 como síntese: script R, ranking e justificativa de seleção.
+:::
+
+::: {.certificate-assessment-callout-grid role="list" aria-label="Componentes da avaliação para certificado"}
+::: {.certificate-assessment-callout-item role="listitem"}
+**Quizzes**
+
+21 blocos temáticos completos no mesmo navegador.
+:::
+
+::: {.certificate-assessment-callout-item role="listitem"}
+**Laboratório**
+
+Script R final executado e interpretado.
+:::
+
+::: {.certificate-assessment-callout-item role="listitem"}
+**Decisão**
+
+Seleção defendida com limite técnico explícito.
+:::
+:::
+
+::: {.certificate-assessment-callout-actions role="navigation" aria-label="Ações para avaliação antes do certificado"}
+[Abrir avaliação](avaliacao.qmd){.btn .btn-primary aria-label="Abrir avaliação para certificado"}
+[Abrir projeto final](modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd){.btn .btn-secondary aria-label="Abrir bloco temático 5.4 projeto final"}
 :::
 :::
 
@@ -141,7 +175,7 @@ O certificado fica mais útil quando a conclusão formal acompanha uma síntese 
 ::: {.certificate-decision-item role="listitem"}
 **Quizzes**
 
-Todos os módulos aparecem como concluídos no navegador.
+Todos os blocos temáticos aparecem como concluídos no navegador.
 :::
 
 ::: {.certificate-decision-item role="listitem"}
@@ -171,7 +205,7 @@ O certificado fecha o percurso, mas a evidência técnica fica mais forte quando
 
 Revise uma simulação simples e a decisão que ela sustenta.
 
-[Revisar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Revisar o Módulo 01 antes do certificado"}
+[Revisar bloco 1.1](modules/modulo01-revis-ao-de-gen-etica-b-asica.qmd){.entry-link aria-label="Revisar bloco temático 1.1 antes do certificado"}
 :::
 
 ::: {.certificate-evidence-review-item role="listitem"}
@@ -179,7 +213,7 @@ Revise uma simulação simples e a decisão que ela sustenta.
 
 Revise uma comparação de parâmetros antes de registrar conclusão.
 
-[Revisar M06](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Revisar o Módulo 06 antes do certificado"}
+[Revisar bloco 3.6](modules/modulo11-correlac-oes-gen-eticas-fenot-ipicas-e-ambientais.qmd){.entry-link aria-label="Revisar bloco temático 3.6 antes do certificado"}
 :::
 
 ::: {.certificate-evidence-review-item role="listitem"}
@@ -187,7 +221,7 @@ Revise uma comparação de parâmetros antes de registrar conclusão.
 
 Revise uma saída genômica e a interpretação aplicada.
 
-[Revisar M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Revisar o Módulo 12 antes do certificado"}
+[Revisar bloco 5.4](modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd){.entry-link aria-label="Revisar bloco temático 5.4 antes do certificado"}
 :::
 :::
 :::
@@ -196,12 +230,12 @@ Revise uma saída genômica e a interpretação aplicada.
 ::: {.certificate-recovery-copy}
 **Se o certificado ainda não abriu**
 
-Use a pendência como orientação de retorno. O caminho mais curto é localizar o módulo ausente, refazer a evidência mínima e validar o quiz no mesmo navegador.
+Use a pendência como orientação de retorno. O caminho mais curto é localizar o bloco temático ausente, refazer a evidência mínima e validar o quiz no mesmo navegador.
 :::
 
 ::: {.certificate-recovery-grid role="list" aria-label="Rotas para recuperar pendências do certificado"}
 ::: {.certificate-recovery-item role="listitem"}
-**Módulo pendente**
+**Bloco temático pendente**
 
 Volte ao índice e abra a fase correspondente.
 :::
@@ -315,13 +349,13 @@ O certificado deve indicar claramente se a ação é continuar uma pendência ou
 ::: {.public-session-check-item role="listitem"}
 **Pendência**
 
-O próximo módulo aparece como ação principal.
+O próximo bloco temático aparece como ação principal.
 :::
 
 ::: {.public-session-check-item role="listitem"}
 **Conclusão**
 
-O PDF só aparece depois dos 12 quizzes.
+O PDF só aparece depois dos 21 quizzes.
 :::
 
 ::: {.public-session-check-item role="listitem"}
@@ -338,24 +372,24 @@ O nome e o navegador foram conferidos.
     <div class="certificate-noscript" role="status">
       <strong>JavaScript necessário</strong>
       <p>O certificado depende do progresso salvo localmente pelos quizzes. Ative JavaScript no navegador para consultar pendências ou gerar o PDF.</p>
-      <a href="modules/index.html" class="entry-link" aria-label="Voltar aos módulos quando JavaScript estiver desativado">Voltar aos módulos</a>
+      <a href="modules/index.html" class="entry-link" aria-label="Voltar ao curso quando JavaScript estiver desativado">Voltar ao curso</a>
     </div>
   </noscript>
 
   <div id="cert-incomplete" class="certificate-state" hidden>
     <div class="module-objectives certificate-status">
-      <h3>Módulos pendentes</h3>
-      <p>Complete todos os 12 módulos do curso para desbloquear o certificado.</p>
-      <p class="certificate-pending-hint">Use esta lista como rota de retomada: conclua o primeiro módulo pendente, volte ao quiz e retorne ao certificado para conferir o avanço.</p>
+      <h3>Blocos temáticos pendentes</h3>
+      <p>Complete todos os 21 blocos temáticos do curso para desbloquear o certificado.</p>
+      <p class="certificate-pending-hint">Use esta lista como rota de retomada: conclua o primeiro bloco temático pendente, volte ao quiz e retorne ao certificado para conferir o avanço.</p>
       <p id="cert-progress-summary" class="certificate-progress-summary" role="status" aria-live="polite"></p>
       <div id="cert-progress-list" aria-live="polite"></div>
     </div>
     <div class="certificate-actions" aria-describedby="cert-progress-summary">
-      <a id="cert-next-pending-link" href="modules/modulo01-introducao-ao-melhoramento-animal.html" class="btn btn-primary">
+      <a id="cert-next-pending-link" href="modules/modulo01-revis-ao-de-gen-etica-b-asica.html" class="btn btn-primary">
         Continuar pendência
       </a>
       <a href="modules/index.html" class="btn btn-secondary">
-        Ver todos os módulos
+        Ver curso
       </a>
     </div>
   </div>
@@ -364,7 +398,7 @@ O nome e o navegador foram conferidos.
     <div class="certificate-ready">
       <div class="hero-kicker">Trilha concluída</div>
       <h2>Você concluiu o curso</h2>
-      <p>Todos os 12 módulos foram completados com aprovação nos quizzes.</p>
+      <p>Todos os 21 blocos temáticos foram completados com aprovação nos quizzes.</p>
     </div>
 
     <div id="cert-preview" class="certificate-preview" role="region" aria-label="Prévia do certificado">
@@ -387,7 +421,7 @@ O nome e o navegador foram conferidos.
       <div class="certificate-preview-body">
         concluiu com aproveitamento o curso<br>
         <strong>Melhoramento Animal, Genética Quantitativa<br>e Genômica Aplicada</strong><br>
-        composto de 12 módulos, com aprovação em todos os quizzes de avaliação.
+        composto de 5 módulos e 21 blocos temáticos, com aprovação em todos os quizzes de avaliação.
       </div>
 
       <div class="certificate-preview-footer">
@@ -402,7 +436,7 @@ O nome e o navegador foram conferidos.
         </div>
         <div class="certificate-preview-detail certificate-preview-detail-right">
           <span>Carga horária estimada</span>
-          36 horas
+          52 horas
         </div>
       </div>
     </div>
@@ -434,39 +468,75 @@ O nome e o navegador foram conferidos.
   'use strict';
 
   var MODULES = [
-    'modulo01','modulo02','modulo03','modulo04',
-    'modulo05','modulo06','modulo07','modulo08',
-    'modulo09','modulo10','modulo11','modulo12'
+    'modulo01',
+    'modulo02',
+    'modulo03',
+    'modulo04',
+    'modulo05',
+    'modulo06',
+    'modulo07',
+    'modulo08',
+    'modulo09',
+    'modulo10',
+    'modulo11',
+    'modulo12',
+    'modulo13',
+    'modulo14',
+    'modulo15',
+    'modulo16',
+    'modulo17',
+    'modulo18',
+    'modulo19',
+    'modulo20',
+    'modulo21'
   ];
 
   var MODULE_TITLES = {
-    modulo01: 'Introdução ao Melhoramento Animal',
-    modulo02: 'Bases da Genética Quantitativa',
-    modulo03: 'Estatística Descritiva e Exploração de Dados no R',
-    modulo04: 'Médias, Variâncias e Componentes de Variância',
-    modulo05: 'Herdabilidade e Repetibilidade',
-    modulo06: 'Correlações Genéticas e Fenotípicas',
-    modulo07: 'Modelos Lineares e Modelos Mistos',
-    modulo08: 'BLUP e Avaliação Genética',
-    modulo09: 'Estrutura de Pedigree e Parentesco',
-    modulo10: 'Introdução à Genômica e Marcadores SNP',
-    modulo11: 'Controle de Qualidade de Dados Genômicos',
-    modulo12: 'Matrizes Genômicas, GWAS e Predição Genômica'
+    modulo01: 'Bloco temático 1.1 — Revisão de genética básica',
+    modulo02: 'Bloco temático 1.2 — Modos de ação gênica',
+    modulo03: 'Bloco temático 2.1 — Genética de populações I: frequências alélicas e genotípicas',
+    modulo04: 'Bloco temático 2.2 — Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo',
+    modulo05: 'Bloco temático 2.3 — Fatores que alteram frequências gênicas',
+    modulo06: 'Bloco temático 3.1 — Valores e médias: fenótipo, genótipo e ambiente',
+    modulo07: 'Bloco temático 3.2 — Noções de genética quantitativa',
+    modulo08: 'Bloco temático 3.3 — Componentes de variância',
+    modulo09: 'Bloco temático 3.4 — Herdabilidade e repetibilidade',
+    modulo10: 'Bloco temático 3.5 — Seleção e ganho genético',
+    modulo11: 'Bloco temático 3.6 — Correlações genéticas, fenotípicas e ambientais',
+    modulo12: 'Bloco temático 3.7 — Características de limiar',
+    modulo13: 'Bloco temático 4.1 — Endogamia e parentesco',
+    modulo14: 'Bloco temático 4.2 — Cruzamentos, heterose e complementaridade',
+    modulo15: 'Bloco temático 4.3 — Avaliação genética: DEP/EBV e ranking de animais',
+    modulo16: 'Bloco temático 4.4 — Modelos lineares e modelos mistos',
+    modulo17: 'Bloco temático 4.5 — BLUP e modelo animal',
+    modulo18: 'Bloco temático 5.1 — Genômica, marcadores SNP e dados moleculares',
+    modulo19: 'Bloco temático 5.2 — Controle de qualidade de dados genômicos',
+    modulo20: 'Bloco temático 5.3 — Matrizes genômicas, GWAS e predição genômica',
+    modulo21: 'Bloco temático 5.4 — Projeto final: pipeline completo de seleção'
   };
 
   var MODULE_LINKS = {
-    modulo01: 'modules/modulo01-introducao-ao-melhoramento-animal.html',
-    modulo02: 'modules/modulo02-bases-da-genetica-quantitativa.html',
-    modulo03: 'modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.html',
-    modulo04: 'modules/modulo04-medias-variancias-e-componentes-de-variancia.html',
-    modulo05: 'modules/modulo05-herdabilidade-e-repetibilidade.html',
-    modulo06: 'modules/modulo06-correlacoes-geneticas-e-fenotipicas.html',
-    modulo07: 'modules/modulo07-modelos-lineares-e-modelos-mistos.html',
-    modulo08: 'modules/modulo08-blup-e-avaliacao-genetica.html',
-    modulo09: 'modules/modulo09-estrutura-de-pedigree-e-parentesco.html',
-    modulo10: 'modules/modulo10-introducao-a-genomica-e-marcadores-snp.html',
-    modulo11: 'modules/modulo11-controle-de-qualidade-de-dados-genomicos.html',
-    modulo12: 'modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html'
+    modulo01: 'modules/modulo01-revis-ao-de-gen-etica-b-asica.html',
+    modulo02: 'modules/modulo02-modos-de-ac-ao-g-enica.html',
+    modulo03: 'modules/modulo03-gen-etica-de-populac-oes-i-frequ-encias-al-elicas-e-genot-ipicas.html',
+    modulo04: 'modules/modulo04-hardy-weinberg-alelos-m-ultiplos-e-genes-ligados-ao-sexo.html',
+    modulo05: 'modules/modulo05-fatores-que-alteram-frequ-encias-g-enicas.html',
+    modulo06: 'modules/modulo06-valores-e-m-edias-fen-otipo-gen-otipo-e-ambiente.html',
+    modulo07: 'modules/modulo07-noc-oes-de-gen-etica-quantitativa.html',
+    modulo08: 'modules/modulo08-componentes-de-vari-ancia.html',
+    modulo09: 'modules/modulo09-herdabilidade-e-repetibilidade.html',
+    modulo10: 'modules/modulo10-selec-ao-e-ganho-gen-etico.html',
+    modulo11: 'modules/modulo11-correlac-oes-gen-eticas-fenot-ipicas-e-ambientais.html',
+    modulo12: 'modules/modulo12-caracter-isticas-de-limiar.html',
+    modulo13: 'modules/modulo13-endogamia-e-parentesco.html',
+    modulo14: 'modules/modulo14-cruzamentos-heterose-e-complementaridade.html',
+    modulo15: 'modules/modulo15-avaliac-ao-gen-etica-dep-ebv-e-ranking-de-animais.html',
+    modulo16: 'modules/modulo16-modelos-lineares-e-modelos-mistos.html',
+    modulo17: 'modules/modulo17-blup-e-modelo-animal.html',
+    modulo18: 'modules/modulo18-gen-omica-marcadores-snp-e-dados-moleculares.html',
+    modulo19: 'modules/modulo19-controle-de-qualidade-de-dados-gen-omicos.html',
+    modulo20: 'modules/modulo20-matrizes-gen-omicas-gwas-e-predic-ao-gen-omica.html',
+    modulo21: 'modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.html'
   };
 
   function getCompleted() {
@@ -493,7 +563,7 @@ O nome e o navegador foram conferidos.
     document.getElementById('cert-incomplete').hidden = false;
     var summary = document.getElementById('cert-progress-summary');
     if (summary) {
-      summary.textContent = completed.length + ' de ' + MODULES.length + ' módulos concluídos. Próximo pendente: ' + formatModuleLabel(pending[0]) + '.';
+      summary.textContent = completed.length + ' de ' + MODULES.length + ' blocos temáticos concluídos. Próximo pendente: ' + formatModuleLabel(pending[0]) + '.';
     }
     updateNextPendingAction(pending[0]);
     var list = document.getElementById('cert-progress-list');
@@ -516,7 +586,7 @@ O nome e o navegador foram conferidos.
   }
 
   function formatModuleLabel(moduleId) {
-    return moduleId.replace('modulo', 'M').toUpperCase();
+    return 'Bloco temático ' + (MODULE_TITLES[moduleId] || moduleId).replace(/^Bloco temático /, '').replace(/ —.*$/, '');
   }
 
   function updateNextPendingAction(moduleId) {
@@ -643,7 +713,7 @@ O nome e o navegador foram conferidos.
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(10);
     doc.setTextColor(90, 122, 154);
-    doc.text('composto de 12 módulos, com aprovação em todos os quizzes de avaliação.', W / 2, 98, { align: 'center' });
+    doc.text('composto de 5 módulos e 21 blocos temáticos, com aprovação nos quizzes.', W / 2, 98, { align: 'center' });
 
     // Bottom row
     var dateStored = localStorage.getItem('mgenetica_cert_date') ||
@@ -663,7 +733,7 @@ O nome e o navegador foram conferidos.
     doc.text('Carga horária estimada', W - 50, H - 28, { align: 'right' });
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(90, 122, 154);
-    doc.text('36 horas', W - 50, H - 22, { align: 'right' });
+    doc.text('52 horas', W - 50, H - 22, { align: 'right' });
 
     // Signature line
     doc.setDrawColor(13, 38, 66);

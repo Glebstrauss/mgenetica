@@ -1,0 +1,231 @@
+---
+title: "Bloco temático 1.1 — Revisão de genética básica"
+subtitle: "Módulo 1: Fundamentos"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 1: Fundamentos · Bloco 1.1</span>
+<h1>Revisão de genética básica</h1>
+<p>Revisar gene, alelo, genótipo, fenótipo e segregação.</p>
+</div>
+<div class="study-hero-meta">
+<span>90 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 1: Fundamentos · Bloco temático 1.1</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo01" data-next-href="modulo02-modos-de-ac-ao-g-enica.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 1.1</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: De onde vem a diferença entre animais?" aria-current="step"><strong>Pergunta simples: De onde vem a diferença entre animais?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+De onde vem a diferença entre animais?
+
+**Intuição**
+
+Pense assim: Alelos são versões de uma instrução na receita do animal.
+
+Diferença entre animais começa em instruções biológicas herdadas e em como essas instruções aparecem no ambiente.
+
+**Por que isso importa no melhoramento**
+
+Aluno chega ao melhoramento com nomes soltos: gene, alelo, genótipo e fenótipo. Este bloco organiza essa base para que seleção não pareça mágica: animal transmite alelos, mas o que medimos é fenótipo.
+
+**Como pensar antes da fórmula**
+
+Imagine uma receita herdada e uma cozinha real. O genótipo é parte da receita; o ambiente é cozinha, manejo, alimentação e medição; o fenótipo é o prato final. Melhoramento tenta inferir a receita a partir do prato.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Gene é uma região herdável; alelo é uma versão do gene; genótipo é a combinação recebida; fenótipo é o que observamos.
+
+**Ponto técnico:** Segregação explica por que pais heterozigotos podem gerar descendentes com combinações diferentes.
+
+**Passo a passo mental:**
+
+- Identifique característica observada.
+- Separe palavra herdável de palavra observável.
+- Use cruzamento simples para prever proporções.
+- Explique por que fenótipo não é sinônimo de genótipo.
+
+Tópicos principais:
+
+- DNA
+- gene
+- alelo
+- genótipo
+- fenótipo
+- segregação
+
+**Termos para consultar no glossário:**
+
+- gene
+- alelo
+- genótipo
+- fenótipo
+- segregação
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **Cruzamento Aa x Aa com proporção 1:2:1.**
+
+Passo guiado: Em Aa x Aa, conte AA, Aa, Aa e aa. A proporção esperada é 1:2:1.
+
+**Termos da fórmula:**
+
+- AA, Aa e aa representam genótipos possíveis em um loco com dois alelos.
+- A proporção 1:2:1 é expectativa de descendentes de Aa x Aa, não promessa em n pequeno.
+- Fenótipo observado pode ou não revelar genótipo, conforme dominância, ambiente e forma de mensuração.
+
+**Cálculo comentado:**
+
+Monte quadro de Punnett com gametas A e a em cada pai. As quatro combinações possíveis são AA, Aa, Aa e aa. Agrupando iguais, há um AA, dois Aa e um aa.
+Se nascerem 20 descendentes, a expectativa aproximada é 5 AA, 10 Aa e 5 aa. Em rebanho real, contagem pode variar por acaso, erro de registro ou seleção antes da mensuração.
+
+**Resultado esperado:** Proporção esperada AA:Aa:aa = 1:2:1; em 20 animais, expectativa aproximada = 5, 10 e 5.
+
+Leitura do resultado: A proporção 1:2:1 mostra expectativa mendeliana, não garantia em lote pequeno. Se poucos bezerros nascerem, contagem real pode fugir da expectativa por acaso.
+
+Exemplo animal: Pelagem ou característica simples em bovinos.
+
+Erro comum: Dizer que animal com melhor fenótipo tem sempre melhor genótipo. Pode ser só ambiente melhor.
+
+Visual sugerido: Quadro de Punnett e tabela de contagem.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Simular uma pequena amostra de genótipos e contar frequências.
+
+[Script R](../scripts/modulo01.R){.entry-link aria-label="Abrir script R do bloco temático 1.1"} · [CSV simulado](../data/modulo01_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 1.1"}
+
+`table(sample(c("AA", "Aa", "aa"), 20, replace = TRUE))`
+
+**Variação obrigatória:** Resolver um cruzamento simples.
+
+**Observe:** Amostras pequenas oscilam; a proporção esperada aparece melhor com mais animais.
+
+**Interpretação esperada:** Aumentar n aproxima contagens da expectativa; n pequeno mostra oscilação amostral.
+:::
+
+```r
+genotipos <- c("AA", "Aa", "Aa", "aa")
+esperado <- table(genotipos) / length(genotipos)
+round(esperado * 20)
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Diferenciar gene, alelo, genótipo e fenótipo em situação animal.
+
+**Decisão guiada:** Explique se uma contagem diferente de 1:2:1 prova erro genético ou pode ser variação amostral.
+
+**Evidência mínima:** Tabela genotípica interpretada.
+
+**Antes do quiz:** Diferenciar alelo, genótipo e fenótipo.
+
+::: {.quiz-container data-module="01"}
+:::
+
+Depois, avance para Bloco temático 1.2.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="modulo02-modos-de-ac-ao-g-enica.html" aria-label="Avançar para Bloco temático 1.2">Bloco temático 1.2</a>
+</nav>
+</div>
+</div>

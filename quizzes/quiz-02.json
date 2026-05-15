@@ -1,57 +1,32 @@
 {
   "module": "02",
-  "title": "Quiz — Módulo 02",
-  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "title": "Quiz — Modos de ação gênica",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
   "passMark": 4,
   "questions": [
     {
-      "text": "Na equação P = G + E, o componente G representa:",
-      "options": [
-        "Apenas o valor genético aditivo do animal.",
-        "O valor genotípico total, incluindo efeitos aditivos, de dominância e epistáticos.",
-        "Somente efeitos ambientais permanentes do animal.",
-        "A variância fenotípica observada na população."
-      ],
-      "correct": 1
+      "text": "Com AA = 10 e aa = 4, qual é o ponto médio dos homozigotos?",
+      "options": ["7", "8", "14"],
+      "correct": 0
     },
     {
-      "text": "O valor de melhoramento (valor genético aditivo) é central porque:",
-      "options": [
-        "É transmitido integralmente para cada filho.",
-        "Em média, metade dele é transmitida para cada filho.",
-        "Depende do ambiente e varia ao longo da vida.",
-        "Inclui efeitos de dominância e epistasia."
-      ],
-      "correct": 1
+      "text": "Se Aa = 8, qual é o desvio em relação ao ponto médio?",
+      "options": ["+1", "-1", "+4"],
+      "correct": 0
     },
     {
-      "text": "Uma característica com baixa variância genética aditiva, mas alta variância de dominância:",
-      "options": [
-        "Responde muito bem à seleção massal individual.",
-        "Tem herdabilidade no sentido estreito elevada.",
-        "É difícil de melhorar por seleção contínua, pois a herança transmissível é baixa.",
-        "Não apresenta variação fenotípica entre animais."
-      ],
-      "correct": 2
+      "text": "O que esse desvio sugere?",
+      "options": ["Dominância parcial favorável.", "Ausência obrigatória de genética.", "Que Aa é sempre igual a AA."],
+      "correct": 0
     },
     {
-      "text": "A expressão correta da relação entre fenótipo, genótipo e ambiente é:",
-      "options": [
-        "P = G × E",
-        "P = G − E",
-        "P = G + E",
-        "P = G / E"
-      ],
-      "correct": 2
+      "text": "Qual componente é mais diretamente acumulado por seleção?",
+      "options": ["Efeito aditivo.", "Erro de digitação.", "Cor da tabela."],
+      "correct": 0
     },
     {
-      "text": "Em cruzamentos entre linhas puras muito divergentes, a dominância genética manifesta-se principalmente como:",
-      "options": [
-        "Vigor híbrido (heterose) na progênie F1.",
-        "Depressão por endogamia nas linhagens parentais.",
-        "Aumento da variância aditiva na população.",
-        "Redução da covariância entre parentes."
-      ],
+      "text": "Qual erro comum deve ser evitado?",
+      "options": ["Chamar qualquer diferença genotípica de aditiva.", "Comparar heterozigoto com ponto médio.", "Usar exemplo numérico pequeno."],
       "correct": 0
     }
   ]

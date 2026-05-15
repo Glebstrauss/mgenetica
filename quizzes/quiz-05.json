@@ -1,58 +1,33 @@
 {
   "module": "05",
-  "title": "Quiz — Módulo 05",
-  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "title": "Quiz — Fatores que alteram frequências gênicas",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
   "passMark": 4,
   "questions": [
     {
-      "text": "A herdabilidade no sentido estreito (h²) é definida como:",
-      "options": [
-        "VP / VG",
-        "VG / VP",
-        "VA / VP",
-        "VA / VG"
-      ],
-      "correct": 2
+      "text": "Se p aumenta 0,05 por geração a partir de 0,40, qual p após cinco gerações?",
+      "options": ["0,65", "0,45", "0,05"],
+      "correct": 0
     },
     {
-      "text": "Uma característica com h² = 0,40 significa que:",
-      "options": [
-        "40% do fenótipo de cada animal é determinado geneticamente.",
-        "40% da variação fenotípica observada na população é devida a diferenças genéticas aditivas.",
-        "40% dos filhos terão fenótipo superior ao pai.",
-        "A acurácia da seleção é exatamente 0,40."
-      ],
-      "correct": 1
+      "text": "Qual processo é mudança aleatória mais forte em população pequena?",
+      "options": ["Deriva genética", "Seleção direcional", "Média fenotípica"],
+      "correct": 0
     },
     {
-      "text": "A repetibilidade (r) em relação à herdabilidade no sentido estreito (h²):",
-      "options": [
-        "É sempre menor que h², pois ignora efeitos de dominância.",
-        "É sempre maior ou igual a h², pois inclui VA, VD e VPE no numerador.",
-        "É sempre igual a h².",
-        "Pode ser negativa para características de reprodução."
-      ],
-      "correct": 1
+      "text": "Migração altera frequência por qual mecanismo?",
+      "options": ["Entrada ou saída de alelos entre populações.", "Cálculo de h².", "Conversão de fenótipo em DEP."],
+      "correct": 0
     },
     {
-      "text": "A regressão linear de filhos sobre pais (y = a + b × pai) fornece estimativa de:",
-      "options": [
-        "h² diretamente (b = h²).",
-        "h²/2 — metade da herdabilidade no sentido estreito (b = h²/2).",
-        "A repetibilidade da característica.",
-        "A correlação genética entre pai e filho."
-      ],
-      "correct": 1
+      "text": "Qual erro comum deve ser evitado?",
+      "options": ["Atribuir toda mudança observada à seleção sem considerar deriva.", "Comparar trajetórias por geração.", "Simular população pequena."],
+      "correct": 0
     },
     {
-      "text": "Em qual situação a repetibilidade é especialmente útil em termos práticos?",
-      "options": [
-        "Quando apenas uma medida por animal está disponível.",
-        "Quando a característica é medida múltiplas vezes no mesmo animal ao longo da vida.",
-        "Quando se deseja estimar componentes de dominância.",
-        "Quando a população está em cruzamento entre raças."
-      ],
-      "correct": 1
+      "text": "Qual decisão prática vem desse bloco?",
+      "options": ["Controlar tamanho efetivo e origem dos reprodutores.", "Ignorar frequências gênicas.", "Selecionar sem registrar geração."],
+      "correct": 0
     }
   ]
 }

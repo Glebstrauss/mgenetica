@@ -1,0 +1,33 @@
+{
+  "module": "16",
+  "title": "Quiz — Modelos lineares e modelos mistos",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "Fazenda costuma entrar como que tipo de efeito?",
+      "options": ["Efeito fixo", "Frequência alélica", "Limiar genômico"],
+      "correct": 0
+    },
+    {
+      "text": "Animal em modelo misto costuma ser tratado como...",
+      "options": ["efeito aleatório.", "p².", "heterose percentual."],
+      "correct": 0
+    },
+    {
+      "text": "Por que ajustar fazenda?",
+      "options": ["Para não confundir manejo com mérito genético.", "Para remover toda genética.", "Para mudar alelos."],
+      "correct": 0
+    },
+    {
+      "text": "Coeficiente de sexo/fazenda é automaticamente genético?",
+      "options": ["Não. É efeito sistemático do grupo.", "Sim. Sempre é EBV.", "Sim. Sempre é DEP."],
+      "correct": 0
+    },
+    {
+      "text": "Qual erro comum deve ser evitado?",
+      "options": ["Interpretar efeito de manejo como valor genético.", "Definir variável resposta.", "Usar modelo simples para aprender."],
+      "correct": 0
+    }
+  ]
+}

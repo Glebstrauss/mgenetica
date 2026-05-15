@@ -1,0 +1,33 @@
+{
+  "module": "13",
+  "title": "Quiz — Endogamia e parentesco",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "Qual parentesco esperado entre meio-irmãos?",
+      "options": ["0,25", "0,50", "1,00"],
+      "correct": 0
+    },
+    {
+      "text": "Na matriz A, o que representa diagonal 1 + F?",
+      "options": ["Endogamia individual incorporada à diagonal.", "Frequência alélica p.", "Média fenotípica ajustada."],
+      "correct": 0
+    },
+    {
+      "text": "Parentesco deve ser sempre evitado?",
+      "options": ["Não. Ele informa avaliação, mas precisa controle em acasalamentos.", "Sim. Qualquer parentesco invalida avaliação.", "Não existe parentesco em pedigree."],
+      "correct": 0
+    },
+    {
+      "text": "Qual risco vem de acasalamentos aparentados repetidos?",
+      "options": ["Aumento de endogamia e expressão de recessivos desfavoráveis.", "Redução automática de F.", "Eliminação de todos os alelos ruins em uma geração."],
+      "correct": 0
+    },
+    {
+      "text": "Qual decisão prática usa parentesco?",
+      "options": ["Evitar acasalamento de reprodutor muito aparentado às fêmeas do lote.", "Escolher só pelo maior peso bruto.", "Ignorar matriz A."],
+      "correct": 0
+    }
+  ]
+}

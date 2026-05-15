@@ -1,0 +1,1122 @@
+course_practice:
+  purpose: "Transformar módulos prioritários em padrão de aula completa: cálculo manual, R coerente, interpretação e quiz com distratores conceituais reais."
+  priority_modules: [M1, M2, M3, M4, M5, M6, M7, M8, M9, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21]
+  modules:
+    M1:
+      formula_terms:
+        - "AA, Aa e aa representam genótipos possíveis em um loco com dois alelos."
+        - "A proporção 1:2:1 é expectativa de descendentes de Aa x Aa, não promessa em n pequeno."
+        - "Fenótipo observado pode ou não revelar genótipo, conforme dominância, ambiente e forma de mensuração."
+      manual_walkthrough:
+        - "Monte quadro de Punnett com gametas A e a em cada pai. As quatro combinações possíveis são AA, Aa, Aa e aa. Agrupando iguais, há um AA, dois Aa e um aa."
+        - "Se nascerem 20 descendentes, a expectativa aproximada é 5 AA, 10 Aa e 5 aa. Em rebanho real, contagem pode variar por acaso, erro de registro ou seleção antes da mensuração."
+      manual_result: "Proporção esperada AA:Aa:aa = 1:2:1; em 20 animais, expectativa aproximada = 5, 10 e 5."
+      r_preview: |
+        genotipos <- c("AA", "Aa", "Aa", "aa")
+        esperado <- table(genotipos) / length(genotipos)
+        round(esperado * 20)
+      lab_interpretation: "Aumentar n aproxima contagens da expectativa; n pequeno mostra oscilação amostral."
+      decision_prompt: "Explique se uma contagem diferente de 1:2:1 prova erro genético ou pode ser variação amostral."
+      lab_code: |
+        # M1 — Revisão de genética básica
+        # Objetivo: comparar expectativa mendeliana e amostra real pequena.
+
+        set.seed(101)
+
+        gametas_pai <- c("A", "a")
+        gametas_mae <- c("A", "a")
+        quadro <- expand.grid(pai = gametas_pai, mae = gametas_mae)
+        quadro$genotipo <- ifelse(
+          quadro$pai == quadro$mae,
+          paste0(quadro$pai, quadro$mae),
+          "Aa"
+        )
+
+        esperado <- prop.table(table(quadro$genotipo))
+        n <- 20
+        amostra <- sample(names(esperado), n, replace = TRUE, prob = as.numeric(esperado))
+        observado <- table(factor(amostra, levels = names(esperado)))
+
+        resultado <- data.frame(
+          genotipo = names(esperado),
+          proporcao_esperada = as.numeric(esperado),
+          contagem_esperada = as.numeric(esperado) * n,
+          contagem_observada = as.numeric(observado)
+        )
+
+        print(resultado)
+        cat("\nINTERPRETACAO: expectativa mendeliana orienta previsão; amostra pequena pode oscilar.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(resultado, "data/modulo01_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo01_simulado.csv\n")
+      quiz_questions:
+        - text: "Em Aa x Aa, qual expectativa genotípica é correta?"
+          options: ["1 AA : 2 Aa : 1 aa", "1 AA : 1 Aa : 1 aa", "Todos Aa, porque ambos os pais carregam A e a"]
+          correct: 0
+        - text: "Em 20 descendentes, observar 4 AA, 11 Aa e 5 aa significa necessariamente erro?"
+          options: ["Não. Amostra pequena pode oscilar ao redor da expectativa.", "Sim. Toda amostra deve repetir 5, 10 e 5 exatamente.", "Sim. Heterozigotos não podem ser maioria."]
+          correct: 0
+        - text: "Qual frase separa melhor genótipo e fenótipo?"
+          options: ["Genótipo é combinação alélica; fenótipo é característica observada sob genética e ambiente.", "Fenótipo é sempre cópia exata do genótipo.", "Genótipo só existe em características quantitativas."]
+          correct: 0
+        - text: "Qual erro comum deve ser evitado?"
+          options: ["Concluir mérito genético só pelo fenótipo observado.", "Usar quadro de Punnett para prever proporções.", "Contar AA, Aa e aa em tabela."]
+          correct: 0
+        - text: "No laboratório, por que aumentar n ajuda?"
+          options: ["Porque reduz oscilação amostral relativa.", "Porque muda a regra de segregação.", "Porque transforma aa em Aa."]
+          correct: 0
+    M3:
+      formula_terms:
+        - "N é número total de animais genotipados."
+        - "AA contribui com duas cópias de A; Aa contribui com uma cópia de A e uma de a."
+        - "p e q são frequências alélicas; devem somar 1 quando há só dois alelos."
+      manual_walkthrough:
+        - "Considere 10 AA, 5 Aa e 5 aa. Há 20 animais e 40 cópias alélicas. O alelo A aparece 2*10 + 5 = 25 vezes."
+        - "A frequência de A é p = 25/40 = 0,625. A frequência de a é q = 1 - p = 0,375. Genótipo mais comum não é automaticamente melhor; é só mais frequente."
+      manual_result: "p = 0,625; q = 0,375; frequências genotípicas = 0,50 AA, 0,25 Aa, 0,25 aa."
+      r_preview: |
+        gen <- c(rep("AA", 10), rep("Aa", 5), rep("aa", 5))
+        p <- (2 * sum(gen == "AA") + sum(gen == "Aa")) / (2 * length(gen))
+        c(p = p, q = 1 - p)
+      lab_interpretation: "Frequência alélica descreve composição genética da população, não valor produtivo do alelo."
+      decision_prompt: "Diga se o alelo A deve ser selecionado apenas por ser mais frequente."
+      lab_code: |
+        # M3 — Frequências alélicas e genotípicas
+        # Objetivo: calcular p, q e frequências genotípicas em rebanho pequeno.
+
+        gen <- c(rep("AA", 10), rep("Aa", 5), rep("aa", 5))
+        n <- length(gen)
+
+        freq_genotipica <- prop.table(table(factor(gen, levels = c("AA", "Aa", "aa"))))
+        p <- (2 * sum(gen == "AA") + sum(gen == "Aa")) / (2 * n)
+        q <- 1 - p
+
+        resultado <- data.frame(
+          medida = c("freq_AA", "freq_Aa", "freq_aa", "p_A", "q_a"),
+          valor = c(as.numeric(freq_genotipica), p, q)
+        )
+
+        print(resultado)
+        cat("\nINTERPRETACAO: p e q mostram composição alélica; decisão de seleção exige efeito do alelo.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(resultado, "data/modulo03_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo03_simulado.csv\n")
+      quiz_questions:
+        - text: "Com 10 AA, 5 Aa e 5 aa, qual é p para alelo A?"
+          options: ["0,625", "0,500", "0,250"]
+          correct: 0
+        - text: "Por que Aa entra uma vez no numerador de p?"
+          options: ["Porque carrega uma cópia de A.", "Porque carrega duas cópias de A.", "Porque não contribui para frequência alélica."]
+          correct: 0
+        - text: "O que p + q deve valer em sistema com dois alelos?"
+          options: ["1", "2N", "Número de genótipos"]
+          correct: 0
+        - text: "Alelo mais frequente deve ser selecionado automaticamente?"
+          options: ["Não. Frequência não informa sozinha efeito produtivo.", "Sim. Frequência alta sempre indica superioridade.", "Sim. Alelo raro sempre é prejudicial."]
+          correct: 0
+        - text: "Qual evidência fecha melhor este bloco?"
+          options: ["Tabela com frequências genotípicas, p, q e interpretação.", "Lista de animais sem cálculo.", "Gráfico sem explicar alelos."]
+          correct: 0
+    M7:
+      formula_terms:
+        - "Valor quantitativo pode ser soma de muitos efeitos pequenos mais ambiente."
+        - "Média resume centro da distribuição; variância resume dispersão."
+        - "Mais loci segregando tendem a gerar mais classes fenotípicas."
+      manual_walkthrough:
+        - "Use três loci codificados como 0, 1 e 2. Um animal com soma 0 tem poucos alelos favoráveis; outro com soma 6 tem muitos. Valores intermediários aparecem por combinações diferentes."
+        - "Quando o número de loci aumenta, categorias discretas ficam numerosas e a característica passa a parecer contínua, como peso, leite ou ganho diário."
+      manual_result: "Três loci 0/1/2 produzem soma entre 0 e 6; mais loci aumentam número de valores possíveis."
+      r_preview: |
+        set.seed(7)
+        genotipos <- matrix(sample(0:2, 60, replace = TRUE), ncol = 3)
+        valor_genetico <- rowSums(genotipos)
+        summary(valor_genetico)
+      lab_interpretation: "Distribuição contínua surge da soma de muitos efeitos; ambiente amplia sobreposição entre animais."
+      decision_prompt: "Explique por que seleção para peso usa médias e variâncias, não classes mendelianas simples."
+      lab_code: |
+        # M7 — Noções de genética quantitativa
+        # Objetivo: simular muitos loci pequenos e observar distribuição contínua.
+
+        set.seed(107)
+        n_animais <- 80
+        n_loci <- 10
+
+        genotipos <- matrix(sample(0:2, n_animais * n_loci, replace = TRUE), nrow = n_animais)
+        valor_genetico <- rowSums(genotipos)
+        ambiente <- rnorm(n_animais, mean = 0, sd = 2)
+        fenotipo <- valor_genetico + ambiente
+
+        dados <- data.frame(
+          animal = paste0("A", sprintf("%02d", 1:n_animais)),
+          valor_genetico = valor_genetico,
+          ambiente = round(ambiente, 2),
+          fenotipo = round(fenotipo, 2)
+        )
+
+        print(summary(dados[, c("valor_genetico", "fenotipo")]))
+        cat("\nINTERPRETACAO: muitos loci criam escala contínua; ambiente aumenta sobreposição entre animais.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(dados, "data/modulo07_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo07_simulado.csv\n")
+      quiz_questions:
+        - text: "Por que peso não costuma seguir proporção mendeliana simples?"
+          options: ["Porque muitos genes e ambiente contribuem juntos.", "Porque peso não tem base genética.", "Porque todo peso é determinado por um único gene."]
+          correct: 0
+        - text: "O que acontece ao aumentar número de loci pequenos?"
+          options: ["Aumenta número de valores intermediários.", "Todos os animais ficam iguais.", "A variância necessariamente vira zero."]
+          correct: 0
+        - text: "Qual medida resume dispersão entre animais?"
+          options: ["Variância", "Nome do animal", "Número da fazenda sem dados"]
+          correct: 0
+        - text: "No laboratório, por que fenótipo pode sobrepor animais com valores genéticos diferentes?"
+          options: ["Porque ambiente adiciona variação.", "Porque genótipo não existe.", "Porque R remove todos os efeitos."]
+          correct: 0
+        - text: "Qual decisão prática depende desse conceito?"
+          options: ["Usar média e variância para selecionar características contínuas.", "Classificar peso só em AA, Aa e aa.", "Ignorar registros ambientais."]
+          correct: 0
+    M9:
+      formula_terms:
+        - "VA é variância genética aditiva."
+        - "VP é variância fenotípica total."
+        - "h² = VA/VP descreve proporção da variação entre animais explicada por efeitos aditivos."
+      manual_walkthrough:
+        - "Se VA = 40 e VP = 100, h² = 0,40. Isso não significa que 40% do peso de um animal é genético; significa que 40% da variação observada entre animais é aditiva."
+        - "Se ambiente fica mais variável e VP sobe para 160 mantendo VA = 40, h² cai para 0,25. O sinal genético ficou proporcionalmente mais difícil de enxergar."
+      manual_result: "h² inicial = 0,40; com VP = 160, h² = 0,25."
+      r_preview: |
+        VA <- 40
+        VP <- c(100, 160)
+        VA / VP
+      lab_interpretation: "Ambiente mais heterogêneo reduz h² aparente e enfraquece seleção por fenótipo."
+      decision_prompt: "Decida se vale melhorar padronização ambiental antes de intensificar seleção fenotípica."
+      lab_code: |
+        # M9 — Herdabilidade e repetibilidade
+        # Objetivo: comparar herdabilidade sob ambientes com diferente variância.
+
+        cenarios <- data.frame(
+          cenario = c("ambiente_controlado", "ambiente_heterogeneo"),
+          VA = c(40, 40),
+          VE = c(60, 120)
+        )
+        cenarios$VP <- cenarios$VA + cenarios$VE
+        cenarios$h2 <- cenarios$VA / cenarios$VP
+
+        print(cenarios)
+        cat("\nINTERPRETACAO: mesma VA gera h2 menor quando VE aumenta.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(cenarios, "data/modulo09_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo09_simulado.csv\n")
+      quiz_questions:
+        - text: "Com VA = 40 e VP = 100, qual é h²?"
+          options: ["0,40", "2,50", "60"]
+          correct: 0
+        - text: "Qual interpretação de h² está correta?"
+          options: ["Proporção da variação entre animais explicada por variância aditiva.", "Percentual genético de um animal individual.", "Proporção de animais selecionados."]
+          correct: 0
+        - text: "Se VE aumenta e VA fica igual, o que tende a ocorrer com h²?"
+          options: ["Diminui", "Aumenta sempre", "Vira 1 automaticamente"]
+          correct: 0
+        - text: "Quando repetibilidade ajuda?"
+          options: ["Ao decidir se nova medida do mesmo animal acrescenta informação.", "Ao substituir todo pedigree.", "Ao calcular p e q."]
+          correct: 0
+        - text: "Qual decisão prática é coerente com h² baixa?"
+          options: ["Melhorar qualidade/quantidade de registros antes de confiar só no fenótipo.", "Descartar a característica para sempre.", "Ignorar ambiente."]
+          correct: 0
+    M10:
+      formula_terms:
+        - "S é diferencial de seleção: média dos selecionados menos média da população."
+        - "h² indica quanto do diferencial fenotípico tende a aparecer como resposta aditiva."
+        - "R é resposta esperada por geração; ganho por ano depende do intervalo de geração."
+      manual_walkthrough:
+        - "Considere pesos de 10 touros: 180, 190, 195, 200, 205, 210, 215, 220, 225 e 230 kg. A média populacional é 207 kg. Selecionando os três maiores, média dos selecionados é 225 kg."
+        - "O diferencial é S = 225 - 207 = 18 kg. Com h² = 0,30, resposta esperada é R = 5,4 kg por geração. Se intervalo de geração for 3 anos, ganho aproximado é 1,8 kg/ano."
+      manual_result: "S = 18 kg; R = 5,4 kg/geração; ganho anual aproximado = 1,8 kg/ano."
+      r_preview: |
+        peso <- c(180,190,195,200,205,210,215,220,225,230)
+        selecionados <- sort(peso, decreasing = TRUE)[1:3]
+        S <- mean(selecionados) - mean(peso)
+        R <- 0.30 * S
+        R
+      lab_interpretation: "Selecionar poucos animais aumenta S, mas reduz número de pais e pode aumentar endogamia."
+      decision_prompt: "Compare top 30% e top 50% e escolha estratégia considerando ganho e risco."
+      lab_code: |
+        # M10 — Seleção e ganho genético
+        # Objetivo: calcular S, R e ganho por ano com dados pequenos.
+
+        peso <- c(180, 190, 195, 200, 205, 210, 215, 220, 225, 230)
+        animais <- paste0("T", sprintf("%02d", seq_along(peso)))
+        dados <- data.frame(animal = animais, peso = peso)
+
+        h2 <- 0.30
+        intervalo_geracao <- 3
+        n_selecionados <- 3
+
+        selecionados <- dados[order(dados$peso, decreasing = TRUE), ][1:n_selecionados, ]
+        media_pop <- mean(dados$peso)
+        media_sel <- mean(selecionados$peso)
+        S <- media_sel - media_pop
+        R <- h2 * S
+        ganho_ano <- R / intervalo_geracao
+
+        resultado <- data.frame(
+          media_populacao = media_pop,
+          media_selecionados = media_sel,
+          diferencial_S = S,
+          h2 = h2,
+          resposta_R = R,
+          intervalo_geracao = intervalo_geracao,
+          ganho_por_ano = ganho_ano
+        )
+
+        print(dados)
+        print(selecionados)
+        print(resultado)
+        cat("\nINTERPRETACAO: maior intensidade aumenta S, mas deve ser equilibrada com número de pais e endogamia.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(resultado, "data/modulo10_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo10_simulado.csv\n")
+      quiz_questions:
+        - text: "Pesos têm média 207 kg e selecionados média 225 kg. Qual é S?"
+          options: ["18 kg", "5,4 kg", "1,8 kg/ano"]
+          correct: 0
+        - text: "Com h² = 0,30 e S = 18 kg, qual é R?"
+          options: ["5,4 kg por geração", "18 kg por geração", "60 kg por geração"]
+          correct: 0
+        - text: "Por que ganho por ano pode ser menor que R?"
+          options: ["Porque R é por geração e deve considerar intervalo de geração.", "Porque herdabilidade sempre é zero.", "Porque selecionados não têm média."]
+          correct: 0
+        - text: "Qual risco aumenta quando seleção fica muito intensa com poucos pais?"
+          options: ["Endogamia e perda de diversidade.", "Maior número efetivo.", "Mais famílias independentes."]
+          correct: 0
+        - text: "Qual interpretação é correta?"
+          options: ["R é expectativa média, não promessa para cada descendente.", "R garante que todos os filhos ganham 5,4 kg.", "S e R são sempre iguais."]
+          correct: 0
+    M13:
+      formula_terms:
+        - "Parentesco esperado mede compartilhamento de alelos por ancestralidade."
+        - "F mede probabilidade de dois alelos em um indivíduo serem idênticos por descendência."
+        - "Na matriz A, diagonal 1 + F indica endogamia individual."
+      manual_walkthrough:
+        - "Dois meio-irmãos compartilham um progenitor. A expectativa de parentesco aditivo entre eles é 0,25. Irmãos completos compartilham pai e mãe, então expectativa é 0,50."
+        - "Se acasalamento usa animais muito aparentados repetidamente, F aumenta. Isso pode expor alelos recessivos desfavoráveis e reduzir desempenho médio."
+      manual_result: "Parentesco esperado: meio-irmãos = 0,25; irmãos completos = 0,50; diagonal de animal endogâmico = 1 + F."
+      r_preview: |
+        A <- matrix(c(1, .25, .25, 1), nrow = 2)
+        rownames(A) <- colnames(A) <- c("Animal1", "Animal2")
+        A
+      lab_interpretation: "Parentesco não é sempre ruim; risco surge quando ele limita diversidade e aumenta F."
+      decision_prompt: "Explique por que melhor animal por DEP pode não ser melhor acasalamento se parentesco com fêmeas for alto."
+      lab_code: |
+        # M13 — Endogamia e parentesco
+        # Objetivo: comparar parentesco esperado entre tipos de família.
+
+        pares <- data.frame(
+          par = c("nao_aparentados", "meio_irmaos", "irmaos_completos", "pai_filho"),
+          parentesco_esperado = c(0.00, 0.25, 0.50, 0.50)
+        )
+        pares$risco_acasalamento <- ifelse(pares$parentesco_esperado >= 0.50, "alto", ifelse(pares$parentesco_esperado > 0, "moderado", "baixo"))
+
+        A_meio_irmaos <- matrix(c(1, 0.25, 0.25, 1), nrow = 2)
+        rownames(A_meio_irmaos) <- colnames(A_meio_irmaos) <- c("M1", "M2")
+
+        print(pares)
+        print(A_meio_irmaos)
+        cat("\nINTERPRETACAO: parentesco ajuda avaliação, mas acasalamento entre aparentados aumenta risco de endogamia.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(pares, "data/modulo13_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo13_simulado.csv\n")
+      quiz_questions:
+        - text: "Qual parentesco esperado entre meio-irmãos?"
+          options: ["0,25", "0,50", "1,00"]
+          correct: 0
+        - text: "Na matriz A, o que representa diagonal 1 + F?"
+          options: ["Endogamia individual incorporada à diagonal.", "Frequência alélica p.", "Média fenotípica ajustada."]
+          correct: 0
+        - text: "Parentesco deve ser sempre evitado?"
+          options: ["Não. Ele informa avaliação, mas precisa controle em acasalamentos.", "Sim. Qualquer parentesco invalida avaliação.", "Não existe parentesco em pedigree."]
+          correct: 0
+        - text: "Qual risco vem de acasalamentos aparentados repetidos?"
+          options: ["Aumento de endogamia e expressão de recessivos desfavoráveis.", "Redução automática de F.", "Eliminação de todos os alelos ruins em uma geração."]
+          correct: 0
+        - text: "Qual decisão prática usa parentesco?"
+          options: ["Evitar acasalamento de reprodutor muito aparentado às fêmeas do lote.", "Escolher só pelo maior peso bruto.", "Ignorar matriz A."]
+          correct: 0
+    M21:
+      formula_terms:
+        - "DEP mede mérito esperado na progênie em unidade da característica."
+        - "Acurácia informa confiança relativa na estimativa."
+        - "Penalidade por parentesco reduz prioridade de animais que aumentam risco de endogamia no conjunto."
+      manual_walkthrough:
+        - "Compare quatro touros com DEP, acurácia e parentesco médio com fêmeas. Um índice simples pode ser score = DEP - 10*parentesco + 2*acurácia."
+        - "Se T1 tem DEP 18, parentesco 0,20 e acurácia 0,70, score = 18 - 2 + 1,4 = 17,4. Animal com maior DEP pode perder posição se tiver parentesco alto ou baixa confiança."
+      manual_result: "Ranking deve equilibrar mérito, risco e confiança; maior DEP isolada não basta."
+      r_preview: |
+        touros <- data.frame(touro = c("T1","T2","T3","T4"), DEP = c(18,15,12,20), acuracia = c(.70,.85,.60,.50), parentesco = c(.20,.05,.02,.35))
+        touros$score <- touros$DEP - 10 * touros$parentesco + 2 * touros$acuracia
+        touros[order(touros$score, decreasing = TRUE), ]
+      lab_interpretation: "Pipeline bom registra regra de decisão; sem regra, ranking vira preferência subjetiva."
+      decision_prompt: "Escolha dois touros e justifique por DEP, acurácia e parentesco, não por um único número."
+      lab_code: |
+        # M21 — Projeto final: pipeline completo de seleção
+        # Objetivo: montar ranking com DEP, acurácia e penalidade por parentesco.
+
+        touros <- data.frame(
+          touro = c("T1", "T2", "T3", "T4", "T5"),
+          DEP_peso = c(18, 15, 12, 20, 16),
+          acuracia = c(0.70, 0.85, 0.60, 0.50, 0.78),
+          parentesco_medio = c(0.20, 0.05, 0.02, 0.35, 0.10)
+        )
+
+        touros$score <- touros$DEP_peso - 10 * touros$parentesco_medio + 2 * touros$acuracia
+        touros$decisao <- ifelse(touros$parentesco_medio > 0.30, "evitar neste lote", "candidato")
+        ranking <- touros[order(touros$score, decreasing = TRUE), ]
+
+        print(ranking)
+        escolhidos <- subset(ranking, decisao == "candidato")[1:2, ]
+        print(escolhidos)
+        cat("\nINTERPRETACAO: decisão final combina mérito, confiança e risco de endogamia.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(ranking, "data/modulo21_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo21_simulado.csv\n")
+      quiz_questions:
+        - text: "Por que maior DEP isolada pode não vencer no projeto final?"
+          options: ["Porque parentesco alto ou baixa acurácia podem aumentar risco da decisão.", "Porque DEP nunca deve ser usada.", "Porque acurácia substitui todo fenótipo."]
+          correct: 0
+        - text: "No índice score = DEP - 10*parentesco + 2*acurácia, o que a penalidade faz?"
+          options: ["Reduz prioridade de animais mais aparentados ao lote.", "Aumenta pontuação de parentesco alto.", "Remove necessidade de justificar decisão."]
+          correct: 0
+        - text: "Qual evidência mínima do projeto final?"
+          options: ["Ranking, regra usada e justificativa dos animais escolhidos.", "Apenas maior DEP copiada.", "Só gráfico sem decisão."]
+          correct: 0
+        - text: "Qual prática torna pipeline reprodutível?"
+          options: ["Salvar dados, script, regra de score e interpretação.", "Alterar pesos sem registrar.", "Escolher animal por preferência visual."]
+          correct: 0
+        - text: "Qual decisão é mais defensável?"
+          options: ["Escolher animais com bom mérito, acurácia aceitável e parentesco controlado.", "Escolher sempre maior DEP mesmo com parentesco extremo.", "Ignorar acurácia se score parece alto."]
+          correct: 0
+    M2:
+      formula_terms:
+        - "Ponto médio entre homozigotos é referência para avaliar aditividade."
+        - "Desvio do heterozigoto em relação ao ponto médio indica dominância."
+        - "Epistasia exige comparar combinação de locos, não apenas um genótipo isolado."
+      manual_walkthrough:
+        - "Com AA = 10 e aa = 4, o ponto médio aditivo é (10 + 4)/2 = 7. Se Aa = 8, heterozigoto está 1 unidade acima do ponto médio."
+        - "Esse desvio sugere dominância parcial favorável. Para seleção de longo prazo, efeito aditivo ainda é central porque responde melhor ao acúmulo entre gerações."
+      manual_result: "Ponto médio = 7; desvio de dominância em Aa = +1."
+      r_preview: |
+        valores <- data.frame(genotipo = c("AA","Aa","aa"), valor = c(10,8,4))
+        media_homozigotos <- mean(c(10,4))
+        valores$desvio <- valores$valor - media_homozigotos
+      lab_interpretation: "Aa acima do ponto médio indica dominância; isso não substitui estimativa da fração aditiva."
+      decision_prompt: "Explique por que dominância pode favorecer cruzamento, mas aditividade orienta seleção acumulada."
+      lab_code: |
+        # M2 — Modos de ação gênica
+        # Objetivo: comparar aditividade e dominância em valores genotípicos.
+
+        valores <- data.frame(
+          genotipo = c("AA", "Aa", "aa"),
+          valor = c(10, 8, 4)
+        )
+        ponto_medio <- mean(valores$valor[valores$genotipo %in% c("AA", "aa")])
+        valores$desvio_do_ponto_medio <- valores$valor - ponto_medio
+        dominancia_Aa <- valores$desvio_do_ponto_medio[valores$genotipo == "Aa"]
+
+        print(valores)
+        cat("\nPonto medio dos homozigotos:", ponto_medio, "\n")
+        cat("Desvio de dominancia em Aa:", dominancia_Aa, "\n")
+        cat("\nINTERPRETACAO: dominância altera heterozigoto; seleção acumulada depende sobretudo de efeito aditivo.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(valores, "data/modulo02_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo02_simulado.csv\n")
+      quiz_questions:
+        - text: "Com AA = 10 e aa = 4, qual é o ponto médio dos homozigotos?"
+          options: ["7", "8", "14"]
+          correct: 0
+        - text: "Se Aa = 8, qual é o desvio em relação ao ponto médio?"
+          options: ["+1", "-1", "+4"]
+          correct: 0
+        - text: "O que esse desvio sugere?"
+          options: ["Dominância parcial favorável.", "Ausência obrigatória de genética.", "Que Aa é sempre igual a AA."]
+          correct: 0
+        - text: "Qual componente é mais diretamente acumulado por seleção?"
+          options: ["Efeito aditivo.", "Erro de digitação.", "Cor da tabela."]
+          correct: 0
+        - text: "Qual erro comum deve ser evitado?"
+          options: ["Chamar qualquer diferença genotípica de aditiva.", "Comparar heterozigoto com ponto médio.", "Usar exemplo numérico pequeno."]
+          correct: 0
+    M4:
+      formula_terms:
+        - "p² é frequência esperada de AA sob acasalamento ao acaso."
+        - "2pq é frequência esperada de heterozigotos."
+        - "q² é frequência esperada de aa; p + q = 1 em sistema bialélico."
+      manual_walkthrough:
+        - "Com p = 0,70 e q = 0,30, calcule AA = 0,49, Aa = 0,42 e aa = 0,09. Em 100 animais, espere 49, 42 e 9."
+        - "Se observado for 45, 46 e 9, diferença existe, mas é pequena. Interpretação deve considerar tamanho amostral, estrutura e erro de genotipagem."
+      manual_result: "Esperado em 100 animais: 49 AA, 42 Aa, 9 aa."
+      r_preview: |
+        p <- 0.7
+        esperado <- c(AA = p^2, Aa = 2*p*(1-p), aa = (1-p)^2) * 100
+        esperado
+      lab_interpretation: "Hardy-Weinberg serve como referência; desvio observado abre pergunta, não fecha diagnóstico sozinho."
+      decision_prompt: "Diga se diferença pequena entre observado e esperado justifica concluir seleção imediatamente."
+      lab_code: |
+        # M4 — Hardy-Weinberg
+        # Objetivo: comparar contagens observadas e esperadas.
+
+        p <- 0.70
+        q <- 1 - p
+        n <- 100
+        esperado <- c(AA = p^2, Aa = 2 * p * q, aa = q^2) * n
+        observado <- c(AA = 45, Aa = 46, aa = 9)
+        comparacao <- data.frame(
+          genotipo = names(esperado),
+          esperado = as.numeric(esperado),
+          observado = as.numeric(observado),
+          diferenca = as.numeric(observado - esperado)
+        )
+
+        print(comparacao)
+        cat("\nINTERPRETACAO: Hardy-Weinberg é régua de comparação, não prova automática de causa.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(comparacao, "data/modulo04_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo04_simulado.csv\n")
+      quiz_questions:
+        - text: "Com p = 0,70, qual é frequência esperada de AA?"
+          options: ["0,49", "0,42", "0,09"]
+          correct: 0
+        - text: "Com p = 0,70 e q = 0,30, qual é frequência esperada de Aa?"
+          options: ["0,42", "0,49", "0,21"]
+          correct: 0
+        - text: "Desvio pequeno entre observado e esperado prova seleção?"
+          options: ["Não. Pode envolver amostragem, estrutura ou erro.", "Sim. Qualquer diferença prova seleção.", "Sim. Heterozigotos nunca variam."]
+          correct: 0
+        - text: "Hardy-Weinberg deve ser usado como quê?"
+          options: ["Modelo de referência.", "Regra obrigatória para todo rebanho.", "Índice de DEP."]
+          correct: 0
+        - text: "Qual evidência fecha melhor o bloco?"
+          options: ["Tabela observado/esperado com interpretação cautelosa.", "Só escrever p² sem q.", "Ignorar contagens."]
+          correct: 0
+    M5:
+      formula_terms:
+        - "Seleção muda frequência de forma direcional quando genótipos têm sucesso reprodutivo diferente."
+        - "Deriva muda frequência por acaso, com efeito mais forte em tamanho efetivo pequeno."
+        - "Migração mistura frequências entre populações; mutação cria alelos novos, geralmente em baixa taxa."
+      manual_walkthrough:
+        - "Se p começa em 0,40 e seleção aumenta p em 0,05 por geração, após cinco gerações p esperado é 0,65."
+        - "Em população pequena, sorteio de gametas pode levar p para cima ou para baixo mesmo sem vantagem. Por isso resposta observada precisa separar força direcional de ruído."
+      manual_result: "Trajetória direcional simples: 0,40 -> 0,45 -> 0,50 -> 0,55 -> 0,60 -> 0,65."
+      r_preview: |
+        p <- 0.40
+        for (g in 1:5) p <- p + 0.05
+        p
+      lab_interpretation: "População pequena mostra maior variação aleatória; seleção cria tendência, deriva cria incerteza."
+      decision_prompt: "Compare trajetória dirigida e trajetória por sorteio; diga qual exige controle de tamanho efetivo."
+      lab_code: |
+        # M5 — Fatores que alteram frequências gênicas
+        # Objetivo: comparar seleção direcional e deriva.
+
+        set.seed(105)
+        geracoes <- 0:5
+        p_selecao <- 0.40 + 0.05 * geracoes
+        deriva_pequena <- numeric(length(geracoes))
+        deriva_pequena[1] <- 0.40
+        Ne <- 20
+        for (g in 2:length(geracoes)) {
+          copias_A <- rbinom(1, size = 2 * Ne, prob = deriva_pequena[g - 1])
+          deriva_pequena[g] <- copias_A / (2 * Ne)
+        }
+        resultado <- data.frame(
+          geracao = geracoes,
+          selecao_direcional = round(p_selecao, 3),
+          deriva_pop_pequena = round(deriva_pequena, 3)
+        )
+
+        print(resultado)
+        cat("\nINTERPRETACAO: seleção impõe direção; deriva pode deslocar frequência por acaso em população pequena.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(resultado, "data/modulo05_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo05_simulado.csv\n")
+      quiz_questions:
+        - text: "Se p aumenta 0,05 por geração a partir de 0,40, qual p após cinco gerações?"
+          options: ["0,65", "0,45", "0,05"]
+          correct: 0
+        - text: "Qual processo é mudança aleatória mais forte em população pequena?"
+          options: ["Deriva genética", "Seleção direcional", "Média fenotípica"]
+          correct: 0
+        - text: "Migração altera frequência por qual mecanismo?"
+          options: ["Entrada ou saída de alelos entre populações.", "Cálculo de h².", "Conversão de fenótipo em DEP."]
+          correct: 0
+        - text: "Qual erro comum deve ser evitado?"
+          options: ["Atribuir toda mudança observada à seleção sem considerar deriva.", "Comparar trajetórias por geração.", "Simular população pequena."]
+          correct: 0
+        - text: "Qual decisão prática vem desse bloco?"
+          options: ["Controlar tamanho efetivo e origem dos reprodutores.", "Ignorar frequências gênicas.", "Selecionar sem registrar geração."]
+          correct: 0
+    M6:
+      formula_terms:
+        - "P é fenótipo observado."
+        - "G é componente genético do valor."
+        - "E é ambiente e erro; comparação genética exige reduzir ou ajustar E."
+      manual_walkthrough:
+        - "Animal A tem G = 10 e E = 3, então P = 13. Animal B tem G = 12 e E = -1, então P = 11."
+        - "Ranking fenotípico coloca A acima de B, mas ranking genético coloca B acima de A. Isso mostra por que ajuste ambiental é central."
+      manual_result: "A: P = 13, G = 10; B: P = 11, G = 12. Fenótipo e mérito genético podem discordar."
+      r_preview: |
+        dados <- data.frame(animal = c("A","B"), G = c(10,12), E = c(3,-1))
+        dados$P <- dados$G + dados$E
+        dados
+      lab_interpretation: "Ambiente favorável pode inverter ranking fenotípico e mascarar mérito genético."
+      decision_prompt: "Escolha animal por P e depois por G; explique por que decisões diferem."
+      lab_code: |
+        # M6 — Fenótipo, genótipo e ambiente
+        # Objetivo: mostrar como ambiente altera ranking fenotípico.
+
+        dados <- data.frame(
+          animal = c("A", "B", "C"),
+          G = c(10, 12, 9),
+          E = c(3, -1, 2)
+        )
+        dados$P <- dados$G + dados$E
+        dados$ranking_fenotipo <- rank(-dados$P, ties.method = "first")
+        dados$ranking_genetico <- rank(-dados$G, ties.method = "first")
+
+        print(dados)
+        cat("\nINTERPRETACAO: comparar animais sem ajustar ambiente pode inverter decisão genética.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(dados, "data/modulo06_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo06_simulado.csv\n")
+      quiz_questions:
+        - text: "Se G = 10 e E = 3, qual é P?"
+          options: ["13", "7", "30"]
+          correct: 0
+        - text: "Animal com maior P tem sempre maior G?"
+          options: ["Não. Ambiente pode elevar P.", "Sim. P e G são sempre iguais.", "Sim. E nunca varia."]
+          correct: 0
+        - text: "Qual fator pode distorcer ranking fenotípico?"
+          options: ["Manejo, fazenda, idade ou lote.", "Nome do arquivo.", "Número de módulos."]
+          correct: 0
+        - text: "Qual decisão é mais segura?"
+          options: ["Comparar animais após considerar ambiente relevante.", "Escolher só maior P bruto.", "Ignorar medidas ambientais."]
+          correct: 0
+        - text: "Qual erro comum deve ser evitado?"
+          options: ["Confundir fenótipo alto com mérito genético alto.", "Calcular P = G + E.", "Registrar lote."]
+          correct: 0
+    M8:
+      formula_terms:
+        - "VP é variância fenotípica total."
+        - "VA é variância aditiva, mais diretamente ligada à resposta à seleção."
+        - "VD, VI e VE representam dominância, interação e ambiente."
+      manual_walkthrough:
+        - "Com VA = 40, VD = 10, VI = 5 e VE = 45, VP = 100. A fração aditiva é VA/VP = 0,40."
+        - "Se VE aumenta para 85, VP sobe para 140 e VA/VP cai para 0,286. O sinal aditivo não sumiu, mas ficou proporcionalmente menor."
+      manual_result: "VP inicial = 100; fração aditiva = 0,40. Com VE = 85, VP = 140; fração aditiva = 0,286."
+      r_preview: |
+        parts <- c(VA=40, VD=10, VI=5, VE=45)
+        VP <- sum(parts)
+        parts["VA"] / VP
+      lab_interpretation: "Ambiente alto dilui sinal aditivo e reduz eficiência de seleção fenotípica."
+      decision_prompt: "Diga se padronizar manejo pode aumentar utilidade dos registros para seleção."
+      lab_code: |
+        # M8 — Componentes de variância
+        # Objetivo: decompor VP e observar efeito do ambiente.
+
+        cenarios <- data.frame(
+          cenario = c("base", "ambiente_alto"),
+          VA = c(40, 40),
+          VD = c(10, 10),
+          VI = c(5, 5),
+          VE = c(45, 85)
+        )
+        cenarios$VP <- rowSums(cenarios[, c("VA", "VD", "VI", "VE")])
+        cenarios$fracao_aditiva <- cenarios$VA / cenarios$VP
+
+        print(cenarios)
+        cat("\nINTERPRETACAO: aumentar VE eleva VP e reduz fração aditiva observável.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(cenarios, "data/modulo08_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo08_simulado.csv\n")
+      quiz_questions:
+        - text: "Com VA=40, VD=10, VI=5 e VE=45, qual é VP?"
+          options: ["100", "40", "55"]
+          correct: 0
+        - text: "Qual componente é central para resposta acumulada à seleção?"
+          options: ["VA", "VE", "Nome do animal"]
+          correct: 0
+        - text: "Se VE aumenta e VA fica igual, o que acontece com VA/VP?"
+          options: ["Diminui", "Aumenta sempre", "Vira 1"]
+          correct: 0
+        - text: "Ambiente alto significa genética inexistente?"
+          options: ["Não. Pode esconder sinal genético.", "Sim. VA vira zero automaticamente.", "Sim. Seleção fica impossível para sempre."]
+          correct: 0
+        - text: "Qual ação prática melhora comparação?"
+          options: ["Padronizar manejo e registrar efeitos ambientais.", "Misturar lotes sem registro.", "Usar só fenótipo bruto."]
+          correct: 0
+    M11:
+      formula_terms:
+        - "Correlação fenotípica mede associação observada entre características."
+        - "Correlação genética mede associação entre efeitos genéticos."
+        - "Resposta correlacionada ocorre quando seleção em uma característica muda outra."
+      manual_walkthrough:
+        - "Se peso e gordura têm correlação genética positiva, selecionar peso pode aumentar gordura. Isso pode ser bom, neutro ou ruim conforme objetivo de seleção."
+        - "Correlação fenotípica pode refletir ambiente compartilhado. Por isso não deve substituir correlação genética em decisão de seleção."
+      manual_result: "Correlação positiva indica mudança na mesma direção; correlação negativa indica trade-off potencial."
+      r_preview: |
+        peso <- c(180, 190, 205, 210, 225)
+        gordura <- c(3, 4, 5, 5, 7)
+        cor(peso, gordura)
+      lab_interpretation: "Correlação observada é alerta inicial; decisão genética exige separar fontes de covariância."
+      decision_prompt: "Explique se selecionar peso isoladamente pode prejudicar objetivo de carcaça."
+      lab_code: |
+        # M11 — Correlações genéticas, fenotípicas e ambientais
+        # Objetivo: interpretar associação entre duas características.
+
+        dados <- data.frame(
+          animal = paste0("A", 1:6),
+          peso = c(180, 190, 205, 210, 225, 230),
+          gordura = c(3.0, 3.5, 5.0, 5.2, 7.0, 7.4)
+        )
+        r_fenotipica <- cor(dados$peso, dados$gordura)
+        resultado <- data.frame(correlacao_fenotipica = r_fenotipica)
+
+        print(dados)
+        print(resultado)
+        cat("\nINTERPRETACAO: correlação fenotípica sugere associação, mas não substitui correlação genética.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(dados, "data/modulo11_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo11_simulado.csv\n")
+      quiz_questions:
+        - text: "Correlação genética positiva entre peso e gordura indica o quê?"
+          options: ["Seleção para peso pode aumentar gordura.", "Peso e gordura são a mesma característica.", "Ambiente não existe."]
+          correct: 0
+        - text: "Correlação fenotípica substitui correlação genética?"
+          options: ["Não. Pode misturar genética e ambiente.", "Sim. Sempre mede só genes.", "Sim. Dispensa avaliação genética."]
+          correct: 0
+        - text: "Correlação negativa sugere o quê?"
+          options: ["Possível trade-off.", "Ausência de relação obrigatória.", "Herdabilidade igual a 1."]
+          correct: 0
+        - text: "Resposta correlacionada ocorre quando..."
+          options: ["seleção em uma característica muda outra.", "não há seleção.", "p + q passa de 1."]
+          correct: 0
+        - text: "Qual decisão prática é correta?"
+          options: ["Usar índice quando há múltiplas características importantes.", "Selecionar sempre só uma característica.", "Ignorar características correlacionadas."]
+          correct: 0
+    M12:
+      formula_terms:
+        - "Escala subjacente representa risco ou suscetibilidade contínua."
+        - "Limiar separa classes observadas, como doente/não doente ou prenhe/não prenhe."
+        - "Prevalência é proporção de animais acima ou abaixo do limiar."
+      manual_walkthrough:
+        - "Imagine valores de suscetibilidade -1, 0, 0,5, 1,2 e 1,8. Com limiar 1, dois de cinco animais passam do limite."
+        - "A prevalência observada é 2/5 = 0,40. Mudar limiar ou média populacional muda proporção observada sem tornar a característica simples."
+      manual_result: "Com limiar 1, prevalência = 0,40 no exemplo de cinco animais."
+      r_preview: |
+        x <- c(-1, 0, 0.5, 1.2, 1.8)
+        mean(x > 1)
+      lab_interpretation: "Categoria observada pode esconder variação contínua importante para seleção."
+      decision_prompt: "Explique por que baixa prevalência exige cuidado com tamanho de amostra."
+      lab_code: |
+        # M12 — Características de limiar
+        # Objetivo: relacionar escala contínua e resposta binária.
+
+        suscetibilidade <- c(-1, 0, 0.5, 1.2, 1.8)
+        limiar <- 1
+        categoria <- ifelse(suscetibilidade > limiar, "afetado", "nao_afetado")
+        dados <- data.frame(animal = paste0("A", 1:5), suscetibilidade, categoria)
+        prevalencia <- mean(categoria == "afetado")
+
+        print(dados)
+        cat("Prevalencia:", prevalencia, "\n")
+        cat("\nINTERPRETACAO: dado binário pode vir de risco contínuo não observado diretamente.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(dados, "data/modulo12_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo12_simulado.csv\n")
+      quiz_questions:
+        - text: "Com dois afetados em cinco animais, qual é prevalência?"
+          options: ["0,40", "2,5", "1,00"]
+          correct: 0
+        - text: "O que representa escala subjacente?"
+          options: ["Risco ou suscetibilidade contínua.", "Nome do animal.", "DEP obrigatória."]
+          correct: 0
+        - text: "Característica binária pode ter base quantitativa?"
+          options: ["Sim. O limiar transforma escala contínua em categoria.", "Não. Binário nunca tem genética.", "Não. Só existe AA e aa."]
+          correct: 0
+        - text: "Prevalência baixa exige cuidado por quê?"
+          options: ["Pode exigir amostra maior para estimativa estável.", "Dispensa registro.", "Prova ausência de variação."]
+          correct: 0
+        - text: "Qual erro comum deve ser evitado?"
+          options: ["Tratar categoria observada como se não houvesse escala subjacente.", "Calcular proporção.", "Definir limiar."]
+          correct: 0
+    M14:
+      formula_terms:
+        - "Média parental é referência para calcular heterose."
+        - "Heterose absoluta é desempenho F1 menos média parental."
+        - "Heterose percentual divide diferença pela média parental."
+      manual_walkthrough:
+        - "Se raça A tem 210 kg e raça B tem 220 kg, média parental é 215 kg. Se F1 tem 230 kg, heterose absoluta é 15 kg."
+        - "Heterose percentual é 15/215 = 0,0698, ou cerca de 7,0%. Isso informa vantagem do cruzado naquele sistema."
+      manual_result: "Heterose absoluta = 15 kg; heterose percentual ≈ 7,0%."
+      r_preview: |
+        pais <- mean(c(210, 220))
+        f1 <- 230
+        (f1 - pais) / pais
+      lab_interpretation: "Heterose ajuda desempenho do cruzado, mas depende de sistema organizado de acasalamento."
+      decision_prompt: "Diga se heterose substitui seleção dentro das raças parentais."
+      lab_code: |
+        # M14 — Cruzamentos, heterose e complementaridade
+        # Objetivo: calcular heterose absoluta e percentual.
+
+        desempenho <- data.frame(grupo = c("Raca_A", "Raca_B", "F1"), peso = c(210, 220, 230))
+        media_parental <- mean(desempenho$peso[desempenho$grupo %in% c("Raca_A", "Raca_B")])
+        f1 <- desempenho$peso[desempenho$grupo == "F1"]
+        heterose_abs <- f1 - media_parental
+        heterose_pct <- heterose_abs / media_parental * 100
+        resultado <- data.frame(media_parental, f1, heterose_abs, heterose_pct)
+
+        print(desempenho)
+        print(resultado)
+        cat("\nINTERPRETACAO: heterose complementa seleção; não substitui planejamento de cruzamento.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(resultado, "data/modulo14_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo14_simulado.csv\n")
+      quiz_questions:
+        - text: "Com pais 210 e 220 kg, qual é média parental?"
+          options: ["215 kg", "430 kg", "230 kg"]
+          correct: 0
+        - text: "Com F1 = 230 kg, qual heterose absoluta?"
+          options: ["15 kg", "7 kg", "215 kg"]
+          correct: 0
+        - text: "Heterose percentual é aproximadamente..."
+          options: ["7,0%", "15%", "230%"]
+          correct: 0
+        - text: "Heterose substitui seleção?"
+          options: ["Não. Complementa estratégia de acasalamento.", "Sim. Elimina necessidade de seleção.", "Sim. Remove todo risco."]
+          correct: 0
+        - text: "Complementaridade significa..."
+          options: ["combinar forças de grupos diferentes.", "usar sempre uma única raça.", "ignorar ambiente."]
+          correct: 0
+    M15:
+      formula_terms:
+        - "EBV estima valor genético do animal."
+        - "DEP representa diferença esperada na progênie, geralmente metade do EBV aditivo."
+        - "Acurácia indica confiança na estimativa e deve acompanhar ranking."
+      manual_walkthrough:
+        - "Se EBV = 20 kg, DEP aproximada é 10 kg. Isso significa que progênie desse animal tende a superar base de comparação em 10 kg, em média."
+        - "Um animal com DEP alta e baixa acurácia pode ser mais incerto que outro com DEP moderada e alta acurácia."
+      manual_result: "EBV = 20 kg implica DEP aproximada = 10 kg."
+      r_preview: |
+        ebv <- c(20, 8, -4)
+        dep <- ebv / 2
+        dep
+      lab_interpretation: "Ranking por DEP deve ser lido junto com acurácia e base de comparação."
+      decision_prompt: "Compare animal de maior DEP com animal de maior acurácia e justifique escolha."
+      lab_code: |
+        # M15 — Avaliação genética: DEP/EBV
+        # Objetivo: comparar ranking por EBV, DEP e acurácia.
+
+        animais <- data.frame(
+          animal = c("T1", "T2", "T3", "T4"),
+          EBV = c(20, 8, -4, 16),
+          acuracia = c(0.55, 0.80, 0.70, 0.75)
+        )
+        animais$DEP <- animais$EBV / 2
+        ranking <- animais[order(animais$DEP, decreasing = TRUE), ]
+
+        print(ranking)
+        cat("\nINTERPRETACAO: DEP traduz mérito esperado na progênie; acurácia informa confiança.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(ranking, "data/modulo15_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo15_simulado.csv\n")
+      quiz_questions:
+        - text: "Se EBV = 20 kg, qual DEP aproximada?"
+          options: ["10 kg", "20 kg", "40 kg"]
+          correct: 0
+        - text: "O que DEP representa?"
+          options: ["Diferença esperada na progênie.", "Peso bruto do animal.", "Frequência alélica."]
+          correct: 0
+        - text: "Por que acurácia importa?"
+          options: ["Porque informa confiança na estimativa.", "Porque substitui DEP.", "Porque mede cor do animal."]
+          correct: 0
+        - text: "Ranking fenotípico basta?"
+          options: ["Não. Pode misturar ambiente e genética.", "Sim. Sempre é melhor.", "Sim. Dispensa dados de parentes."]
+          correct: 0
+        - text: "Qual decisão é mais defensável?"
+          options: ["Ler DEP junto com acurácia e objetivo de seleção.", "Escolher maior fenótipo bruto sempre.", "Ignorar base de comparação."]
+          correct: 0
+    M16:
+      formula_terms:
+        - "Efeito fixo representa fonte sistemática de variação, como fazenda ou sexo."
+        - "Efeito aleatório representa variação atribuída a unidades amostradas, como animal."
+        - "Modelo linear simples ajusta efeitos fixos; modelo misto acrescenta efeitos aleatórios, como animal."
+        - "Modelo ajustado evita confundir manejo com mérito genético."
+      manual_walkthrough:
+        - "Se uma fazenda tem média 20 kg acima de outra por manejo, animal dessa fazenda pode parecer superior no fenótipo bruto."
+        - "Modelo com fazenda e sexo ajusta parte sistemática antes de comparar resíduos. Em avaliação genética, o próximo passo é tratar animal como efeito aleatório."
+      manual_result: "Ajuste por fazenda/sexo muda comparação quando grupos têm ambientes diferentes; o exemplo é uma ponte para modelos mistos, não uma avaliação genética completa."
+      r_preview: |
+        dados <- data.frame(peso = c(200,210,230,240), fazenda = c("A","A","B","B"), sexo = c("F","M","F","M"))
+        coef(lm(peso ~ fazenda + sexo, data = dados))
+      lab_interpretation: "Efeito de fazenda não deve ser interpretado como valor genético; este laboratório usa modelo linear como etapa didática antes do modelo misto."
+      decision_prompt: "Explique por que ranking bruto pode ser injusto quando fazendas diferem."
+      lab_code: |
+        # M16 — Modelos lineares e mistos
+        # Objetivo: ajustar efeito de fazenda e sexo em exemplo pequeno.
+        # Observação: este é um modelo linear didático; modelo misto completo entra no próximo módulo.
+
+        dados <- data.frame(
+          animal = paste0("A", 1:8),
+          peso = c(200, 208, 212, 220, 230, 238, 242, 250),
+          fazenda = rep(c("F1", "F2"), each = 4),
+          sexo = rep(c("F", "M"), 4)
+        )
+        ajuste <- lm(peso ~ fazenda + sexo, data = dados)
+        resultado <- data.frame(termo = names(coef(ajuste)), estimativa = as.numeric(coef(ajuste)))
+
+        print(dados)
+        print(resultado)
+        cat("\nINTERPRETACAO: modelo separa efeitos sistemáticos antes de comparar animais.\n")
+        cat("Este laboratório usa lm() como ponte didática; avaliação genética completa exige efeitos aleatórios e parentesco.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(resultado, "data/modulo16_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo16_simulado.csv\n")
+      quiz_questions:
+        - text: "Fazenda costuma entrar como que tipo de efeito?"
+          options: ["Efeito fixo", "Frequência alélica", "Limiar genômico"]
+          correct: 0
+        - text: "Animal em modelo misto costuma ser tratado como..."
+          options: ["efeito aleatório.", "p².", "heterose percentual."]
+          correct: 0
+        - text: "Por que ajustar fazenda?"
+          options: ["Para não confundir manejo com mérito genético.", "Para remover toda genética.", "Para mudar alelos."]
+          correct: 0
+        - text: "Coeficiente de sexo/fazenda é automaticamente genético?"
+          options: ["Não. É efeito sistemático do grupo.", "Sim. Sempre é EBV.", "Sim. Sempre é DEP."]
+          correct: 0
+        - text: "Qual erro comum deve ser evitado?"
+          options: ["Interpretar efeito de manejo como valor genético.", "Definir variável resposta.", "Usar modelo simples para aprender."]
+          correct: 0
+    M17:
+      formula_terms:
+        - "BLUP prediz efeitos aleatórios usando dados e estrutura de variância."
+        - "Modelo animal conecta animais pela matriz de parentesco."
+        - "Encolhimento reduz estimativas extremas quando evidência é fraca."
+        - "O exemplo abaixo é uma analogia numérica; BLUP real resolve equações de modelo misto."
+      manual_walkthrough:
+        - "Animal com desvio fenotípico alto, mas poucos registros, não deve receber EBV extremo sem cautela. BLUP tende a aproximar estimativa da média quando informação é limitada."
+        - "Parentes ajudam porque compartilham informação genética esperada. Isso é essencial para animais jovens ou pouco medidos."
+        - "Neste exemplo didático, h² reduz o desvio fenotípico e a confiança relativa reduz ainda mais quando há poucos registros."
+      manual_result: "Com h² = 0,30, desvio 20 e apenas 1/8 da informação máxima, EBV simplificado = 0,75; o fenótipo extremo vira estimativa cautelosa."
+      r_preview: |
+        desvio <- 20
+        h2 <- 0.30
+        confianca_relativa <- 1/8
+        ebv_simplificado <- h2 * desvio * confianca_relativa
+      lab_interpretation: "Encolhimento não é erro; é controle de incerteza. O cálculo é didático e não substitui BLUP por modelo animal."
+      decision_prompt: "Explique por que animal jovem com parentes bons pode ganhar informação antes de ter muitos registros."
+      lab_code: |
+        # M17 — BLUP e modelo animal
+        # Objetivo: demonstrar a intuição do encolhimento de EBV.
+        # Observação: isto é uma analogia didática; BLUP real usa equações de modelo misto e matriz de parentesco.
+
+        animais <- data.frame(
+          animal = c("A1", "A2", "A3"),
+          desvio_fenotipico = c(20, 10, -5),
+          registros = c(1, 5, 8)
+        )
+        h2 <- 0.30
+        confianca_relativa <- animais$registros / max(animais$registros)
+        animais$EBV_simplificado <- h2 * animais$desvio_fenotipico * confianca_relativa
+
+        print(animais)
+        cat("\nINTERPRETACAO: pouca informação reduz estimativas extremas; parentesco ajuda completar evidência.\n")
+        cat("O cálculo é simplificado para intuição; BLUP real exige modelo misto e matriz de parentesco.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(animais, "data/modulo17_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo17_simulado.csv\n")
+      quiz_questions:
+        - text: "O que BLUP faz em termos gerais?"
+          options: ["Prediz efeitos aleatórios usando dados e variâncias.", "Conta apenas alelos A.", "Calcula heterose percentual."]
+          correct: 0
+        - text: "Por que ocorre encolhimento?"
+          options: ["Porque pouca informação aumenta incerteza.", "Porque fenótipo não existe.", "Porque todo animal tem mesmo genótipo."]
+          correct: 0
+        - text: "Modelo animal usa qual informação estrutural?"
+          options: ["Parentesco entre animais.", "Apenas cor da pelagem.", "Somente p²."]
+          correct: 0
+        - text: "BLUP é igual a média fenotípica?"
+          options: ["Não. Ajusta informação e estrutura de variância.", "Sim. Sempre idêntico.", "Sim. Ignora parentes."]
+          correct: 0
+        - text: "Qual aplicação é importante?"
+          options: ["Predizer animais jovens ou pouco medidos.", "Substituir todos os registros.", "Ignorar acurácia."]
+          correct: 0
+    M18:
+      formula_terms:
+        - "Genótipo SNP 0, 1 e 2 conta cópias de um alelo."
+        - "Frequência alélica pode ser estimada pela média dos códigos dividida por 2."
+        - "Marcadores distribuídos no genoma ajudam estimar parentesco realizado."
+      manual_walkthrough:
+        - "Para códigos 0, 1, 2, 1 e 0, soma = 4. Há 5 animais e 10 cópias possíveis. Frequência do alelo contado é 4/10 = 0,40."
+        - "Essa frequência informa composição do marcador. Um SNP isolado raramente justifica decisão de seleção."
+      manual_result: "Frequência alélica do exemplo = 0,40."
+      r_preview: |
+        snp <- c(0,1,2,1,0)
+        mean(snp) / 2
+      lab_interpretation: "SNP codifica cópias alélicas; decisão genômica robusta usa muitos marcadores."
+      decision_prompt: "Explique por que um SNP isolado não deve definir reprodutor superior."
+      lab_code: |
+        # M18 — Genômica e SNP
+        # Objetivo: codificar SNPs e calcular frequência alélica.
+
+        snp <- c(0, 1, 2, 1, 0)
+        animais <- paste0("A", 1:5)
+        dados <- data.frame(animal = animais, SNP1 = snp)
+        freq_alelo <- mean(dados$SNP1) / 2
+        resultado <- data.frame(marcador = "SNP1", frequencia_alelo_contado = freq_alelo)
+
+        print(dados)
+        print(resultado)
+        cat("\nINTERPRETACAO: código 0/1/2 conta cópias; vários SNPs sustentam parentesco genômico.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(dados, "data/modulo18_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo18_simulado.csv\n")
+      quiz_questions:
+        - text: "No código SNP 0/1/2, o que significa 2?"
+          options: ["Duas cópias do alelo contado.", "Dois animais.", "Dois ambientes."]
+          correct: 0
+        - text: "Para 0,1,2,1,0, qual frequência do alelo contado?"
+          options: ["0,40", "0,80", "2,00"]
+          correct: 0
+        - text: "Um SNP isolado decide seleção sozinho?"
+          options: ["Não. Decisão robusta usa muitos marcadores e validação.", "Sim. Um SNP sempre basta.", "Sim. Frequência alta é DEP."]
+          correct: 0
+        - text: "Marcadores ajudam estimar..."
+          options: ["parentesco genômico realizado.", "apenas idade.", "somente sexo."]
+          correct: 0
+        - text: "Qual erro comum deve ser evitado?"
+          options: ["Confundir código SNP com valor genético final.", "Calcular média do código.", "Registrar dados faltantes."]
+          correct: 0
+    M19:
+      formula_terms:
+        - "Call rate é proporção de genótipos observados."
+        - "Missing rate é proporção de genótipos ausentes."
+        - "MAF é frequência do alelo menos comum e indica informatividade do marcador."
+      manual_walkthrough:
+        - "Em vetor 0, 1, NA e 2, há uma falta em quatro observações; missing rate = 0,25 e call rate = 0,75."
+        - "Filtro muito frouxo deixa erro; filtro rígido demais remove informação. Critério precisa ser registrado."
+      manual_result: "Missing rate = 0,25; call rate = 0,75."
+      r_preview: |
+        x <- c(0, 1, NA, 2)
+        mean(is.na(x))
+      lab_interpretation: "Controle de qualidade protege matriz genômica contra sinal falso."
+      decision_prompt: "Decida se marcador com 25% de falta passa em filtro de 10%."
+      lab_code: |
+        # M19 — Controle de qualidade genômica
+        # Objetivo: calcular missing rate, call rate e MAF em matriz pequena.
+
+        geno <- matrix(c(0, 1, NA, 2, 0, 0, 1, 1, 2, NA, 2, 2), nrow = 4, byrow = TRUE)
+        colnames(geno) <- c("SNP1", "SNP2", "SNP3")
+        missing_rate <- colMeans(is.na(geno))
+        call_rate <- 1 - missing_rate
+        maf <- apply(geno, 2, function(x) {
+          p <- mean(x, na.rm = TRUE) / 2
+          min(p, 1 - p)
+        })
+        resultado <- data.frame(SNP = colnames(geno), missing_rate, call_rate, MAF = maf)
+
+        print(geno)
+        print(resultado)
+        cat("\nINTERPRETACAO: filtros devem remover erro sem descartar informação útil em excesso.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(resultado, "data/modulo19_simulado.csv", row.names = FALSE)
+        cat("Salvo em data/modulo19_simulado.csv\n")
+      quiz_questions:
+        - text: "Uma falta em quatro genótipos dá missing rate de..."
+          options: ["0,25", "0,75", "4"]
+          correct: 0
+        - text: "Call rate correspondente é..."
+          options: ["0,75", "0,25", "1,25"]
+          correct: 0
+        - text: "MAF baixa indica marcador..."
+          options: ["pouco informativo em muitas análises.", "sempre melhor para GWAS.", "sem genótipo ausente obrigatoriamente."]
+          correct: 0
+        - text: "Filtro deve ser registrado por quê?"
+          options: ["Para reprodutibilidade.", "Para esconder decisão.", "Para impedir validação."]
+          correct: 0
+        - text: "Qual erro comum deve ser evitado?"
+          options: ["Aplicar filtro sem critério claro.", "Calcular call rate.", "Verificar dados faltantes."]
+          correct: 0
+    M20:
+      formula_terms:
+        - "Matriz G resume semelhança genômica entre animais."
+        - "GWAS testa associação marcador a marcador."
+        - "Predição genômica usa muitos marcadores simultaneamente para predizer mérito."
+        - "A matriz do laboratório é pequena e pedagógica; avaliações reais usam milhares de marcadores e validação."
+      manual_walkthrough:
+        - "Padronizar matriz 0/1/2 evita comparar marcadores em escalas diferentes. Produto cruzado entre linhas gera medida simples de semelhança."
+        - "GWAS e predição respondem perguntas diferentes: localizar sinais específicos ou predizer valor genético distribuído."
+        - "Sem controle de qualidade e validação, matriz genômica ou predição pode parecer precisa sem ser confiável."
+      manual_result: "Matriz G pequena mostra quais animais são mais semelhantes pelo conjunto de SNPs; o exemplo é didático e não representa uma rotina comercial completa."
+      r_preview: |
+        M <- matrix(c(0,1,2,1,1,0,2,1,0), nrow = 3)
+        G <- tcrossprod(scale(M))
+      lab_interpretation: "Matriz G depende de QC e padronização; sem validação, predição pode parecer melhor do que é."
+      decision_prompt: "Diferencie quando usar GWAS e quando usar predição genômica."
+      lab_code: |
+        # M20 — Matriz G, GWAS e predição genômica
+        # Objetivo: construir uma matriz genômica pequena para entender a lógica.
+        # Observação: avaliações reais usam muitos SNPs, controle de qualidade e validação externa.
+
+        M <- matrix(c(
+          0, 1, 2,
+          1, 1, 0,
+          2, 1, 0,
+          0, 0, 1
+        ), nrow = 4, byrow = TRUE)
+        rownames(M) <- paste0("A", 1:4)
+        colnames(M) <- paste0("SNP", 1:3)
+        M_pad <- scale(M)
+        G <- tcrossprod(M_pad) / ncol(M)
+
+        print(M)
+        print(round(G, 3))
+        cat("\nINTERPRETACAO: matriz G resume semelhança genômica; GWAS e predição usam SNPs para perguntas distintas.\n")
+        cat("Este exemplo é pedagógico; em dados reais, QC, escala dos SNPs e validação são obrigatórios.\n")
+
+        dir.create("data", showWarnings = FALSE, recursive = TRUE)
+        write.csv(round(G, 3), "data/modulo20_simulado.csv")
+        cat("Salvo em data/modulo20_simulado.csv\n")
+      quiz_questions:
+        - text: "Matriz G resume..."
+          options: ["semelhança genômica entre animais.", "apenas média fenotípica.", "somente heterose."]
+          correct: 0
+        - text: "GWAS busca..."
+          options: ["associação marcador a marcador.", "apenas parentesco de pedigree.", "somente h² por fórmula simples."]
+          correct: 0
+        - text: "Predição genômica usa..."
+          options: ["muitos marcadores simultaneamente.", "um único SNP sem validação.", "apenas nome do animal."]
+          correct: 0
+        - text: "Por que padronizar SNPs?"
+          options: ["Para evitar escalas diferentes entre marcadores.", "Para remover todos os alelos.", "Para transformar fenótipo em sexo."]
+          correct: 0
+        - text: "Qual erro comum deve ser evitado?"
+          options: ["Confundir GWAS com predição genômica.", "Calcular matriz.", "Usar QC antes da análise."]
+          correct: 0

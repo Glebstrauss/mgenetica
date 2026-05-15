@@ -1,0 +1,33 @@
+{
+  "module": "15",
+  "title": "Quiz — Avaliação genética: DEP/EBV e ranking de animais",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "Se EBV = 20 kg, qual DEP aproximada?",
+      "options": ["10 kg", "20 kg", "40 kg"],
+      "correct": 0
+    },
+    {
+      "text": "O que DEP representa?",
+      "options": ["Diferença esperada na progênie.", "Peso bruto do animal.", "Frequência alélica."],
+      "correct": 0
+    },
+    {
+      "text": "Por que acurácia importa?",
+      "options": ["Porque informa confiança na estimativa.", "Porque substitui DEP.", "Porque mede cor do animal."],
+      "correct": 0
+    },
+    {
+      "text": "Ranking fenotípico basta?",
+      "options": ["Não. Pode misturar ambiente e genética.", "Sim. Sempre é melhor.", "Sim. Dispensa dados de parentes."],
+      "correct": 0
+    },
+    {
+      "text": "Qual decisão é mais defensável?",
+      "options": ["Ler DEP junto com acurácia e objetivo de seleção.", "Escolher maior fenótipo bruto sempre.", "Ignorar base de comparação."],
+      "correct": 0
+    }
+  ]
+}

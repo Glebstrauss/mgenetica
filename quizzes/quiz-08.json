@@ -1,57 +1,32 @@
 {
   "module": "08",
-  "title": "Quiz — Módulo 08",
-  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "title": "Quiz — Componentes de variância",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
   "passMark": 4,
   "questions": [
     {
-      "text": "As equações de modelos mistos (MME) de Henderson permitem predizer EBVs porque:",
-      "options": [
-        "Usam informações de parentes e ajustam para efeitos fixos simultaneamente.",
-        "Ignoram o pedigree e avaliam cada animal de forma independente.",
-        "Assumem que todos os animais são não aparentados.",
-        "Utilizam apenas a variância fenotípica, sem necessidade de h²."
-      ],
+      "text": "Com VA=40, VD=10, VI=5 e VE=45, qual é VP?",
+      "options": ["100", "40", "55"],
       "correct": 0
     },
     {
-      "text": "O termo A⁻¹λ (onde λ = σ²e / σ²A) nas MME serve para:",
-      "options": [
-        "Inflar artificialmente os EBVs de animais de alto mérito.",
-        "\"Regredir\" as predições em direção à média com base nas relações de parentesco.",
-        "Remover o efeito fixo de fazenda antes da estimação.",
-        "Estimar a herdabilidade a partir dos dados fenotípicos."
-      ],
-      "correct": 1
-    },
-    {
-      "text": "A acurácia de avaliação genética (r) para um touro com poucas filhas avaliadas aumenta quando:",
-      "options": [
-        "O número de filhas avaliadas aumenta.",
-        "A herdabilidade da característica é próxima de zero.",
-        "O intervalo de gerações diminui para zero.",
-        "A variância fenotípica aumenta indefinidamente."
-      ],
+      "text": "Qual componente é central para resposta acumulada à seleção?",
+      "options": ["VA", "VE", "Nome do animal"],
       "correct": 0
     },
     {
-      "text": "Qual afirmação sobre BLUP é correta?",
-      "options": [
-        "Maximiza a variância entre EBVs para facilitar a seleção.",
-        "Minimiza o erro quadrático médio de predição (MSEP) dos valores genéticos.",
-        "Não utiliza informações de parentes, apenas do próprio animal.",
-        "Exige que todos os animais sejam genotipados com marcadores SNP."
-      ],
-      "correct": 1
+      "text": "Se VE aumenta e VA fica igual, o que acontece com VA/VP?",
+      "options": ["Diminui", "Aumenta sempre", "Vira 1"],
+      "correct": 0
     },
     {
-      "text": "A DEP (Diferença Esperada na Progênie) de um reprodutor é equivalente a:",
-      "options": [
-        "EBV / 2, pois representa o valor transmissível médio para cada filho.",
-        "2 × EBV, pois considera ambos os alelos do reprodutor.",
-        "A variância do valor genético aditivo do reprodutor.",
-        "O fenótipo esperado na progênie sem ajuste de ambiente."
-      ],
+      "text": "Ambiente alto significa genética inexistente?",
+      "options": ["Não. Pode esconder sinal genético.", "Sim. VA vira zero automaticamente.", "Sim. Seleção fica impossível para sempre."],
+      "correct": 0
+    },
+    {
+      "text": "Qual ação prática melhora comparação?",
+      "options": ["Padronizar manejo e registrar efeitos ambientais.", "Misturar lotes sem registro.", "Usar só fenótipo bruto."],
       "correct": 0
     }
   ]

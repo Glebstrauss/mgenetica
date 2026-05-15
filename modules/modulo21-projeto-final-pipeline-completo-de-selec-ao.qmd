@@ -1,0 +1,231 @@
+---
+title: "Bloco temático 5.4 — Projeto final: pipeline completo de seleção"
+subtitle: "Módulo 5: Genômica aplicada ao melhoramento"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+```{=html}
+<section class="study-hero" aria-label="Contexto do estudo">
+<div class="study-hero-main">
+<span class="study-kicker">Curso · Módulo 5: Genômica aplicada ao melhoramento · Bloco 5.4</span>
+<h1>Projeto final: pipeline completo de seleção</h1>
+<p>Integrar fenótipo, pedigree, genômica, QC, EBV/DEP e decisão.</p>
+</div>
+<div class="study-hero-meta">
+<span>180 min</span>
+<span>5 itens</span>
+<span>Laboratório R incluso</span>
+</div>
+</section>
+```
+
+<div class="module-orientation" aria-label="Localização na hierarquia do curso"><strong>Curso: Melhoramento genético animal · Módulo 5: Genômica aplicada ao melhoramento · Bloco temático 5.4</strong></div>
+
+```{=html}
+<section class="module-study-toolbar" data-study-toolbar data-module-id="modulo21" data-next-href="../certificado.html" aria-label="Progresso e continuidade do bloco temático">
+<div class="module-study-toolbar-copy">
+<strong>Bloco temático 5.4</strong>
+<span data-study-current>Próximo: leitura inicial</span>
+</div>
+<div class="module-study-toolbar-progress" aria-label="Progresso do bloco">
+<span data-study-count>0/5 itens</span>
+<div class="module-study-toolbar-track"><i data-study-fill style="width:0%"></i></div>
+</div>
+<div class="module-study-toolbar-actions">
+<button class="btn btn-secondary" type="button" data-complete-item>Marcar item atual</button>
+<a class="btn btn-primary" href="#item-leitura-pergunta" data-next-study-link>Próximo item</a>
+</div>
+</section>
+```
+
+<div class="study-shell">
+<aside class="study-side-panel" aria-label="Lista lateral de itens deste bloco temático">
+::: {.study-item-panel role="navigation" aria-label="Itens de estudo deste bloco temático"}
+### Neste bloco
+
+<p class="study-side-hint">Siga a lista. O status muda conforme você conclui.</p>
+
+::: {.study-item-list role="list" aria-label="Lista de itens de estudo"}
+::: {.study-item .is-current role="listitem" data-study-item-id="leitura-pergunta"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-pergunta" aria-label="Abrir item Pergunta simples: Quem seleciono e por quê?" aria-current="step"><strong>Pergunta simples: Quem seleciono e por quê?</strong></a>
+
+<span class="study-item-meta">10 min · status: atual</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="leitura-conceito"}
+<span class="study-item-type">Leitura</span>
+<a class="study-item-link" href="#item-leitura-conceito" aria-label="Abrir item Conceito técnico e analogia"><strong>Conceito técnico e analogia</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="exercicio"}
+<span class="study-item-type">Exercício</span>
+<a class="study-item-link" href="#item-exercicio" aria-label="Abrir item Cálculo manual pequeno"><strong>Cálculo manual pequeno</strong></a>
+
+<span class="study-item-meta">15 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="laboratorio"}
+<span class="study-item-type">Laboratório</span>
+<a class="study-item-link" href="#item-laboratorio" aria-label="Abrir item Script R mínimo"><strong>Script R mínimo</strong></a>
+
+<span class="study-item-meta">20 min · status: pendente</span>
+:::
+
+::: {.study-item .is-pending role="listitem" data-study-item-id="quiz"}
+<span class="study-item-type">Quiz</span>
+<a class="study-item-link" href="#item-quiz" aria-label="Abrir item Verificação de conhecimento"><strong>Verificação de conhecimento</strong></a>
+
+<span class="study-item-meta">10 min · status: pendente</span>
+:::
+
+:::
+:::
+
+<a class="module-glossary-fab" href="#module-glossary" aria-label="Abrir glossário rápido deste bloco">Glossário</a>
+<div id="module-glossary" class="module-glossary-support" role="region" aria-label="Consulta rápida ao glossário técnico">
+<details class="module-glossary-details">
+<summary>Glossário rápido</summary>
+<p>Consulte termos essenciais sem sair do bloco temático.</p>
+<div data-glossary></div>
+</details>
+</div>
+</aside>
+<div class="study-main-content" aria-label="Conteúdo principal do bloco temático">
+
+::: {.study-step role="region" aria-label="Item de estudo: leitura"}
+## Leitura {#item-leitura-pergunta}
+
+**Pergunta simples**
+
+Quem seleciono e por quê?
+
+**Intuição**
+
+Pense assim: Comitê técnico junta evidências antes de comprar ou descartar animal.
+
+Projeto final junta fenótipo, parentesco, genômica e decisão de seleção.
+
+**Por que isso importa no melhoramento**
+
+Projeto final força integração. Melhoramento real não termina em fórmula; termina em decisão justificada, reprodutível e biologicamente defensável.
+
+**Como pensar antes da fórmula**
+
+Pipeline é linha de montagem. Dados entram, passam por controle, cálculo, ranking, restrições e justificativa. Se uma etapa falha, decisão final perde confiança.
+
+### Conceito técnico {#item-leitura-conceito}
+
+Pipeline de seleção transforma dados em ranking, aplica restrições e registra justificativa.
+
+**Ponto técnico:** Boa decisão equilibra mérito, risco de endogamia, objetivo de seleção e qualidade dos dados.
+
+**Passo a passo mental:**
+
+- Defina objetivo de seleção.
+- Cheque fenótipo, pedigree e genômica.
+- Calcule ou importe métricas.
+- Monte ranking com restrições.
+- Explique decisão final.
+
+Tópicos principais:
+
+- pipeline
+- controle de dados
+- ranking
+- decisão
+- relatório
+
+**Termos para consultar no glossário:**
+
+- pipeline
+- índice de seleção
+- restrição
+- decisão de seleção
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: exercício"}
+## Exercício {#item-exercicio}
+
+Cálculo manual: **Índice simples ponderando DEP e penalidade de endogamia.**
+
+Passo guiado: Score = DEP - 10*parentesco penaliza mérito quando parentesco é alto.
+
+**Termos da fórmula:**
+
+- DEP mede mérito esperado na progênie em unidade da característica.
+- Acurácia informa confiança relativa na estimativa.
+- Penalidade por parentesco reduz prioridade de animais que aumentam risco de endogamia no conjunto.
+
+**Cálculo comentado:**
+
+Compare quatro touros com DEP, acurácia e parentesco médio com fêmeas. Um índice simples pode ser score = DEP - 10*parentesco + 2*acurácia.
+Se T1 tem DEP 18, parentesco 0,20 e acurácia 0,70, score = 18 - 2 + 1,4 = 17,4. Animal com maior DEP pode perder posição se tiver parentesco alto ou baixa confiança.
+
+**Resultado esperado:** Ranking deve equilibrar mérito, risco e confiança; maior DEP isolada não basta.
+
+Leitura do resultado: Penalizar parentesco pode tirar animal de maior DEP do topo se uso dele aumentar risco de endogamia no conjunto.
+
+Exemplo animal: Seleção de reprodutores em rebanho simulado.
+
+Erro comum: Escolher maior número isolado e ignorar objetivo, acurácia, parentesco e qualidade dos dados.
+
+Visual sugerido: Tabela final com ranking e justificativa.
+
+Interprete o número como decisão prática, não como conta isolada.
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: laboratório R"}
+## Laboratório R {#item-laboratorio}
+
+::: {.module-script-lab role="region" aria-label="Item de estudo laboratório R"}
+Objetivo: Montar ranking final com DEP, parentesco e regra de decisão.
+
+[Script R](../scripts/modulo21.R){.entry-link aria-label="Abrir script R do bloco temático 5.4"} · [CSV simulado](../data/modulo21_simulado.csv){.entry-link aria-label="Abrir CSV simulado do bloco temático 5.4"}
+
+`score <- dep - 10 * parentesco; order(score, decreasing = TRUE)`
+
+**Variação obrigatória:** Entregar relatório curto e script reprodutível.
+
+**Observe:** Animal melhor isoladamente pode não ser melhor escolha no conjunto.
+
+**Interpretação esperada:** Pipeline bom registra regra de decisão; sem regra, ranking vira preferência subjetiva.
+:::
+
+```r
+touros <- data.frame(touro = c("T1","T2","T3","T4"), DEP = c(18,15,12,20), acuracia = c(.70,.85,.60,.50), parentesco = c(.20,.05,.02,.35))
+touros$score <- touros$DEP - 10 * touros$parentesco + 2 * touros$acuracia
+touros[order(touros$score, decreasing = TRUE), ]
+
+```
+:::
+
+::: {.study-step role="region" aria-label="Item de estudo: interpretação e quiz"}
+## Interpretação e quiz {#item-quiz}
+
+Interpretação prática: Justificar seleção com evidência, não só maior número.
+
+**Decisão guiada:** Escolha dois touros e justifique por DEP, acurácia e parentesco, não por um único número.
+
+**Evidência mínima:** Pipeline final executado e decisão defendida.
+
+**Antes do quiz:** Defender seleção com evidência, não preferência.
+
+::: {.quiz-container data-module="21"}
+:::
+
+Depois, avance para Certificado.
+:::
+
+<nav class="module-nav" aria-label="Navegação entre blocos temáticos">
+<a class="btn btn-secondary" href="modulo20-matrizes-gen-omicas-gwas-e-predic-ao-gen-omica.html" aria-label="Voltar para Bloco temático 5.3">Bloco temático 5.3</a>
+<a class="btn btn-secondary module-nav-index" href="index.html" aria-label="Voltar à página do curso">Curso</a>
+<a class="btn btn-primary" href="../certificado.html" aria-label="Avançar para Certificado">Certificado</a>
+</nav>
+</div>
+</div>

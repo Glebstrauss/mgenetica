@@ -1,0 +1,220 @@
+course_content:
+  source_policy:
+    summary: "Conteúdo técnico deve ser reescrito em linguagem própria para graduação. Referências orientam conceitos, exemplos e exercícios; não entram como cópia literal."
+    reuse_rules:
+      - "Usar referências para conferir sequência e rigor."
+      - "Transformar trechos longos em explicação curta, exemplo ou exercício."
+      - "Manter laboratório como item do bloco temático."
+      - "Enviar ao glossário só termos que ajudam consulta durante estudo."
+  reference_sources:
+    populacoes:
+      files:
+        - "referências/cap01 - Genética de Populações.pdf"
+      modules: [M3, M4, M5]
+    quantitativa:
+      files:
+        - "referências/Introduction to Quantitative Genetics 3rd edition 1997-2.pdf"
+        - "referências/Joanir Eler - Livro1.pdf"
+        - "referências/cap02.pdf"
+        - "referências/cap03.pdf"
+        - "referências/cap04.pdf"
+      modules: [M2, M6, M7, M8, M9, M10, M12, M15, M16, M17]
+    resposta_correlacionada:
+      files:
+        - "referências/Cap06_RESPOSTA CORRELACIONADA À SELEÇÃO.pdf"
+      modules: [M10, M11]
+    parentesco_cruzamentos:
+      files:
+        - "referências/Cap08_Endogamia.pdf"
+        - "referências/Cruzamento ou Exogamia.pdf"
+      modules: [M13, M14]
+  modules:
+    M1:
+      intro: "Diferença entre animais começa em instruções biológicas herdadas e em como essas instruções aparecem no ambiente."
+      core_explanation: "Gene é uma região herdável; alelo é uma versão do gene; genótipo é a combinação recebida; fenótipo é o que observamos."
+      technical_note: "Segregação explica por que pais heterozigotos podem gerar descendentes com combinações diferentes."
+      worked_example: "Em Aa x Aa, conte AA, Aa, Aa e aa. A proporção esperada é 1:2:1."
+      lab_objective: "Simular uma pequena amostra de genótipos e contar frequências."
+      lab_observe: "Amostras pequenas oscilam; a proporção esperada aparece melhor com mais animais."
+      quiz_focus: "Diferenciar gene, alelo, genótipo e fenótipo em situação animal."
+      glossary_terms: [gene, alelo, genótipo, fenótipo, segregação]
+    M2:
+      intro: "Nem todo efeito gênico aparece como soma simples. O heterozigoto pode ficar no meio, perto de um homozigoto ou depender de outro gene."
+      core_explanation: "Aditividade soma efeitos médios dos alelos; dominância muda o valor do heterozigoto; epistasia ocorre quando um loco altera o efeito de outro."
+      technical_note: "A parte aditiva é central porque é a fração mais diretamente transmitida e usada na seleção."
+      worked_example: "Compare AA=10, Aa=8 e aa=4. O heterozigoto não está exatamente no meio, indicando dominância."
+      lab_objective: "Alterar valores por genótipo e observar como muda a interpretação da ação gênica."
+      lab_observe: "Quando Aa foge da média de AA e aa, a dominância passa a importar."
+      quiz_focus: "Reconhecer ação aditiva, dominância e epistasia em exemplos simples."
+      glossary_terms: [aditividade, dominância, epistasia, valor genotípico]
+    M3:
+      intro: "Antes de falar em mudança genética, é preciso contar o que existe na população."
+      core_explanation: "Frequência genotípica conta genótipos; frequência alélica conta cópias de alelos."
+      technical_note: "Para dois alelos, p + q = 1. Cada AA contribui com duas cópias de A; cada Aa contribui com uma."
+      worked_example: "Com 10 AA, 5 Aa e 5 aa, p = (2*10 + 5)/(2*20) = 0,625."
+      lab_objective: "Contar genótipos em vetor pequeno e calcular frequências."
+      lab_observe: "O alelo mais comum nem sempre identifica automaticamente o melhor animal."
+      quiz_focus: "Calcular p, q e interpretar alelo mais frequente."
+      glossary_terms: [frequência alélica, frequência genotípica, p, q]
+    M4:
+      intro: "Hardy-Weinberg é uma expectativa de referência para perguntar se a população parece aleatória."
+      core_explanation: "Com acasalamento ao acaso e ausência de forças evolutivas, genótipos esperados seguem p², 2pq e q²."
+      technical_note: "Desvio entre observado e esperado sugere seleção, estrutura, erro de amostragem ou outro fator."
+      worked_example: "Com p=0,7 e q=0,3, espere AA=0,49, Aa=0,42 e aa=0,09."
+      lab_objective: "Gerar proporções esperadas e comparar com contagem observada."
+      lab_observe: "Diferença grande pede investigação; diferença pequena pode ser ruído amostral."
+      quiz_focus: "Usar Hardy-Weinberg como referência, não como regra absoluta."
+      glossary_terms: [Hardy-Weinberg, equilíbrio, p², 2pq, q²]
+    M5:
+      intro: "Frequências mudam quando algum processo favorece, remove, mistura ou sorteia alelos."
+      core_explanation: "Seleção é mudança dirigida; migração mistura populações; mutação cria variação nova; deriva altera frequências por acaso."
+      technical_note: "Tamanho efetivo pequeno aumenta deriva e reduz previsibilidade."
+      worked_example: "Se p aumenta 0,05 por geração sob seleção, em cinco gerações p muda de 0,40 para 0,65."
+      lab_objective: "Comparar trajetória dirigida e oscilação aleatória de p."
+      lab_observe: "Populações pequenas flutuam mais, mesmo sem vantagem biológica."
+      quiz_focus: "Separar mudança dirigida de mudança aleatória."
+      glossary_terms: [seleção, migração, mutação, deriva genética, tamanho efetivo]
+    M6:
+      intro: "Fenótipo observado mistura potencial genético, ambiente e erro de medida."
+      core_explanation: "P = G + E resume a ideia: o desempenho observado não é apenas genética."
+      technical_note: "Comparar animais sem ajustar ambiente pode trocar mérito genético por efeito de manejo."
+      worked_example: "Animal A tem G=10 e E=3; animal B tem G=12 e E=-1. O ranking fenotípico pode enganar."
+      lab_objective: "Alterar ambiente e observar mudança no ranking fenotípico."
+      lab_observe: "Correção ambiental protege a comparação genética."
+      quiz_focus: "Distinguir fenótipo alto de mérito genético alto."
+      glossary_terms: [fenótipo, genótipo, ambiente, desvio, ranking]
+    M7:
+      intro: "Características como peso e leite variam de forma contínua porque muitos genes e o ambiente atuam juntos."
+      core_explanation: "Genética quantitativa estuda variação contínua e usa médias, variâncias e covariâncias para apoiar seleção."
+      technical_note: "Quanto mais loci pequenos, mais a distribuição se aproxima de uma curva contínua."
+      worked_example: "Some efeitos 0, 1 e 2 em três loci. A soma gera vários valores intermediários."
+      lab_objective: "Simular soma de loci e visualizar a distribuição."
+      lab_observe: "Aumentar número de loci aumenta continuidade dos valores."
+      quiz_focus: "Explicar por que características quantitativas não seguem categorias simples."
+      glossary_terms: [poligenia, distribuição contínua, média, variância]
+    M8:
+      intro: "Nem toda variação observada ajuda seleção. A pergunta é qual parte é herdável de forma útil."
+      core_explanation: "VP pode ser decomposta em VA, VD, VI e VE. VA é a fração aditiva mais relevante para resposta à seleção."
+      technical_note: "Aumentar VE reduz a fração genética mesmo se VA não mudar."
+      worked_example: "VA=40, VD=10, VI=5, VE=45. VP=100 e VA/VP=0,40."
+      lab_objective: "Alterar componentes de variância e observar VP e fração aditiva."
+      lab_observe: "Ambiente alto dilui sinal genético."
+      quiz_focus: "Identificar por que VA orienta ganho genético."
+      glossary_terms: [VA, VD, VI, VE, VP, variância aditiva]
+    M9:
+      intro: "Herdabilidade fala sobre previsão genética de descendentes; repetibilidade fala sobre repetição do próprio animal."
+      core_explanation: "h² = VA/VP. Repetibilidade combina efeitos permanentes e ajuda decidir se vale medir novamente."
+      technical_note: "h² baixa não significa característica inútil; significa menor resposta por unidade de seleção fenotípica."
+      worked_example: "VA=40 e VP=100 dão h²=0,40."
+      lab_objective: "Comparar cenários de h² baixa, média e alta."
+      lab_observe: "Acurácia depende de qualidade e quantidade de informação."
+      quiz_focus: "Escolher entre medir mais animais ou repetir medidas."
+      glossary_terms: [herdabilidade, repetibilidade, acurácia, medida repetida]
+    M10:
+      intro: "Seleção muda a próxima geração quando os escolhidos diferem da média e essa diferença tem base herdável."
+      core_explanation: "Resposta esperada pode ser aproximada por R = h²S."
+      technical_note: "Ganho por ano também depende do intervalo de geração."
+      worked_example: "Se h²=0,30 e S=20 kg, R=6 kg por geração."
+      lab_objective: "Alterar h² e S para comparar resposta esperada."
+      lab_observe: "Selecionar muito forte pode aumentar ganho, mas reduz número de pais."
+      quiz_focus: "Interpretar seleção como decisão com ganho e risco."
+      glossary_terms: [diferencial de seleção, resposta à seleção, ganho genético, intervalo de geração]
+    M11:
+      intro: "Uma característica pode responder quando outra é selecionada."
+      core_explanation: "Correlação genética mede associação entre efeitos genéticos de duas características."
+      technical_note: "Resposta correlacionada pode ajudar ou criar trade-off."
+      worked_example: "Correlação positiva entre peso e gordura pode aumentar ambas quando peso é selecionado."
+      lab_objective: "Calcular correlação e interpretar direção da resposta."
+      lab_observe: "Correlação fenotípica não substitui correlação genética."
+      quiz_focus: "Separar correlação genética, fenotípica e ambiental."
+      glossary_terms: [correlação genética, correlação fenotípica, correlação ambiental, resposta correlacionada]
+    M12:
+      intro: "Algumas respostas aparecem como sim/não, mas podem vir de uma escala quantitativa invisível."
+      core_explanation: "Características de limiar assumem suscetibilidade contínua e observação categórica quando o limiar é ultrapassado."
+      technical_note: "Prevalência muda quando a média populacional ou o limiar muda."
+      worked_example: "Conte proporção de valores acima de 1 em uma distribuição normal."
+      lab_objective: "Mover limiar e observar prevalência."
+      lab_observe: "Menor prevalência pode exigir amostra maior para estimar bem."
+      quiz_focus: "Explicar por que um traço binário pode ter base quantitativa."
+      glossary_terms: [limiar, suscetibilidade, prevalência, escala subjacente]
+    M13:
+      intro: "Parentes compartilham alelos por ancestralidade; isso aumenta semelhança e risco de endogamia."
+      core_explanation: "Parentesco mede compartilhamento genético esperado. Endogamia aumenta homozygose por origem comum."
+      technical_note: "A diagonal da matriz A representa 1 + F."
+      worked_example: "Meio-irmãos têm parentesco esperado menor que irmãos completos."
+      lab_objective: "Montar matriz simples de parentesco."
+      lab_observe: "Pares aparentados pedem cuidado no acasalamento."
+      quiz_focus: "Interpretar parentesco e risco de endogamia."
+      glossary_terms: [parentesco, endogamia, matriz A, pedigree]
+    M14:
+      intro: "Cruzamento combina populações e pode recuperar desempenho por heterose."
+      core_explanation: "Heterose é superioridade do cruzado em relação à média parental."
+      technical_note: "Complementaridade usa forças diferentes de raças ou linhagens."
+      worked_example: "Se F1=230 e média parental=215, heterose=(230-215)/215."
+      lab_objective: "Calcular heterose com valores parentais e F1."
+      lab_observe: "Heterose não substitui seleção; complementa estratégia de acasalamento."
+      quiz_focus: "Distinguir heterose de complementaridade."
+      glossary_terms: [cruzamento, heterose, complementaridade, F1]
+    M15:
+      intro: "Ranking por fenótipo mistura genética, ambiente e quantidade de informação."
+      core_explanation: "EBV estima valor genético; DEP expressa diferença esperada na progênie."
+      technical_note: "DEP é aproximadamente metade do EBV para características aditivas."
+      worked_example: "EBV=20 implica DEP aproximada de 10."
+      lab_objective: "Comparar ranking por fenótipo, EBV e DEP."
+      lab_observe: "Mais informação melhora confiança no ranking."
+      quiz_focus: "Interpretar EBV/DEP como decisão de seleção."
+      glossary_terms: [EBV, DEP, acurácia, ranking]
+    M16:
+      intro: "Modelos ajudam separar efeito fixo de manejo e efeito genético dos animais."
+      core_explanation: "Modelo linear representa média mais efeitos. Modelo misto combina efeitos fixos e aleatórios."
+      technical_note: "Fazenda, sexo e lote costumam ser efeitos fixos; animal pode ser efeito aleatório."
+      worked_example: "peso ~ fazenda + sexo separa parte sistemática antes de comparar animais."
+      lab_objective: "Ajustar modelo simples e comparar médias ajustadas."
+      lab_observe: "Efeito de fazenda não deve virar mérito genético."
+      quiz_focus: "Distinguir efeito fixo e aleatório."
+      glossary_terms: [modelo linear, modelo misto, efeito fixo, efeito aleatório]
+    M17:
+      intro: "BLUP usa parentesco e dados para predizer valor genético de forma mais estável."
+      core_explanation: "Modelo animal usa matriz de parentesco para conectar informações entre animais."
+      technical_note: "BLUP encolhe estimativas quando há pouca informação, reduzindo excesso de confiança."
+      worked_example: "Animal com poucos registros extremos pode ter EBV menos extremo após ajuste."
+      lab_objective: "Comparar ranking com e sem informação de parentesco."
+      lab_observe: "Parentes ajudam predizer animais jovens ou pouco medidos."
+      quiz_focus: "Entender por que BLUP não é apenas média fenotípica."
+      glossary_terms: [BLUP, modelo animal, matriz A, encolhimento]
+    M18:
+      intro: "Marcadores SNP observam diferenças no DNA distribuídas pelo genoma."
+      core_explanation: "Genótipo SNP costuma ser codificado como 0, 1 ou 2 cópias de um alelo."
+      technical_note: "Marcadores ajudam estimar parentesco e associação com características."
+      worked_example: "A média de códigos 0/1/2 dividida por 2 estima frequência alélica."
+      lab_objective: "Codificar SNPs e calcular frequências."
+      lab_observe: "SNP isolado raramente decide seleção sozinho."
+      quiz_focus: "Interpretar código SNP e frequência alélica."
+      glossary_terms: [SNP, marcador molecular, genótipo SNP, frequência alélica]
+    M19:
+      intro: "Dado genômico ruim cria sinal falso e parentesco distorcido."
+      core_explanation: "Controle de qualidade remove SNPs ou animais com muita falha, frequência extrema ou inconsistência."
+      technical_note: "Call rate e MAF são filtros iniciais comuns."
+      worked_example: "Se 1 de 4 genótipos falta, a taxa de falta é 0,25."
+      lab_objective: "Calcular falta e MAF em matriz pequena."
+      lab_observe: "Filtro rígido demais também pode remover informação útil."
+      quiz_focus: "Escolher filtros básicos sem exagero."
+      glossary_terms: [call rate, MAF, missing, controle de qualidade]
+    M20:
+      intro: "A mesma matriz genômica pode apoiar parentesco, associação e predição."
+      core_explanation: "Matriz G resume semelhança genômica; GWAS busca regiões associadas; predição genômica estima mérito usando muitos marcadores."
+      technical_note: "GWAS olha marcador a marcador; predição usa sinal distribuído."
+      worked_example: "Padronize matriz 0/1/2 e calcule produto cruzado para obter semelhança."
+      lab_objective: "Construir matriz genômica simples e simular sinal de associação."
+      lab_observe: "Resultado deve ser interpretado com controle de qualidade e validação."
+      quiz_focus: "Diferenciar matriz G, GWAS e predição genômica."
+      glossary_terms: [matriz G, GWAS, predição genômica, GBLUP]
+    M21:
+      intro: "Projeto final junta fenótipo, parentesco, genômica e decisão de seleção."
+      core_explanation: "Pipeline de seleção transforma dados em ranking, aplica restrições e registra justificativa."
+      technical_note: "Boa decisão equilibra mérito, risco de endogamia, objetivo de seleção e qualidade dos dados."
+      worked_example: "Score = DEP - 10*parentesco penaliza mérito quando parentesco é alto."
+      lab_objective: "Montar ranking final com DEP, parentesco e regra de decisão."
+      lab_observe: "Animal melhor isoladamente pode não ser melhor escolha no conjunto."
+      quiz_focus: "Justificar seleção com evidência, não só maior número."
+      glossary_terms: [pipeline, índice de seleção, restrição, decisão de seleção]

@@ -1,0 +1,126 @@
+---
+title: "Avaliação para Certificado"
+description: "Teste prático final da MGenética para quem deseja emitir certificado de conclusão."
+page-layout: full
+toc: false
+number-sections: false
+---
+
+::: {.page-hero}
+::: {.page-hero-copy}
+# Avaliação para certificado
+
+O certificado deve fechar evidência, não apenas navegação. Esta avaliação final reúne quizzes, laboratório em R e uma decisão técnica curta sobre seleção animal.
+:::
+
+::: {.page-hero-aside}
+**Critério**
+
+Concluir os 21 quizzes e entregar a síntese prática do M21.
+:::
+:::
+
+::: {.certificate-assessment-overview role="region" aria-label="Resumo da avaliação final"}
+::: {.certificate-assessment-overview-copy}
+**Teste prático: pipeline completo de seleção**
+
+A tarefa final simula uma situação comum: há animais candidatos, parâmetros simples e uma decisão de seleção a defender. O objetivo é mostrar que você entende o caminho, não decorar uma resposta.
+:::
+
+::: {.certificate-assessment-overview-grid role="list" aria-label="Detalhes da avaliação"}
+::: {.certificate-assessment-overview-item role="listitem"}
+**Base**
+
+Quizzes formativos dos 21 blocos temáticos.
+:::
+
+::: {.certificate-assessment-overview-item role="listitem"}
+**Prática**
+
+Script R do projeto final com ranking de animais.
+:::
+
+::: {.certificate-assessment-overview-item role="listitem"}
+**Conclusão**
+
+Interpretação biológica e justificativa de seleção.
+:::
+:::
+:::
+
+::: {.certificate-assessment-lab role="region" aria-label="Laboratório necessário para a avaliação"}
+::: {.certificate-assessment-lab-copy}
+## Laboratório necessário
+
+Você precisa conseguir rodar R localmente ou em ambiente equivalente. O projeto usa scripts simples, sem base externa obrigatória.
+:::
+
+::: {.certificate-assessment-lab-grid role="list" aria-label="Preparação do laboratório em R"}
+::: {.certificate-assessment-lab-item role="listitem"}
+**Ambiente**
+
+R instalado, RStudio ou terminal, e acesso à pasta do projeto.
+:::
+
+::: {.certificate-assessment-lab-item role="listitem"}
+**Arquivo**
+
+Rode `scripts/modulo21.R` e confira a saída gerada em `data/modulo21_simulado.csv`.
+:::
+
+::: {.certificate-assessment-lab-item role="listitem"}
+**Registro**
+
+Guarde três linhas: parâmetro usado, ranking obtido e decisão final.
+:::
+:::
+:::
+
+::: {.certificate-assessment-rubric role="region" aria-label="Rubrica da avaliação para certificado"}
+::: {.certificate-assessment-rubric-copy}
+## O que será avaliado
+
+A avaliação é desenhada para graduação: precisa ser clara, curta e verificável. Uma boa resposta mostra caminho lógico entre dado, cálculo e decisão animal.
+:::
+
+| Critério | Evidência esperada | Peso |
+|---|---|---:|
+| Conceito | Explica por que fenótipo, parentesco e mérito genético não são a mesma coisa. | 25% |
+| Execução em R | Roda o script, altera um parâmetro e reconhece mudança na saída. | 25% |
+| Interpretação | Defende seleção ou descarte com frase técnica curta. | 30% |
+| Limite da decisão | Cita um cuidado: ambiente, endogamia, acurácia ou qualidade dos dados. | 20% |
+:::
+
+::: {.certificate-assessment-flow role="region" aria-label="Etapas para fazer a avaliação"}
+::: {.certificate-assessment-flow-copy}
+**Como fazer**
+
+Siga a avaliação como um fechamento de curso. Primeiro revise, depois rode, depois escreva. Evite começar pelo certificado.
+:::
+
+::: {.certificate-assessment-flow-grid role="list" aria-label="Etapas da avaliação final"}
+::: {.certificate-assessment-flow-item role="listitem"}
+**1 · Revisar**
+
+Confira pendências no certificado e refaça blocos temáticos marcados como incompletos.
+:::
+
+::: {.certificate-assessment-flow-item role="listitem"}
+**2 · Executar**
+
+Abra o bloco temático 5.4, rode o script final e gere o ranking.
+:::
+
+::: {.certificate-assessment-flow-item role="listitem"}
+**3 · Defender**
+
+Escreva uma justificativa: quem selecionar, por quê e com qual limite.
+:::
+:::
+
+::: {.certificate-assessment-actions role="navigation" aria-label="Ações da avaliação final"}
+[Abrir projeto final](modules/modulo21-projeto-final-pipeline-completo-de-selec-ao.qmd){.btn .btn-primary aria-label="Abrir bloco temático do projeto final"}
+[Checar certificado](certificado.qmd){.btn .btn-secondary aria-label="Abrir página de certificado"}
+[Ver curso](modules/index.qmd){.btn .btn-secondary aria-label="Abrir página do curso"}
+:::
+:::

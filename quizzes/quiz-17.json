@@ -1,0 +1,33 @@
+{
+  "module": "17",
+  "title": "Quiz — BLUP e modelo animal",
+  "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "O que BLUP faz em termos gerais?",
+      "options": ["Prediz efeitos aleatórios usando dados e variâncias.", "Conta apenas alelos A.", "Calcula heterose percentual."],
+      "correct": 0
+    },
+    {
+      "text": "Por que ocorre encolhimento?",
+      "options": ["Porque pouca informação aumenta incerteza.", "Porque fenótipo não existe.", "Porque todo animal tem mesmo genótipo."],
+      "correct": 0
+    },
+    {
+      "text": "Modelo animal usa qual informação estrutural?",
+      "options": ["Parentesco entre animais.", "Apenas cor da pelagem.", "Somente p²."],
+      "correct": 0
+    },
+    {
+      "text": "BLUP é igual a média fenotípica?",
+      "options": ["Não. Ajusta informação e estrutura de variância.", "Sim. Sempre idêntico.", "Sim. Ignora parentes."],
+      "correct": 0
+    },
+    {
+      "text": "Qual aplicação é importante?",
+      "options": ["Predizer animais jovens ou pouco medidos.", "Substituir todos os registros.", "Ignorar acurácia."],
+      "correct": 0
+    }
+  ]
+}
