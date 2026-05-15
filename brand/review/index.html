@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MGenética — Brand Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0A1F38;
+      --blue:    #1A4B78;
+      --cyan:    #00A8D6;
+      --cyan-lt: #D6F1F9;
+      --white:   #FFFFFF;
+      --surf:    #F7F9FC;
+      --tint:    #EEF3F9;
+      --ink:     #0A1F38;
+      --muted:   #5A7391;
+      --border:  rgba(10,31,56,.1);
+      --radius:  10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--surf);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── UTILITÁRIOS ─────────────────────────────── */
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--tint);
+      border: 1px solid rgba(10,31,56,.12);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+    }
+    .badge-cyan {
+      color: #005f7a;
+      background: var(--cyan-lt);
+      border-color: rgba(0,168,214,.2);
+    }
+
+    section { padding: 5rem 0; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── HERO ────────────────────────────────────── */
+    .hero {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--cyan);
+    }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.2rem, 4vw, 3.1rem);
+      font-weight: 600;
+      line-height: 1.18;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+      letter-spacing: -.01em;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--blue);
+    }
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 11px 24px;
+      border-radius: var(--radius);
+      transition: all .18s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--blue); }
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { background: var(--tint); }
+
+    .hero-logo-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      gap: 1.5rem;
+    }
+    .brand-logo-real {
+      display: block;
+      width: min(220px, 100%);
+      height: auto;
+      border-radius: 12px;
+    }
+    .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--navy);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .logo-wordmark-main {
+      font-family: 'Lora', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: -.02em;
+    }
+    .logo-wordmark-main span { color: var(--cyan); }
+    .logo-wordmark-sub {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .logo-tagline {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+      width: 100%;
+      font-style: italic;
+      font-family: 'Lora', serif;
+    }
+
+    /* ── DIFERENCIAIS ────────────────────────────── */
+    .diff-section { background: var(--tint); }
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+    .diff-item {
+      background: var(--white);
+      padding: 2rem 1.75rem;
+    }
+    .diff-num {
+      font-family: 'Lora', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--cyan);
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .diff-label {
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: .4rem;
+    }
+    .diff-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── SERVIÇOS ────────────────────────────────── */
+    .services-section { background: var(--white); }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      gap: 2rem;
+    }
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.25;
+    }
+    .section-lead { font-size: .95rem; color: var(--muted); max-width: 320px; text-align: right; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 1rem;
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      background: var(--surf);
+      transition: border-color .2s;
+    }
+    .card:hover { border-color: rgba(0,168,214,.35); }
+    .card-featured {
+      background: var(--navy);
+      border-color: transparent;
+      color: var(--white);
+    }
+    .card-featured:hover { border-color: var(--cyan); }
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: .5rem;
+    }
+    .card-icon-course { background: var(--tint); }
+    .card-icon-consult { background: rgba(0,168,214,.12); }
+    .card-icon-article { background: rgba(10,31,56,.07); }
+    .card-featured .card-icon { background: rgba(255,255,255,.1); }
+
+    .card h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .card-featured h3 { color: var(--white); }
+    .card p { font-size: .875rem; color: var(--muted); line-height: 1.65; }
+    .card-featured p { color: rgba(255,255,255,.65); }
+    .card-link {
+      margin-top: auto;
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--cyan);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .card-link::after { content: '→'; }
+    .card-featured .card-link { color: var(--cyan); }
+
+    /* ── PALETA ──────────────────────────────────── */
+    .palette-section { background: var(--surf); }
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: .75rem;
+      margin-top: 2.5rem;
+    }
+    .color-chip {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .chip-swatch {
+      height: 80px;
+      width: 100%;
+    }
+    .chip-info {
+      background: var(--white);
+      padding: .75rem;
+    }
+    .chip-name { font-size: .8rem; font-weight: 500; color: var(--navy); }
+    .chip-hex { font-size: .7rem; color: var(--muted); font-family: 'DM Sans', monospace; }
+    .chip-role { font-size: .65rem; color: var(--muted); margin-top: 2px; }
+
+    .palette-note {
+      margin-top: 2rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--tint);
+      border-left: 3px solid var(--cyan);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: .875rem;
+      color: var(--muted);
+    }
+    .palette-note strong { color: var(--navy); font-weight: 500; }
+
+    /* ── TIPOGRAFIA ──────────────────────────────── */
+    .type-section { background: var(--white); }
+    .type-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .type-specimen {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      background: var(--surf);
+    }
+    .type-label {
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .75rem;
+    }
+    .t-display {
+      font-family: 'Lora', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .t-heading {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: .5rem;
+    }
+    .t-subheading {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      color: var(--muted);
+    }
+    .t-body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      color: var(--ink);
+      line-height: 1.75;
+    }
+    .t-caption {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: .5rem;
+      font-style: italic;
+      font-family: 'Lora', serif;
+    }
+
+    /* ── CTA ─────────────────────────────────────── */
+    .cta-section {
+      background: var(--navy);
+      padding: 5rem 0;
+    }
+    .cta-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 2rem;
+    }
+    .cta-inner .badge { background: rgba(255,255,255,.08); color: rgba(255,255,255,.6); border-color: rgba(255,255,255,.12); }
+    .cta-inner h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+    .cta-inner p { color: rgba(255,255,255,.55); margin-bottom: 2.5rem; }
+    .cta-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-cyan { background: var(--cyan); color: var(--navy); font-weight: 500; }
+    .btn-cyan:hover { background: #00c4f8; }
+    .btn-ghost { background: transparent; color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.2); }
+    .btn-ghost:hover { background: rgba(255,255,255,.06); }
+
+    /* ── RODAPÉ ──────────────────────────────────── */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    /* ── ANIMAÇÕES ───────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp .55s ease forwards;
+    }
+    .fade-in:nth-child(1) { animation-delay: .05s; }
+    .fade-in:nth-child(2) { animation-delay: .15s; }
+    .fade-in:nth-child(3) { animation-delay: .25s; }
+    .fade-in:nth-child(4) { animation-delay: .35s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: none; }
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-logo-panel { display: none; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .palette-grid { grid-template-columns: repeat(2, 1fr); }
+      .type-grid { grid-template-columns: 1fr; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      .section-lead { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO ──────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow fade-in">Melhoramento genético animal</p>
+      <h1 class="fade-in">Genética aplicada para <em>decisões que importam</em> no rebanho.</h1>
+      <p class="hero-lead fade-in">Da variância ao fenótipo, da herdabilidade à seleção — ciência quantitativa traduzida em critério de escolha prático para produtores e pesquisadores.</p>
+      <div class="hero-actions fade-in">
+        <a class="btn btn-primary" href="#servicos">Ver serviços</a>
+        <a class="btn btn-outline" href="#paleta">Identidade visual</a>
+      </div>
+    </div>
+
+    <div class="hero-logo-panel fade-in">
+      <img class="brand-logo-real" src="../../identidade_visual/logo_Mgenetica.png" alt="Logo MGenética">
+      <p class="logo-tagline">Educação e consultoria em genética animal aplicada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS ──────────────────────────────── -->
+<section class="diff-section">
+  <div class="container">
+    <span class="badge">Por que MGenética</span>
+    <div class="diff-grid">
+      <div class="diff-item">
+        <div class="diff-num">3</div>
+        <div class="diff-label">Frentes de atuação</div>
+        <div class="diff-desc">Cursos estruturados, consultoria de rebanho e comunicação científica — cada uma com entrega clara.</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-num">R</div>
+        <div class="diff-label">Laboratório prático</div>
+        <div class="diff-desc">Todo conceito acompanha código em R funcional: do modelo ao gráfico de interpretação biológica.</div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-num">∂</div>
+        <div class="diff-label">Rigor quantitativo</div>
+        <div class="diff-desc">Parâmetros, matrizes de parentesco, predição de mérito e risco de endogamia — sem simplificação excessiva.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS ──────────────────────────────────── -->
+<section class="services-section" id="servicos">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <span class="badge badge-cyan">Aplicações da identidade</span>
+        <h2 class="section-title">Três formatos,<br>um padrão visual.</h2>
+      </div>
+      <p class="section-lead">A identidade MGenética funciona em cursos, relatórios e publicações sem perder coerência.</p>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Card destaque -->
+      <div class="card card-featured">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="2" width="7" height="7" rx="1.5" fill="white" opacity=".8"/>
+            <rect x="11" y="2" width="7" height="7" rx="1.5" fill="#00A8D6"/>
+            <rect x="2" y="11" width="7" height="7" rx="1.5" fill="#00A8D6" opacity=".5"/>
+            <rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" opacity=".4"/>
+          </svg>
+        </div>
+        <span class="badge" style="background:rgba(0,168,214,.15);color:#00A8D6;border-color:rgba(0,168,214,.25);">Curso online</span>
+        <h3>Genética quantitativa estruturada</h3>
+        <p>Conceito, exemplo numérico, laboratório em R e interpretação biológica dentro do mesmo módulo de aprendizado.</p>
+        <a class="card-link" href="#">Ver currículo</a>
+      </div>
+
+      <!-- Card consultoria -->
+      <div class="card">
+        <div class="card-icon card-icon-consult">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="7" stroke="#00A8D6" stroke-width="1.5"/>
+            <path d="M10 6v4l3 2" stroke="#00A8D6" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="badge badge-cyan">Consultoria</span>
+        <h3>Decisão aplicada no rebanho</h3>
+        <p>Organização de dados, estimativa de parâmetros, critérios de seleção e controle de endogamia.</p>
+        <a class="card-link" href="#">Saiba mais</a>
+      </div>
+
+      <!-- Card artigo -->
+      <div class="card">
+        <div class="card-icon card-icon-article">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="3" y="2" width="14" height="16" rx="2" stroke="#0A1F38" stroke-width="1.5"/>
+            <path d="M6 7h8M6 10h8M6 13h5" stroke="#0A1F38" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="badge">Artigo técnico</span>
+        <h3>Comunicação científica limpa</h3>
+        <p>Visual coerente para explicar variância, herdabilidade, parentesco e predição em publicações e apresentações.</p>
+        <a class="card-link" href="#">Ver exemplo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PALETA ────────────────────────────────────── -->
+<section class="palette-section" id="paleta">
+  <div class="container">
+    <span class="badge">Sistema de cores</span>
+    <h2 class="section-title" style="margin-top:.25rem;">Cores escuras como acento,<br>não como cenário.</h2>
+
+    <div class="palette-grid">
+      <div class="color-chip">
+        <div class="chip-swatch" style="background:#FFFFFF; border-bottom:1px solid var(--border);"></div>
+        <div class="chip-info">
+          <div class="chip-name">White</div>
+          <div class="chip-hex">#FFFFFF</div>
+          <div class="chip-role">Fundo principal, cards</div>
+        </div>
+      </div>
+      <div class="color-chip">
+        <div class="chip-swatch" style="background:#F7F9FC;"></div>
+        <div class="chip-info">
+          <div class="chip-name">Surface</div>
+          <div class="chip-hex">#F7F9FC</div>
+          <div class="chip-role">Fundo de página</div>
+        </div>
+      </div>
+      <div class="color-chip">
+        <div class="chip-swatch" style="background:#EEF3F9;"></div>
+        <div class="chip-info">
+          <div class="chip-name">Tint</div>
+          <div class="chip-hex">#EEF3F9</div>
+          <div class="chip-role">Badges, seções alt.</div>
+        </div>
+      </div>
+      <div class="color-chip">
+        <div class="chip-swatch" style="background:#0A1F38;"></div>
+        <div class="chip-info">
+          <div class="chip-name">Navy</div>
+          <div class="chip-hex">#0A1F38</div>
+          <div class="chip-role">Tipografia, CTAs</div>
+        </div>
+      </div>
+      <div class="color-chip">
+        <div class="chip-swatch" style="background:#00A8D6;"></div>
+        <div class="chip-info">
+          <div class="chip-name">Cyan</div>
+          <div class="chip-hex">#00A8D6</div>
+          <div class="chip-role">Ações, links, acento</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-note">
+      <strong>Regra de uso:</strong> White e Surface ocupam 70% da composição. Navy e Cyan entram em headings, botões e acentos — nunca como fundo de seção inteira, exceto no CTA final.
+    </div>
+  </div>
+</section>
+
+<!-- TIPOGRAFIA ────────────────────────────────── -->
+<section class="type-section">
+  <div class="container">
+    <span class="badge">Tipografia</span>
+    <h2 class="section-title" style="margin-top:.25rem;">Lora para título, DM Sans para corpo.</h2>
+
+    <div class="type-grid">
+      <div class="type-specimen">
+        <div class="type-label">Display — Lora 600</div>
+        <div class="t-display">Herdabilidade e predição genômica</div>
+        <div class="t-caption">Títulos de seção, hero headlines</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-label">Heading + subheading</div>
+        <div class="t-heading">Estimativa de parâmetros genéticos</div>
+        <div class="t-subheading">Bayesian inference via BLUPF90+ · HPD 95%</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-label">Body — DM Sans 400</div>
+        <div class="t-body">A herdabilidade (h²) estima a proporção da variância fenotípica explicada por efeitos aditivos. Valores acima de 0,30 indicam resposta favorável à seleção direta.</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-label">Caption — Lora 400 italic</div>
+        <div class="t-body">Tabela 1. Médias, desvios-padrão e coeficientes de variação das variáveis morfométricas.</div>
+        <div class="t-caption">Fonte: ABCJPÊGA, 2024. n = 348 animais. Análise realizada em R 4.3.1.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA ────────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <span class="badge">Próximo passo</span>
+    <h2>Pronto para aplicar genética de precisão no seu trabalho?</h2>
+    <p>Cursos, consultoria ou material científico — escolha a frente que faz sentido para o seu contexto.</p>
+    <div class="cta-actions">
+      <a class="btn btn-cyan" href="#">Explorar cursos</a>
+      <a class="btn btn-ghost" href="#">Falar com a equipe</a>
+    </div>
+  </div>
+</section>
+
+<!-- RODAPÉ ────────────────────────────────────── -->
+<footer>
+  MGenética · Brand Preview — arquivo isolado para revisão de tokens e componentes · não integrado ao site principal
+</footer>
+
+</body>
+</html>

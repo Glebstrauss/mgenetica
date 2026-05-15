@@ -1,0 +1,63 @@
+.mg-brand {
+  color: var(--color-text-secondary, #2c4058);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--line-body);
+  letter-spacing: 0;
+}
+
+.mg-brand :where(h1, h2, h3, h4) {
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  font-weight: 720;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.mg-brand h1 {
+  font-size: var(--text-h1);
+  line-height: var(--line-tight);
+  max-width: 13ch;
+}
+
+.mg-brand h2 {
+  font-size: var(--text-h2);
+  line-height: var(--line-heading);
+}
+
+.mg-brand h3 {
+  font-size: var(--text-h3);
+  line-height: var(--line-heading);
+}
+
+.mg-brand p {
+  margin: 0;
+  max-width: 72ch;
+}
+
+.mg-brand small,
+.mg-brand .mg-brand-small {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+
+.mg-brand code,
+.mg-brand pre {
+  font-family: var(--font-mono);
+}
+
+.mg-brand-kicker,
+.mg-brand-badge {
+  font-size: 0.68rem;
+  font-weight: 720;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+@media (min-width: 760px) {
+  .mg-brand h1 {
+    font-size: var(--text-display);
+  }
+}

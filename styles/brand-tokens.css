@@ -1,0 +1,87 @@
+/* MGenética brand tokens.
+   Standalone CSS aliases for the existing Quarto/SCSS --mg-* system. */
+
+:root {
+  --color-brand-primary: var(--mg-navy, #0a1f38);
+  --color-brand-primary-strong: var(--mg-navy-mid, #122844);
+  --color-brand-primary-soft: var(--mg-bg-tint, #eef3f9);
+  --color-brand-secondary: var(--mg-blue, #1e5799);
+  --color-brand-accent: var(--mg-cyan, #00a8d6);
+  --color-brand-accent-strong: #0c78be;
+  --color-brand-accent-soft: #e0f2fe;
+  --color-brand-field: var(--mg-blue, #1e5799);
+  --color-brand-field-soft: #e8f0f8;
+  --color-brand-copper: var(--mg-amber, #d97706);
+  --color-brand-copper-soft: #fff7ed;
+  --color-brand-violet-muted: #5a7a9a;
+
+  --color-background: var(--mg-bg, #ffffff);
+  --color-surface: var(--mg-bg-soft, #f7f9fc);
+  --color-surface-tint: var(--mg-bg-tint, #eef3f9);
+  --color-surface-dark: var(--mg-navy, #0a1f38);
+  --color-text-primary: var(--mg-ink, #0d1b2a);
+  --color-text-secondary: var(--mg-text, #2c4058);
+  --color-text-muted: var(--mg-muted, #6b7a8d);
+  --color-text-inverse: #e8f4fc;
+  --color-border: var(--mg-line, #dde4ed);
+  --color-border-strong: var(--mg-line-strong, #c4cdd8);
+
+  --font-heading: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, "SFMono-Regular", monospace;
+
+  --text-display: 2.45rem;
+  --text-h1: 2.05rem;
+  --text-h2: 1.45rem;
+  --text-h3: 1.02rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-micro: 0.75rem;
+  --line-tight: 1.15;
+  --line-heading: 1.25;
+  --line-body: 1.6;
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.125rem;
+  --space-xl: 1.375rem;
+  --space-2xl: 2rem;
+  --space-3xl: 2.75rem;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-pill: 999px;
+
+  --border-hairline: 1px solid var(--color-border);
+  --border-strong: 1px solid var(--color-border-strong);
+  --border-accent: 1px solid var(--color-brand-accent);
+
+  --shadow-soft: 0 1px 2px rgba(10, 31, 56, 0.04), 0 6px 16px rgba(10, 31, 56, 0.045);
+  --shadow-card: 0 8px 18px rgba(10, 31, 56, 0.06);
+  --shadow-panel: 0 14px 30px rgba(10, 31, 56, 0.1);
+
+  --motion-fast: 140ms ease;
+  --motion-normal: 220ms ease;
+}
+
+[data-bs-theme="dark"],
+.quarto-dark,
+.mg-brand-dark {
+  --color-background: var(--mg-bg, #1b2530);
+  --color-surface: var(--mg-bg-soft, #202d3a);
+  --color-surface-tint: var(--mg-bg-tint, #263746);
+  --color-text-primary: var(--mg-ink, #f7fbfd);
+  --color-text-secondary: var(--mg-text, #d8e1e6);
+  --color-text-muted: #b8c4cb;
+  --color-border: var(--mg-line, #344758);
+  --color-border-strong: var(--mg-line-strong, #425769);
+  --color-brand-accent-soft: rgba(0, 168, 214, 0.18);
+  --color-brand-field-soft: rgba(30, 87, 153, 0.18);
+  --color-brand-copper-soft: rgba(217, 119, 6, 0.18);
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.16), 0 8px 22px rgba(0, 0, 0, 0.18);
+  --shadow-card: 0 10px 26px rgba(0, 0, 0, 0.22);
+  --shadow-panel: 0 18px 42px rgba(0, 0, 0, 0.3);
+}

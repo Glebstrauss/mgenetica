@@ -1,0 +1,281 @@
+.mg-brand a {
+  color: var(--color-brand-secondary);
+  font-weight: 720;
+  text-decoration: none;
+}
+
+.mg-brand a:hover {
+  color: var(--color-brand-primary);
+}
+
+.mg-brand :where(a, button, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-brand-accent);
+  outline-offset: 3px;
+}
+
+.mg-brand-section {
+  padding: var(--space-xl) 0;
+}
+
+.mg-brand-grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.mg-brand-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.mg-brand-button {
+  align-items: center;
+  border-radius: var(--radius-md);
+  border: var(--border-strong);
+  display: inline-flex;
+  font-weight: 720;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.62rem 0.86rem;
+  box-shadow: none;
+  transition: background var(--motion-fast), border-color var(--motion-fast), color var(--motion-fast), transform var(--motion-fast), box-shadow var(--motion-fast);
+}
+
+.mg-brand-button:hover {
+  transform: translateY(-1px);
+}
+
+.mg-brand-button-primary {
+  background: var(--color-brand-accent-strong);
+  border-color: var(--color-brand-accent-strong);
+  color: #ffffff !important;
+}
+
+.mg-brand-button-primary:hover {
+  background: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 8px 18px rgba(10, 31, 56, 0.14);
+}
+
+.mg-brand-button-secondary {
+  background: var(--color-background);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary) !important;
+}
+
+.mg-brand-button-secondary:hover {
+  background: var(--color-brand-primary-soft);
+  border-color: var(--color-brand-secondary);
+}
+
+.mg-brand-badge {
+  align-items: center;
+  background: var(--color-brand-accent-soft);
+  border: var(--border-hairline);
+  border-color: rgba(0, 168, 214, 0.24);
+  border-radius: var(--radius-pill);
+  color: var(--color-brand-primary);
+  display: inline-flex;
+  gap: var(--space-xs);
+  min-height: 1.55rem;
+  padding: 0.32rem 0.5rem;
+  width: fit-content;
+}
+
+.mg-brand-badge-field {
+  background: var(--color-brand-field-soft);
+  border-color: rgba(30, 87, 153, 0.2);
+  color: var(--color-brand-field);
+}
+
+.mg-brand-card {
+  background: var(--color-background);
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.mg-brand-card:hover,
+.mg-brand-card:focus-within {
+  border-color: var(--color-brand-secondary);
+  box-shadow: var(--shadow-card);
+}
+
+.mg-brand-hero {
+  align-items: stretch;
+  background:
+    linear-gradient(135deg, #ffffff 0%, var(--color-background) 44%, var(--color-brand-primary-soft) 100%);
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+}
+
+.mg-brand-hero-copy {
+  align-content: center;
+  display: grid;
+  gap: var(--space-md);
+}
+
+.mg-brand-logo-panel {
+  align-items: center;
+  background:
+    linear-gradient(180deg, #ffffff 0%, var(--color-surface) 100%);
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  min-height: 176px;
+  overflow: hidden;
+  padding: var(--space-md);
+}
+
+.mg-brand-logo-panel img {
+  height: auto;
+  max-width: min(260px, 100%);
+}
+
+.mg-brand-course-card {
+  border-top: 2px solid var(--color-brand-secondary);
+}
+
+.mg-brand-service-card {
+  border-top: 2px solid var(--color-brand-secondary);
+}
+
+.mg-brand-about,
+.mg-brand-cta-band,
+.mg-brand-article-feature,
+.mg-brand-course-layout,
+.mg-brand-lab-note {
+  background: linear-gradient(180deg, var(--color-background), var(--color-surface));
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+}
+
+.mg-brand-cta-band {
+  align-items: center;
+}
+
+.mg-brand-cta-field {
+  background: var(--color-brand-field-soft);
+  border-color: rgba(30, 87, 153, 0.22);
+}
+
+.mg-brand-method-row,
+.mg-brand-step-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.mg-brand-method-row span,
+.mg-brand-step-list span {
+  background: var(--color-background);
+  border: var(--border-hairline);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-primary);
+  font-size: var(--text-small);
+  font-weight: 700;
+  padding: 0.32rem 0.52rem;
+}
+
+.mg-brand-chart-frame {
+  background: var(--color-background);
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.mg-brand-certificate {
+  background: linear-gradient(180deg, var(--color-background), #fbf7ee);
+  border: var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  display: grid;
+  gap: var(--space-md);
+  max-width: 820px;
+  padding: var(--space-lg);
+}
+
+.mg-brand-certificate-header {
+  align-items: center;
+  background: var(--color-background);
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  display: flex;
+  justify-content: space-between;
+  min-height: 88px;
+  padding: var(--space-md);
+}
+
+.mg-brand-certificate-header img {
+  height: 58px;
+  object-fit: contain;
+  width: 58px;
+}
+
+.mg-brand-signature-line {
+  border-top: 1px solid var(--color-brand-copper);
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  padding-top: var(--space-xs);
+  width: min(260px, 100%);
+}
+
+.mg-brand-landing-layout {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+@media (min-width: 760px) {
+  .mg-brand-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .mg-brand-hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.8fr);
+    padding: var(--space-xl);
+  }
+
+  .mg-brand-cta-band {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .mg-brand-actions,
+  .mg-brand-button {
+    width: 100%;
+  }
+
+  .mg-brand-hero,
+  .mg-brand-about,
+  .mg-brand-cta-band,
+  .mg-brand-article-feature,
+  .mg-brand-course-layout,
+  .mg-brand-lab-note,
+  .mg-brand-certificate {
+    padding: var(--space-lg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mg-brand *,
+  .mg-brand *::before,
+  .mg-brand *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

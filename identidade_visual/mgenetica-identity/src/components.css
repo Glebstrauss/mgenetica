@@ -1,0 +1,219 @@
+/*
+  MGenética — Componentes
+  Classes reutilizáveis extraídas do index.html.
+  Depende de tokens.css.
+*/
+
+/* ── RESET ────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--color-surf);
+  color: var(--color-ink);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── LAYOUT ───────────────────────────────────────── */
+.mg-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+}
+.mg-section { padding: var(--space-20) 0; }
+
+/* ── BADGE ────────────────────────────────────────── */
+.mg-badge {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+  background: var(--color-tint);
+  border: 1px solid var(--color-border-md);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--space-5);
+}
+.mg-badge--cyan {
+  color: #005f7a;
+  background: var(--color-cyan-lt);
+  border-color: rgba(0, 168, 214, 0.20);
+}
+.mg-badge--ghost {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.60);
+  border-color: rgba(255,255,255,0.12);
+}
+
+/* ── BOTÕES ───────────────────────────────────────── */
+.mg-btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 11px 24px;
+  border-radius: var(--radius-md);
+  transition: all var(--ease-default);
+  cursor: pointer;
+  border: none;
+  line-height: 1;
+}
+.mg-btn--primary {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+.mg-btn--primary:hover { background: var(--color-blue); }
+
+.mg-btn--outline {
+  background: transparent;
+  color: var(--color-navy);
+  border: 1px solid var(--color-border);
+}
+.mg-btn--outline:hover { background: var(--color-tint); }
+
+.mg-btn--cyan {
+  background: var(--color-cyan);
+  color: var(--color-navy);
+  font-weight: 500;
+}
+.mg-btn--cyan:hover { background: #00c4f8; }
+
+.mg-btn--ghost {
+  background: transparent;
+  color: rgba(255,255,255,0.70);
+  border: 1px solid rgba(255,255,255,0.20);
+}
+.mg-btn--ghost:hover { background: rgba(255,255,255,0.06); }
+
+/* ── CARD ─────────────────────────────────────────── */
+.mg-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) calc(var(--space-6) + var(--space-2));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: var(--color-surf);
+  transition: border-color var(--ease-default);
+}
+.mg-card:hover { border-color: rgba(0, 168, 214, 0.35); }
+
+.mg-card--featured {
+  background: var(--color-navy);
+  border-color: transparent;
+  color: var(--color-white);
+}
+.mg-card--featured:hover { border-color: var(--color-cyan); }
+.mg-card--featured h3 { color: var(--color-white); }
+.mg-card--featured p  { color: rgba(255,255,255,0.65); }
+
+.mg-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-2);
+}
+.mg-card__icon--navy   { background: rgba(10,31,56,0.07); }
+.mg-card__icon--cyan   { background: rgba(0,168,214,0.12); }
+.mg-card__icon--tint   { background: var(--color-tint); }
+.mg-card__icon--white  { background: rgba(255,255,255,0.10); }
+
+.mg-card h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--color-navy);
+  line-height: 1.3;
+}
+.mg-card p {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+.mg-card__link {
+  margin-top: auto;
+  font-size: 0.80rem;
+  font-weight: 500;
+  color: var(--color-cyan);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.mg-card__link::after { content: '→'; }
+
+/* ── SECTION HEADER ───────────────────────────────── */
+.mg-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--space-12);
+  gap: var(--space-8);
+}
+.mg-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--color-navy);
+  line-height: 1.25;
+}
+.mg-section-lead {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  max-width: 320px;
+  text-align: right;
+}
+
+/* ── COLOR CHIP (paleta) ──────────────────────────── */
+.mg-chip {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+.mg-chip__swatch { height: 80px; width: 100%; }
+.mg-chip__info   { background: var(--color-white); padding: var(--space-3); }
+.mg-chip__name   { font-size: 0.80rem; font-weight: 500; color: var(--color-navy); }
+.mg-chip__hex    { font-size: 0.70rem; color: var(--color-muted); font-family: var(--font-mono); }
+.mg-chip__role   { font-size: 0.65rem; color: var(--color-muted); margin-top: 2px; }
+
+/* ── ANIMAÇÕES DE ENTRADA ─────────────────────────── */
+.mg-fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: mg-fadeUp 0.55s ease forwards;
+}
+.mg-fade-in:nth-child(1) { animation-delay: 0.05s; }
+.mg-fade-in:nth-child(2) { animation-delay: 0.15s; }
+.mg-fade-in:nth-child(3) { animation-delay: 0.25s; }
+.mg-fade-in:nth-child(4) { animation-delay: 0.35s; }
+
+@keyframes mg-fadeUp {
+  to { opacity: 1; transform: none; }
+}
+
+/* ── UTILITÁRIO: NOTA ─────────────────────────────── */
+.mg-note {
+  margin-top: var(--space-8);
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-tint);
+  border-left: 3px solid var(--color-cyan);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+.mg-note strong { color: var(--color-navy); font-weight: 500; }
+
+/* ── RESPONSIVO ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .mg-container { padding: 0 var(--space-6); }
+  .mg-section-header { flex-direction: column; align-items: flex-start; }
+  .mg-section-lead   { text-align: left; }
+}

@@ -1,0 +1,14 @@
+@import url("./brand-tokens.css");
+@import url("./typography.css");
+@import url("./components.css");
+
+.mg-brand-shell {
+  background:
+    linear-gradient(180deg, var(--color-background) 0%, var(--color-surface) 100%);
+  color: var(--color-text-secondary);
+  display: grid;
+  gap: var(--space-xl);
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: var(--space-lg) var(--space-md);
+}

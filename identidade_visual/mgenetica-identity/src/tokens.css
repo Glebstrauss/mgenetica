@@ -1,0 +1,70 @@
+/*
+  MGenética — Design Tokens
+  Fonte da verdade para cores, tipografia, espaçamento e bordas.
+  Importe este arquivo antes de qualquer outro CSS do projeto.
+*/
+
+:root {
+  /* ── CORES PRINCIPAIS ─────────────────────────────── */
+  --color-navy:      #0A1F38;   /* texto principal, CTAs escuros           */
+  --color-blue:      #1A4B78;   /* links, hover de botões                  */
+  --color-cyan:      #00A8D6;   /* acento primário, ações, links ativos    */
+  --color-cyan-lt:   #D6F1F9;   /* fundo de badge cyan, hover suave        */
+
+  /* ── SUPERFÍCIES ──────────────────────────────────── */
+  --color-white:     #FFFFFF;   /* cards, fundo de hero                    */
+  --color-surf:      #F7F9FC;   /* fundo de página (body)                  */
+  --color-tint:      #EEF3F9;   /* seções alternadas, badges padrão        */
+
+  /* ── TIPOGRAFIA ───────────────────────────────────── */
+  --color-ink:       #0A1F38;   /* texto corrido — mesmo que navy          */
+  --color-muted:     #5A7391;   /* subtexto, captions, labels              */
+
+  /* ── BORDA ────────────────────────────────────────── */
+  --color-border:    rgba(10, 31, 56, 0.10);
+  --color-border-md: rgba(10, 31, 56, 0.18);
+
+  /* ── TIPOGRAFIA — FAMÍLIAS ────────────────────────── */
+  --font-display: 'Lora', Georgia, serif;       /* títulos, hero, display  */
+  --font-body:    'DM Sans', system-ui, sans-serif; /* corpo, UI, badges   */
+  --font-mono:    'DM Mono', 'Fira Code', monospace; /* código R, hexes    */
+
+  /* ── TIPOGRAFIA — ESCALA ──────────────────────────── */
+  --text-xs:   0.70rem;   /* 11px — badges, labels uppercase     */
+  --text-sm:   0.80rem;   /* 13px — captions, chip-role          */
+  --text-base: 1.00rem;   /* 16px — body padrão                  */
+  --text-lg:   1.05rem;   /* 17px — lead / intro                 */
+  --text-xl:   1.30rem;   /* 21px — card h3, section subheading  */
+  --text-2xl:  1.60rem;   /* 26px — section title                */
+  --text-3xl:  2.00rem;   /* 32px — specimen display             */
+  --text-4xl:  clamp(2.2rem, 4vw, 3.1rem); /* hero h1             */
+
+  /* ── ESPAÇAMENTO ──────────────────────────────────── */
+  --space-1:  0.25rem;
+  --space-2:  0.50rem;
+  --space-3:  0.75rem;
+  --space-4:  1.00rem;
+  --space-5:  1.25rem;
+  --space-6:  1.50rem;
+  --space-8:  2.00rem;
+  --space-10: 2.50rem;
+  --space-12: 3.00rem;
+  --space-16: 4.00rem;
+  --space-20: 5.00rem;
+
+  /* ── BORDAS ───────────────────────────────────────── */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  16px;
+  --radius-pill: 100px;
+
+  /* ── SOMBRAS ──────────────────────────────────────── */
+  --shadow-none: none;
+  --shadow-sm:   0 1px 3px rgba(10, 31, 56, 0.06);
+  --shadow-md:   0 4px 12px rgba(10, 31, 56, 0.08);
+
+  /* ── TRANSIÇÕES ───────────────────────────────────── */
+  --ease-default: 0.18s ease;
+  --ease-slow:    0.35s ease;
+}

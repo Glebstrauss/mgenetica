@@ -1,0 +1,35 @@
+/*
+  MGenética House Style tokens
+  Fonte: brand aprovado em brand/review/index.html
+*/
+
+:root {
+  --mg-color-navy: #0A1F38;
+  --mg-color-blue: #1A4B78;
+  --mg-color-cyan: #00A8D6;
+  --mg-color-cyan-light: #D6F1F9;
+  --mg-color-white: #FFFFFF;
+  --mg-color-surface: #F7F9FC;
+  --mg-color-tint: #EEF3F9;
+  --mg-color-ink: #0A1F38;
+  --mg-color-muted: #5A7391;
+  --mg-color-border: rgba(10, 31, 56, 0.10);
+
+  --mg-font-display: "Lora", Georgia, serif;
+  --mg-font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mg-font-mono: "DM Mono", "SFMono-Regular", monospace;
+
+  --mg-radius-sm: 6px;
+  --mg-radius-md: 10px;
+  --mg-radius-lg: 14px;
+  --mg-radius-xl: 16px;
+
+  --mg-space-1: 0.25rem;
+  --mg-space-2: 0.5rem;
+  --mg-space-3: 0.75rem;
+  --mg-space-4: 1rem;
+  --mg-space-6: 1.5rem;
+  --mg-space-8: 2rem;
+  --mg-space-12: 3rem;
+  --mg-space-16: 4rem;
+}
