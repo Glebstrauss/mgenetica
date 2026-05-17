@@ -156,7 +156,7 @@ Explain whether increased gain justifies selecting fewer animals when diversity 
 #| label: selecao-basica
 set.seed(101)
 
-# Parâmetros populacionais
+# Population parameters
 n     <- 1000   # animais
 mu    <- 300    # média inicial (kg)
 h2    <- 0.35   # herdabilidade

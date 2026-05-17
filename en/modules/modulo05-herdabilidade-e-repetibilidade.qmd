@@ -171,7 +171,7 @@ p_filho <- 250 + a_filho + rnorm(n, 0, sqrt(ve + vd + vpe))
 reg <- lm(p_filho ~ p_pai)
 b   <- coef(reg)[2]
 
-cat("=== Parâmetros teóricos ===\n")
+cat("=== Theoretical parameters ===\n")
 cat(sprintf("h²:           %.4f\n", h2))
 cat(sprintf("r (repeat.):  %.4f\n", rep))
 cat(sprintf("\n=== Estimativa por regressão pai-filho ===\n"))

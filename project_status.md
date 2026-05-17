@@ -1,45 +1,70 @@
 # MGenética Project Status
 
 > **Source of Truth for AI Agents (Codex, Copilot, etc.)**
-> Version: 1.0.0 | Date: 2026-05-12
+> Version: 1.1.0 | Date: 2026-05-17
 
 ## Project Overview
 Educational platform for animal genetics and R programming.
-- **Core Goal:** Scientific editorial platform with premium UI/UX ("Luminous Precision").
-- **Current Phase:** v5 Redesign (Published/Finalizing).
-- **Target Phase:** v6 (Interactive Lab with WebR).
+
+- **Core Goal:** public scientific editorial platform with premium, trustworthy and modern UI/UX.
+- **Current Phase:** Phase 1-4 public-site redesign completed locally and ready for review; not yet treated as published by these records.
+- **Immediate Next Phase:** review the localized redesign, polish internal module detail pages and publish only on explicit request.
+- **Target Longer-Term Phase:** v6 interactive learning layer with WebR and richer client-side learning tools.
+
+## Verified Current State
+
+- Public site only; no app/admin scope in this repository block.
+- PT-BR, English and Spanish public page trees exist for homepage, utility pages, roadmap and the 12 module pages.
+- The locale switcher is base-path aware for GitHub Pages `/mgenetica/`.
+- Module R examples inside the pages are static fenced code, while executable validation still runs through `scripts/run_all_modules.R`.
+- The validated local gate is `scripts/prepublish_site_check.R`; safe local verification can skip render with `SKIP_QUARTO_RENDER=1`.
+- The clean full Quarto render path was restored on 2026-05-17 after clearing stray generated source-side HTML and resource artifacts, and the full prepublish gate now completes with render enabled.
 
 ## Tech Stack
-- **Framework:** Quarto (quarto.org)
-- **Primary Language:** R (Scripts in `scripts/`, modules in `modules/`)
-- **Styling:** SCSS (`styles/main.scss`) - Design System v3/v5
-- **Interactions:** Vanilla JS (`assets/js/`)
-- **Data:** Simulated CSVs (`data/`), Quiz JSONs (`quizzes/`)
-- **Infrastructure:** GitHub Pages (GitHub Actions)
+
+- **Framework:** Quarto website.
+- **Primary Language:** R for module data generation and validation scripts.
+- **Styling:** SCSS in `styles/main.scss` and `styles/main-dark.scss`.
+- **Typography Direction:** DM Sans with DM Serif Display for editorial emphasis.
+- **Interactions:** vanilla JavaScript for progress, i18n, quizzes, dark mode and page-specific interactions.
+- **Data:** simulated CSVs in `data/`, quiz JSONs in `quizzes/`, manifest metadata in `data/site-manifest.yml`.
+- **Infrastructure:** GitHub Pages through `.github/workflows/quarto-publish.yml`.
 
 ## Architecture Notes
-- **Static First:** No backend assumed. All state (progress, quizzes) is stored in `localStorage`.
-- **Content-Centric:** Modules are `.qmd` files rendered to static HTML.
-- **Manifest-Driven:** `data/site-manifest.yml` defines the structure and validation rules.
+
+- **Static first:** no backend assumed; public progress state remains browser-local.
+- **Content-centric:** modules remain authored as `.qmd` and rendered to static HTML.
+- **Manifest-driven:** `data/site-manifest.yml` is the canonical map for navigation, module registry and public metadata.
+- **Localized routing:** Quarto render patterns include PT-BR root pages plus mirrored `en/` and `es/` trees.
 
 ## File Map (Critical)
-- `_quarto.yml`: Global configuration and navigation.
-- `index.qmd`: Home page (Custom layout, no sidebar/TOC).
-- `styles/main.scss`: Main design system tokens and rules.
-- `assets/js/progress.js`: Core logic for tracking module completion.
-- `scripts/prepublish_site_check.R`: Mandatory validation script.
+
+- `_quarto.yml`: global site configuration, render scope and public navigation.
+- `index.qmd`: homepage and primary editorial entrypoint.
+- `modules/index.qmd`: public module catalog, mirrored in localized trees.
+- `styles/main.scss`: active public design-system layer and redesign rules.
+- `assets/js/i18n.js`: locale switching and route mapping.
+- `data/site-manifest.yml`: canonical public-site content map.
+- `scripts/prepublish_site_check.R`: required local validation gate before publication.
+- `NEXT_SITE.md`: current next-block contract.
+- `WORKLOG_SITE.md`: execution history for site-only blocks.
 
 ## Active Goals
-1.  **Visual Polish:** Align all internal modules with the v5 "Premium" look.
-2.  **Script Lab Rollout:** Ensure all 12 modules have consistent R script/CSV accessibility.
-3.  **UI/UX:** Implement 3-column grid for module cards and clean Hero composition.
-4.  **Performance:** Optimize the 7k+ line SCSS file and implement critical CSS.
+
+1. **Localized QA:** widen browser and route spot-checks across representative PT/EN/ES module detail pages before publication.
+2. **Content structure:** reduce duplicated module metadata between page templates and the site manifest.
+3. **Design-system maintainability:** reorganize the large SCSS surface into clearer sections without regressing the public visual system.
+4. **Publication readiness:** keep the final public-site review path ready for explicit publish-on-request work now that full render validation is working again.
 
 ## Operational Constraints
-- **Scope:** Work only on the public website. Do not touch internal productivity apps.
-- **Validation:** Always run `Rscript scripts/prepublish_site_check.R` before claiming completion.
-- **Identity:** Preserve the original logo (`images/mgenetica-logo-correct.png`) and Navy/Cyan palette.
+
+- **Scope:** work only on the public website. Do not touch internal productivity apps.
+- **Publication:** do not publish automatically; publish only on explicit user request.
+- **Validation:** before publication, run `R_LIBS_USER=/private/tmp/mgenetica-r-lib Rscript --vanilla scripts/prepublish_site_check.R`.
+- **Identity:** preserve the original logo asset family and the established navy/cyan brand direction unless explicitly changed.
+- **Records:** keep `NEXT_SITE.md` and `WORKLOG_SITE.md` aligned with real verified state after each site block.
 
 ## Agent Interop
-When starting a task, read this file and `PLAN-EVOLUCAO-PRODUTO.md`.
-Maintain the "Scientific Precision" tone in all UI copy and code structure.
+
+When starting a task, read this file, `NEXT_SITE.md` and `PLAN-EVOLUCAO-PRODUTO.md`.
+Prefer current-state documentation grounded in validated site behavior over aspirational phase text.

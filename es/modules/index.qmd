@@ -18,7 +18,7 @@ lang: es
     <p>12 módulos en secuencia corta: fundamentos, datos, modelado y genómica. Cada módulo entrega concepto, script en R, interpretación y cuestionario.</p>
     <div class="modules-landing-actions" role="navigation" aria-label="Acciones principales del índice de módulos">
       <a class="btn btn-primary" href="modulo01-introducao-ao-melhoramento-animal.html" aria-label="Comenzar con el Módulo 01">Iniciar M01</a>
-      <a class="btn btn-secondary" href="../semanas/index.html" aria-label="Abrir roteiro semanal">Ver roteiro</a>
+      <a class="btn btn-secondary" href="../semanas/index.html" aria-label="Abrir la hoja de ruta semanal">Ver hoja de ruta</a>
     </div>
   </div>
   <div class="modules-landing-panel" role="note" aria-label="Resumen de la ruta">
@@ -47,7 +47,7 @@ lang: es
 ::: {.public-wayfinding-item role="listitem"}
 **Planificar**
 
-[Roteiro semanal](../semanas/index.qmd){.entry-link aria-label="Abrir roteiro semanal"}
+[Hoja de ruta semanal](../semanas/index.qmd){.entry-link aria-label="Abrir la hoja de ruta semanal"}
 :::
 :::
 :::
@@ -256,7 +256,7 @@ Parentesco genómico, asociación y predicción.
 **Cerrar ruta**
 
 [Abrir certificado](../certificado.qmd){.btn .btn-primary}
-[Revisar roteiro](../semanas/index.qmd){.btn .btn-secondary}
+[Revisar hoja de ruta](../semanas/index.qmd){.btn .btn-secondary}
 :::
 
 ::: {.modules-next-step role="region" aria-label="Siguiente paso después de revisar módulos"}

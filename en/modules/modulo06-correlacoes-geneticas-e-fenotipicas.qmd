@@ -156,7 +156,7 @@ $$h_x \cdot r_A > h_y$$
 set.seed(106)
 n <- 800
 
-# Parâmetros: peso (x) e espessura de gordura subcutânea (y)
+# Parameters: weight (x) and backfat thickness (y)
 va1 <- 400; va2 <- 8; rA <- -0.35   # correlação genética negativa
 ve1 <- 600; ve2 <- 12; rE <- -0.10  # correlação ambiental
 

@@ -126,7 +126,7 @@ Ingrese su nombre y genere el PDF cuando todos los módulos estén completos.
 
 ::: {.certificate-readiness-actions role="navigation" aria-label="Rutas antes de emitir el certificado"}
 [Ver módulos](modules/index.qmd){.btn .btn-primary}
-[Plan study](semanas/index.qmd){.btn .btn-secondary}
+[Planificar estudio](semanas/index.qmd){.btn .btn-secondary}
 [Search a concept](busqueda.qmd){.btn .btn-secondary}
 :::
 :::

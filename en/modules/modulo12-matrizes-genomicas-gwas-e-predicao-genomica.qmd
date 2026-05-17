@@ -291,7 +291,7 @@ Review the biological question, run the main section in R, and write a sentence 
 If the quiz result is consistent, review the recorded technical phrases and move on to the certificate. If in doubt, return to the proposed exercise before completing.
 :::
 
-::: {.module-completion-note role="region" aria-label="Fechamento da trilha MGenética"}
+::: {.module-completion-note role="region" aria-label="MGenética path closure"}
 **Trail closure**
 
 After this module, review the interpretation you wrote in the previous checkpoints. The certificate is the formal closure, but the evidence of learning is the ability to explain when to use pedigree, genomic array, GWAS, or prediction for a selection decision.
@@ -308,7 +308,7 @@ Close the module when the reading, code and quiz support the same conclusion. If
 ::: {.module-close-check-item role="listitem"}
 **Reading**
 
-The central question was answered with his words.
+The central question was answered in your own words.
 :::
 
 ::: {.module-close-check-item role="listitem"}

@@ -25,7 +25,7 @@ lang: es
 </div>
 ```
 
-::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de lectura del módulo"}
+::: {.module-reading-rhythm role="note" aria-label="Ritmo de lectura recomendado del módulo"}
 **Ritmo de lectura**
 
 Lea primero para comprender la pregunta, ejecute el guión para generar evidencia y solo luego continúe con el ejercicio y la prueba.
@@ -222,13 +222,13 @@ cat(sprintf("h² teórico:          %.4f\n", va/vp))
 **Interpretación:** h² = 0,31 no significa que "el 31% del fenotipo de cada animal es genético". Significa que el 31% de la **variación** observada en la población se debe a diferencias genéticas aditivas entre animales.
 :::
 
-::: {.module-evidence-path role="note" aria-label="Caminho de evidência do módulo"}
+::: {.module-evidence-path role="note" aria-label="Camino de evidencia del módulo"}
 **Camino de la evidencia**
 
 Antes del ejercicio, conecte tres puntos: qué pregunta abrió el módulo, qué resultado del guión respalda la respuesta y qué decisión técnica es más clara.
 :::
 
-::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+::: {.module-practice-contract role="note" aria-label="Contrato práctico del módulo"}
 **Evidencia mínima para este módulo**
 
 Antes de continuar, explique en una oración por qué una varianza fenotípica alta no garantiza una respuesta a la selección si la fracción aditiva es baja.
@@ -240,13 +240,13 @@ Antes de continuar, explique en una oración por qué una varianza fenotípica a
 2. Simule lo que sucede con la regresión padre-hijo cuando `n <- 50`. Comparar con `n <- 2000`.
 3. ¿Cuál sería el h² si `vi = 0` y `vd = 0`? ¿Qué significa esto biológicamente?
 
-::: {.module-study-checkpoint role="note" aria-label="Checkpoint de estudo antes do quiz"}
+::: {.module-study-checkpoint role="note" aria-label="Punto de control antes del cuestionario"}
 **Antes del cuestionario**
 
 Revise la pregunta biológica, ejecute la sección principal en R y escriba una oración que vincule el resultado con la decisión de selección. Luego pasa al cuestionario con esa frase en mente.
 :::
 
-::: {.module-takeaways role="note" aria-label="Resumo técnico do módulo"}
+::: {.module-takeaways role="note" aria-label="Resumen técnico del módulo"}
 **Qué aprender de este módulo**
 
 - El fenotipo observado combina componentes genéticos y ambientales, no sólo valor genético.
@@ -256,7 +256,7 @@ Revise la pregunta biológica, ejecute la sección principal en R y escriba una 
 ::: {.quiz-container data-module="02"}
 :::
 
-::: {.module-after-quiz role="note" aria-label="Próximo passo depois do quiz"}
+::: {.module-after-quiz role="note" aria-label="Próximo paso después del cuestionario"}
 **Después del cuestionario**
 
 Si el resultado del cuestionario no refleja su interpretación, regrese al extracto de R y al ejercicio propuesto. Si es coherente, siga adelante manteniendo grabada una frase técnica.

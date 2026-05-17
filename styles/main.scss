@@ -761,8 +761,9 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
   display: flex;
   flex-direction: column;
   gap: 0.18rem;
-  min-width: min(100%, 240px);
-  max-width: 340px;
+  min-width: 0;
+  width: 100%;
+  max-width: none;
   padding: 1rem 1.1rem;
   color: var(--mg-text);
   background: var(--mg-bg-soft);
@@ -780,12 +781,16 @@ tbody tr:nth-child(even) { background: var(--mg-bg-soft); }
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
   }
 
   strong {
     color: var(--mg-ink);
     font-size: 0.9rem;
     line-height: 1.35;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
   }
 
   &:hover {
@@ -3263,6 +3268,16 @@ div.sourceCode {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1.8rem;
+}
+
+.modules-landing-actions .btn,
+.modules-next-step-actions .btn,
+.utility-next-step > .btn,
+.about-next-step-actions .btn,
+.profile-actions .btn {
+  flex: 1 1 14rem;
+  justify-content: center;
+  text-align: center;
 }
 
 .modules-landing-panel {
@@ -7548,7 +7563,23 @@ code {
 }
 
 .navbar-brand-container {
-  display: none;
+  display: flex;
+  margin-right: 0.55rem;
+}
+
+.navbar-brand-logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar-brand-logo img {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  object-fit: contain;
+  background: #07131d;
+  border: 1px solid rgba(15, 36, 71, 0.12);
+  border-radius: 7px;
 }
 
 .navbar-title,
@@ -7604,29 +7635,31 @@ code {
   --home-max: 1120px;
   max-width: var(--home-max);
   margin: 0 auto;
-  padding: 1rem 0 4rem;
+  padding: 0.75rem 0 4rem;
 }
 
 .home-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
-  min-height: 520px;
+  grid-template-columns: minmax(0, 1.22fr) minmax(280px, 0.78fr);
+  min-height: 430px;
   overflow: hidden;
-  background: var(--mg-navy-dark);
+  background: #ffffff;
+  border: 1px solid rgba(15, 36, 71, 0.09);
   border-radius: 8px;
+  box-shadow: 0 18px 48px rgba(15, 36, 71, 0.10);
 }
 
 .home-hero-copy {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(2rem, 6vw, 5rem);
-  color: #ffffff;
+  padding: clamp(2rem, 5vw, 4rem);
+  color: var(--mg-navy-dark);
 }
 
 .home-kicker {
-  margin-bottom: 1.2rem;
-  color: var(--mg-blue-light);
+  margin-bottom: 1rem;
+  color: var(--mg-blue);
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -7640,11 +7673,11 @@ code {
 }
 
 .home-title p {
-  max-width: 12ch;
-  color: #ffffff;
-  font-size: clamp(2.75rem, 7vw, 5.25rem);
+  max-width: 11ch;
+  color: var(--mg-navy-dark);
+  font-size: clamp(2.35rem, 5.8vw, 4.55rem);
   font-weight: 700;
-  line-height: 0.96;
+  line-height: 0.98;
 }
 
 .home-title em {
@@ -7654,10 +7687,10 @@ code {
 
 .home-summary {
   max-width: 46rem;
-  margin-top: 1.5rem;
-  color: var(--mg-blue-xlight);
-  font-size: clamp(1.05rem, 1.7vw, 1.2rem);
-  line-height: 1.65;
+  margin-top: 1.25rem;
+  color: var(--mg-body);
+  font-size: clamp(1rem, 1.45vw, 1.12rem);
+  line-height: 1.58;
 }
 
 .home-actions,
@@ -7669,11 +7702,19 @@ code {
 }
 
 .home-hero-mark {
+  position: relative;
   display: grid;
-  place-items: center;
-  min-height: 320px;
-  padding: 0;
-  background: #020a0e;
+  place-items: end center;
+  min-height: 300px;
+  padding: clamp(1.75rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2.25rem) 0;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(145, 169, 195, 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(145, 169, 195, 0.11) 1px, transparent 1px),
+    radial-gradient(circle at 52% 76%, rgba(0, 120, 170, 0.15), transparent 30%),
+    #07131d;
+  background-size: 64px 64px, 64px 64px, auto, auto;
+  border-left: 1px solid rgba(15, 36, 71, 0.08);
 }
 
 .home-hero-mark p {
@@ -7681,10 +7722,16 @@ code {
 }
 
 .home-hero-mark img {
-  width: 100%;
-  height: 100%;
-  min-height: 320px;
-  object-fit: cover;
+  position: relative;
+  z-index: 1;
+  width: min(74%, 380px);
+  height: auto;
+  aspect-ratio: 1;
+  margin-bottom: -1.3rem;
+  opacity: 0.54;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: none;
 }
 
 .navbar .nav-link.active,

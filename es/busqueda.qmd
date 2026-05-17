@@ -305,8 +305,8 @@ El siguiente paso está en la hoja de ruta.
 :::
 
 [Volver a módulos](modules/index.qmd){.btn .btn-primary}
-[Consult glossary](glosario.qmd){.btn .btn-secondary}
-[Plan study](semanas/index.qmd){.btn .btn-secondary}
+[Consultar glosario](glosario.qmd){.btn .btn-secondary}
+[Planificar estudio](semanas/index.qmd){.btn .btn-secondary}
 :::
 
 <script>

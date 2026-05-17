@@ -2,6 +2,335 @@
 
 Use this file to register site-only work blocks. Do not use it for app work.
 
+## 2026-05-17 — Full render-path restoration after localization block
+
+### Block objective
+
+Restore the clean full Quarto render path after the localization and layout pass so the review-ready public site can move back to a real publication-valid state. Keep site-only scope and do not publish.
+
+### Cycles executed
+
+1. Diagnosis: safe validation still passed, but direct Quarto render attempts were failing on stale generated-resource references and missing source-side companion paths such as root and localized `*_files` directories.
+   Implementation: traced the failure from stale `.quarto/_freeze` references into stray generated HTML and resource artifacts living inside the source tree instead of staying confined to `docs/`.
+   Testing: reran direct Quarto render attempts after each cleanup step to confirm the blocker moved from frozen resources to source-side generated outputs.
+   Notes: the failure mode was not missing content; it was Quarto re-encountering leftover generated artifacts as if they were project inputs/resources.
+
+2. Diagnosis: localized and module HTML outputs had accumulated under `en/`, `es/`, `modules/` and the repo root, which made the render path fragile and caused repeated missing-companion-path errors.
+   Implementation: removed only the stray generated source-side HTML and render-resource leftovers, restored the tracked include files after an overly broad cleanup pass, and reran the full project render once the source tree was clean again.
+   Testing: `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib RENV_CONFIG_AUTOLOADER_ENABLED=FALSE quarto render --no-execute` completed successfully and wrote the site to `docs/`.
+   Notes: the accidental deletion of the tracked include files was repaired immediately and is recorded here so future cleanup passes stay narrower.
+
+3. Diagnosis: once direct render was healthy again, the status records still described the older blocked-render state.
+   Implementation: updated the current-status records to replace the render blocker with the restored-state description and shift the next site step back to browser QA and publication-on-request.
+   Testing: reran the full prepublish gate with render enabled.
+   Notes: this closes the render-path blocker and restores a real publication-ready validation path without actually publishing.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `WORKLOG_SITE.md`
+- `project_status.md`
+
+### Commands executed
+
+- `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib RENV_CONFIG_AUTOLOADER_ENABLED=FALSE quarto render --no-execute`
+- `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib RENV_CONFIG_AUTOLOADER_ENABLED=FALSE Rscript --vanilla scripts/prepublish_site_check.R`
+- targeted cleanup of stray source-side generated HTML and render-resource artifacts
+
+### Test results
+
+- Full project Quarto render passed and wrote output under `docs/`.
+- Full prepublish site check passed with render enabled.
+- The earlier stale generated-resource blocker is no longer the active issue.
+
+### Pending items
+
+- Run wider browser QA across representative localized module-detail pages.
+- Publish only after explicit user request and a final review pass.
+
+---
+
+## 2026-05-17 — Final translation cleanup and translated-layout adjustments
+
+### Block objective
+
+Finish the remaining EN/ES translation cleanup and adjust the public layout so longer translated labels fit more reliably across module pages and support routes. Keep site-only scope and do not publish.
+
+### Cycles executed
+
+1. Diagnosis: the localized site tree existed, but a final audit still found Portuguese leaks inside EN/ES module code captions, Spanish module follow-up labels and mixed-language support CTAs.
+   Implementation: corrected the remaining EN/ES text leaks across module pages, the Spanish module index, the Spanish search page and the Spanish about-page wayfinding.
+   Testing: reran search-based leak checks and the safe local prepublish gate after the updates.
+   Notes: the goal here was completion of the current localization pass, not a new content rewrite.
+
+2. Diagnosis: several action bands and module navigation cards were tuned around shorter Portuguese labels and were more fragile with longer translated strings.
+   Implementation: updated the shared layout rules so module navigation cards can fully stretch and wrap longer translated labels, and so major action groups distribute buttons more cleanly.
+   Testing: SCSS validation passed through the safe prepublish gate.
+   Notes: these are layout-hardening adjustments rather than a visual redesign.
+
+3. Diagnosis: a representative localized Quarto render did not complete even after the source translation cleanup; the local project still had stale generated-resource references under `.quarto/_freeze` and missing root resource directories expected by Quarto.
+   Implementation: documented the render blocker in the status records instead of overstating publication readiness.
+   Testing: safe prepublish gate still passed, but representative render attempts failed on stale paths such as `.quarto/_freeze/site_libs/bootstrap` and missing `*_files` resource directories.
+   Notes: this blocker was restored later in the same day and is now covered by the render-restoration entry above.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `WORKLOG_SITE.md`
+- `es/certificado.qmd`
+- `es/busqueda.qmd`
+- `es/modules/index.qmd`
+- `es/modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `es/modules/modulo02-bases-da-genetica-quantitativa.qmd`
+- `es/modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd`
+- `es/modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd`
+- `es/modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `es/modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `es/modules/modulo07-modelos-lineares-e-modelos-mistos.qmd`
+- `es/modules/modulo08-blup-e-avaliacao-genetica.qmd`
+- `es/modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd`
+- `es/modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd`
+- `es/modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd`
+- `es/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `es/sobre.qmd`
+- `en/modules/modulo01-introducao-ao-melhoramento-animal.qmd`
+- `en/modules/modulo05-herdabilidade-e-repetibilidade.qmd`
+- `en/modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd`
+- `en/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd`
+- `project_status.md`
+- `styles/main.scss`
+
+### Commands executed
+
+- `rg -n ... en es`
+- `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib RENV_CONFIG_AUTOLOADER_ENABLED=FALSE quarto render ... --no-execute`
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R`
+- `git diff --check`
+
+### Test results
+
+- Leak scan no longer reports the corrected EN/ES translation issues.
+- Safe prepublish gate passed with Quarto render intentionally skipped.
+- Representative localized render was blocked at the end of this block, but the render path was restored later in the same day.
+- Whitespace and diff check passed.
+
+### Pending items
+
+- Run wider browser QA across representative localized module-detail pages.
+- Publish only after explicit user request and a final full-render validation pass.
+
+---
+
+## 2026-05-17 — Code and metadata alignment after status audit
+
+### Block objective
+
+Align the remaining code-level metadata and theme tokens with the updated public-site status records. Keep site-only scope and do not publish.
+
+### Cycles executed
+
+1. Diagnosis: the live code mostly matched the updated documents, but `data/site-manifest.yml` still marked the public pages and collection defaults as `published` while the current records intentionally describe a review-ready local state.
+   Implementation: updated the relevant manifest status fields from `published` to `review` so content metadata matches the current operational status.
+   Testing: reran manifest validation as part of the safe prepublish gate.
+   Notes: this change keeps publication as an explicit later action instead of an implied metadata default.
+
+2. Diagnosis: the dark-theme SCSS defaults still declared `Inter` as the sans font even though the active design direction and light-theme defaults had already moved to DM Sans.
+   Implementation: replaced the stale dark-theme sans token with `DM Sans` in `styles/main-dark.scss`.
+   Testing: reran SCSS validation through the safe prepublish gate.
+   Notes: this removes an avoidable typography mismatch between code and records.
+
+### Files changed in this block
+
+- `WORKLOG_SITE.md`
+- `data/site-manifest.yml`
+- `styles/main-dark.scss`
+
+### Commands executed
+
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R`
+- `git diff --check`
+
+### Test results
+
+- Manifest validation passed.
+- SCSS validation passed.
+- Safe prepublish gate passed with Quarto render intentionally skipped.
+- Whitespace and diff check passed.
+
+### Pending items
+
+- Review or polish internal module detail pages before publication.
+- Publish only after explicit user request and a final full-render validation pass.
+
+---
+
+## 2026-05-17 — Documentation alignment for current site status and plans
+
+### Block objective
+
+Align the project status and planning records with the newest verified public-site state after the localized Phase 1-4 redesign work. Keep site-only scope and do not publish.
+
+### Cycles executed
+
+1. Diagnosis: `project_status.md`, `NEXT_SITE.md`, `BACKLOG_SITE.md` and `PLAN-EVOLUCAO-PRODUTO.md` no longer described the same current phase; some text still implied publication or older design assumptions.
+   Implementation: rewrote the status snapshot to reflect a local review-ready redesign state, current typography, localized coverage and the current validation path.
+   Testing: compared the revised records against the latest verified worklog block and current repository structure.
+   Notes: published status remains intentionally separate from local completion status.
+
+2. Diagnosis: the backlog still mixed open work with items already completed during the redesign phases.
+   Implementation: reduced the backlog to remaining public-site work only, emphasizing module-detail polish, QA, SCSS organization, content metadata and future manifest alignment.
+   Testing: reviewed the backlog against the current next-block contract to keep priorities consistent.
+   Notes: completed redesign items were removed rather than partially annotated.
+
+3. Diagnosis: the roadmap still carried outdated implementation assumptions such as Inter typography and ambiguous v5/v6 handoff.
+   Implementation: updated the roadmap to distinguish completed Phase 1-4 work, the immediate next block and longer-term v6 exploration.
+   Testing: ran the safe local prepublish gate and diff check after the documentation updates.
+   Notes: no app scope, publication action or deployment claim was added.
+
+### Files changed in this block
+
+- `BACKLOG_SITE.md`
+- `NEXT_SITE.md`
+- `PLAN-EVOLUCAO-PRODUTO.md`
+- `WORKLOG_SITE.md`
+- `project_status.md`
+
+### Commands executed
+
+- `git status --short --branch`
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib Rscript --vanilla scripts/validate_site_manifest.R`
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R`
+- `git diff --check`
+
+### Test results
+
+- Manifest validation passed.
+- Safe prepublish gate passed with Quarto render intentionally skipped.
+- Whitespace and diff check passed.
+
+### Pending items
+
+- Review or polish internal module detail pages before publication.
+- Publish only after explicit user request and a final full-render validation pass.
+
+---
+
+## 2026-05-14 — Hero logo panel matched to reference screenshot
+
+### Block objective
+
+Match the homepage logo panel to the user-provided reference: dark squared grid, original full logo, low opacity and lower-center placement.
+
+### Cycles executed
+
+1. Diagnosis: restored original logo was correct, but the panel still lacked the grid and placement shown in the reference.
+   Implementation: rebuilt `.home-hero-mark` with a dark grid background and lower-centered contained logo at reduced opacity.
+   Testing: targeted PT/EN/ES homepage render passed.
+   Notes: this keeps the original logo asset and avoids icon/inversion/cropping experiments.
+
+### Files changed in this block
+
+- `WORKLOG_SITE.md`
+- `styles/main.scss`
+
+### Commands executed
+
+- `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib RENV_CONFIG_AUTOLOADER_ENABLED=FALSE quarto render index.qmd en/index.qmd es/index.qmd --no-execute`
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+
+### Test results
+
+- Targeted PT/EN/ES homepage render passed.
+- Manifest validation passed.
+- Whitespace/diff check passed.
+
+---
+
+## 2026-05-14 — Original logo restoration after icon test
+
+### Block objective
+
+Restore the original logo asset after the blank-background icon test was rejected.
+
+### Cycles executed
+
+1. Diagnosis: the blank-background icon treatment was visually worse than the original logo.
+   Implementation: removed the icon experiment and restored `images/mgenetica-logo-correct.png` in PT/EN/ES homepage hero panels.
+   Testing: targeted PT/EN/ES homepage render passed.
+   Notes: the original square logo is contained, not cropped.
+
+2. Diagnosis: navbar icon also needed to return to the original brand asset.
+   Implementation: restored Quarto navbar logo to `images/mgenetica-logo-correct.png`.
+   Testing: diff check passed.
+   Notes: the text title remains beside the icon.
+
+### Files changed in this block
+
+- `WORKLOG_SITE.md`
+- `_quarto.yml`
+- `en/index.qmd`
+- `es/index.qmd`
+- `index.qmd`
+- `styles/main.scss`
+
+### Commands executed
+
+- `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib RENV_CONFIG_AUTOLOADER_ENABLED=FALSE quarto render index.qmd en/index.qmd es/index.qmd --no-execute`
+- `git diff --check`
+
+### Test results
+
+- Targeted PT/EN/ES homepage render passed.
+- Whitespace/diff check passed.
+
+---
+
+## 2026-05-14 — Homepage hero compact logo-panel correction
+
+### Block objective
+
+Refine the homepage hero from the screenshot feedback: reduce the oversized section, replace the strange full-logo background crop and restore the squared dark grid visual with the logo mark. Keep site-only scope.
+
+### Cycles executed
+
+1. Diagnosis: hero block was too tall and used a dark-on-dark split that made the right logo panel feel oversized.
+   Implementation: reduced hero minimum height, tightened text scale/padding and returned the left hero side to a white editorial panel.
+   Testing: targeted PT/EN/ES homepage render passed.
+   Notes: this follows the earlier preferred visual direction.
+
+2. Diagnosis: right hero media used the full PNG as a cover image, cropping text and making the logo background look strange.
+   Implementation: swapped homepage hero media to the transparent `mgenetica-logo-dark.svg` and rebuilt the panel as a dark square-grid background.
+   Testing: targeted PT/EN/ES homepage render passed.
+   Notes: the mark now sits inside the panel instead of becoming the panel texture.
+
+3. Diagnosis: navbar hid the logo icon in the title bar.
+   Implementation: re-enabled Quarto's navbar logo container and styled the icon with a compact dark square background.
+   Testing: manifest validation and diff check passed.
+   Notes: text title remains visible beside the icon.
+
+### Files changed in this block
+
+- `WORKLOG_SITE.md`
+- `en/index.qmd`
+- `es/index.qmd`
+- `index.qmd`
+- `styles/main.scss`
+
+### Commands executed
+
+- `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib RENV_CONFIG_AUTOLOADER_ENABLED=FALSE quarto render index.qmd en/index.qmd es/index.qmd --no-execute`
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib Rscript --vanilla scripts/validate_site_manifest.R`
+- `git diff --check`
+
+### Test results
+
+- Targeted PT/EN/ES homepage render passed.
+- Manifest validation passed.
+- Whitespace/diff check passed.
+
+---
+
 ## 2026-05-14 — Header active-state and homepage logo correction
 
 ### Block objective

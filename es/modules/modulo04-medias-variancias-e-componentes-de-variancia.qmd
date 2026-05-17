@@ -25,7 +25,7 @@ lang: es
 </div>
 ```
 
-::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de lectura del módulo"}
+::: {.module-reading-rhythm role="note" aria-label="Ritmo de lectura recomendado del módulo"}
 **Ritmo de lectura**
 
 Lea primero para comprender la pregunta, ejecute el guión para generar evidencia y solo luego continúe con el ejercicio y la prueba.
@@ -217,13 +217,13 @@ for (nf in c(5, 10, 25, 50, 100)) {
 **Consejo R:** El paquete `lme4` implementa REML a través de `lmer()`. El paquete `ASReml-R` es el estándar de la industria para el análisis de reproducción.
 :::
 
-::: {.module-evidence-path role="note" aria-label="Caminho de evidência do módulo"}
+::: {.module-evidence-path role="note" aria-label="Camino de evidencia del módulo"}
 **Camino de la evidencia**
 
 Antes del ejercicio, conecte tres puntos: qué pregunta abrió el módulo, qué resultado del guión respalda la respuesta y qué decisión técnica es más clara.
 :::
 
-::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+::: {.module-practice-contract role="note" aria-label="Contrato práctico del módulo"}
 **Evidencia mínima para este módulo**
 
 Antes de continuar, compare dos fuentes de variación y escriba cuál limita más la previsibilidad de la característica en el escenario simulado.
@@ -235,13 +235,13 @@ Antes de continuar, compare dos fuentes de variación y escriba cuál limita má
 2. Cambie VA=400 a VA=100 (h²=0,11). ¿Qué pasa con la estimación de h²?
 3. Agregue un efecto de granja fijo (`+ 15 * (touro_id %% 3)`) a `y`. ¿Cambia la estimación del VA? ¿Por qué?
 
-::: {.module-study-checkpoint role="note" aria-label="Checkpoint de estudo antes do quiz"}
+::: {.module-study-checkpoint role="note" aria-label="Punto de control antes del cuestionario"}
 **Antes del cuestionario**
 
 Revise la pregunta biológica, ejecute la sección principal en R y escriba una oración que vincule el resultado con la decisión de selección. Luego pasa al cuestionario con esa frase en mente.
 :::
 
-::: {.module-takeaways role="note" aria-label="Resumo técnico do módulo"}
+::: {.module-takeaways role="note" aria-label="Resumen técnico del módulo"}
 **Qué aprender de este módulo**
 
 - Los componentes de la varianza separan las fuentes de variación que se mezclaron en el fenotipo.
@@ -251,7 +251,7 @@ Revise la pregunta biológica, ejecute la sección principal en R y escriba una 
 ::: {.quiz-container data-module="04"}
 :::
 
-::: {.module-after-quiz role="note" aria-label="Próximo passo depois do quiz"}
+::: {.module-after-quiz role="note" aria-label="Próximo paso después del cuestionario"}
 **Después del cuestionario**
 
 Si el resultado del cuestionario no refleja su interpretación, regrese al extracto de R y al ejercicio propuesto. Si es coherente, siga adelante manteniendo grabada una frase técnica.

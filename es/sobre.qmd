@@ -48,7 +48,7 @@ Utilice esta página para comprender el papel público de MGenética y regresar 
 ::: {.public-wayfinding-item role="listitem"}
 **Finalizar**
 
-[Buscar](busqueda.qmd){.entry-link aria-label="Abrir la búsqueda desde la página Acerca de"}
+[Certificado](certificado.qmd){.entry-link aria-label="Abrir el certificado desde la página Acerca de"}
 :::
 :::
 :::
