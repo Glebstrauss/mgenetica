@@ -6,11 +6,11 @@ Work only on public site. Do not alter app. Do not publish automatically unless 
 
 ## Tipo do próximo bloco
 
-`review-localized-redesign-or-publish-on-request`
+`post-publish-qa-and-module-polish`
 
 ## Status (2026-05-17)
 
-**READY FOR REVIEW:** the Phase 1-4 public-site redesign remains completed locally, the planning/status records were aligned on 2026-05-17, and the remaining EN/ES translation leaks plus long-label layout adjustments were completed in the same review cycle.
+**PUBLISHED AND LIVE:** the Phase 1-4 public-site redesign was validated locally, the remaining EN/ES translation leaks plus long-label layout adjustments were completed, and the site was published successfully on 2026-05-17.
 
 - Phase 1 brand system reset is applied to the public site shell.
 - Phase 2 homepage simplification is applied in PT, EN and ES.
@@ -21,12 +21,12 @@ Work only on public site. Do not alter app. Do not publish automatically unless 
 - Remaining EN/ES text leaks in module follow-up labels, support CTAs and localized code-caption strings were corrected.
 - Module navigation cards and action bands were adjusted to wrap longer translated labels more cleanly.
 - Full Quarto render remains the publication path, using `RENV_CONFIG_AUTOLOADER_ENABLED=FALSE` during render, and the clean local render path was restored on 2026-05-17.
-- A safe audit pass on 2026-05-17 confirmed manifest validation, YAML, SCSS, JS syntax, module scripts and diff check with `SKIP_QUARTO_RENDER=1`.
-- Published status is still intentionally not claimed by this file; publication remains a separate explicit action.
+- The full prepublish gate passed with render enabled on 2026-05-17.
+- GitHub Pages deployment on `main` completed successfully on 2026-05-17, and the live site responds at `https://mgenetica.github.io/mgenetica/`.
 
 ## Objective (next phase)
 
-Review the completed localized redesign, then either publish on explicit request or continue with a focused browser-QA and module-detail polish block. Keep copy concise, preserve the public editorial experience and avoid app-like behavior.
+Run the post-publish QA pass against the live localized site, then limit future work to targeted module-detail polish, content-structure cleanup and routine publication maintenance. Keep copy concise, preserve the public editorial experience and avoid app-like behavior.
 
 ## Current local state
 
@@ -40,21 +40,22 @@ Review the completed localized redesign, then either publish on explicit request
 - Validator enforces localized file existence for full EN/ES module sets plus certificate pages.
 - Module R examples are static fenced code in QMD pages; executable R validation still runs through `scripts/run_all_modules.R` during prepublish.
 - All 38 localized QMD source files are present.
-- Browser QA already confirmed key homepage and module-index routes; wider module-detail browser QA is still pending as the main next-step improvement.
+- Browser QA already confirmed key homepage, localized search routes and representative module routes; wider module-detail browser QA is still the main next-step improvement.
 - Full project render and the full prepublish site check now complete successfully after clearing stray generated source-side render artifacts.
+- The live GitHub Pages deployment reflects the published redesign.
 
 ## In scope (next quality-improvement block)
 
-- Wider browser spot-check of representative localized module detail pages before publication.
-- Final module-detail polish only if browser review finds remaining visual density or spacing issues.
-- Deployed-site validation after publication.
+- Wider browser spot-check of representative localized module detail pages on the live site.
+- Final module-detail polish only if live review finds remaining visual density or spacing issues.
+- Content-structure cleanup and SCSS maintainability work only after live UX issues are ruled out.
 - Keep `WORKLOG_SITE.md`, `project_status.md` and this file aligned after completion.
 
 ## Out of scope
 
 - App changes.
 - Backend, auth or account features.
-- Automatic publish without explicit request.
+- Unnecessary republish without a meaningful site change.
 - v6 platform migration or Astro adoption during a normal site-polish block.
 - New feature work unrelated to localized public-site quality.
 
@@ -66,10 +67,11 @@ Review the completed localized redesign, then either publish on explicit request
 - `R_LIBS_USER=/private/tmp/mgenetica-r-lib SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R`
 - `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib RENV_CONFIG_AUTOLOADER_ENABLED=FALSE quarto render --no-execute`
 - `git diff --check`
+- `curl -s -I https://mgenetica.github.io/mgenetica/`
 
 ## Criteria for completion
 
-- Prepublish gate passes for the chosen block depth; clean representative/full render is now available and should remain part of the publication path.
-- Browser QA covers primary localized module-detail routes if publication is next.
+- Prepublish gate passes for the chosen block depth before any future publish.
+- Browser QA covers primary localized module-detail routes on the live site.
 - No app files are changed.
-- User explicitly approves publish, if publication is the chosen next action.
+- Any new publish corresponds to a real site change and a fresh validation pass.

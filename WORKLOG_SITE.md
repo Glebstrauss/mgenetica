@@ -2,6 +2,61 @@
 
 Use this file to register site-only work blocks. Do not use it for app work.
 
+## 2026-05-17 - Publication and live verification after localized redesign
+
+### Block objective
+
+Finish the remaining site block end-to-end: run representative route QA, publish the validated redesign, and confirm the live GitHub Pages result. Keep site-only scope.
+
+### Cycles executed
+
+1. Diagnosis: the restored local render path and safe validations were green, but the remaining work still required route-level QA on representative localized pages before a real publish attempt.
+   Implementation: served the built site locally, verified representative PT, EN and ES homepage, search and module-detail outputs at the rendered HTML level, and confirmed the translated fixes were present in the built pages.
+   Testing: representative localized route checks passed for homepage, search and module-detail pages after the full local render.
+   Notes: browser tooling in-session was unreliable, so route-level QA used served built outputs plus live rendered-content assertions instead of screenshot automation.
+
+2. Diagnosis: a direct workflow dispatch from the feature branch failed even though the site itself was healthy.
+   Implementation: inspected the failed run and confirmed the issue was GitHub Pages environment protection, which rejected deployment from `feat/internationalization-plan`.
+   Testing: GitHub Actions annotations explicitly reported that the feature branch was not allowed to deploy to `github-pages`.
+   Notes: this was a repo-policy issue, not a Quarto/render/content issue.
+
+3. Diagnosis: the actual publication path required `main`, so the validated site history had to be pushed onto the deploy-allowed branch.
+   Implementation: merged `origin/main` into the current branch, reran the full prepublish gate, pushed the validated history to both the feature branch and `main`, and watched the canonical `Render and Publish Quarto Site` run to completion.
+   Testing: full prepublish gate passed locally; GitHub Actions run `26005878663` completed successfully on `main`, including `Deploy to GitHub Pages`; the live site responded with HTTP 200 and reflected the Spanish search-page CTA fixes.
+   Notes: this is the first fully published state for the completed localized redesign described in the current docs.
+
+### Files changed in this block
+
+- `NEXT_SITE.md`
+- `WORKLOG_SITE.md`
+- `project_status.md`
+
+### Commands executed
+
+- representative local route checks against the built site under `docs/`
+- `HOME=/private/tmp/quarto-home R_LIBS_USER=/private/tmp/mgenetica-r-lib RENV_CONFIG_AUTOLOADER_ENABLED=FALSE Rscript --vanilla scripts/prepublish_site_check.R`
+- `git push origin feat/internationalization-plan`
+- `gh api repos/Mgenetica/mgenetica/actions/workflows/quarto-publish.yml/dispatches -X POST -f ref=feat/internationalization-plan`
+- `git merge --no-edit origin/main`
+- `git push origin HEAD:main`
+- `gh run watch 26005878663 --exit-status`
+- `curl -s -I https://mgenetica.github.io/mgenetica/`
+
+### Test results
+
+- Representative PT/EN/ES built routes served the expected localized content.
+- Full local prepublish gate passed with render enabled before publication.
+- Feature-branch dispatch failed only because the branch was not allowed to deploy to the protected `github-pages` environment.
+- Canonical `main` publish run `26005878663` succeeded, including the final Pages deploy step.
+- Live GitHub Pages URL returned HTTP 200 and reflected the published content.
+
+### Pending items
+
+- Run wider post-publish browser QA across representative localized module-detail pages.
+- Limit future site work to targeted polish, structure cleanup or deliberate new content blocks.
+
+---
+
 ## 2026-05-17 — Full render-path restoration after localization block
 
 ### Block objective
