@@ -2,45 +2,6 @@
 
 Use this file to register site-only work blocks. Do not use it for app work.
 
-## 2026-05-18 - SCSS token alias cleanup
-
-### Block objective
-
-Start site implementation with a small SCSS maintainability pass. Keep public design unchanged and stay inside public-site scope.
-
-### Cycles executed
-
-1. Diagnosis: `styles/main.scss` used `--mg-cyan` in the early design-system sections, but the alias was only defined much later in the file.
-   Implementation: moved the shared cyan aliases into the top token block and removed the later duplicate override block.
-   Testing: reran the safe prepublish gate with the project renv library.
-   Notes: no visual design change; this only makes the stylesheet easier to maintain.
-
-### Files changed in this block
-
-- `styles/main.scss`
-- `WORKLOG_SITE.md`
-- `NEXT_SITE.md`
-- `project_status.md`
-
-### Commands executed
-
-- `R_LIBS_USER=/Users/rausth/workspace/mgenetica/mgeneticaPage/renv/library/macos/R-4.6/aarch64-apple-darwin25.4.0 SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R`
-- `git diff --check`
-
-### Test results
-
-- SCSS validation passed.
-- JS checks passed.
-- Module data scripts passed.
-- Safe prepublish gate passed with render skipped.
-
-### Pending items
-
-- Continue SCSS maintainability work if more cleanup is useful.
-- Targeted module-detail polish only if later QA exposes a visible issue.
-
----
-
 ## 2026-05-17 - Theme toggle label clarification
 
 ### Block objective

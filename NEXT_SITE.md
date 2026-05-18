@@ -11,7 +11,6 @@ Work only on public site. Do not alter app. Do not publish automatically unless 
 ## Status (2026-05-17)
 
 **PUBLISHED AND LIVE:** the Phase 1-4 public-site redesign was validated locally, the remaining EN/ES translation leaks plus long-label layout adjustments were completed, and the site was published successfully on 2026-05-17. Representative live module QA on 2026-05-17 found no visible regression. Manifest cleanup on 2026-05-17 removed duplicated phase labels from module items, and the theme toggle now uses an explicit label.
-**SCSS MAINTAINABILITY:** on 2026-05-18, the first cleanup pass moved shared cyan token aliases into the top stylesheet token block and removed a later duplicate override.
 
 - Phase 1 brand system reset is applied to the public site shell.
 - Phase 2 homepage simplification is applied in PT, EN and ES.
@@ -24,11 +23,10 @@ Work only on public site. Do not alter app. Do not publish automatically unless 
 - Full Quarto render remains the publication path, using `RENV_CONFIG_AUTOLOADER_ENABLED=FALSE` during render, and the clean local render path was restored on 2026-05-17.
 - The full prepublish gate passed with render enabled on 2026-05-17.
 - GitHub Pages deployment on `main` completed successfully on 2026-05-17, and the live site responds at `https://mgenetica.github.io/mgenetica/`.
-- Shared cyan aliases now live in the main SCSS token block, reducing duplicate token definitions.
 
 ## Objective (next phase)
 
-Continue SCSS maintainability work if further cleanup is useful. Keep copy concise, preserve the public editorial experience and avoid app-like behavior. Only do targeted module-detail polish if later QA exposes a visible issue.
+Run SCSS maintainability work next. Keep copy concise, preserve the public editorial experience and avoid app-like behavior. Only do targeted module-detail polish if later QA exposes a visible issue.
 
 ## Current local state
 

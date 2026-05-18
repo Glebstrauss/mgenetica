@@ -54,8 +54,6 @@ $code-bg:                   #E8F2FC;
   --mg-blue:       #3B82C4;
   --mg-blue-light: #B5D4F4;
   --mg-blue-xlight:#E8F2FC;
-  --mg-cyan:       var(--mg-blue);
-  --mg-cyan-lt:    var(--mg-blue-light);
   --mg-off-white:  #F7F9FC;
   --mg-muted-blue: #6B809A;
   --mg-body:       #2D3F55;
@@ -7545,6 +7543,12 @@ code {
   .navbar .navbar-nav:last-child .nav-link[href*="modulo01"] {
     padding-inline: 0.72rem;
   }
+}
+
+// ── Brand refresh layer · Phase 1 + 2 ────────────────────────
+:root {
+  --mg-cyan: var(--mg-blue);
+  --mg-cyan-lt: var(--mg-blue-light);
 }
 
 .navbar {

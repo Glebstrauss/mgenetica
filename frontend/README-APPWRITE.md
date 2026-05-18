@@ -1,9 +1,15 @@
 Using Appwrite with the frontend
 
-1. Install SDK: cd frontend && npm i appwrite
-2. Set environment variables in Vercel or local .env: APPWRITE_ENDPOINT and APPWRITE_PROJECT
-3. In production, point APPWRITE_ENDPOINT to your Appwrite installation (e.g., https://appwrite.example.com/v1)
-4. Replace calls to /quizzes with either Appwrite Function endpoint or databases.listDocuments for collections.
-
-Example fetch to function:
-fetch(`${APPWRITE_ENDPOINT}/functions/<FUNCTION_ID>/executions`, { method: 'POST', headers: { 'X-Appwrite-Project': APPWRITE_PROJECT, 'Content-Type': 'application/json', 'X-Appwrite-Key': '<API_KEY>' }, body: JSON.stringify({quizId:1,answers:[true,false,true]}) })
+1. Install SDK: `cd frontend && npm i appwrite`
+2. Appwrite SDK is configured in `src/lib/appwrite.js` with:
+   - endpoint: `https://fra.cloud.appwrite.io/v1`
+   - project: `6a0b2fc1001c380eeb26`
+3. Set function IDs in `.env` from `.env.example`:
+   - `VITE_APPWRITE_FUNCTION_COURSES_ID`
+   - `VITE_APPWRITE_FUNCTION_QUIZZES_ID`
+   - `VITE_APPWRITE_FUNCTION_PROGRESS_ID`
+   - `VITE_APPWRITE_FUNCTION_AUTH_ID`
+4. App startup automatically calls `client.ping()` through `pingAppwrite()`.
+5. The dashboard and quiz now call Appwrite Functions via:
+   - `listCourses()`
+   - `submitQuiz()`

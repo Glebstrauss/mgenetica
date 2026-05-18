@@ -1,14 +1,14 @@
 # MGenética Project Status
 
 > **Source of Truth for AI Agents (Codex, Copilot, etc.)**
-> Version: 1.1.1 | Date: 2026-05-18
+> Version: 1.1.0 | Date: 2026-05-17
 
 ## Project Overview
 Educational platform for animal genetics and R programming.
 
 - **Core Goal:** public scientific editorial platform with premium, trustworthy and modern UI/UX.
 - **Current Phase:** Phase 1-4 public-site redesign published and live on GitHub Pages.
-- **Immediate Next Phase:** continue SCSS maintainability, with targeted module-detail polish only if later QA exposes an issue.
+- **Immediate Next Phase:** SCSS maintainability, with targeted module-detail polish only if later QA exposes an issue.
 - **Target Longer-Term Phase:** v6 interactive learning layer with WebR and richer client-side learning tools.
 
 ## Verified Current State
@@ -20,7 +20,6 @@ Educational platform for animal genetics and R programming.
 - The validated local gate is `scripts/prepublish_site_check.R`; safe local verification can skip render with `SKIP_QUARTO_RENDER=1`.
 - The clean full Quarto render path was restored on 2026-05-17 after clearing stray generated source-side HTML and resource artifacts, and the full prepublish gate now completes with render enabled.
 - The site was published successfully on 2026-05-17 through the GitHub Pages workflow on `main`, and the live URL responds at `https://mgenetica.github.io/mgenetica/`.
-- A first SCSS maintainability pass on 2026-05-18 moved shared cyan aliases into the top token block and removed a later duplicate override.
 
 ## Tech Stack
 
@@ -53,7 +52,7 @@ Educational platform for animal genetics and R programming.
 
 ## Active Goals
 
-1. **Design-system maintainability:** continue reorganizing the large SCSS surface into clearer sections without regressing the public visual system.
+1. **Design-system maintainability:** reorganize the large SCSS surface into clearer sections without regressing the public visual system.
 2. **Publication maintenance:** keep the publish path healthy for future site-only iterations now that full render validation and live deployment are both working again.
 
 ## Operational Constraints

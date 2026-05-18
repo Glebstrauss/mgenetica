@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import CoursePage from './CoursePage'
 import Quiz from './Quiz'
+import { pingAppwrite, listCourses } from './lib/appwrite'
 
 export default function App(){
   const [courses, setCourses] = useState([])
   const [selected, setSelected] = useState(null)
   const [showQuiz, setShowQuiz] = useState(false)
   useEffect(()=>{
-    fetch('/courses').then(r=>r.json()).then(setCourses).catch(()=>setCourses([]))
+    pingAppwrite().catch(()=>{})
+    listCourses().then(setCourses).catch(()=>setCourses([]))
   },[])
   if(showQuiz) return (<div style={{padding:20}}><button onClick={()=>setShowQuiz(false)}>Back</button><Quiz/></div>)
   return (

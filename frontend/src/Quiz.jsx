@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
+import { submitQuiz } from './lib/appwrite'
 
 export default function Quiz(){
   const [answers, setAnswers] = useState([false,false,false])
   const submit = async ()=>{
-    const res = await fetch('/quizzes/submit', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({quizId:1, answers})})
-    const data = await res.json()
+    const data = await submitQuiz(1, answers)
     alert(`Score: ${data.score}/${data.total}`)
   }
   return (
