@@ -1,0 +1,36 @@
+# Appwrite local self-hosted quickstart (minimal scaffold)
+# See https://appwrite.io/docs/installation for full production instructions.
+version: '3.7'
+services:
+  appwrite:
+    image: appwrite/appwrite:1.1.2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - _APP_ENV=development
+    volumes:
+      - ./appwrite:/storage
+    depends_on:
+      - mariadb
+      - redis
+
+  mariadb:
+    image: mariadb:10.6
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+
+volumes:
+  mariadb_data:
+  redis_data:
+  appwrite:
