@@ -49,4 +49,23 @@ app.post('/auth/login', async (req, res) => {
   }
 });
 
+// Mount courses router and provide protected /me endpoint
+const auth = require('./middleware/auth');
+const courses = require('./routes/courses');
+app.use('/courses', courses);
+
+app.get('/me', auth, async (req, res) => {
+  try {
+    const result = await pool.query('SELECT id, email, name, role FROM users WHERE id = $1', [req.user]);
+    res.json({ user: result.rows[0] });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'internal_error' });
+  }
+});
+
+const quizzes = require("./routes/quizzes");
+const progress = require("./routes/progress");
+app.use("/quizzes", quizzes);
+app.use("/progress", progress);
 app.listen(port, () => console.log(`mgenetica-backend listening on ${port}`));
