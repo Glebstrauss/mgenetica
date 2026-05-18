@@ -366,7 +366,6 @@ content_collections:
         card_title: Introdução ao Melhoramento Animal
         card_summary: Objetivos, resposta à seleção e organização de programas de melhoramento.
         phase_id: fundamentos
-        phase: Fundamentos
         status: review
         href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
         script: scripts/modulo01.R
@@ -379,7 +378,6 @@ content_collections:
         card_title: Bases da Genética Quantitativa
         card_summary: Valor genético, fenótipo, ambiente e decomposição da variação observada.
         phase_id: fundamentos
-        phase: Fundamentos
         status: review
         href: modules/modulo02-bases-da-genetica-quantitativa.qmd
         script: scripts/modulo02.R
@@ -392,7 +390,6 @@ content_collections:
         card_title: Estatística descritiva e exploração no R
         card_summary: Primeiros diagnósticos, distribuição dos dados e interpretação exploratória.
         phase_id: dados-parametros
-        phase: Dados
         status: review
         href: modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd
         script: scripts/modulo03.R
@@ -405,7 +402,6 @@ content_collections:
         card_title: Médias, variâncias e componentes
         card_summary: Variância fenotípica, genética e ambiental como base para decisões.
         phase_id: dados-parametros
-        phase: Dados
         status: review
         href: modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd
         script: scripts/modulo04.R
@@ -418,7 +414,6 @@ content_collections:
         card_title: Herdabilidade e repetibilidade
         card_summary: Parâmetros que conectam observações individuais à previsibilidade genética.
         phase_id: dados-parametros
-        phase: Parâmetros
         status: review
         href: modules/modulo05-herdabilidade-e-repetibilidade.qmd
         script: scripts/modulo05.R
@@ -431,7 +426,6 @@ content_collections:
         card_title: Correlações genéticas e fenotípicas
         card_summary: Relações entre características e consequências indiretas da seleção.
         phase_id: dados-parametros
-        phase: Parâmetros
         status: review
         href: modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd
         script: scripts/modulo06.R
@@ -444,7 +438,6 @@ content_collections:
         card_title: Modelos lineares e mistos
         card_summary: Estrutura estatística para combinar efeitos fixos, aleatórios e erro.
         phase_id: modelagem
-        phase: Modelagem
         status: review
         href: modules/modulo07-modelos-lineares-e-modelos-mistos.qmd
         script: scripts/modulo07.R
@@ -457,7 +450,6 @@ content_collections:
         card_title: BLUP e avaliação genética
         card_summary: Predição de valores genéticos e comparação de candidatos à seleção.
         phase_id: modelagem
-        phase: Modelagem
         status: review
         href: modules/modulo08-blup-e-avaliacao-genetica.qmd
         script: scripts/modulo08.R
@@ -470,7 +462,6 @@ content_collections:
         card_title: Pedigree e parentesco
         card_summary: Uso de genealogia, matrizes de parentesco e conexão entre indivíduos.
         phase_id: modelagem
-        phase: Conexão
         status: review
         href: modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd
         script: scripts/modulo09.R
@@ -483,7 +474,6 @@ content_collections:
         card_title: Genômica e marcadores SNP
         card_summary: Entrada dos marcadores moleculares na avaliação e no controle de dados.
         phase_id: genomica
-        phase: Genômica
         status: review
         href: modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd
         script: scripts/modulo10.R
@@ -496,7 +486,6 @@ content_collections:
         card_title: Controle de qualidade genômico
         card_summary: Filtros, consistência dos genótipos e preparação para análises genômicas.
         phase_id: genomica
-        phase: Genômica
         status: review
         href: modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd
         script: scripts/modulo11.R
@@ -509,7 +498,6 @@ content_collections:
         card_title: Matrizes genômicas, GWAS e predição
         card_summary: Integração entre parentesco genômico, associação e predição genômica.
         phase_id: genomica
-        phase: Predição
         status: review
         href: modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd
         script: scripts/modulo12.R

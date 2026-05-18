@@ -46,7 +46,9 @@
 
   function enhanceToggle() {
     document.querySelectorAll('.quarto-color-scheme-toggle').forEach(function (toggle) {
-      toggle.setAttribute('aria-label', t('darkmode.toggle', 'Alternar tema claro ou escuro'));
+      var label = t('theme.toggle', t('darkmode.toggle', 'Alternar tema claro ou escuro'));
+      toggle.setAttribute('aria-label', label);
+      toggle.setAttribute('title', label);
       toggle.addEventListener('click', function () {
         setTimeout(function () {
           persistTheme();

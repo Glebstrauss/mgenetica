@@ -6,11 +6,11 @@ Work only on public site. Do not alter app. Do not publish automatically unless 
 
 ## Tipo do próximo bloco
 
-`post-publish-qa-and-module-polish`
+`scss-maintainability`
 
 ## Status (2026-05-17)
 
-**PUBLISHED AND LIVE:** the Phase 1-4 public-site redesign was validated locally, the remaining EN/ES translation leaks plus long-label layout adjustments were completed, and the site was published successfully on 2026-05-17.
+**PUBLISHED AND LIVE:** the Phase 1-4 public-site redesign was validated locally, the remaining EN/ES translation leaks plus long-label layout adjustments were completed, and the site was published successfully on 2026-05-17. Representative live module QA on 2026-05-17 found no visible regression. Manifest cleanup on 2026-05-17 removed duplicated phase labels from module items, and the theme toggle now uses an explicit label.
 
 - Phase 1 brand system reset is applied to the public site shell.
 - Phase 2 homepage simplification is applied in PT, EN and ES.
@@ -26,7 +26,7 @@ Work only on public site. Do not alter app. Do not publish automatically unless 
 
 ## Objective (next phase)
 
-Run the post-publish QA pass against the live localized site, then limit future work to targeted module-detail polish, content-structure cleanup and routine publication maintenance. Keep copy concise, preserve the public editorial experience and avoid app-like behavior.
+Run SCSS maintainability work next. Keep copy concise, preserve the public editorial experience and avoid app-like behavior. Only do targeted module-detail polish if later QA exposes a visible issue.
 
 ## Current local state
 
@@ -40,15 +40,16 @@ Run the post-publish QA pass against the live localized site, then limit future 
 - Validator enforces localized file existence for full EN/ES module sets plus certificate pages.
 - Module R examples are static fenced code in QMD pages; executable R validation still runs through `scripts/run_all_modules.R` during prepublish.
 - All 38 localized QMD source files are present.
-- Browser QA already confirmed key homepage, localized search routes and representative module routes; wider module-detail browser QA is still the main next-step improvement.
+- Browser QA confirmed key homepage, localized search routes and representative localized module routes; the latest live spot-check found no visible module-detail issue.
+- Module manifest now avoids repeating phase labels on each item.
+- Theme control now uses explicit `theme.toggle` wording.
 - Full project render and the full prepublish site check now complete successfully after clearing stray generated source-side render artifacts.
 - The live GitHub Pages deployment reflects the published redesign.
 
 ## In scope (next quality-improvement block)
 
-- Wider browser spot-check of representative localized module detail pages on the live site.
-- Final module-detail polish only if live review finds remaining visual density or spacing issues.
-- Content-structure cleanup and SCSS maintainability work only after live UX issues are ruled out.
+- SCSS maintainability work that does not alter the public editorial design.
+- Targeted module-detail polish only if later QA finds a visible density or spacing issue.
 - Keep `WORKLOG_SITE.md`, `project_status.md` and this file aligned after completion.
 
 ## Out of scope

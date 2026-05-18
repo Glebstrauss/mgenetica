@@ -8,7 +8,7 @@ Educational platform for animal genetics and R programming.
 
 - **Core Goal:** public scientific editorial platform with premium, trustworthy and modern UI/UX.
 - **Current Phase:** Phase 1-4 public-site redesign published and live on GitHub Pages.
-- **Immediate Next Phase:** widen post-publish browser QA across localized module detail pages and polish only what live review still exposes.
+- **Immediate Next Phase:** SCSS maintainability, with targeted module-detail polish only if later QA exposes an issue.
 - **Target Longer-Term Phase:** v6 interactive learning layer with WebR and richer client-side learning tools.
 
 ## Verified Current State
@@ -52,10 +52,8 @@ Educational platform for animal genetics and R programming.
 
 ## Active Goals
 
-1. **Localized QA:** widen post-publish browser and route spot-checks across representative PT/EN/ES module detail pages.
-2. **Content structure:** reduce duplicated module metadata between page templates and the site manifest.
-3. **Design-system maintainability:** reorganize the large SCSS surface into clearer sections without regressing the public visual system.
-4. **Publication maintenance:** keep the publish path healthy for future site-only iterations now that full render validation and live deployment are both working again.
+1. **Design-system maintainability:** reorganize the large SCSS surface into clearer sections without regressing the public visual system.
+2. **Publication maintenance:** keep the publish path healthy for future site-only iterations now that full render validation and live deployment are both working again.
 
 ## Operational Constraints
 

@@ -2,6 +2,122 @@
 
 Use this file to register site-only work blocks. Do not use it for app work.
 
+## 2026-05-17 - Theme toggle label clarification
+
+### Block objective
+
+Clarify visitor-facing labels so home stays `Início` and theme control reads as an explicit theme toggle. Keep site-only scope.
+
+### Cycles executed
+
+1. Diagnosis: the public header used `Início` for home navigation, while the theme toggle still relied on the older `darkmode.toggle` label key.
+   Implementation: added a clearer `theme.toggle` i18n key in PT/EN/ES and wired the dark-mode toggle to use it for aria-label and title.
+   Testing: reran the safe prepublish gate after the label update.
+   Notes: home nav remains `Início`; theme control is now explicit and no longer ambiguous.
+
+### Files changed in this block
+
+- `assets/i18n/pt-BR.json`
+- `assets/i18n/en.json`
+- `assets/i18n/es.json`
+- `assets/js/darkmode.js`
+- `WORKLOG_SITE.md`
+
+### Commands executed
+
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R`
+
+### Test results
+
+- Theme toggle label now uses explicit `theme.toggle` wording.
+- Safe prepublish gate passed.
+
+### Pending items
+
+- SCSS maintainability pass.
+- Targeted module-detail polish only if later QA exposes a visible issue.
+
+---
+
+## 2026-05-17 - Content-structure cleanup in module manifest
+
+### Block objective
+
+Reduce duplicated module metadata in the public-site manifest while keeping the published site stable. Keep site-only scope.
+
+### Cycles executed
+
+1. Diagnosis: module metadata in `data/site-manifest.yml` still duplicated phase labels on each item even though phase definitions already exist in the manifest.
+   Implementation: removed the redundant `phase` field from the 12 module items and kept `phase_id` as the linkage to the phase registry.
+   Testing: reran the prepublish gate and confirmed the manifest and module scripts still validate cleanly.
+   Notes: `card_title` stays in the manifest because it is still needed for the public module index card text.
+
+### Files changed in this block
+
+- `data/site-manifest.yml`
+- `scripts/validate_site_manifest.R`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+- `project_status.md`
+
+### Commands executed
+
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R`
+- `git diff --check`
+
+### Test results
+
+- Manifest validation passed.
+- Safe prepublish gate passed.
+- The published site remained stable.
+
+### Pending items
+
+- SCSS maintainability pass.
+- Targeted module-detail polish only if later QA exposes a visible issue.
+
+---
+
+## 2026-05-17 - Post-publish QA on representative localized module pages
+
+### Block objective
+
+Run the next site block: live QA on representative localized module detail pages, then polish only if review exposed a real issue. Keep site-only scope.
+
+### Cycles executed
+
+1. Diagnosis: the published site needed a fresh live check on representative PT/EN/ES module detail pages before any further polish or structure cleanup.
+   Implementation: fetched representative live module pages for module 12 in PT/EN/ES, plus additional EN module 01 and ES module 06 spot checks, and confirmed the pages returned expected localized content.
+   Testing: the representative module 12 pages returned HTTP 200 on the live site; the safe prepublish gate also passed again with render skipped.
+   Notes: no visible UX regression showed up, so no polish change was needed in this block.
+
+### Files changed in this block
+
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+- `project_status.md`
+
+### Commands executed
+
+- `curl -sI -m 20 https://mgenetica.github.io/mgenetica/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html`
+- `curl -sI -m 20 https://mgenetica.github.io/mgenetica/en/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html`
+- `curl -sI -m 20 https://mgenetica.github.io/mgenetica/es/modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html`
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R`
+
+### Test results
+
+- Representative live module pages returned the expected localized content.
+- Live module 12 pages responded with HTTP 200.
+- Safe prepublish gate passed.
+- No module-detail polish was needed from this QA pass.
+
+### Pending items
+
+- Content-structure cleanup and SCSS maintainability pass.
+- Targeted module-detail polish only if future QA exposes a visible issue.
+
+---
+
 ## 2026-05-17 - Publication and live verification after localized redesign
 
 ### Block objective
