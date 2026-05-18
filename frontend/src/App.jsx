@@ -43,32 +43,44 @@ export default function App(){
 
   if(showQuiz) return (<div style={{padding:20}}><button onClick={()=>setShowQuiz(false)}>Back</button><Quiz/></div>)
   return (
-    <div style={{fontFamily:'system-ui, sans-serif', padding:20}}>
-      <header>
-        <h1>MGenética — Learner Dashboard</h1>
-        <div style={{float:'right'}}>
-          {user ? (
-            <div>
-              <span>Signed in as {user.email || user.name || user.$id}</span>
-              <button onClick={handleLogout} style={{marginLeft:10}}>Logout</button>
-            </div>
-          ) : (
-            <form onSubmit={handleLogin} style={{display:'inline-block'}}>
-              <input placeholder="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
-              <input placeholder="password" type="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
-              <button type="submit">Login</button>
-            </form>
-          )}
+    <div className="page-layout-full">
+      <header className="navbar">
+        <div style={{maxWidth:1200,margin:'0 auto',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 1rem'}}>
+          <div className="navbar-brand">
+            <img src="/../images/logo.png" alt="MGenética" onError={(e)=>{e.target.style.display='none'}} />
+            <div className="navbar-title">MGenética</div>
+          </div>
+          <div>
+            {user ? (
+              <div style={{display:'flex',alignItems:'center',gap:8}}>
+                <span>Signed in as {user.email || user.name || user.$id}</span>
+                <button className="btn btn-secondary" onClick={handleLogout} style={{marginLeft:10}}>Logout</button>
+              </div>
+            ) : (
+              <form onSubmit={handleLogin} style={{display:'flex',gap:8,alignItems:'center'}}>
+                <input placeholder="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
+                <input placeholder="password" type="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+                <button type="submit" className="btn btn-primary">Login</button>
+              </form>
+            )}
+          </div>
         </div>
       </header>
-      <main>
+      <main className="content" style={{maxWidth:1200,margin:'1.5rem auto',padding:'0 1rem'}}>
         <section>
           <h2>Courses</h2>
-          <ul>
+          <div className="module-grid">
             {courses.map(c=> (
-              <li key={c.id}><a href="#" onClick={(e)=>{e.preventDefault(); setSelected(c)}}>{c.title}</a> {c.published? '(live)':'(draft)'} <button onClick={()=>setShowQuiz(true)}>Quiz</button></li>
+              <div key={c.id} className="module-card">
+                <p>{c.published? 'module' : 'draft'}</p>
+                <a href="#" onClick={(e)=>{e.preventDefault(); setSelected(c)}}>{c.title}</a>
+                <p style={{marginTop:10}}>{c.description}</p>
+                <div style={{marginTop:12}}>
+                  <button className="btn btn-primary" onClick={()=>setShowQuiz(true)}>Open Quiz</button>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
           {selected && <CoursePage course={selected} />}
         </section>
       </main>
