@@ -18,7 +18,8 @@ const functionIds = {
   auth: import.meta.env.VITE_APPWRITE_FUNCTION_AUTH_ID || ''
 };
 
-async function executeFunction(functionId, payload = {}) {
+// Execute Appwrite function from the browser. Uses cookie-based sessions when available.
+async function executeFunction(functionId, payload = {}, { includeCredentials = true } = {}) {
   if (!functionId) {
     throw new Error('Missing Appwrite function ID.');
   }
@@ -28,8 +29,11 @@ async function executeFunction(functionId, payload = {}) {
       'Content-Type': 'application/json',
       'X-Appwrite-Project': '6a0b2fc1001c380eeb26'
     },
+    credentials: includeCredentials ? 'include' : 'same-origin',
     body: JSON.stringify(payload)
   });
+
+  // Appwrite returns an execution object. The real payload is in responseBody string.
   const data = await res.json();
   if (!res.ok) {
     throw new Error(data?.message || 'Appwrite execution failed.');
@@ -45,11 +49,25 @@ async function executeFunction(functionId, payload = {}) {
 }
 
 async function listCourses() {
-  return executeFunction(functionIds.courses, {});
+  // try to call with credentials (session) so protected functions work
+  return executeFunction(functionIds.courses, {}, { includeCredentials: true });
 }
 
 async function submitQuiz(quizId, answers) {
-  return executeFunction(functionIds.quizzes, { quizId, answers });
+  return executeFunction(functionIds.quizzes, { quizId, answers }, { includeCredentials: true });
 }
 
-export { client, account, databases, pingAppwrite, functionIds, executeFunction, listCourses, submitQuiz };
+// Authentication helpers
+async function createEmailSession(email, password) {
+  return account.createEmailSession(email, password);
+}
+
+async function deleteSession() {
+  return account.deleteSession('current');
+}
+
+async function getAccount() {
+  return account.get();
+}
+
+export { client, account, databases, pingAppwrite, functionIds, executeFunction, listCourses, submitQuiz, createEmailSession, deleteSession, getAccount };
