@@ -1,0 +1,28 @@
+name: Appwrite Functions deploy (scaffold)
+
+on:
+  push:
+    paths:
+      - 'appwrite/functions/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Appwrite secrets
+        run: |
+          if [ -z "${{ secrets.APPWRITE_API_KEY }}" ] || [ -z "${{ secrets.APPWRITE_PROJECT_ID }}" ]; then
+            echo "Appwrite secrets not configured. To enable automated deploys, set APPWRITE_API_KEY and APPWRITE_PROJECT_ID in repository secrets.";
+            exit 0;
+          fi
+      - name: Install Appwrite CLI (optional)
+        run: |
+          echo "This workflow is a scaffold. Deploy Appwrite Functions using the Appwrite console or CLI. See appwrite/README.md for instructions." 
+      - name: List functions
+        run: |
+          echo "Files changed under appwrite/functions:"
+          ls -R appwrite/functions || true
+      - name: Manual deploy reminder
+        run: |
+          echo "To deploy functions: use Appwrite Console -> Functions -> Create/Deploy, or use the Appwrite CLI from a machine with access to APPWRITE_API_KEY."
