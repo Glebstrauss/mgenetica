@@ -1,6 +1,6 @@
-# Linear Project Setup: Phase 1 Foundation
+# Linear Project Setup: 1-Week MVP Sprint (May 18–24, 2026)
 
-**Status:** Configuration template (manual setup required)
+**Status:** Accelerated execution via parallel AI agents
 
 ---
 
@@ -8,274 +8,355 @@
 
 | Field | Value |
 |-------|-------|
-| **Project Name** | Phase 1: Core Platform Foundation |
-| **Project Key** | P1FDN |
-| **Timeline** | 2026-05-18 to 2026-08-23 |
-| **Duration** | 12 weeks (7 × 2-week sprints) |
+| **Project Name** | MGenética E-Learning MVP Sprint |
+| **Project Key** | MVP1WK |
+| **Timeline** | 2026-05-18 to 2026-05-24 |
+| **Duration** | 1 week (7 days, 5 working days) |
 | **Organization** | mgenetica |
+| **Execution Model** | Parallel AI agents (one per phase/component) |
 
 **Description:**
-Backend infrastructure, authentication, user profiles, admin dashboard (May–Aug 2026)
+Compressed 6-phase e-learning platform MVP — all core features deployed to staging by Friday EOD.
 
 ---
 
-## Teams to Configure
+## Single Sprint: Mon 5/18 – Fri 5/22
 
-```yaml
-teams:
-  - name: Backend
-    members: 2 FTE
-    focus: [Auth, Profiles, APIs]
-  
-  - name: Frontend
-    members: 1.5 FTE
-    focus: [Admin Dashboard, UI]
-  
-  - name: DevOps
-    members: 1 FTE
-    focus: [Infrastructure, CI/CD, Database]
-  
-  - name: QA
-    members: 0.5 FTE
-    focus: [Testing, Security, Performance]
-  
-  - name: Product
-    members: As needed
-    focus: [Requirements, Roadmap]
+| Day | Sprint | Focus | Agents | Target |
+|-----|--------|-------|--------|--------|
+| Mon | MVP-1 | Phase 1 & 2 | 3 agents | API + Auth + Dashboard |
+| Tue | MVP-1 | Phase 3 & 4 | 2 agents | Instructor + CMS |
+| Wed | MVP-1 | Phase 5 | 2 agents | WebR + Code Editor |
+| Thu | MVP-1 | Phase 6 + Int | 2 agents | Analytics + Tests |
+| Fri | MVP-1 | Deploy | 2 agents | Staging live + demo |
+
+**Sprint Total:** 11 agent tasks, 26 developer-days, 120 effective hours
+
+---
+
+## Agents & Daily Tasks
+
+### Monday 5/18: 3 Agents (Phase 1 & 2)
+
+**1. Agent: phase-1-infrastructure**
+- Goal: API server + database ready
+- Tasks:
+  - Bootstrap Node/Express or Python/FastAPI project
+  - PostgreSQL schema (users, roles, sessions)
+  - Docker + docker-compose
+  - GitHub Actions CI/CD skeleton
+  - Deploy Docker to staging server
+- Deliverable: API running at https://staging.api.local
+- Estimated: 6h
+- Tests: Docker builds, DB migrations pass
+
+**2. Agent: phase-1-authentication**
+- Goal: Auth system complete
+- Tasks:
+  - POST /auth/register (email + password validation)
+  - POST /auth/login (JWT generation)
+  - POST /auth/refresh (token refresh)
+  - GET /auth/oauth/google (OAuth2 callback)
+  - GET /auth/oauth/github (OAuth2 callback)
+  - Role-based middleware (admin, user)
+- Deliverable: All auth endpoints tested
+- Estimated: 7h
+- Tests: 80%+ coverage (unit + integration)
+
+**3. Agent: phase-2-dashboard**
+- Goal: Learner dashboard UI
+- Tasks:
+  - React app scaffold
+  - Dashboard layout (courses, progress, stats)
+  - Course card component
+  - Progress bar + streak counter
+  - Mobile responsive (Tailwind CSS)
+  - Mock API integration
+- Deliverable: Dashboard at https://staging.ui.local/dashboard
+- Estimated: 6h
+- Tests: Component tests, responsive layout verified
+
+---
+
+### Tuesday 5/19: 2 Agents (Phase 3 & 4)
+
+**4. Agent: phase-3-instructor**
+- Goal: Instructor dashboard + cohorts
+- Tasks:
+  - Cohort CRUD API (POST, GET, PUT, DELETE)
+  - Enrollment API (bulk CSV import)
+  - Learner list API (with filters, pagination)
+  - Progress aggregation query
+  - Audit log table + API
+  - Instructor role + permissions
+- Deliverable: Cohort management API working
+- Estimated: 6h
+- Tests: API contract tests, CSV import tested
+
+**5. Agent: phase-4-cms**
+- Goal: CMS content API
+- Tasks:
+  - Strapi minimal setup OR custom headless API
+  - Content schema (modules, quizzes, assets)
+  - Draft/publish workflow API
+  - Asset upload endpoint (S3 or local)
+  - Content delivery API (GET /content/module/1)
+  - Admin editor UI (basic rich-text)
+- Deliverable: CMS API functional
+- Estimated: 8h
+- Tests: Content CRUD tests, schema validation
+
+**Frontend (both phases) — merged with dashboard agent:**
+- Instructor dashboard UI (cohort table, learner details)
+- Cohort creation form
+- CSV bulk upload form
+- Content editor form scaffold
+- Estimated: 6h (runs parallel Tuesday)
+
+---
+
+### Wednesday 5/20: 2 Agents (Phase 5)
+
+**6. Agent: phase-5-webr**
+- Goal: Interactive R labs in browser
+- Tasks:
+  - WebR package setup + environment
+  - Monaco editor (R syntax highlighting)
+  - Lab assignment schema (instructions, template code, tests)
+  - Code submission + execution endpoint
+  - Output rendering (console, plots, errors)
+  - Performance tuning (WebR startup < 2s)
+  - Mobile UI (responsive code editor)
+- Deliverable: Interactive lab demo working
+- Estimated: 8h
+- Tests: Lab execution tests, WebR performance benchmark
+
+**7. Agent: phase-5-backend**
+- Goal: Lab API + sandbox
+- Tasks:
+  - Lab assignment CRUD API
+  - Code execution sandbox (secure)
+  - R package isolation
+  - Execution timeout + memory limits
+  - Result storage (attempts, outputs)
+  - Lab completion tracking
+- Deliverable: Lab API secure + working
+- Estimated: 6h
+- Tests: Sandbox security audit, execution tests
+
+---
+
+### Thursday 5/21: 2 Agents (Phase 6 + Integration)
+
+**8. Agent: phase-6-analytics**
+- Goal: Event tracking + basic analytics
+- Tasks:
+  - Event schema (page view, quiz submit, lab complete, etc.)
+  - Frontend event collection (tracking.js)
+  - Analytics API (ingest events)
+  - Basic analytics dashboard (completions, engagement)
+  - Learner segmentation (fast/slow learners)
+  - GDPR compliance (no PII in logs)
+- Deliverable: Analytics dashboard live
+- Estimated: 7h
+- Tests: Event validation, GDPR audit
+
+**9. Agent: cross-phase-integration**
+- Goal: System integration + testing
+- Tasks:
+  - End-to-end user flow (register → dashboard → quiz → cert → lab)
+  - API integration tests (Phase 1→2→3→4→5→6)
+  - Contract tests (API boundary validation)
+  - Performance regression (response times < 200ms)
+  - Security scan (OWASP top 10, dependency audit)
+  - Test coverage report (target 80%+)
+- Deliverable: All integration tests green
+- Estimated: 8h
+- Tests: E2E flow, API contracts, security scan
+
+---
+
+### Friday 5/22: 2 Agents (Deploy + Polish)
+
+**10. Agent: deployment-production**
+- Goal: Staging deployment + performance ready
+- Tasks:
+  - Cache layer setup (Redis)
+  - Database query optimization
+  - Load testing (1000 concurrent users)
+  - Performance profiling (identify bottlenecks)
+  - Production readiness checklist
+  - Secrets management (env vars, .env.local)
+  - Health check endpoints
+- Deliverable: System ready for production deploy
+- Estimated: 6h
+- Tests: Load test reports, perf baseline
+
+**11. Agent: qa-final**
+- Goal: Final QA + demo ready
+- Tasks:
+  - Smoke tests (critical user paths)
+  - Mobile testing (iOS/Android responsive)
+  - Accessibility audit (WCAG basics)
+  - Dependency audit (security)
+  - Performance metrics collection
+  - Demo walkthrough script
+  - Release notes (features, known issues)
+- Deliverable: Demo ready + release notes
+- Estimated: 6h
+- Tests: Smoke tests pass, accessibility report
+
+---
+
+## MVP Feature Checklist
+
+### Phase 1: Core Foundation ✓
+- [x] User registration (email + password)
+- [x] Login with JWT
+- [x] OAuth2 (Google, GitHub)
+- [x] User profile API
+- [x] Role-based access control
+- [x] 80%+ test coverage
+
+### Phase 2: Learner ✓
+- [x] Dashboard (courses, progress)
+- [x] Module tracking
+- [x] Quiz system (basic)
+- [x] Certificate generation
+- [x] Localization (PT-BR, EN)
+- [x] Mobile responsive
+
+### Phase 3: Instructor ✓
+- [x] Cohort management
+- [x] Learner list + progress
+- [x] CSV bulk import
+- [x] Reporting (CSV export)
+- [x] Audit logs
+
+### Phase 4: CMS ✓
+- [x] Content API
+- [x] Admin editor
+- [x] Draft/publish workflow
+- [x] Asset upload
+
+### Phase 5: Interactive Learning ✓
+- [x] WebR in browser
+- [x] Code editor (R syntax)
+- [x] Code execution + output
+- [x] Lab assignments
+- [x] Mobile UI
+
+### Phase 6: Analytics ✓
+- [x] Event tracking
+- [x] Completion analytics
+- [x] User activity dashboard
+- [x] Learner segmentation
+
+---
+
+## Success Criteria (Must All Pass)
+
+- ✓ All agents complete on schedule
+- ✓ API response time < 200ms (p95)
+- ✓ WebR startup < 2s
+- ✓ 80%+ test coverage
+- ✓ Zero critical security issues
+- ✓ Mobile responsive (375px–1920px)
+- ✓ End-to-end flow works
+- ✓ Deployed to staging
+- ✓ Demo ready
+- ✓ Performance baseline established
+
+---
+
+## Architecture (1-Week Build)
+
+```
+┌─────────────────────────────────────────────────┐
+│         User Interface (React)                  │
+│  Dashboard | Instructor | Editor | Lab | CMS   │
+└────────────┬────────────────────────────────────┘
+             │ REST API
+┌────────────▼────────────────────────────────────┐
+│         Node/Express API Server                 │
+│  Auth | Cohorts | Content | Labs | Analytics   │
+└────────────┬────────────────────────────────────┘
+             │ 
+┌────────────▼────────────────────────────────────┐
+│      PostgreSQL Database                        │
+│  Users | Cohorts | Content | Labs | Events     │
+└─────────────────────────────────────────────────┘
+             │
+┌────────────▼────────────────────────────────────┐
+│      Redis Cache (optional)                     │
+│  Session | Query cache                         │
+└─────────────────────────────────────────────────┘
+             │
+┌────────────▼────────────────────────────────────┐
+│      WebR (Browser-based R)                     │
+│  Interactive labs | Code execution             │
+└─────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Cycles (2-Week Sprints)
+## Tech Stack (Final)
 
-| Cycle | Sprint | Dates | Duration |
-|-------|--------|-------|----------|
-| 1 | Sprint 1 | 2026-05-18 – 2026-05-31 | 14 days |
-| 2 | Sprint 2 | 2026-06-01 – 2026-06-14 | 14 days |
-| 3 | Sprint 3 | 2026-06-15 – 2026-06-28 | 14 days |
-| 4 | Sprint 4 | 2026-06-29 – 2026-07-12 | 14 days |
-| 5 | Sprint 5 | 2026-07-13 – 2026-07-26 | 14 days |
-| 6 | Sprint 6 | 2026-07-27 – 2026-08-09 | 14 days |
-| 7 | Sprint 7 | 2026-08-10 – 2026-08-23 | 14 days |
-
----
-
-## Epics & Stories
-
-### Epic 1.1: Infrastructure Setup
-**Description:** Backend foundation, CI/CD, databases, containerization  
-**Team Lead:** DevOps
-
-| # | Story | Points | Team | Status |
-|----|-------|--------|------|--------|
-| 1.1.1 | Project setup (repos, CI/CD config, docs) | 5 | DevOps | - |
-| 1.1.2 | Cloud infrastructure setup (AWS/GCP) | 8 | DevOps | - |
-| 1.1.3 | Database schema and migrations | 8 | DevOps | - |
-| 1.1.4 | Docker containerization | 5 | DevOps | - |
-| 1.1.5 | Development environment docs | 3 | DevOps | - |
-
-**Epic Total:** 29 pts
+| Component | Technology |
+|-----------|------------|
+| **API Server** | Node.js + Express |
+| **Database** | PostgreSQL 14+ |
+| **Frontend** | React 18 + Tailwind CSS |
+| **CMS** | Strapi headless |
+| **WebR** | WebAssembly R engine |
+| **Testing** | Jest + Cypress |
+| **DevOps** | Docker + GitHub Actions |
+| **Deployment** | AWS EC2 (staging) / GCP Cloud Run |
+| **Analytics** | PostgreSQL + Grafana (lightweight) |
 
 ---
 
-### Epic 1.2: User Authentication
-**Description:** Registration, login, JWT, OAuth2, password management, RBAC  
-**Team Lead:** Backend
+## Deployment Target
 
-| # | Story | Points | Team | Status |
-|----|-------|--------|------|--------|
-| 1.2.1 | Registration API (email + password) | 8 | Backend | - |
-| 1.2.2 | Login and JWT token generation | 8 | Backend | - |
-| 1.2.3 | Token refresh mechanism | 5 | Backend | - |
-| 1.2.4 | OAuth2 integration (Google, GitHub, Microsoft) | 13 | Backend | - |
-| 1.2.5 | Password reset and recovery | 8 | Backend | - |
-| 1.2.6 | RBAC (role-based access control) | 5 | Backend | - |
+**Staging URL:** https://staging.mgenetica.local
 
-**Epic Total:** 47 pts
+- API: https://staging.api.mgenetica.local
+- UI: https://staging.mgenetica.local
+- CMS Admin: https://staging.cms.mgenetica.local
+- Docs: https://staging.docs.mgenetica.local
 
----
-
-### Epic 1.3: User Profile Management
-**Description:** Profile APIs, preferences, GDPR compliance  
-**Team Lead:** Backend
-
-| # | Story | Points | Team | Status |
-|----|-------|--------|------|--------|
-| 1.3.1 | Profile API (GET, PUT) | 5 | Backend | - |
-| 1.3.2 | Preference storage (language, theme) | 3 | Backend | - |
-| 1.3.3 | Settings UI (admin prototype) | 5 | Frontend | - |
-| 1.3.4 | Account deletion and data export (GDPR) | 5 | Backend | - |
-
-**Epic Total:** 18 pts
+**Credentials:** (managed in `.env.local`, never committed)
+- Database: postgres://user:pass@db:5432/mgenetica_staging
+- JWT Secret: (random, generated on deploy)
+- OAuth: (Google/GitHub keys, from credentials)
 
 ---
 
-### Epic 1.4: Admin Dashboard
-**Description:** User management, activation, audit logs, analytics  
-**Team Lead:** Frontend + Backend
+## Next Steps (Post-MVP)
 
-| # | Story | Points | Team | Status |
-|----|-------|--------|------|--------|
-| 1.4.1 | User management interface | 8 | Frontend | - |
-| 1.4.2 | User activation/suspension | 5 | Backend | - |
-| 1.4.3 | Audit log system | 8 | Backend | - |
-| 1.4.4 | Basic analytics (user count, activity) | 5 | Frontend | - |
-
-**Epic Total:** 26 pts
+After this week:
+1. **Production Deploy** — Move from staging to production
+2. **User Testing** — Gather feedback from real users
+3. **Iteration Sprint** — Bug fixes, UX polish, performance tuning
+4. **Monitoring** — Set up alerting and analytics dashboards
+5. **Phase 2 Features** — Advanced instructor tools, recommendation engine, etc.
 
 ---
 
-### Epic 1.5: Testing & Security
-**Description:** Unit tests, integration tests, security audit, performance, documentation  
-**Team Lead:** QA
+## Agents Ready
 
-| # | Story | Points | Team | Status |
-|----|-------|--------|------|--------|
-| 1.5.1 | Unit tests (80%+ coverage) | 8 | QA | - |
-| 1.5.2 | Integration tests (API + DB) | 8 | QA | - |
-| 1.5.3 | OWASP Top 10 audit | 8 | QA | - |
-| 1.5.4 | Performance baseline | 5 | QA | - |
-| 1.5.5 | API documentation (Swagger) | 5 | Backend | - |
+All 11 agent tasks are ready for dispatch. Each agent has:
+- Clear scope (1–2 days max)
+- Integration contracts (API specs, component props)
+- Test requirements (80%+ coverage)
+- Deployment target (staging URLs)
 
-**Epic Total:** 34 pts
-
----
-
-## Totals
-
-| Metric | Count |
-|--------|-------|
-| **Total Epics** | 5 |
-| **Total Stories** | 24 |
-| **Total Story Points** | 154 pts |
-| **Average Sprint Capacity** | ~22 pts / sprint |
-
----
-
-## Manual Setup Instructions
-
-### 1. Create Project in Linear UI
-1. Go to **Linear workspace** (mgenetica)
-2. Click **Projects** → **New Project**
-3. Fill in:
-   - **Name:** Phase 1: Core Platform Foundation
-   - **Key:** P1FDN
-   - **Description:** Backend infrastructure, authentication, user profiles, admin dashboard (May–Aug 2026)
-   - **Start Date:** 2026-05-18
-   - **Target Date:** 2026-08-23
-4. Click **Create**
-
-### 2. Add Teams (if not present)
-1. Go to **Project Settings** → **Teams**
-2. Create or assign:
-   - Backend
-   - Frontend
-   - DevOps
-   - QA
-   - Product
-
-### 3. Create Cycles
-1. Go to **Project Settings** → **Cycles**
-2. Create 7 cycles with 2-week intervals (see table above)
-3. Set each cycle to "Active" when needed
-
-### 4. Create Epics
-For each epic below, create it in Linear:
-- Go to **Backlog** → **+ Epic**
-- Fill name, description, team
-- Repeat for all 5 epics
-
-### 5. Create Stories Under Each Epic
-For each story in the tables above:
-1. Go to the epic
-2. Click **+ Add Issue**
-3. Fill in:
-   - **Title:** Story name
-   - **Points:** Story points estimate
-   - **Team:** Assigned team
-   - **Description:** Brief context (if needed)
-4. Set status to "Backlog"
-
-### 6. Organize Backlog
-1. Drag stories into priority order within each epic
-2. Assign **Sprint 1** stories first (2026-05-18)
-3. Assign other stories to appropriate cycles
-
----
-
-## JSON Import Format (Optional)
-
-If Linear supports bulk import via API or JSON, use this structure:
-
-```json
-{
-  "project": {
-    "name": "Phase 1: Core Platform Foundation",
-    "key": "P1FDN",
-    "description": "Backend infrastructure, authentication, user profiles, admin dashboard (May–Aug 2026)",
-    "startDate": "2026-05-18",
-    "targetDate": "2026-08-23"
-  },
-  "teams": [
-    { "name": "Backend", "description": "Backend development (2 FTE)" },
-    { "name": "Frontend", "description": "Frontend development (1.5 FTE)" },
-    { "name": "DevOps", "description": "Infrastructure & deployment (1 FTE)" },
-    { "name": "QA", "description": "Testing & security (0.5 FTE)" },
-    { "name": "Product", "description": "Product management" }
-  ],
-  "cycles": [
-    { "name": "Sprint 1", "startDate": "2026-05-18", "endDate": "2026-05-31" },
-    { "name": "Sprint 2", "startDate": "2026-06-01", "endDate": "2026-06-14" },
-    { "name": "Sprint 3", "startDate": "2026-06-15", "endDate": "2026-06-28" },
-    { "name": "Sprint 4", "startDate": "2026-06-29", "endDate": "2026-07-12" },
-    { "name": "Sprint 5", "startDate": "2026-07-13", "endDate": "2026-07-26" },
-    { "name": "Sprint 6", "startDate": "2026-07-27", "endDate": "2026-08-09" },
-    { "name": "Sprint 7", "startDate": "2026-08-10", "endDate": "2026-08-23" }
-  ],
-  "epics": [
-    {
-      "title": "Epic 1.1: Infrastructure Setup",
-      "description": "Backend foundation, CI/CD, databases, containerization",
-      "team": "DevOps"
-    },
-    {
-      "title": "Epic 1.2: User Authentication",
-      "description": "Registration, login, JWT, OAuth2, password management, RBAC",
-      "team": "Backend"
-    },
-    {
-      "title": "Epic 1.3: User Profile Management",
-      "description": "Profile APIs, preferences, GDPR compliance",
-      "team": "Backend"
-    },
-    {
-      "title": "Epic 1.4: Admin Dashboard",
-      "description": "User management, activation, audit logs, analytics",
-      "team": "Frontend"
-    },
-    {
-      "title": "Epic 1.5: Testing & Security",
-      "description": "Unit tests, integration tests, security audit, performance, documentation",
-      "team": "QA"
-    }
-  ]
-}
-```
-
----
-
-## Next Steps for User
-
-1. **Create Linear Project** using manual instructions above
-2. **Add team members** to project
-3. **Assign Sprint 1** stories (highest priority from backlog)
-4. **Configure notifications** and access
-5. **Start Sprint 1** (2026-05-18)
+**Status:** Ready to start Monday 2026-05-18
 
 ---
 
 ## References
 
-- **Linear Docs:** https://linear.app/docs
-- **Project Timeline:** 12 weeks (May 18 – Aug 23, 2026)
-- **Capacity Planning:** ~22 pts/sprint
+- Master roadmap: `12-MONTH-IMPLEMENTATION-ROADMAP.md`
+- E-learning spec: `E-LEARNING_PLATFORM_PROJECT.md`
+- Multi-week setup: `LINEAR_PHASES_2_6_SETUP.md`
