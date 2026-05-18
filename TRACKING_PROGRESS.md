@@ -28,13 +28,18 @@
 
 1. Add GitHub secrets:
    - `APPWRITE_API_KEY`
-   - `APPWRITE_PROJECT_ID`
 2. Deploy Appwrite functions in Cloud and record function IDs.
 3. Set `frontend/.env` values:
    - `VITE_APPWRITE_FUNCTION_COURSES_ID`
    - `VITE_APPWRITE_FUNCTION_QUIZZES_ID`
    - `VITE_APPWRITE_FUNCTION_PROGRESS_ID`
    - `VITE_APPWRITE_FUNCTION_AUTH_ID`
+
+## Infra configured in GitHub already
+
+- Actions secret set: `APPWRITE_PROJECT_ID=6a0b2fc1001c380eeb26`
+- Actions variable set: `APPWRITE_ENDPOINT=https://fra.cloud.appwrite.io/v1`
+- Workflow now auto-pushes Appwrite functions from `appwrite/` after `APPWRITE_API_KEY` is added.
 
 ## Next safe steps for any agent
 

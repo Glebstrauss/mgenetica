@@ -1,0 +1,7 @@
+{
+  "projectId": "6a0b2fc1001c380eeb26",
+  "endpoint": "https://fra.cloud.appwrite.io/v1",
+  "includes": {
+    "functions": "./functions.json"
+  }
+}

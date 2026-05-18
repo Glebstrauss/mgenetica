@@ -1,0 +1,82 @@
+[
+  {
+    "$id": "mgenetica_courses_fn",
+    "name": "mgenetica-courses",
+    "runtime": "node-22",
+    "path": "functions/courses",
+    "entrypoint": "index.js",
+    "commands": "",
+    "execute": [],
+    "events": [],
+    "schedule": "",
+    "timeout": 15,
+    "enabled": true,
+    "logging": true,
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "scopes": [],
+    "vars": []
+  },
+  {
+    "$id": "mgenetica_quizzes_fn",
+    "name": "mgenetica-quizzes",
+    "runtime": "node-22",
+    "path": "functions/quizzes",
+    "entrypoint": "index.js",
+    "commands": "",
+    "execute": [],
+    "events": [],
+    "schedule": "",
+    "timeout": 15,
+    "enabled": true,
+    "logging": true,
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "scopes": [],
+    "vars": []
+  },
+  {
+    "$id": "mgenetica_progress_fn",
+    "name": "mgenetica-progress",
+    "runtime": "node-22",
+    "path": "functions/progress",
+    "entrypoint": "index.js",
+    "commands": "",
+    "execute": [],
+    "events": [],
+    "schedule": "",
+    "timeout": 15,
+    "enabled": true,
+    "logging": true,
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "scopes": [],
+    "vars": []
+  },
+  {
+    "$id": "mgenetica_auth_fn",
+    "name": "mgenetica-auth",
+    "runtime": "node-22",
+    "path": "functions/auth",
+    "entrypoint": "index.js",
+    "commands": "",
+    "execute": [],
+    "events": [],
+    "schedule": "",
+    "timeout": 15,
+    "enabled": true,
+    "logging": true,
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "scopes": [],
+    "vars": []
+  }
+]
