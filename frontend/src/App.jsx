@@ -6,11 +6,29 @@ import Quiz from './Quiz'
 import {
   pingAppwrite,
   listCourses,
+  getProgress,
+  getAuthCapabilities,
+  getAdminStatus,
   createEmailSession,
   createAccount,
   deleteSession,
-  getAccount
+  getAccount,
+  normalizeAuthError,
+  functionIds,
+  APPWRITE_ENDPOINT,
+  APPWRITE_PROJECT_ID,
+  PUBLIC_SITE_URL
 } from './lib/appwrite'
+
+const ADMIN_EMAILS = String(import.meta.env.VITE_ADMIN_EMAILS || '')
+  .split(',')
+  .map((item) => item.trim().toLowerCase())
+  .filter(Boolean)
+
+function isAdminUser(user) {
+  const email = String(user?.email || '').trim().toLowerCase()
+  return !!email && ADMIN_EMAILS.includes(email)
+}
 
 function AuthPanel({ user, mode, onModeChange, onLogin, onSignup, onLogout, loading }) {
   const [email, setEmail] = useState('')
@@ -33,7 +51,7 @@ function AuthPanel({ user, mode, onModeChange, onLogin, onSignup, onLogout, load
       }
       setPassword('')
     } catch (err) {
-      setError(err.message || 'Não foi possível autenticar.')
+      setError(normalizeAuthError(err))
     }
   }
 
@@ -136,7 +154,7 @@ function AuthPanel({ user, mode, onModeChange, onLogin, onSignup, onLogout, load
   )
 }
 
-function HomePage({ user, status, onAuthIntent, onLogout, onOpenCatalog }) {
+function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, onOpenCatalog, onOpenAdmin }) {
   return (
     <div className="app-shell">
       <header className="app-header">
@@ -157,6 +175,12 @@ function HomePage({ user, status, onAuthIntent, onLogout, onOpenCatalog }) {
                 <Icon name="layers" size={16} />
                 Área do aluno
               </button>
+              {isAdmin ? (
+                <button type="button" className="btn btn-secondary" onClick={onOpenAdmin} aria-label="Abrir painel admin">
+                  <Icon name="check" size={16} />
+                  Admin
+                </button>
+              ) : null}
               <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth} aria-label="Fazer logout">
                 <Icon name="arrowLeft" size={16} />
                 Sair
@@ -267,7 +291,7 @@ function HomePage({ user, status, onAuthIntent, onLogout, onOpenCatalog }) {
   )
 }
 
-function AuthPage({ user, status, authMode, loadingAuth, onBack, onAuthIntent, onLogin, onSignup, onLogout, onOpenCatalog }) {
+function AuthPage({ user, status, authMode, loadingAuth, isAdmin, onBack, onAuthIntent, onLogin, onSignup, onLogout, onOpenCatalog, onOpenAdmin }) {
   return (
     <div className="app-shell">
       <header className="app-header">
@@ -292,6 +316,12 @@ function AuthPage({ user, status, authMode, loadingAuth, onBack, onAuthIntent, o
                 <Icon name="layers" size={16} />
                 Área do aluno
               </button>
+              {isAdmin ? (
+                <button type="button" className="btn btn-secondary" onClick={onOpenAdmin} aria-label="Abrir painel admin">
+                  <Icon name="check" size={16} />
+                  Admin
+                </button>
+              ) : null}
               <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth} aria-label="Fazer logout">
                 <Icon name="arrowLeft" size={16} />
                 Sair
@@ -324,7 +354,7 @@ function AuthPage({ user, status, authMode, loadingAuth, onBack, onAuthIntent, o
   )
 }
 
-function CatalogPage({ courses, onBack, onOpenCourse, onLogout, loadingAuth }) {
+function CatalogPage({ courses, isAdmin, onBack, onOpenCourse, onOpenAdmin, onLogout, loadingAuth }) {
   return (
     <div className="app-shell">
       <header className="app-header">
@@ -342,6 +372,12 @@ function CatalogPage({ courses, onBack, onOpenCourse, onLogout, loadingAuth }) {
             <Icon name="arrowLeft" size={16} />
             Voltar
           </button>
+          {isAdmin ? (
+            <button type="button" className="btn btn-secondary" onClick={onOpenAdmin} aria-label="Abrir painel admin">
+              <Icon name="check" size={16} />
+              Admin
+            </button>
+          ) : null}
           <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth} aria-label="Fazer logout">
             <Icon name="lock" size={16} />
             Sair
@@ -371,15 +407,99 @@ function CatalogPage({ courses, onBack, onOpenCourse, onLogout, loadingAuth }) {
   )
 }
 
+function AdminPage({ user, status, report, loading, onBack, onRefresh, onLogout, loadingAuth }) {
+  return (
+    <div className="app-shell">
+      <header className="app-header">
+        <div className="header-brand">
+          <div className="brand-logo">
+            <img src="https://mgenetica.github.io/mgenetica/images/mgenetica-logo-correct.png" alt="MGenética" style={{ width: 32, height: 32 }} />
+          </div>
+          <div className="brand-info">
+            <div className="brand-name">Admin</div>
+            <div className="brand-tagline">Painel de controle do sistema</div>
+          </div>
+        </div>
+        <div className="header-actions">
+          <span className="status-badge">{status}</span>
+          <button type="button" className="btn btn-secondary" onClick={onBack}>
+            <Icon name="arrowLeft" size={16} />
+            Voltar
+          </button>
+          <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth}>
+            <Icon name="lock" size={16} />
+            Sair
+          </button>
+        </div>
+      </header>
+
+      <section className="content-section">
+        <div className="section-label">Controle</div>
+        <h2 className="section-heading">Saúde, autenticação e backend</h2>
+        <p className="section-description">
+          Este painel valida configuração do Appwrite, sessão atual, funções publicadas e smoke checks de aprendizagem.
+        </p>
+        <div className="section-cta" style={{ marginTop: 16 }}>
+          <button type="button" className="btn btn-primary" onClick={onRefresh} disabled={loading}>
+            {loading ? 'Executando checks…' : 'Executar checks'}
+          </button>
+          <a className="btn btn-secondary" href={PUBLIC_SITE_URL} target="_blank" rel="noreferrer">
+            Abrir URL live
+          </a>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="content-grid catalog-grid">
+          <article className="course-card">
+            <strong className="course-title">Sessão</strong>
+            <p className="course-description">{user?.email || user?.name || user?.$id || 'Sem usuário autenticado'}</p>
+          </article>
+          <article className="course-card">
+            <strong className="course-title">Appwrite</strong>
+            <p className="course-description">{APPWRITE_ENDPOINT}</p>
+          </article>
+          <article className="course-card">
+            <strong className="course-title">Projeto</strong>
+            <p className="course-description">{APPWRITE_PROJECT_ID}</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="content-grid catalog-grid">
+          {Object.entries(functionIds).map(([key, value]) => (
+            <article className="course-card" key={key}>
+              <strong className="course-title">{key}</strong>
+              <p className="course-description">{value}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="panel" style={{ padding: 18 }}>
+          <strong style={{ display: 'block', marginBottom: 12 }}>Último relatório</strong>
+          <pre style={{ margin: 0, whiteSpace: 'pre-wrap', fontSize: 13, lineHeight: 1.5 }}>
+{JSON.stringify(report || { info: 'Nenhum check executado ainda.' }, null, 2)}
+          </pre>
+        </div>
+      </section>
+    </div>
+  )
+}
+
 export default function App() {
   const [courses, setCourses] = useState([])
   const [user, setUser] = useState(null)
   const [loadingAuth, setLoadingAuth] = useState(false)
+  const [loadingAdmin, setLoadingAdmin] = useState(false)
   const [authMode, setAuthMode] = useState('login')
   const [screen, setScreen] = useState('home')
   const [showQuiz, setShowQuiz] = useState(false)
   const [selectedCourseId, setSelectedCourseId] = useState(null)
   const [status, setStatus] = useState('Sincronizando com o Appwrite…')
+  const [adminReport, setAdminReport] = useState(null)
 
   useEffect(() => {
     pingAppwrite().catch(() => {})
@@ -430,12 +550,15 @@ export default function App() {
     return catalogCourses.slice(currentIndex + 1).find(Boolean) || null
   }, [catalogCourses, selectedCourseId])
 
+  const adminEnabled = useMemo(() => isAdminUser(user), [user])
+
   async function handleLogin({ email, password }) {
     setLoadingAuth(true)
     try {
       await createEmailSession(email, password)
       const account = await getAccount()
       setUser(account)
+      setAdminReport(null)
       setAuthMode('login')
       setStatus('Sessão iniciada com sucesso.')
       setScreen('home')
@@ -451,6 +574,7 @@ export default function App() {
       await createEmailSession(email, password)
       const account = await getAccount()
       setUser(account)
+      setAdminReport(null)
       setAuthMode('login')
       setStatus('Conta criada e sessão iniciada.')
       setScreen('home')
@@ -468,6 +592,7 @@ export default function App() {
       setSelectedCourseId(null)
       setShowQuiz(false)
       setAuthMode('login')
+      setAdminReport(null)
       setStatus('Sessão encerrada.')
     } finally {
       setLoadingAuth(false)
@@ -499,6 +624,49 @@ export default function App() {
     setSelectedCourseId(courseId)
     setScreen('course')
     setShowQuiz(false)
+  }
+
+  function openAdmin() {
+    if (!adminEnabled) {
+      setStatus('Usuário atual não está na lista de administradores.')
+      return
+    }
+    setScreen('admin')
+    setShowQuiz(false)
+    setSelectedCourseId(null)
+  }
+
+  async function runAdminChecks() {
+    setLoadingAdmin(true)
+    setStatus('Executando checks de sistema…')
+    try {
+      const [ping, auth, coursesPayload, progress, admin] = await Promise.all([
+        pingAppwrite().then(() => ({ ok: true })).catch((err) => ({ ok: false, error: err.message })),
+        getAuthCapabilities().catch((err) => ({ ok: false, error: err.message })),
+        listCourses().catch((err) => ({ ok: false, error: err.message })),
+        getProgress(user?.$id || user?.email || 'anonymous').catch((err) => ({ ok: false, error: err.message })),
+        getAdminStatus(user?.email || '').catch((err) => ({ ok: false, error: err.message }))
+      ])
+
+      setAdminReport({
+        checkedAt: new Date().toISOString(),
+        ping,
+        auth,
+        courses: coursesPayload,
+        progress,
+        admin,
+        user: user ? { id: user.$id, email: user.email || null, name: user.name || null } : null
+      })
+      setStatus('Checks de sistema concluídos.')
+    } catch (err) {
+      setAdminReport({
+        checkedAt: new Date().toISOString(),
+        fatal: err.message || 'Falha ao executar checks.'
+      })
+      setStatus('Falha ao executar checks de sistema.')
+    } finally {
+      setLoadingAdmin(false)
+    }
   }
 
   function goHome() {
@@ -540,8 +708,25 @@ export default function App() {
     return (
       <CatalogPage
         courses={catalogCourses}
+        isAdmin={adminEnabled}
         onBack={goHome}
         onOpenCourse={openCourse}
+        onOpenAdmin={openAdmin}
+        onLogout={handleLogout}
+        loadingAuth={loadingAuth}
+      />
+    )
+  }
+
+  if (screen === 'admin' && user) {
+    return (
+      <AdminPage
+        user={user}
+        status={status}
+        report={adminReport}
+        loading={loadingAdmin}
+        onRefresh={runAdminChecks}
+        onBack={goHome}
         onLogout={handleLogout}
         loadingAuth={loadingAuth}
       />
@@ -555,12 +740,14 @@ export default function App() {
         status={status}
         authMode={authMode}
         loadingAuth={loadingAuth}
+        isAdmin={adminEnabled}
         onBack={goHome}
         onAuthIntent={setAuthMode}
         onLogin={handleLogin}
         onSignup={handleSignup}
         onLogout={handleLogout}
         onOpenCatalog={openCatalog}
+        onOpenAdmin={openAdmin}
       />
     )
   }
@@ -569,9 +756,12 @@ export default function App() {
     <HomePage
       user={user}
       status={status}
+      loadingAuth={loadingAuth}
+      isAdmin={adminEnabled}
       onAuthIntent={focusAuth}
       onLogout={handleLogout}
       onOpenCatalog={openCatalog}
+      onOpenAdmin={openAdmin}
     />
   )
 }

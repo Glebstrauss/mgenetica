@@ -1,9 +1,9 @@
 module.exports = async function (context) {
   try {
     const req = context.req || {};
-    const method = (req.method || req.httpMethod) || 'GET';
-    if (method === 'POST') {
-      const body = req.body || (req.payload ? req.payload : {});
+    const body = req.body || (req.payload ? req.payload : {});
+    const action = body.action || 'get';
+    if (action === 'update') {
       const { userId, courseId, percent } = body || {};
       if (!userId || !courseId) {
         const err = { error: 'userId and courseId required', status: 400 };
@@ -14,8 +14,7 @@ module.exports = async function (context) {
       context.log(JSON.stringify(payload));
       return { status: 200, body: JSON.stringify(payload) };
     }
-    const url = new URL((req && (req.url || req.path)) || 'http://localhost/', 'http://localhost');
-    const userId = url.searchParams.get('userId') || 'anonymous';
+    const userId = body.userId || 'anonymous';
     const payload = { userId, completed: [{ course_id: 1, percent: 50 }] };
     context.log(JSON.stringify(payload));
     return { status: 200, body: JSON.stringify(payload) };

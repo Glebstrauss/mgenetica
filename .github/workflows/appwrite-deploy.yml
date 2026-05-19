@@ -15,11 +15,11 @@ jobs:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v5
-      - name: Check Appwrite API key
+      - name: Check Appwrite deploy secrets
         run: |
-          if [ -z "${{ secrets.APPWRITE_API_KEY }}" ]; then
-            echo "APPWRITE_API_KEY is not configured in repository secrets.";
-            exit 0;
+          if [ -z "${{ secrets.APPWRITE_API_KEY }}" ] || [ -z "${{ secrets.APPWRITE_PROJECT_ID }}" ]; then
+            echo "::error::Missing Appwrite deploy secrets. Set APPWRITE_API_KEY and APPWRITE_PROJECT_ID before expecting cloud function deploys.";
+            exit 1;
           fi
       - name: Install Appwrite CLI
         run: npm install -g appwrite-cli

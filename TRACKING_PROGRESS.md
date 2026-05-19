@@ -2,9 +2,15 @@
 
 ## Current status
 
+- Primary live target is now GitHub Pages root at https://mgenetica.github.io/mgenetica/
+- Frontend Pages deploy path is .github/workflows/pages-frontend.yml
+- Quarto publish path is manual only
+- Optional Vercel deploy path is manual only
 - Appwrite SDK configured in `frontend/src/lib/appwrite.js` with:
   - Project ID: `6a0b2fc1001c380eeb26`
   - Endpoint: `https://fra.cloud.appwrite.io/v1`
+- Frontend now falls back to canonical Appwrite function IDs from `appwrite/functions.json` when env overrides are absent.
+- Frontend now includes admin panel support gated by VITE_ADMIN_EMAILS and backed by mgenetica_admin_fn.
 - App startup already pings Appwrite using `client.ping()`.
 - Frontend now uses Appwrite Functions for courses and quiz submission.
 - The local frontend shell now opens with a polished welcome/home page and a full Módulo 01 learning view, including all R code blocks from the original page.
@@ -30,25 +36,32 @@
 
 1. Add GitHub secrets:
    - `APPWRITE_API_KEY`
-2. Deploy Appwrite functions in Cloud and record function IDs.
-3. Set `frontend/.env` values:
-   - `VITE_APPWRITE_FUNCTION_COURSES_ID`
-   - `VITE_APPWRITE_FUNCTION_QUIZZES_ID`
-   - `VITE_APPWRITE_FUNCTION_PROGRESS_ID`
-   - `VITE_APPWRITE_FUNCTION_AUTH_ID`
+   - `APPWRITE_PROJECT_ID`
+   - `VERCEL_TOKEN`
+   - `VERCEL_ORG_ID`
+   - `VERCEL_PROJECT_ID`
+2. Add deployed Pages origin in Appwrite Web Platforms so browser auth/session cookies work.
+3. Deploy Appwrite functions in cloud and confirm canonical IDs:
+   - `mgenetica_courses_fn`
+   - `mgenetica_quizzes_fn`
+   - `mgenetica_progress_fn`
+   - `mgenetica_auth_fn`
+   - `mgenetica_admin_fn`
 
 ## Infra configured in GitHub already
 
-- Actions secret set: `APPWRITE_PROJECT_ID=6a0b2fc1001c380eeb26`
+- Appwrite project ID expected: `6a0b2fc1001c380eeb26`
 - Actions variable set: `APPWRITE_ENDPOINT=https://fra.cloud.appwrite.io/v1`
-- Workflow now auto-pushes Appwrite functions from `appwrite/` after `APPWRITE_API_KEY` is added.
+- Workflow now auto-pushes Appwrite functions from `appwrite/` after required secrets are added.
+- Frontend deploy to Pages now owns default live URL.
+- Vercel deploy workflow now stays manual and optional.
 
 ## Next safe steps for any agent
 
 1. Deploy functions with Appwrite Console/CLI.
-2. Paste function IDs into `frontend/.env`.
+2. Register GitHub Pages host in Appwrite Web Platforms.
 3. Run `cd frontend && npm run build`.
-4. Validate flow: ping -> courses -> quiz submit.
+4. Validate flow: ping -> login -> courses -> quiz submit -> admin status.
 
 ## Recent changes (automated agents)
 
@@ -58,7 +71,7 @@
 - Todo created: implement full E2E tests for login -> listCourses -> submitQuiz.
 - Frontend UI was upgraded into a polished course page that renders the full original Módulo 01 content, including all three R code blocks, explanatory callouts, a table of symbols, and a cleaner learning flow.
 - Auth UX now supports both sign-in and account creation from the same panel, with clearer copy, feedback, and button states.
-- Local preview/build checks are green, and the current Vercel + Quarto publish runs on `main` are succeeding.
+- Local preview/build checks are green, but the frontend was not actually live on Vercel when the deploy secrets were missing; that ambiguity is now corrected in workflow and docs.
 - Remote build workflows were refreshed to use the newer JavaScript-action runtime path (`checkout@v5`, `setup-node@v6`, Node 24) before the next deploy.
 - Frontend landing hero/auth layout was rebalanced after visual QA: headline scale reduced, CTA/buttons normalized, feature cards aligned, auth form controls unified, and the MGenética brand panel aligned with the left content column. Verified again with `cd frontend && npm run build`.
 - Feature highlight cards in landing hero were restructured on 2026-05-19 to use icon -> heading -> explanatory copy hierarchy, replacing broken stacked text that was wrapping into awkward tall boxes.

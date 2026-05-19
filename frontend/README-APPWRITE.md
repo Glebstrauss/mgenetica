@@ -2,9 +2,9 @@ Using Appwrite with the frontend
 
 1. Install SDK: `cd frontend && npm i appwrite`
 2. Appwrite SDK is configured in `src/lib/appwrite.js` with:
-   - endpoint: `https://fra.cloud.appwrite.io/v1`
-   - project: `6a0b2fc1001c380eeb26`
-3. Set function IDs in `.env` from `.env.example`:
+   - endpoint: `VITE_APPWRITE_ENDPOINT` fallback -> `https://fra.cloud.appwrite.io/v1`
+   - project: `VITE_APPWRITE_PROJECT_ID` fallback -> `6a0b2fc1001c380eeb26`
+3. Function IDs default to canonical IDs from `appwrite/functions.json`. Override in `.env` only when cloud IDs differ:
    - `VITE_APPWRITE_FUNCTION_COURSES_ID`
    - `VITE_APPWRITE_FUNCTION_QUIZZES_ID`
    - `VITE_APPWRITE_FUNCTION_PROGRESS_ID`
@@ -13,3 +13,8 @@ Using Appwrite with the frontend
 5. The dashboard and quiz now call Appwrite Functions via:
    - `listCourses()`
    - `submitQuiz()`
+6. Production deploy checklist:
+   - deploy app to Vercel
+   - register deployed origin in Appwrite Web Platforms
+   - confirm cookie/session auth works cross-origin
+   - confirm `APPWRITE_API_KEY` and `APPWRITE_PROJECT_ID` exist for function deploy workflow

@@ -1,0 +1,56 @@
+name: Deploy Frontend to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+      - 'appwrite/**'
+      - '.github/workflows/pages-frontend.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Install frontend deps
+        working-directory: frontend
+        run: npm ci
+      - name: Build frontend for Pages
+        working-directory: frontend
+        env:
+          VITE_APP_BASE: /mgenetica/
+          VITE_APPWRITE_ENDPOINT: https://fra.cloud.appwrite.io/v1
+          VITE_APPWRITE_PROJECT_ID: 6a0b2fc1001c380eeb26
+          VITE_APPWRITE_FUNCTION_COURSES_ID: ${{ vars.VITE_APPWRITE_FUNCTION_COURSES_ID || 'mgenetica_courses_fn' }}
+          VITE_APPWRITE_FUNCTION_QUIZZES_ID: ${{ vars.VITE_APPWRITE_FUNCTION_QUIZZES_ID || 'mgenetica_quizzes_fn' }}
+          VITE_APPWRITE_FUNCTION_PROGRESS_ID: ${{ vars.VITE_APPWRITE_FUNCTION_PROGRESS_ID || 'mgenetica_progress_fn' }}
+          VITE_APPWRITE_FUNCTION_AUTH_ID: ${{ vars.VITE_APPWRITE_FUNCTION_AUTH_ID || 'mgenetica_auth_fn' }}
+          VITE_APPWRITE_FUNCTION_ADMIN_ID: ${{ vars.VITE_APPWRITE_FUNCTION_ADMIN_ID || 'mgenetica_admin_fn' }}
+          VITE_PUBLIC_SITE_URL: https://mgenetica.github.io/mgenetica/
+          VITE_ADMIN_EMAILS: ${{ vars.VITE_ADMIN_EMAILS || '' }}
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: frontend/dist
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

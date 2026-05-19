@@ -23,8 +23,8 @@ Estude genética quantitativa e genômica aplicada com uma trilha curta, prátic
 :::
 
 ::: {.home-actions role="navigation" aria-label="Ações principais da página inicial"}
-[Acessar curso](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Começar pelo Módulo 01"}
-[Ver módulos](modules/index.qmd){.btn .btn-secondary aria-label="Abrir índice de módulos"}
+[Ver módulos](modules/index.qmd){.btn .btn-primary aria-label="Abrir índice público de módulos"}
+[Plataforma do aluno](plataforma.qmd){.btn .btn-secondary aria-label="Abrir página da plataforma do aluno"}
 :::
 :::
 
@@ -105,6 +105,7 @@ Marcadores SNP, controle de qualidade, GWAS e predição genômica.
 :::
 
 [Ver os 12 módulos](modules/index.qmd){.btn .btn-secondary aria-label="Ver todos os módulos"}
+[Plataforma do aluno](plataforma.qmd){.btn .btn-secondary aria-label="Abrir página da plataforma do aluno"}
 :::
 
 ::: {.home-proof-strip role="list" aria-label="Pilares de confiança da MGenética"}
@@ -133,6 +134,6 @@ Scripts e dados simulados para estudar sem depender de bases externas.
 Abra o primeiro módulo, rode o script principal e feche a sessão com uma decisão técnica.
 
 [Acessar Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Acessar Módulo 01"}
-[Planejar 12 semanas](semanas/index.qmd){.btn .btn-secondary aria-label="Abrir roteiro de 12 semanas"}
+[Plataforma do aluno](plataforma.qmd){.btn .btn-secondary aria-label="Abrir página da plataforma do aluno"}
 :::
 :::

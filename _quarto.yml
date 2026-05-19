@@ -42,6 +42,8 @@ website:
     left:
       - href: index.qmd
         text: Início
+      - href: plataforma.qmd
+        text: Plataforma
       - href: modules/index.qmd
         text: Módulos
       - href: semanas/index.qmd
@@ -58,6 +60,8 @@ website:
     center:
       - href: index.qmd
         text: Início
+      - href: plataforma.qmd
+        text: Plataforma
       - href: modules/index.qmd
         text: Módulos
       - href: semanas/index.qmd

@@ -2,6 +2,53 @@
 
 Use this file to register site-only work blocks. Do not use it for app work.
 
+## 2026-05-19 - Public split-entrypoint clarification
+
+### Block objective
+
+Clarify on the public site that the Quarto homepage and the learner app are separate fronts, while fixing the surrounding deploy/status documentation that was making GitHub Pages and Vercel look like the same live target.
+
+### Cycles executed
+
+1. Diagnosis: the live URL was still the Quarto site on GitHub Pages, while the React learner app existed only in `frontend/`; workflow status was being read as if the app were live even when Vercel deploy had been skipped.
+   Implementation: added an explicit public learner-platform entrypoint on the site homepage plus navbar/footer navigation, and created a dedicated `plataforma.qmd` handoff page so the public site no longer implies that the learner app should appear at the GitHub Pages root.
+   Testing: attempted the site-safe prepublish check and reran frontend build verification after the split-entrypoint update.
+   Notes: this was a public-site clarity fix; the actual learner-app host still depends on external Vercel/Appwrite configuration.
+
+2. Diagnosis: repository docs and workflows still contained conflicting deploy assumptions, including old Supabase guidance and green frontend CI with skipped Vercel deploy.
+   Implementation: updated split-architecture docs, corrected deployment guidance to Vercel + Appwrite, and hardened Vercel/Appwrite workflows so missing secrets are surfaced as real errors instead of misleading “success”.
+   Testing: workflow files were rechecked statically and the shared validation/build commands were rerun locally.
+   Notes: external secrets and Appwrite console settings remain pending operational work, not site-content work.
+
+### Files changed in this block
+
+- `index.qmd`
+- `plataforma.qmd`
+- `_quarto.yml`
+- `README.md`
+- `DEPLOYMENT_PLAN.md`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+- `project_status.md`
+
+### Commands executed
+
+- `R_LIBS_USER=/private/tmp/mgenetica-r-lib SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R`
+- `cd frontend && npm run build`
+- `git diff --check`
+
+### Test results
+
+- Public-site safe prepublish gate could not complete in this local environment because the R package `yaml` is missing.
+- Frontend production build passed locally.
+- Deploy logic is now explicit: GitHub Pages serves the public site; Vercel secrets are required before learner app can be considered live.
+
+### Pending items
+
+- Add real Vercel deploy secrets and publish the learner app.
+- Register final learner-app host in Appwrite Web Platforms.
+- Run browser-level auth/function smoke test on the real separate app host.
+
 ## 2026-05-18 - SCSS token alias cleanup
 
 ### Block objective
