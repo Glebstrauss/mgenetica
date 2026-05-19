@@ -1,0 +1,1136 @@
+[
+  {
+    "id": "module-01",
+    "legacyId": "M1",
+    "title": "Quiz — Revisão de genética básica",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Em Aa x Aa, qual expectativa genotípica é correta?",
+        "options": [
+          "1 AA : 2 Aa : 1 aa",
+          "1 AA : 1 Aa : 1 aa",
+          "Todos Aa, porque ambos os pais carregam A e a"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Em 20 descendentes, observar 4 AA, 11 Aa e 5 aa significa necessariamente erro?",
+        "options": [
+          "Não. Amostra pequena pode oscilar ao redor da expectativa.",
+          "Sim. Toda amostra deve repetir 5, 10 e 5 exatamente.",
+          "Sim. Heterozigotos não podem ser maioria."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual frase separa melhor genótipo e fenótipo?",
+        "options": [
+          "Genótipo é combinação alélica; fenótipo é característica observada sob genética e ambiente.",
+          "Fenótipo é sempre cópia exata do genótipo.",
+          "Genótipo só existe em características quantitativas."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual erro comum deve ser evitado?",
+        "options": [
+          "Concluir mérito genético só pelo fenótipo observado.",
+          "Usar quadro de Punnett para prever proporções.",
+          "Contar AA, Aa e aa em tabela."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "No laboratório, por que aumentar n ajuda?",
+        "options": [
+          "Porque reduz oscilação amostral relativa.",
+          "Porque muda a regra de segregação.",
+          "Porque transforma aa em Aa."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-02",
+    "legacyId": "M2",
+    "title": "Quiz — Modos de ação gênica",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Com AA = 10 e aa = 4, qual é o ponto médio dos homozigotos?",
+        "options": [
+          "7",
+          "8",
+          "14"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Se Aa = 8, qual é o desvio em relação ao ponto médio?",
+        "options": [
+          "+1",
+          "-1",
+          "+4"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "O que esse desvio sugere?",
+        "options": [
+          "Dominância parcial favorável.",
+          "Ausência obrigatória de genética.",
+          "Que Aa é sempre igual a AA."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual componente é mais diretamente acumulado por seleção?",
+        "options": [
+          "Efeito aditivo.",
+          "Erro de digitação.",
+          "Cor da tabela."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual erro comum deve ser evitado?",
+        "options": [
+          "Chamar qualquer diferença genotípica de aditiva.",
+          "Comparar heterozigoto com ponto médio.",
+          "Usar exemplo numérico pequeno."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-03",
+    "legacyId": "M3",
+    "title": "Quiz — Genética de populações I: frequências alélicas e genotípicas",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Com 10 AA, 5 Aa e 5 aa, qual é p para alelo A?",
+        "options": [
+          "0,625",
+          "0,500",
+          "0,250"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Por que Aa entra uma vez no numerador de p?",
+        "options": [
+          "Porque carrega uma cópia de A.",
+          "Porque carrega duas cópias de A.",
+          "Porque não contribui para frequência alélica."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "O que p + q deve valer em sistema com dois alelos?",
+        "options": [
+          "1",
+          "2N",
+          "Número de genótipos"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Alelo mais frequente deve ser selecionado automaticamente?",
+        "options": [
+          "Não. Frequência não informa sozinha efeito produtivo.",
+          "Sim. Frequência alta sempre indica superioridade.",
+          "Sim. Alelo raro sempre é prejudicial."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual evidência fecha melhor este bloco?",
+        "options": [
+          "Tabela com frequências genotípicas, p, q e interpretação.",
+          "Lista de animais sem cálculo.",
+          "Gráfico sem explicar alelos."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-04",
+    "legacyId": "M4",
+    "title": "Quiz — Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Com p = 0,70, qual é frequência esperada de AA?",
+        "options": [
+          "0,49",
+          "0,42",
+          "0,09"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Com p = 0,70 e q = 0,30, qual é frequência esperada de Aa?",
+        "options": [
+          "0,42",
+          "0,49",
+          "0,21"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Desvio pequeno entre observado e esperado prova seleção?",
+        "options": [
+          "Não. Pode envolver amostragem, estrutura ou erro.",
+          "Sim. Qualquer diferença prova seleção.",
+          "Sim. Heterozigotos nunca variam."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Hardy-Weinberg deve ser usado como quê?",
+        "options": [
+          "Modelo de referência.",
+          "Regra obrigatória para todo rebanho.",
+          "Índice de DEP."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual evidência fecha melhor o bloco?",
+        "options": [
+          "Tabela observado/esperado com interpretação cautelosa.",
+          "Só escrever p² sem q.",
+          "Ignorar contagens."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-05",
+    "legacyId": "M5",
+    "title": "Quiz — Fatores que alteram frequências gênicas",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Se p aumenta 0,05 por geração a partir de 0,40, qual p após cinco gerações?",
+        "options": [
+          "0,65",
+          "0,45",
+          "0,05"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual processo é mudança aleatória mais forte em população pequena?",
+        "options": [
+          "Deriva genética",
+          "Seleção direcional",
+          "Média fenotípica"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Migração altera frequência por qual mecanismo?",
+        "options": [
+          "Entrada ou saída de alelos entre populações.",
+          "Cálculo de h².",
+          "Conversão de fenótipo em DEP."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual erro comum deve ser evitado?",
+        "options": [
+          "Atribuir toda mudança observada à seleção sem considerar deriva.",
+          "Comparar trajetórias por geração.",
+          "Simular população pequena."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual decisão prática vem desse bloco?",
+        "options": [
+          "Controlar tamanho efetivo e origem dos reprodutores.",
+          "Ignorar frequências gênicas.",
+          "Selecionar sem registrar geração."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-06",
+    "legacyId": "M6",
+    "title": "Quiz — Valores e médias: fenótipo, genótipo e ambiente",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Se G = 10 e E = 3, qual é P?",
+        "options": [
+          "13",
+          "7",
+          "30"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Animal com maior P tem sempre maior G?",
+        "options": [
+          "Não. Ambiente pode elevar P.",
+          "Sim. P e G são sempre iguais.",
+          "Sim. E nunca varia."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual fator pode distorcer ranking fenotípico?",
+        "options": [
+          "Manejo, fazenda, idade ou lote.",
+          "Nome do arquivo.",
+          "Número de módulos."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual decisão é mais segura?",
+        "options": [
+          "Comparar animais após considerar ambiente relevante.",
+          "Escolher só maior P bruto.",
+          "Ignorar medidas ambientais."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual erro comum deve ser evitado?",
+        "options": [
+          "Confundir fenótipo alto com mérito genético alto.",
+          "Calcular P = G + E.",
+          "Registrar lote."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-07",
+    "legacyId": "M7",
+    "title": "Quiz — Noções de genética quantitativa",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Por que peso não costuma seguir proporção mendeliana simples?",
+        "options": [
+          "Porque muitos genes e ambiente contribuem juntos.",
+          "Porque peso não tem base genética.",
+          "Porque todo peso é determinado por um único gene."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "O que acontece ao aumentar número de loci pequenos?",
+        "options": [
+          "Aumenta número de valores intermediários.",
+          "Todos os animais ficam iguais.",
+          "A variância necessariamente vira zero."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual medida resume dispersão entre animais?",
+        "options": [
+          "Variância",
+          "Nome do animal",
+          "Número da fazenda sem dados"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "No laboratório, por que fenótipo pode sobrepor animais com valores genéticos diferentes?",
+        "options": [
+          "Porque ambiente adiciona variação.",
+          "Porque genótipo não existe.",
+          "Porque R remove todos os efeitos."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual decisão prática depende desse conceito?",
+        "options": [
+          "Usar média e variância para selecionar características contínuas.",
+          "Classificar peso só em AA, Aa e aa.",
+          "Ignorar registros ambientais."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-08",
+    "legacyId": "M8",
+    "title": "Quiz — Componentes de variância",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Com VA=40, VD=10, VI=5 e VE=45, qual é VP?",
+        "options": [
+          "100",
+          "40",
+          "55"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual componente é central para resposta acumulada à seleção?",
+        "options": [
+          "VA",
+          "VE",
+          "Nome do animal"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Se VE aumenta e VA fica igual, o que acontece com VA/VP?",
+        "options": [
+          "Diminui",
+          "Aumenta sempre",
+          "Vira 1"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Ambiente alto significa genética inexistente?",
+        "options": [
+          "Não. Pode esconder sinal genético.",
+          "Sim. VA vira zero automaticamente.",
+          "Sim. Seleção fica impossível para sempre."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual ação prática melhora comparação?",
+        "options": [
+          "Padronizar manejo e registrar efeitos ambientais.",
+          "Misturar lotes sem registro.",
+          "Usar só fenótipo bruto."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-09",
+    "legacyId": "M9",
+    "title": "Quiz — Herdabilidade e repetibilidade",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Com VA = 40 e VP = 100, qual é h²?",
+        "options": [
+          "0,40",
+          "2,50",
+          "60"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual interpretação de h² está correta?",
+        "options": [
+          "Proporção da variação entre animais explicada por variância aditiva.",
+          "Percentual genético de um animal individual.",
+          "Proporção de animais selecionados."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Se VE aumenta e VA fica igual, o que tende a ocorrer com h²?",
+        "options": [
+          "Diminui",
+          "Aumenta sempre",
+          "Vira 1 automaticamente"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Quando repetibilidade ajuda?",
+        "options": [
+          "Ao decidir se nova medida do mesmo animal acrescenta informação.",
+          "Ao substituir todo pedigree.",
+          "Ao calcular p e q."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual decisão prática é coerente com h² baixa?",
+        "options": [
+          "Melhorar qualidade/quantidade de registros antes de confiar só no fenótipo.",
+          "Descartar a característica para sempre.",
+          "Ignorar ambiente."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-10",
+    "legacyId": "M10",
+    "title": "Quiz — Seleção e ganho genético",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Pesos têm média 207 kg e selecionados média 225 kg. Qual é S?",
+        "options": [
+          "18 kg",
+          "5,4 kg",
+          "1,8 kg/ano"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Com h² = 0,30 e S = 18 kg, qual é R?",
+        "options": [
+          "5,4 kg por geração",
+          "18 kg por geração",
+          "60 kg por geração"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Por que ganho por ano pode ser menor que R?",
+        "options": [
+          "Porque R é por geração e deve considerar intervalo de geração.",
+          "Porque herdabilidade sempre é zero.",
+          "Porque selecionados não têm média."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual risco aumenta quando seleção fica muito intensa com poucos pais?",
+        "options": [
+          "Endogamia e perda de diversidade.",
+          "Maior número efetivo.",
+          "Mais famílias independentes."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual interpretação é correta?",
+        "options": [
+          "R é expectativa média, não promessa para cada descendente.",
+          "R garante que todos os filhos ganham 5,4 kg.",
+          "S e R são sempre iguais."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-11",
+    "legacyId": "M11",
+    "title": "Quiz — Correlações genéticas, fenotípicas e ambientais",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Correlação genética positiva entre peso e gordura indica o quê?",
+        "options": [
+          "Seleção para peso pode aumentar gordura.",
+          "Peso e gordura são a mesma característica.",
+          "Ambiente não existe."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Correlação fenotípica substitui correlação genética?",
+        "options": [
+          "Não. Pode misturar genética e ambiente.",
+          "Sim. Sempre mede só genes.",
+          "Sim. Dispensa avaliação genética."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Correlação negativa sugere o quê?",
+        "options": [
+          "Possível trade-off.",
+          "Ausência de relação obrigatória.",
+          "Herdabilidade igual a 1."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Resposta correlacionada ocorre quando...",
+        "options": [
+          "seleção em uma característica muda outra.",
+          "não há seleção.",
+          "p + q passa de 1."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual decisão prática é correta?",
+        "options": [
+          "Usar índice quando há múltiplas características importantes.",
+          "Selecionar sempre só uma característica.",
+          "Ignorar características correlacionadas."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-12",
+    "legacyId": "M12",
+    "title": "Quiz — Características de limiar",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Com dois afetados em cinco animais, qual é prevalência?",
+        "options": [
+          "0,40",
+          "2,5",
+          "1,00"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "O que representa escala subjacente?",
+        "options": [
+          "Risco ou suscetibilidade contínua.",
+          "Nome do animal.",
+          "DEP obrigatória."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Característica binária pode ter base quantitativa?",
+        "options": [
+          "Sim. O limiar transforma escala contínua em categoria.",
+          "Não. Binário nunca tem genética.",
+          "Não. Só existe AA e aa."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Prevalência baixa exige cuidado por quê?",
+        "options": [
+          "Pode exigir amostra maior para estimativa estável.",
+          "Dispensa registro.",
+          "Prova ausência de variação."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual erro comum deve ser evitado?",
+        "options": [
+          "Tratar categoria observada como se não houvesse escala subjacente.",
+          "Calcular proporção.",
+          "Definir limiar."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-13",
+    "legacyId": "M13",
+    "title": "Quiz — Endogamia e parentesco",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Qual parentesco esperado entre meio-irmãos?",
+        "options": [
+          "0,25",
+          "0,50",
+          "1,00"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Na matriz A, o que representa diagonal 1 + F?",
+        "options": [
+          "Endogamia individual incorporada à diagonal.",
+          "Frequência alélica p.",
+          "Média fenotípica ajustada."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Parentesco deve ser sempre evitado?",
+        "options": [
+          "Não. Ele informa avaliação, mas precisa controle em acasalamentos.",
+          "Sim. Qualquer parentesco invalida avaliação.",
+          "Não existe parentesco em pedigree."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual risco vem de acasalamentos aparentados repetidos?",
+        "options": [
+          "Aumento de endogamia e expressão de recessivos desfavoráveis.",
+          "Redução automática de F.",
+          "Eliminação de todos os alelos ruins em uma geração."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual decisão prática usa parentesco?",
+        "options": [
+          "Evitar acasalamento de reprodutor muito aparentado às fêmeas do lote.",
+          "Escolher só pelo maior peso bruto.",
+          "Ignorar matriz A."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-14",
+    "legacyId": "M14",
+    "title": "Quiz — Cruzamentos, heterose e complementaridade",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Com pais 210 e 220 kg, qual é média parental?",
+        "options": [
+          "215 kg",
+          "430 kg",
+          "230 kg"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Com F1 = 230 kg, qual heterose absoluta?",
+        "options": [
+          "15 kg",
+          "7 kg",
+          "215 kg"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Heterose percentual é aproximadamente...",
+        "options": [
+          "7,0%",
+          "15%",
+          "230%"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Heterose substitui seleção?",
+        "options": [
+          "Não. Complementa estratégia de acasalamento.",
+          "Sim. Elimina necessidade de seleção.",
+          "Sim. Remove todo risco."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Complementaridade significa...",
+        "options": [
+          "combinar forças de grupos diferentes.",
+          "usar sempre uma única raça.",
+          "ignorar ambiente."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-15",
+    "legacyId": "M15",
+    "title": "Quiz — Avaliação genética: DEP/EBV e ranking de animais",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Se EBV = 20 kg, qual DEP aproximada?",
+        "options": [
+          "10 kg",
+          "20 kg",
+          "40 kg"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "O que DEP representa?",
+        "options": [
+          "Diferença esperada na progênie.",
+          "Peso bruto do animal.",
+          "Frequência alélica."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Por que acurácia importa?",
+        "options": [
+          "Porque informa confiança na estimativa.",
+          "Porque substitui DEP.",
+          "Porque mede cor do animal."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Ranking fenotípico basta?",
+        "options": [
+          "Não. Pode misturar ambiente e genética.",
+          "Sim. Sempre é melhor.",
+          "Sim. Dispensa dados de parentes."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual decisão é mais defensável?",
+        "options": [
+          "Ler DEP junto com acurácia e objetivo de seleção.",
+          "Escolher maior fenótipo bruto sempre.",
+          "Ignorar base de comparação."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-16",
+    "legacyId": "M16",
+    "title": "Quiz — Modelos lineares e modelos mistos",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Fazenda costuma entrar como que tipo de efeito?",
+        "options": [
+          "Efeito fixo",
+          "Frequência alélica",
+          "Limiar genômico"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Animal em modelo misto costuma ser tratado como...",
+        "options": [
+          "efeito aleatório.",
+          "p².",
+          "heterose percentual."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Por que ajustar fazenda?",
+        "options": [
+          "Para não confundir manejo com mérito genético.",
+          "Para remover toda genética.",
+          "Para mudar alelos."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Coeficiente de sexo/fazenda é automaticamente genético?",
+        "options": [
+          "Não. É efeito sistemático do grupo.",
+          "Sim. Sempre é EBV.",
+          "Sim. Sempre é DEP."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual erro comum deve ser evitado?",
+        "options": [
+          "Interpretar efeito de manejo como valor genético.",
+          "Definir variável resposta.",
+          "Usar modelo simples para aprender."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-17",
+    "legacyId": "M17",
+    "title": "Quiz — BLUP e modelo animal",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "O que BLUP faz em termos gerais?",
+        "options": [
+          "Prediz efeitos aleatórios usando dados e variâncias.",
+          "Conta apenas alelos A.",
+          "Calcula heterose percentual."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Por que ocorre encolhimento?",
+        "options": [
+          "Porque pouca informação aumenta incerteza.",
+          "Porque fenótipo não existe.",
+          "Porque todo animal tem mesmo genótipo."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Modelo animal usa qual informação estrutural?",
+        "options": [
+          "Parentesco entre animais.",
+          "Apenas cor da pelagem.",
+          "Somente p²."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "BLUP é igual a média fenotípica?",
+        "options": [
+          "Não. Ajusta informação e estrutura de variância.",
+          "Sim. Sempre idêntico.",
+          "Sim. Ignora parentes."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual aplicação é importante?",
+        "options": [
+          "Predizer animais jovens ou pouco medidos.",
+          "Substituir todos os registros.",
+          "Ignorar acurácia."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-18",
+    "legacyId": "M18",
+    "title": "Quiz — Genômica, marcadores SNP e dados moleculares",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "No código SNP 0/1/2, o que significa 2?",
+        "options": [
+          "Duas cópias do alelo contado.",
+          "Dois animais.",
+          "Dois ambientes."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Para 0,1,2,1,0, qual frequência do alelo contado?",
+        "options": [
+          "0,40",
+          "0,80",
+          "2,00"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Um SNP isolado decide seleção sozinho?",
+        "options": [
+          "Não. Decisão robusta usa muitos marcadores e validação.",
+          "Sim. Um SNP sempre basta.",
+          "Sim. Frequência alta é DEP."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Marcadores ajudam estimar...",
+        "options": [
+          "parentesco genômico realizado.",
+          "apenas idade.",
+          "somente sexo."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual erro comum deve ser evitado?",
+        "options": [
+          "Confundir código SNP com valor genético final.",
+          "Calcular média do código.",
+          "Registrar dados faltantes."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-19",
+    "legacyId": "M19",
+    "title": "Quiz — Controle de qualidade de dados genômicos",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Uma falta em quatro genótipos dá missing rate de...",
+        "options": [
+          "0,25",
+          "0,75",
+          "4"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Call rate correspondente é...",
+        "options": [
+          "0,75",
+          "0,25",
+          "1,25"
+        ],
+        "correct": 0
+      },
+      {
+        "text": "MAF baixa indica marcador...",
+        "options": [
+          "pouco informativo em muitas análises.",
+          "sempre melhor para GWAS.",
+          "sem genótipo ausente obrigatoriamente."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Filtro deve ser registrado por quê?",
+        "options": [
+          "Para reprodutibilidade.",
+          "Para esconder decisão.",
+          "Para impedir validação."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual erro comum deve ser evitado?",
+        "options": [
+          "Aplicar filtro sem critério claro.",
+          "Calcular call rate.",
+          "Verificar dados faltantes."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-20",
+    "legacyId": "M20",
+    "title": "Quiz — Matrizes genômicas, GWAS e predição genômica",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Matriz G resume...",
+        "options": [
+          "semelhança genômica entre animais.",
+          "apenas média fenotípica.",
+          "somente heterose."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "GWAS busca...",
+        "options": [
+          "associação marcador a marcador.",
+          "apenas parentesco de pedigree.",
+          "somente h² por fórmula simples."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Predição genômica usa...",
+        "options": [
+          "muitos marcadores simultaneamente.",
+          "um único SNP sem validação.",
+          "apenas nome do animal."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Por que padronizar SNPs?",
+        "options": [
+          "Para evitar escalas diferentes entre marcadores.",
+          "Para remover todos os alelos.",
+          "Para transformar fenótipo em sexo."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual erro comum deve ser evitado?",
+        "options": [
+          "Confundir GWAS com predição genômica.",
+          "Calcular matriz.",
+          "Usar QC antes da análise."
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "module-21",
+    "legacyId": "M21",
+    "title": "Quiz — Projeto final: pipeline completo de seleção",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
+    "passMark": 4,
+    "questions": [
+      {
+        "text": "Por que maior DEP isolada pode não vencer no projeto final?",
+        "options": [
+          "Porque parentesco alto ou baixa acurácia podem aumentar risco da decisão.",
+          "Porque DEP nunca deve ser usada.",
+          "Porque acurácia substitui todo fenótipo."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "No índice score = DEP - 10*parentesco + 2*acurácia, o que a penalidade faz?",
+        "options": [
+          "Reduz prioridade de animais mais aparentados ao lote.",
+          "Aumenta pontuação de parentesco alto.",
+          "Remove necessidade de justificar decisão."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual evidência mínima do projeto final?",
+        "options": [
+          "Ranking, regra usada e justificativa dos animais escolhidos.",
+          "Apenas maior DEP copiada.",
+          "Só gráfico sem decisão."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual prática torna pipeline reprodutível?",
+        "options": [
+          "Salvar dados, script, regra de score e interpretação.",
+          "Alterar pesos sem registrar.",
+          "Escolher animal por preferência visual."
+        ],
+        "correct": 0
+      },
+      {
+        "text": "Qual decisão é mais defensável?",
+        "options": [
+          "Escolher animais com bom mérito, acurácia aceitável e parentesco controlado.",
+          "Escolher sempre maior DEP mesmo com parentesco extremo.",
+          "Ignorar acurácia se score parece alto."
+        ],
+        "correct": 0
+      }
+    ]
+  }
+]

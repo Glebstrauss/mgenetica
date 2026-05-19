@@ -1,4 +1,4 @@
-import { Client, Account, Databases, ID } from 'appwrite';
+import { Client, Databases, ID } from 'appwrite';
 
 const APPWRITE_ENDPOINT = import.meta.env.VITE_APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1';
 const APPWRITE_PROJECT_ID = import.meta.env.VITE_APPWRITE_PROJECT_ID || '6a0b2fc1001c380eeb26';
@@ -15,7 +15,6 @@ const client = new Client()
   .setEndpoint(APPWRITE_ENDPOINT)
   .setProject(APPWRITE_PROJECT_ID);
 
-const account = new Account(client);
 const databases = new Databases(client);
 
 async function pingAppwrite() {
@@ -60,8 +59,71 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
   return data;
 }
 
+function readCookieFallback() {
+  if (typeof window === 'undefined' || !window.localStorage) return '';
+  return window.localStorage.getItem('cookieFallback') || '';
+}
+
+function writeCookieFallback(response) {
+  if (typeof window === 'undefined' || !window.localStorage) return;
+  const fallback = response.headers.get('X-Fallback-Cookies');
+  if (fallback) {
+    window.localStorage.setItem('cookieFallback', fallback);
+  }
+}
+
+function clearCookieFallback() {
+  if (typeof window === 'undefined' || !window.localStorage) return;
+  window.localStorage.removeItem('cookieFallback');
+}
+
+async function callAccountApi(path, { method = 'GET', payload, allowRetryWithoutCredentials = true } = {}) {
+  const url = `${APPWRITE_ENDPOINT}${path}`;
+  const run = async (credentials) => {
+    const headers = {
+      'Content-Type': 'application/json',
+      'X-Appwrite-Project': APPWRITE_PROJECT_ID
+    };
+    const cookieFallback = readCookieFallback();
+    if (cookieFallback) headers['X-Fallback-Cookies'] = cookieFallback;
+    const response = await fetch(url, {
+      method,
+      headers,
+      credentials,
+      body: payload ? JSON.stringify(payload) : undefined
+    });
+    writeCookieFallback(response);
+    return response;
+  };
+
+  let response;
+  try {
+    response = await run('include');
+  } catch (error) {
+    if (!allowRetryWithoutCredentials) throw error;
+    response = await run('omit');
+  }
+
+  const text = await response.text();
+  let data = {};
+  if (text) {
+    try {
+      data = JSON.parse(text);
+    } catch (_) {
+      data = { message: text };
+    }
+  }
+
+  if (!response.ok) {
+    throw new Error(data?.message || 'Appwrite account request failed.');
+  }
+
+  return data;
+}
+
 function normalizeAuthError(err, messages = {}) {
   const message = String(err?.message || '');
+  const isLoopback127 = typeof window !== 'undefined' && window.location.hostname === '127.0.0.1'
   if (/user_already_exists|already exists|already been registered/i.test(message)) {
     return messages.emailExists || 'Este e-mail já existe. Entre com a conta existente.'
   }
@@ -72,6 +134,9 @@ function normalizeAuthError(err, messages = {}) {
     return messages.originBlocked || 'Host atual não está liberado no Appwrite Web Platform. Adicione URL publicada antes de testar login.'
   }
   if (/network|failed to fetch/i.test(message)) {
+    if (isLoopback127) {
+      return messages.loopback127Blocked || '127.0.0.1 is not registered in Appwrite Web Platform. Open the app with localhost:5173 instead, or register 127.0.0.1 as a Web platform.'
+    }
     return messages.network || 'Falha de rede ao falar com Appwrite.'
   }
   return message || messages.generic || 'Não foi possível autenticar.'
@@ -81,8 +146,12 @@ async function listCourses(locale) {
   return executeFunction(functionIds.courses, { action: 'list', locale }, { includeCredentials: true });
 }
 
-async function submitQuiz(quizId, answers) {
-  return executeFunction(functionIds.quizzes, { quizId, answers }, { includeCredentials: true });
+async function getQuiz(courseId, locale) {
+  return executeFunction(functionIds.quizzes, { action: 'get', courseId, locale }, { includeCredentials: true });
+}
+
+async function submitQuiz(courseId, answers, locale) {
+  return executeFunction(functionIds.quizzes, { action: 'submit', courseId, answers, locale }, { includeCredentials: true });
 }
 
 async function getProgress(userId) {
@@ -102,29 +171,41 @@ async function getAdminSummary(email) {
 }
 
 async function createEmailSession(email, password) {
-  return account.createEmailSession(email, password);
+  return callAccountApi('/account/sessions/email', {
+    method: 'POST',
+    payload: { email, password }
+  });
 }
 
 async function createAccount(email, password, name) {
-  return account.create(ID.unique(), email, password, name || undefined);
+  return callAccountApi('/account', {
+    method: 'POST',
+    payload: { userId: ID.unique(), email, password, name: name || undefined }
+  });
 }
 
 async function deleteSession() {
-  return account.deleteSession('current');
+  const result = await callAccountApi('/account/sessions/current', {
+    method: 'DELETE'
+  });
+  clearCookieFallback();
+  return result;
 }
 
 async function getAccount() {
-  return account.get();
+  return callAccountApi('/account', {
+    method: 'GET'
+  });
 }
 
 export {
   client,
-  account,
   databases,
   pingAppwrite,
   functionIds,
   executeFunction,
   listCourses,
+  getQuiz,
   submitQuiz,
   getProgress,
   getAuthCapabilities,

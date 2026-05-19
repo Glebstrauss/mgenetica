@@ -1,27 +1,85 @@
+const quizBank = require('./quiz-bank.generated.json');
+
+function parseBody(req) {
+  const raw = req?.body ?? req?.payload ?? {};
+  if (typeof raw === 'string') {
+    try {
+      return JSON.parse(raw);
+    } catch (_) {
+      return {};
+    }
+  }
+  return raw && typeof raw === 'object' ? raw : {};
+}
+
+function getQuizByCourseId(courseId) {
+  return quizBank.find((quiz) => quiz.id === courseId) || null;
+}
+
 module.exports = async function (context) {
   try {
     const req = context.req || {};
-    const method = (req.method || req.httpMethod) || 'GET';
-    if (method === 'POST') {
-      const body = req.body || (req.payload ? req.payload : {});
-      const { quizId, answers } = body || {};
-      if (!quizId || !Array.isArray(answers)) {
-        const err = { error: 'quizId and answers required', status: 400 };
-        context.log(JSON.stringify(err));
-        return { status: 400, body: JSON.stringify(err) };
-      }
-      const score = answers.reduce((s, a) => s + (a === true ? 1 : 0), 0);
-      const payload = { quizId, score, total: answers.length };
-      context.log(JSON.stringify(payload));
+    const body = parseBody(req);
+    const action = body.action || 'get';
+    const courseId = body.courseId || body.quizId;
+    const quiz = getQuizByCourseId(courseId);
+
+    if (!quiz) {
+      const out = { error: 'quiz_not_found', courseId };
+      context.log(JSON.stringify(out));
+      return { status: 404, body: JSON.stringify(out) };
+    }
+
+    if (action === 'get') {
+      const payload = {
+        id: quiz.id,
+        title: quiz.title,
+        subtitle: quiz.subtitle,
+        passMark: quiz.passMark,
+        questions: quiz.questions.map((question, index) => ({
+          id: index + 1,
+          text: question.text,
+          options: question.options
+        }))
+      };
+      context.log(JSON.stringify({ courseId, action, questions: payload.questions.length }));
       return { status: 200, body: JSON.stringify(payload) };
     }
-    const payload = [{ id: 1, course_id: 1, title: 'Quiz: Introdução', questions: 3 }];
-    context.log(JSON.stringify(payload));
-    return { status: 200, body: JSON.stringify(payload) };
-  } catch (err) {
-    console.error(err);
-    const out = { error: 'internal_error' };
+
+    if (action === 'submit') {
+      if (!Array.isArray(body.answers)) {
+        const out = { error: 'answers_required', courseId };
+        context.log(JSON.stringify(out));
+        return { status: 400, body: JSON.stringify(out) };
+      }
+
+      const results = quiz.questions.map((question, index) => {
+        const selected = body.answers[index];
+        return {
+          index: index + 1,
+          correct: selected === question.correct,
+          selected,
+          correctAnswer: question.correct
+        };
+      });
+      const score = results.filter((item) => item.correct).length;
+      const payload = {
+        courseId,
+        score,
+        total: quiz.questions.length,
+        passMark: quiz.passMark,
+        passed: score >= quiz.passMark,
+        results
+      };
+      context.log(JSON.stringify({ courseId, action, score, total: payload.total }));
+      return { status: 200, body: JSON.stringify(payload) };
+    }
+
+    const out = { error: 'unsupported_action', action };
     context.log(JSON.stringify(out));
-    return { status: 500, body: JSON.stringify(out) };
+    return { status: 400, body: JSON.stringify(out) };
+  } catch (error) {
+    context.error?.(error);
+    return { status: 500, body: JSON.stringify({ error: 'internal_error' }) };
   }
 };

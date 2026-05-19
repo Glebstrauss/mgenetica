@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useState} from 'react'
-import { getModule01 } from './data/module01'
+import { getCourseCatalog, getCourseDetail } from './data/courseCurriculum'
 import CoursePage from './CoursePage'
 import Icon from './components/Icon'
 import Quiz from './Quiz'
@@ -293,9 +293,13 @@ function CatalogPage({ courses, isAdmin, onBack, onOpenCourse, onOpenAdmin, onLo
         <div className="content-grid catalog-grid" role="list" aria-label={t('catalog.coursesAria')}>
           {courses.map((course) => (
             <article className="course-card" role="listitem" key={course.id}>
+              <div className="badge-row" style={{ marginBottom: 12 }}>
+                <span className="chip">{course.legacyId}</span>
+                <span className="chip">{course.blockTitle}</span>
+              </div>
               <strong className="course-title">{course.title}</strong>
               <p className="course-description">{course.description}</p>
-              <div className="course-meta" style={{ marginTop: 12 }}><span className="status-badge">{course.id === 'module-01' ? t('common.available') : course.active ? t('common.active') : t('common.draft')}</span></div>
+              <div className="course-meta" style={{ marginTop: 12 }}><span className="status-badge">{course.active ? t('common.available') : t('common.draft')}</span></div>
               <button type="button" className="btn btn-primary" style={{ marginTop: 12 }} onClick={() => onOpenCourse(course.id)} aria-label={t('catalog.openCourseAria', { title: course.title })}>{t('catalog.openPage')}</button>
             </article>
           ))}
@@ -334,7 +338,6 @@ function AdminPage({ user, status, report, loading, onBack, onRefresh, onLogout,
 export default function App() {
   const initialRoute = parseRouteHash(typeof window !== 'undefined' ? window.location.hash : '')
   const [locale, setLocale] = useState(detectInitialLocale())
-  const [courses, setCourses] = useState([])
   const [user, setUser] = useState(null)
   const [loadingAuth, setLoadingAuth] = useState(false)
   const [loadingAdmin, setLoadingAdmin] = useState(false)
@@ -346,8 +349,8 @@ export default function App() {
   const [adminReport, setAdminReport] = useState(null)
   const t = useMemo(() => createTranslator(locale), [locale])
   const errorMessages = useMemo(() => t('authErrors'), [t])
-  const module01 = useMemo(() => getModule01(locale), [locale])
   const status = t(statusState.key, statusState.params)
+  const catalogCourses = useMemo(() => getCourseCatalog(locale), [locale])
 
   function syncFromHash() { const route = parseRouteHash(window.location.hash); setAuthMode(route.authMode); setScreen(route.screen); setShowQuiz(route.showQuiz); setSelectedCourseId(route.selectedCourseId) }
   function navigate(next) { const hash = buildRouteHash(next); const currentHash = window.location.hash.replace(/^#/, ''); if (hash === currentHash) { syncFromHash(); return } window.location.hash = hash }
@@ -362,19 +365,13 @@ export default function App() {
   useEffect(() => {
     pingAppwrite().catch(() => {})
     getAccount().then((account) => { setUser(account); updateStatus('status.sessionVerified') }).catch(() => updateStatus('status.unlockFlow'))
-    listCourses(locale).then((items) => setCourses(items)).catch(() => setCourses([]))
-  }, [locale])
+  }, [])
 
   useEffect(() => { syncFromHash(); const handleHashChange = () => syncFromHash(); window.addEventListener('hashchange', handleHashChange); return () => window.removeEventListener('hashchange', handleHashChange) }, [])
 
-  const catalogCourses = useMemo(() => {
-    const items = [{ id: 'module-01', title: module01.title, description: module01.description, active: true }].concat((courses || []).map((course) => ({ id: course.id, title: course.title, description: course.description, active: !!course.published })))
-    const seen = new Set()
-    return items.filter((course) => { if (seen.has(course.id)) return false; seen.add(course.id); return true })
-  }, [courses, module01])
-
   const selectedCourse = useMemo(() => catalogCourses.find((course) => course.id === selectedCourseId) || null, [catalogCourses, selectedCourseId])
   const nextCourse = useMemo(() => { if (!selectedCourseId) return null; const currentIndex = catalogCourses.findIndex((course) => course.id === selectedCourseId); if (currentIndex === -1) return null; return catalogCourses.slice(currentIndex + 1).find(Boolean) || null }, [catalogCourses, selectedCourseId])
+  const selectedCourseDetail = useMemo(() => (selectedCourse ? getCourseDetail(selectedCourse.id, locale) : null), [selectedCourse, locale])
   const adminEnabled = useMemo(() => isAdminUser(user), [user])
 
   async function handleLogin(payload) { setLoadingAuth(true); try { await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); setAdminReport(null); updateStatus('status.loginSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
@@ -406,10 +403,10 @@ export default function App() {
   function goHome() { navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) }
 
   if (showQuiz) {
-    return <div className="app-shell"><div className="panel" style={{ padding: 18, marginBottom: 16 }}><button type="button" className="btn btn-secondary" onClick={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: false })}>{t('coursePage.openCourse')}</button></div><Quiz t={t} /></div>
+    return <Quiz courseId={selectedCourseId} courseTitle={selectedCourse?.title || ''} locale={locale} onBack={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: false })} t={t} />
   }
   if (screen === 'course' && selectedCourse) {
-    return <CoursePage course={selectedCourse} detail={selectedCourse.id === 'module-01' ? module01 : null} onBack={() => navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false })} onOpenQuiz={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: true })} onOpenCatalog={openCatalog} onOpenCourse={openCourse} nextCourse={nextCourse} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
+    return <CoursePage course={selectedCourse} detail={selectedCourseDetail} onBack={() => navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false })} onOpenQuiz={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: true })} onOpenCatalog={openCatalog} onOpenCourse={openCourse} nextCourse={nextCourse} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
   }
   if (screen === 'catalog' && user) {
     return <CatalogPage courses={catalogCourses} isAdmin={adminEnabled} onBack={goHome} onOpenCourse={openCourse} onOpenAdmin={openAdmin} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />

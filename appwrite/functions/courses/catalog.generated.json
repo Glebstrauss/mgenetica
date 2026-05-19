@@ -1,0 +1,212 @@
+[
+  {
+    "id": "module-01",
+    "order": 1,
+    "legacyId": "M1",
+    "blockId": "fundamentos",
+    "blockTitle": "Fundamentos",
+    "title": "Revisão de genética básica",
+    "description": "Revisar gene, alelo, genótipo, fenótipo e segregação.",
+    "published": true
+  },
+  {
+    "id": "module-02",
+    "order": 2,
+    "legacyId": "M2",
+    "blockId": "fundamentos",
+    "blockTitle": "Fundamentos",
+    "title": "Modos de ação gênica",
+    "description": "Entender efeitos aditivos, dominância e epistasia antes da genética quantitativa.",
+    "published": true
+  },
+  {
+    "id": "module-03",
+    "order": 3,
+    "legacyId": "M3",
+    "blockId": "populacoes",
+    "blockTitle": "Genética de populações",
+    "title": "Genética de populações I: frequências alélicas e genotípicas",
+    "description": "Calcular frequências alélicas e genotípicas.",
+    "published": true
+  },
+  {
+    "id": "module-04",
+    "order": 4,
+    "legacyId": "M4",
+    "blockId": "populacoes",
+    "blockTitle": "Genética de populações",
+    "title": "Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo",
+    "description": "Usar Hardy-Weinberg como expectativa, não como dogma.",
+    "published": true
+  },
+  {
+    "id": "module-05",
+    "order": 5,
+    "legacyId": "M5",
+    "blockId": "populacoes",
+    "blockTitle": "Genética de populações",
+    "title": "Fatores que alteram frequências gênicas",
+    "description": "Comparar seleção, migração, mutação e deriva.",
+    "published": true
+  },
+  {
+    "id": "module-06",
+    "order": 6,
+    "legacyId": "M6",
+    "blockId": "quantitativa",
+    "blockTitle": "Genética quantitativa",
+    "title": "Valores e médias: fenótipo, genótipo e ambiente",
+    "description": "Separar P, G e E em exemplos pequenos.",
+    "published": true
+  },
+  {
+    "id": "module-07",
+    "order": 7,
+    "legacyId": "M7",
+    "blockId": "quantitativa",
+    "blockTitle": "Genética quantitativa",
+    "title": "Noções de genética quantitativa",
+    "description": "Entender muitos genes pequenos mais ambiente.",
+    "published": true
+  },
+  {
+    "id": "module-08",
+    "order": 8,
+    "legacyId": "M8",
+    "blockId": "quantitativa",
+    "blockTitle": "Genética quantitativa",
+    "title": "Componentes de variância",
+    "description": "Entender VA, VD, VI, VE e VP.",
+    "published": true
+  },
+  {
+    "id": "module-09",
+    "order": 9,
+    "legacyId": "M9",
+    "blockId": "quantitativa",
+    "blockTitle": "Genética quantitativa",
+    "title": "Herdabilidade e repetibilidade",
+    "description": "Diferenciar h2 e repetibilidade.",
+    "published": true
+  },
+  {
+    "id": "module-10",
+    "order": 10,
+    "legacyId": "M10",
+    "blockId": "quantitativa",
+    "blockTitle": "Genética quantitativa",
+    "title": "Seleção e ganho genético",
+    "description": "Calcular diferencial, resposta e ganho por geração.",
+    "published": true
+  },
+  {
+    "id": "module-11",
+    "order": 11,
+    "legacyId": "M11",
+    "blockId": "quantitativa",
+    "blockTitle": "Genética quantitativa",
+    "title": "Correlações genéticas, fenotípicas e ambientais",
+    "description": "Interpretar rA, rP e rE.",
+    "published": true
+  },
+  {
+    "id": "module-12",
+    "order": 12,
+    "legacyId": "M12",
+    "blockId": "quantitativa",
+    "blockTitle": "Genética quantitativa",
+    "title": "Características de limiar",
+    "description": "Entender escala subjacente para características categóricas.",
+    "published": true
+  },
+  {
+    "id": "module-13",
+    "order": 13,
+    "legacyId": "M13",
+    "blockId": "avaliacao",
+    "blockTitle": "Parentesco, cruzamentos e avaliação genética",
+    "title": "Endogamia e parentesco",
+    "description": "Calcular parentesco simples e interpretar F.",
+    "published": true
+  },
+  {
+    "id": "module-14",
+    "order": 14,
+    "legacyId": "M14",
+    "blockId": "avaliacao",
+    "blockTitle": "Parentesco, cruzamentos e avaliação genética",
+    "title": "Cruzamentos, heterose e complementaridade",
+    "description": "Entender heterose e complementaridade sem vender milagre.",
+    "published": true
+  },
+  {
+    "id": "module-15",
+    "order": 15,
+    "legacyId": "M15",
+    "blockId": "avaliacao",
+    "blockTitle": "Parentesco, cruzamentos e avaliação genética",
+    "title": "Avaliação genética: DEP/EBV e ranking de animais",
+    "description": "Entender EBV, DEP e acurácia como decisão corrigida.",
+    "published": true
+  },
+  {
+    "id": "module-16",
+    "order": 16,
+    "legacyId": "M16",
+    "blockId": "avaliacao",
+    "blockTitle": "Parentesco, cruzamentos e avaliação genética",
+    "title": "Modelos lineares e modelos mistos",
+    "description": "Separar efeitos fixos, aleatórios e resíduo.",
+    "published": true
+  },
+  {
+    "id": "module-17",
+    "order": 17,
+    "legacyId": "M17",
+    "blockId": "avaliacao",
+    "blockTitle": "Parentesco, cruzamentos e avaliação genética",
+    "title": "BLUP e modelo animal",
+    "description": "Entender BLUP, encolhimento, matriz A e modelo animal.",
+    "published": true
+  },
+  {
+    "id": "module-18",
+    "order": 18,
+    "legacyId": "M18",
+    "blockId": "genomica",
+    "blockTitle": "Genômica aplicada ao melhoramento",
+    "title": "Genômica, marcadores SNP e dados moleculares",
+    "description": "Entender SNP, genótipo 0/1/2 e frequência alélica.",
+    "published": true
+  },
+  {
+    "id": "module-19",
+    "order": 19,
+    "legacyId": "M19",
+    "blockId": "genomica",
+    "blockTitle": "Genômica aplicada ao melhoramento",
+    "title": "Controle de qualidade de dados genômicos",
+    "description": "Aplicar filtros de call rate, MAF e HWE.",
+    "published": true
+  },
+  {
+    "id": "module-20",
+    "order": 20,
+    "legacyId": "M20",
+    "blockId": "genomica",
+    "blockTitle": "Genômica aplicada ao melhoramento",
+    "title": "Matrizes genômicas, GWAS e predição genômica",
+    "description": "Diferenciar matriz G, GWAS e predição.",
+    "published": true
+  },
+  {
+    "id": "module-21",
+    "order": 21,
+    "legacyId": "M21",
+    "blockId": "genomica",
+    "blockTitle": "Genômica aplicada ao melhoramento",
+    "title": "Projeto final: pipeline completo de seleção",
+    "description": "Integrar fenótipo, pedigree, genômica, QC, EBV/DEP e decisão.",
+    "published": true
+  }
+]
