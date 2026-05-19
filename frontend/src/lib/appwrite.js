@@ -60,27 +60,40 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
 }
 
 function shouldUseCookieFallback() {
+  return typeof window !== 'undefined';
+}
+
+function isLocalDevHost() {
   if (typeof window === 'undefined') return false;
   const host = String(window.location.hostname || '').toLowerCase();
   return host === 'localhost' || host === '127.0.0.1';
 }
 
+function getCookieFallbackStorage() {
+  if (typeof window === 'undefined') return null;
+  if (isLocalDevHost()) return window.localStorage || null;
+  return window.sessionStorage || null;
+}
+
 function readCookieFallback() {
-  if (!shouldUseCookieFallback() || !window.localStorage) return '';
-  return window.localStorage.getItem('cookieFallback') || '';
+  const storage = getCookieFallbackStorage();
+  if (!shouldUseCookieFallback() || !storage) return '';
+  return storage.getItem('cookieFallback') || '';
 }
 
 function writeCookieFallback(response) {
-  if (!shouldUseCookieFallback() || !window.localStorage) return;
+  const storage = getCookieFallbackStorage();
+  if (!shouldUseCookieFallback() || !storage) return;
   const fallback = response.headers.get('X-Fallback-Cookies');
   if (fallback) {
-    window.localStorage.setItem('cookieFallback', fallback);
+    storage.setItem('cookieFallback', fallback);
   }
 }
 
 function clearCookieFallback() {
-  if (!shouldUseCookieFallback() || !window.localStorage) return;
-  window.localStorage.removeItem('cookieFallback');
+  const storage = getCookieFallbackStorage();
+  if (!shouldUseCookieFallback() || !storage) return;
+  storage.removeItem('cookieFallback');
 }
 
 async function callAccountApi(path, { method = 'GET', payload, allowRetryWithoutCredentials = true } = {}) {
