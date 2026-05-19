@@ -14,9 +14,9 @@ Using Appwrite with the frontend
    - `listCourses()`
    - `submitQuiz()`
 6. Production deploy checklist:
-   - deploy app to Vercel
-   - register deployed origin in Appwrite Web Platforms
-   - confirm cookie/session auth works cross-origin
+   - keep the GitHub Pages frontend deployment aligned with the built artifact
+   - register `https://mgenetica.github.io/mgenetica/` in Appwrite Web Platforms
+   - confirm cookie/session auth works from the published Pages host
    - confirm `APPWRITE_API_KEY` and `APPWRITE_PROJECT_ID` exist for function deploy workflow
 7. Admin panel runtime requirements:
    - configure `VITE_ADMIN_EMAILS` in frontend env to expose admin entrypoint for allowed users

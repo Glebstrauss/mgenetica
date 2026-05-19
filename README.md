@@ -2,15 +2,15 @@
 
 MGenética tem dois fronts neste repositório:
 
-- **Site público:** camada editorial/institucional em Quarto, publicada no GitHub Pages.
-- **Learner app:** experiência autenticada em `frontend/`, construída com Vite + React e Appwrite, publicada separadamente.
+- **Site público:** conteúdo editorial/institucional em Quarto, mantido como fonte e publicação manual.
+- **Learner app:** experiência autenticada em `frontend/`, construída com Vite + React e Appwrite, publicada no GitHub Pages live root.
 
-Não misture esses fronts. O site não deve virar painel/app administrativo. O learner app não é servido pelo GitHub Pages raiz.
+Não misture esses fronts. O site não deve virar painel/app administrativo. Hoje o GitHub Pages raiz serve o learner app, enquanto o conteúdo Quarto permanece como fonte editorial/manual.
 
 ## Stack
 
-- **Public site:** Quarto + R + SCSS + JavaScript estático + GitHub Pages
-- **Learner app:** Vite + React + Appwrite + Vercel
+- **Public site source:** Quarto + R + SCSS + JavaScript estático
+- **Live app/runtime:** Vite + React + Appwrite + GitHub Pages
 
 Há um `frontend/package.json` para o learner app. O site Quarto na raiz continua sem toolchain Node própria além das checagens e do uso de Pagefind no CI.
 
@@ -60,7 +60,7 @@ Para renderizar o site estático:
 quarto render
 ```
 
-A saída do site é gerada em `docs/`, usada pelo fluxo de publicação do GitHub Pages.
+A saída Quarto continua sendo gerada em `docs/`, mas o live root atual do GitHub Pages está ocupado pelo learner app empacotado.
 
 Build do learner app:
 
@@ -103,15 +103,35 @@ mgenetica/
 ├── assets/                      # JS e includes HTML
 ├── styles/                      # SCSS principal e dark mode
 ├── data/                        # Manifesto do site e dados simulados
-├── docs/                        # Saída renderizada do Quarto
+├── docs/                        # Saída renderizada do Quarto para revisão/editorial
 ├── frontend/                    # Learner app React + Appwrite
-└── .github/workflows/           # Publicação Pages, Vercel e Appwrite
+└── .github/workflows/           # Publicação Pages, Quarto manual e Appwrite
 ```
+
+## Estado operacional atual
+
+- A URL live `https://mgenetica.github.io/mgenetica/` serve hoje o learner app React publicado na raiz do GitHub Pages.
+- O conteúdo Quarto continua como fonte editorial e fluxo manual, sem disputar automaticamente a mesma raiz publicada.
+- O backend produtivo continua em Appwrite.
+- O painel administrativo depende de:
+  - `VITE_ADMIN_EMAILS` no frontend
+  - `ADMIN_EMAILS` na função `mgenetica_admin_fn`
+  - `APPWRITE_ADMIN_API_KEY` na função `mgenetica_admin_fn` (`APPWRITE_API_KEY` é aceito como fallback)
+
+## Documentação operacional local
+
+Arquivos Markdown de planejamento, tracking e status de operação na raiz do repositório agora são tratados como notas locais e ficam no `.gitignore`. A documentação versionada que continua sendo referência para colaboradores é:
+
+- este `README.md`
+- `frontend/README.md`
+- `frontend/README-APPWRITE.md`
+- `appwrite/README.md`
+- READMEs pontuais de subpastas
 
 ## Escopo para agentes
 
 - Trabalhe no front correto: site público ou learner app.
-- Não trate GitHub Pages como deploy do learner app.
+- Não trate Quarto e learner app como o mesmo artefato publicado.
 - Antes de publicar o site, rode `Rscript scripts/prepublish_site_check.R`.
 - Preserve mudanças locais existentes; não reverta arquivos sem pedido explícito.
 
@@ -119,7 +139,7 @@ mgenetica/
 
 ### Site público
 
-O workflow `.github/workflows/quarto-publish.yml` publica no GitHub Pages em push para `main`.
+O workflow `.github/workflows/quarto-publish.yml` ficou manual. Ele não deve mais disputar automaticamente a raiz do GitHub Pages com o learner app.
 
 Fluxo:
 1. Instalar R
@@ -128,16 +148,14 @@ Fluxo:
 4. Rodar `Rscript scripts/prepublish_site_check.R` com `SKIP_QUARTO_RENDER=1`
 5. Renderizar com Quarto
 6. Indexar com Pagefind
-7. Publicar no GitHub Pages
+7. Gerar artefato Quarto para revisão/publicação manual
 
 ### Learner app
 
-O workflow `.github/workflows/deploy-frontend.yml` publica o learner app no Vercel, mas exige:
+O learner app live é publicado hoje no GitHub Pages root e fala com o Appwrite em produção.
 
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
-
-Sem esses secrets, o learner app não deve ser tratado como live.
-
-Depois do deploy, o host publicado deve ser registrado em Appwrite Web Platforms para login, sessão e execução de funções no navegador.
+Checklist operacional atual:
+- manter `APPWRITE_API_KEY` e `APPWRITE_PROJECT_ID` para deploy das funções
+- registrar `https://mgenetica.github.io/mgenetica/` em Appwrite Web Platforms
+- configurar `VITE_ADMIN_EMAILS` no frontend para expor a entrada admin
+- configurar `ADMIN_EMAILS` e `APPWRITE_ADMIN_API_KEY` na função `mgenetica_admin_fn` para habilitar resumo administrativo real

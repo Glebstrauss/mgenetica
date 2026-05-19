@@ -33,4 +33,22 @@ build/
 /appwrite-logs.txt
 /appwrite.config.json
 
+# Local planning and status notes kept out of the published repo surface
+/BACKLOG_SITE.md
+/DEPLOYMENT_PLAN.md
+/LINEAR_PHASES_2_6_SETUP.md
+/LINEAR_PROJECT_SETUP.md
+/NEXT_SITE.md
+/PLAN-EVOLUCAO-PRODUTO.md
+/PLANO-PROFISSIONAL.md
+/PROJETO-REDESIGN-V5.md
+/PROJETO-REDESIGN-VISUAL-PREMIUM.md
+/PUBLIC_SITE_COMPONENTS.md
+/REDESIGN-EVOLUCAO-5-VERSOES.md
+/ROADMAP_SITE.md
+/SITE-EVOLUTION-BLOCK-2026-05-05.md
+/TRACKING_PROGRESS.md
+/WORKLOG_SITE.md
+/project_status.md
+
 **/*.quarto_ipynb
