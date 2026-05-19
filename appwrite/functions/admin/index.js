@@ -1,8 +1,13 @@
 function parseBody(req) {
-  if (!req) return {};
-  if (req.body && typeof req.body === 'object') return req.body;
-  if (req.payload && typeof req.payload === 'object') return req.payload;
-  return {};
+  const raw = req?.body ?? req?.payload ?? {};
+  if (typeof raw === 'string') {
+    try {
+      return JSON.parse(raw);
+    } catch (_) {
+      return {};
+    }
+  }
+  return raw && typeof raw === 'object' ? raw : {};
 }
 
 function readAdminEmails() {

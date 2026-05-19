@@ -1,6 +1,18 @@
+function parseBody(req) {
+  const raw = req?.body ?? req?.payload ?? {};
+  if (typeof raw === 'string') {
+    try {
+      return JSON.parse(raw);
+    } catch (_) {
+      return {};
+    }
+  }
+  return raw && typeof raw === 'object' ? raw : {};
+}
+
 module.exports = async function (context) {
   const req = context.req || {};
-  const body = req.body || req.payload || {};
+  const body = parseBody(req);
   const action = body.action || 'list';
   const payload = [
     { id: 1, slug: 'intro-genetics', title: 'Introdução à Genética', description: 'Fundamentos da genética para iniciantes', published: true },

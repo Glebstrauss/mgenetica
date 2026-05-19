@@ -1,7 +1,19 @@
+function parseBody(req) {
+  const raw = req?.body ?? req?.payload ?? {};
+  if (typeof raw === 'string') {
+    try {
+      return JSON.parse(raw);
+    } catch (_) {
+      return {};
+    }
+  }
+  return raw && typeof raw === 'object' ? raw : {};
+}
+
 module.exports = async function (context) {
   try {
     const req = context.req || {};
-    const body = req.body || (req.payload ? req.payload : {});
+    const body = parseBody(req);
     const action = body.action || 'capabilities';
     if (action === 'capabilities') {
       const payload = {
