@@ -1,4 +1,4 @@
-import { Client, Account, Databases } from 'appwrite';
+import { Client, Account, Databases, ID } from 'appwrite';
 
 const client = new Client()
   .setEndpoint('https://fra.cloud.appwrite.io/v1')
@@ -62,6 +62,10 @@ async function createEmailSession(email, password) {
   return account.createEmailSession(email, password);
 }
 
+async function createAccount(email, password, name) {
+  return account.create(ID.unique(), email, password, name || undefined);
+}
+
 async function deleteSession() {
   return account.deleteSession('current');
 }
@@ -70,4 +74,4 @@ async function getAccount() {
   return account.get();
 }
 
-export { client, account, databases, pingAppwrite, functionIds, executeFunction, listCourses, submitQuiz, createEmailSession, deleteSession, getAccount };
+export { client, account, databases, pingAppwrite, functionIds, executeFunction, listCourses, submitQuiz, createEmailSession, createAccount, deleteSession, getAccount };

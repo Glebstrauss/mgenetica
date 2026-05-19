@@ -47,3 +47,12 @@
 2. Paste function IDs into `frontend/.env`.
 3. Run `cd frontend && npm run build`.
 4. Validate flow: ping -> courses -> quiz submit.
+
+## Recent changes (automated agents)
+
+- Appwrite functions were iteratively fixed and deployed via the CI workflow.
+- Courses, quizzes, progress and auth functions deployed and smoke-tested (courses returned 200 + JSON).
+- Frontend now includes a minimal client login flow using Appwrite Accounts (email/password) and executes functions with credentialed requests (cookies included).
+- Todo created: implement full E2E tests for login -> listCourses -> submitQuiz.
+- Frontend UI was upgraded into a polished course page that renders the full original Módulo 01 content, including all three R code blocks, explanatory callouts, a table of symbols, and a cleaner learning flow.
+- Auth UX now supports both sign-in and account creation from the same panel, with clearer copy, feedback, and button states.
