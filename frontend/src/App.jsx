@@ -409,6 +409,9 @@ function CatalogPage({ courses, isAdmin, onBack, onOpenCourse, onOpenAdmin, onLo
 }
 
 function AdminPage({ user, status, report, loading, onBack, onRefresh, onLogout, loadingAuth }) {
+  const adminConfigured = report?.admin?.appwrite?.adminApiConfigured
+  const adminEmailsCount = report?.admin?.checks?.configuredAdminEmails
+
   return (
     <div className="app-shell">
       <header className="app-header">
@@ -475,6 +478,32 @@ function AdminPage({ user, status, report, loading, onBack, onRefresh, onLogout,
               <p className="course-description">{value}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="panel" style={{ padding: 18 }}>
+          <strong style={{ display: 'block', marginBottom: 12 }}>Configuração exigida no Appwrite</strong>
+          <p className="section-description" style={{ marginBottom: 12 }}>
+            Para liberar o resumo administrativo real, configure estas variáveis na função <code>mgenetica_admin_fn</code>.
+          </p>
+          <div className="content-grid catalog-grid">
+            <article className="course-card">
+              <strong className="course-title">ADMIN_EMAILS</strong>
+              <p className="course-description">Lista de e-mails admin separados por vírgula.</p>
+            </article>
+            <article className="course-card">
+              <strong className="course-title">APPWRITE_ADMIN_API_KEY</strong>
+              <p className="course-description">Chave admin recomendada para resumo de usuários e funções.</p>
+            </article>
+            <article className="course-card">
+              <strong className="course-title">APPWRITE_API_KEY</strong>
+              <p className="course-description">Fallback aceito pela função admin se a chave dedicada não existir.</p>
+            </article>
+          </div>
+          <p className="subtle" style={{ margin: '14px 0 0' }}>
+            Status atual: adminApiConfigured = {String(Boolean(adminConfigured))}; configuredAdminEmails = {adminEmailsCount ?? 0}
+          </p>
         </div>
       </section>
 

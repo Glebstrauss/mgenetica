@@ -27,6 +27,7 @@ Educational platform for animal genetics and R programming.
 - Optional Vercel deploy is preserved only as manual workflow dispatch.
 - Appwrite browser config now supports endpoint/project env overrides and canonical function-ID fallbacks aligned to `appwrite/functions.json`.
 - Appwrite backend now includes admin function surface for control-panel visibility plus summary mode when admin API key is configured in function variables.
+- Exact live admin-function variable names are now fixed in code and docs: `ADMIN_EMAILS`, `APPWRITE_ADMIN_API_KEY`, with `APPWRITE_API_KEY` accepted as fallback.
 - `appwrite/functions.json` was cleaned to keep one canonical entry per function before the next Appwrite push.
 - Frontend publish metadata was cleaned so the live page no longer carries a dev-only title string.
 - The deploy workflows were refreshed to the newer JavaScript-action runtime path before the next publish.

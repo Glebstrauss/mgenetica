@@ -11,6 +11,16 @@ What was scaffolded:
 - docker-compose.yml for appwrite + mariadb + redis
 - example function scaffold at appwrite/functions/quizzes
 
+Cloud function variables used by this repo:
+- `ADMIN_EMAILS`: comma-separated list of admin e-mails for `mgenetica_admin_fn`
+- `APPWRITE_ADMIN_API_KEY`: recommended admin/server key for `mgenetica_admin_fn` summary mode
+- `APPWRITE_API_KEY`: accepted fallback key name in `mgenetica_admin_fn` when dedicated admin key is not set
+
+Current live behavior:
+- learner account creation/login works with browser Appwrite SDK
+- learner functions execute for authenticated users
+- admin summary remains unavailable until `ADMIN_EMAILS` and an admin API key are configured in the live function environment
+
 Next steps (manual):
 1. Start Appwrite with docker compose.
 2. Open Appwrite console (http://localhost) and create a project and an API key.

@@ -18,3 +18,8 @@ Using Appwrite with the frontend
    - register deployed origin in Appwrite Web Platforms
    - confirm cookie/session auth works cross-origin
    - confirm `APPWRITE_API_KEY` and `APPWRITE_PROJECT_ID` exist for function deploy workflow
+7. Admin panel runtime requirements:
+   - configure `VITE_ADMIN_EMAILS` in frontend env to expose admin entrypoint for allowed users
+   - configure `ADMIN_EMAILS` in live `mgenetica_admin_fn` variables with the same admin e-mails
+   - configure `APPWRITE_ADMIN_API_KEY` in live `mgenetica_admin_fn` variables for admin summary mode
+   - `APPWRITE_API_KEY` is also accepted by the function as fallback, but `APPWRITE_ADMIN_API_KEY` is the clearer dedicated name

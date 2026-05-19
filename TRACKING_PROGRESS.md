@@ -13,6 +13,10 @@
 - Frontend now falls back to canonical Appwrite function IDs from `appwrite/functions.json` when env overrides are absent.
 - Frontend now includes admin panel support gated by VITE_ADMIN_EMAILS and backed by mgenetica_admin_fn.
 - Admin backend now supports `status` and `summary`; summary reads Appwrite admin data only when an admin API key is configured in function variables.
+- Exact live variable names required by `mgenetica_admin_fn`:
+  - `ADMIN_EMAILS`
+  - `APPWRITE_ADMIN_API_KEY` (recommended)
+  - `APPWRITE_API_KEY` (fallback accepted by code)
 - App startup already pings Appwrite using `client.ping()`.
 - Frontend now uses Appwrite Functions for courses and quiz submission.
 - The local frontend shell now opens with a polished welcome/home page and a full Módulo 01 learning view, including all R code blocks from the original page.
@@ -78,6 +82,7 @@
 - Appwrite functions were iteratively fixed and deployed via the CI workflow.
 - The direct Pages frontend deploy and Appwrite deploy both completed successfully for commit `1bd3df3`.
 - The admin backend was hardened again on 2026-05-19 to remove duplicate function definitions and add Appwrite summary support behind admin API-key configuration.
+- Live smoke check on 2026-05-19 confirmed admin key is still absent in cloud runtime: `adminApiConfigured=false` and `configuredAdminEmails=0`.
 - Courses, quizzes, progress and auth functions deployed and smoke-tested (courses returned 200 + JSON).
 - Frontend now includes a minimal client login flow using Appwrite Accounts (email/password) and executes functions with credentialed requests (cookies included).
 - Todo created: implement full E2E tests for login -> listCourses -> submitQuiz.
