@@ -28,15 +28,31 @@
       .replace(/'/g, '&#39;');
   }
 
+  function clearNode(node) {
+    while (node.firstChild) node.removeChild(node.firstChild);
+  }
+
+  function appendTextElement(parent, tag, className, text) {
+    var el = document.createElement(tag);
+    if (className) el.className = className;
+    el.textContent = text;
+    parent.appendChild(el);
+    return el;
+  }
+
   function quizPath(moduleId) {
     return getAssetPrefix() + 'quizzes/quiz-' + moduleId + '.json';
   }
 
   function showMessage(container, message, type) {
-    container.innerHTML =
-      '<div class="quiz-result ' + (type || 'result-fail') + '" role="status" aria-live="polite" style="display:block">' +
-        escapeHtml(message) +
-      '</div>';
+    clearNode(container);
+    var result = document.createElement('div');
+    result.className = 'quiz-result ' + (type || 'result-fail');
+    result.setAttribute('role', 'status');
+    result.setAttribute('aria-live', 'polite');
+    result.style.display = 'block';
+    result.textContent = message;
+    container.appendChild(result);
   }
 
   function loadQuiz(moduleId) {
@@ -50,7 +66,8 @@
     var moduleId = container.getAttribute('data-module');
     if (!moduleId) return;
 
-    container.innerHTML = '<p class="quiz-subtitle">' + escapeHtml(t('quiz.loading', 'Carregando quiz...')) + '</p>';
+    clearNode(container);
+    appendTextElement(container, 'p', 'quiz-subtitle', t('quiz.loading', 'Carregando quiz...'));
 
     loadQuiz(moduleId)
       .then(function (data) {
@@ -70,28 +87,60 @@
       return;
     }
 
-    var html = '<div class="quiz-title" id="quiz-title-' + moduleId + '">' + escapeHtml(data.title || t('quiz.default_title', 'Quiz - Módulo {module}', { module: moduleId })) + '</div>';
-    html += '<p class="quiz-subtitle">' +
-      escapeHtml(data.subtitle || t('quiz.default_subtitle', 'Responda as questões abaixo. São necessários {passMark} acertos.', { passMark: data.passMark })) +
-      '</p>';
+    clearNode(container);
+    var titleEl = appendTextElement(container, 'div', 'quiz-title', data.title || t('quiz.default_title', 'Quiz - Módulo {module}', { module: moduleId }));
+    titleEl.id = 'quiz-title-' + moduleId;
+    appendTextElement(
+      container,
+      'p',
+      'quiz-subtitle',
+      data.subtitle || t('quiz.default_subtitle', 'Responda as questões abaixo. São necessários {passMark} acertos.', { passMark: data.passMark })
+    );
 
     data.questions.forEach(function (q, qi) {
-      html += '<div class="quiz-question" data-qi="' + qi + '">';
-      html += '<div class="quiz-question-text">' + (qi + 1) + '. ' + escapeHtml(q.text) + '</div>';
-      html += '<div class="quiz-options" role="group" aria-label="' + escapeHtml(t('quiz.question_label', 'Questão {index}', { index: qi + 1 })) + '">';
+      var questionEl = document.createElement('div');
+      var questionText = document.createElement('div');
+      var optionsEl = document.createElement('div');
+      questionEl.className = 'quiz-question';
+      questionEl.setAttribute('data-qi', String(qi));
+      questionText.className = 'quiz-question-text';
+      questionText.textContent = (qi + 1) + '. ' + q.text;
+      optionsEl.className = 'quiz-options';
+      optionsEl.setAttribute('role', 'group');
+      optionsEl.setAttribute('aria-label', t('quiz.question_label', 'Questão {index}', { index: qi + 1 }));
       q.options.forEach(function (opt, oi) {
-        html +=
-          '<button class="quiz-option" type="button" data-oi="' + oi + '" aria-pressed="false" aria-label="' + escapeHtml(t('quiz.option_label', 'Opção {index}', { index: oi + 1 })) + '">' +
-          '<span class="opt-letter">' + ['A', 'B', 'C', 'D', 'E'][oi] + '.</span> ' + escapeHtml(opt) +
-          '</button>';
+        var button = document.createElement('button');
+        var letter = document.createElement('span');
+        button.className = 'quiz-option';
+        button.type = 'button';
+        button.setAttribute('data-oi', String(oi));
+        button.setAttribute('aria-pressed', 'false');
+        button.setAttribute('aria-label', t('quiz.option_label', 'Opção {index}', { index: oi + 1 }));
+        letter.className = 'opt-letter';
+        letter.textContent = ['A', 'B', 'C', 'D', 'E'][oi] + '.';
+        button.appendChild(letter);
+        button.appendChild(document.createTextNode(' ' + opt));
+        optionsEl.appendChild(button);
       });
-      html += '</div></div>';
+      questionEl.appendChild(questionText);
+      questionEl.appendChild(optionsEl);
+      container.appendChild(questionEl);
     });
 
-    html += '<button class="quiz-submit-btn" type="button" disabled aria-describedby="quiz-title-' + moduleId + '">' + escapeHtml(t('quiz.submit', 'Verificar respostas')) + '</button>';
-    html += '<div class="quiz-result" role="status" aria-live="polite" style="display:none"></div>';
+    var submit = document.createElement('button');
+    submit.className = 'quiz-submit-btn';
+    submit.type = 'button';
+    submit.disabled = true;
+    submit.setAttribute('aria-describedby', 'quiz-title-' + moduleId);
+    submit.textContent = t('quiz.submit', 'Verificar respostas');
+    container.appendChild(submit);
 
-    container.innerHTML = html;
+    var result = document.createElement('div');
+    result.className = 'quiz-result';
+    result.setAttribute('role', 'status');
+    result.setAttribute('aria-live', 'polite');
+    result.style.display = 'none';
+    container.appendChild(result);
     attachQuizEvents(container, moduleId, data);
     updateTeacherHints(container, data);
   }
@@ -105,9 +154,15 @@
       var q = data.questions[qi];
       var answer = q.options[q.correct];
       var note = document.createElement('div');
+      var strong = document.createElement('strong');
+      var span = document.createElement('span');
       note.className = 'teacher-answer';
-      note.innerHTML = '<strong>' + escapeHtml(t('quiz.answer_key', 'Gabarito:')) + '</strong> ' + escapeHtml(answer) +
-        '<br><span>' + escapeHtml(t('quiz.teacher_note', 'Comentario: esta alternativa preserva a definicao tecnica usada no modulo e deve ser conectada ao resultado da simulacao em R.')) + '</span>';
+      strong.textContent = t('quiz.answer_key', 'Gabarito:');
+      span.textContent = t('quiz.teacher_note', 'Comentario: esta alternativa preserva a definicao tecnica usada no modulo e deve ser conectada ao resultado da simulacao em R.');
+      note.appendChild(strong);
+      note.appendChild(document.createTextNode(' ' + answer));
+      note.appendChild(document.createElement('br'));
+      note.appendChild(span);
       qEl.appendChild(note);
     });
   }
@@ -176,23 +231,21 @@
 
     if (passed) {
       resultEl.className = 'quiz-result result-pass';
-      resultEl.innerHTML =
-        escapeHtml(t('quiz.pass', 'Você acertou {correct} de {total} questões e concluiu o Módulo {module}.', {
-          correct: correct,
-          total: data.questions.length,
-          module: moduleId
-        }));
+      resultEl.textContent = t('quiz.pass', 'Você acertou {correct} de {total} questões e concluiu o Módulo {module}.', {
+        correct: correct,
+        total: data.questions.length,
+        module: moduleId
+      });
       if (window.mgenetica) {
         window.mgenetica.markModuleComplete('modulo' + moduleId);
       }
     } else {
       resultEl.className = 'quiz-result result-fail';
-      resultEl.innerHTML =
-        escapeHtml(t('quiz.fail', 'Você acertou {correct} de {total} questões. São necessários {passMark} acertos. Revise o conteúdo e tente novamente.', {
-          correct: correct,
-          total: data.questions.length,
-          passMark: passMark
-        }));
+      resultEl.textContent = t('quiz.fail', 'Você acertou {correct} de {total} questões. São necessários {passMark} acertos. Revise o conteúdo e tente novamente.', {
+        correct: correct,
+        total: data.questions.length,
+        passMark: passMark
+      });
     }
 
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -498,22 +498,40 @@ summary.textContent = completed.length + ' of ' + MODULES.length + ' completed m
     }
 updateNextPendingAction(pending[0]);
 var list = document.getElementById('cert-progress-list');
-var html = '<ul class="certificate-progress-list">';
+var wrapper = document.createElement('ul');
+wrapper.className = 'certificate-progress-list';
 MODULES.forEach(function (m) {
 var done = completed.includes(m);
 var moduleLabel = formatModuleLabel(m);
 var title = MODULE_TITLES[m] || m;
 var href = MODULE_LINKS[m];
-var label = 'Open ' + moduleLabel + ': ' + title;
-var titleHtml = href ? ('<a href=\"' + href + '\" aria-label=\"' + label + '\">' + title + '</a>') : title;
-html += '<li class="certificate-progress-item ' + (done ? 'is-complete' : 'is-pending') + '">' +
-'<span class="certificate-progress-state">' + (done ? 'Completed' : 'Pending') + '</span>' +
-'<span class="certificate-progress-module" aria-hidden="true">' + moduleLabel + '</span>' +
-'<span class="certificate-progress-title">' + titleHtml + '</span>' +
-'</li>';
+var item = document.createElement('li');
+var state = document.createElement('span');
+var module = document.createElement('span');
+var titleWrap = document.createElement('span');
+item.className = 'certificate-progress-item ' + (done ? 'is-complete' : 'is-pending');
+state.className = 'certificate-progress-state';
+state.textContent = done ? 'Completed' : 'Pending';
+module.className = 'certificate-progress-module';
+module.setAttribute('aria-hidden', 'true');
+module.textContent = moduleLabel;
+titleWrap.className = 'certificate-progress-title';
+if (href) {
+var link = document.createElement('a');
+link.href = href;
+link.setAttribute('aria-label', 'Open ' + moduleLabel + ': ' + title);
+link.textContent = title;
+titleWrap.appendChild(link);
+} else {
+titleWrap.textContent = title;
+}
+item.appendChild(state);
+item.appendChild(module);
+item.appendChild(titleWrap);
+wrapper.appendChild(item);
     });
-html += '</ul>';
-list.innerHTML = html;
+list.textContent = '';
+list.appendChild(wrapper);
   }
 
 function formatModuleLabel(moduleId) {

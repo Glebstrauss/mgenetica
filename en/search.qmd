@@ -312,8 +312,8 @@ The next step is in the roadmap.
 <script>
 window.addEventListener('DOMContentLoaded', function () {
 if (typeof PagefindUI === 'undefined') {
-document.getElementById('search').innerHTML =
-'<p>Search is activated after the published rendering of the site.</p>';
+var fallback = document.getElementById('search');
+fallback.textContent = 'Search is activated after the published rendering of the site.';
 return;
   }
 

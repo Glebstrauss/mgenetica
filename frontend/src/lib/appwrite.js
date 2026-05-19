@@ -39,7 +39,7 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
       'Content-Type': 'application/json',
       'X-Appwrite-Project': APPWRITE_PROJECT_ID
     },
-    credentials: includeCredentials ? 'include' : 'same-origin',
+    credentials: includeCredentials ? 'include' : 'omit',
     body: JSON.stringify({
       body: JSON.stringify(payload)
     })
@@ -59,13 +59,19 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
   return data;
 }
 
+function shouldUseCookieFallback() {
+  if (typeof window === 'undefined') return false;
+  const host = String(window.location.hostname || '').toLowerCase();
+  return host === 'localhost' || host === '127.0.0.1';
+}
+
 function readCookieFallback() {
-  if (typeof window === 'undefined' || !window.localStorage) return '';
+  if (!shouldUseCookieFallback() || !window.localStorage) return '';
   return window.localStorage.getItem('cookieFallback') || '';
 }
 
 function writeCookieFallback(response) {
-  if (typeof window === 'undefined' || !window.localStorage) return;
+  if (!shouldUseCookieFallback() || !window.localStorage) return;
   const fallback = response.headers.get('X-Fallback-Cookies');
   if (fallback) {
     window.localStorage.setItem('cookieFallback', fallback);
@@ -73,7 +79,7 @@ function writeCookieFallback(response) {
 }
 
 function clearCookieFallback() {
-  if (typeof window === 'undefined' || !window.localStorage) return;
+  if (!shouldUseCookieFallback() || !window.localStorage) return;
   window.localStorage.removeItem('cookieFallback');
 }
 
@@ -100,7 +106,7 @@ async function callAccountApi(path, { method = 'GET', payload, allowRetryWithout
   try {
     response = await run('include');
   } catch (error) {
-    if (!allowRetryWithoutCredentials) throw error;
+    if (!allowRetryWithoutCredentials || !shouldUseCookieFallback()) throw error;
     response = await run('omit');
   }
 

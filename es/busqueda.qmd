@@ -312,8 +312,8 @@ El siguiente paso está en la hoja de ruta.
 <script>
 window.addEventListener('DOMContentLoaded', function () {
   if (typeof PagefindUI === 'undefined') {
-    document.getElementById('search').innerHTML =
-      '<p>La búsqueda se activa después de la publicación del sitio.</p>';
+    var fallback = document.getElementById('search');
+    fallback.textContent = 'La búsqueda se activa después de la publicación del sitio.';
     return;
   }
 

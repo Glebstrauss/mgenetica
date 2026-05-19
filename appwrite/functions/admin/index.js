@@ -17,6 +17,14 @@ function readAdminEmails() {
     .filter(Boolean);
 }
 
+function readUserEmail(headers) {
+  return String(
+    headers['x-appwrite-user-email'] ||
+    headers['X-Appwrite-User-Email'] ||
+    ''
+  ).trim().toLowerCase();
+}
+
 function currentAppwriteConfig() {
   return {
     endpoint: process.env.APPWRITE_FUNCTION_ENDPOINT || process.env.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1',
@@ -76,7 +84,6 @@ function makeStatusPayload(userEmail) {
     },
     appwrite: {
       endpoint,
-      projectId,
       adminApiConfigured: Boolean(apiKey)
     },
     user: {
@@ -84,7 +91,7 @@ function makeStatusPayload(userEmail) {
       isAdmin: userEmail ? adminEmails.includes(userEmail) : false
     },
     checks: {
-      configuredAdminEmails: adminEmails.length
+      adminEmailsConfigured: adminEmails.length > 0
     }
   };
 }
@@ -95,12 +102,7 @@ module.exports = async function (context) {
     const body = parseBody(req);
     const headers = req.headers || {};
     const action = body.action || 'status';
-    const userEmail = String(
-      headers['x-appwrite-user-email'] ||
-      headers['X-Appwrite-User-Email'] ||
-      body.email ||
-      ''
-    ).trim().toLowerCase();
+    const userEmail = readUserEmail(headers);
 
     const statusPayload = makeStatusPayload(userEmail);
 

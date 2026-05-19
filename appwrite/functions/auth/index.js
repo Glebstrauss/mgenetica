@@ -18,11 +18,11 @@ module.exports = async function (context) {
     if (action === 'capabilities') {
       const payload = {
         ok: true,
-        authStrategy: 'appwrite-account-client',
+        authStrategy: 'appwrite-account-rest',
         flows: ['create-account', 'email-login', 'logout', 'get-account'],
         notes: [
-          'Use Appwrite Account.create on client for sign-up.',
-          'Use Appwrite Account.createEmailSession on client for login.',
+          'Use Appwrite REST /account on client for sign-up.',
+          'Use Appwrite REST /account/sessions/email on client for login.',
           'Add deployed host to Appwrite Web Platforms before production auth tests.'
         ]
       };
