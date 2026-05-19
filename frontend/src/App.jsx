@@ -9,6 +9,7 @@ import {
   getProgress,
   getAuthCapabilities,
   getAdminStatus,
+  getAdminSummary,
   createEmailSession,
   createAccount,
   deleteSession,
@@ -640,12 +641,13 @@ export default function App() {
     setLoadingAdmin(true)
     setStatus('Executando checks de sistema…')
     try {
-      const [ping, auth, coursesPayload, progress, admin] = await Promise.all([
+      const [ping, auth, coursesPayload, progress, admin, summary] = await Promise.all([
         pingAppwrite().then(() => ({ ok: true })).catch((err) => ({ ok: false, error: err.message })),
         getAuthCapabilities().catch((err) => ({ ok: false, error: err.message })),
         listCourses().catch((err) => ({ ok: false, error: err.message })),
         getProgress(user?.$id || user?.email || 'anonymous').catch((err) => ({ ok: false, error: err.message })),
-        getAdminStatus(user?.email || '').catch((err) => ({ ok: false, error: err.message }))
+        getAdminStatus(user?.email || '').catch((err) => ({ ok: false, error: err.message })),
+        getAdminSummary(user?.email || '').catch((err) => ({ ok: false, error: err.message }))
       ])
 
       setAdminReport({
@@ -655,6 +657,7 @@ export default function App() {
         courses: coursesPayload,
         progress,
         admin,
+        summary,
         user: user ? { id: user.$id, email: user.email || null, name: user.name || null } : null
       })
       setStatus('Checks de sistema concluídos.')

@@ -95,6 +95,10 @@ async function getAdminStatus(email) {
   return executeFunction(functionIds.admin, { action: 'status', email }, { includeCredentials: true });
 }
 
+async function getAdminSummary(email) {
+  return executeFunction(functionIds.admin, { action: 'summary', email }, { includeCredentials: true });
+}
+
 async function createEmailSession(email, password) {
   return account.createEmailSession(email, password);
 }
@@ -123,6 +127,7 @@ export {
   getProgress,
   getAuthCapabilities,
   getAdminStatus,
+  getAdminSummary,
   createEmailSession,
   createAccount,
   deleteSession,

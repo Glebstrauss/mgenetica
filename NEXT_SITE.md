@@ -12,7 +12,7 @@ Work only on public site. Do not alter app. Do not publish automatically unless 
 
 **PUBLISHED AND LIVE:** the Phase 1-4 public-site redesign was validated locally, the remaining EN/ES translation leaks plus long-label layout adjustments were completed, and the site was published successfully on 2026-05-17. Representative live module QA on 2026-05-17 found no visible regression. Manifest cleanup on 2026-05-17 removed duplicated phase labels from module items, and the theme toggle now uses an explicit label.
 **SCSS MAINTAINABILITY:** on 2026-05-18, the first cleanup pass moved shared cyan token aliases into the top stylesheet token block and removed a later duplicate override.
-**SPLIT ENTRYPOINT CLARITY:** on 2026-05-19, the public site now explicitly exposes a separate learner-platform entrypoint and the repo docs/workflows no longer imply that the React frontend should appear on GitHub Pages root.
+**DIRECT PAGES FRONTEND:** on 2026-05-19, GitHub Pages root was repointed to serve the React learner frontend directly, and live asset checks confirmed that the published JS/CSS are loading from the same URL base.
 
 - Phase 1 brand system reset is applied to the public site shell.
 - Phase 2 homepage simplification is applied in PT, EN and ES.
@@ -26,13 +26,13 @@ Work only on public site. Do not alter app. Do not publish automatically unless 
 - The full prepublish gate passed with render enabled on 2026-05-17.
 - GitHub Pages deployment on `main` completed successfully on 2026-05-17, and the live site responds at `https://mgenetica.github.io/mgenetica/`.
 - Shared cyan aliases now live in the main SCSS token block, reducing duplicate token definitions.
-- Public navigation and homepage now include a learner-platform entrypoint that is separate from the open Quarto learning pages.
+- GitHub Pages root is now occupied by the learner frontend, while Quarto publication remains manual only.
 - Frontend deploy and Appwrite deploy workflows now fail loudly when required secrets are missing, to avoid false “live” assumptions.
-- Learner-app production host and Appwrite web-platform origin are still external prerequisites, not solved by GitHub Pages publish.
+- Appwrite Web Platform origin and admin API-key configuration are still external prerequisites for full auth/admin smoke checks.
 
 ## Objective (next phase)
 
-Continue site-only maintainability and QA work if further cleanup is useful. Keep copy concise, preserve the public editorial experience and avoid app-like behavior. Treat learner-app hosting and Appwrite console setup as separate operational work, not Quarto-site work.
+For the next site-only block, limit work to Quarto/editorial maintenance only if it becomes necessary. Immediate operational priority outside pure site scope is Appwrite production auth validation on the published Pages host.
 
 ## Current local state
 
@@ -51,8 +51,9 @@ Continue site-only maintainability and QA work if further cleanup is useful. Kee
 - Theme control now uses explicit `theme.toggle` wording.
 - Full project render and the full prepublish site check now complete successfully after clearing stray generated source-side render artifacts.
 - The live GitHub Pages deployment reflects the published redesign.
-- The public site now makes separation from the learner app explicit through its entrypoints.
-- The separate learner app still requires Vercel production configuration and Appwrite Web Platform origin registration before it can be treated as live.
+- GitHub Pages root now serves the learner frontend directly.
+- Quarto publication is still available only through manual workflow dispatch.
+- Appwrite Web Platform origin registration is still required if browser auth fails on the published host.
 
 ## In scope (next quality-improvement block)
 
@@ -63,7 +64,7 @@ Continue site-only maintainability and QA work if further cleanup is useful. Kee
 ## Out of scope
 
 - App changes.
-- Treating GitHub Pages publish as learner-app deploy.
+- Treating Quarto publication and learner-app publication as the same thing.
 - Backend, auth or account features.
 - Unnecessary republish without a meaningful site change.
 - v6 platform migration or Astro adoption during a normal site-polish block.

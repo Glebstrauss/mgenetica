@@ -7,13 +7,14 @@
 Educational platform for animal genetics and R programming.
 
 - **Core Goal:** public scientific editorial platform with premium, trustworthy and modern UI/UX.
-- **Current Phase:** GitHub Pages root is being switched to serve learner React app directly.
-- **Immediate Next Phase:** complete Appwrite production auth/function checks and admin runtime validation after Pages deploy lands.
+- **Current Phase:** GitHub Pages root now serves the learner React app directly.
+- **Immediate Next Phase:** validate Appwrite production auth/create-account/login/current-account flow on the published Pages host and complete admin runtime checks.
 - **Target Longer-Term Phase:** v6 interactive learning layer with WebR and richer client-side learning tools.
 
 ## Verified Current State
 
 - Primary live target is `https://mgenetica.github.io/mgenetica/`.
+- The current live HTML at that URL is the React learner app, not the Quarto editorial homepage.
 - PT-BR, English and Spanish public page trees exist for homepage, utility pages, roadmap and the 12 module pages.
 - The locale switcher is base-path aware for GitHub Pages `/mgenetica/`.
 - Module R examples inside the pages are static fenced code, while executable validation still runs through `scripts/run_all_modules.R`.
@@ -25,7 +26,9 @@ Educational platform for animal genetics and R programming.
 - Quarto publication is preserved only as manual workflow dispatch.
 - Optional Vercel deploy is preserved only as manual workflow dispatch.
 - Appwrite browser config now supports endpoint/project env overrides and canonical function-ID fallbacks aligned to `appwrite/functions.json`.
-- Appwrite backend now includes admin function surface for control-panel visibility.
+- Appwrite backend now includes admin function surface for control-panel visibility plus summary mode when admin API key is configured in function variables.
+- `appwrite/functions.json` was cleaned to keep one canonical entry per function before the next Appwrite push.
+- Frontend publish metadata was cleaned so the live page no longer carries a dev-only title string.
 - The deploy workflows were refreshed to the newer JavaScript-action runtime path before the next publish.
 - The auxiliary frontend landing surface received a verified 2026-05-19 hero/auth layout correction to restore grid alignment, readable headline scale and consistent button/card rhythm across desktop and mobile.
 - The auxiliary frontend hero highlight cards now use a cleaner icon/title/body hierarchy after 2026-05-19 visual QA exposed severe wrapping and balance defects in the previous card copy treatment.
@@ -47,7 +50,7 @@ Educational platform for animal genetics and R programming.
 
 - **Primary runtime:** SPA served from Pages under /mgenetica/
 - **Auth/runtime:** Appwrite browser SDK plus Appwrite cloud functions with credentialed requests
-- **Admin runtime:** frontend admin gate by e-mail allowlist plus Appwrite admin status function
+- **Admin runtime:** frontend admin gate by e-mail allowlist plus Appwrite admin status/summary function
 
 ## File Map (Critical)
 
@@ -63,7 +66,7 @@ Educational platform for animal genetics and R programming.
 
 1. **Pages-root activation:** publish learner app directly to GitHub Pages root.
 2. **Appwrite production safety:** register Pages origin in Appwrite Web Platforms and validate create-account/login/current-account/function flow.
-3. **Admin visibility:** validate control-panel checks and admin access gating.
+3. **Admin visibility:** validate control-panel checks, admin access gating and summary mode with admin API key configured in function variables.
 
 ## Operational Constraints
 

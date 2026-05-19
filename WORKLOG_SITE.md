@@ -2,6 +2,62 @@
 
 Use this file to register site-only work blocks. Do not use it for app work.
 
+## 2026-05-19 - Direct Pages frontend activation and Appwrite admin hardening
+
+### Block objective
+
+Serve the learner frontend directly at the GitHub Pages URL requested by the user, validate whether the live root is actually loading, and harden the Appwrite/auth/admin path enough to support real production smoke checks.
+
+### Cycles executed
+
+1. Diagnosis: the deploy had passed, but it was still unclear whether the published root URL was serving the new frontend correctly or failing at runtime.
+   Implementation: verified live root HTML and published asset URLs, confirmed that GitHub Pages is now serving the React learner shell directly, and aligned the frontend publish path/workflow around that target.
+   Testing: checked `https://mgenetica.github.io/mgenetica/` plus the published JS/CSS asset URLs; all responded successfully.
+   Notes: the loading problem is no longer a static-upload failure.
+
+2. Diagnosis: the Appwrite control surface existed, but it was too shallow for an admin panel and the function manifest had duplicate admin entries.
+   Implementation: cleaned `appwrite/functions.json`, upgraded `mgenetica_admin_fn` to support `status` plus `summary`, and extended the frontend admin page to request the richer summary check set.
+   Testing: reran frontend production build, JS syntax validation for the admin function, and `git diff --check`.
+   Notes: summary mode depends on an admin API key being configured in the Appwrite function variables.
+
+### Files changed in this block
+
+- `appwrite/functions.json`
+- `appwrite/functions/admin/index.js`
+- `frontend/index.html`
+- `frontend/src/lib/appwrite.js`
+- `frontend/src/appwriteClient.js`
+- `frontend/src/App.jsx`
+- `WORKLOG_SITE.md`
+- `NEXT_SITE.md`
+- `TRACKING_PROGRESS.md`
+- `project_status.md`
+
+### Commands executed
+
+- `curl -I https://mgenetica.github.io/mgenetica/`
+- `curl -L https://mgenetica.github.io/mgenetica/`
+- `curl -I https://mgenetica.github.io/mgenetica/assets/index-mFStpTYu.js`
+- `curl -I https://mgenetica.github.io/mgenetica/assets/index-B2gyVtNH.css`
+- `curl -s 'https://api.github.com/repos/Mgenetica/mgenetica/actions/runs?per_page=10'`
+- `cd frontend && npm run build`
+- `node --check appwrite/functions/admin/index.js`
+- `git diff --check`
+
+### Test results
+
+- GitHub Pages root responded with the React learner shell HTML.
+- Published JS and CSS assets responded with HTTP 200.
+- Latest Pages deploy and Appwrite deploy completed successfully.
+- Frontend production build passed locally.
+- Admin function syntax validation passed.
+
+### Pending items
+
+- Add published Pages host to Appwrite Web Platforms if auth still fails in browser.
+- Configure `APPWRITE_ADMIN_API_KEY` or `APPWRITE_API_KEY` in Appwrite function variables to unlock admin summary data.
+- Run real browser smoke test for create-account, login, current session and admin summary on the published host.
+
 ## 2026-05-19 - Public split-entrypoint clarification
 
 ### Block objective

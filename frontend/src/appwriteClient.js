@@ -6,5 +6,17 @@ export {
   functionIds,
   executeFunction,
   listCourses,
-  submitQuiz
+  submitQuiz,
+  getProgress,
+  getAuthCapabilities,
+  getAdminStatus,
+  getAdminSummary,
+  createEmailSession,
+  createAccount,
+  deleteSession,
+  getAccount,
+  normalizeAuthError,
+  APPWRITE_ENDPOINT,
+  APPWRITE_PROJECT_ID,
+  PUBLIC_SITE_URL
 } from './lib/appwrite';
