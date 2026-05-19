@@ -50,17 +50,23 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
   if (!res.ok) {
     throw new Error(data?.message || 'Appwrite execution failed.');
   }
+  let payloadData = data;
   if (typeof data?.responseBody === 'string' && data.responseBody.length > 0) {
     try {
-      return JSON.parse(data.responseBody);
+      payloadData = JSON.parse(data.responseBody);
     } catch (_) {
-      return data.responseBody;
+      payloadData = data.responseBody;
     }
+  } else if (data?.responseBody && typeof data.responseBody === 'object') {
+    payloadData = data.responseBody;
   }
-  if (data?.responseBody && typeof data.responseBody === 'object') {
-    return data.responseBody;
+  if (Number(data?.responseStatusCode || 0) >= 400) {
+    throw new Error(payloadData?.message || data?.errors || 'Appwrite function execution failed.');
   }
-  return data;
+  if (payloadData && typeof payloadData === 'object' && payloadData.ok === false) {
+    throw new Error(payloadData.message || payloadData.error || 'Appwrite function returned an error.');
+  }
+  return payloadData;
 }
 
 function shouldUseCookieFallback() {

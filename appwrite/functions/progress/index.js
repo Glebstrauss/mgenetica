@@ -16,7 +16,7 @@ function currentAppwriteConfig() {
   return {
     endpoint: process.env.APPWRITE_FUNCTION_ENDPOINT || process.env.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1',
     projectId: process.env.APPWRITE_FUNCTION_PROJECT_ID || process.env.APPWRITE_PROJECT_ID || '6a0b2fc1001c380eeb26',
-    apiKey: process.env.APPWRITE_ADMIN_API_KEY || process.env.APPWRITE_API_KEY || ''
+    apiKey: process.env.APPWRITE_ADMIN_API_KEY || process.env.APPWRITE_API_KEY || process.env.APPWRITE_FUNCTION_API_KEY || ''
   };
 }
 
@@ -35,7 +35,7 @@ async function appwriteAdminRequest(pathname, { method = 'GET', payload } = {}) 
       ok: false,
       status: 503,
       error: 'missing_admin_api_key',
-      message: 'Configure APPWRITE_ADMIN_API_KEY or APPWRITE_API_KEY in the progress function environment.'
+      message: 'Configure APPWRITE_ADMIN_API_KEY, APPWRITE_API_KEY, or Appwrite function scopes so APPWRITE_FUNCTION_API_KEY is available.'
     };
   }
 

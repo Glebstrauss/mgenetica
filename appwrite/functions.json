@@ -62,7 +62,10 @@
       "node_modules",
       ".git"
     ],
-    "scopes": [],
+    "scopes": [
+      "users.read",
+      "users.write"
+    ],
     "vars": []
   },
   {
@@ -106,7 +109,9 @@
       "node_modules",
       ".git"
     ],
-    "scopes": [],
+    "scopes": [
+      "users.read"
+    ],
     "vars": []
   }
 ]

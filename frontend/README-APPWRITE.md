@@ -25,5 +25,6 @@ Using Appwrite with the frontend
    - `APPWRITE_API_KEY` is also accepted by the function as fallback, but `APPWRITE_ADMIN_API_KEY` is the clearer dedicated name
 8. Learner progress persistence requirements:
    - `mgenetica_progress_fn` stores learner progress in Appwrite user prefs under `mgeneticaProgress`
-   - configure `APPWRITE_ADMIN_API_KEY` or `APPWRITE_API_KEY` in live `mgenetica_progress_fn` variables
+   - preferred: grant `users.read` + `users.write` scopes so the runtime `APPWRITE_FUNCTION_API_KEY` can be used automatically
+   - fallback: configure `APPWRITE_ADMIN_API_KEY` or `APPWRITE_API_KEY` in live `mgenetica_progress_fn` variables
    - quiz submissions update percent, attempts, pass state, and timestamps through that function
