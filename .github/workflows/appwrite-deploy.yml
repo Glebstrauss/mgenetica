@@ -77,9 +77,9 @@ jobs:
             return payload.variables || payload.variablesList || [];
           }
 
-          async function upsertVariable(functionId, key, value, secret) {
+          async function upsertVariable(functionId, variableId, key, value, secret) {
             const existing = (await listVariables(functionId)).find((item) => item.key === key);
-            const body = { key, value, secret };
+            const body = { variableId, key, value, secret };
             if (existing?.$id) {
               await request(`/functions/${functionId}/variables/${existing.$id}`, { method: 'PUT', body });
               return;
@@ -87,10 +87,10 @@ jobs:
             await request(`/functions/${functionId}/variables`, { method: 'POST', body });
           }
 
-          await upsertVariable('mgenetica_progress_fn', 'APPWRITE_API_KEY', apiKey, true);
-          await upsertVariable('mgenetica_admin_fn', 'APPWRITE_API_KEY', apiKey, true);
+          await upsertVariable('mgenetica_progress_fn', 'progress_appwrite_api_key', 'APPWRITE_API_KEY', apiKey, true);
+          await upsertVariable('mgenetica_admin_fn', 'admin_appwrite_api_key', 'APPWRITE_API_KEY', apiKey, true);
           if (adminEmails.trim()) {
-            await upsertVariable('mgenetica_admin_fn', 'ADMIN_EMAILS', adminEmails, false);
+            await upsertVariable('mgenetica_admin_fn', 'admin_emails', 'ADMIN_EMAILS', adminEmails, false);
           }
           NODE
       - name: Re-activate functions after variable sync
