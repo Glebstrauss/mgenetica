@@ -1,5 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react'
 import { module01 } from './data/module01'
+import CoursePage from './CoursePage'
+import Icon from './components/Icon'
 import Quiz from './Quiz'
 import {
   pingAppwrite,
@@ -10,22 +12,15 @@ import {
   getAccount
 } from './lib/appwrite'
 
-function SectionCard({ title, children, eyebrow }) {
-  return (
-    <section className="section-card">
-      {eyebrow ? <div className="section-eyebrow">{eyebrow}</div> : null}
-      <h3>{title}</h3>
-      {children}
-    </section>
-  )
-}
-
-function AuthPanel({ user, onLogin, onSignup, onLogout, loading }) {
-  const [mode, setMode] = useState('login')
+function AuthPanel({ user, mode, onModeChange, onLogin, onSignup, onLogout, loading }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    setError('')
+  }, [mode, user])
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -58,10 +53,12 @@ function AuthPanel({ user, onLogin, onSignup, onLogout, loading }) {
       {!user ? (
         <>
           <div className="auth-tabs">
-            <button type="button" className={`tab ${mode === 'login' ? 'active' : ''}`} onClick={() => setMode('login')}>
+            <button type="button" className={`tab ${mode === 'login' ? 'active' : ''}`} onClick={() => onModeChange('login')}>
+              <Icon name="user" size={16} />
               Entrar
             </button>
-            <button type="button" className={`tab ${mode === 'signup' ? 'active' : ''}`} onClick={() => setMode('signup')}>
+            <button type="button" className={`tab ${mode === 'signup' ? 'active' : ''}`} onClick={() => onModeChange('signup')}>
+              <Icon name="lock" size={16} />
               Criar conta
             </button>
           </div>
@@ -106,9 +103,10 @@ function AuthPanel({ user, onLogin, onSignup, onLogout, loading }) {
             {error ? <div className="callout-card" style={{ borderColor: 'rgba(180, 38, 38, 0.16)', color: '#8a1f1f' }}>{error}</div> : null}
             <div className="auth-actions">
               <button type="submit" className="btn btn-primary" disabled={loading}>
+                <Icon name="arrowRight" size={16} />
                 {loading ? 'Processando…' : mode === 'login' ? 'Entrar' : 'Criar conta'}
               </button>
-              <button type="button" className="btn btn-secondary" onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}>
+              <button type="button" className="btn btn-secondary" onClick={() => onModeChange(mode === 'login' ? 'signup' : 'login')}>
                 {mode === 'login' ? 'Quero criar conta' : 'Já tenho conta'}
               </button>
             </div>
@@ -117,14 +115,18 @@ function AuthPanel({ user, onLogin, onSignup, onLogout, loading }) {
       ) : (
         <>
           <div className="login-cta">
-            <div className="pill">Sessão ativa</div>
+            <div className="pill">
+              <Icon name="check" size={14} />
+              Sessão ativa
+            </div>
             <div className="auth-status">
               <strong>{user.email || user.name || user.$id}</strong>
               <div className="subtle" style={{ marginTop: 6 }}>
                 Você pode continuar lendo o módulo e abrir quizzes com a sessão atual.
               </div>
             </div>
-            <button className="btn btn-secondary" onClick={onLogout}>
+            <button type="button" className="btn btn-secondary" onClick={onLogout}>
+              <Icon name="arrowLeft" size={16} />
               Sair da conta
             </button>
           </div>
@@ -134,16 +136,237 @@ function AuthPanel({ user, onLogin, onSignup, onLogout, loading }) {
   )
 }
 
-function CodeBlock({ block }) {
+function HomePage({ user, status, onAuthIntent, onLogout, onOpenCatalog }) {
   return (
-    <div className="section-card">
-      <div className="code-caption">
-        <strong>{block.title}</strong>
-        <span>{block.label}</span>
+    <div className="app-shell">
+      <header className="app-header">
+        <div className="header-brand">
+          <div className="brand-logo">
+            <img src="https://mgenetica.github.io/mgenetica/images/mgenetica-logo-correct.png" alt="MGenética" style={{ width: 32, height: 32 }} />
+          </div>
+          <div className="brand-info">
+            <div className="brand-name">MGenética</div>
+            <div className="brand-tagline">Melhoramento animal, do conceito ao código</div>
+          </div>
+        </div>
+        <div className="header-actions">
+          <span className="status-badge">{status}</span>
+          {user ? (
+            <>
+              <button type="button" className="btn btn-secondary" onClick={onOpenCatalog} aria-label="Abrir área do aluno">
+                <Icon name="layers" size={16} />
+                Área do aluno
+              </button>
+              <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth} aria-label="Fazer logout">
+                <Icon name="arrowLeft" size={16} />
+                Sair
+              </button>
+            </>
+          ) : (
+            <button type="button" className="btn btn-primary" onClick={() => onAuthIntent('login')} aria-label="Entrar na plataforma">
+              Entrar
+            </button>
+          )}
+        </div>
+      </header>
+
+      <div className="landing-stack">
+        <section className="hero-shell">
+          <div className="hero-main">
+            <div className="hero-copy-card">
+              <div className="hero-eyebrow">Educação aplicada · Melhoramento genético animal</div>
+              <h1 className="hero-headline">Genética que vira decisão no campo.</h1>
+              <p className="hero-description">
+                Estude genética quantitativa e genômica aplicada com uma trilha prática, verificável e guiada por R.
+              </p>
+              <div className="hero-cta">
+                <button type="button" className="btn btn-primary" onClick={() => onAuthIntent('login')}>
+                  <Icon name="arrowRight" size={16} />
+                  Entrar para acessar a trilha
+                </button>
+                <button type="button" className="btn btn-secondary" onClick={() => onAuthIntent('signup')}>
+                  <Icon name="lock" size={16} />
+                  Criar conta
+                </button>
+              </div>
+            </div>
+
+            <aside className="hero-brand-card" aria-hidden="true">
+              <img src="https://mgenetica.github.io/mgenetica/images/mgenetica-logo-correct.png" alt="" style={{ maxWidth: 180, height: 'auto' }} />
+              <div className="visual-caption">
+                <strong>MGenética</strong>
+                <p>Melhoramento animal, do conceito ao código.</p>
+              </div>
+              <div className="brand-meta">
+                <div className="brand-meta-item">Conteúdo técnico com leitura clara.</div>
+                <div className="brand-meta-item">Trilha prática com código e quiz.</div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section className="benefits-grid" aria-label="Pilares da plataforma">
+          <article className="benefit-card">
+            <div className="benefit-icon">
+              <Icon name="book" size={18} />
+            </div>
+            <strong>R reproduzível</strong>
+            <p>Exemplos e roteiros prontos para estudar com evidência.</p>
+          </article>
+          <article className="benefit-card">
+            <div className="benefit-icon">
+              <Icon name="layers" size={18} />
+            </div>
+            <strong>Ciência aplicada</strong>
+            <p>Conteúdo técnico claro, focado em decisão no campo.</p>
+          </article>
+          <article className="benefit-card">
+            <div className="benefit-icon">
+              <Icon name="lock" size={18} />
+            </div>
+            <strong>Acesso único</strong>
+            <p>Conta única para trilha, quizzes e progresso do curso.</p>
+          </article>
+        </section>
+
       </div>
-      <pre className="code-block">
-        <code>{block.code}</code>
-      </pre>
+
+      {user ? (
+        <section className="learner-section">
+          <div className="section-label">Área do aluno</div>
+          <h2 className="section-heading">A trilha fica disponível após o login</h2>
+          <p className="section-description">
+            Use a área do aluno para abrir os cursos, revisar conteúdos e acessar cada página dedicada.
+          </p>
+          <div className="section-cta" style={{ marginTop: 16 }}>
+            <button type="button" className="btn btn-primary" onClick={onOpenCatalog}>
+              Abrir cursos
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth}>
+              Sair da conta
+            </button>
+          </div>
+        </section>
+      ) : (
+        <section className="trust-section" role="list" aria-label="Pilares de confiança da MGenética">
+          <article className="trust-item" role="listitem">
+            <strong>Rigor científico</strong>
+            <p>Conteúdo baseado em genética quantitativa, estatística e aplicação no campo.</p>
+          </article>
+          <article className="trust-item" role="listitem">
+            <strong>Linguagem clara</strong>
+            <p>Explicações diretas, sem excesso de jargão e com interpretação curta.</p>
+          </article>
+          <article className="trust-item" role="listitem">
+            <strong>Prática reproduzível</strong>
+            <p>Scripts e dados simulados para estudar sem depender de bases externas.</p>
+          </article>
+        </section>
+      )}
+    </div>
+  )
+}
+
+function AuthPage({ user, status, authMode, loadingAuth, onBack, onAuthIntent, onLogin, onSignup, onLogout, onOpenCatalog }) {
+  return (
+    <div className="app-shell">
+      <header className="app-header">
+        <div className="header-brand">
+          <div className="brand-logo">
+            <img src="https://mgenetica.github.io/mgenetica/images/mgenetica-logo-correct.png" alt="MGenética" style={{ width: 32, height: 32 }} />
+          </div>
+          <div className="brand-info">
+            <div className="brand-name">Acesso</div>
+            <div className="brand-tagline">Entre para abrir a trilha de aprendizagem</div>
+          </div>
+        </div>
+        <div className="header-actions">
+          <span className="status-badge">{status}</span>
+          <button type="button" className="btn btn-secondary" onClick={onBack} aria-label="Voltar para a home">
+            <Icon name="arrowLeft" size={16} />
+            Voltar
+          </button>
+          {user ? (
+            <>
+              <button type="button" className="btn btn-secondary" onClick={onOpenCatalog} aria-label="Abrir área do aluno">
+                <Icon name="layers" size={16} />
+                Área do aluno
+              </button>
+              <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth} aria-label="Fazer logout">
+                <Icon name="arrowLeft" size={16} />
+                Sair
+              </button>
+            </>
+          ) : null}
+        </div>
+      </header>
+
+      <section className="auth-page-shell">
+        <div className="auth-page-intro">
+          <div className="hero-eyebrow">Acesso à plataforma</div>
+          <h1 className="section-heading auth-page-heading">Entre ou crie conta para continuar.</h1>
+          <p className="section-description auth-page-copy">
+            O acesso fica fora da home pública. Use esta página para abrir a trilha, continuar seus estudos e acompanhar o progresso.
+          </p>
+        </div>
+
+        <AuthPanel
+          user={user}
+          mode={authMode}
+          onModeChange={onAuthIntent}
+          loading={loadingAuth}
+          onLogin={onLogin}
+          onSignup={onSignup}
+          onLogout={onLogout}
+        />
+      </section>
+    </div>
+  )
+}
+
+function CatalogPage({ courses, onBack, onOpenCourse, onLogout, loadingAuth }) {
+  return (
+    <div className="app-shell">
+      <header className="app-header">
+        <div className="header-brand">
+          <div className="brand-logo">
+            <img src="https://mgenetica.github.io/mgenetica/images/mgenetica-logo-correct.png" alt="MGenética" style={{ width: 32, height: 32 }} />
+          </div>
+          <div className="brand-info">
+            <div className="brand-name">Cursos</div>
+            <div className="brand-tagline">Acesse os módulos dedicados da trilha</div>
+          </div>
+        </div>
+        <div className="header-actions">
+          <button type="button" className="btn btn-secondary" onClick={onBack} aria-label="Voltar para a home">
+            <Icon name="arrowLeft" size={16} />
+            Voltar
+          </button>
+          <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth} aria-label="Fazer logout">
+            <Icon name="lock" size={16} />
+            Sair
+          </button>
+        </div>
+      </header>
+
+      <section className="content-section">
+        <div className="section-label">Trilha</div>
+        <h2 className="section-heading">Cursos com página dedicada</h2>
+        <div className="content-grid catalog-grid" role="list" aria-label="Cursos disponíveis">
+          {courses.map((course) => (
+            <article className="course-card" role="listitem" key={course.id}>
+              <strong className="course-title">{course.title}</strong>
+              <p className="course-description">{course.description}</p>
+              <div className="course-meta" style={{ marginTop: 12 }}>
+                <span className="status-badge">{course.id === 'module-01' ? 'Disponível' : course.active ? 'Ativo' : 'Rascunho'}</span>
+              </div>
+              <button type="button" className="btn btn-primary" style={{ marginTop: 12 }} onClick={() => onOpenCourse(course.id)} aria-label={`Abrir ${course.title}`}>
+                Abrir página
+              </button>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }
@@ -152,8 +375,10 @@ export default function App() {
   const [courses, setCourses] = useState([])
   const [user, setUser] = useState(null)
   const [loadingAuth, setLoadingAuth] = useState(false)
+  const [authMode, setAuthMode] = useState('login')
+  const [screen, setScreen] = useState('home')
   const [showQuiz, setShowQuiz] = useState(false)
-  const [selectedCourse, setSelectedCourse] = useState(null)
+  const [selectedCourseId, setSelectedCourseId] = useState(null)
   const [status, setStatus] = useState('Sincronizando com o Appwrite…')
 
   useEffect(() => {
@@ -170,8 +395,8 @@ export default function App() {
       .catch(() => setCourses([]))
   }, [])
 
-  const moduleCards = useMemo(
-    () => [
+  const catalogCourses = useMemo(() => {
+    const items = [
       {
         id: 'module-01',
         title: module01.title,
@@ -184,9 +409,26 @@ export default function App() {
         description: course.description,
         active: !!course.published
       }))
-    ],
-    [courses]
+    ]
+    const seen = new Set()
+    return items.filter((course) => {
+      if (seen.has(course.id)) return false
+      seen.add(course.id)
+      return true
+    })
+  }, [courses])
+
+  const selectedCourse = useMemo(
+    () => catalogCourses.find((course) => course.id === selectedCourseId) || null,
+    [catalogCourses, selectedCourseId]
   )
+
+  const nextCourse = useMemo(() => {
+    if (!selectedCourseId) return null
+    const currentIndex = catalogCourses.findIndex((course) => course.id === selectedCourseId)
+    if (currentIndex === -1) return null
+    return catalogCourses.slice(currentIndex + 1).find(Boolean) || null
+  }, [catalogCourses, selectedCourseId])
 
   async function handleLogin({ email, password }) {
     setLoadingAuth(true)
@@ -194,7 +436,9 @@ export default function App() {
       await createEmailSession(email, password)
       const account = await getAccount()
       setUser(account)
+      setAuthMode('login')
       setStatus('Sessão iniciada com sucesso.')
+      setScreen('home')
     } finally {
       setLoadingAuth(false)
     }
@@ -207,7 +451,9 @@ export default function App() {
       await createEmailSession(email, password)
       const account = await getAccount()
       setUser(account)
+      setAuthMode('login')
       setStatus('Conta criada e sessão iniciada.')
+      setScreen('home')
     } finally {
       setLoadingAuth(false)
     }
@@ -218,18 +464,55 @@ export default function App() {
     try {
       await deleteSession()
       setUser(null)
+      setScreen('home')
+      setSelectedCourseId(null)
+      setShowQuiz(false)
+      setAuthMode('login')
       setStatus('Sessão encerrada.')
     } finally {
       setLoadingAuth(false)
     }
   }
 
+  function focusAuth(mode) {
+    setAuthMode(mode)
+    setScreen('auth')
+    setShowQuiz(false)
+    setSelectedCourseId(null)
+  }
+
+  function openCatalog() {
+    if (!user) {
+      setStatus('Entre para acessar os cursos.')
+      return
+    }
+    setScreen('catalog')
+    setShowQuiz(false)
+    setSelectedCourseId(null)
+  }
+
+  function openCourse(courseId) {
+    if (!user) {
+      setStatus('Entre para acessar esta página do curso.')
+      return
+    }
+    setSelectedCourseId(courseId)
+    setScreen('course')
+    setShowQuiz(false)
+  }
+
+  function goHome() {
+    setScreen('home')
+    setShowQuiz(false)
+    setSelectedCourseId(null)
+  }
+
   if (showQuiz) {
     return (
       <div className="app-shell">
         <div className="panel" style={{ padding: 18, marginBottom: 16 }}>
-          <button className="btn btn-secondary" onClick={() => setShowQuiz(false)}>
-            Voltar ao módulo
+          <button type="button" className="btn btn-secondary" onClick={() => setShowQuiz(false)}>
+            Voltar ao curso
           </button>
         </div>
         <Quiz />
@@ -237,325 +520,58 @@ export default function App() {
     )
   }
 
+  if (screen === 'course' && selectedCourse) {
+    return (
+      <CoursePage
+        course={selectedCourse}
+        detail={selectedCourse.id === 'module-01' ? module01 : null}
+        onBack={() => setScreen('catalog')}
+        onOpenQuiz={() => setShowQuiz(true)}
+        onOpenCatalog={openCatalog}
+        onOpenCourse={openCourse}
+        nextCourse={nextCourse}
+        onLogout={handleLogout}
+        loadingAuth={loadingAuth}
+      />
+    )
+  }
+
+  if (screen === 'catalog' && user) {
+    return (
+      <CatalogPage
+        courses={catalogCourses}
+        onBack={goHome}
+        onOpenCourse={openCourse}
+        onLogout={handleLogout}
+        loadingAuth={loadingAuth}
+      />
+    )
+  }
+
+  if (screen === 'auth') {
+    return (
+      <AuthPage
+        user={user}
+        status={status}
+        authMode={authMode}
+        loadingAuth={loadingAuth}
+        onBack={goHome}
+        onAuthIntent={setAuthMode}
+        onLogin={handleLogin}
+        onSignup={handleSignup}
+        onLogout={handleLogout}
+        onOpenCatalog={openCatalog}
+      />
+    )
+  }
+
   return (
-    <div className="app-shell">
-      <header className="topbar">
-        <div className="brand">
-          <div className="brand-mark">MG</div>
-          <div className="brand-copy">
-            <div className="brand-title">MGenética</div>
-            <div className="brand-subtitle">Curso online em genética quantitativa e genômica aplicada</div>
-          </div>
-        </div>
-        <div className="topbar-actions">
-          <span className="pill">{status}</span>
-          {user ? (
-            <button className="btn btn-secondary" onClick={handleLogout} disabled={loadingAuth}>
-              Sair
-            </button>
-          ) : (
-            <a className="btn btn-primary" href="#auth">
-              Entrar
-            </a>
-          )}
-        </div>
-      </header>
-
-      <div className="layout-grid">
-        <section className="hero-card">
-          <div className="hero-kicker">Educação aplicada · Melhoramento genético animal</div>
-          <h1 className="hero-title">Genética que vira decisão no campo.</h1>
-          <p className="hero-summary">
-            Uma trilha curta, prática e verificável: conceito, dados simulados, código em R, interpretação técnica e
-            quizzes para consolidar a decisão.
-          </p>
-          <div className="hero-actions">
-            <a className="btn btn-primary" href="#module-01">
-              Abrir Módulo 01
-            </a>
-            <a className="btn btn-secondary" href="#modules">
-              Ver trilha
-            </a>
-            <a className="btn btn-ghost" href="#auth">
-              Conta e progresso
-            </a>
-          </div>
-
-          <div className="hero-stats">
-            <div className="stat">
-              <strong>12</strong>
-              <span>módulos na trilha</span>
-            </div>
-            <div className="stat">
-              <strong>R + Quarto</strong>
-              <span>conteúdo reproduzível</span>
-            </div>
-            <div className="stat">
-              <strong>Quiz</strong>
-              <span>avaliação por módulo</span>
-            </div>
-          </div>
-        </section>
-
-        <div id="auth">
-          <AuthPanel
-            user={user}
-            loading={loadingAuth}
-            onLogin={handleLogin}
-            onSignup={handleSignup}
-            onLogout={handleLogout}
-          />
-        </div>
-      </div>
-
-      <div className="workspace">
-        <aside className="toc-card" id="modules">
-          <div className="toc-title">Trilha</div>
-          <div className="toc-list">
-            <a className="toc-item active" href="#module-01">
-              <span>Módulo 01</span>
-              <small>Fundamentos</small>
-            </a>
-            {moduleCards.slice(1, 5).map((course) => (
-              <a className="toc-item" href="#courses" key={course.id}>
-                <span>{course.title}</span>
-                <small>{course.active ? 'Ativo' : 'Rascunho'}</small>
-              </a>
-            ))}
-          </div>
-        </aside>
-
-        <main className="stack">
-          <article className="module-card" id="module-01">
-            <div className="module-header">
-              <div className="badge-row">
-                <span className="module-badge">{module01.badge}</span>
-                {module01.meta.map((item) => (
-                  <span className="chip" key={item}>
-                    {item}
-                  </span>
-                ))}
-              </div>
-              <div className="module-meta">
-                <span>Leitura</span>
-                <span>·</span>
-                <span>R</span>
-                <span>·</span>
-                <span>Quiz</span>
-              </div>
-            </div>
-
-            <h2 className="module-title">{module01.title}</h2>
-            <p className="module-description">{module01.description}</p>
-
-            <div className="section-grid" style={{ marginTop: 18 }}>
-              {module01.orientation.map((item) => (
-                <div className="mini-card" key={item}>
-                  <strong>{item}</strong>
-                  <p>
-                    {item === 'Leitura'
-                      ? 'Entenda a pergunta biológica antes de executar qualquer código.'
-                      : item === 'Simulação em R'
-                        ? 'Use o script para gerar evidência e comparar cenários.'
-                        : 'Feche a página com uma conclusão técnica curta e útil.'}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </article>
-
-          <SectionCard eyebrow="Ritmo" title="Como estudar este módulo">
-            <p>{module01.readingRhythm}</p>
-          </SectionCard>
-
-          <SectionCard eyebrow="Sessão" title={module01.sessionPlan.title}>
-            <p>{module01.sessionPlan.copy}</p>
-            <div className="section-grid" style={{ marginTop: 16 }}>
-              {module01.sessionPlan.steps.map((step) => (
-                <div className="mini-card" key={step.title}>
-                  <strong>{step.title}</strong>
-                  <p>{step.copy}</p>
-                </div>
-              ))}
-            </div>
-          </SectionCard>
-
-          <SectionCard eyebrow="Leitura técnica" title={module01.technicalScan.title}>
-            <p>{module01.technicalScan.copy}</p>
-            <div className="section-grid" style={{ marginTop: 16 }}>
-              {module01.technicalScan.steps.map((step) => (
-                <div className="mini-card" key={step.title}>
-                  <strong>{step.title}</strong>
-                  <p>{step.copy}</p>
-                </div>
-              ))}
-            </div>
-          </SectionCard>
-
-          <SectionCard eyebrow="Contexto" title="O problema antes da fórmula">
-            <div className="stack">
-              {module01.introParagraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-            <div className="callout-card" style={{ marginTop: 16 }}>
-              <h3>Conceito central</h3>
-              <p>{module01.centralConcept}</p>
-            </div>
-          </SectionCard>
-
-          <SectionCard eyebrow="Equação" title="A equação do melhorista">
-            <div className="equation-box">
-              <div className="equation">{module01.equation}</div>
-              <p className="subtle">
-                O ganho genético anual depende da intensidade de seleção, da acurácia, da variância genética aditiva e do intervalo de geração.
-              </p>
-              <table className="symbol-table">
-                <thead>
-                  <tr>
-                    <th>Símbolo</th>
-                    <th>Significado</th>
-                    <th>Como aumentar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {module01.symbols.map(([symbol, meaning, tip]) => (
-                    <tr key={symbol}>
-                      <td><strong>{symbol}</strong></td>
-                      <td>{meaning}</td>
-                      <td>{tip}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <div className="callout-card">
-                <h3>Dica prática</h3>
-                <p>{module01.equationNote}</p>
-              </div>
-            </div>
-          </SectionCard>
-
-          <SectionCard eyebrow="Simulação em R" title={module01.scriptLab.title}>
-            <p>{module01.scriptLab.copy}</p>
-            <div className="section-grid" style={{ marginTop: 16 }}>
-              {module01.scriptLab.items.map((item) => (
-                <div className="mini-card" key={item.title}>
-                  <strong>{item.title}</strong>
-                  <p>{item.copy}</p>
-                  {item.href ? (
-                    <a className="btn btn-secondary" style={{ marginTop: 10 }} href={item.href}>
-                      Abrir arquivo
-                    </a>
-                  ) : null}
-                </div>
-              ))}
-            </div>
-          </SectionCard>
-
-          {module01.codeBlocks.map((block) => (
-            <CodeBlock key={block.label} block={block} />
-          ))}
-
-          <SectionCard eyebrow="Interpretação" title="Como ler os resultados">
-            <ul className="takeaway-list">
-              {module01.interpretation.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <div className="callout-warning" style={{ marginTop: 16 }}>
-              <strong>Atenção:</strong> {module01.warning}
-            </div>
-          </SectionCard>
-
-          <SectionCard eyebrow="Evidência" title="Caminho de evidência">
-            <p>{module01.evidencePath}</p>
-            <div className="callout-card" style={{ marginTop: 16 }}>
-              <p>{module01.practiceContract}</p>
-            </div>
-          </SectionCard>
-
-          <SectionCard eyebrow="Exercício" title="Exercício proposto">
-            <ol className="exercise-list">
-              {module01.exercises.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ol>
-          </SectionCard>
-
-          <SectionCard eyebrow="Checkpoint" title="Antes do quiz">
-            <p>{module01.checkpoint}</p>
-          </SectionCard>
-
-          <SectionCard eyebrow="Resumo" title="O que levar deste módulo">
-            <ul className="takeaway-list">
-              {module01.takeaways.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </SectionCard>
-
-          <SectionCard eyebrow="Ação" title="Depois do quiz">
-            <p>{module01.afterQuiz}</p>
-          </SectionCard>
-
-          <SectionCard eyebrow="Fechamento" title="Antes de trocar de página">
-            <div className="stack">
-              <p>{module01.closeCheck}</p>
-              <p>{module01.returnNote}</p>
-            </div>
-            <div className="module-nav" style={{ marginTop: 16 }}>
-              <a className="module-nav-card" href="#">
-                <span>Índice</span>
-                <strong>Todos os módulos</strong>
-              </a>
-              <a className="module-nav-card" href={module01.nextModule.href}>
-                <span>Próximo · Módulo 02</span>
-                <strong>{module01.nextModule.title}</strong>
-              </a>
-            </div>
-          </SectionCard>
-
-          <SectionCard eyebrow="Cursos conectados" title="Outras ofertas da trilha">
-            <div className="section-grid" id="courses">
-              {moduleCards.map((course) => (
-                <div className="mini-card" key={course.id}>
-                  <strong>{course.title}</strong>
-                  <p>{course.description}</p>
-                  {course.id === 'module-01' ? (
-                    <button className="btn btn-primary" style={{ marginTop: 10 }} onClick={() => setSelectedCourse(module01)}>
-                      Abrir módulo
-                    </button>
-                  ) : (
-                    <span className="chip" style={{ marginTop: 10, display: 'inline-flex' }}>
-                      {course.active ? 'Disponível' : 'Em construção'}
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </SectionCard>
-
-          <SectionCard eyebrow="Certificação" title="Pronto para começar?">
-            <p className="subtle">
-              Abra o primeiro módulo, faça a leitura guiada, execute o R e conclua com uma decisão técnica curta.
-            </p>
-            <div className="hero-actions">
-              <a className="btn btn-primary" href="#module-01">
-                Acessar Módulo 01
-              </a>
-              <a className="btn btn-secondary" href="#auth">
-                Entrar ou criar conta
-              </a>
-            </div>
-          </SectionCard>
-
-          {selectedCourse ? (
-            <SectionCard eyebrow="Resumo de seleção" title={selectedCourse.title}>
-              <p>{selectedCourse.description || module01.description}</p>
-            </SectionCard>
-          ) : null}
-        </main>
-      </div>
-    </div>
+    <HomePage
+      user={user}
+      status={status}
+      onAuthIntent={focusAuth}
+      onLogout={handleLogout}
+      onOpenCatalog={openCatalog}
+    />
   )
 }

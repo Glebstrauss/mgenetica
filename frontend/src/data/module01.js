@@ -55,12 +55,12 @@ export const module01 = {
       {
         title: 'Roteiro R',
         copy: 'Abrir o script R completo do Módulo 01',
-        href: '../scripts/modulo01.R'
+        assetPath: 'course-assets/modulo01.R'
       },
       {
         title: 'Saída gerada',
         copy: 'Abrir o CSV simulado gerado pelo Módulo 01',
-        href: '../data/modulo01_simulado.csv'
+        assetPath: 'course-assets/modulo01_simulado.csv'
       },
       {
         title: 'O que alterar',

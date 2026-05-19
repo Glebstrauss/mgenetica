@@ -60,3 +60,8 @@
 - Auth UX now supports both sign-in and account creation from the same panel, with clearer copy, feedback, and button states.
 - Local preview/build checks are green, and the current Vercel + Quarto publish runs on `main` are succeeding.
 - Remote build workflows were refreshed to use the newer JavaScript-action runtime path (`checkout@v5`, `setup-node@v6`, Node 24) before the next deploy.
+- Frontend landing hero/auth layout was rebalanced after visual QA: headline scale reduced, CTA/buttons normalized, feature cards aligned, auth form controls unified, and the MGenética brand panel aligned with the left content column. Verified again with `cd frontend && npm run build`.
+- Feature highlight cards in landing hero were restructured on 2026-05-19 to use icon -> heading -> explanatory copy hierarchy, replacing broken stacked text that was wrapping into awkward tall boxes.
+- Landing hero structure was rewritten again on 2026-05-19 into a professional two-zone layout: top row for copy + brand panel, bottom row for three equal feature cards, to remove the previous amateur stretch/collision between the logo panel and feature boxes.
+- Deep layout pass on 2026-05-19 fixed structural markup/CSS mismatch in landing hero so intended two-column hero grid now exists in DOM again; this removed cascading overlap and placement failures seen in repeated visual QA screenshots.
+- Access flow changed on 2026-05-19 so the auth block no longer renders on the public home surface; sign-in/sign-up now open a dedicated access page while the homepage stays institutional.

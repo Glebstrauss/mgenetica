@@ -24,6 +24,11 @@ Educational platform for animal genetics and R programming.
 - An auxiliary `frontend/` React shell now exists for Appwrite-backed e-learning experiments; it is kept separate from the public Quarto site and currently renders a welcome/home page plus the full Módulo 01 learning view.
 - The frontend CI/deploy workflow is green on `main` as of 2026-05-19.
 - The deploy workflows were refreshed to the newer JavaScript-action runtime path before the next publish.
+- The auxiliary frontend landing surface received a verified 2026-05-19 hero/auth layout correction to restore grid alignment, readable headline scale and consistent button/card rhythm across desktop and mobile.
+- The auxiliary frontend hero highlight cards now use a cleaner icon/title/body hierarchy after 2026-05-19 visual QA exposed severe wrapping and balance defects in the previous card copy treatment.
+- The auxiliary frontend hero now uses a separated top-row/bottom-row structure so the brand panel, CTA row and feature cards follow one consistent layout grid instead of competing for height in a single stretched block.
+- A later 2026-05-19 deep layout pass corrected a hero markup/CSS structure mismatch that had been preventing intended professional grid from rendering consistently.
+- The auxiliary frontend access experience now lives on a dedicated page instead of inside the public homepage, preserving clearer separation between institutional entry and learner authentication flow.
 
 ## Tech Stack
 
