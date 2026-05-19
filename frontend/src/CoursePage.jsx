@@ -1,5 +1,6 @@
 import React from 'react'
 import Icon from './components/Icon'
+import { BRAND_LOGO_URL } from './lib/branding'
 
 function SectionCard({ title, children, eyebrow }) {
   return <section className="section-card">{eyebrow ? <div className="section-eyebrow">{eyebrow}</div> : null}<h3>{title}</h3>{children}</section>
@@ -15,7 +16,7 @@ export default function CoursePage({ course, detail, onBack, onOpenQuiz, onOpenC
   return (
     <div className="app-shell">
       <header className="app-header course-header">
-        <div className="header-brand"><div className="brand-logo"><img src="https://mgenetica.github.io/mgenetica/images/mgenetica-logo-correct.png" alt={t('common.brandName')} style={{ width: 32, height: 32 }} /></div><div className="brand-info"><div className="brand-name">{course.title}</div><div className="brand-tagline">{t('coursePage.dedicatedPage')}</div></div></div>
+        <div className="header-brand"><div className="brand-logo"><img src={BRAND_LOGO_URL} alt={t('common.brandName')} style={{ width: 32, height: 32 }} /></div><div className="brand-info"><div className="brand-name">{course.title}</div><div className="brand-tagline">{t('coursePage.dedicatedPage')}</div></div></div>
         <div className="header-actions"><div className="auth-tabs" role="group" aria-label={t('localeSwitcher.label')}>{['pt-BR','en','es'].map((localeCode) => <button type="button" key={localeCode} className={'tab ' + (locale === localeCode ? 'active' : '')} onClick={() => onLocaleChange(localeCode)}>{t('locales.' + localeCode)}</button>)}</div><button type="button" className="btn btn-secondary" onClick={onBack}><Icon name="arrowLeft" size={16} />{t('coursePage.backToCatalog')}</button>{onOpenCatalog ? <button type="button" className="btn btn-secondary" onClick={onOpenCatalog}><Icon name="layers" size={16} />{t('coursePage.catalog')}</button> : null}<button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth}><Icon name="arrowLeft" size={16} />{t('common.logout')}</button></div>
       </header>
       {detail ? (

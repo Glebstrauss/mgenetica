@@ -3,6 +3,7 @@ import { getModule01 } from './data/module01'
 import CoursePage from './CoursePage'
 import Icon from './components/Icon'
 import Quiz from './Quiz'
+import { BRAND_LOGO_URL } from './lib/branding'
 import { createTranslator, detectInitialLocale, LOCALE_STORAGE_KEY, normalizeLocale, SUPPORTED_LOCALES } from './i18n'
 import {
   pingAppwrite,
@@ -81,7 +82,7 @@ function AppHeader({ brandName, brandTagline, status, locale, onLocaleChange, t,
     <header className="app-header">
       <div className="header-brand">
         <div className="brand-logo">
-          <img src="https://mgenetica.github.io/mgenetica/images/mgenetica-logo-correct.png" alt={t('common.brandName')} style={{ width: 32, height: 32 }} />
+          <img src={BRAND_LOGO_URL} alt={t('common.brandName')} style={{ width: 32, height: 32 }} />
         </div>
         <div className="brand-info">
           <div className="brand-name">{brandName}</div>
@@ -221,7 +222,7 @@ function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, 
               </div>
             </div>
             <aside className="hero-brand-card" aria-hidden="true">
-              <img src="https://mgenetica.github.io/mgenetica/images/mgenetica-logo-correct.png" alt="" style={{ maxWidth: 180, height: 'auto' }} />
+              <img src={BRAND_LOGO_URL} alt="" style={{ maxWidth: 180, height: 'auto' }} />
               <div className="visual-caption"><strong>{t('common.brandName')}</strong><p>{t('common.brandTagline')}.</p></div>
               <div className="brand-meta"><div className="brand-meta-item">{t('home.brandMeta1')}</div><div className="brand-meta-item">{t('home.brandMeta2')}</div></div>
             </aside>
