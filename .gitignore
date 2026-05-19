@@ -30,5 +30,7 @@ build/
 *.bak
 *.swp
 *.swo
+/appwrite-logs.txt
+/appwrite.config.json
 
 **/*.quarto_ipynb

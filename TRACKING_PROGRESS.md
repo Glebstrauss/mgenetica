@@ -7,6 +7,8 @@
   - Endpoint: `https://fra.cloud.appwrite.io/v1`
 - App startup already pings Appwrite using `client.ping()`.
 - Frontend now uses Appwrite Functions for courses and quiz submission.
+- The local frontend shell now opens with a polished welcome/home page and a full Módulo 01 learning view, including all R code blocks from the original page.
+- Sign-in and account creation are available from the same auth panel with clearer UX states and feedback.
 
 ## Completed implementation
 
@@ -56,3 +58,4 @@
 - Todo created: implement full E2E tests for login -> listCourses -> submitQuiz.
 - Frontend UI was upgraded into a polished course page that renders the full original Módulo 01 content, including all three R code blocks, explanatory callouts, a table of symbols, and a cleaner learning flow.
 - Auth UX now supports both sign-in and account creation from the same panel, with clearer copy, feedback, and button states.
+- Local preview/build checks are green, and the current Vercel + Quarto publish runs on `main` are succeeding.

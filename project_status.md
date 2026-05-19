@@ -21,6 +21,8 @@ Educational platform for animal genetics and R programming.
 - The clean full Quarto render path was restored on 2026-05-17 after clearing stray generated source-side HTML and resource artifacts, and the full prepublish gate now completes with render enabled.
 - The site was published successfully on 2026-05-17 through the GitHub Pages workflow on `main`, and the live URL responds at `https://mgenetica.github.io/mgenetica/`.
 - A first SCSS maintainability pass on 2026-05-18 moved shared cyan aliases into the top token block and removed a later duplicate override.
+- An auxiliary `frontend/` React shell now exists for Appwrite-backed e-learning experiments; it is kept separate from the public Quarto site and currently renders a welcome/home page plus the full Módulo 01 learning view.
+- The frontend CI/deploy workflow is green on `main` as of 2026-05-19.
 
 ## Tech Stack
 
