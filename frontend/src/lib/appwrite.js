@@ -41,7 +41,9 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
       'X-Appwrite-Project': APPWRITE_PROJECT_ID
     },
     credentials: includeCredentials ? 'include' : 'same-origin',
-    body: JSON.stringify(payload)
+    body: JSON.stringify({
+      body: JSON.stringify(payload)
+    })
   });
 
   const data = await res.json();
