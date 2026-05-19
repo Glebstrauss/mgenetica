@@ -60,25 +60,25 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
   return data;
 }
 
-function normalizeAuthError(err) {
+function normalizeAuthError(err, messages = {}) {
   const message = String(err?.message || '');
   if (/user_already_exists|already exists|already been registered/i.test(message)) {
-    return 'Este e-mail já existe. Entre com a conta existente.'
+    return messages.emailExists || 'Este e-mail já existe. Entre com a conta existente.'
   }
   if (/invalid credentials|invalid password|user_invalid_credentials/i.test(message)) {
-    return 'E-mail ou senha inválidos.'
+    return messages.invalidCredentials || 'E-mail ou senha inválidos.'
   }
   if (/origin|platform|host|domain|not allowed|general_unknown_origin/i.test(message)) {
-    return 'Host atual não está liberado no Appwrite Web Platform. Adicione URL publicada antes de testar login.'
+    return messages.originBlocked || 'Host atual não está liberado no Appwrite Web Platform. Adicione URL publicada antes de testar login.'
   }
   if (/network|failed to fetch/i.test(message)) {
-    return 'Falha de rede ao falar com Appwrite.'
+    return messages.network || 'Falha de rede ao falar com Appwrite.'
   }
-  return message || 'Não foi possível autenticar.'
+  return message || messages.generic || 'Não foi possível autenticar.'
 }
 
-async function listCourses() {
-  return executeFunction(functionIds.courses, { action: 'list' }, { includeCredentials: true });
+async function listCourses(locale) {
+  return executeFunction(functionIds.courses, { action: 'list', locale }, { includeCredentials: true });
 }
 
 async function submitQuiz(quizId, answers) {

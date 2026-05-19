@@ -1,0 +1,252 @@
+const LOCALE_STORAGE_KEY = 'mgenetica-locale'
+const SUPPORTED_LOCALES = ['pt-BR', 'en', 'es']
+
+const MESSAGES = {
+  'pt-BR': {
+    locales: { 'pt-BR': 'PT', en: 'EN', es: 'ES' },
+    status: {
+      syncing: 'Sincronizando com o Appwrite…',
+      sessionVerified: 'Sessão verificada.',
+      unlockFlow: 'Entre para desbloquear o fluxo completo.',
+      loginSuccess: 'Sessão iniciada com sucesso.',
+      signupSuccess: 'Conta criada e sessão iniciada.',
+      sessionClosed: 'Sessão encerrada.',
+      enterCourses: 'Entre para acessar os cursos.',
+      enterCoursePage: 'Entre para acessar esta página do curso.',
+      notAdmin: 'Usuário atual não está na lista de administradores.',
+      runningChecks: 'Executando checks de sistema…',
+      checksDone: 'Checks de sistema concluídos.',
+      checksFailed: 'Falha ao executar checks de sistema.'
+    },
+    authErrors: {
+      emailExists: 'Este e-mail já existe. Entre com a conta existente.',
+      invalidCredentials: 'E-mail ou senha inválidos.',
+      originBlocked: 'Host atual não está liberado no Appwrite Web Platform. Adicione a URL publicada antes de testar login.',
+      network: 'Falha de rede ao falar com Appwrite.',
+      generic: 'Não foi possível autenticar.'
+    },
+    common: {
+      brandName: 'MGenética',
+      brandTagline: 'Melhoramento animal, do conceito ao código',
+      admin: 'Admin',
+      learnerArea: 'Área do aluno',
+      logout: 'Sair',
+      back: 'Voltar',
+      openLiveUrl: 'Abrir URL live',
+      openFile: 'Abrir arquivo',
+      available: 'Disponível',
+      active: 'Ativo',
+      draft: 'Rascunho',
+      reading: 'Leitura',
+      status: 'Status',
+      dedicatedCourse: 'Curso dedicado'
+    },
+    localeSwitcher: { label: 'Idioma' },
+    home: {
+      signIn: 'Entrar',
+      signInAria: 'Entrar na plataforma',
+      openCatalogAria: 'Abrir área do aluno',
+      openAdminAria: 'Abrir painel admin',
+      logoutAria: 'Fazer logout',
+      eyebrow: 'Educação aplicada · Melhoramento animal',
+      headline: 'Genética para decidir no campo.',
+      description: 'Estude genética quantitativa e genômica em uma trilha prática guiada por R.',
+      ctaLogin: 'Entrar para abrir trilha',
+      ctaSignup: 'Criar conta',
+      brandMeta1: 'Conteúdo técnico claro.',
+      brandMeta2: 'Trilha prática com código.',
+      benefitsAria: 'Pilares da plataforma',
+      benefits: {
+        reproducible: { title: 'R reproduzível', copy: 'Exemplos e roteiros prontos para estudar com evidência.' },
+        science: { title: 'Ciência aplicada', copy: 'Conteúdo técnico claro, focado em decisão no campo.' },
+        access: { title: 'Acesso único', copy: 'Conta única para trilha, quizzes e progresso do curso.' }
+      },
+      learner: {
+        label: 'Área do aluno',
+        heading: 'A trilha fica disponível após o login',
+        copy: 'Use a área do aluno para abrir os cursos, revisar conteúdos e acessar cada página dedicada.',
+        openCourses: 'Abrir cursos',
+        logout: 'Sair da conta'
+      },
+      trustAria: 'Pilares de confiança da MGenética',
+      trust: {
+        rigor: { title: 'Rigor científico', copy: 'Conteúdo baseado em genética quantitativa, estatística e aplicação no campo.' },
+        clarity: { title: 'Linguagem clara', copy: 'Explicações diretas, sem excesso de jargão e com interpretação curta.' },
+        practice: { title: 'Prática reproduzível', copy: 'Scripts e dados simulados para estudar sem depender de bases externas.' }
+      }
+    },
+    authPage: {
+      brandName: 'Acesso',
+      brandTagline: 'Entre para abrir a trilha de aprendizagem',
+      eyebrow: 'Acesso à plataforma',
+      heading: 'Entre ou crie conta para continuar.',
+      copy: 'O acesso fica fora da home pública. Use esta página para abrir a trilha, continuar seus estudos e acompanhar o progresso.'
+    },
+    authPanel: {
+      connectedTitle: 'Conta conectada',
+      defaultTitle: 'Acesse sua conta',
+      connectedCopy: 'Olá, {name}. Você está pronto para continuar.',
+      defaultCopy: 'Entre para salvar progresso, abrir quizzes e usar a trilha completa.',
+      tabLogin: 'Entrar',
+      tabSignup: 'Criar conta',
+      loginNote: 'Use seu e-mail e senha para retomar a trilha.',
+      signupNote: 'Crie uma conta para testar a experiência completa de aprendizado.',
+      name: 'Nome',
+      namePlaceholder: 'Seu nome',
+      email: 'E-mail',
+      emailPlaceholder: 'voce@exemplo.com',
+      password: 'Senha',
+      loading: 'Processando…',
+      createAccount: 'Criar conta',
+      alreadyHaveAccount: 'Já tenho conta',
+      wantCreateAccount: 'Quero criar conta',
+      activeSession: 'Sessão ativa',
+      activeCopy: 'Você pode continuar lendo o módulo e abrir quizzes com a sessão atual.'
+    },
+    catalog: {
+      brandName: 'Cursos',
+      brandTagline: 'Acesse os módulos dedicados da trilha',
+      backHomeAria: 'Voltar para a home',
+      openAdminAria: 'Abrir painel admin',
+      logoutAria: 'Fazer logout',
+      label: 'Trilha',
+      heading: 'Cursos com página dedicada',
+      coursesAria: 'Cursos disponíveis',
+      openCourseAria: 'Abrir {title}',
+      openPage: 'Abrir página'
+    },
+    adminPage: {
+      brandTagline: 'Painel de controle do sistema',
+      label: 'Controle',
+      heading: 'Saúde, autenticação e backend',
+      copy: 'Este painel valida configuração do Appwrite, sessão atual, funções publicadas e smoke checks de aprendizagem.',
+      runChecks: 'Executar checks',
+      runningChecks: 'Executando checks…',
+      session: 'Sessão',
+      noUser: 'Sem usuário autenticado',
+      appwrite: 'Appwrite',
+      project: 'Projeto',
+      requiredConfigTitle: 'Configuração exigida no Appwrite',
+      requiredConfigCopy: 'Para liberar o resumo administrativo real, configure estas variáveis na função mgenetica_admin_fn.',
+      adminEmailsCopy: 'Lista de e-mails admin separados por vírgula.',
+      adminApiKeyCopy: 'Chave admin recomendada para resumo de usuários e funções.',
+      fallbackApiKeyCopy: 'Fallback aceito pela função admin se a chave dedicada não existir.',
+      currentStatus: 'Status atual: adminApiConfigured = {configured}; configuredAdminEmails = {count}',
+      reportTitle: 'Último relatório',
+      noChecks: 'Nenhum check executado ainda.'
+    },
+    coursePage: {
+      dedicatedPage: 'Página dedicada do curso',
+      backToCatalog: 'Voltar ao catálogo',
+      catalog: 'Catálogo',
+      studyTitle: 'Como estudar este módulo',
+      moduleMetaQuiz: 'Quiz',
+      contextEyebrow: 'Contexto',
+      contextTitle: 'O problema antes da fórmula',
+      centralConcept: 'Conceito central',
+      equationEyebrow: 'Equação',
+      equationTitle: 'A equação do melhorista',
+      equationCopy: 'O ganho genético anual depende da intensidade de seleção, da acurácia, da variância genética aditiva e do intervalo de geração.',
+      symbols: { symbol: 'Símbolo', meaning: 'Significado', increase: 'Como aumentar' },
+      practicalTip: 'Dica prática',
+      interpretationEyebrow: 'Interpretação',
+      interpretationTitle: 'Como ler os resultados',
+      warning: 'Atenção:',
+      evidenceEyebrow: 'Evidência',
+      evidenceTitle: 'Caminho de evidência',
+      exerciseEyebrow: 'Exercício',
+      exerciseTitle: 'Exercício proposto',
+      checkpointEyebrow: 'Checkpoint',
+      checkpointTitle: 'Antes do quiz',
+      summaryEyebrow: 'Resumo',
+      summaryTitle: 'O que levar deste módulo',
+      actionEyebrow: 'Ação',
+      actionTitle: 'Depois do quiz',
+      openQuiz: 'Abrir quiz',
+      closingEyebrow: 'Fechamento',
+      closingTitle: 'Antes de trocar de página',
+      index: 'Índice',
+      allModules: 'Todos os módulos',
+      nextCourse: 'Próximo curso',
+      next: 'Próximo',
+      nextCatalogFallback: 'Veja os próximos cursos no catálogo',
+      constructionEyebrow: 'Status',
+      constructionTitle: 'Conteúdo em construção',
+      constructionCopy: 'Esta página já está dedicada ao curso, mas o conteúdo completo ainda será preenchido na próxima etapa da trilha.',
+      openCourse: 'Voltar ao curso'
+    },
+    quiz: { title: 'Quiz de exemplo', question: 'Questão {index}', submit: 'Enviar', score: 'Pontuação: {score}/{total}' }
+  },
+  en: {
+    locales: { 'pt-BR': 'PT', en: 'EN', es: 'ES' },
+    status: {
+      syncing: 'Syncing with Appwrite…', sessionVerified: 'Session verified.', unlockFlow: 'Sign in to unlock the full flow.', loginSuccess: 'Session started successfully.', signupSuccess: 'Account created and session started.', sessionClosed: 'Session closed.', enterCourses: 'Sign in to access the courses.', enterCoursePage: 'Sign in to access this course page.', notAdmin: 'Current user is not in the admin allowlist.', runningChecks: 'Running system checks…', checksDone: 'System checks completed.', checksFailed: 'Failed to run system checks.'
+    },
+    authErrors: {
+      emailExists: 'This email already exists. Sign in with the existing account.', invalidCredentials: 'Invalid email or password.', originBlocked: 'Current host is not allowed in the Appwrite Web Platform. Add the published URL before testing login.', network: 'Network failure while talking to Appwrite.', generic: 'Could not authenticate.'
+    },
+    common: { brandName: 'MGenética', brandTagline: 'Animal breeding, from concept to code', admin: 'Admin', learnerArea: 'Student area', logout: 'Sign out', back: 'Back', openLiveUrl: 'Open live site', openFile: 'Open file', available: 'Available', active: 'Active', draft: 'Draft', reading: 'Reading', status: 'Status', dedicatedCourse: 'Dedicated course' },
+    localeSwitcher: { label: 'Language' },
+    home: {
+      signIn: 'Sign in', signInAria: 'Sign in to the platform', openCatalogAria: 'Open learner area', openAdminAria: 'Open admin panel', logoutAria: 'Sign out', eyebrow: 'Applied education · Animal breeding', headline: 'Genetics for field decisions.', description: 'Study quantitative genetics and genomics through a practical learning path guided by R.', ctaLogin: 'Sign in to open path', ctaSignup: 'Create account', brandMeta1: 'Clear technical content.', brandMeta2: 'Practical path with code.', benefitsAria: 'Platform pillars',
+      benefits: { reproducible: { title: 'Reproducible R', copy: 'Ready scripts and examples for evidence-based study.' }, science: { title: 'Applied science', copy: 'Clear technical content focused on field decisions.' }, access: { title: 'Single access', copy: 'One account for path, quizzes and progress.' } },
+      learner: { label: 'Student area', heading: 'Learning path unlocks after login', copy: 'Use student area to open courses, review content, and access each page.', openCourses: 'Open courses', logout: 'Sign out' },
+      trustAria: 'MGenética trust pillars',
+      trust: { rigor: { title: 'Scientific rigor', copy: 'Content grounded in quantitative genetics, statistics and field use.' }, clarity: { title: 'Clear language', copy: 'Direct explanations, concise interpretation, low jargon.' }, practice: { title: 'Reproducible practice', copy: 'Scripts and simulated data for study without outside databases.' } }
+    },
+    authPage: { brandName: 'Access', brandTagline: 'Sign in to open path', eyebrow: 'Platform access', heading: 'Sign in or create account.', copy: 'Use this page to open path, continue studying, and track your progress.' },
+    authPanel: { connectedTitle: 'Connected account', defaultTitle: 'Access your account', connectedCopy: 'Hello, {name}. Ready to continue.', defaultCopy: 'Sign in to save progress, open assessments, and use full path.', tabLogin: 'Sign in', tabSignup: 'Create account', loginNote: 'Use your email and password to resume path.', signupNote: 'Create an account to try full learning experience.', name: 'Name', namePlaceholder: 'Your name', email: 'Email', emailPlaceholder: 'you@example.com', password: 'Password', loading: 'Processing…', createAccount: 'Create account', alreadyHaveAccount: 'I have an account', wantCreateAccount: 'Create account instead', activeSession: 'Active session', activeCopy: 'You can keep reading and open assessments with current session.' },
+    catalog: { brandName: 'Courses', brandTagline: 'Open modules from learning path', backHomeAria: 'Back to home', openAdminAria: 'Open admin panel', logoutAria: 'Sign out', label: 'Learning path', heading: 'Courses with dedicated pages', coursesAria: 'Available courses', openCourseAria: 'Open {title}', openPage: 'Open page' },
+    adminPage: { brandTagline: 'System control panel', label: 'Control', heading: 'System health, authentication, and backend', copy: 'This panel validates Appwrite configuration, the current session, published functions, and learner smoke checks.', runChecks: 'Run diagnostics', runningChecks: 'Running diagnostics…', session: 'Session', noUser: 'No authenticated user', appwrite: 'Appwrite', project: 'Project', requiredConfigTitle: 'Required Appwrite setup', requiredConfigCopy: 'To unlock the real admin summary, configure these variables in the mgenetica_admin_fn function.', adminEmailsCopy: 'Comma-separated list of admin email addresses.', adminApiKeyCopy: 'Recommended admin key for user and function summaries.', fallbackApiKeyCopy: 'Fallback accepted by the admin function if the dedicated key is missing.', currentStatus: 'Current status: adminApiConfigured = {configured}; configuredAdminEmails = {count}', reportTitle: 'Latest report', noChecks: 'No diagnostics have been run yet.' },
+    coursePage: { dedicatedPage: 'Course page', backToCatalog: 'Back to catalog', catalog: 'Catalog', studyTitle: 'How to approach this module', moduleMetaQuiz: 'Assessment', contextEyebrow: 'Context', contextTitle: 'The problem before the formula', centralConcept: 'Central concept', equationEyebrow: 'Equation', equationTitle: 'The breeder’s equation', equationCopy: 'Annual genetic gain depends on selection intensity, accuracy, additive genetic variance, and generation interval.', symbols: { symbol: 'Symbol', meaning: 'Meaning', increase: 'How to improve it' }, practicalTip: 'Practical note', interpretationEyebrow: 'Interpretation', interpretationTitle: 'How to read the results', warning: 'Note:', evidenceEyebrow: 'Evidence', evidenceTitle: 'Evidence path', exerciseEyebrow: 'Exercise', exerciseTitle: 'Suggested exercise', checkpointEyebrow: 'Checkpoint', checkpointTitle: 'Before the assessment', summaryEyebrow: 'Summary', summaryTitle: 'What to take away from this module', actionEyebrow: 'Action', actionTitle: 'After the assessment', openQuiz: 'Open assessment', closingEyebrow: 'Closeout', closingTitle: 'Before leaving this page', index: 'Index', allModules: 'All modules', nextCourse: 'Next course', next: 'Next', nextCatalogFallback: 'See the next courses in the catalog', constructionEyebrow: 'Status', constructionTitle: 'Content under construction', constructionCopy: 'This page is already reserved for the course, but the full lesson content will be added in the next stage of the learning path.', openCourse: 'Back to course' },
+    quiz: { title: 'Sample assessment', question: 'Question {index}', submit: 'Submit', score: 'Score: {score}/{total}' }
+  },
+  es: {
+    locales: { 'pt-BR': 'PT', en: 'EN', es: 'ES' },
+    status: { syncing: 'Sincronizando con Appwrite…', sessionVerified: 'Sesión verificada.', unlockFlow: 'Inicia sesión para desbloquear el flujo completo.', loginSuccess: 'Sesión iniciada con éxito.', signupSuccess: 'Cuenta creada y sesión iniciada.', sessionClosed: 'Sesión cerrada.', enterCourses: 'Inicia sesión para acceder a los cursos.', enterCoursePage: 'Inicia sesión para acceder a esta página del curso.', notAdmin: 'El usuario actual no está en la lista de administradores.', runningChecks: 'Ejecutando verificaciones del sistema…', checksDone: 'Verificaciones del sistema completadas.', checksFailed: 'No se pudieron ejecutar las verificaciones del sistema.' },
+    authErrors: { emailExists: 'Este correo ya existe. Inicia sesión con la cuenta existente.', invalidCredentials: 'Correo o contraseña no válidos.', originBlocked: 'El host actual no está permitido en Appwrite Web Platform. Agrega la URL publicada antes de probar el login.', network: 'Fallo de red al comunicarse con Appwrite.', generic: 'No fue posible autenticar.' },
+    common: { brandName: 'MGenética', brandTagline: 'Mejoramiento animal, del concepto al código', admin: 'Admin', learnerArea: 'Área del estudiante', logout: 'Salir', back: 'Volver', openLiveUrl: 'Abrir sitio publicado', openFile: 'Abrir archivo', available: 'Disponible', active: 'Activo', draft: 'Borrador', reading: 'Lectura', status: 'Estado', dedicatedCourse: 'Curso dedicado' },
+    localeSwitcher: { label: 'Idioma' },
+    home: { signIn: 'Entrar', signInAria: 'Entrar a la plataforma', openCatalogAria: 'Abrir área del estudiante', openAdminAria: 'Abrir panel admin', logoutAria: 'Cerrar sesión', eyebrow: 'Educación aplicada · Mejoramiento animal', headline: 'Genética para decidir en campo.', description: 'Estudia genética cuantitativa y genómica con una ruta práctica guiada por R.', ctaLogin: 'Entrar para abrir ruta', ctaSignup: 'Crear cuenta', brandMeta1: 'Contenido técnico claro.', brandMeta2: 'Ruta práctica con código.', benefitsAria: 'Pilares de la plataforma', benefits: { reproducible: { title: 'R reproducible', copy: 'Ejemplos y guiones listos para estudiar con evidencia.' }, science: { title: 'Ciencia aplicada', copy: 'Contenido técnico claro, enfocado en decisiones de campo.' }, access: { title: 'Acceso único', copy: 'Una sola cuenta para ruta, cuestionarios y progreso.' } }, learner: { label: 'Área del estudiante', heading: 'La ruta se abre después del acceso', copy: 'Usa el área del estudiante para abrir cursos y revisar cada página.', openCourses: 'Abrir cursos', logout: 'Salir de la cuenta' }, trustAria: 'Pilares de confianza de MGenética', trust: { rigor: { title: 'Rigor científico', copy: 'Contenido basado en genética cuantitativa, estadística y uso en campo.' }, clarity: { title: 'Lenguaje claro', copy: 'Explicaciones directas, interpretación breve, poca jerga.' }, practice: { title: 'Práctica reproducible', copy: 'Scripts y datos simulados para estudiar sin bases externas.' } } },
+    authPage: { brandName: 'Acceso', brandTagline: 'Entra para abrir la ruta', eyebrow: 'Acceso a la plataforma', heading: 'Entra o crea una cuenta.', copy: 'Usa esta página para abrir la ruta, seguir estudiando y revisar tu progreso.' },
+    authPanel: { connectedTitle: 'Cuenta conectada', defaultTitle: 'Accede a tu cuenta', connectedCopy: 'Hola, {name}. Ya puedes continuar.', defaultCopy: 'Entra para guardar tu progreso, abrir cuestionarios y usar la ruta completa.', tabLogin: 'Entrar', tabSignup: 'Crear cuenta', loginNote: 'Usa tu correo y contraseña para retomar la ruta.', signupNote: 'Crea una cuenta para probar la experiencia completa.', name: 'Nombre', namePlaceholder: 'Tu nombre', email: 'Correo', emailPlaceholder: 'tu@ejemplo.com', password: 'Contraseña', loading: 'Procesando…', createAccount: 'Crear cuenta', alreadyHaveAccount: 'Ya tengo cuenta', wantCreateAccount: 'Crear cuenta en su lugar', activeSession: 'Sesión activa', activeCopy: 'Puedes seguir leyendo y abrir cuestionarios con la sesión actual.' },
+    catalog: { brandName: 'Cursos', brandTagline: 'Abre módulos de la ruta', backHomeAria: 'Volver al inicio', openAdminAria: 'Abrir panel admin', logoutAria: 'Cerrar sesión', label: 'Ruta', heading: 'Cursos con página dedicada', coursesAria: 'Cursos disponibles', openCourseAria: 'Abrir {title}', openPage: 'Abrir página' },
+    adminPage: { brandTagline: 'Panel de control del sistema', label: 'Control', heading: 'Salud del sistema, autenticación y backend', copy: 'Este panel valida la configuración de Appwrite, la sesión actual, las funciones publicadas y las verificaciones del entorno de aprendizaje.', runChecks: 'Ejecutar diagnósticos', runningChecks: 'Ejecutando diagnósticos…', session: 'Sesión', noUser: 'Sin usuario autenticado', appwrite: 'Appwrite', project: 'Proyecto', requiredConfigTitle: 'Configuración requerida de Appwrite', requiredConfigCopy: 'Para habilitar el resumen administrativo real, configura estas variables en la función mgenetica_admin_fn.', adminEmailsCopy: 'Lista de correos admin separada por comas.', adminApiKeyCopy: 'Clave admin recomendada para el resumen de usuarios y funciones.', fallbackApiKeyCopy: 'Fallback aceptado por la función admin si la clave dedicada no existe.', currentStatus: 'Estado actual: adminApiConfigured = {configured}; configuredAdminEmails = {count}', reportTitle: 'Último informe', noChecks: 'Aún no se ejecutó ningún diagnóstico.' },
+    coursePage: { dedicatedPage: 'Página del curso', backToCatalog: 'Volver al catálogo', catalog: 'Catálogo', studyTitle: 'Cómo abordar este módulo', moduleMetaQuiz: 'Cuestionario', contextEyebrow: 'Contexto', contextTitle: 'El problema antes de la fórmula', centralConcept: 'Concepto central', equationEyebrow: 'Ecuación', equationTitle: 'La ecuación del mejorista', equationCopy: 'La ganancia genética anual depende de la intensidad de selección, la precisión, la varianza genética aditiva y el intervalo generacional.', symbols: { symbol: 'Símbolo', meaning: 'Significado', increase: 'Cómo mejorarlo' }, practicalTip: 'Nota práctica', interpretationEyebrow: 'Interpretación', interpretationTitle: 'Cómo leer los resultados', warning: 'Nota:', evidenceEyebrow: 'Evidencia', evidenceTitle: 'Ruta de evidencia', exerciseEyebrow: 'Ejercicio', exerciseTitle: 'Ejercicio sugerido', checkpointEyebrow: 'Checkpoint', checkpointTitle: 'Antes del cuestionario', summaryEyebrow: 'Resumen', summaryTitle: 'Qué llevarte de este módulo', actionEyebrow: 'Acción', actionTitle: 'Después del cuestionario', openQuiz: 'Abrir cuestionario', closingEyebrow: 'Cierre', closingTitle: 'Antes de salir de esta página', index: 'Índice', allModules: 'Todos los módulos', nextCourse: 'Siguiente curso', next: 'Siguiente', nextCatalogFallback: 'Ve los próximos cursos en el catálogo', constructionEyebrow: 'Estado', constructionTitle: 'Contenido en construcción', constructionCopy: 'Esta página ya está reservada para el curso, pero el contenido completo se agregará en la siguiente etapa de la ruta.', openCourse: 'Volver al curso' },
+    quiz: { title: 'Cuestionario de ejemplo', question: 'Pregunta {index}', submit: 'Enviar', score: 'Puntuación: {score}/{total}' }
+  }
+}
+
+function getNestedValue(target, path) {
+  return path.split('.').reduce((current, part) => (current && current[part] !== undefined ? current[part] : undefined), target)
+}
+
+function interpolate(template, params = {}) {
+  return String(template).replace(/\{(\w+)\}/g, (_, key) => (params[key] ?? '{' + key + '}'))
+}
+
+function normalizeLocale(locale) {
+  if (SUPPORTED_LOCALES.includes(locale)) return locale
+  if (String(locale || '').toLowerCase().startsWith('en')) return 'en'
+  if (String(locale || '').toLowerCase().startsWith('es')) return 'es'
+  return 'pt-BR'
+}
+
+function detectInitialLocale() {
+  if (typeof window === 'undefined') return 'pt-BR'
+  const stored = window.localStorage.getItem(LOCALE_STORAGE_KEY)
+  if (stored) return normalizeLocale(stored)
+  return normalizeLocale(window.navigator.language)
+}
+
+function createTranslator(locale) {
+  return (key, params = {}) => {
+    const normalizedLocale = normalizeLocale(locale)
+    const localized = getNestedValue(MESSAGES[normalizedLocale], key)
+    const fallback = getNestedValue(MESSAGES['pt-BR'], key)
+    const value = localized ?? fallback ?? key
+    return typeof value === 'string' ? interpolate(value, params) : value
+  }
+}
+
+export { MESSAGES, SUPPORTED_LOCALES, LOCALE_STORAGE_KEY, normalizeLocale, detectInitialLocale, createTranslator }

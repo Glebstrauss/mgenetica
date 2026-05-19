@@ -1864,6 +1864,36 @@ body {
   overflow: hidden;
 }
 
+.app-header {
+  padding: 14px 18px;
+  gap: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 26px;
+  box-shadow: 0 10px 24px rgba(10, 31, 56, 0.06);
+}
+
+.header-actions {
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.header-actions > * {
+  flex: 0 0 auto;
+}
+
+.header-actions .btn,
+.status-badge,
+.locale-switcher {
+  min-height: 48px;
+}
+
+.header-actions .btn {
+  min-width: 132px;
+  padding-inline: 1.1rem;
+  border-radius: 15px;
+}
+
 .hero-copy-card,
 .hero-brand-card,
 .benefit-card {
@@ -1889,16 +1919,18 @@ body {
 }
 
 .hero-eyebrow {
-  width: fit-content;
-  max-width: 100%;
+  width: min(100%, 46rem);
   padding: 0.7rem 1.1rem;
   color: var(--mg-cyan);
   background: var(--mg-blue-soft);
   border: 1px solid rgba(10, 31, 56, 0.10);
   border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.07em;
+  min-height: 3.35rem;
   line-height: 1.25;
   text-transform: uppercase;
 }
@@ -1911,6 +1943,7 @@ body {
   font-size: clamp(2.7rem, 3.5vw, 4rem);
   line-height: 0.98;
   letter-spacing: -0.04em;
+  min-height: 3.95em;
   text-wrap: balance;
 }
 
@@ -1920,6 +1953,7 @@ body {
   color: var(--mg-text);
   font-size: clamp(1rem, 1.02vw, 1.12rem);
   line-height: 1.62;
+  min-height: 5.3rem;
 }
 
 .hero-cta {
@@ -1929,13 +1963,16 @@ body {
 }
 
 .hero-cta .btn {
-  min-height: 54px;
+  min-height: 58px;
   width: 100%;
   justify-content: center;
+  align-items: center;
   padding-inline: 1rem;
   white-space: normal;
   text-wrap: balance;
   line-height: 1.22;
+  font-size: 0.98rem;
+  text-align: center;
 }
 
 .hero-brand-card {
@@ -1976,6 +2013,7 @@ body {
   color: var(--mg-muted);
   font-size: 1rem;
   line-height: 1.5;
+  min-height: 3rem;
   text-wrap: balance;
 }
 
@@ -1987,6 +2025,8 @@ body {
 }
 
 .brand-meta-item {
+  display: grid;
+  place-items: center;
   padding: 12px 14px;
   color: var(--mg-text);
   background: rgba(255, 255, 255, 0.82);
@@ -1994,6 +2034,7 @@ body {
   border-radius: 14px;
   font-size: 0.95rem;
   line-height: 1.45;
+  min-height: 3.5rem;
   text-align: center;
 }
 
@@ -2028,6 +2069,9 @@ body {
   font-family: var(--mg-display);
   font-size: 1.28rem;
   line-height: 1.08;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: flex-start;
 }
 
 .benefit-card p {
@@ -2036,6 +2080,7 @@ body {
   font-size: 0.98rem;
   line-height: 1.55;
   max-width: 26ch;
+  min-height: 4.7rem;
 }
 
 .auth-section {
@@ -2088,6 +2133,7 @@ body {
   margin: 0;
   font-size: clamp(1.45rem, 1.5vw, 1.72rem);
   line-height: 1.08;
+  text-wrap: balance;
 }
 
 .auth-note,
@@ -2114,6 +2160,69 @@ body {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.locale-switcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 6.5rem;
+  min-width: 6.5rem;
+  padding: 0 0.75rem;
+  margin-bottom: 0;
+  background: rgba(247, 249, 252, 0.92);
+  border: 1px solid var(--mg-line);
+  border-radius: 15px;
+  color: var(--mg-navy);
+}
+
+.locale-switcher-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mg-muted);
+  flex: 0 0 auto;
+}
+
+.locale-select {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 0 1.15rem 0 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  appearance: none;
+  outline: none;
+}
+
+.locale-switcher::after {
+  content: "▾";
+  position: absolute;
+  right: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--mg-muted);
+  font-size: 0.78rem;
+  pointer-events: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .tab,
 .btn,
 .field input {
@@ -2132,6 +2241,8 @@ body {
   width: 100%;
   justify-content: center;
   white-space: normal;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .status-badge {
@@ -2140,6 +2251,16 @@ body {
 }
 
 @media (max-width: 1100px) {
+  .app-header {
+    align-items: flex-start;
+    border-radius: 28px;
+  }
+
+  .header-actions {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
   .hero-main {
     grid-template-columns: 1fr;
   }
@@ -2152,6 +2273,12 @@ body {
 
   .hero-cta {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-description,
+  .visual-caption p,
+  .brand-meta-item {
+    min-height: 0;
   }
 
   .auth-page-shell {
@@ -2171,6 +2298,11 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .locale-switcher {
+    width: 100%;
+    min-width: 0;
+  }
+
   .hero-eyebrow,
   .status-badge {
     width: 100%;
@@ -2178,9 +2310,19 @@ body {
 
   .hero-headline {
     font-size: clamp(2.2rem, 11vw, 3.2rem);
+    min-height: 0;
   }
 
   .benefit-card {
+    min-height: 0;
+  }
+
+  .benefit-card strong,
+  .benefit-card p {
+    min-height: 0;
+  }
+
+  .hero-description {
     min-height: 0;
   }
 }
