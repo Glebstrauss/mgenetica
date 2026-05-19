@@ -418,6 +418,7 @@ export default function App() {
       return null
     } catch (err) {
       setProgressReport({ ok: false, error: err.message || 'progress_load_failed', records: [], summary: null })
+      updateStatus('status.progressUnavailable')
       return null
     }
   }

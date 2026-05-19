@@ -171,7 +171,21 @@ function normalizeAuthError(err, messages = {}) {
   if (/missing scopes|role:\s*guests|account\W/i.test(message)) {
     return messages.sessionRejected || 'Session not accepted by Appwrite. Refresh the page and sign in again.'
   }
+  if (/missing_admin_api_key|appwrite_function_api_key|function execution failed|appwrite function returned an error/i.test(message)) {
+    return messages.servicesUnavailable || 'Learning services are temporarily unavailable. Please try again in a moment.'
+  }
   return message || messages.generic || 'Não foi possível autenticar.'
+}
+
+function normalizeAppError(err, messages = {}) {
+  const message = String(err?.message || '')
+  if (/missing_admin_api_key|appwrite_function_api_key|function execution failed|appwrite function returned an error/i.test(message)) {
+    return messages.servicesUnavailable || 'Learning services are temporarily unavailable. Please try again in a moment.'
+  }
+  if (/auth_required|session rejected|session not accepted|role:\s*guests|missing scopes/i.test(message)) {
+    return messages.sessionRequired || 'Your session expired or was not accepted. Refresh and sign in again.'
+  }
+  return message || messages.generic || 'Could not complete the request.'
 }
 
 async function listCourses(locale) {
@@ -253,6 +267,7 @@ export {
   deleteSession,
   getAccount,
   normalizeAuthError,
+  normalizeAppError,
   APPWRITE_ENDPOINT,
   APPWRITE_PROJECT_ID,
   PUBLIC_SITE_URL

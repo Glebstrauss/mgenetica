@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useState} from 'react'
 import Icon from './components/Icon'
-import { getQuiz, submitQuiz } from './lib/appwrite'
+import { getQuiz, normalizeAppError, submitQuiz } from './lib/appwrite'
 
 export default function Quiz({ courseId, courseTitle, locale, onBack, onPersistResult, t }) {
   const [quiz, setQuiz] = useState(null)
@@ -25,7 +25,11 @@ export default function Quiz({ courseId, courseTitle, locale, onBack, onPersistR
       })
       .catch((err) => {
         if (!active) return
-        setError(err?.message || t('quiz.loadError'))
+        setError(normalizeAppError(err, {
+          servicesUnavailable: t('quiz.servicesUnavailable'),
+          sessionRequired: t('quiz.sessionRequired'),
+          generic: t('quiz.loadError')
+        }))
       })
       .finally(() => {
         if (active) setLoading(false)
@@ -57,7 +61,11 @@ export default function Quiz({ courseId, courseTitle, locale, onBack, onPersistR
         setSaveState(t('quiz.progressSaved'))
       }
     } catch (err) {
-      setError(err?.message || t('quiz.submitError'))
+      setError(normalizeAppError(err, {
+        servicesUnavailable: t('quiz.servicesUnavailable'),
+        sessionRequired: t('quiz.sessionRequired'),
+        generic: t('quiz.submitError')
+      }))
     } finally {
       setSubmitting(false)
     }
