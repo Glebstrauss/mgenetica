@@ -59,3 +59,4 @@
 - Frontend UI was upgraded into a polished course page that renders the full original Módulo 01 content, including all three R code blocks, explanatory callouts, a table of symbols, and a cleaner learning flow.
 - Auth UX now supports both sign-in and account creation from the same panel, with clearer copy, feedback, and button states.
 - Local preview/build checks are green, and the current Vercel + Quarto publish runs on `main` are succeeding.
+- Remote build workflows were refreshed to use the newer JavaScript-action runtime path (`checkout@v5`, `setup-node@v6`, Node 24) before the next deploy.
