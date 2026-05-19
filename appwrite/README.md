@@ -15,10 +15,12 @@ Cloud function variables used by this repo:
 - `ADMIN_EMAILS`: comma-separated list of admin e-mails for `mgenetica_admin_fn`
 - `APPWRITE_ADMIN_API_KEY`: recommended admin/server key for `mgenetica_admin_fn` summary mode
 - `APPWRITE_API_KEY`: accepted fallback key name in `mgenetica_admin_fn` when dedicated admin key is not set
+- `APPWRITE_ADMIN_API_KEY` or `APPWRITE_API_KEY` is also required by `mgenetica_progress_fn` because learner progress is persisted in Appwrite user prefs from the server side
 
 Current live behavior:
-- learner account creation/login works with browser Appwrite SDK
+- learner account creation/login works with Appwrite account REST calls
 - learner functions execute for authenticated users
+- quiz submissions now persist learner progress in Appwrite user prefs through `mgenetica_progress_fn`
 - admin summary remains unavailable until `ADMIN_EMAILS` and an admin API key are configured in the live function environment
 
 Next steps (manual):

@@ -33,6 +33,8 @@ function currentAppwriteConfig() {
   };
 }
 
+const PROGRESS_PREFS_KEY = 'mgeneticaProgress';
+
 async function appwriteAdminGet(pathname) {
   const { endpoint, projectId, apiKey } = currentAppwriteConfig();
   if (!apiKey) {
@@ -62,6 +64,50 @@ async function appwriteAdminGet(pathname) {
   }
 
   return { ok: true, data };
+}
+
+function buildProgressSummary(usersPayload, adminEmails) {
+  const users = Array.isArray(usersPayload?.users) ? usersPayload.users : [];
+  const progressRecords = [];
+  let trackedLearners = 0;
+
+  for (const user of users) {
+    const prefs = user?.prefs && typeof user.prefs === 'object' ? user.prefs : {};
+    const progress = prefs[PROGRESS_PREFS_KEY];
+    const courses = progress?.courses && typeof progress.courses === 'object' ? Object.values(progress.courses) : [];
+    if (courses.length > 0) trackedLearners += 1;
+    for (const course of courses) {
+      if (!course || typeof course !== 'object') continue;
+      progressRecords.push({
+        email: user.email || null,
+        name: user.name || null,
+        courseId: course.courseId || null,
+        percent: Number.isFinite(Number(course.percent)) ? Number(course.percent) : 0,
+        passed: Boolean(course.passed),
+        attempts: Number.isFinite(Number(course.attempts)) ? Number(course.attempts) : 0,
+        updatedAt: course.updatedAt || null
+      });
+    }
+  }
+
+  const totalTrackedModules = progressRecords.length;
+  const passedModules = progressRecords.filter((record) => record.passed).length;
+  const completedModules = progressRecords.filter((record) => record.percent >= 100).length;
+  const averagePercent = totalTrackedModules
+    ? Math.round(progressRecords.reduce((sum, record) => sum + record.percent, 0) / totalTrackedModules)
+    : 0;
+
+  return {
+    usersTotal: usersPayload?.total ?? null,
+    learnerUsersTotal: users.filter((user) => !adminEmails.includes(String(user?.email || '').toLowerCase())).length,
+    adminUsersTotal: users.filter((user) => adminEmails.includes(String(user?.email || '').toLowerCase())).length,
+    trackedLearners,
+    totalTrackedModules,
+    passedModules,
+    completedModules,
+    averagePercent,
+    recentProgress: progressRecords.sort((a, b) => String(b.updatedAt || '').localeCompare(String(a.updatedAt || ''))).slice(0, 8)
+  };
 }
 
 function makeStatusPayload(userEmail) {
@@ -122,13 +168,15 @@ module.exports = async function (context) {
         return { status: 403, body: JSON.stringify(payload) };
       }
 
-      const users = await appwriteAdminGet('/users?limit=1');
+      const adminEmails = readAdminEmails();
+      const users = await appwriteAdminGet('/users?limit=100');
       const functions = await appwriteAdminGet('/functions?limit=100');
       const payload = {
         ...statusPayload,
         summary: {
           usersTotal: users.ok ? users.data?.total ?? null : null,
           functionsTotal: functions.ok ? functions.data?.total ?? null : null,
+          learnerProgress: users.ok ? buildProgressSummary(users.data, adminEmails) : null,
           users,
           functions
         }

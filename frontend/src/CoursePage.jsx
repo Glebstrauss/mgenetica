@@ -40,7 +40,7 @@ function LocaleSwitcher({ locale, onLocaleChange, t }) {
   )
 }
 
-export default function CoursePage({ course, detail, onBack, onOpenQuiz, onOpenCatalog, onOpenCourse, nextCourse, onLogout, loadingAuth, locale, onLocaleChange, t }) {
+export default function CoursePage({ course, detail, progress, onBack, onOpenQuiz, onOpenCatalog, onOpenCourse, nextCourse, onLogout, loadingAuth, locale, onLocaleChange, t }) {
   return (
     <div className="app-shell">
       <header className="app-header course-header">
@@ -86,6 +86,24 @@ export default function CoursePage({ course, detail, onBack, onOpenQuiz, onOpenC
             <h2 className="module-title">{detail.title}</h2>
             <p className="module-description">{detail.description}</p>
           </article>
+          <section className="section-card">
+            <div className="section-eyebrow">{t('coursePage.progressEyebrow')}</div>
+            <h3>{t('coursePage.progressTitle')}</h3>
+            <div className="content-grid catalog-grid">
+              <article className="course-card">
+                <strong className="course-title">{t('coursePage.progressPercent')}</strong>
+                <p className="course-description">{progress ? t('coursePage.progressPercentValue', { percent: progress.percent }) : t('coursePage.progressEmpty')}</p>
+              </article>
+              <article className="course-card">
+                <strong className="course-title">{t('coursePage.progressAssessment')}</strong>
+                <p className="course-description">{progress ? (progress.passed ? t('coursePage.progressPassed') : t('coursePage.progressReview')) : t('coursePage.progressPending')}</p>
+              </article>
+              <article className="course-card">
+                <strong className="course-title">{t('coursePage.progressAttempts')}</strong>
+                <p className="course-description">{progress ? t('coursePage.progressAttemptsValue', { count: progress.attempts || 0 }) : t('coursePage.progressPending')}</p>
+              </article>
+            </div>
+          </section>
           {detail.sections.map((section) => (
             <SectionCard
               key={section.eyebrow + section.title}

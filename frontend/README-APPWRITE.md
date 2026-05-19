@@ -23,3 +23,7 @@ Using Appwrite with the frontend
    - configure `ADMIN_EMAILS` in live `mgenetica_admin_fn` variables with the same admin e-mails
    - configure `APPWRITE_ADMIN_API_KEY` in live `mgenetica_admin_fn` variables for admin summary mode
    - `APPWRITE_API_KEY` is also accepted by the function as fallback, but `APPWRITE_ADMIN_API_KEY` is the clearer dedicated name
+8. Learner progress persistence requirements:
+   - `mgenetica_progress_fn` stores learner progress in Appwrite user prefs under `mgeneticaProgress`
+   - configure `APPWRITE_ADMIN_API_KEY` or `APPWRITE_API_KEY` in live `mgenetica_progress_fn` variables
+   - quiz submissions update percent, attempts, pass state, and timestamps through that function

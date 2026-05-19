@@ -2,19 +2,21 @@ import React, {useEffect, useMemo, useState} from 'react'
 import Icon from './components/Icon'
 import { getQuiz, submitQuiz } from './lib/appwrite'
 
-export default function Quiz({ courseId, courseTitle, locale, onBack, t }) {
+export default function Quiz({ courseId, courseTitle, locale, onBack, onPersistResult, t }) {
   const [quiz, setQuiz] = useState(null)
   const [answers, setAnswers] = useState([])
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const [result, setResult] = useState(null)
+  const [saveState, setSaveState] = useState('')
 
   useEffect(() => {
     let active = true
     setLoading(true)
     setError('')
     setResult(null)
+    setSaveState('')
     getQuiz(courseId, locale)
       .then((payload) => {
         if (!active) return
@@ -46,9 +48,14 @@ export default function Quiz({ courseId, courseTitle, locale, onBack, t }) {
   async function handleSubmit() {
     setSubmitting(true)
     setError('')
+    setSaveState('')
     try {
       const payload = await submitQuiz(courseId, answers, locale)
       setResult(payload)
+      if (onPersistResult) {
+        await onPersistResult(payload)
+        setSaveState(t('quiz.progressSaved'))
+      }
     } catch (err) {
       setError(err?.message || t('quiz.submitError'))
     } finally {
@@ -79,6 +86,12 @@ export default function Quiz({ courseId, courseTitle, locale, onBack, t }) {
       {error ? (
         <section className="content-section">
           <div className="callout-warning"><strong>{t('quiz.errorLabel')}</strong> {error}</div>
+        </section>
+      ) : null}
+
+      {saveState ? (
+        <section className="content-section">
+          <div className="callout-card">{saveState}</div>
         </section>
       ) : null}
 
@@ -124,6 +137,7 @@ export default function Quiz({ courseId, courseTitle, locale, onBack, t }) {
               <h3>{t('quiz.resultTitle')}</h3>
               <p>{t('quiz.score', { score: result.score, total: result.total })}</p>
               <p>{result.passed ? t('quiz.passState') : t('quiz.failState')}</p>
+              {saveState ? <p>{saveState}</p> : null}
             </section>
           ) : null}
         </section>

@@ -158,6 +158,9 @@ function normalizeAuthError(err, messages = {}) {
     }
     return messages.network || 'Falha de rede ao falar com Appwrite.'
   }
+  if (/missing scopes|role:\s*guests|account\W/i.test(message)) {
+    return messages.sessionRejected || 'Session not accepted by Appwrite. Refresh the page and sign in again.'
+  }
   return message || messages.generic || 'Não foi possível autenticar.'
 }
 
@@ -175,6 +178,10 @@ async function submitQuiz(courseId, answers, locale) {
 
 async function getProgress(userId) {
   return executeFunction(functionIds.progress, { action: 'get', userId }, { includeCredentials: true });
+}
+
+async function updateProgress(courseId, progress = {}) {
+  return executeFunction(functionIds.progress, { action: 'update', courseId, ...progress }, { includeCredentials: true });
 }
 
 async function getAuthCapabilities() {
@@ -227,6 +234,7 @@ export {
   getQuiz,
   submitQuiz,
   getProgress,
+  updateProgress,
   getAuthCapabilities,
   getAdminStatus,
   getAdminSummary,

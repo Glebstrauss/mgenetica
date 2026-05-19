@@ -9,6 +9,7 @@ import {
   pingAppwrite,
   listCourses,
   getProgress,
+  updateProgress,
   getAuthCapabilities,
   getAdminStatus,
   getAdminSummary,
@@ -279,7 +280,7 @@ function AuthPage({ user, status, authMode, loadingAuth, isAdmin, onAuthIntent, 
   )
 }
 
-function CatalogPage({ courses, isAdmin, onBack, onOpenCourse, onOpenAdmin, onLogout, loadingAuth, locale, onLocaleChange, t }) {
+function CatalogPage({ courses, progressByCourse, progressSummary, isAdmin, onBack, onOpenCourse, onOpenAdmin, onLogout, loadingAuth, locale, onLocaleChange, t }) {
   return (
     <div className="app-shell">
       <AppHeader brandName={t('catalog.brandName')} brandTagline={t('catalog.brandTagline')} status={''} locale={locale} onLocaleChange={onLocaleChange} t={t}>
@@ -290,19 +291,27 @@ function CatalogPage({ courses, isAdmin, onBack, onOpenCourse, onOpenAdmin, onLo
       <section className="content-section">
         <div className="section-label">{t('catalog.label')}</div>
         <h2 className="section-heading">{t('catalog.heading')}</h2>
+        <p className="section-description">{t('catalog.progressOverview', { tracked: progressSummary?.totalCoursesTracked || 0, passed: progressSummary?.passedCourses || 0, average: progressSummary?.averagePercent || 0 })}</p>
         <div className="content-grid catalog-grid" role="list" aria-label={t('catalog.coursesAria')}>
-          {courses.map((course) => (
+          {courses.map((course) => {
+            const progress = progressByCourse?.[course.id]
+            return (
             <article className="course-card" role="listitem" key={course.id}>
               <div className="badge-row" style={{ marginBottom: 12 }}>
                 <span className="chip">{course.legacyId}</span>
                 <span className="chip">{course.blockTitle}</span>
+                <span className="chip">{progress ? t('catalog.progressChip', { percent: progress.percent }) : t('catalog.notStarted')}</span>
               </div>
               <strong className="course-title">{course.title}</strong>
               <p className="course-description">{course.description}</p>
-              <div className="course-meta" style={{ marginTop: 12 }}><span className="status-badge">{course.active ? t('common.available') : t('common.draft')}</span></div>
+              <div className="course-meta" style={{ marginTop: 12 }}>
+                <span className="status-badge">{course.active ? t('common.available') : t('common.draft')}</span>
+                {progress?.passed ? <span className="status-badge">{t('catalog.passed')}</span> : null}
+              </div>
               <button type="button" className="btn btn-primary" style={{ marginTop: 12 }} onClick={() => onOpenCourse(course.id)} aria-label={t('catalog.openCourseAria', { title: course.title })}>{t('catalog.openPage')}</button>
             </article>
-          ))}
+            )
+          })}
         </div>
       </section>
     </div>
@@ -313,6 +322,7 @@ function AdminPage({ user, status, report, loading, onBack, onRefresh, onLogout,
   const adminConfigured = report?.admin?.appwrite?.adminApiConfigured
   const adminEmailsConfigured = report?.admin?.checks?.adminEmailsConfigured
     ?? ((report?.admin?.checks?.configuredAdminEmails ?? 0) > 0)
+  const learnerProgress = report?.summary?.summary?.learnerProgress
   return (
     <div className="app-shell">
       <AppHeader brandName={t('common.admin')} brandTagline={t('adminPage.brandTagline')} status={status} locale={locale} onLocaleChange={onLocaleChange} t={t}>
@@ -329,6 +339,7 @@ function AdminPage({ user, status, report, loading, onBack, onRefresh, onLogout,
         </div>
       </section>
       <section className="content-section"><div className="content-grid catalog-grid"><article className="course-card"><strong className="course-title">{t('adminPage.session')}</strong><p className="course-description">{user?.email || user?.name || user?.$id || t('adminPage.noUser')}</p></article><article className="course-card"><strong className="course-title">{t('adminPage.appwrite')}</strong><p className="course-description">{APPWRITE_ENDPOINT}</p></article><article className="course-card"><strong className="course-title">{t('adminPage.project')}</strong><p className="course-description">{APPWRITE_PROJECT_ID}</p></article></div></section>
+      <section className="content-section"><div className="content-grid catalog-grid"><article className="course-card"><strong className="course-title">{t('adminPage.learnersTracked')}</strong><p className="course-description">{learnerProgress?.trackedLearners ?? 0}</p></article><article className="course-card"><strong className="course-title">{t('adminPage.modulesTracked')}</strong><p className="course-description">{learnerProgress?.totalTrackedModules ?? 0}</p></article><article className="course-card"><strong className="course-title">{t('adminPage.averageProgress')}</strong><p className="course-description">{t('adminPage.averageProgressValue', { percent: learnerProgress?.averagePercent ?? 0 })}</p></article><article className="course-card"><strong className="course-title">{t('adminPage.modulesPassed')}</strong><p className="course-description">{learnerProgress?.passedModules ?? 0}</p></article></div></section>
       <section className="content-section"><div className="content-grid catalog-grid">{Object.entries(functionIds).map(([key, value]) => <article className="course-card" key={key}><strong className="course-title">{key}</strong><p className="course-description">{value}</p></article>)}</div></section>
       <section className="content-section"><div className="panel" style={{ padding: 18 }}><strong style={{ display: 'block', marginBottom: 12 }}>{t('adminPage.requiredConfigTitle')}</strong><p className="section-description" style={{ marginBottom: 12 }}>{t('adminPage.requiredConfigCopy')}</p><div className="content-grid catalog-grid"><article className="course-card"><strong className="course-title">ADMIN_EMAILS</strong><p className="course-description">{t('adminPage.adminEmailsCopy')}</p></article><article className="course-card"><strong className="course-title">APPWRITE_ADMIN_API_KEY</strong><p className="course-description">{t('adminPage.adminApiKeyCopy')}</p></article><article className="course-card"><strong className="course-title">APPWRITE_API_KEY</strong><p className="course-description">{t('adminPage.fallbackApiKeyCopy')}</p></article></div><p className="subtle" style={{ margin: '14px 0 0' }}>{t('adminPage.currentStatus', { configured: String(Boolean(adminConfigured)), adminEmailsConfigured: String(Boolean(adminEmailsConfigured)) })}</p></div></section>
       <section className="content-section"><div className="panel" style={{ padding: 18 }}><strong style={{ display: 'block', marginBottom: 12 }}>{t('adminPage.reportTitle')}</strong><pre style={{ margin: 0, whiteSpace: 'pre-wrap', fontSize: 13, lineHeight: 1.5 }}>{JSON.stringify(report || { info: t('adminPage.noChecks') }, null, 2)}</pre></div></section>
@@ -348,10 +359,12 @@ export default function App() {
   const [selectedCourseId, setSelectedCourseId] = useState(initialRoute.selectedCourseId)
   const [statusState, setStatusState] = useState({ key: 'status.syncing' })
   const [adminReport, setAdminReport] = useState(null)
+  const [progressReport, setProgressReport] = useState(null)
   const t = useMemo(() => createTranslator(locale), [locale])
   const errorMessages = useMemo(() => t('authErrors'), [t])
   const status = t(statusState.key, statusState.params)
   const catalogCourses = useMemo(() => getCourseCatalog(locale), [locale])
+  const progressByCourse = useMemo(() => Object.fromEntries((progressReport?.records || []).map((record) => [record.courseId, record])), [progressReport])
 
   function syncFromHash() { const route = parseRouteHash(window.location.hash); setAuthMode(route.authMode); setScreen(route.screen); setShowQuiz(route.showQuiz); setSelectedCourseId(route.selectedCourseId) }
   function navigate(next) { const hash = buildRouteHash(next); const currentHash = window.location.hash.replace(/^#/, ''); if (hash === currentHash) { syncFromHash(); return } window.location.hash = hash }
@@ -364,8 +377,22 @@ export default function App() {
   }, [locale])
 
   useEffect(() => {
+    let active = true
+    updateStatus('status.restoringSession')
     pingAppwrite().catch(() => {})
-    getAccount().then((account) => { setUser(account); updateStatus('status.sessionVerified') }).catch(() => updateStatus('status.unlockFlow'))
+    ;(async () => {
+      try {
+        const account = await getAccount()
+        if (!active) return
+        setUser(account)
+        await refreshProgress(account)
+        if (!active) return
+        updateStatus('status.sessionVerified')
+      } catch (_) {
+        if (active) updateStatus('status.unlockFlow')
+      }
+    })()
+    return () => { active = false }
   }, [])
 
   useEffect(() => { syncFromHash(); const handleHashChange = () => syncFromHash(); window.addEventListener('hashchange', handleHashChange); return () => window.removeEventListener('hashchange', handleHashChange) }, [])
@@ -374,14 +401,41 @@ export default function App() {
   const nextCourse = useMemo(() => { if (!selectedCourseId) return null; const currentIndex = catalogCourses.findIndex((course) => course.id === selectedCourseId); if (currentIndex === -1) return null; return catalogCourses.slice(currentIndex + 1).find(Boolean) || null }, [catalogCourses, selectedCourseId])
   const selectedCourseDetail = useMemo(() => (selectedCourse ? getCourseDetail(selectedCourse.id, locale) : null), [selectedCourse, locale])
   const adminEnabled = useMemo(() => isAdminUser(user), [user])
+  async function refreshProgress(account) {
+    if (!account?.$id) {
+      setProgressReport(null)
+      return null
+    }
+    try {
+      const report = await getProgress(account.$id)
+      setProgressReport(report)
+      return report
+    } catch (err) {
+      setProgressReport({ ok: false, error: err.message || 'progress_load_failed', records: [], summary: null })
+      return null
+    }
+  }
 
-  async function handleLogin(payload) { setLoadingAuth(true); try { await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); setAdminReport(null); updateStatus('status.loginSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
-  async function handleSignup(payload) { setLoadingAuth(true); try { await createAccount(payload.email, payload.password, payload.name); await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); setAdminReport(null); updateStatus('status.signupSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
-  async function handleLogout() { setLoadingAuth(true); try { await deleteSession(); setUser(null); setAdminReport(null); updateStatus('status.sessionClosed'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
+  async function handleLogin(payload) { setLoadingAuth(true); try { await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); await refreshProgress(account); setAdminReport(null); updateStatus('status.loginSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
+  async function handleSignup(payload) { setLoadingAuth(true); try { await createAccount(payload.email, payload.password, payload.name); await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); await refreshProgress(account); setAdminReport(null); updateStatus('status.signupSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
+  async function handleLogout() { setLoadingAuth(true); try { await deleteSession(); setUser(null); setAdminReport(null); setProgressReport(null); updateStatus('status.sessionClosed'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
   function focusAuth(mode) { navigate({ screen: 'auth', authMode: mode, selectedCourseId: null, showQuiz: false }) }
   function openCatalog() { if (!user) { updateStatus('status.enterCourses'); return } navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false }) }
   function openCourse(courseId) { if (!user) { updateStatus('status.enterCoursePage'); return } navigate({ screen: 'course', authMode, selectedCourseId: courseId, showQuiz: false }) }
   function openAdmin() { if (!adminEnabled) { updateStatus('status.notAdmin'); return } navigate({ screen: 'admin', authMode, selectedCourseId: null, showQuiz: false }) }
+  async function persistQuizResult(courseId, quizResult) {
+    const report = await updateProgress(courseId, {
+      percent: quizResult?.total ? Math.round((Number(quizResult.score || 0) / Number(quizResult.total)) * 100) : 0,
+      quizScore: Number(quizResult.score || 0),
+      quizTotal: Number(quizResult.total || 0),
+      passMark: Number(quizResult.passMark || 0),
+      passed: Boolean(quizResult.passed),
+      lastSubmittedAt: new Date().toISOString()
+    })
+    setProgressReport(report)
+    updateStatus('status.progressSaved')
+    return report
+  }
   async function runAdminChecks() {
     setLoadingAdmin(true)
     updateStatus('status.runningChecks')
@@ -404,13 +458,13 @@ export default function App() {
   function goHome() { navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) }
 
   if (showQuiz) {
-    return <Quiz courseId={selectedCourseId} courseTitle={selectedCourse?.title || ''} locale={locale} onBack={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: false })} t={t} />
+    return <Quiz courseId={selectedCourseId} courseTitle={selectedCourse?.title || ''} locale={locale} onBack={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: false })} onPersistResult={(result) => persistQuizResult(selectedCourseId, result)} t={t} />
   }
   if (screen === 'course' && selectedCourse) {
-    return <CoursePage course={selectedCourse} detail={selectedCourseDetail} onBack={() => navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false })} onOpenQuiz={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: true })} onOpenCatalog={openCatalog} onOpenCourse={openCourse} nextCourse={nextCourse} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
+    return <CoursePage course={selectedCourse} detail={selectedCourseDetail} progress={progressByCourse[selectedCourse.id] || null} onBack={() => navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false })} onOpenQuiz={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: true })} onOpenCatalog={openCatalog} onOpenCourse={openCourse} nextCourse={nextCourse} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
   }
   if (screen === 'catalog' && user) {
-    return <CatalogPage courses={catalogCourses} isAdmin={adminEnabled} onBack={goHome} onOpenCourse={openCourse} onOpenAdmin={openAdmin} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
+    return <CatalogPage courses={catalogCourses} progressByCourse={progressByCourse} progressSummary={progressReport?.summary} isAdmin={adminEnabled} onBack={goHome} onOpenCourse={openCourse} onOpenAdmin={openAdmin} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
   }
   if (screen === 'admin' && user) {
     return <AdminPage user={user} status={status} report={adminReport} loading={loadingAdmin} onRefresh={runAdminChecks} onBack={goHome} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />

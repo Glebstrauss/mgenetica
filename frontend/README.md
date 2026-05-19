@@ -16,4 +16,5 @@ Production requirements:
 - GitHub Pages deploy/workflow must stay aligned with the built frontend artifact
 - Appwrite Web Platform must include `https://mgenetica.github.io/mgenetica/`
 - Appwrite admin runtime must include `ADMIN_EMAILS` and `APPWRITE_ADMIN_API_KEY` for admin summary mode
+- Appwrite progress runtime must include `APPWRITE_ADMIN_API_KEY` or `APPWRITE_API_KEY` so learner progress can persist in user prefs
 - Frontend env must expose Appwrite endpoint/project and function IDs when canonical defaults are not used
