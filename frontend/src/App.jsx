@@ -365,6 +365,7 @@ export default function App() {
   const status = t(statusState.key, statusState.params)
   const catalogCourses = useMemo(() => getCourseCatalog(locale), [locale])
   const progressByCourse = useMemo(() => Object.fromEntries((progressReport?.records || []).map((record) => [record.courseId, record])), [progressReport])
+  function isProgressReport(report) { return Array.isArray(report?.records) && typeof report?.summary === 'object' }
 
   function syncFromHash() { const route = parseRouteHash(window.location.hash); setAuthMode(route.authMode); setScreen(route.screen); setShowQuiz(route.showQuiz); setSelectedCourseId(route.selectedCourseId) }
   function navigate(next) { const hash = buildRouteHash(next); const currentHash = window.location.hash.replace(/^#/, ''); if (hash === currentHash) { syncFromHash(); return } window.location.hash = hash }
@@ -408,8 +409,13 @@ export default function App() {
     }
     try {
       const report = await getProgress(account.$id)
-      setProgressReport(report)
-      return report
+      if (isProgressReport(report)) {
+        setProgressReport(report)
+        return report
+      }
+      const fallback = { ok: false, error: 'progress_payload_invalid', records: [], summary: null, raw: report }
+      setProgressReport(fallback)
+      return null
     } catch (err) {
       setProgressReport({ ok: false, error: err.message || 'progress_load_failed', records: [], summary: null })
       return null
@@ -424,7 +430,7 @@ export default function App() {
   function openCourse(courseId) { if (!user) { updateStatus('status.enterCoursePage'); return } navigate({ screen: 'course', authMode, selectedCourseId: courseId, showQuiz: false }) }
   function openAdmin() { if (!adminEnabled) { updateStatus('status.notAdmin'); return } navigate({ screen: 'admin', authMode, selectedCourseId: null, showQuiz: false }) }
   async function persistQuizResult(courseId, quizResult) {
-    const report = await updateProgress(courseId, {
+    const rawReport = await updateProgress(courseId, {
       percent: quizResult?.total ? Math.round((Number(quizResult.score || 0) / Number(quizResult.total)) * 100) : 0,
       quizScore: Number(quizResult.score || 0),
       quizTotal: Number(quizResult.total || 0),
@@ -432,9 +438,10 @@ export default function App() {
       passed: Boolean(quizResult.passed),
       lastSubmittedAt: new Date().toISOString()
     })
-    setProgressReport(report)
+    const report = isProgressReport(rawReport) ? rawReport : await refreshProgress(user)
+    if (report) setProgressReport(report)
     updateStatus('status.progressSaved')
-    return report
+    return report || rawReport
   }
   async function runAdminChecks() {
     setLoadingAdmin(true)

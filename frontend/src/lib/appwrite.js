@@ -41,6 +41,7 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
     },
     credentials: includeCredentials ? 'include' : 'omit',
     body: JSON.stringify({
+      async: false,
       body: JSON.stringify(payload)
     })
   });
@@ -55,6 +56,9 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
     } catch (_) {
       return data.responseBody;
     }
+  }
+  if (data?.responseBody && typeof data.responseBody === 'object') {
+    return data.responseBody;
   }
   return data;
 }
