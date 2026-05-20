@@ -71,8 +71,9 @@ export default function CoursePage({ course, detail, progress, onBack, onOpenQui
           </button>
         </div>
       </header>
+      <a className="skip-link" href="#main-content">{t('common.skipToContent') || 'Skip to content'}</a>
       {detail ? (
-        <main className="stack">
+        <main id="main-content" className="stack" tabIndex="-1">
           <article className="module-card">
             <div className="module-header">
               <div className="badge-row">
@@ -156,7 +157,7 @@ export default function CoursePage({ course, detail, progress, onBack, onOpenQui
           </section>
         </main>
       ) : (
-        <main className="stack">
+        <main id="main-content" className="stack" tabIndex="-1">
           <article className="module-card">
             <div className="module-header">
               <div className="badge-row">

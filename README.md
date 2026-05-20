@@ -114,7 +114,6 @@ mgenetica/
 - O conteúdo Quarto continua como fonte editorial e fluxo manual, sem disputar automaticamente a mesma raiz publicada.
 - O backend produtivo continua em Appwrite.
 - O painel administrativo depende de:
-  - `VITE_ADMIN_EMAILS` no frontend
   - `ADMIN_EMAILS` na função `mgenetica_admin_fn`
   - `APPWRITE_ADMIN_API_KEY` na função `mgenetica_admin_fn` (`APPWRITE_API_KEY` é aceito como fallback)
 
@@ -157,5 +156,4 @@ O learner app live é publicado hoje no GitHub Pages root e fala com o Appwrite 
 Checklist operacional atual:
 - manter `APPWRITE_API_KEY` e `APPWRITE_PROJECT_ID` para deploy das funções
 - registrar `https://mgenetica.github.io/mgenetica/` em Appwrite Web Platforms
-- configurar `VITE_ADMIN_EMAILS` no frontend para expor a entrada admin
 - configurar `ADMIN_EMAILS` e `APPWRITE_ADMIN_API_KEY` na função `mgenetica_admin_fn` para habilitar resumo administrativo real

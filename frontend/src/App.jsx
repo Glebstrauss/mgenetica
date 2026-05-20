@@ -1,13 +1,15 @@
 import React, {useEffect, useMemo, useState} from 'react'
-import { getCourseCatalog, getCourseDetail } from './data/courseCurriculum'
+import { formatCourseCatalog, formatCourseDetail } from './data/courseCurriculum'
 import CoursePage from './CoursePage'
 import Icon from './components/Icon'
 import Quiz from './Quiz'
 import { BRAND_LOGO_URL } from './lib/branding'
+import { buildRouteHash, parseRouteHash, routeNeedsAdmin, routeNeedsAuth } from './lib/access.mjs'
 import { createTranslator, detectInitialLocale, LOCALE_STORAGE_KEY, normalizeLocale, SUPPORTED_LOCALES } from './i18n'
 import {
   pingAppwrite,
   listCourses,
+  getCourseDetail,
   getProgress,
   updateProgress,
   getAuthCapabilities,
@@ -24,50 +26,13 @@ import {
   PUBLIC_SITE_URL
 } from './lib/appwrite'
 
-const ADMIN_EMAILS = String(import.meta.env.VITE_ADMIN_EMAILS || '')
-  .split(',')
-  .map((item) => item.trim().toLowerCase())
-  .filter(Boolean)
-
-function isAdminUser(user) {
-  const email = String(user?.email || '').trim().toLowerCase()
-  return !!email && ADMIN_EMAILS.includes(email)
-}
-
-function parseRouteHash(hash) {
-  const clean = (hash || '').replace(/^#/, '').trim()
-  if (!clean) return { screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }
-  if (clean === 'auth' || clean === 'login') return { screen: 'auth', authMode: 'login', selectedCourseId: null, showQuiz: false }
-  if (clean === 'signup') return { screen: 'auth', authMode: 'signup', selectedCourseId: null, showQuiz: false }
-  if (clean === 'catalog') return { screen: 'catalog', authMode: 'login', selectedCourseId: null, showQuiz: false }
-  if (clean === 'admin') return { screen: 'admin', authMode: 'login', selectedCourseId: null, showQuiz: false }
-  if (clean.indexOf('course/') === 0) {
-    const selectedCourseId = clean.slice('course/'.length) || null
-    return { screen: selectedCourseId ? 'course' : 'home', authMode: 'login', selectedCourseId, showQuiz: false }
-  }
-  if (clean.indexOf('quiz/') === 0) {
-    const selectedCourseId = clean.slice('quiz/'.length) || null
-    return { screen: selectedCourseId ? 'course' : 'home', authMode: 'login', selectedCourseId, showQuiz: !!selectedCourseId }
-  }
-  return { screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }
-}
-
-function buildRouteHash(route) {
-  if (route.showQuiz && route.selectedCourseId) return 'quiz/' + route.selectedCourseId
-  if (route.screen === 'auth') return route.authMode === 'signup' ? 'signup' : 'auth'
-  if (route.screen === 'catalog') return 'catalog'
-  if (route.screen === 'admin') return 'admin'
-  if (route.screen === 'course' && route.selectedCourseId) return 'course/' + route.selectedCourseId
-  return ''
-}
-
 function LocaleSwitcher({ locale, onChange, t }) {
   return (
     <label className="locale-switcher" aria-label={t('localeSwitcher.label')}>
       <span className="locale-switcher-icon" aria-hidden="true">
         <Icon name="globe" size={16} />
       </span>
-      <select className="locale-select" value={locale} onChange={(e) => onChange(e.target.value)}>
+      <select className="locale-select" name="locale" value={locale} onChange={(e) => onChange(e.target.value)}>
         {SUPPORTED_LOCALES.map((localeCode) => (
           <option key={localeCode} value={localeCode}>
             {t('locales.' + localeCode)}
@@ -92,11 +57,15 @@ function AppHeader({ brandName, brandTagline, status, locale, onLocaleChange, t,
       </div>
       <div className="header-actions">
         <LocaleSwitcher locale={locale} onChange={onLocaleChange} t={t} />
-        {status ? <span className="sr-only">{status}</span> : null}
+        {status ? <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">{status}</span> : null}
         {children}
       </div>
     </header>
   )
+}
+
+function SkipLink({ t }) {
+  return <a className="skip-link" href="#main-content">{t('common.skipToContent') || 'Skip to content'}</a>
 }
 
 function AuthPanel({ user, mode, onModeChange, onLogin, onSignup, onLogout, loading, t, errorMessages }) {
@@ -148,18 +117,18 @@ function AuthPanel({ user, mode, onModeChange, onLogin, onSignup, onLogout, load
             {mode === 'signup' ? (
               <div className="field">
                 <label htmlFor="name">{t('authPanel.name')}</label>
-                <input id="name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder={t('authPanel.namePlaceholder')} />
-              </div>
-            ) : null}
-            <div className="field">
-              <label htmlFor="email">{t('authPanel.email')}</label>
-              <input id="email" autoComplete="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t('authPanel.emailPlaceholder')} required />
+              <input id="name" name="name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder={t('authPanel.namePlaceholder')} />
             </div>
-            <div className="field">
-              <label htmlFor="password">{t('authPanel.password')}</label>
-              <input id="password" autoComplete={mode === 'signup' ? 'new-password' : 'current-password'} type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required />
-            </div>
-            {error ? <div className="callout-card" style={{ borderColor: 'rgba(180, 38, 38, 0.16)', color: '#8a1f1f' }}>{error}</div> : null}
+          ) : null}
+          <div className="field">
+            <label htmlFor="email">{t('authPanel.email')}</label>
+              <input id="email" name="email" autoComplete="email" spellCheck={false} type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t('authPanel.emailPlaceholder')} required aria-invalid={error ? 'true' : undefined} aria-describedby={error ? 'auth-error' : undefined} />
+          </div>
+          <div className="field">
+            <label htmlFor="password">{t('authPanel.password')}</label>
+              <input id="password" name="password" autoComplete={mode === 'signup' ? 'new-password' : 'current-password'} type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required aria-invalid={error ? 'true' : undefined} aria-describedby={error ? 'auth-error' : undefined} />
+          </div>
+            {error ? <div id="auth-error" className="callout-card" role="alert" aria-live="assertive" style={{ borderColor: 'rgba(180, 38, 38, 0.16)', color: '#8a1f1f' }}>{error}</div> : null}
             <div className="auth-actions">
               <button type="submit" className="btn btn-primary" disabled={loading}>
                 <Icon name="arrowRight" size={16} />
@@ -196,6 +165,7 @@ function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, 
   const trust = t('home.trust')
   return (
     <div className="app-shell">
+      <SkipLink t={t} />
       <AppHeader brandName={t('common.brandName')} brandTagline={t('common.brandTagline')} status={status} locale={locale} onLocaleChange={onLocaleChange} t={t}>
         {user ? (
           <>
@@ -210,7 +180,7 @@ function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, 
           <button type="button" className="btn btn-primary" onClick={() => onAuthIntent('login')} aria-label={t('home.signInAria')}>{t('home.signIn')}</button>
         )}
       </AppHeader>
-      <div className="landing-stack">
+      <main id="main-content" className="landing-stack" tabIndex="-1">
         <section className="hero-shell">
           <div className="hero-main">
             <div className="hero-copy-card">
@@ -234,7 +204,7 @@ function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, 
           <article className="benefit-card"><div className="benefit-icon"><Icon name="layers" size={18} /></div><strong>{benefits.science.title}</strong><p>{benefits.science.copy}</p></article>
           <article className="benefit-card"><div className="benefit-icon"><Icon name="lock" size={18} /></div><strong>{benefits.access.title}</strong><p>{benefits.access.copy}</p></article>
         </section>
-      </div>
+      </main>
       {user ? (
         <section className="learner-section">
           <div className="section-label">{t('home.learner.label')}</div>
@@ -259,6 +229,7 @@ function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, 
 function AuthPage({ user, status, authMode, loadingAuth, isAdmin, onAuthIntent, onLogin, onSignup, onLogout, onOpenCatalog, onOpenAdmin, locale, onLocaleChange, t, errorMessages }) {
   return (
     <div className="app-shell">
+      <SkipLink t={t} />
       <AppHeader brandName={t('authPage.brandName')} brandTagline={t('authPage.brandTagline')} status={status} locale={locale} onLocaleChange={onLocaleChange} t={t}>
         {user ? (
           <>
@@ -268,14 +239,14 @@ function AuthPage({ user, status, authMode, loadingAuth, isAdmin, onAuthIntent, 
           </>
         ) : null}
       </AppHeader>
-      <section className="auth-page-shell">
+      <main id="main-content" className="auth-page-shell" tabIndex="-1">
         <div className="auth-page-intro">
           <div className="hero-eyebrow">{t('authPage.eyebrow')}</div>
           <h1 className="section-heading auth-page-heading">{t('authPage.heading')}</h1>
           <p className="section-description auth-page-copy">{t('authPage.copy')}</p>
         </div>
         <AuthPanel user={user} mode={authMode} onModeChange={onAuthIntent} loading={loadingAuth} onLogin={onLogin} onSignup={onSignup} onLogout={onLogout} t={t} errorMessages={errorMessages} />
-      </section>
+      </main>
     </div>
   )
 }
@@ -283,12 +254,13 @@ function AuthPage({ user, status, authMode, loadingAuth, isAdmin, onAuthIntent, 
 function CatalogPage({ courses, progressByCourse, progressSummary, isAdmin, onBack, onOpenCourse, onOpenAdmin, onLogout, loadingAuth, locale, onLocaleChange, t }) {
   return (
     <div className="app-shell">
+      <SkipLink t={t} />
       <AppHeader brandName={t('catalog.brandName')} brandTagline={t('catalog.brandTagline')} status={''} locale={locale} onLocaleChange={onLocaleChange} t={t}>
         <button type="button" className="btn btn-secondary" onClick={onBack} aria-label={t('catalog.backHomeAria')}><Icon name="arrowLeft" size={16} />{t('common.back')}</button>
         {isAdmin ? <button type="button" className="btn btn-secondary" onClick={onOpenAdmin} aria-label={t('catalog.openAdminAria')}><Icon name="check" size={16} />{t('common.admin')}</button> : null}
         <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth} aria-label={t('catalog.logoutAria')}><Icon name="lock" size={16} />{t('common.logout')}</button>
       </AppHeader>
-      <section className="content-section">
+      <main id="main-content" className="content-section" tabIndex="-1">
         <div className="section-label">{t('catalog.label')}</div>
         <h2 className="section-heading">{t('catalog.heading')}</h2>
         <p className="section-description">{t('catalog.progressOverview', { tracked: progressSummary?.totalCoursesTracked || 0, passed: progressSummary?.passedCourses || 0, average: progressSummary?.averagePercent || 0 })}</p>
@@ -313,7 +285,7 @@ function CatalogPage({ courses, progressByCourse, progressSummary, isAdmin, onBa
             )
           })}
         </div>
-      </section>
+      </main>
     </div>
   )
 }
@@ -325,10 +297,12 @@ function AdminPage({ user, status, report, loading, onBack, onRefresh, onLogout,
   const learnerProgress = report?.summary?.summary?.learnerProgress
   return (
     <div className="app-shell">
+      <SkipLink t={t} />
       <AppHeader brandName={t('common.admin')} brandTagline={t('adminPage.brandTagline')} status={status} locale={locale} onLocaleChange={onLocaleChange} t={t}>
         <button type="button" className="btn btn-secondary" onClick={onBack}><Icon name="arrowLeft" size={16} />{t('common.back')}</button>
         <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth}><Icon name="lock" size={16} />{t('common.logout')}</button>
       </AppHeader>
+      <main id="main-content" tabIndex="-1">
       <section className="content-section">
         <div className="section-label">{t('adminPage.label')}</div>
         <h2 className="section-heading">{t('adminPage.heading')}</h2>
@@ -343,6 +317,7 @@ function AdminPage({ user, status, report, loading, onBack, onRefresh, onLogout,
       <section className="content-section"><div className="content-grid catalog-grid">{Object.entries(functionIds).map(([key, value]) => <article className="course-card" key={key}><strong className="course-title">{key}</strong><p className="course-description">{value}</p></article>)}</div></section>
       <section className="content-section"><div className="panel" style={{ padding: 18 }}><strong style={{ display: 'block', marginBottom: 12 }}>{t('adminPage.requiredConfigTitle')}</strong><p className="section-description" style={{ marginBottom: 12 }}>{t('adminPage.requiredConfigCopy')}</p><div className="content-grid catalog-grid"><article className="course-card"><strong className="course-title">ADMIN_EMAILS</strong><p className="course-description">{t('adminPage.adminEmailsCopy')}</p></article><article className="course-card"><strong className="course-title">APPWRITE_ADMIN_API_KEY</strong><p className="course-description">{t('adminPage.adminApiKeyCopy')}</p></article><article className="course-card"><strong className="course-title">APPWRITE_API_KEY</strong><p className="course-description">{t('adminPage.fallbackApiKeyCopy')}</p></article></div><p className="subtle" style={{ margin: '14px 0 0' }}>{t('adminPage.currentStatus', { configured: String(Boolean(adminConfigured)), adminEmailsConfigured: String(Boolean(adminEmailsConfigured)) })}</p></div></section>
       <section className="content-section"><div className="panel" style={{ padding: 18 }}><strong style={{ display: 'block', marginBottom: 12 }}>{t('adminPage.reportTitle')}</strong><pre style={{ margin: 0, whiteSpace: 'pre-wrap', fontSize: 13, lineHeight: 1.5 }}>{JSON.stringify(report || { info: t('adminPage.noChecks') }, null, 2)}</pre></div></section>
+      </main>
     </div>
   )
 }
@@ -351,6 +326,7 @@ export default function App() {
   const initialRoute = parseRouteHash(typeof window !== 'undefined' ? window.location.hash : '')
   const [locale, setLocale] = useState(detectInitialLocale())
   const [user, setUser] = useState(null)
+  const [authResolved, setAuthResolved] = useState(false)
   const [loadingAuth, setLoadingAuth] = useState(false)
   const [loadingAdmin, setLoadingAdmin] = useState(false)
   const [authMode, setAuthMode] = useState(initialRoute.authMode)
@@ -359,11 +335,14 @@ export default function App() {
   const [selectedCourseId, setSelectedCourseId] = useState(initialRoute.selectedCourseId)
   const [statusState, setStatusState] = useState({ key: 'status.syncing' })
   const [adminReport, setAdminReport] = useState(null)
+  const [adminStatus, setAdminStatus] = useState(null)
   const [progressReport, setProgressReport] = useState(null)
+  const [catalogRows, setCatalogRows] = useState([])
+  const [selectedCourseRow, setSelectedCourseRow] = useState(null)
   const t = useMemo(() => createTranslator(locale), [locale])
   const errorMessages = useMemo(() => t('authErrors'), [t])
   const status = t(statusState.key, statusState.params)
-  const catalogCourses = useMemo(() => getCourseCatalog(locale), [locale])
+  const catalogCourses = useMemo(() => formatCourseCatalog(catalogRows, locale), [catalogRows, locale])
   const progressByCourse = useMemo(() => Object.fromEntries((progressReport?.records || []).map((record) => [record.courseId, record])), [progressReport])
   function isProgressReport(report) { return Array.isArray(report?.records) && typeof report?.summary === 'object' }
 
@@ -386,11 +365,13 @@ export default function App() {
         const account = await getAccount()
         if (!active) return
         setUser(account)
-        await refreshProgress(account)
+        await Promise.all([refreshProgress(account), refreshCourses(), refreshAdminAccess()])
         if (!active) return
         updateStatus('status.sessionVerified')
       } catch (_) {
         if (active) updateStatus('status.unlockFlow')
+      } finally {
+        if (active) setAuthResolved(true)
       }
     })()
     return () => { active = false }
@@ -400,8 +381,40 @@ export default function App() {
 
   const selectedCourse = useMemo(() => catalogCourses.find((course) => course.id === selectedCourseId) || null, [catalogCourses, selectedCourseId])
   const nextCourse = useMemo(() => { if (!selectedCourseId) return null; const currentIndex = catalogCourses.findIndex((course) => course.id === selectedCourseId); if (currentIndex === -1) return null; return catalogCourses.slice(currentIndex + 1).find(Boolean) || null }, [catalogCourses, selectedCourseId])
-  const selectedCourseDetail = useMemo(() => (selectedCourse ? getCourseDetail(selectedCourse.id, locale) : null), [selectedCourse, locale])
-  const adminEnabled = useMemo(() => isAdminUser(user), [user])
+  const selectedCourseDetail = useMemo(() => formatCourseDetail(selectedCourseRow, locale), [locale, selectedCourseRow])
+  const adminEnabled = Boolean(adminStatus?.user?.isAdmin)
+  const currentRoute = useMemo(() => ({ screen, authMode, selectedCourseId, showQuiz }), [screen, authMode, selectedCourseId, showQuiz])
+  const protectedRoutePending = routeNeedsAuth(currentRoute) && !authResolved && !user
+
+  useEffect(() => {
+    let active = true
+    if (!user || !selectedCourseId || screen !== 'course') {
+      setSelectedCourseRow(null)
+      return () => { active = false }
+    }
+    getCourseDetail(selectedCourseId, locale)
+      .then((payload) => {
+        if (active) setSelectedCourseRow(payload)
+      })
+      .catch(() => {
+        if (active) setSelectedCourseRow(null)
+      })
+    return () => { active = false }
+  }, [locale, screen, selectedCourseId, user])
+
+  useEffect(() => {
+    if (!authResolved) return
+    if (routeNeedsAdmin(currentRoute) && user && !adminEnabled) {
+      updateStatus('status.notAdmin')
+      navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false })
+      return
+    }
+    if (!user && routeNeedsAuth(currentRoute)) {
+      updateStatus(currentRoute.screen === 'catalog' ? 'status.enterCourses' : 'status.enterCoursePage')
+      navigate({ screen: 'auth', authMode: 'login', selectedCourseId: null, showQuiz: false })
+    }
+  }, [authResolved, adminEnabled, currentRoute, user])
+
   async function refreshProgress(account) {
     if (!account?.$id) {
       setProgressReport(null)
@@ -423,9 +436,31 @@ export default function App() {
     }
   }
 
-  async function handleLogin(payload) { setLoadingAuth(true); try { await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); await refreshProgress(account); setAdminReport(null); updateStatus('status.loginSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
-  async function handleSignup(payload) { setLoadingAuth(true); try { await createAccount(payload.email, payload.password, payload.name); await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); await refreshProgress(account); setAdminReport(null); updateStatus('status.signupSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
-  async function handleLogout() { setLoadingAuth(true); try { await deleteSession(); setUser(null); setAdminReport(null); setProgressReport(null); updateStatus('status.sessionClosed'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
+  async function refreshCourses() {
+    try {
+      const payload = await listCourses(locale)
+      setCatalogRows(Array.isArray(payload) ? payload : [])
+      return payload
+    } catch (_) {
+      setCatalogRows([])
+      return []
+    }
+  }
+
+  async function refreshAdminAccess() {
+    try {
+      const payload = await getAdminStatus()
+      setAdminStatus(payload)
+      return payload
+    } catch (_) {
+      setAdminStatus(null)
+      return null
+    }
+  }
+
+  async function handleLogin(payload) { setLoadingAuth(true); try { await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); await Promise.all([refreshProgress(account), refreshCourses(), refreshAdminAccess()]); setAdminReport(null); updateStatus('status.loginSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
+  async function handleSignup(payload) { setLoadingAuth(true); try { await createAccount(payload.email, payload.password, payload.name); await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); await Promise.all([refreshProgress(account), refreshCourses(), refreshAdminAccess()]); setAdminReport(null); updateStatus('status.signupSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
+  async function handleLogout() { setLoadingAuth(true); try { await deleteSession(); setUser(null); setAdminReport(null); setAdminStatus(null); setProgressReport(null); setCatalogRows([]); setSelectedCourseRow(null); updateStatus('status.sessionClosed'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
   function focusAuth(mode) { navigate({ screen: 'auth', authMode: mode, selectedCourseId: null, showQuiz: false }) }
   function openCatalog() { if (!user) { updateStatus('status.enterCourses'); return } navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false }) }
   function openCourse(courseId) { if (!user) { updateStatus('status.enterCoursePage'); return } navigate({ screen: 'course', authMode, selectedCourseId: courseId, showQuiz: false }) }
@@ -453,8 +488,8 @@ export default function App() {
         getAuthCapabilities().catch((err) => ({ ok: false, error: err.message })),
         listCourses(locale).catch((err) => ({ ok: false, error: err.message })),
         getProgress(user?.$id || user?.email || 'anonymous').catch((err) => ({ ok: false, error: err.message })),
-        getAdminStatus(user?.email || '').catch((err) => ({ ok: false, error: err.message })),
-        getAdminSummary(user?.email || '').catch((err) => ({ ok: false, error: err.message }))
+        getAdminStatus().catch((err) => ({ ok: false, error: err.message })),
+        getAdminSummary().catch((err) => ({ ok: false, error: err.message }))
       ])
       setAdminReport({ checkedAt: new Date().toISOString(), ping: results[0], auth: results[1], courses: results[2], progress: results[3], admin: results[4], summary: results[5], user: user ? { id: user.$id, email: user.email || null, name: user.name || null } : null })
       updateStatus('status.checksDone')
@@ -465,16 +500,19 @@ export default function App() {
   }
   function goHome() { navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) }
 
-  if (showQuiz) {
+  if (protectedRoutePending) {
+    return <AuthPage user={null} status={status} authMode="login" loadingAuth={true} isAdmin={false} onAuthIntent={focusAuth} onLogin={handleLogin} onSignup={handleSignup} onLogout={handleLogout} onOpenCatalog={openCatalog} onOpenAdmin={openAdmin} locale={locale} onLocaleChange={setLocale} t={t} errorMessages={errorMessages} />
+  }
+  if (showQuiz && user && selectedCourse) {
     return <Quiz courseId={selectedCourseId} courseTitle={selectedCourse?.title || ''} locale={locale} onBack={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: false })} onPersistResult={(result) => persistQuizResult(selectedCourseId, result)} t={t} />
   }
-  if (screen === 'course' && selectedCourse) {
+  if (screen === 'course' && user && selectedCourse) {
     return <CoursePage course={selectedCourse} detail={selectedCourseDetail} progress={progressByCourse[selectedCourse.id] || null} onBack={() => navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false })} onOpenQuiz={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: true })} onOpenCatalog={openCatalog} onOpenCourse={openCourse} nextCourse={nextCourse} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
   }
   if (screen === 'catalog' && user) {
     return <CatalogPage courses={catalogCourses} progressByCourse={progressByCourse} progressSummary={progressReport?.summary} isAdmin={adminEnabled} onBack={goHome} onOpenCourse={openCourse} onOpenAdmin={openAdmin} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
   }
-  if (screen === 'admin' && user) {
+  if (screen === 'admin' && user && adminEnabled) {
     return <AdminPage user={user} status={status} report={adminReport} loading={loadingAdmin} onRefresh={runAdminChecks} onBack={goHome} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
   }
   if (screen === 'auth') {

@@ -1,7 +1,3 @@
-import legacyCurriculum from './legacy-curriculum.generated.json'
-
-const MODULES = legacyCurriculum.modules
-
 const BLOCK_LABELS = {
   fundamentos: { 'pt-BR': 'Fundamentos', en: 'Foundations', es: 'Fundamentos' },
   populacoes: { 'pt-BR': 'Genética de populações', en: 'Population genetics', es: 'Genética de poblaciones' },
@@ -335,10 +331,6 @@ function getLocalizedModule(moduleRow, locale) {
   return localized || { title: moduleRow.title, objective: moduleRow.objective }
 }
 
-function getModuleById(courseId) {
-  return MODULES.find((moduleRow) => moduleRow.id === courseId) || null
-}
-
 function buildMeta(moduleRow, locale) {
   const copy = getLocaleCopy(locale)
   const prerequisite = moduleRow.prerequisites === 'Nenhum.'
@@ -407,8 +399,8 @@ function buildSections(moduleRow, locale) {
   ]
 }
 
-function getCourseCatalog(locale = 'pt-BR') {
-  return MODULES.map((moduleRow) => {
+function formatCourseCatalog(moduleRows = [], locale = 'pt-BR') {
+  return moduleRows.map((moduleRow) => {
     const localized = getLocalizedModule(moduleRow, locale)
     return {
       id: moduleRow.id,
@@ -423,8 +415,7 @@ function getCourseCatalog(locale = 'pt-BR') {
   })
 }
 
-function getCourseDetail(courseId, locale = 'pt-BR') {
-  const moduleRow = getModuleById(courseId)
+function formatCourseDetail(moduleRow, locale = 'pt-BR') {
   if (!moduleRow) return null
   const localized = getLocalizedModule(moduleRow, locale)
   const copy = getLocaleCopy(locale)
@@ -439,4 +430,4 @@ function getCourseDetail(courseId, locale = 'pt-BR') {
   }
 }
 
-export { getCourseCatalog, getCourseDetail, getBlockLabel }
+export { formatCourseCatalog, formatCourseDetail, getBlockLabel }

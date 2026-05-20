@@ -332,9 +332,25 @@ button {
   transition: border-color 140ms ease, box-shadow 140ms ease;
 }
 
-.field input:focus {
+.field input:focus-visible {
   border-color: rgba(13, 38, 66, 0.32);
   box-shadow: 0 0 0 4px rgba(13, 38, 66, 0.08);
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 50;
+  padding: 10px 14px;
+  color: #fff;
+  background: var(--brand);
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.skip-link:focus-visible {
+  top: 16px;
 }
 
 .auth-actions {
@@ -2173,6 +2189,11 @@ body {
   border: 1px solid var(--mg-line);
   border-radius: 15px;
   color: var(--mg-navy);
+}
+
+.locale-switcher:focus-within {
+  outline: 3px solid rgba(74, 159, 209, 0.42);
+  outline-offset: 2px;
 }
 
 .locale-switcher-icon {

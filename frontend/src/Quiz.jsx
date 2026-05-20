@@ -73,6 +73,8 @@ export default function Quiz({ courseId, courseTitle, locale, onBack, onPersistR
 
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#main-content">{t('common.skipToContent') || 'Skip to content'}</a>
+      <main id="main-content" tabIndex="-1">
       <section className="content-section quiz-shell">
         <div className="section-label">{t('quiz.label')}</div>
         <h1 className="section-heading">{courseTitle || t('quiz.title')}</h1>
@@ -93,13 +95,13 @@ export default function Quiz({ courseId, courseTitle, locale, onBack, onPersistR
 
       {error ? (
         <section className="content-section">
-          <div className="callout-warning"><strong>{t('quiz.errorLabel')}</strong> {error}</div>
+          <div className="callout-warning" role="alert" aria-live="assertive"><strong>{t('quiz.errorLabel')}</strong> {error}</div>
         </section>
       ) : null}
 
       {saveState ? (
         <section className="content-section">
-          <div className="callout-card">{saveState}</div>
+          <div className="callout-card" aria-live="polite">{saveState}</div>
         </section>
       ) : null}
 
@@ -150,6 +152,7 @@ export default function Quiz({ courseId, courseTitle, locale, onBack, onPersistR
           ) : null}
         </section>
       ) : null}
+      </main>
     </div>
   )
 }

@@ -1,4 +1,8 @@
-const catalog = require('./catalog.generated.json');
+const curriculum = require('./legacy-curriculum.generated.json');
+
+function readUserId(headers = {}) {
+  return String(headers['x-appwrite-user-id'] || headers['X-Appwrite-User-Id'] || headers['x-appwrite-userid'] || '').trim();
+}
 
 function parseBody(req) {
   const raw = req?.body ?? req?.payload ?? {};
@@ -16,10 +20,17 @@ module.exports = async function (context) {
   const req = context.req || {};
   const body = parseBody(req);
   const action = body.action || 'list';
+  const userId = readUserId(req.headers || {});
 
   try {
+    if (!userId) {
+      const out = { ok: false, error: 'auth_required', message: 'Authenticated Appwrite user required.' };
+      context.log(JSON.stringify(out));
+      return { status: 401, body: JSON.stringify(out) };
+    }
+
     if (action === 'list') {
-      const payload = catalog.map((course) => ({
+      const payload = (curriculum.modules || []).map((course) => ({
         id: course.id,
         order: course.order,
         legacyId: course.legacyId,
@@ -30,6 +41,18 @@ module.exports = async function (context) {
         published: !!course.published
       }));
       context.log(JSON.stringify({ count: payload.length }));
+      return { status: 200, body: JSON.stringify(payload) };
+    }
+
+    if (action === 'detail') {
+      const courseId = String(body.courseId || '').trim();
+      const payload = (curriculum.modules || []).find((course) => course.id === courseId) || null;
+      if (!payload) {
+        const out = { ok: false, error: 'course_not_found', courseId };
+        context.log(JSON.stringify(out));
+        return { status: 404, body: JSON.stringify(out) };
+      }
+      context.log(JSON.stringify({ action, courseId }));
       return { status: 200, body: JSON.stringify(payload) };
     }
 

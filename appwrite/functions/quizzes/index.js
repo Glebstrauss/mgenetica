@@ -1,5 +1,9 @@
 const quizBank = require('./quiz-bank.generated.json');
 
+function readUserId(headers = {}) {
+  return String(headers['x-appwrite-user-id'] || headers['X-Appwrite-User-Id'] || headers['x-appwrite-userid'] || '').trim();
+}
+
 function parseBody(req) {
   const raw = req?.body ?? req?.payload ?? {};
   if (typeof raw === 'string') {
@@ -20,9 +24,16 @@ module.exports = async function (context) {
   try {
     const req = context.req || {};
     const body = parseBody(req);
+    const userId = readUserId(req.headers || {});
     const action = body.action || 'get';
     const courseId = body.courseId || body.quizId;
     const quiz = getQuizByCourseId(courseId);
+
+    if (!userId) {
+      const out = { ok: false, error: 'auth_required', message: 'Authenticated Appwrite user required.' };
+      context.log(JSON.stringify(out));
+      return { status: 401, body: JSON.stringify(out) };
+    }
 
     if (!quiz) {
       const out = { error: 'quiz_not_found', courseId };

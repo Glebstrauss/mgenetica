@@ -25,6 +25,15 @@ function readUserEmail(headers) {
   ).trim().toLowerCase();
 }
 
+function readUserId(headers) {
+  return String(
+    headers['x-appwrite-user-id'] ||
+    headers['X-Appwrite-User-Id'] ||
+    headers['x-appwrite-userid'] ||
+    ''
+  ).trim();
+}
+
 function currentAppwriteConfig() {
   return {
     endpoint: process.env.APPWRITE_FUNCTION_ENDPOINT || process.env.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1',
@@ -148,7 +157,18 @@ module.exports = async function (context) {
     const body = parseBody(req);
     const headers = req.headers || {};
     const action = body.action || 'status';
+    const userId = readUserId(headers);
     const userEmail = readUserEmail(headers);
+
+    if (!userId || !userEmail) {
+      const payload = {
+        ok: false,
+        error: 'auth_required',
+        message: 'Authenticated Appwrite user required.'
+      };
+      context.log(JSON.stringify(payload));
+      return { status: 401, body: JSON.stringify(payload) };
+    }
 
     const statusPayload = makeStatusPayload(userEmail);
 

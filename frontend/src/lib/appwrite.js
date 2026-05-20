@@ -69,69 +69,17 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
   return payloadData;
 }
 
-function shouldUseCookieFallback() {
-  return typeof window !== 'undefined';
-}
-
-function isLocalDevHost() {
-  if (typeof window === 'undefined') return false;
-  const host = String(window.location.hostname || '').toLowerCase();
-  return host === 'localhost' || host === '127.0.0.1';
-}
-
-function getCookieFallbackStorage() {
-  if (typeof window === 'undefined') return null;
-  if (isLocalDevHost()) return window.localStorage || null;
-  return window.sessionStorage || null;
-}
-
-function readCookieFallback() {
-  const storage = getCookieFallbackStorage();
-  if (!shouldUseCookieFallback() || !storage) return '';
-  return storage.getItem('cookieFallback') || '';
-}
-
-function writeCookieFallback(response) {
-  const storage = getCookieFallbackStorage();
-  if (!shouldUseCookieFallback() || !storage) return;
-  const fallback = response.headers.get('X-Fallback-Cookies');
-  if (fallback) {
-    storage.setItem('cookieFallback', fallback);
-  }
-}
-
-function clearCookieFallback() {
-  const storage = getCookieFallbackStorage();
-  if (!shouldUseCookieFallback() || !storage) return;
-  storage.removeItem('cookieFallback');
-}
-
-async function callAccountApi(path, { method = 'GET', payload, allowRetryWithoutCredentials = true } = {}) {
+async function callAccountApi(path, { method = 'GET', payload } = {}) {
   const url = `${APPWRITE_ENDPOINT}${path}`;
-  const run = async (credentials) => {
-    const headers = {
+  const response = await fetch(url, {
+    method,
+    headers: {
       'Content-Type': 'application/json',
       'X-Appwrite-Project': APPWRITE_PROJECT_ID
-    };
-    const cookieFallback = readCookieFallback();
-    if (cookieFallback) headers['X-Fallback-Cookies'] = cookieFallback;
-    const response = await fetch(url, {
-      method,
-      headers,
-      credentials,
-      body: payload ? JSON.stringify(payload) : undefined
-    });
-    writeCookieFallback(response);
-    return response;
-  };
-
-  let response;
-  try {
-    response = await run('include');
-  } catch (error) {
-    if (!allowRetryWithoutCredentials || !shouldUseCookieFallback()) throw error;
-    response = await run('omit');
-  }
+    },
+    credentials: 'include',
+    body: payload ? JSON.stringify(payload) : undefined
+  });
 
   const text = await response.text();
   let data = {};
@@ -192,6 +140,10 @@ async function listCourses(locale) {
   return executeFunction(functionIds.courses, { action: 'list', locale }, { includeCredentials: true });
 }
 
+async function getCourseDetail(courseId, locale) {
+  return executeFunction(functionIds.courses, { action: 'detail', courseId, locale }, { includeCredentials: true });
+}
+
 async function getQuiz(courseId, locale) {
   return executeFunction(functionIds.quizzes, { action: 'get', courseId, locale }, { includeCredentials: true });
 }
@@ -212,12 +164,12 @@ async function getAuthCapabilities() {
   return executeFunction(functionIds.auth, { action: 'capabilities' }, { includeCredentials: true });
 }
 
-async function getAdminStatus(email) {
-  return executeFunction(functionIds.admin, { action: 'status', email }, { includeCredentials: true });
+async function getAdminStatus() {
+  return executeFunction(functionIds.admin, { action: 'status' }, { includeCredentials: true });
 }
 
-async function getAdminSummary(email) {
-  return executeFunction(functionIds.admin, { action: 'summary', email }, { includeCredentials: true });
+async function getAdminSummary() {
+  return executeFunction(functionIds.admin, { action: 'summary' }, { includeCredentials: true });
 }
 
 async function createEmailSession(email, password) {
@@ -235,11 +187,9 @@ async function createAccount(email, password, name) {
 }
 
 async function deleteSession() {
-  const result = await callAccountApi('/account/sessions/current', {
+  return callAccountApi('/account/sessions/current', {
     method: 'DELETE'
   });
-  clearCookieFallback();
-  return result;
 }
 
 async function getAccount() {
@@ -255,6 +205,7 @@ export {
   functionIds,
   executeFunction,
   listCourses,
+  getCourseDetail,
   getQuiz,
   submitQuiz,
   getProgress,
