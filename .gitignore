@@ -18,6 +18,17 @@ build/
 /data/modulo*_simulado.csv
 /mgenetica-course-visual-artifacts-*/
 
+# Private course-engine reference material
+/referencias/*.pdf
+/referencias/*.duckdb
+/referencias/*.db
+/referencias/*.sqlite
+/.ocr-cache/
+
+# Prompt-generation byproducts that may contain retrieved source chunks
+/modulos/*.prompt.md
+/modulos/log.json
+
 # Logs and temporary files
 *.log
 *.tmp

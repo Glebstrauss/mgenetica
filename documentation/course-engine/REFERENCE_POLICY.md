@@ -16,6 +16,8 @@ O texto final deve usar formato científico padrão definido pelo curso, com ABN
 
 Texto final: contém apenas citações no corpo e lista bibliográfica limpa.
 
+Nesta branch, o arquivo de auditoria versionado é sanitizado. Trechos longos recuperados de PDF/DuckDB ficam fora do Git.
+
 ## Proibido na lista final de referências
 
 - nome de arquivo como título;

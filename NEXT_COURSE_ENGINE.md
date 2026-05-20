@@ -4,18 +4,18 @@
 
 Branch: `docs/course-engine-integration`.
 
-Esta branch adiciona o `course-engine` como submodule em `engine/` e documenta o fluxo de uso no MGenética em `documentation/course-engine/`. Não há merge na `main` e não há publicação do site.
+Esta branch adiciona o `course-engine` como submodule em `engine/`, inclui a configuração mínima real do MGenética e documenta o fluxo de uso em `documentation/course-engine/`. Não há merge na `main` e não há publicação do site.
 
 ## Próximo bloco recomendado
 
-Preparar a configuração real do curso no MGenética:
+Revisar PR #7 antes de qualquer merge:
 
-1. Criar `course.yml` do MGenética.
-2. Criar `referencias.yml` com referências canônicas.
-3. Definir pasta `referencias/` ou Biblioteca DuckDB como fonte primária.
-4. Criar perfis em `prompts/agents/`, `prompts/critics/` e `prompts/gates/`.
-5. Rodar uma geração piloto em branch usando uma unidade pequena.
-6. Validar com `engine/scripts/evaluate_content.py`.
+1. Conferir `course.yml` com os 5 módulos e 21 blocos.
+2. Conferir `referencias.yml` e completar catálogo canônico se necessário.
+3. Colocar PDFs/DuckDB reais localmente em `referencias/`, sem versionar.
+4. Rodar M2 com o mesmo fluxo de M1.
+5. Revisar manualmente o texto antes de mover para o site público.
+6. Só mesclar após aprovação humana.
 
 ## Limites
 

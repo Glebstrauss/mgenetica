@@ -2,7 +2,7 @@
 
 ## Status desta branch
 
-Esta branch adiciona o `course-engine` ao MGenética como submodule em `engine/` e documenta o fluxo operacional. Nada foi mesclado na `main`.
+Esta branch adiciona o `course-engine` ao MGenética como submodule em `engine/`, inclui a configuração real mínima do curso e documenta o fluxo operacional. Nada foi mesclado na `main`.
 
 Submodule fixado:
 
@@ -16,11 +16,14 @@ Submodule fixado:
 O MGenética é o consumidor do engine. Portanto, ficam neste repositório:
 
 - `course.yml`;
-- catálogo canônico de referências;
-- PDFs, biblioteca DuckDB ou outro índice de fontes;
-- perfis de agentes específicos do curso;
-- outputs gerados e revisados;
-- auditoria de geração.
+- `referencias.yml`;
+- `prompts/agents/falconer.md`;
+- `prompts/critics/didactic.md`;
+- `prompts/gates/quality.md`;
+- scripts de retrieval específicos em `scripts/read_falconer.py` e `scripts/index_falconer.py`;
+- saída piloto revisada em `modulos/M1_revisao_de_genetica_basica.revision.md`;
+- DOCX piloto em `modulos/M1_revisao_de_genetica_basica.revision.docx`;
+- auditoria sanitizada em `modulos/M1_revisao_de_genetica_basica.audit.md`.
 
 O `engine/` fornece scripts, schemas, templates, gates e documentação genérica.
 
@@ -32,6 +35,7 @@ O `engine/` fornece scripts, schemas, templates, gates e documentação genéric
 - Não depende de M1, M2 ou qualquer módulo específico.
 - Não chama API de IA por conta própria.
 - Não sobrescreve outputs sem autorização explícita.
+- Não versiona PDFs, DuckDB ou prompts com chunks recuperados.
 
 ## Documentos nesta pasta
 
@@ -39,3 +43,4 @@ O `engine/` fornece scripts, schemas, templates, gates e documentação genéric
 - `CONTENT_WORKFLOW.md`: fluxo Writer -> Critic -> Revision -> Gate.
 - `REFERENCE_POLICY.md`: regra para bibliografia pública e auditoria interna.
 - `REVIEW_CHECKLIST.md`: checklist antes de merge.
+- `VALIDATION_REPORT.md`: teste executado nesta branch.

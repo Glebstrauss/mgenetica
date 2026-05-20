@@ -11,6 +11,8 @@
 - `course.yml` existe e valida contra `engine/schemas/course.schema.yml`.
 - Todas as unidades esperadas aparecem na estrutura do curso.
 - O fluxo funciona para qualquer unidade, não só M1 ou M2.
+- `python3 engine/scripts/validate.py --curso .` passa.
+- `python3 engine/scripts/generate.py --curso . --unidade M1 --stage writer` gera prompt local.
 
 ## Referências
 
@@ -26,6 +28,7 @@
 - Exemplos numéricos são plausíveis para o curso.
 - Scripts R têm no máximo 20 linhas.
 - Quiz/tarefa existem quando o modelo pedir.
+- `python3 engine/scripts/evaluate_content.py --curso . --unidade M1 --input modulos/M1_revisao_de_genetica_basica.revision.md` passa.
 
 ## Git
 

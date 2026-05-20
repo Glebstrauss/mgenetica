@@ -38,9 +38,13 @@ mgenetica/
 └── documentation/course-engine/
 ```
 
+Nesta branch, essa estrutura mínima já existe. PDFs e bancos DuckDB ficam fora do Git por segurança.
+
 ## Comandos oficiais
 
 Executar sempre a partir da raiz do MGenética.
+
+Se `python` não existir no ambiente, use `python3`.
 
 Gerar prompt de escrita:
 
@@ -64,6 +68,15 @@ Converter para DOCX:
 
 ```bash
 python engine/scripts/to_docx.py --input modulos/M1_nome.revision.md
+```
+
+Teste local validado nesta branch:
+
+```bash
+python3 engine/scripts/validate.py --curso .
+python3 engine/scripts/generate.py --curso . --unidade M1 --stage writer
+python3 engine/scripts/evaluate_content.py --curso . --unidade M1 --input modulos/M1_revisao_de_genetica_basica.revision.md
+python3 engine/scripts/to_docx.py --input modulos/M1_revisao_de_genetica_basica.revision.md
 ```
 
 ## Atualizar o submodule futuramente

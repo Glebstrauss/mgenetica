@@ -1,0 +1,20 @@
+referencias:
+  falconer_mackay_1996:
+    aliases:
+      - Falconer & Mackay (1996)
+      - Introduction to Quantitative Genetics 3rd edition 1997-2
+      - Introduction to Quantitative Genetics 3rd edition 1997-2.pdf
+    abnt: "FALCONER, D. S.; MACKAY, T. F. C. Introduction to quantitative genetics. 4. ed. Harlow: Longman, 1996."
+  eler_2017_bases:
+    aliases:
+      - Joanir Eler - Livro1
+      - Joanir Eler - Livro1.pdf
+      - Eler (2017)
+      - Teorias e métodos em melhoramento genético animal
+    abnt: "ELER, Joanir Pereira. Teorias e métodos em melhoramento genético animal: bases do melhoramento genético animal. Pirassununga: Faculdade de Zootecnia e Engenharia de Alimentos da Universidade de São Paulo, 2017. DOI: 10.11606/9788566404128."
+  griffiths_2016_introducao:
+    aliases:
+      - Introdução à genética
+      - Introdução à genética.pdf
+      - Griffiths et al. (2016)
+    abnt: "GRIFFITHS, Anthony J. F. et al. Introdução à genética. 11. ed. Rio de Janeiro: Guanabara Koogan, 2016."
