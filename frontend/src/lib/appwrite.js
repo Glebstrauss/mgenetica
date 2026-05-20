@@ -69,17 +69,43 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
   return payloadData;
 }
 
+function getSessionFallbackStorage() {
+  if (typeof window === 'undefined') return null
+  return window.sessionStorage || null
+}
+
+function readSessionFallback() {
+  const storage = getSessionFallbackStorage()
+  if (!storage) return ''
+  return storage.getItem('appwriteSessionFallback') || ''
+}
+
+function writeSessionFallback(response) {
+  const storage = getSessionFallbackStorage()
+  if (!storage) return
+  const fallback = response.headers.get('X-Fallback-Cookies')
+  if (fallback) storage.setItem('appwriteSessionFallback', fallback)
+}
+
+function clearSessionFallback() {
+  const storage = getSessionFallbackStorage()
+  if (!storage) return
+  storage.removeItem('appwriteSessionFallback')
+}
+
 async function callAccountApi(path, { method = 'GET', payload } = {}) {
   const url = `${APPWRITE_ENDPOINT}${path}`;
   const response = await fetch(url, {
     method,
     headers: {
       'Content-Type': 'application/json',
-      'X-Appwrite-Project': APPWRITE_PROJECT_ID
+      'X-Appwrite-Project': APPWRITE_PROJECT_ID,
+      ...(readSessionFallback() ? { 'X-Fallback-Cookies': readSessionFallback() } : {})
     },
     credentials: 'include',
     body: payload ? JSON.stringify(payload) : undefined
   });
+  writeSessionFallback(response)
 
   const text = await response.text();
   let data = {};
@@ -92,7 +118,7 @@ async function callAccountApi(path, { method = 'GET', payload } = {}) {
   }
 
   if (!response.ok) {
-    throw new Error(data?.message || 'Appwrite account request failed.');
+    throw new Error(data?.message || `Appwrite account request failed (${response.status}).`);
   }
 
   return data;
@@ -116,7 +142,7 @@ function normalizeAuthError(err, messages = {}) {
     }
     return messages.network || 'Falha de rede ao falar com Appwrite.'
   }
-  if (/missing scopes|role:\s*guests|account\W/i.test(message)) {
+  if (/missing scopes|role:\s*guests|auth_required|user \(role: guests\)|unauthorized/i.test(message)) {
     return messages.sessionRejected || 'Session not accepted by Appwrite. Refresh the page and sign in again.'
   }
   if (/missing_admin_api_key|appwrite_function_api_key|function execution failed|appwrite function returned an error/i.test(message)) {
@@ -187,9 +213,11 @@ async function createAccount(email, password, name) {
 }
 
 async function deleteSession() {
-  return callAccountApi('/account/sessions/current', {
+  const result = await callAccountApi('/account/sessions/current', {
     method: 'DELETE'
   });
+  clearSessionFallback()
+  return result
 }
 
 async function getAccount() {
