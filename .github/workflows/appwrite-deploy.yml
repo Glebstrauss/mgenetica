@@ -41,8 +41,8 @@ jobs:
           APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
         run: |
           node <<'NODE'
-          const fs = require('node:fs');
-          const path = require('node:path');
+          import fs from 'node:fs';
+          import path from 'node:path';
 
           const endpoint = process.env.APPWRITE_ENDPOINT;
           const projectId = process.env.APPWRITE_PROJECT_ID;
