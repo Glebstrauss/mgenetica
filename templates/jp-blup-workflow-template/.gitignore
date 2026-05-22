@@ -1,0 +1,8 @@
+work/
+outputs/
+*.log
+fort.*
+renf90.*
+renadd*.ped
+last_solutions
+binary_final_solutions
