@@ -44,6 +44,10 @@ navigation:
       label: Início
       href: index.qmd
       type: page
+    - id: platform
+      label: Plataforma
+      href: plataforma.qmd
+      type: page
     - id: modules
       label: Módulos
       href: modules/index.qmd
@@ -64,6 +68,9 @@ navigation:
     - id: home
       label: Início
       href: index.qmd
+    - id: platform
+      label: Plataforma
+      href: plataforma.qmd
     - id: modules
       label: Módulos
       href: modules/index.qmd
@@ -194,6 +201,11 @@ content_pages:
         - final-cta
       source_collections:
         - modules
+    - id: platform
+      title: Plataforma do aluno
+      href: plataforma.qmd
+      role: utility
+      status: review
     - id: modules-index
       title: Módulos
       href: modules/index.qmd
