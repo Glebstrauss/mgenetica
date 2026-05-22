@@ -8035,3 +8035,302 @@ code {
     grid-template-columns: 1fr;
   }
 }
+
+// ── 45. Consulting and institutional training ─────────────────
+.home-application-path,
+.consulting-fit,
+.consulting-problem-map,
+.consulting-packages,
+.consulting-method,
+.consulting-readiness,
+.consulting-triage,
+.consulting-boundary,
+.consulting-next-step,
+.training-fit,
+.training-formats,
+.training-themes,
+.training-method,
+.training-deliverables,
+.training-proposal,
+.training-boundary,
+.training-next-step {
+  max-width: 1160px;
+  margin: 2.8rem auto 0;
+  padding: 0 clamp(1rem, 2vw, 1.25rem);
+}
+
+.consulting-hero,
+.training-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+  gap: clamp(1.2rem, 3vw, 2.2rem);
+  align-items: stretch;
+  max-width: 1200px;
+  margin: 2.4rem auto 0;
+  padding: clamp(1.1rem, 2.4vw, 1.8rem);
+}
+
+.consulting-hero-copy,
+.training-hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 440px;
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  border: 1px solid rgba(10, 31, 56, 0.11);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(238, 243, 249, 0.96), rgba(255, 255, 255, 0.92)),
+    #ffffff;
+  box-shadow: 0 18px 46px rgba(10, 31, 56, 0.08);
+
+  h1 {
+    max-width: 780px;
+    margin: 0.55rem 0 0.95rem;
+    color: var(--mg-ink);
+    font-size: clamp(2.2rem, 5vw, 4.25rem);
+    line-height: 0.98;
+    letter-spacing: 0;
+  }
+
+  p {
+    max-width: 760px;
+    margin: 0;
+    color: var(--mg-text);
+    font-size: clamp(1rem, 1.45vw, 1.16rem);
+  }
+}
+
+.consulting-kicker,
+.training-kicker {
+  color: var(--mg-blue);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.consulting-hero-actions,
+.training-hero-actions,
+.consulting-next-step-actions,
+.training-next-step-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.45rem;
+}
+
+.consulting-hero-panel,
+.training-hero-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 440px;
+  padding: 1.1rem;
+  border: 1px solid rgba(10, 31, 56, 0.14);
+  border-radius: 8px;
+  background: var(--mg-navy);
+  color: #ffffff;
+  box-shadow: 0 20px 50px rgba(10, 31, 56, 0.16);
+
+  img {
+    width: min(210px, 64%);
+    height: auto;
+    align-self: center;
+    margin: auto 0;
+    border-radius: 8px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  }
+}
+
+.consulting-hero-proof,
+.training-hero-proof {
+  padding: 1rem;
+  border: 1px solid rgba(111, 220, 255, 0.24);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+
+  strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: #ffffff;
+  }
+
+  p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+  }
+}
+
+.home-application-path-copy,
+.consulting-section-copy,
+.training-section-copy,
+.consulting-next-step-copy,
+.training-next-step-copy {
+  max-width: 860px;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  > strong,
+  p {
+    color: var(--mg-text);
+  }
+}
+
+.home-application-path-grid,
+.consulting-fit-grid,
+.consulting-problem-grid,
+.consulting-package-grid,
+.consulting-method-steps,
+.consulting-readiness-grid,
+.consulting-triage-grid,
+.training-fit-grid,
+.training-format-grid,
+.training-theme-grid,
+.training-method-grid,
+.training-deliverable-grid,
+.training-proposal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.2rem;
+}
+
+.consulting-package-grid,
+.consulting-method-steps,
+.training-format-grid,
+.training-method-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.consulting-triage-grid,
+.training-proposal-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.home-application-path-item,
+.consulting-fit-item,
+.consulting-problem-item,
+.consulting-package,
+.consulting-method-step,
+.consulting-readiness-item,
+.consulting-triage-item,
+.training-fit-item,
+.training-format,
+.training-theme,
+.training-method-item,
+.training-deliverable,
+.training-proposal-item {
+  position: relative;
+  min-height: 160px;
+  padding: 1rem;
+  border: 1px solid rgba(10, 31, 56, 0.12);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(10, 31, 56, 0.06);
+
+  &::before {
+    content: "";
+    display: block;
+    width: 34px;
+    height: 3px;
+    margin-bottom: 0.9rem;
+    border-radius: 2px;
+    background: var(--mg-cyan);
+  }
+
+  strong {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--mg-ink);
+    font-size: 0.95rem;
+  }
+
+  p {
+    margin-bottom: 0;
+    color: var(--mg-text);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .entry-link {
+    display: inline-flex;
+    margin-top: 0.85rem;
+  }
+}
+
+.consulting-boundary,
+.training-boundary {
+  padding: 1.1rem clamp(1rem, 2vw, 1.25rem);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 251, 235, 0.78);
+}
+
+.consulting-next-step,
+.training-next-step {
+  padding: clamp(1.2rem, 2.5vw, 1.7rem);
+  border: 1px solid rgba(0, 168, 214, 0.22);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(238, 243, 249, 0.94), rgba(240, 253, 250, 0.72)),
+    #ffffff;
+}
+
+@media (max-width: 1100px) {
+  .consulting-hero,
+  .training-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .consulting-hero-copy,
+  .training-hero-copy,
+  .consulting-hero-panel,
+  .training-hero-panel {
+    min-height: auto;
+  }
+
+  .consulting-package-grid,
+  .consulting-method-steps,
+  .training-format-grid,
+  .training-method-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .home-application-path-grid,
+  .consulting-fit-grid,
+  .consulting-problem-grid,
+  .consulting-package-grid,
+  .consulting-method-steps,
+  .consulting-readiness-grid,
+  .consulting-triage-grid,
+  .training-fit-grid,
+  .training-format-grid,
+  .training-theme-grid,
+  .training-method-grid,
+  .training-deliverable-grid,
+  .training-proposal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .consulting-hero,
+  .training-hero {
+    padding: 0.85rem;
+  }
+
+  .consulting-hero-actions,
+  .training-hero-actions,
+  .consulting-next-step-actions,
+  .training-next-step-actions {
+    flex-direction: column;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}

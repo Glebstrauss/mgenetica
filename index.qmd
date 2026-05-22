@@ -33,6 +33,40 @@ Estude genética quantitativa e genômica aplicada com uma trilha curta, prátic
 :::
 :::
 
+::: {.home-section .home-application-path role="region" aria-label="Caminhos para aprender ou aplicar a MGenética"}
+::: {.home-application-path-copy}
+**Aprender é a entrada. Aplicar é o próximo produto.**
+
+A MGenética organiza dois caminhos públicos: estudar conceitos com módulos abertos ou levar dados, equipe e rotina para um projeto técnico de consultoria ou treinamento institucional.
+:::
+
+::: {.home-application-path-grid role="list" aria-label="Caminhos públicos MGenética"}
+::: {.home-application-path-item role="listitem"}
+**Aprender**
+
+Curso aberto, módulos guiados, prática em R e certificado de conclusão.
+
+[Explorar curso](modules/index.qmd){.entry-link aria-label="Explorar curso aberto MGenética"}
+:::
+
+::: {.home-application-path-item role="listitem"}
+**Aplicar no rebanho**
+
+Diagnóstico técnico, organização de dados, seleção, acasalamento e indicadores.
+
+[Ver consultoria](consultoria.qmd){.entry-link aria-label="Ver consultoria técnica MGenética"}
+:::
+
+::: {.home-application-path-item role="listitem"}
+**Capacitar equipe**
+
+Treinamentos fechados para associações, cooperativas, universidades e equipes técnicas.
+
+[Ver treinamentos](treinamentos.qmd){.entry-link aria-label="Ver treinamentos institucionais MGenética"}
+:::
+:::
+:::
+
 ::: {.home-paths role="list" aria-label="Rotas principais da MGenética"}
 ::: {.home-path-card role="listitem"}
 ::: {.path-label}

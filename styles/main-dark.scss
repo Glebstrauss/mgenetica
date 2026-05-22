@@ -1580,3 +1580,88 @@ textarea:focus-visible,
     transition-duration: 0.01ms !important;
   }
 }
+
+// ── Consulting and institutional training ─────────────────────
+.home-application-path,
+.consulting-fit,
+.consulting-problem-map,
+.consulting-packages,
+.consulting-method,
+.consulting-readiness,
+.consulting-triage,
+.consulting-boundary,
+.consulting-next-step,
+.training-fit,
+.training-formats,
+.training-themes,
+.training-method,
+.training-deliverables,
+.training-proposal,
+.training-boundary,
+.training-next-step {
+  color: var(--mg-text);
+}
+
+.consulting-hero-copy,
+.training-hero-copy {
+  border-color: var(--mg-line);
+  background:
+    linear-gradient(135deg, rgba(17, 34, 56, 0.92), rgba(10, 20, 34, 0.86)),
+    var(--mg-bg-soft);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.24);
+
+  h1 { color: var(--mg-ink); }
+  p  { color: var(--mg-text); }
+}
+
+.consulting-kicker,
+.training-kicker {
+  color: var(--mg-cyan-lt);
+}
+
+.consulting-hero-panel,
+.training-hero-panel {
+  border-color: rgba(111, 220, 255, 0.22);
+  background: #071626;
+}
+
+.consulting-hero-proof,
+.training-hero-proof {
+  border-color: rgba(111, 220, 255, 0.28);
+  background: rgba(111, 220, 255, 0.08);
+}
+
+.home-application-path-item,
+.consulting-fit-item,
+.consulting-problem-item,
+.consulting-package,
+.consulting-method-step,
+.consulting-readiness-item,
+.consulting-triage-item,
+.training-fit-item,
+.training-format,
+.training-theme,
+.training-method-item,
+.training-deliverable,
+.training-proposal-item {
+  border-color: var(--mg-line);
+  background: rgba(10, 20, 34, 0.74);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+
+  strong { color: var(--mg-ink); }
+  p      { color: var(--mg-text); }
+}
+
+.consulting-boundary,
+.training-boundary {
+  border-color: rgba(245, 158, 11, 0.26);
+  background: rgba(88, 58, 12, 0.24);
+}
+
+.consulting-next-step,
+.training-next-step {
+  border-color: rgba(111, 220, 255, 0.26);
+  background:
+    linear-gradient(135deg, rgba(17, 34, 56, 0.92), rgba(17, 54, 70, 0.58)),
+    var(--mg-bg-soft);
+}

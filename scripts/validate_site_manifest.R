@@ -332,7 +332,7 @@ for (localized_page in c(
 pages <- manifest$content_pages$items
 if (!length(pages)) fail("content_pages.items is empty")
 
-valid_page_roles <- c("public-home", "collection-index", "study-plan", "utility", "reference", "institutional")
+valid_page_roles <- c("public-home", "collection-index", "study-plan", "utility", "reference", "institutional", "service")
 page_ids <- vapply(pages, function(page) required_scalar(page, "id", "page"), character(1))
 page_hrefs <- vapply(pages, function(page) required_scalar(page, "href", paste0("page ", page$id)), character(1))
 
@@ -346,6 +346,7 @@ region_markers <- list(
     "home-paths" = "home-paths",
     "home-curriculum" = "home-curriculum",
     "home-proof-strip" = "home-proof-strip",
+    "application-path" = "home-application-path",
     "final-cta" = "home-final-cta"
   ),
   `modules-index` = list(
@@ -440,6 +441,28 @@ region_markers <- list(
     principles = "Princípios",
     "site-map" = "site-map-grid",
     "about-next-step" = "about-next-step"
+  ),
+  consulting = list(
+    hero = "consulting-hero",
+    fit = "consulting-fit",
+    "problem-map" = "consulting-problem-map",
+    packages = "consulting-packages",
+    method = "consulting-method",
+    readiness = "consulting-readiness",
+    triage = "consulting-triage",
+    boundary = "consulting-boundary",
+    "next-step" = "consulting-next-step"
+  ),
+  training = list(
+    hero = "training-hero",
+    fit = "training-fit",
+    formats = "training-formats",
+    themes = "training-themes",
+    method = "training-method",
+    deliverables = "training-deliverables",
+    proposal = "training-proposal",
+    boundary = "training-boundary",
+    "next-step" = "training-next-step"
   )
 )
 

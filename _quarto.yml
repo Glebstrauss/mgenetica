@@ -44,6 +44,10 @@ website:
         text: Início
       - href: plataforma.qmd
         text: Plataforma
+      - href: consultoria.qmd
+        text: Consultoria
+      - href: treinamentos.qmd
+        text: Treinamentos
       - href: modules/index.qmd
         text: Módulos
       - href: semanas/index.qmd
@@ -62,6 +66,10 @@ website:
         text: Início
       - href: plataforma.qmd
         text: Plataforma
+      - href: consultoria.qmd
+        text: Consultoria
+      - href: treinamentos.qmd
+        text: Treinamentos
       - href: modules/index.qmd
         text: Módulos
       - href: semanas/index.qmd

@@ -1,0 +1,282 @@
+---
+title: "Consultoria"
+subtitle: "Dados, seleção e acasalamento com critério técnico"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+::: {.consulting-hero}
+::: {.consulting-hero-copy}
+::: {.consulting-kicker}
+Consultoria técnica · melhoramento animal
+:::
+
+# Dados de rebanho transformados em decisão
+
+Consultoria para propriedades, criadores, associações e organizações que precisam organizar registros, interpretar dados zootécnicos e transformar seleção, acasalamento e avaliação genética em rotina técnica.
+
+::: {.consulting-hero-actions role="navigation" aria-label="Ações principais de consultoria"}
+[Solicitar triagem técnica](#triagem-tecnica){.btn .btn-primary aria-label="Ir para a triagem técnica de consultoria"}
+[Ver pacotes](#pacotes-de-consultoria){.btn .btn-secondary aria-label="Ver pacotes de consultoria MGenética"}
+[Treinar equipe](treinamentos.qmd){.btn .btn-secondary aria-label="Abrir treinamentos institucionais MGenética"}
+:::
+:::
+
+::: {.consulting-hero-panel}
+![](images/mgenetica-logo-correct.png){fig-alt="Logo MGenética"}
+
+::: {.consulting-hero-proof role="note" aria-label="Modelo de entrada da consultoria"}
+**Porta de entrada**
+
+Todo projeto começa por diagnóstico. Sem dados mínimos ou objetivo claro, o melhor serviço é estruturar coleta antes de prometer análise.
+:::
+:::
+:::
+
+::: {.consulting-fit role="region" aria-label="Perfil adequado para consultoria MGenética"}
+::: {.consulting-section-copy}
+## Para quem é
+
+A consultoria é seletiva porque melhoramento genético depende de dados, objetivo e rotina. O projeto certo reduz decisão subjetiva; o projeto errado apenas gera relatório caro.
+:::
+
+::: {.consulting-fit-grid role="list" aria-label="Perfis atendidos pela consultoria"}
+::: {.consulting-fit-item role="listitem"}
+**Produtores e propriedades**
+
+Para organizar registros, definir critérios de seleção e transformar dados acumulados em decisão prática.
+:::
+
+::: {.consulting-fit-item role="listitem"}
+**Associações e núcleos**
+
+Para revisar qualidade de dados, padronizar coleta e apoiar programas de seleção com linguagem comum.
+:::
+
+::: {.consulting-fit-item role="listitem"}
+**Cooperativas e equipes técnicas**
+
+Para alinhar diagnóstico, coleta, indicadores e treinamento de campo em um fluxo replicável.
+:::
+:::
+:::
+
+::: {.consulting-problem-map role="region" aria-label="Problemas resolvidos pela consultoria"}
+::: {.consulting-section-copy}
+## Problemas que a consultoria resolve
+
+O foco não é vender genética abstrata. O foco é remover gargalos que impedem decisão técnica.
+:::
+
+::: {.consulting-problem-grid role="list" aria-label="Mapa de problemas técnicos"}
+::: {.consulting-problem-item role="listitem"}
+**Dados dispersos**
+
+Planilhas, anotações, pedigree e informações produtivas sem padrão comum.
+:::
+
+::: {.consulting-problem-item role="listitem"}
+**Seleção subjetiva**
+
+Escolha de animais baseada apenas em aparência, tradição ou impressão isolada.
+:::
+
+::: {.consulting-problem-item role="listitem"}
+**Acasalamento sem critério**
+
+Ausência de rotina para controlar parentesco, risco de endogamia e objetivo de seleção.
+:::
+
+::: {.consulting-problem-item role="listitem"}
+**Indicadores pouco usados**
+
+Registros existem, mas não viram ranking, diagnóstico, decisão ou aprendizado da equipe.
+:::
+:::
+:::
+
+::: {#pacotes-de-consultoria .consulting-packages role="region" aria-label="Pacotes de consultoria MGenética"}
+::: {.consulting-section-copy}
+## Pacotes de consultoria
+
+Cada pacote tem uma fronteira clara. Projetos maiores só devem avançar depois do diagnóstico.
+:::
+
+::: {.consulting-package-grid role="list" aria-label="Pacotes disponíveis"}
+::: {.consulting-package role="listitem"}
+**1 · Diagnóstico genético/zootécnico**
+
+Entrada recomendada. Avalia dados disponíveis, pedigree, registros produtivos, inconsistências, gargalos e potencial de implementação.
+
+**Entrega:** relatório diagnóstico com recomendações iniciais e decisão sobre viabilidade do próximo projeto.
+:::
+
+::: {.consulting-package role="listitem"}
+**2 · Organização de dados e coleta**
+
+Estrutura campos mínimos, padrões de registro, rotina de conferência e responsáveis por coleta.
+
+**Entrega:** modelo de base, dicionário de dados, rotina de coleta e checklist de qualidade.
+:::
+
+::: {.consulting-package role="listitem"}
+**3 · Programa de seleção e acasalamento**
+
+Define objetivo de seleção, características prioritárias, critérios de descarte, reposição e acasalamento.
+
+**Entrega:** plano de seleção, critérios aplicáveis e rotina de monitoramento.
+:::
+
+::: {.consulting-package role="listitem"}
+**4 · Análise de dados e relatório técnico**
+
+Limpa, padroniza e resume registros zootécnicos, genealógicos ou produtivos quando houver base suficiente.
+
+**Entrega:** indicadores, visualizações, interpretação técnica e recomendações práticas.
+:::
+:::
+:::
+
+::: {.consulting-method role="region" aria-label="Método de trabalho da consultoria"}
+::: {.consulting-section-copy}
+## Como funciona
+
+Processo simples. Primeiro requisito, depois dado, depois análise. Otimizar análise sem arrumar dado é erro caro.
+:::
+
+::: {.consulting-method-steps role="list" aria-label="Etapas da consultoria"}
+::: {.consulting-method-step role="listitem"}
+**1 · Triagem**
+
+Mapeia espécie, raça, objetivo, volume de dados, formato dos registros e urgência.
+:::
+
+::: {.consulting-method-step role="listitem"}
+**2 · Diagnóstico**
+
+Avalia se há dados mínimos, coerência do pedigree, consistência dos registros e escopo viável.
+:::
+
+::: {.consulting-method-step role="listitem"}
+**3 · Proposta**
+
+Define entrega, prazo, dados necessários, participação da equipe e limite técnico.
+:::
+
+::: {.consulting-method-step role="listitem"}
+**4 · Execução**
+
+Organiza base, analisa indicadores, registra decisões e valida interpretação com o cliente.
+:::
+
+::: {.consulting-method-step role="listitem"}
+**5 · Treinamento**
+
+Fecha com orientação para equipe repetir coleta, leitura de indicadores e decisão.
+:::
+:::
+:::
+
+::: {.consulting-readiness role="region" aria-label="Critérios de prontidão para aceitar consultoria"}
+::: {.consulting-section-copy}
+## Critérios para aceitar projeto
+
+Nem todo pedido deve virar consultoria. Projeto bom tem condição de gerar decisão real.
+:::
+
+::: {.consulting-readiness-grid role="list" aria-label="Critérios mínimos de aceite"}
+::: {.consulting-readiness-item role="listitem"}
+**Dados ou disposição para coletar**
+
+Sem registro mínimo, o primeiro projeto deve ser coleta e padronização.
+:::
+
+::: {.consulting-readiness-item role="listitem"}
+**Objetivo de seleção**
+
+Peso, leite, morfologia, fertilidade, funcionalidade ou outro alvo precisam ser priorizados.
+:::
+
+::: {.consulting-readiness-item role="listitem"}
+**Responsável do lado do cliente**
+
+Alguém precisa responder por dados, decisões e continuidade depois da entrega.
+:::
+
+::: {.consulting-readiness-item role="listitem"}
+**Viabilidade técnica**
+
+Análise genética avançada só entra quando estrutura de dados permite interpretação honesta.
+:::
+:::
+:::
+
+::: {#triagem-tecnica .consulting-triage role="region" aria-label="Formulário de triagem técnica"}
+::: {.consulting-section-copy}
+## Triagem técnica
+
+Use este roteiro para preparar o primeiro contato. Ele evita reunião vaga e acelera decisão sobre escopo.
+:::
+
+::: {.consulting-triage-grid role="list" aria-label="Campos da triagem técnica"}
+::: {.consulting-triage-item role="listitem"}
+**Contexto**
+
+Espécie, raça, sistema de produção, número aproximado de animais e localização.
+:::
+
+::: {.consulting-triage-item role="listitem"}
+**Objetivo**
+
+Qual decisão precisa melhorar: seleção, descarte, reposição, acasalamento, relatório, coleta ou treinamento.
+:::
+
+::: {.consulting-triage-item role="listitem"}
+**Dados disponíveis**
+
+Planilhas, software, pedigree, pesagens, medidas, produção, reprodução, morfologia, genótipos ou avaliações externas.
+:::
+
+::: {.consulting-triage-item role="listitem"}
+**Rotina atual**
+
+Quem coleta, com que frequência, quais campos são obrigatórios e onde surgem inconsistências.
+:::
+
+::: {.consulting-triage-item role="listitem"}
+**Equipe**
+
+Quem participa da decisão e quem precisa ser treinado para manter a rotina.
+:::
+
+::: {.consulting-triage-item role="listitem"}
+**Prazo**
+
+Quando a decisão precisa acontecer e qual entrega seria útil na primeira etapa.
+:::
+:::
+:::
+
+::: {.consulting-boundary role="region" aria-label="Limites técnicos da consultoria"}
+::: {.consulting-section-copy}
+## Limites técnicos
+
+A MGenética atua em melhoramento genético animal, dados zootécnicos, seleção, acasalamento e capacitação. Não oferece aconselhamento genético humano, interpretação clínica, promessa de ganho sem dados ou avaliação genética oficial sem base técnica adequada.
+:::
+:::
+
+::: {.consulting-next-step role="navigation" aria-label="Próximo passo da consultoria"}
+::: {.consulting-next-step-copy}
+## Próximo passo
+
+Se o problema é aplicar melhoramento em dados reais, comece pela triagem. Se o problema é alinhar equipe antes de mexer na base, comece por treinamento institucional.
+:::
+
+::: {.consulting-next-step-actions}
+[Preparar triagem](#triagem-tecnica){.btn .btn-primary aria-label="Preparar triagem técnica para consultoria"}
+[Ver treinamentos](treinamentos.qmd){.btn .btn-secondary aria-label="Ver treinamentos institucionais"}
+[Estudar fundamentos](modules/index.qmd){.btn .btn-secondary aria-label="Abrir curso para estudar fundamentos antes da consultoria"}
+:::
+:::

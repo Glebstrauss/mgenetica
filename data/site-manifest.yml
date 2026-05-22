@@ -44,6 +44,18 @@ navigation:
       label: Início
       href: index.qmd
       type: page
+    - id: platform
+      label: Plataforma
+      href: plataforma.qmd
+      type: utility
+    - id: consulting
+      label: Consultoria
+      href: consultoria.qmd
+      type: service
+    - id: training
+      label: Treinamentos
+      href: treinamentos.qmd
+      type: service
     - id: modules
       label: Módulos
       href: modules/index.qmd
@@ -64,6 +76,15 @@ navigation:
     - id: home
       label: Início
       href: index.qmd
+    - id: platform
+      label: Plataforma
+      href: plataforma.qmd
+    - id: consulting
+      label: Consultoria
+      href: consultoria.qmd
+    - id: training
+      label: Treinamentos
+      href: treinamentos.qmd
     - id: modules
       label: Módulos
       href: modules/index.qmd
@@ -100,6 +121,7 @@ content_pages:
     - home-trust-anchors
     - home-first-session
     - home-output-standard
+    - home-application-path
     - home-path-contract
     - learning-loop
     - phase-preview
@@ -177,6 +199,24 @@ content_pages:
     - module-return-note
     - module-evidence-path
     - module-practice-contract
+    - consulting-hero
+    - consulting-fit
+    - consulting-problem-map
+    - consulting-packages
+    - consulting-method
+    - consulting-readiness
+    - consulting-triage
+    - consulting-boundary
+    - consulting-next-step
+    - training-hero
+    - training-fit
+    - training-formats
+    - training-themes
+    - training-method
+    - training-deliverables
+    - training-proposal
+    - training-boundary
+    - training-next-step
     - final-cta
     - final-cta-hint
   items:
@@ -191,9 +231,45 @@ content_pages:
         - home-paths
         - home-curriculum
         - home-proof-strip
+        - application-path
         - final-cta
       source_collections:
         - modules
+    - id: platform
+      title: Plataforma
+      href: plataforma.qmd
+      role: utility
+      status: review
+    - id: consulting
+      title: Consultoria
+      href: consultoria.qmd
+      role: service
+      status: review
+      editable_regions:
+        - hero
+        - fit
+        - problem-map
+        - packages
+        - method
+        - readiness
+        - triage
+        - boundary
+        - next-step
+    - id: training
+      title: Treinamentos
+      href: treinamentos.qmd
+      role: service
+      status: review
+      editable_regions:
+        - hero
+        - fit
+        - formats
+        - themes
+        - method
+        - deliverables
+        - proposal
+        - boundary
+        - next-step
     - id: modules-index
       title: Módulos
       href: modules/index.qmd

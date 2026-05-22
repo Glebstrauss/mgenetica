@@ -1,0 +1,274 @@
+---
+title: "Treinamentos"
+subtitle: "Capacitação institucional em melhoramento genético animal"
+page-layout: full
+toc: false
+sidebar: false
+number-sections: false
+---
+
+::: {.training-hero}
+::: {.training-hero-copy}
+::: {.training-kicker}
+Treinamento institucional · equipes, turmas e parceiros
+:::
+
+# Capacite a equipe antes de exigir decisão melhor
+
+Treinamentos fechados para universidades, grupos de estudo, cooperativas, associações, empresas e equipes técnicas que precisam entender melhoramento genético animal com linguagem aplicada, exemplos e critérios de decisão.
+
+::: {.training-hero-actions role="navigation" aria-label="Ações principais de treinamentos"}
+[Montar proposta](#proposta-sob-demanda){.btn .btn-primary aria-label="Ir para proposta sob demanda de treinamento"}
+[Ver formatos](#formatos){.btn .btn-secondary aria-label="Ver formatos de treinamento"}
+[Ver consultoria](consultoria.qmd){.btn .btn-secondary aria-label="Abrir consultoria técnica MGenética"}
+:::
+:::
+
+::: {.training-hero-panel}
+![](images/mgenetica-logo-correct.png){fig-alt="Logo MGenética"}
+
+::: {.training-hero-proof role="note" aria-label="Objetivo dos treinamentos"}
+**Treinamento bom**
+
+Muda a pergunta, a coleta e a interpretação da equipe. Aula bonita sem mudança de rotina é entretenimento técnico.
+:::
+:::
+:::
+
+::: {.training-fit role="region" aria-label="Público dos treinamentos institucionais"}
+::: {.training-section-copy}
+## Para quem é
+
+Treinamento institucional serve quando várias pessoas precisam usar a mesma linguagem técnica antes de aplicar dados, selecionar animais ou revisar um programa.
+:::
+
+::: {.training-fit-grid role="list" aria-label="Perfis atendidos por treinamentos"}
+::: {.training-fit-item role="listitem"}
+**Universidades e grupos de estudo**
+
+Minicursos, aulas abertas, oficinas e trilhas aplicadas para formação complementar.
+:::
+
+::: {.training-fit-item role="listitem"}
+**Associações e cooperativas**
+
+Capacitação para padronizar conceitos, coleta, interpretação de DEP e critérios de seleção.
+:::
+
+::: {.training-fit-item role="listitem"}
+**Empresas e equipes técnicas**
+
+Treinamento prático para alinhar rotina, indicadores, dados e comunicação com produtores.
+:::
+:::
+:::
+
+::: {#formatos .training-formats role="region" aria-label="Formatos de treinamento MGenética"}
+::: {.training-section-copy}
+## Formatos
+
+Formato muda conforme objetivo. Não faz sentido usar curso longo quando a equipe precisa decidir um protocolo de coleta; não faz sentido usar palestra curta quando o problema é análise.
+:::
+
+::: {.training-format-grid role="list" aria-label="Formatos disponíveis"}
+::: {.training-format role="listitem"}
+**Aula técnica**
+
+2 horas para introduzir tema, alinhar conceitos e abrir discussão aplicada.
+:::
+
+::: {.training-format role="listitem"}
+**Oficina prática**
+
+4 a 8 horas com exercícios, exemplos e leitura guiada de dados ou indicadores.
+:::
+
+::: {.training-format role="listitem"}
+**Minicurso**
+
+12 a 20 horas para cobrir fundamentos, aplicação e atividade avaliativa.
+:::
+
+::: {.training-format role="listitem"}
+**Curso fechado**
+
+Turma institucional com carga horária, material, avaliação e certificado de participação.
+:::
+:::
+:::
+
+::: {.training-themes role="region" aria-label="Temas de treinamento MGenética"}
+::: {.training-section-copy}
+## Temas possíveis
+
+Cada tema pode ser básico, intermediário ou aplicado ao contexto da instituição.
+:::
+
+::: {.training-theme-grid role="list" aria-label="Temas disponíveis"}
+::: {.training-theme role="listitem"}
+**Fundamentos**
+
+Herdabilidade, DEP, valor genético, acurácia, endogamia, seleção e acasalamento.
+:::
+
+::: {.training-theme role="listitem"}
+**Dados**
+
+Organização de registros, qualidade de dados, campos mínimos, padronização e indicadores.
+:::
+
+::: {.training-theme role="listitem"}
+**Análise**
+
+R para dados zootécnicos, estatística aplicada, visualizações e interpretação.
+:::
+
+::: {.training-theme role="listitem"}
+**Avaliação**
+
+Introdução ao BLUP, modelos mistos, ranking, genômica aplicada e limites de interpretação.
+:::
+:::
+:::
+
+::: {.training-method role="region" aria-label="Método dos treinamentos"}
+::: {.training-section-copy}
+## Método
+
+O treinamento segue a mesma lógica do curso público: conceito, exemplo, prática e decisão. A diferença é que o contexto vem da instituição.
+:::
+
+::: {.training-method-grid role="list" aria-label="Etapas do treinamento"}
+::: {.training-method-item role="listitem"}
+**1 · Objetivo**
+
+Definir o que a equipe precisa conseguir fazer depois do treinamento.
+:::
+
+::: {.training-method-item role="listitem"}
+**2 · Diagnóstico de turma**
+
+Entender nível técnico, rotina, espécie, dados e decisões atuais.
+:::
+
+::: {.training-method-item role="listitem"}
+**3 · Conteúdo**
+
+Selecionar módulos, exemplos, exercícios e linguagem adequada.
+:::
+
+::: {.training-method-item role="listitem"}
+**4 · Prática**
+
+Aplicar exercício, leitura de indicador, estudo de caso ou miniatividade em R.
+:::
+
+::: {.training-method-item role="listitem"}
+**5 · Fechamento**
+
+Registrar próximos passos, dúvidas críticas e rotina mínima que precisa continuar.
+:::
+:::
+:::
+
+::: {.training-deliverables role="region" aria-label="Entregáveis de treinamento"}
+::: {.training-section-copy}
+## Entregáveis
+
+Treinamento institucional precisa deixar material reutilizável, não só uma gravação esquecida.
+:::
+
+::: {.training-deliverable-grid role="list" aria-label="Entregáveis possíveis"}
+::: {.training-deliverable role="listitem"}
+**Ementa e carga horária**
+
+Descrição objetiva para aprovação institucional e comunicação com participantes.
+:::
+
+::: {.training-deliverable role="listitem"}
+**Material didático**
+
+Slides, roteiro de exercícios, planilha, script R ou guia curto conforme formato.
+:::
+
+::: {.training-deliverable role="listitem"}
+**Atividade**
+
+Exercício ou avaliação simples para consolidar interpretação.
+:::
+
+::: {.training-deliverable role="listitem"}
+**Certificado**
+
+Certificado de participação ou conclusão, quando combinado no escopo.
+:::
+:::
+:::
+
+::: {#proposta-sob-demanda .training-proposal role="region" aria-label="Proposta sob demanda de treinamento"}
+::: {.training-section-copy}
+## Proposta sob demanda
+
+Para montar uma proposta, reúna as informações abaixo. Isso evita orçamento genérico e reduz retrabalho.
+:::
+
+::: {.training-proposal-grid role="list" aria-label="Informações para proposta de treinamento"}
+::: {.training-proposal-item role="listitem"}
+**Instituição**
+
+Tipo de organização, público participante e número estimado de pessoas.
+:::
+
+::: {.training-proposal-item role="listitem"}
+**Objetivo**
+
+O que a turma precisa fazer melhor depois: interpretar DEP, organizar dados, usar R, selecionar, acasalar ou comunicar resultado.
+:::
+
+::: {.training-proposal-item role="listitem"}
+**Formato**
+
+On-line, presencial, híbrido, aula única, oficina, minicurso ou curso fechado.
+:::
+
+::: {.training-proposal-item role="listitem"}
+**Carga horária**
+
+Faixa desejada, datas possíveis, necessidade de certificado e atividade avaliativa.
+:::
+
+::: {.training-proposal-item role="listitem"}
+**Contexto técnico**
+
+Espécie, raça, tipo de sistema, nível da turma e exemplos que seriam mais úteis.
+:::
+
+::: {.training-proposal-item role="listitem"}
+**Material esperado**
+
+Slides, apostila curta, exercício, planilha, script R, gravação ou relatório de fechamento.
+:::
+:::
+:::
+
+::: {.training-boundary role="region" aria-label="Fronteira entre treinamento e consultoria"}
+::: {.training-section-copy}
+## Quando vira consultoria
+
+Se a demanda exige analisar dados próprios, revisar pedigree, emitir diagnóstico de base real ou recomendar acasalamento específico, o escopo deixa de ser treinamento e passa para consultoria técnica.
+:::
+:::
+
+::: {.training-next-step role="navigation" aria-label="Próximo passo de treinamento"}
+::: {.training-next-step-copy}
+## Próximo passo
+
+Se a equipe ainda não fala a mesma língua técnica, comece por treinamento. Se já existe base de dados e decisão pendente, vá para consultoria.
+:::
+
+::: {.training-next-step-actions}
+[Montar proposta](#proposta-sob-demanda){.btn .btn-primary aria-label="Montar proposta sob demanda de treinamento"}
+[Solicitar consultoria](consultoria.qmd#triagem-tecnica){.btn .btn-secondary aria-label="Abrir triagem técnica de consultoria"}
+[Ver curso aberto](modules/index.qmd){.btn .btn-secondary aria-label="Abrir curso aberto MGenética"}
+:::
+:::
