@@ -453,6 +453,7 @@ function formatCourseDetail(moduleRow, locale = 'pt-BR') {
     badge: `${copy.badgePrefix} ${String(moduleRow.order).padStart(2, '0')} · ${getBlockLabel(moduleRow.blockId, locale)}`,
     meta: buildMeta(moduleRow, locale),
     moduleMeta: [copy.dedicatedPage, moduleRow.legacyId, copy.moduleMetaQuiz],
+    fullText: moduleRow.fullText || '',
     sections: buildSections(moduleRow, locale)
   }
 }
