@@ -1,0 +1,10 @@
+project_id: jp-blup-example
+engine: mock
+raw_phenotypes: data/raw/phenotypes.tsv
+raw_pedigree: data/raw/pedigree.tsv
+work_dir: work
+outputs_dir: outputs
+trait_name: weight
+renumf90_bin:
+airemlf90_bin:
+blupf90_bin:

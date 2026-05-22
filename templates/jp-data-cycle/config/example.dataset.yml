@@ -1,0 +1,9 @@
+project_id: example-animal-breeding-project
+raw_dir: templates/jp-data-cycle/examples/raw
+processed_dir: templates/jp-data-cycle/examples/processed
+analysis_dir: templates/jp-data-cycle/examples/analysis
+outputs_dir: templates/jp-data-cycle/examples/outputs
+work_dir: templates/jp-data-cycle/examples/work
+metadata_dir: templates/jp-data-cycle/examples/metadata
+reports_dir: templates/jp-data-cycle/examples/reports
+lifecycle_policy: raw_immutable_work_local_outputs_consolidated
