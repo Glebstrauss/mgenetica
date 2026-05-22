@@ -351,28 +351,54 @@ function buildTopicsSection(moduleRow, locale) {
   return items
 }
 
+function compactParagraphs(items = []) {
+  return items.flat().filter((item) => typeof item === 'string' && item.trim().length > 0)
+}
+
+function buildReviewQuizParagraphs(moduleRow, copy) {
+  if (!Array.isArray(moduleRow.reviewQuiz) || moduleRow.reviewQuiz.length === 0) {
+    return []
+  }
+  return moduleRow.reviewQuiz.map((item, index) => (
+    `${copy.quizLabel} ${index + 1}: ${item.question} Resposta: ${item.answer}`
+  ))
+}
+
+function buildReferenceParagraphs(moduleRow) {
+  if (!Array.isArray(moduleRow.references) || moduleRow.references.length === 0) {
+    return []
+  }
+  return moduleRow.references.map((reference) => `Referência: ${reference}`)
+}
+
 function buildSections(moduleRow, locale) {
   const copy = getLocaleCopy(locale)
   return [
     {
       eyebrow: copy.questionEyebrow,
       title: copy.questionTitle,
-      paragraphs: [moduleRow.feynmanQuestion, moduleRow.intro]
+      paragraphs: compactParagraphs([moduleRow.feynmanQuestion, moduleRow.intro])
     },
     {
       eyebrow: copy.objectiveEyebrow,
       title: copy.objectiveTitle,
-      paragraphs: [moduleRow.objective, moduleRow.blockSummary]
+      paragraphs: compactParagraphs([moduleRow.objective, moduleRow.blockSummary])
     },
     {
       eyebrow: copy.conceptEyebrow,
       title: copy.conceptTitle,
-      paragraphs: [moduleRow.coreExplanation, moduleRow.technicalNote]
+      paragraphs: compactParagraphs([moduleRow.coreExplanation, moduleRow.formula, moduleRow.technicalNote])
     },
     {
       eyebrow: copy.contextEyebrow,
       title: copy.contextTitle,
-      paragraphs: [moduleRow.analogy, moduleRow.animalExample, moduleRow.workedExample, moduleRow.manualCalculation]
+      paragraphs: compactParagraphs([
+        moduleRow.analogy,
+        moduleRow.animalExample,
+        moduleRow.workedExample,
+        moduleRow.visualExplanation,
+        moduleRow.manualCalculation
+      ])
     },
     {
       eyebrow: copy.scopeEyebrow,
@@ -382,19 +408,20 @@ function buildSections(moduleRow, locale) {
     {
       eyebrow: copy.labEyebrow,
       title: copy.labTitle,
-      paragraphs: [moduleRow.labObjective, moduleRow.labObserve],
+      paragraphs: compactParagraphs([moduleRow.labObjective, moduleRow.labObserve, moduleRow.biologicalInterpretation]),
       code: moduleRow.rScript,
       codeLabel: copy.labCodeLabel
     },
     {
       eyebrow: copy.closingEyebrow,
       title: copy.closingTitle,
-      paragraphs: [
+      paragraphs: compactParagraphs([
         `${copy.checkpointLabel}: ${moduleRow.checkpoint}`,
         `${copy.taskLabel}: ${moduleRow.task}`,
         `${copy.evidenceLabel}: ${moduleRow.completionEvidence}`,
-        `${copy.quizLabel}: ${moduleRow.quizFocus}`
-      ]
+        ...buildReviewQuizParagraphs(moduleRow, copy),
+        ...buildReferenceParagraphs(moduleRow)
+      ])
     }
   ]
 }
