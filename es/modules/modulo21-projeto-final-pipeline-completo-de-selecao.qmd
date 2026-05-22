@@ -1,0 +1,258 @@
+---
+title: "Módulo 21 — Projeto final: pipeline completo de seleção"
+description: "Pergunta simples"
+---
+
+~~~{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 21 · GENÔMICA APLICADA</span>
+  <div class="module-meta"><span>Texto revisado en portugués</span><span>Fonte: mgenetica-course-texts-2026-05-21</span></div>
+</div>
+<div class="module-orientation" aria-label="Como estudar este módulo">
+  <span>Leitura</span>
+  <span>Exemplo</span>
+  <span>Quiz</span>
+</div>
+~~~
+
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia pergunta, conceito técnico, fórmula, exemplo, script e interpretação. Feche com checkpoint, quiz e mini tarefa.
+:::
+
+::: {.module-session-plan role="region" aria-label="Plano curto de sessão do módulo"}
+**Plano curto de sessão**
+
+Leia o texto revisado, rode mentalmente ou no R o exemplo mínimo e feche com uma decisão técnica curta.
+:::
+
+::: {.module-technical-scan role="region" aria-label="Como ler fórmulas, código e tabelas do módulo"}
+**Leia a parte técnica em três passagens**
+
+Primeiro localize o conceito. Depois confira fórmula, tabela ou script. Por fim escreva a interpretação biológica.
+:::
+
+::: {.module-script-lab role="region" aria-label="Laboratório do módulo"}
+**Laboratório do módulo**
+
+O script mínimo está no texto revisado desta unidade. Use o trecho em R como evidência reproduzível e compare a saída com a interpretação.
+:::
+
+## Pergunta simples
+
+Quem seleciono e por quê? Imagine um plantel simulado com quatro garanhões candidatos. Um tem maior fenótipo observado. Outro tem melhor `DEP`. Outro tem boa predição genômica, mas parentesco alto com as matrizes disponíveis. Outro tem desempenho moderado, porém dados mais limpos e menor risco de endogamia. Se o aluno escolher apenas o animal que "parece melhor", ele ignora vinte unidades de raciocínio técnico.
+
+O projeto final é um comitê técnico. O comitê não pergunta apenas "qual animal eu gosto?". Ele junta evidências: fenótipo, ambiente, pedigree, controle de qualidade, genômica, `EBV`, `DEP`, parentesco, acurácia, risco e objetivo de seleção. Depois transforma essas evidências em ranking defendido.
+
+A resposta final precisa ser auditável. O aluno deve conseguir mostrar de onde veio cada número, qual filtro foi usado, qual índice foi calculado e por que o primeiro colocado foi escolhido. Falconer e Mackay (1996) discutem seleção combinando informações individuais e familiares em índices de mérito. A M21 usa essa ideia em escala didática: seleção não é preferência; é decisão com evidência.
+
+## Explicação intuitiva
+
+A analogia é um comitê antes de comprar ou descartar um reprodutor. Um membro olha o fenótipo. Outro confere se lote, sexo, idade e manejo foram tratados como fontes de variação. Outro avalia pedigree e parentesco. Outro verifica se os dados genômicos passaram por controle de qualidade. Outro pergunta se o `EBV`, a `DEP` e a acurácia sustentam a escolha.
+
+Se cada membro decide sozinho, a conclusão pode ser ruim. O fenótipo pode favorecer animal criado em melhor ambiente. A genômica pode indicar parentesco alto que aumenta risco de acasalamento. A `DEP` pode ser boa, mas com acurácia baixa. O pedigree pode ser interessante, mas os dados podem estar incompletos.
+
+O pipeline completo organiza a conversa. Primeiro entra dado bruto. Depois vem limpeza. Depois vem correção e predição. Depois vem ranking. Por fim, vem relatório. O relatório é a parte mais importante do projeto final: ele obriga o aluno a defender a seleção com evidência, não com preferência.
+
+## Conceito técnico
+
+Pipeline é uma sequência de decisões reprodutíveis. Nesta unidade, o pipeline didático tem seis passos:
+
+1. Conferir dados de entrada: animal, fenótipo, grupo, pedigree, genótipos e matriz de relacionamento.
+2. Controlar qualidade: missing, call rate, MAF, HWE e consistência mínima por animal.
+3. Ajustar leitura fenotípica: separar ambiente, grupo e animal quando possível.
+4. Integrar mérito: ler `EBV`, calcular `DEP` e observar acurácia.
+5. Penalizar risco: considerar parentesco ou endogamia esperada no acasalamento.
+6. Gerar ranking e relatório: mostrar score, regra de qualidade, decisão e justificativa.
+
+O índice final desta aula é simples. Ele não substitui índice econômico real, avaliação oficial, análise multicaráter ou decisão de programa de melhoramento. Ele serve para treinar integração:
+
+`score = DEP - 10 * parentesco`
+
+O `DEP` representa ganho médio esperado na progênie, na unidade do índice didático. O `parentesco` representa risco relativo de acasalamento com o grupo de matrizes, em escala de `0` a `1`. O fator `10` é peso didático da penalidade. Se o programa tolera menos parentesco, esse peso pode aumentar. Se o objetivo prioriza ganho rápido e há manejo de acasalamentos, esse peso pode diminuir.
+
+A decisão final não deve usar apenas `score`. O `score` organiza a comparação, mas o relatório também precisa dizer se os dados passaram no controle de qualidade, se a acurácia é aceitável e se há restrição prática. Ranking sem relatório vira número solto.
+
+## Fórmula
+
+A fórmula central é:
+
+`score = DEP - 10 * parentesco`
+
+Onde:
+
+- `DEP` é diferença esperada na progênie, na unidade do índice de seleção;
+- `parentesco` é parentesco médio ou risco relativo com o grupo de fêmeas planejado;
+- `10` é penalidade didática aplicada ao parentesco;
+- `score` é valor usado para ordenar candidatos antes da regra de qualidade.
+
+Se um garanhão tem `DEP = 12` e `parentesco = 0,20`, então:
+
+`score = 12 - 10 * 0,20 = 12 - 2 = 10`
+
+Biologicamente, esse animal ainda tem score alto, mas perde `2` pontos por risco de parentesco. A penalidade evita escolher automaticamente o maior `DEP` quando o acasalamento pode aumentar endogamia.
+
+Se outro garanhão tem `DEP = 9` e `parentesco = 0,02`, então:
+
+`score = 9 - 10 * 0,02 = 8,8`
+
+O primeiro ainda fica acima, mas a diferença cai. Esse é o tipo de comparação que o projeto final exige: não basta olhar `DEP`; é preciso olhar ganho esperado junto com risco.
+
+## Exemplo numérico
+
+Considere quatro garanhões de um plantel simulado. Todos têm informação suficiente para entrar na tabela inicial, mas os níveis de acurácia, parentesco e controle de qualidade são diferentes.
+
+| Animal | Fenótipo corrigido | `EBV` | `DEP` | Acurácia | Parentesco médio | QC genômico | Observação |
+|---|---:|---:|---:|---:|---:|---|---|
+| `A` | 108 | 24 | 12 | 0,62 | 0,20 | aprovado | maior `DEP`, parentesco alto |
+| `B` | 104 | 18 | 9 | 0,76 | 0,02 | aprovado | menor risco, boa acurácia |
+| `C` | 112 | 14 | 7 | 0,54 | 0,05 | aprovado com ressalva | maior fenótipo corrigido |
+| `D` | 101 | 20 | 10 | 0,40 | 0,30 | reprovado | predição incerta e parentesco alto |
+
+Agora calcule o índice:
+
+| Animal | `DEP` | Parentesco | `score = DEP - 10 * parentesco` | Decisão técnica antes da regra final |
+|---|---:|---:|---:|---|
+| `A` | 12 | 0,20 | 10,0 | forte, mas controlar acasalamento |
+| `B` | 9 | 0,02 | 8,8 | opção conservadora |
+| `C` | 7 | 0,05 | 6,5 | fenótipo bom, mérito menor |
+| `D` | 10 | 0,30 | 7,0 | score intermediário, mas evidência fraca |
+
+O ranking pelo score seria `A`, `B`, `D`, `C`. Essa é a primeira camada da análise. A segunda camada aplica a regra pós-score: animal com QC reprovado ou acurácia menor que `0,50` não deve sustentar seleção neste relatório.
+
+Por isso, `D` cai para o fim da recomendação, mesmo tendo score maior que `C`. O motivo não é preferência pelo animal `C`; é qualidade da evidência. `D` foi reprovado no controle de dados e tem acurácia baixa. Uma decisão defensável é selecionar `A` como primeira opção, desde que os acasalamentos evitem fêmeas aparentadas, e manter `B` como opção conservadora. `D` não deve ser escolhido só porque o score supera `C`.
+
+Essa é a diferença entre cálculo e decisão. O cálculo ordena. A decisão interpreta.
+
+## Tabela final com ranking e justificativa
+
+A tabela final deve ser curta, rastreável e pronta para relatório. Ela aplica duas etapas: primeiro o score, depois a regra de qualidade. A regra pós-score usada aqui é didática: QC reprovado ou acurácia menor que `0,50` coloca o animal em revisão ou no fim da lista.
+
+| Ranking final | Animal | Score | Uso recomendado | Justificativa |
+|---:|---|---:|---|---|
+| 1 | `A` | 10,0 | selecionar com controle de acasalamento | maior `DEP`; parentesco exige cuidado |
+| 2 | `B` | 8,8 | manter como alternativa segura | boa acurácia e baixo parentesco |
+| 3 | `C` | 6,5 | não priorizar | fenótipo alto, mas menor mérito estimado |
+| 4 | `D` | 7,0 | descartar neste ciclo | QC reprovado, acurácia baixa e parentesco alto |
+
+O ranking final não é idêntico à ordem numérica do score porque o pipeline inclui restrição de qualidade. `D` tem score maior que `C`, mas fica no fim por falha de dados e risco acumulado. Isso ensina a regra central: número bom com dado ruim não sustenta seleção.
+
+## Script R mínimo
+
+```r
+animal <- c("A", "B", "C", "D")
+dep <- c(12, 9, 7, 10)
+parentesco <- c(0.20, 0.02, 0.05, 0.30)
+acuracia <- c(0.62, 0.76, 0.54, 0.40)
+qc <- c(TRUE, TRUE, TRUE, FALSE)
+score <- dep - 10 * parentesco
+tab <- data.frame(animal, dep, parentesco, acuracia, qc, score)
+tab[order(score, decreasing = TRUE), ]
+score_final <- ifelse(qc & acuracia >= 0.50, score, NA)
+tab[order(score_final, decreasing = TRUE, na.last = TRUE), ]
+```
+
+O script começa com a fórmula-base da unidade: `score <- dep - 10 * parentesco`. A primeira tabela impressa mostra o ranking numérico por score: `A`, `B`, `D`, `C`. Depois o script cria `score_final`, que vira `NA` quando o animal falha em QC ou tem acurácia abaixo de `0,50`. A segunda tabela impressa mostra o ranking final com nomes dos animais: `A`, `B`, `C`, `D`.
+
+Essa saída é importante porque o aluno não deve entregar apenas índices numéricos. O relatório precisa mostrar animal, `DEP`, parentesco, acurácia, QC, score e regra final. Assim a decisão pode ser repetida por outra pessoa.
+
+## Interpretação biológica
+
+Fenótipo corrigido mostra desempenho ajustado, mas não basta. `EBV` e `DEP` aproximam mérito genético e expectativa média na progênie. Acurácia informa estabilidade da predição. Parentesco informa risco de concentrar alelos por acasalamentos aparentados. Genômica e QC dizem se a informação molecular é utilizável.
+
+O índice final junta ganho esperado e risco. Um animal com `DEP` alta pode ser bom candidato, mas se o parentesco com as matrizes é alto, o ganho vem com custo. Um animal com `DEP` menor e parentesco baixo pode ser opção mais segura. O peso da penalidade deve refletir objetivo do programa, não gosto pessoal.
+
+Controle de dados impede decisão falsa. Se um animal tem genótipo ruim, baixa acurácia ou informação incompleta, ele pode parecer bom por ruído. O pipeline final obriga a declarar isso. Seleção técnica é decisão sob incerteza; o relatório deve mostrar como a incerteza foi tratada.
+
+O erro que a M21 evita é escolher por uma evidência isolada. Maior fenótipo não basta. Maior `DEP` não basta. Melhor pico genômico não basta. Menor parentesco não basta. A decisão final precisa integrar evidências e explicar perdas, riscos e limites.
+
+## Checkpoint
+
+Você atingiu o checkpoint se consegue defender seleção com evidência, não preferência. Uma resposta curta seria: "seleciono `A` porque tem maior score e maior `DEP`, mas só com controle de acasalamento; mantenho `B` como alternativa conservadora por baixo parentesco e boa acurácia; descarto `D` por QC reprovado."
+
+Uma resposta completa precisa citar dados, fórmula e regra. Deve dizer que o score foi `DEP - 10 * parentesco`, que `A` teve score `10,0`, que `B` teve `8,8`, que `D` não entra apesar de score `7,0` porque falhou no controle de dados, e que a decisão depende do objetivo de seleção.
+
+Resposta incompleta seria "escolho `A` porque é melhor". Melhor em quê? Fenótipo, `DEP`, acurácia, parentesco ou score? Sem essa resposta, não há relatório técnico.
+
+## Quiz
+
+1. Qual é a pergunta central do projeto final?
+2. Por que fenótipo corrigido não basta para selecionar?
+3. O que a `DEP` acrescenta à decisão?
+4. Por que parentesco entra como penalidade?
+5. No exemplo, qual é o score de `A`?
+6. Por que `D` não deve ser selecionado neste relatório?
+7. O que torna uma decisão auditável?
+
+Gabarito:
+
+1. Quem seleciono e por quê.
+2. Porque fenótipo ainda não resume mérito genético, risco, acurácia e qualidade dos dados.
+3. Ela expressa expectativa média de diferença na progênie.
+4. Porque parentesco alto pode aumentar risco de endogamia no acasalamento.
+5. `10,0`.
+6. Porque tem QC reprovado, acurácia baixa e parentesco alto.
+7. Mostrar dados, fórmula, filtros, ranking e justificativa.
+
+## Mini tarefa
+
+Entregue relatório curto e script R reprodutível. O relatório deve ter quatro partes:
+
+1. Objetivo: selecionar um reprodutor para plantel simulado.
+2. Dados usados: fenótipo corrigido, `EBV`, `DEP`, acurácia, parentesco e QC.
+3. Método: `score = DEP - 10 * parentesco`, com exclusão didática se QC reprovar ou acurácia for menor que `0,50`.
+4. Decisão: selecionar `A` com controle de acasalamento; manter `B` como alternativa conservadora; não selecionar `D` neste ciclo.
+
+O script deve reproduzir a tabela de score e a tabela final após QC/acurácia. Se o relatório diz uma coisa e o script mostra outra, a entrega não está concluída.
+
+Evidência de conclusão: pipeline final executado e decisão defendida. A frase final esperada é: "seleciono `A` porque combina maior ganho esperado com score final mais alto, mas a recomendação exige controle de acasalamento; `B` permanece como alternativa de menor risco; `D` é descartado por qualidade de dados e baixa acurácia."
+
+## Referências
+
+FALCONER, D. S.; MACKAY, T. F. C. Introduction to quantitative genetics. 4. ed. Harlow: Longman, 1996.
+
+::: {.module-evidence-path role="region" aria-label="Evidência de conclusão"}
+**Evidência de conclusão**
+
+Entregue resposta curta para checkpoint, quiz e mini tarefa. Evidência boa cita conceito, cálculo ou regra usada.
+:::
+
+::: {.module-practice-contract role="region" aria-label="Contrato de prática do módulo"}
+**Evidência mínima**
+
+Não conclua só por leitura. Registre uma interpretação técnica que outra pessoa consiga auditar.
+:::
+
+::: {.module-takeaways role="region" aria-label="O que levar deste módulo"}
+## O que levar deste módulo
+
+Leve uma distinção conceitual, uma regra de cálculo e uma consequência biológica da unidade.
+:::
+
+::: {.module-after-quiz role="region" aria-label="Depois do quiz"}
+## Depois do quiz
+
+Se passou, avance ao próximo módulo. Se não passou, volte ao conceito técnico e refaça a mini tarefa.
+:::
+
+<div class="quiz-container" data-module="21" aria-label="Quiz do Módulo 21"></div>
+
+::: {.module-close-check role="region" aria-label="Checagem final do módulo"}
+**Checagem final**
+
+Você consegue explicar a decisão sem copiar frase do texto?
+:::
+
+::: {.module-return-note role="note" aria-label="Nota para retorno ao módulo"}
+**Volte depois**
+
+Use este módulo como consulta quando precisar revisar Projeto final: pipeline completo de seleção.
+:::
+
+~~~{=html}
+<nav class="module-nav" aria-label="Navegação entre módulos">
+<a class="module-nav-card module-nav-prev" href="modulo20-matrizes-genomicas-gwas-e-predicao-genomica.html"><span>Anterior</span><strong>M20</strong></a>
+<a class="module-nav-card module-nav-index" href="index.html"><span>Índice</span><strong>21 módulos</strong></a>
+</nav>
+~~~

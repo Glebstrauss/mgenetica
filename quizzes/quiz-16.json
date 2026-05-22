@@ -1,0 +1,53 @@
+{
+  "module": "16",
+  "title": "Quiz — Modelos lineares e modelos mistos",
+  "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "O que representa `y` no modelo `y = Xb + Zu + e`?",
+      "options": [
+        "`y` representa os fenótipos observados.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "O que representa `b`?",
+      "options": [
+        "`b` representa os efeitos fixos.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "O que representa `u`?",
+      "options": [
+        "`u` representa os efeitos aleatórios.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "O que é resíduo?",
+      "options": [
+        "Resíduo é a parte não explicada pelo modelo.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Por que o ranking ajustado pode mudar em relação ao ranking bruto?",
+      "options": [
+        "Porque o ranking bruto mistura animal, ambiente e grupo; o ranking ajustado remove efeitos fixos usados no modelo.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
+      ],
+      "correct": 0
+    }
+  ]
+}

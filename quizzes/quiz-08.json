@@ -1,56 +1,51 @@
 {
   "module": "08",
-  "title": "Quiz — Módulo 08",
-  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "title": "Quiz — Componentes de variância",
+  "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
   "passMark": 4,
   "questions": [
     {
-      "text": "As equações de modelos mistos (MME) de Henderson permitem predizer EBVs porque:",
+      "text": "O que significa `VP`?",
       "options": [
-        "Usam informações de parentes e ajustam para efeitos fixos simultaneamente.",
-        "Ignoram o pedigree e avaliam cada animal de forma independente.",
-        "Assumem que todos os animais são não aparentados.",
-        "Utilizam apenas a variância fenotípica, sem necessidade de h²."
+        "`VP` é a variância fenotípica total.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
       "correct": 0
     },
     {
-      "text": "O termo A⁻¹λ (onde λ = σ²e / σ²A) nas MME serve para:",
+      "text": "Se `VA = 40`, `VD = 10`, `VI = 5` e `VE = 45`, qual é `VP`?",
       "options": [
-        "Inflar artificialmente os EBVs de animais de alto mérito.",
-        "\"Regredir\" as predições em direção à média com base nas relações de parentesco.",
-        "Remover o efeito fixo de fazenda antes da estimação.",
-        "Estimar a herdabilidade a partir dos dados fenotípicos."
-      ],
-      "correct": 1
-    },
-    {
-      "text": "A acurácia de avaliação genética (r) para um touro com poucas filhas avaliadas aumenta quando:",
-      "options": [
-        "O número de filhas avaliadas aumenta.",
-        "A herdabilidade da característica é próxima de zero.",
-        "O intervalo de gerações diminui para zero.",
-        "A variância fenotípica aumenta indefinidamente."
+        "`VP = 100`.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
       "correct": 0
     },
     {
-      "text": "Qual afirmação sobre BLUP é correta?",
+      "text": "Qual componente é central para seleção?",
       "options": [
-        "Maximiza a variância entre EBVs para facilitar a seleção.",
-        "Minimiza o erro quadrático médio de predição (MSEP) dos valores genéticos.",
-        "Não utiliza informações de parentes, apenas do próprio animal.",
-        "Exige que todos os animais sejam genotipados com marcadores SNP."
+        "`VA`, a variância genética aditiva.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "A DEP (Diferença Esperada na Progênie) de um reprodutor é equivalente a:",
+      "text": "Por que `VE` alto pode dificultar a leitura do fenótipo?",
       "options": [
-        "EBV / 2, pois representa o valor transmissível médio para cada filho.",
-        "2 × EBV, pois considera ambos os alelos do reprodutor.",
-        "A variância do valor genético aditivo do reprodutor.",
-        "O fenótipo esperado na progênie sem ajuste de ambiente."
+        "Porque aumenta a variação observada por causas ambientais, reduzindo a fração aditiva quando `VA` fica igual.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Por que não basta dizer que toda variação genética ajuda seleção do mesmo modo?",
+      "options": [
+        "Porque `VD` e `VI` são componentes genéticos, mas não se transmitem de modo tão simples e previsível quanto a parte aditiva.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
       "correct": 0
     }

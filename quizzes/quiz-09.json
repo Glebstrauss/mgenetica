@@ -1,58 +1,53 @@
 {
   "module": "09",
-  "title": "Quiz — Módulo 09",
-  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "title": "Quiz — Herdabilidade e repetibilidade",
+  "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
   "passMark": 4,
   "questions": [
     {
-      "text": "A diagonal da matriz de parentesco numérico (A) contém:",
+      "text": "O que `h2 = VA / VP` mede nesta unidade?",
       "options": [
-        "O valor 1,0 para todos os animais, independente de endogamia.",
-        "1 + Fi, onde Fi é o coeficiente de endogamia do animal i.",
-        "A herdabilidade da característica avaliada.",
-        "O coeficiente de parentesco entre o animal e a média da população."
+        "Mede a fração da variância fenotípica associada à variância genética aditiva.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "O coeficiente de parentesco (aij) entre dois meio-irmãos paternos sem endogamia vale:",
+      "text": "O que repetibilidade mede?",
       "options": [
-        "0,50",
-        "0,25",
-        "0,125",
-        "1,0"
+        "Mede a semelhança esperada entre medidas repetidas do mesmo animal.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "O método tabular de construção da matriz A requer que os animais sejam ordenados:",
+      "text": "Uma repetibilidade alta significa automaticamente alta herdabilidade?",
       "options": [
-        "Por data de nascimento, do mais recente para o mais antigo.",
-        "Cronologicamente, de forma que pais apareçam antes de seus filhos.",
-        "Em ordem alfabética pelo nome do animal.",
-        "Pela herdabilidade estimada da característica de interesse."
+        "Não. Repetibilidade pode incluir ambiente permanente, além de efeitos genéticos.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "O coeficiente de endogamia (Fi) de um animal é:",
+      "text": "Se `VA = 20` e `VP = 100`, qual é `h2`?",
       "options": [
-        "Metade do coeficiente de parentesco (aij) entre seus dois pais.",
-        "A correlação entre os dois alelos homólogos do animal em um locus.",
-        "A probabilidade de que dois alelos homólogos sejam idênticos por descendência (IBD).",
-        "Alternativas a e c estão corretas."
+        "`h2 = 0,20`.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 3
+      "correct": 0
     },
     {
-      "text": "A inversão da matriz A (A⁻¹) é necessária nas MME de Henderson porque:",
+      "text": "Quando é mais útil medir o mesmo animal de novo?",
       "options": [
-        "Permite corrigir os fenótipos para efeitos de seleção passada.",
-        "Inclui as relações de parentesco no sistema de equações, ligando avaliações de parentes.",
-        "Calcula a herdabilidade diretamente a partir do pedigree.",
-        "Elimina os efeitos fixos antes da estimação dos EBVs."
+        "Quando a repetibilidade é baixa ou quando uma única medida pode estar dominada por ruído temporário.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     }
   ]
 }

@@ -113,7 +113,7 @@ La búsqueda sólo resuelve la sesión cuando te devuelve a un punto técnico de
 
 Úselo cuando el resultado apunte a un script, una simulación o un parámetro.
 
-[Abrir M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir el Módulo 01 para revisar evidencia de código tras la búsqueda"}
+[Abrir M01](modules/modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Abrir el Módulo 01 para revisar evidencia de código tras la búsqueda"}
 :::
 
 ::: {.utility-evidence-route-item role="listitem"}
@@ -121,7 +121,7 @@ La búsqueda sólo resuelve la sesión cuando te devuelve a un punto técnico de
 
 Úselo cuando el resultado requiera comparación de parámetros, varianzas o correlaciones.
 
-[Abrir M06](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Abrir el Módulo 06 para revisar evidencia de tabla tras la búsqueda"}
+[Abrir M06](modules/modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd){.entry-link aria-label="Abrir el Módulo 06 para revisar evidencia de tabla tras la búsqueda"}
 :::
 
 ::: {.utility-evidence-route-item role="listitem"}
@@ -129,7 +129,7 @@ La búsqueda sólo resuelve la sesión cuando te devuelve a un punto técnico de
 
 Úselo cuando el resultado involucre un patrón visual, SNP, GWAS o predicción.
 
-[Abrir M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir el Módulo 12 para revisar evidencia visual tras la búsqueda"}
+[Abrir M21](modules/modulo21-projeto-final-pipeline-completo-de-selecao.qmd){.entry-link aria-label="Abrir el Módulo 12 para revisar evidencia visual tras la búsqueda"}
 :::
 :::
 :::

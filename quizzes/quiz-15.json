@@ -1,0 +1,53 @@
+{
+  "module": "15",
+  "title": "Quiz — Avaliação genética: DEP/EBV e ranking de animais",
+  "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+  "passMark": 4,
+  "questions": [
+    {
+      "text": "O que é `EBV`?",
+      "options": [
+        "É valor genético estimado.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "O que é `DEP`?",
+      "options": [
+        "É diferença esperada na progênie.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Qual é a fórmula didática para calcular `DEP` a partir de `EBV`?",
+      "options": [
+        "`DEP = EBV / 2`.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Se `EBV = 20`, qual é a `DEP`?",
+      "options": [
+        "`DEP = 10`.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Por que acurácia baixa exige cuidado?",
+      "options": [
+        "Porque a estimativa é mais incerta e pode mudar mais quando novos dados forem incluídos.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
+      ],
+      "correct": 0
+    }
+  ]
+}

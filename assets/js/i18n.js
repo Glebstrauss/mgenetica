@@ -212,7 +212,7 @@
       { re: /\/(glossario|glossary|glosario)\.(html|qmd)$/i, key: 'nav.glossary' },
       { re: /certificado\.(html|qmd)$/, key: 'nav.certificate' },
       { re: /\/(perfil|about|sobre)\.(html|qmd)$/i, key: 'nav.about' },
-      { re: /modulo01-introducao-ao-melhoramento-animal\.(html|qmd)$/, key: 'nav.start_m01' },
+      { re: /modulo01-revisao-de-genetica-basica\.(html|qmd)$/, key: 'nav.start_m01' },
       { re: /github\.com\/(Glebstrauss|Mgenetica)\/mgenetica\/issues\/new$/i, key: 'nav.feedback' }
     ];
 

@@ -110,7 +110,7 @@ A technical term only becomes useful when it returns to the course context. Choo
 
 Use when the definition depends on script, simulation, or function argument.
 
-[Open M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Open Module 01 to review code evidence after the glossary"}
+[Open M01](modules/modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Open Module 01 to review code evidence after the glossary"}
 :::
 
 ::: {.utility-evidence-route-item role="listitem"}
@@ -118,7 +118,7 @@ Use when the definition depends on script, simulation, or function argument.
 
 Use when the term is a parameter, variance, correlation, or comparable measure.
 
-[Open M06](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Open Module 06 to review table evidence after the glossary"}
+[Open M06](modules/modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd){.entry-link aria-label="Open Module 06 to review table evidence after the glossary"}
 :::
 
 ::: {.utility-evidence-route-item role="listitem"}
@@ -126,7 +126,7 @@ Use when the term is a parameter, variance, correlation, or comparable measure.
 
 Use when the term appears in genomics, SNPs, GWAS, or prediction.
 
-[Open M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Open Module 12 to review visual evidence after the glossary"}
+[Open M21](modules/modulo21-projeto-final-pipeline-completo-de-selecao.qmd){.entry-link aria-label="Open Module 12 to review visual evidence after the glossary"}
 :::
 :::
 :::
