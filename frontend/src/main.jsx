@@ -13,6 +13,16 @@ class RootErrorBoundary extends React.Component {
     return { error }
   }
 
+  componentDidCatch(error, errorInfo) {
+    try {
+      window.localStorage.setItem('mgenetica-last-error', JSON.stringify({
+        message: error?.message || String(error),
+        stack: error?.stack || '',
+        componentStack: errorInfo?.componentStack || ''
+      }))
+    } catch (_) {}
+  }
+
   render() {
     if (this.state.error) {
       return (
@@ -21,6 +31,9 @@ class RootErrorBoundary extends React.Component {
             <div className="callout-warning" role="alert">
               <strong>Application error:</strong> Refresh the page. If this message remains, the learning app could not start.
             </div>
+            <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', marginTop: 16 }}>
+              {this.state.error?.message || String(this.state.error)}
+            </pre>
           </section>
         </main>
       )
