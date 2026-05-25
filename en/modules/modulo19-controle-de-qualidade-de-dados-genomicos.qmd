@@ -1,4 +1,5 @@
 ---
+lang: en
 title: "Módulo 19 — Controle de qualidade de dados genômicos"
 description: "Pergunta simples"
 ---

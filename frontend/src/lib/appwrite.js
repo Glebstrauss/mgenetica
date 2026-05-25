@@ -16,6 +16,7 @@ const client = new Client()
   .setProject(APPWRITE_PROJECT_ID);
 
 const databases = new Databases(client);
+let sessionFallback = '';
 
 async function pingAppwrite() {
   return client.ping();
@@ -70,27 +71,20 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
 }
 
 function getSessionFallbackStorage() {
-  if (typeof window === 'undefined') return null
-  return window.sessionStorage || null
+  return null
 }
 
 function readSessionFallback() {
-  const storage = getSessionFallbackStorage()
-  if (!storage) return ''
-  return storage.getItem('appwriteSessionFallback') || ''
+  return sessionFallback
 }
 
 function writeSessionFallback(response) {
-  const storage = getSessionFallbackStorage()
-  if (!storage) return
   const fallback = response.headers.get('X-Fallback-Cookies')
-  if (fallback) storage.setItem('appwriteSessionFallback', fallback)
+  if (fallback) sessionFallback = fallback
 }
 
 function clearSessionFallback() {
-  const storage = getSessionFallbackStorage()
-  if (!storage) return
-  storage.removeItem('appwriteSessionFallback')
+  sessionFallback = ''
 }
 
 async function callAccountApi(path, { method = 'GET', payload } = {}) {

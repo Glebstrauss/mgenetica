@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 router.post('/submit', async (req, res) => {
   const { quizId, answers } = req.body || {};
   if (!quizId || !Array.isArray(answers)) return res.status(400).json({ error: 'quizId and answers required' });
-  // Mock scoring: each answer equal to 1 point
+  if (answers.length > 50) return res.status(400).json({ error: 'too_many_answers' });
   const score = answers.reduce((s,a)=>s + (a===true?1:0), 0);
   res.json({ quizId, score, total: answers.length });
 });

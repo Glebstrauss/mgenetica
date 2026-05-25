@@ -1,4 +1,5 @@
 ---
+lang: es
 title: "Módulo 04 — Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo"
 description: "Pergunta simples"
 ---

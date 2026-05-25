@@ -39,15 +39,23 @@ async function appwriteAdminRequest(pathname, { method = 'GET', payload } = {}) 
     };
   }
 
-  const res = await fetch(`${endpoint}${pathname}`, {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Appwrite-Project': projectId,
-      'X-Appwrite-Key': apiKey
-    },
-    body: payload ? JSON.stringify(payload) : undefined
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+  let res;
+  try {
+    res = await fetch(`${endpoint}${pathname}`, {
+      method,
+      signal: controller.signal,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Appwrite-Project': projectId,
+        'X-Appwrite-Key': apiKey
+      },
+      body: payload ? JSON.stringify(payload) : undefined
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
 
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
@@ -168,7 +176,7 @@ module.exports = async function (context) {
 
     if (action === 'update') {
       const courseId = String(body.courseId || '').trim();
-      if (!courseId) {
+      if (!/^module-\d{2}$/.test(courseId)) {
         const payload = { ok: false, error: 'course_id_required', message: 'courseId is required.' };
         context.log(JSON.stringify(payload));
         return { status: 400, body: JSON.stringify(payload) };

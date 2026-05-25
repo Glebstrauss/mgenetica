@@ -1,4 +1,5 @@
 ---
+lang: es
 title: "Módulo 17 — BLUP e modelo animal"
 description: "Pergunta simples"
 ---

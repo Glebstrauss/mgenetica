@@ -311,8 +311,11 @@ A próxima etapa está no roteiro.
 <script>
 window.addEventListener('DOMContentLoaded', function () {
   if (typeof PagefindUI === 'undefined') {
-    document.getElementById('search').innerHTML =
-      '<p>A busca é ativada após a renderização publicada do site.</p>';
+    var fallback = document.createElement('p');
+    fallback.textContent = 'A busca é ativada após a renderização publicada do site.';
+    var search = document.getElementById('search');
+    search.textContent = '';
+    search.appendChild(fallback);
     return;
   }
 

@@ -125,7 +125,7 @@ Use quando o termo for parâmetro, variância, correlação ou medida comparáve
 
 Use quando o termo aparecer em genômica, SNPs, GWAS ou predição.
 
-[Abrir M21](modules/modulo21-projeto-final-pipeline-completo-de-selecao.qmd){.entry-link aria-label="Abrir o Módulo 12 para revisar evidência visual depois do glossário"}
+[Abrir M21](modules/modulo21-projeto-final-pipeline-completo-de-selecao.qmd){.entry-link aria-label="Abrir o Módulo 21 para revisar evidência visual depois do glossário"}
 :::
 :::
 :::

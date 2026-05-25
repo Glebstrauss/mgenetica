@@ -17,6 +17,13 @@ function readAdminEmails() {
     .filter(Boolean);
 }
 
+function readAdminIds() {
+  return String(process.env.ADMIN_USER_IDS || '')
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
 function readUserEmail(headers) {
   return String(
     headers['x-appwrite-user-email'] ||
@@ -54,14 +61,22 @@ async function appwriteAdminGet(pathname) {
     };
   }
 
-  const res = await fetch(`${endpoint}${pathname}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Appwrite-Project': projectId,
-      'X-Appwrite-Key': apiKey
-    }
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+  let res;
+  try {
+    res = await fetch(`${endpoint}${pathname}`, {
+      method: 'GET',
+      signal: controller.signal,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Appwrite-Project': projectId,
+        'X-Appwrite-Key': apiKey
+      }
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
 
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
@@ -88,8 +103,7 @@ function buildProgressSummary(usersPayload, adminEmails) {
     for (const course of courses) {
       if (!course || typeof course !== 'object') continue;
       progressRecords.push({
-        email: user.email || null,
-        name: user.name || null,
+        userId: user.$id || user.id || null,
         courseId: course.courseId || null,
         percent: Number.isFinite(Number(course.percent)) ? Number(course.percent) : 0,
         passed: Boolean(course.passed),
@@ -121,6 +135,7 @@ function buildProgressSummary(usersPayload, adminEmails) {
 
 function makeStatusPayload(userEmail) {
   const adminEmails = readAdminEmails();
+  const adminIds = readAdminIds();
   const { endpoint, projectId, apiKey } = currentAppwriteConfig();
   return {
     ok: true,
@@ -142,8 +157,9 @@ function makeStatusPayload(userEmail) {
       adminApiConfigured: Boolean(apiKey)
     },
     user: {
-      email: userEmail || null,
-      isAdmin: userEmail ? adminEmails.includes(userEmail) : false
+      authenticated: Boolean(userEmail),
+      isAdmin: userEmail ? adminEmails.includes(userEmail) : false,
+      adminUserIdsConfigured: adminIds.length > 0
     },
     checks: {
       adminEmailsConfigured: adminEmails.length > 0
@@ -159,6 +175,7 @@ module.exports = async function (context) {
     const action = body.action || 'status';
     const userId = readUserId(headers);
     const userEmail = readUserEmail(headers);
+    const adminIds = readAdminIds();
 
     if (!userId || !userEmail) {
       const payload = {
@@ -171,6 +188,8 @@ module.exports = async function (context) {
     }
 
     const statusPayload = makeStatusPayload(userEmail);
+    const isAdminById = adminIds.length > 0 && adminIds.includes(userId);
+    statusPayload.user.isAdmin = statusPayload.user.isAdmin || isAdminById;
 
     if (action === 'status') {
       context.log(JSON.stringify(statusPayload));
@@ -197,8 +216,8 @@ module.exports = async function (context) {
           usersTotal: users.ok ? users.data?.total ?? null : null,
           functionsTotal: functions.ok ? functions.data?.total ?? null : null,
           learnerProgress: users.ok ? buildProgressSummary(users.data, adminEmails) : null,
-          users,
-          functions
+          users: users.ok ? { ok: true, total: users.data?.total ?? null } : users,
+          functions: functions.ok ? { ok: true, total: functions.data?.total ?? null } : functions
         }
       };
       context.log(JSON.stringify(payload));

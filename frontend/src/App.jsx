@@ -1,9 +1,6 @@
-import React, {useEffect, useMemo, useState} from 'react'
-import curriculum from './data/legacy-curriculum.generated.json'
+import React, { Suspense, lazy, useEffect, useMemo, useState} from 'react'
 import { formatCourseCatalog, formatCourseDetail } from './data/courseCurriculum'
-import CoursePage from './CoursePage'
 import Icon from './components/Icon'
-import Quiz from './Quiz'
 import { BRAND_LOGO_URL } from './lib/branding'
 import { buildRouteHash, parseRouteHash, routeNeedsAdmin, routeNeedsAuth } from './lib/access.mjs'
 import { createTranslator, detectInitialLocale, LOCALE_STORAGE_KEY, normalizeLocale, SUPPORTED_LOCALES } from './i18n'
@@ -27,7 +24,17 @@ import {
   PUBLIC_SITE_URL
 } from './lib/appwrite'
 
-const LOCAL_COURSE_ROWS = Array.isArray(curriculum?.modules) ? curriculum.modules : []
+const CoursePage = lazy(() => import('./CoursePage'))
+const Quiz = lazy(() => import('./Quiz'))
+let localCourseRowsPromise = null
+
+function loadLocalCourseRows() {
+  if (!localCourseRowsPromise) {
+    localCourseRowsPromise = import('./data/legacy-curriculum.generated.json')
+      .then((module) => (Array.isArray(module.default?.modules) ? module.default.modules : []))
+  }
+  return localCourseRowsPromise
+}
 
 function LocaleSwitcher({ locale, onChange, t }) {
   return (
@@ -312,7 +319,7 @@ function AdminPage({ user, status, report, loading, onBack, onRefresh, onLogout,
         <p className="section-description">{t('adminPage.copy')}</p>
         <div className="section-cta" style={{ marginTop: 16 }}>
           <button type="button" className="btn btn-primary" onClick={onRefresh} disabled={loading}>{loading ? t('adminPage.runningChecks') : t('adminPage.runChecks')}</button>
-          <a className="btn btn-secondary" href={PUBLIC_SITE_URL} target="_blank" rel="noreferrer">{t('common.openLiveUrl')}</a>
+          <a className="btn btn-secondary" href={PUBLIC_SITE_URL} target="_blank" rel="noopener noreferrer">{t('common.openLiveUrl')}</a>
         </div>
       </section>
       <section className="content-section"><div className="content-grid catalog-grid"><article className="course-card"><strong className="course-title">{t('adminPage.session')}</strong><p className="course-description">{user?.email || user?.name || user?.$id || t('adminPage.noUser')}</p></article><article className="course-card"><strong className="course-title">{t('adminPage.appwrite')}</strong><p className="course-description">{APPWRITE_ENDPOINT}</p></article><article className="course-card"><strong className="course-title">{t('adminPage.project')}</strong><p className="course-description">{APPWRITE_PROJECT_ID}</p></article></div></section>
@@ -340,7 +347,7 @@ export default function App() {
   const [adminReport, setAdminReport] = useState(null)
   const [adminStatus, setAdminStatus] = useState(null)
   const [progressReport, setProgressReport] = useState(null)
-  const [catalogRows, setCatalogRows] = useState(LOCAL_COURSE_ROWS)
+  const [catalogRows, setCatalogRows] = useState([])
   const [selectedCourseRow, setSelectedCourseRow] = useState(null)
   const t = useMemo(() => createTranslator(locale), [locale])
   const errorMessages = useMemo(() => t('authErrors'), [t])
@@ -395,14 +402,17 @@ export default function App() {
       setSelectedCourseRow(null)
       return () => { active = false }
     }
-    const localRow = LOCAL_COURSE_ROWS.find((course) => course.id === selectedCourseId) || null
-    setSelectedCourseRow(localRow)
+    loadLocalCourseRows().then((rows) => {
+      if (!active) return
+      const localRow = rows.find((course) => course.id === selectedCourseId) || null
+      setSelectedCourseRow(localRow)
+    })
     getCourseDetail(selectedCourseId, locale)
       .then(() => {
-        if (active) setSelectedCourseRow(localRow)
+        if (!active) return
       })
       .catch(() => {
-        if (active) setSelectedCourseRow(localRow)
+        if (!active) return
       })
     return () => { active = false }
   }, [locale, screen, selectedCourseId, user])
@@ -442,12 +452,13 @@ export default function App() {
   }
 
   async function refreshCourses() {
-    setCatalogRows(LOCAL_COURSE_ROWS)
+    const localRows = await loadLocalCourseRows()
+    setCatalogRows(localRows)
     try {
       await listCourses(locale)
-      return LOCAL_COURSE_ROWS
+      return localRows
     } catch (_) {
-      return LOCAL_COURSE_ROWS
+      return localRows
     }
   }
 
@@ -464,7 +475,7 @@ export default function App() {
 
   async function handleLogin(payload) { setLoadingAuth(true); try { await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); await Promise.all([refreshProgress(account), refreshCourses(), refreshAdminAccess()]); setAdminReport(null); updateStatus('status.loginSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
   async function handleSignup(payload) { setLoadingAuth(true); try { await createAccount(payload.email, payload.password, payload.name); await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); await Promise.all([refreshProgress(account), refreshCourses(), refreshAdminAccess()]); setAdminReport(null); updateStatus('status.signupSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
-  async function handleLogout() { setLoadingAuth(true); try { await deleteSession(); setUser(null); setAdminReport(null); setAdminStatus(null); setProgressReport(null); setCatalogRows(LOCAL_COURSE_ROWS); setSelectedCourseRow(null); updateStatus('status.sessionClosed'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
+  async function handleLogout() { setLoadingAuth(true); try { await deleteSession(); setUser(null); setAdminReport(null); setAdminStatus(null); setProgressReport(null); setCatalogRows([]); setSelectedCourseRow(null); updateStatus('status.sessionClosed'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
   function focusAuth(mode) { navigate({ screen: 'auth', authMode: mode, selectedCourseId: null, showQuiz: false }) }
   function openCatalog() { if (!user) { updateStatus('status.enterCourses'); return } navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false }) }
   function openCourse(courseId) { if (!user) { updateStatus('status.enterCoursePage'); return } navigate({ screen: 'course', authMode, selectedCourseId: courseId, showQuiz: false }) }
@@ -508,10 +519,18 @@ export default function App() {
     return <AuthPage user={null} status={status} authMode="login" loadingAuth={true} isAdmin={false} onAuthIntent={focusAuth} onLogin={handleLogin} onSignup={handleSignup} onLogout={handleLogout} onOpenCatalog={openCatalog} onOpenAdmin={openAdmin} locale={locale} onLocaleChange={setLocale} t={t} errorMessages={errorMessages} />
   }
   if (showQuiz && user && selectedCourse) {
-    return <Quiz courseId={selectedCourseId} courseTitle={selectedCourse?.title || ''} locale={locale} onBack={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: false })} onPersistResult={(result) => persistQuizResult(selectedCourseId, result)} t={t} />
+    return (
+      <Suspense fallback={<LoadingScreen t={t} />}>
+        <Quiz courseId={selectedCourseId} courseTitle={selectedCourse?.title || ''} locale={locale} onBack={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: false })} onPersistResult={(result) => persistQuizResult(selectedCourseId, result)} t={t} />
+      </Suspense>
+    )
   }
   if (screen === 'course' && user && selectedCourse) {
-    return <CoursePage course={selectedCourse} detail={selectedCourseDetail} progress={progressByCourse[selectedCourse.id] || null} onBack={() => navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false })} onOpenQuiz={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: true })} onOpenCatalog={openCatalog} onOpenCourse={openCourse} nextCourse={nextCourse} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
+    return (
+      <Suspense fallback={<LoadingScreen t={t} />}>
+        <CoursePage course={selectedCourse} detail={selectedCourseDetail} progress={progressByCourse[selectedCourse.id] || null} onBack={() => navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false })} onOpenQuiz={() => navigate({ screen: 'course', authMode, selectedCourseId, showQuiz: true })} onOpenCatalog={openCatalog} onOpenCourse={openCourse} nextCourse={nextCourse} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
+      </Suspense>
+    )
   }
   if (screen === 'catalog' && user) {
     return <CatalogPage courses={catalogCourses} progressByCourse={progressByCourse} progressSummary={progressReport?.summary} isAdmin={adminEnabled} onBack={goHome} onOpenCourse={openCourse} onOpenAdmin={openAdmin} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />

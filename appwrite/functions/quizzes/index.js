@@ -17,6 +17,7 @@ function parseBody(req) {
 }
 
 function getQuizByCourseId(courseId) {
+  if (!/^module-\d{2}$/.test(String(courseId || ''))) return null;
   return quizBank.find((quiz) => quiz.id === courseId) || null;
 }
 
@@ -63,14 +64,19 @@ module.exports = async function (context) {
         context.log(JSON.stringify(out));
         return { status: 400, body: JSON.stringify(out) };
       }
+      if (body.answers.length !== quiz.questions.length) {
+        const out = { error: 'answers_length_mismatch', courseId };
+        context.log(JSON.stringify(out));
+        return { status: 400, body: JSON.stringify(out) };
+      }
 
       const results = quiz.questions.map((question, index) => {
-        const selected = body.answers[index];
+        const selected = Number(body.answers[index]);
+        const validSelection = Number.isInteger(selected) && selected >= 0 && selected < question.options.length;
         return {
           index: index + 1,
-          correct: selected === question.correct,
-          selected,
-          correctAnswer: question.correct
+          correct: validSelection && selected === question.correct,
+          selected: validSelection ? selected : null
         };
       });
       const score = results.filter((item) => item.correct).length;

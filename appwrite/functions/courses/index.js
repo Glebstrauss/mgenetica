@@ -46,6 +46,11 @@ module.exports = async function (context) {
 
     if (action === 'detail') {
       const courseId = String(body.courseId || '').trim();
+      if (!/^module-\d{2}$/.test(courseId)) {
+        const out = { ok: false, error: 'invalid_course_id' };
+        context.log(JSON.stringify(out));
+        return { status: 400, body: JSON.stringify(out) };
+      }
       const payload = (curriculum.modules || []).find((course) => course.id === courseId) || null;
       if (!payload) {
         const out = { ok: false, error: 'course_not_found', courseId };

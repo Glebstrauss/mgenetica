@@ -1,4 +1,5 @@
 ---
+lang: en
 title: "Modules"
 subtitle: "Trilha pública revisada de genética e melhoramento animal"
 description: "Índice dos 21 módulos revisados do MGenética."
