@@ -370,7 +370,10 @@ export default function App() {
   const status = t(statusState.key, statusState.params)
   const catalogCourses = useMemo(() => formatCourseCatalog(catalogRows, locale), [catalogRows, locale])
   const courseGroups = useMemo(() => formatCourseGroups(catalogRows, locale), [catalogRows, locale])
-  const progressByCourse = useMemo(() => Object.fromEntries((progressReport?.records || []).map((record) => [record.courseId, record])), [progressReport])
+  const progressByCourse = useMemo(() => (progressReport?.records || []).reduce((lookup, record) => {
+    lookup[record.courseId] = record
+    return lookup
+  }, {}), [progressReport])
   function isProgressReport(report) { return Array.isArray(report?.records) && typeof report?.summary === 'object' }
 
   function syncFromHash() { const route = parseRouteHash(window.location.hash); setAuthMode(route.authMode); setScreen(route.screen); setShowQuiz(route.showQuiz); setSelectedCourseId(route.selectedCourseId) }
