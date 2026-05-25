@@ -79,6 +79,18 @@ function SkipLink({ t }) {
   return <a className="skip-link" href="#main-content">{t('common.skipToContent') || 'Skip to content'}</a>
 }
 
+function LoadingScreen({ t }) {
+  return (
+    <div className="app-shell">
+      <SkipLink t={t} />
+      <main id="main-content" className="content-section" tabIndex="-1" aria-busy="true">
+        <div className="section-label">{t('common.status')}</div>
+        <h1 className="section-heading">{t('status.syncing')}</h1>
+      </main>
+    </div>
+  )
+}
+
 function AuthPanel({ user, mode, onModeChange, onLogin, onSignup, onLogout, loading, t, errorMessages }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
