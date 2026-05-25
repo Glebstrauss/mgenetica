@@ -1,53 +1,58 @@
 {
   "module": "01",
-  "title": "Quiz — Revisão de genética básica",
-  "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+  "title": "Quiz — Módulo 01",
+  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
   "passMark": 4,
   "questions": [
     {
-      "text": "Em um cruzamento `Aa x Aa`, quais genótipos podem aparecer nos descendentes?",
+      "text": "O objetivo principal do melhoramento animal é:",
       "options": [
-        "`AA`, `Aa` e `aa`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "Maximizar a produção de um único animal campeão.",
+        "Modificar a média genotípica da população ao longo das gerações.",
+        "Eliminar toda variação genética da população.",
+        "Padronizar os fenótipos para facilitar a comercialização."
       ],
-      "correct": 0
+      "correct": 1
     },
     {
-      "text": "Qual é a proporção genotípica esperada?",
+      "text": "Na equação do melhorista ΔG = i × h × σA / L, a letra \"i\" representa:",
       "options": [
-        "`1:2:1`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "A acurácia da avaliação genética.",
+        "A intensidade de seleção (função do percentual selecionado).",
+        "O intervalo de gerações em anos.",
+        "O desvio padrão fenotípico."
       ],
-      "correct": 0
+      "correct": 1
     },
     {
-      "text": "Em `Aa`, quantos alelos estão sendo representados?",
+      "text": "Um aumento no intervalo de gerações (L) tende a:",
       "options": [
-        "Dois alelos, um `A` e um `a`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "Aumentar o ganho genético anual.",
+        "Não alterar o ganho genético.",
+        "Reduzir o ganho genético anual.",
+        "Aumentar a herdabilidade da característica."
       ],
-      "correct": 0
+      "correct": 2
     },
     {
-      "text": "Uma característica visível na pelagem é alelo, genótipo ou fenótipo?",
+      "text": "Para maximizar a resposta à seleção, qual combinação é mais favorável?",
       "options": [
-        "Fenótipo.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "Alta h², baixa intensidade de seleção, longo intervalo de gerações.",
+        "Baixa h², alta intensidade de seleção, longo intervalo de gerações.",
+        "Alta h², alta intensidade de seleção, curto intervalo de gerações.",
+        "Baixa h², baixa intensidade de seleção, curto intervalo de gerações."
       ],
-      "correct": 0
+      "correct": 2
     },
     {
-      "text": "Por que 20 potros simulados podem não sair exatamente como `5 AA`, `10 Aa` e `5 aa`?",
+      "text": "O diferencial de seleção (S) é definido como:",
       "options": [
-        "Porque a proporção é uma expectativa; em amostras pequenas há flutuação.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "A variância genética aditiva da população.",
+        "O número de animais selecionados para reprodução.",
+        "A diferença entre a média dos selecionados e a média da população.",
+        "A acurácia da avaliação genética dos candidatos."
       ],
-      "correct": 0
+      "correct": 2
     }
   ]
 }

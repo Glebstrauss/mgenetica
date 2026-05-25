@@ -1,53 +1,58 @@
 {
   "module": "11",
-  "title": "Quiz — Correlações genéticas, fenotípicas e ambientais",
-  "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+  "title": "Quiz — Módulo 11",
+  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
   "passMark": 4,
   "questions": [
     {
-      "text": "O que mede a covariância?",
+      "text": "O filtro de MAF < 0,05 remove SNPs raros porque:",
       "options": [
-        "Mede se duas características variam juntas.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "Esses SNPs são comuns demais para fornecer informação discriminatória.",
+        "SNPs raros têm menor poder estatístico e maior probabilidade de erros de genotipagem.",
+        "Esses SNPs violam sempre o equilíbrio de Hardy-Weinberg.",
+        "SNPs com MAF baixo indicam sempre erros de genotipagem."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "O call rate de um SNP é a proporção de amostras com genótipo válido. Um call rate < 0,95 indica:",
+      "options": [
+        "Que o SNP é raro na população estudada (MAF baixo).",
+        "Problemas técnicos com a genotipagem naquele locus específico.",
+        "Excesso de heterozigose em relação ao esperado por HWE.",
+        "Desequilíbrio de ligação com outro SNP próximo."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "O teste de Equilíbrio de Hardy-Weinberg (HWE) é usado no controle de qualidade para:",
+      "options": [
+        "Identificar SNPs com erros sistemáticos de genotipagem que distorcem as frequências genotípicas.",
+        "Detectar animais com grau de parentesco elevado na amostra.",
+        "Calcular com precisão a frequência de alelos raros no locus.",
+        "Estimar a herdabilidade da característica fenotípica."
       ],
       "correct": 0
     },
     {
-      "text": "Qual é a fórmula geral da correlação?",
+      "text": "Um call rate por animal (sample call rate) < 0,90 indica:",
       "options": [
-        "`r = covxy / sqrt(vx * vy)`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "Que o animal está fora do equilíbrio de Hardy-Weinberg.",
+        "Problema na extração de DNA ou na genotipagem desse animal específico.",
+        "Que o animal tem coeficiente de endogamia elevado.",
+        "Que o MAF médio dos SNPs desse animal é muito alto."
       ],
-      "correct": 0
+      "correct": 1
     },
     {
-      "text": "Se `covxy = 6`, `vx = 16` e `vy = 9`, qual é `r`?",
+      "text": "Após o controle de qualidade genômico rigoroso, espera-se que o conjunto de dados resultante:",
       "options": [
-        "`r = 0,50`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "Seja idêntico ao original, pois QC não remove marcadores.",
+        "Seja maior que o original, pois QC cria novos SNPs sintéticos.",
+        "Seja menor em número de SNPs e amostras, mas mais confiável para análises subsequentes.",
+        "Contenha apenas SNPs com MAF = 0,50 (máxima variabilidade)."
       ],
-      "correct": 0
-    },
-    {
-      "text": "Qual correlação é mais importante para resposta correlacionada genética?",
-      "options": [
-        "`rA`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
-      ],
-      "correct": 0
-    },
-    {
-      "text": "Por que `rP` positiva não prova que a seleção em peso aumentará geneticamente a gordura?",
-      "options": [
-        "Porque `rP` mistura componentes genéticos e ambientais; a consequência genética depende de `rA`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
-      ],
-      "correct": 0
+      "correct": 2
     }
   ]
 }

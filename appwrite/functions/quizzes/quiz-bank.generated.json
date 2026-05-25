@@ -3,51 +3,51 @@
     "id": "module-01",
     "legacyId": "M1",
     "title": "Quiz — Revisão de genética básica",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "Em um cruzamento `Aa x Aa`, quais genótipos podem aparecer nos descendentes?",
+        "text": "Em Aa x Aa, qual expectativa genotípica é correta?",
         "options": [
-          "`AA`, `Aa` e `aa`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "1 AA : 2 Aa : 1 aa",
+          "1 AA : 1 Aa : 1 aa",
+          "Todos Aa, porque ambos os pais carregam A e a"
         ],
         "correct": 0
       },
       {
-        "text": "Qual é a proporção genotípica esperada?",
+        "text": "Em 20 descendentes, observar 4 AA, 11 Aa e 5 aa significa necessariamente erro?",
         "options": [
-          "`1:2:1`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Não. Amostra pequena pode oscilar ao redor da expectativa.",
+          "Sim. Toda amostra deve repetir 5, 10 e 5 exatamente.",
+          "Sim. Heterozigotos não podem ser maioria."
         ],
         "correct": 0
       },
       {
-        "text": "Em `Aa`, quantos alelos estão sendo representados?",
+        "text": "Qual frase separa melhor genótipo e fenótipo?",
         "options": [
-          "Dois alelos, um `A` e um `a`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Genótipo é combinação alélica; fenótipo é característica observada sob genética e ambiente.",
+          "Fenótipo é sempre cópia exata do genótipo.",
+          "Genótipo só existe em características quantitativas."
         ],
         "correct": 0
       },
       {
-        "text": "Uma característica visível na pelagem é alelo, genótipo ou fenótipo?",
+        "text": "Qual erro comum deve ser evitado?",
         "options": [
-          "Fenótipo.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Concluir mérito genético só pelo fenótipo observado.",
+          "Usar quadro de Punnett para prever proporções.",
+          "Contar AA, Aa e aa em tabela."
         ],
         "correct": 0
       },
       {
-        "text": "Por que 20 potros simulados podem não sair exatamente como `5 AA`, `10 Aa` e `5 aa`?",
+        "text": "No laboratório, por que aumentar n ajuda?",
         "options": [
-          "Porque a proporção é uma expectativa; em amostras pequenas há flutuação.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Porque reduz oscilação amostral relativa.",
+          "Porque muda a regra de segregação.",
+          "Porque transforma aa em Aa."
         ],
         "correct": 0
       }
@@ -57,51 +57,51 @@
     "id": "module-02",
     "legacyId": "M2",
     "title": "Quiz — Modos de ação gênica",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "Se `AA = 10` e `aa = 4`, qual seria o valor de `Aa` sob ação aditiva simples?",
+        "text": "Com AA = 10 e aa = 4, qual é o ponto médio dos homozigotos?",
         "options": [
-          "7 kg.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "7",
+          "8",
+          "14"
         ],
         "correct": 0
       },
       {
-        "text": "Se `Aa = 8`, qual é o desvio em relação ao ponto médio?",
+        "text": "Se Aa = 8, qual é o desvio em relação ao ponto médio?",
         "options": [
-          "1 kg acima do ponto médio.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "+1",
+          "-1",
+          "+4"
         ],
         "correct": 0
       },
       {
-        "text": "Por que não basta escrever \"há dominância\"?",
+        "text": "O que esse desvio sugere?",
         "options": [
-          "Porque é preciso dizer em qual direção o heterozigoto desviou.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Dominância parcial favorável.",
+          "Ausência obrigatória de genética.",
+          "Que Aa é sempre igual a AA."
         ],
         "correct": 0
       },
       {
-        "text": "Se dois loci somariam 10 kg, mas a combinação vale 13 kg, qual é o desvio de interação?",
+        "text": "Qual componente é mais diretamente acumulado por seleção?",
         "options": [
-          "3 kg.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Efeito aditivo.",
+          "Erro de digitação.",
+          "Cor da tabela."
         ],
         "correct": 0
       },
       {
-        "text": "Qual erro ocorre quando alguém chama qualquer diferença genotípica de \"aditiva\"?",
+        "text": "Qual erro comum deve ser evitado?",
         "options": [
-          "Confundir diferença entre genótipos com soma regular de efeitos.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Chamar qualquer diferença genotípica de aditiva.",
+          "Comparar heterozigoto com ponto médio.",
+          "Usar exemplo numérico pequeno."
         ],
         "correct": 0
       }
@@ -111,51 +111,51 @@
     "id": "module-03",
     "legacyId": "M3",
     "title": "Quiz — Genética de populações I: frequências alélicas e genotípicas",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "Em um grupo com 12 éguas, quantas cópias alélicas existem no total para um locus com dois alelos em animais diploides?",
+        "text": "Com 10 AA, 5 Aa e 5 aa, qual é p para alelo A?",
         "options": [
-          "Há 24 cópias alélicas, porque `2N = 2 x 12 = 24`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "0,625",
+          "0,500",
+          "0,250"
         ],
         "correct": 0
       },
       {
-        "text": "Se há 4 `AA`, 6 `Aa` e 2 `aa`, qual é a frequência genotípica de `Aa`?",
+        "text": "Por que Aa entra uma vez no numerador de p?",
         "options": [
-          "A frequência genotípica de `Aa` é 6/12 = 0,50.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Porque carrega uma cópia de A.",
+          "Porque carrega duas cópias de A.",
+          "Porque não contribui para frequência alélica."
         ],
         "correct": 0
       },
       {
-        "text": "No mesmo grupo, qual é a frequência do alelo `A`?",
+        "text": "O que p + q deve valer em sistema com dois alelos?",
         "options": [
-          "`p = (2 x 4 + 6) / 24 = 14/24 = 0,5833`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "1",
+          "2N",
+          "Número de genótipos"
         ],
         "correct": 0
       },
       {
-        "text": "Por que uma égua `AA` contribui com duas cópias de `A`?",
+        "text": "Alelo mais frequente deve ser selecionado automaticamente?",
         "options": [
-          "Porque cada animal diploide carrega duas cópias do locus, e no genótipo `AA` as duas cópias são `A`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Não. Frequência não informa sozinha efeito produtivo.",
+          "Sim. Frequência alta sempre indica superioridade.",
+          "Sim. Alelo raro sempre é prejudicial."
         ],
         "correct": 0
       },
       {
-        "text": "Qual erro ocorre quando alguém interpreta `p = 0,50` como \"50% dos animais são `AA`\"?",
+        "text": "Qual evidência fecha melhor este bloco?",
         "options": [
-          "O erro é confundir frequência alélica com frequência genotípica. `p` descreve cópias de alelos, não proporção de animais `AA`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Tabela com frequências genotípicas, p, q e interpretação.",
+          "Lista de animais sem cálculo.",
+          "Gráfico sem explicar alelos."
         ],
         "correct": 0
       }
@@ -165,60 +165,51 @@
     "id": "module-04",
     "legacyId": "M4",
     "title": "Quiz — Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "Se `p = 0,7`, qual é o valor de `q` em um locus com apenas dois alelos?",
+        "text": "Com p = 0,70, qual é frequência esperada de AA?",
         "options": [
-          "`q = 0,3`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "0,49",
+          "0,42",
+          "0,09"
         ],
         "correct": 0
       },
       {
-        "text": "Com `p = 0,7` e `q = 0,3`, quais são `p^2`, `2pq` e `q^2`?",
+        "text": "Com p = 0,70 e q = 0,30, qual é frequência esperada de Aa?",
         "options": [
-          "`p^2 = 0,49`, `2pq = 0,42` e `q^2 = 0,09`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "0,42",
+          "0,49",
+          "0,21"
         ],
         "correct": 0
       },
       {
-        "text": "Em `N = 100`, quantos animais `Aa` são esperados?",
+        "text": "Desvio pequeno entre observado e esperado prova seleção?",
         "options": [
-          "São esperados 42 animais `Aa`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Não. Pode envolver amostragem, estrutura ou erro.",
+          "Sim. Qualquer diferença prova seleção.",
+          "Sim. Heterozigotos nunca variam."
         ],
         "correct": 0
       },
       {
-        "text": "Por que Hardy-Weinberg deve ser tratado como expectativa, não como dogma?",
+        "text": "Hardy-Weinberg deve ser usado como quê?",
         "options": [
-          "Porque a fórmula descreve um padrão esperado sob condições simples; a tabela real pode diferir por estrutura do plantel, tamanho da amostra ou outros fatores.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Modelo de referência.",
+          "Regra obrigatória para todo rebanho.",
+          "Índice de DEP."
         ],
         "correct": 0
       },
       {
-        "text": "Em um locus com três alelos de frequências iguais, por que a proporção de heterozigotos pode ser maior que 50%?",
+        "text": "Qual evidência fecha melhor o bloco?",
         "options": [
-          "Porque há mais combinações heterozigotas possíveis. Com três alelos em frequências iguais, a soma dos heterozigotos esperados pode chegar a 2/3.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
-        ],
-        "correct": 0
-      },
-      {
-        "text": "Em um locus ligado ao X, por que machos XY não devem ser tratados como se tivessem os mesmos três genótipos das fêmeas XX?",
-        "options": [
-          "Porque machos XY têm uma cópia X para esse locus e são hemizigotos; fêmeas XX têm duas cópias X e podem formar homozigotos ou heterozigotos.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Tabela observado/esperado com interpretação cautelosa.",
+          "Só escrever p² sem q.",
+          "Ignorar contagens."
         ],
         "correct": 0
       }
@@ -228,60 +219,51 @@
     "id": "module-05",
     "legacyId": "M5",
     "title": "Quiz — Fatores que alteram frequências gênicas",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "Se `p` muda de 0,40 para 0,55, qual é `Δp`?",
+        "text": "Se p aumenta 0,05 por geração a partir de 0,40, qual p após cinco gerações?",
         "options": [
-          "`Δp = 0,15`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "0,65",
+          "0,45",
+          "0,05"
         ],
         "correct": 0
       },
       {
-        "text": "Por que seleção artificial pode aumentar a frequência de um alelo em cavalos?",
+        "text": "Qual processo é mudança aleatória mais forte em população pequena?",
         "options": [
-          "Porque os reprodutores escolhidos podem carregar mais cópias do alelo favorecido.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Deriva genética",
+          "Seleção direcional",
+          "Média fenotípica"
         ],
         "correct": 0
       },
       {
-        "text": "Por que mutação geralmente muda devagar a frequência de um alelo em poucas gerações?",
+        "text": "Migração altera frequência por qual mecanismo?",
         "options": [
-          "Porque taxas de mutação por locus geralmente são baixas.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Entrada ou saída de alelos entre populações.",
+          "Cálculo de h².",
+          "Conversão de fenótipo em DEP."
         ],
         "correct": 0
       },
       {
-        "text": "Qual diferença entre migração e mutação?",
+        "text": "Qual erro comum deve ser evitado?",
         "options": [
-          "Migração traz alelos de outra população; mutação cria uma nova cópia alterada.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Atribuir toda mudança observada à seleção sem considerar deriva.",
+          "Comparar trajetórias por geração.",
+          "Simular população pequena."
         ],
         "correct": 0
       },
       {
-        "text": "Por que deriva genética é mais forte quando o tamanho efetivo é pequeno?",
+        "text": "Qual decisão prática vem desse bloco?",
         "options": [
-          "Porque poucos reprodutores representam mal o conjunto total de alelos, aumentando erro de amostragem.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
-        ],
-        "correct": 0
-      },
-      {
-        "text": "No exemplo contra `aa`, por que `p` aumentou entre os reprodutores?",
-        "options": [
-          "Porque `aa` carrega apenas alelos `a` e teve menor contribuição para o grupo reprodutor.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Controlar tamanho efetivo e origem dos reprodutores.",
+          "Ignorar frequências gênicas.",
+          "Selecionar sem registrar geração."
         ],
         "correct": 0
       }
@@ -291,51 +273,51 @@
     "id": "module-06",
     "legacyId": "M6",
     "title": "Quiz — Valores e médias: fenótipo, genótipo e ambiente",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que significa `P` no modelo `P = G + E`?",
+        "text": "Se G = 10 e E = 3, qual é P?",
         "options": [
-          "`P` é o valor fenotípico observado.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "13",
+          "7",
+          "30"
         ],
         "correct": 0
       },
       {
-        "text": "Se `G = 12` e `E = -2`, qual é `P`?",
+        "text": "Animal com maior P tem sempre maior G?",
         "options": [
-          "`P = 10`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Não. Ambiente pode elevar P.",
+          "Sim. P e G são sempre iguais.",
+          "Sim. E nunca varia."
         ],
         "correct": 0
       },
       {
-        "text": "Qual animal tem maior `G` na tabela do exemplo?",
+        "text": "Qual fator pode distorcer ranking fenotípico?",
         "options": [
-          "Animal B.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Manejo, fazenda, idade ou lote.",
+          "Nome do arquivo.",
+          "Número de módulos."
         ],
         "correct": 0
       },
       {
-        "text": "Qual animal tem `P` alto com `G` moderado?",
+        "text": "Qual decisão é mais segura?",
         "options": [
-          "Animal C.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Comparar animais após considerar ambiente relevante.",
+          "Escolher só maior P bruto.",
+          "Ignorar medidas ambientais."
         ],
         "correct": 0
       },
       {
-        "text": "Por que ranking por fenótipo pode ser diferente de ranking por valor genotípico didático?",
+        "text": "Qual erro comum deve ser evitado?",
         "options": [
-          "Porque o ambiente pode aumentar ou reduzir o valor observado.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Confundir fenótipo alto com mérito genético alto.",
+          "Calcular P = G + E.",
+          "Registrar lote."
         ],
         "correct": 0
       }
@@ -345,51 +327,51 @@
     "id": "module-07",
     "legacyId": "M7",
     "title": "Quiz — Noções de genética quantitativa",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que significa dizer que uma característica é poligênica?",
+        "text": "Por que peso não costuma seguir proporção mendeliana simples?",
         "options": [
-          "Significa que vários loci contribuem para a característica.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Porque muitos genes e ambiente contribuem juntos.",
+          "Porque peso não tem base genética.",
+          "Porque todo peso é determinado por um único gene."
         ],
         "correct": 0
       },
       {
-        "text": "No exemplo da tabela, qual é o `G` de um animal com `L1 = 2`, `L2 = 1` e `L3 = 2`?",
+        "text": "O que acontece ao aumentar número de loci pequenos?",
         "options": [
-          "`G = 2 + 1 + 2 = 5`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Aumenta número de valores intermediários.",
+          "Todos os animais ficam iguais.",
+          "A variância necessariamente vira zero."
         ],
         "correct": 0
       },
       {
-        "text": "Por que a média não descreve sozinha toda a população?",
+        "text": "Qual medida resume dispersão entre animais?",
         "options": [
-          "Porque a média mostra o centro, mas não mostra o espalhamento dos animais.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Variância",
+          "Nome do animal",
+          "Número da fazenda sem dados"
         ],
         "correct": 0
       },
       {
-        "text": "O que o histograma acrescenta à tabela de valores individuais?",
+        "text": "No laboratório, por que fenótipo pode sobrepor animais com valores genéticos diferentes?",
         "options": [
-          "O histograma mostra a frequência de animais em cada valor ou intervalo.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Porque ambiente adiciona variação.",
+          "Porque genótipo não existe.",
+          "Porque R remove todos os efeitos."
         ],
         "correct": 0
       },
       {
-        "text": "Por que três loci são úteis como exemplo, mas ainda não bastam para representar uma distribuição contínua realista?",
+        "text": "Qual decisão prática depende desse conceito?",
         "options": [
-          "Porque três loci geram poucas somas possíveis; mais loci e ambiente variável produzem mais valores intermediários.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Usar média e variância para selecionar características contínuas.",
+          "Classificar peso só em AA, Aa e aa.",
+          "Ignorar registros ambientais."
         ],
         "correct": 0
       }
@@ -399,51 +381,51 @@
     "id": "module-08",
     "legacyId": "M8",
     "title": "Quiz — Componentes de variância",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que significa `VP`?",
+        "text": "Com VA=40, VD=10, VI=5 e VE=45, qual é VP?",
         "options": [
-          "`VP` é a variância fenotípica total.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "100",
+          "40",
+          "55"
         ],
         "correct": 0
       },
       {
-        "text": "Se `VA = 40`, `VD = 10`, `VI = 5` e `VE = 45`, qual é `VP`?",
+        "text": "Qual componente é central para resposta acumulada à seleção?",
         "options": [
-          "`VP = 100`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "VA",
+          "VE",
+          "Nome do animal"
         ],
         "correct": 0
       },
       {
-        "text": "Qual componente é central para seleção?",
+        "text": "Se VE aumenta e VA fica igual, o que acontece com VA/VP?",
         "options": [
-          "`VA`, a variância genética aditiva.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Diminui",
+          "Aumenta sempre",
+          "Vira 1"
         ],
         "correct": 0
       },
       {
-        "text": "Por que `VE` alto pode dificultar a leitura do fenótipo?",
+        "text": "Ambiente alto significa genética inexistente?",
         "options": [
-          "Porque aumenta a variação observada por causas ambientais, reduzindo a fração aditiva quando `VA` fica igual.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Não. Pode esconder sinal genético.",
+          "Sim. VA vira zero automaticamente.",
+          "Sim. Seleção fica impossível para sempre."
         ],
         "correct": 0
       },
       {
-        "text": "Por que não basta dizer que toda variação genética ajuda seleção do mesmo modo?",
+        "text": "Qual ação prática melhora comparação?",
         "options": [
-          "Porque `VD` e `VI` são componentes genéticos, mas não se transmitem de modo tão simples e previsível quanto a parte aditiva.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Padronizar manejo e registrar efeitos ambientais.",
+          "Misturar lotes sem registro.",
+          "Usar só fenótipo bruto."
         ],
         "correct": 0
       }
@@ -453,51 +435,51 @@
     "id": "module-09",
     "legacyId": "M9",
     "title": "Quiz — Herdabilidade e repetibilidade",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que `h2 = VA / VP` mede nesta unidade?",
+        "text": "Com VA = 40 e VP = 100, qual é h²?",
         "options": [
-          "Mede a fração da variância fenotípica associada à variância genética aditiva.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "0,40",
+          "2,50",
+          "60"
         ],
         "correct": 0
       },
       {
-        "text": "O que repetibilidade mede?",
+        "text": "Qual interpretação de h² está correta?",
         "options": [
-          "Mede a semelhança esperada entre medidas repetidas do mesmo animal.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Proporção da variação entre animais explicada por variância aditiva.",
+          "Percentual genético de um animal individual.",
+          "Proporção de animais selecionados."
         ],
         "correct": 0
       },
       {
-        "text": "Uma repetibilidade alta significa automaticamente alta herdabilidade?",
+        "text": "Se VE aumenta e VA fica igual, o que tende a ocorrer com h²?",
         "options": [
-          "Não. Repetibilidade pode incluir ambiente permanente, além de efeitos genéticos.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Diminui",
+          "Aumenta sempre",
+          "Vira 1 automaticamente"
         ],
         "correct": 0
       },
       {
-        "text": "Se `VA = 20` e `VP = 100`, qual é `h2`?",
+        "text": "Quando repetibilidade ajuda?",
         "options": [
-          "`h2 = 0,20`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Ao decidir se nova medida do mesmo animal acrescenta informação.",
+          "Ao substituir todo pedigree.",
+          "Ao calcular p e q."
         ],
         "correct": 0
       },
       {
-        "text": "Quando é mais útil medir o mesmo animal de novo?",
+        "text": "Qual decisão prática é coerente com h² baixa?",
         "options": [
-          "Quando a repetibilidade é baixa ou quando uma única medida pode estar dominada por ruído temporário.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Melhorar qualidade/quantidade de registros antes de confiar só no fenótipo.",
+          "Descartar a característica para sempre.",
+          "Ignorar ambiente."
         ],
         "correct": 0
       }
@@ -507,51 +489,51 @@
     "id": "module-10",
     "legacyId": "M10",
     "title": "Quiz — Seleção e ganho genético",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que é diferencial de seleção, `S`?",
+        "text": "Pesos têm média 207 kg e selecionados média 225 kg. Qual é S?",
         "options": [
-          "É a diferença entre média dos selecionados e média da população candidata.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "18 kg",
+          "5,4 kg",
+          "1,8 kg/ano"
         ],
         "correct": 0
       },
       {
-        "text": "Se a média dos candidatos é 100 e a média dos selecionados é 120, qual é `S`?",
+        "text": "Com h² = 0,30 e S = 18 kg, qual é R?",
         "options": [
-          "`S = 20`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "5,4 kg por geração",
+          "18 kg por geração",
+          "60 kg por geração"
         ],
         "correct": 0
       },
       {
-        "text": "Se `h2 = 0,30` e `S = 20`, qual é `R`?",
+        "text": "Por que ganho por ano pode ser menor que R?",
         "options": [
-          "`R = 6`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Porque R é por geração e deve considerar intervalo de geração.",
+          "Porque herdabilidade sempre é zero.",
+          "Porque selecionados não têm média."
         ],
         "correct": 0
       },
       {
-        "text": "Por que a média dos filhos não vira automaticamente a média dos pais selecionados?",
+        "text": "Qual risco aumenta quando seleção fica muito intensa com poucos pais?",
         "options": [
-          "Porque só parte da superioridade fenotípica é atribuída à variação genética aditiva.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Endogamia e perda de diversidade.",
+          "Maior número efetivo.",
+          "Mais famílias independentes."
         ],
         "correct": 0
       },
       {
-        "text": "Como intervalo de geração altera ganho por ano?",
+        "text": "Qual interpretação é correta?",
         "options": [
-          "Quanto maior o intervalo de geração, menor o ganho por ano para o mesmo `R`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "R é expectativa média, não promessa para cada descendente.",
+          "R garante que todos os filhos ganham 5,4 kg.",
+          "S e R são sempre iguais."
         ],
         "correct": 0
       }
@@ -561,51 +543,51 @@
     "id": "module-11",
     "legacyId": "M11",
     "title": "Quiz — Correlações genéticas, fenotípicas e ambientais",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que mede a covariância?",
+        "text": "Correlação genética positiva entre peso e gordura indica o quê?",
         "options": [
-          "Mede se duas características variam juntas.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Seleção para peso pode aumentar gordura.",
+          "Peso e gordura são a mesma característica.",
+          "Ambiente não existe."
         ],
         "correct": 0
       },
       {
-        "text": "Qual é a fórmula geral da correlação?",
+        "text": "Correlação fenotípica substitui correlação genética?",
         "options": [
-          "`r = covxy / sqrt(vx * vy)`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Não. Pode misturar genética e ambiente.",
+          "Sim. Sempre mede só genes.",
+          "Sim. Dispensa avaliação genética."
         ],
         "correct": 0
       },
       {
-        "text": "Se `covxy = 6`, `vx = 16` e `vy = 9`, qual é `r`?",
+        "text": "Correlação negativa sugere o quê?",
         "options": [
-          "`r = 0,50`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Possível trade-off.",
+          "Ausência de relação obrigatória.",
+          "Herdabilidade igual a 1."
         ],
         "correct": 0
       },
       {
-        "text": "Qual correlação é mais importante para resposta correlacionada genética?",
+        "text": "Resposta correlacionada ocorre quando...",
         "options": [
-          "`rA`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "seleção em uma característica muda outra.",
+          "não há seleção.",
+          "p + q passa de 1."
         ],
         "correct": 0
       },
       {
-        "text": "Por que `rP` positiva não prova que a seleção em peso aumentará geneticamente a gordura?",
+        "text": "Qual decisão prática é correta?",
         "options": [
-          "Porque `rP` mistura componentes genéticos e ambientais; a consequência genética depende de `rA`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Usar índice quando há múltiplas características importantes.",
+          "Selecionar sempre só uma característica.",
+          "Ignorar características correlacionadas."
         ],
         "correct": 0
       }
@@ -615,51 +597,51 @@
     "id": "module-12",
     "legacyId": "M12",
     "title": "Quiz — Características de limiar",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que é uma característica de limiar?",
+        "text": "Com dois afetados em cinco animais, qual é prevalência?",
         "options": [
-          "É uma característica observada em categorias, mas interpretada como resultado de uma escala subjacente contínua cortada por um limiar.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "0,40",
+          "2,5",
+          "1,00"
         ],
         "correct": 0
       },
       {
-        "text": "O que significa suscetibilidade nesta unidade?",
+        "text": "O que representa escala subjacente?",
         "options": [
-          "Para doença, é a tendência latente de cruzar o limiar e expressar o desfecho indesejado; para outros desfechos, podemos falar em propensão latente na escala subjacente.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Risco ou suscetibilidade contínua.",
+          "Nome do animal.",
+          "DEP obrigatória."
         ],
         "correct": 0
       },
       {
-        "text": "Como calcular prevalência em um lote?",
+        "text": "Característica binária pode ter base quantitativa?",
         "options": [
-          "`prevalencia = n_acima_do_limiar / n_total`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Sim. O limiar transforma escala contínua em categoria.",
+          "Não. Binário nunca tem genética.",
+          "Não. Só existe AA e aa."
         ],
         "correct": 0
       },
       {
-        "text": "Se 12 de 80 potros não sobrevivem até uma idade definida, qual é a prevalência de não sobrevivência?",
+        "text": "Prevalência baixa exige cuidado por quê?",
         "options": [
-          "`12 / 80 = 0,15`, ou 15%.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Pode exigir amostra maior para estimativa estável.",
+          "Dispensa registro.",
+          "Prova ausência de variação."
         ],
         "correct": 0
       },
       {
-        "text": "Por que dois animais classificados como \"não afetados\" podem não ser biologicamente iguais?",
+        "text": "Qual erro comum deve ser evitado?",
         "options": [
-          "Porque um pode estar muito longe do limiar e outro pode estar quase cruzando, embora ambos recebam o mesmo registro categórico.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Tratar categoria observada como se não houvesse escala subjacente.",
+          "Calcular proporção.",
+          "Definir limiar."
         ],
         "correct": 0
       }
@@ -669,51 +651,51 @@
     "id": "module-13",
     "legacyId": "M13",
     "title": "Quiz — Endogamia e parentesco",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que o pedigree mostra nesta unidade?",
+        "text": "Qual parentesco esperado entre meio-irmãos?",
         "options": [
-          "Mostra pais, mães e ancestrais usados para identificar caminhos de parentesco.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "0,25",
+          "0,50",
+          "1,00"
         ],
         "correct": 0
       },
       {
-        "text": "O que representa a matriz `A`?",
+        "text": "Na matriz A, o que representa diagonal 1 + F?",
         "options": [
-          "Representa parentesco genético aditivo entre animais, com diagonal `1 + F`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Endogamia individual incorporada à diagonal.",
+          "Frequência alélica p.",
+          "Média fenotípica ajustada."
         ],
         "correct": 0
       },
       {
-        "text": "Qual é o parentesco aditivo esperado entre meio-irmãos não endogâmicos?",
+        "text": "Parentesco deve ser sempre evitado?",
         "options": [
-          "`0,25`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Não. Ele informa avaliação, mas precisa controle em acasalamentos.",
+          "Sim. Qualquer parentesco invalida avaliação.",
+          "Não existe parentesco em pedigree."
         ],
         "correct": 0
       },
       {
-        "text": "Se `A_PQ = 0,25`, qual é a endogamia esperada da cria de `P` com `Q`?",
+        "text": "Qual risco vem de acasalamentos aparentados repetidos?",
         "options": [
-          "`F_cria = 0,25 / 2 = 0,125`, ou 12,5%.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Aumento de endogamia e expressão de recessivos desfavoráveis.",
+          "Redução automática de F.",
+          "Eliminação de todos os alelos ruins em uma geração."
         ],
         "correct": 0
       },
       {
-        "text": "Se a diagonal de um animal na matriz `A` é `1,125`, qual é `F`?",
+        "text": "Qual decisão prática usa parentesco?",
         "options": [
-          "`F = 1,125 - 1 = 0,125`, ou 12,5%.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Evitar acasalamento de reprodutor muito aparentado às fêmeas do lote.",
+          "Escolher só pelo maior peso bruto.",
+          "Ignorar matriz A."
         ],
         "correct": 0
       }
@@ -723,51 +705,51 @@
     "id": "module-14",
     "legacyId": "M14",
     "title": "Quiz — Cruzamentos, heterose e complementaridade",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que é heterose nesta unidade?",
+        "text": "Com pais 210 e 220 kg, qual é média parental?",
         "options": [
-          "É o desvio da média `F1` em relação à média dos grupos parentais para uma característica.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "215 kg",
+          "430 kg",
+          "230 kg"
         ],
         "correct": 0
       },
       {
-        "text": "Qual é a fórmula da heterose proporcional?",
+        "text": "Com F1 = 230 kg, qual heterose absoluta?",
         "options": [
-          "`heterose = (F1 - media_parental) / media_parental`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "15 kg",
+          "7 kg",
+          "215 kg"
         ],
         "correct": 0
       },
       {
-        "text": "Se `F1 = 230` e a média parental é `215`, qual é a heterose percentual aproximada?",
+        "text": "Heterose percentual é aproximadamente...",
         "options": [
-          "`(230 - 215) / 215 = 0,0698`; `0,0698 * 100 = 6,98%`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "7,0%",
+          "15%",
+          "230%"
         ],
         "correct": 0
       },
       {
-        "text": "O que é complementaridade?",
+        "text": "Heterose substitui seleção?",
         "options": [
-          "É o uso planejado de raças ou linhagens com funções diferentes, como uma raça materna adaptada e uma raça paterna de desempenho.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Não. Complementa estratégia de acasalamento.",
+          "Sim. Elimina necessidade de seleção.",
+          "Sim. Remove todo risco."
         ],
         "correct": 0
       },
       {
-        "text": "Por que cruzamento não deve ser vendido como milagre?",
+        "text": "Complementaridade significa...",
         "options": [
-          "Porque o resultado depende da característica, dos grupos cruzados, do ambiente, do manejo e da qualidade dos reprodutores.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "combinar forças de grupos diferentes.",
+          "usar sempre uma única raça.",
+          "ignorar ambiente."
         ],
         "correct": 0
       }
@@ -777,51 +759,51 @@
     "id": "module-15",
     "legacyId": "M15",
     "title": "Quiz — Avaliação genética: DEP/EBV e ranking de animais",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que é `EBV`?",
+        "text": "Se EBV = 20 kg, qual DEP aproximada?",
         "options": [
-          "É valor genético estimado.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "10 kg",
+          "20 kg",
+          "40 kg"
         ],
         "correct": 0
       },
       {
-        "text": "O que é `DEP`?",
+        "text": "O que DEP representa?",
         "options": [
-          "É diferença esperada na progênie.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Diferença esperada na progênie.",
+          "Peso bruto do animal.",
+          "Frequência alélica."
         ],
         "correct": 0
       },
       {
-        "text": "Qual é a fórmula didática para calcular `DEP` a partir de `EBV`?",
+        "text": "Por que acurácia importa?",
         "options": [
-          "`DEP = EBV / 2`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Porque informa confiança na estimativa.",
+          "Porque substitui DEP.",
+          "Porque mede cor do animal."
         ],
         "correct": 0
       },
       {
-        "text": "Se `EBV = 20`, qual é a `DEP`?",
+        "text": "Ranking fenotípico basta?",
         "options": [
-          "`DEP = 10`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Não. Pode misturar ambiente e genética.",
+          "Sim. Sempre é melhor.",
+          "Sim. Dispensa dados de parentes."
         ],
         "correct": 0
       },
       {
-        "text": "Por que acurácia baixa exige cuidado?",
+        "text": "Qual decisão é mais defensável?",
         "options": [
-          "Porque a estimativa é mais incerta e pode mudar mais quando novos dados forem incluídos.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Ler DEP junto com acurácia e objetivo de seleção.",
+          "Escolher maior fenótipo bruto sempre.",
+          "Ignorar base de comparação."
         ],
         "correct": 0
       }
@@ -831,51 +813,51 @@
     "id": "module-16",
     "legacyId": "M16",
     "title": "Quiz — Modelos lineares e modelos mistos",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que representa `y` no modelo `y = Xb + Zu + e`?",
+        "text": "Fazenda costuma entrar como que tipo de efeito?",
         "options": [
-          "`y` representa os fenótipos observados.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Efeito fixo",
+          "Frequência alélica",
+          "Limiar genômico"
         ],
         "correct": 0
       },
       {
-        "text": "O que representa `b`?",
+        "text": "Animal em modelo misto costuma ser tratado como...",
         "options": [
-          "`b` representa os efeitos fixos.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "efeito aleatório.",
+          "p².",
+          "heterose percentual."
         ],
         "correct": 0
       },
       {
-        "text": "O que representa `u`?",
+        "text": "Por que ajustar fazenda?",
         "options": [
-          "`u` representa os efeitos aleatórios.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Para não confundir manejo com mérito genético.",
+          "Para remover toda genética.",
+          "Para mudar alelos."
         ],
         "correct": 0
       },
       {
-        "text": "O que é resíduo?",
+        "text": "Coeficiente de sexo/fazenda é automaticamente genético?",
         "options": [
-          "Resíduo é a parte não explicada pelo modelo.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Não. É efeito sistemático do grupo.",
+          "Sim. Sempre é EBV.",
+          "Sim. Sempre é DEP."
         ],
         "correct": 0
       },
       {
-        "text": "Por que o ranking ajustado pode mudar em relação ao ranking bruto?",
+        "text": "Qual erro comum deve ser evitado?",
         "options": [
-          "Porque o ranking bruto mistura animal, ambiente e grupo; o ranking ajustado remove efeitos fixos usados no modelo.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Interpretar efeito de manejo como valor genético.",
+          "Definir variável resposta.",
+          "Usar modelo simples para aprender."
         ],
         "correct": 0
       }
@@ -885,69 +867,51 @@
     "id": "module-17",
     "legacyId": "M17",
     "title": "Quiz — BLUP e modelo animal",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que significa BLUP?",
+        "text": "O que BLUP faz em termos gerais?",
         "options": [
-          "Melhor predição linear não viesada.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Prediz efeitos aleatórios usando dados e variâncias.",
+          "Conta apenas alelos A.",
+          "Calcula heterose percentual."
         ],
         "correct": 0
       },
       {
-        "text": "Qual é o papel da matriz `A` no modelo animal?",
+        "text": "Por que ocorre encolhimento?",
         "options": [
-          "Ela informa o parentesco aditivo esperado entre os animais.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Porque pouca informação aumenta incerteza.",
+          "Porque fenótipo não existe.",
+          "Porque todo animal tem mesmo genótipo."
         ],
         "correct": 0
       },
       {
-        "text": "No cálculo didático `EBV_didatico = h2 * y`, o que representa `y`?",
+        "text": "Modelo animal usa qual informação estrutural?",
         "options": [
-          "O desvio fenotípico em relação à média do grupo comparável.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Parentesco entre animais.",
+          "Apenas cor da pelagem.",
+          "Somente p²."
         ],
         "correct": 0
       },
       {
-        "text": "Se `y = 20` e `h2 = 0,30`, qual é o `EBV` didático?",
+        "text": "BLUP é igual a média fenotípica?",
         "options": [
-          "`6`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Não. Ajusta informação e estrutura de variância.",
+          "Sim. Sempre idêntico.",
+          "Sim. Ignora parentes."
         ],
         "correct": 0
       },
       {
-        "text": "Por que `h2 * y` não deve ser chamado de BLUP completo?",
+        "text": "Qual aplicação é importante?",
         "options": [
-          "Porque BLUP completo ajusta efeitos fixos, parentesco, resíduo e componentes de variância em um sistema de modelos mistos.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
-        ],
-        "correct": 0
-      },
-      {
-        "text": "O que acontece com o encolhimento quando `h2` aumenta?",
-        "options": [
-          "O encolhimento diminui; o desvio observado recebe mais peso genético.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
-        ],
-        "correct": 0
-      },
-      {
-        "text": "O que acurácia informa sobre um `EBV`?",
-        "options": [
-          "Informa a confiança relativa ou estabilidade esperada da predição, não a qualidade biológica do animal.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Predizer animais jovens ou pouco medidos.",
+          "Substituir todos os registros.",
+          "Ignorar acurácia."
         ],
         "correct": 0
       }
@@ -957,69 +921,51 @@
     "id": "module-18",
     "legacyId": "M18",
     "title": "Quiz — Genômica, marcadores SNP e dados moleculares",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que é um SNP?",
+        "text": "No código SNP 0/1/2, o que significa 2?",
         "options": [
-          "É uma posição do DNA com variação de nucleotídeo entre indivíduos.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Duas cópias do alelo contado.",
+          "Dois animais.",
+          "Dois ambientes."
         ],
         "correct": 0
       },
       {
-        "text": "Em um SNP codificado para contar o alelo `B`, o que significa genótipo `0`?",
+        "text": "Para 0,1,2,1,0, qual frequência do alelo contado?",
         "options": [
-          "Nenhuma cópia do alelo `B`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "0,40",
+          "0,80",
+          "2,00"
         ],
         "correct": 0
       },
       {
-        "text": "O que significa genótipo `1`?",
+        "text": "Um SNP isolado decide seleção sozinho?",
         "options": [
-          "Uma cópia do alelo `B`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Não. Decisão robusta usa muitos marcadores e validação.",
+          "Sim. Um SNP sempre basta.",
+          "Sim. Frequência alta é DEP."
         ],
         "correct": 0
       },
       {
-        "text": "O que significa genótipo `2`?",
+        "text": "Marcadores ajudam estimar...",
         "options": [
-          "Duas cópias do alelo `B`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "parentesco genômico realizado.",
+          "apenas idade.",
+          "somente sexo."
         ],
         "correct": 0
       },
       {
-        "text": "Para `snp = c(0, 1, 2, 1, 0)`, qual é a frequência do alelo contado?",
+        "text": "Qual erro comum deve ser evitado?",
         "options": [
-          "`0,4`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
-        ],
-        "correct": 0
-      },
-      {
-        "text": "Se a frequência do alelo contado é `0,9`, qual é a MAF?",
-        "options": [
-          "`0,1`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
-        ],
-        "correct": 0
-      },
-      {
-        "text": "Por que `2` não significa automaticamente animal melhor?",
-        "options": [
-          "Porque `2` é apenas contagem de alelos no marcador; não é prova de mérito genético ou desempenho.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Confundir código SNP com valor genético final.",
+          "Calcular média do código.",
+          "Registrar dados faltantes."
         ],
         "correct": 0
       }
@@ -1029,69 +975,51 @@
     "id": "module-19",
     "legacyId": "M19",
     "title": "Quiz — Controle de qualidade de dados genômicos",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "O que é missing rate?",
+        "text": "Uma falta em quatro genótipos dá missing rate de...",
         "options": [
-          "É a proporção de genótipos faltantes.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "0,25",
+          "0,75",
+          "4"
         ],
         "correct": 0
       },
       {
-        "text": "O que é call rate?",
+        "text": "Call rate correspondente é...",
         "options": [
-          "É a proporção de genótipos observados.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "0,75",
+          "0,25",
+          "1,25"
         ],
         "correct": 0
       },
       {
-        "text": "Se `mean(is.na(c(0, 1, NA, 2))) = 0,25`, qual é o call rate?",
+        "text": "MAF baixa indica marcador...",
         "options": [
-          "`0,75`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "pouco informativo em muitas análises.",
+          "sempre melhor para GWAS.",
+          "sem genótipo ausente obrigatoriamente."
         ],
         "correct": 0
       },
       {
-        "text": "Por que SNP com MAF muito baixa pode ser removido?",
+        "text": "Filtro deve ser registrado por quê?",
         "options": [
-          "Porque quase não diferencia animais naquele conjunto.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Para reprodutibilidade.",
+          "Para esconder decisão.",
+          "Para impedir validação."
         ],
         "correct": 0
       },
       {
-        "text": "O que HWE avalia de forma geral?",
+        "text": "Qual erro comum deve ser evitado?",
         "options": [
-          "Se as contagens genotípicas se aproximam da expectativa baseada nas frequências alélicas.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
-        ],
-        "correct": 0
-      },
-      {
-        "text": "Por que desvio de HWE não deve ser tratado como prova automática de erro?",
-        "options": [
-          "Porque o desvio também pode vir de estrutura populacional, parentesco, endogamia ou seleção.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
-        ],
-        "correct": 0
-      },
-      {
-        "text": "Qual é a diferença entre filtro por SNP e filtro por animal?",
-        "options": [
-          "Filtro por SNP remove marcadores ruins; filtro por animal remove amostras com muitos genótipos faltantes.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Aplicar filtro sem critério claro.",
+          "Calcular call rate.",
+          "Verificar dados faltantes."
         ],
         "correct": 0
       }
@@ -1101,69 +1029,51 @@
     "id": "module-20",
     "legacyId": "M20",
     "title": "Quiz — Matrizes genômicas, GWAS e predição genômica",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "Qual pergunta a matriz `G` responde?",
+        "text": "Matriz G resume...",
         "options": [
-          "Quem é mais parecido com quem pelo DNA.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "semelhança genômica entre animais.",
+          "apenas média fenotípica.",
+          "somente heterose."
         ],
         "correct": 0
       },
       {
-        "text": "Qual pergunta o GWAS responde?",
+        "text": "GWAS busca...",
         "options": [
-          "Qual marcador ou região está associado ao fenótipo.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "associação marcador a marcador.",
+          "apenas parentesco de pedigree.",
+          "somente h² por fórmula simples."
         ],
         "correct": 0
       },
       {
-        "text": "Qual pergunta a predição genômica responde?",
+        "text": "Predição genômica usa...",
         "options": [
-          "Se os marcadores ajudam a prever mérito ou desempenho futuro.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "muitos marcadores simultaneamente.",
+          "um único SNP sem validação.",
+          "apenas nome do animal."
         ],
         "correct": 0
       },
       {
-        "text": "Por que um pico de GWAS não deve ser tratado como gene causal automático?",
+        "text": "Por que padronizar SNPs?",
         "options": [
-          "Porque associação não prova causalidade e pode refletir estrutura, ligação, família, erro ou acaso.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Para evitar escalas diferentes entre marcadores.",
+          "Para remover todos os alelos.",
+          "Para transformar fenótipo em sexo."
         ],
         "correct": 0
       },
       {
-        "text": "O que significa validar uma predição?",
+        "text": "Qual erro comum deve ser evitado?",
         "options": [
-          "Testar se a predição funciona em dados não usados para treinar o modelo.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
-        ],
-        "correct": 0
-      },
-      {
-        "text": "No exemplo, `SNP2` tem `-log10(p) = 5,4`. Qual é a leitura correta?",
-        "options": [
-          "É o pico didático de associação, não prova causal automática.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
-        ],
-        "correct": 0
-      },
-      {
-        "text": "Por que uma predição alta com baixa acurácia exige cuidado?",
-        "options": [
-          "Porque a estimativa pode mudar ou falhar em animais novos.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Confundir GWAS com predição genômica.",
+          "Calcular matriz.",
+          "Usar QC antes da análise."
         ],
         "correct": 0
       }
@@ -1173,69 +1083,51 @@
     "id": "module-21",
     "legacyId": "M21",
     "title": "Quiz — Projeto final: pipeline completo de seleção",
-    "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+    "subtitle": "Item formativo com erro conceitual real, cálculo, interpretação de R e decisão prática.",
     "passMark": 4,
     "questions": [
       {
-        "text": "Qual é a pergunta central do projeto final?",
+        "text": "Por que maior DEP isolada pode não vencer no projeto final?",
         "options": [
-          "Quem seleciono e por quê.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Porque parentesco alto ou baixa acurácia podem aumentar risco da decisão.",
+          "Porque DEP nunca deve ser usada.",
+          "Porque acurácia substitui todo fenótipo."
         ],
         "correct": 0
       },
       {
-        "text": "Por que fenótipo corrigido não basta para selecionar?",
+        "text": "No índice score = DEP - 10*parentesco + 2*acurácia, o que a penalidade faz?",
         "options": [
-          "Porque fenótipo ainda não resume mérito genético, risco, acurácia e qualidade dos dados.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Reduz prioridade de animais mais aparentados ao lote.",
+          "Aumenta pontuação de parentesco alto.",
+          "Remove necessidade de justificar decisão."
         ],
         "correct": 0
       },
       {
-        "text": "O que a `DEP` acrescenta à decisão?",
+        "text": "Qual evidência mínima do projeto final?",
         "options": [
-          "Ela expressa expectativa média de diferença na progênie.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Ranking, regra usada e justificativa dos animais escolhidos.",
+          "Apenas maior DEP copiada.",
+          "Só gráfico sem decisão."
         ],
         "correct": 0
       },
       {
-        "text": "Por que parentesco entra como penalidade?",
+        "text": "Qual prática torna pipeline reprodutível?",
         "options": [
-          "Porque parentesco alto pode aumentar risco de endogamia no acasalamento.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Salvar dados, script, regra de score e interpretação.",
+          "Alterar pesos sem registrar.",
+          "Escolher animal por preferência visual."
         ],
         "correct": 0
       },
       {
-        "text": "No exemplo, qual é o score de `A`?",
+        "text": "Qual decisão é mais defensável?",
         "options": [
-          "`10,0`.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
-        ],
-        "correct": 0
-      },
-      {
-        "text": "Por que `D` não deve ser selecionado neste relatório?",
-        "options": [
-          "Porque tem QC reprovado, acurácia baixa e parentesco alto.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
-        ],
-        "correct": 0
-      },
-      {
-        "text": "O que torna uma decisão auditável?",
-        "options": [
-          "Mostrar dados, fórmula, filtros, ranking e justificativa.",
-          "Alternativa incompatível com a explicação técnica da unidade.",
-          "Alternativa que ignora a evidência pedida no módulo."
+          "Escolher animais com bom mérito, acurácia aceitável e parentesco controlado.",
+          "Escolher sempre maior DEP mesmo com parentesco extremo.",
+          "Ignorar acurácia se score parece alto."
         ],
         "correct": 0
       }

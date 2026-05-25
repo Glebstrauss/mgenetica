@@ -516,8 +516,8 @@ if (!identical(required_scalar(navbar_cta, "text", "_quarto.yml navbar.right"), 
 check_file(nav_cta$href, "navigation.cta")
 
 modules <- manifest$content_collections$modules$items
-if (length(modules) != 21) {
-  fail(sprintf("expected 21 modules, found %s", length(modules)))
+if (length(modules) != 12) {
+  fail(sprintf("expected 12 modules, found %s", length(modules)))
 }
 
 module_index_path <- manifest$content_collections$modules$index
@@ -527,6 +527,7 @@ module_index_text <- paste(readLines(file.path(repo_root, module_index_path), wa
 ids <- vapply(modules, function(item) item$id, character(1))
 orders <- vapply(modules, function(item) item$order, numeric(1))
 module_hrefs <- vapply(modules, function(item) required_scalar(item, "href", paste0("module ", item$id)), character(1))
+module_scripts <- vapply(modules, function(item) required_scalar(item, "script", paste0("module ", item$id)), character(1))
 module_quizzes <- vapply(modules, function(item) required_scalar(item, "quiz", paste0("module ", item$id)), character(1))
 for (path in unique(c(page_hrefs, module_hrefs, module_index_path))) {
   check_entry_link_labels(path)
@@ -542,18 +543,20 @@ if (!identical(sidebar_sections[[1]]$contents, expected_sidebar)) {
 
 if (anyDuplicated(ids)) fail("duplicated module ids in manifest")
 check_unique(module_hrefs, "module hrefs")
+check_unique(module_scripts, "module scripts")
 check_unique(module_quizzes, "module quizzes")
 if (!all(orders == seq_along(orders))) fail("module order must be sequential from 1")
 
 for (i in seq_along(modules)) {
   item <- modules[[i]]
-  for (field in c("id", "title", "card_title", "card_summary", "phase_id", "status", "href", "quiz")) {
+  for (field in c("id", "title", "card_title", "card_summary", "phase_id", "status", "href", "script", "quiz")) {
     required_scalar(item, field, sprintf("module %s", item$id %||% i))
   }
   if (!item$status %in% allowed_statuses) {
     fail(sprintf("module %s has invalid status", item$id))
   }
   check_file(item$href, paste0("module ", item$id))
+  check_file(item$script, paste0("module script ", item$id))
   check_file(item$quiz, paste0("module quiz ", item$id))
 
   module_text <- paste(readLines(file.path(repo_root, item$href), warn = FALSE), collapse = "\n")
@@ -573,13 +576,20 @@ for (i in seq_along(modules)) {
   if (!grepl("module-script-lab", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-script-lab", item$id))
   }
+  if (!grepl(item$script, module_text, fixed = TRUE)) {
+    fail(sprintf("module %s script lab does not link to %s", item$id, item$script))
+  }
+  csv_path <- sprintf("data/modulo%02d_simulado.csv", item$order)
+  if (!grepl(csv_path, module_text, fixed = TRUE)) {
+    fail(sprintf("module %s script lab does not link to %s", item$id, csv_path))
+  }
   if (!grepl("module-nav-index", module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing module-nav-index", item$id))
   }
   if (!grepl('<nav class="module-nav" aria-label="Navegação entre módulos">', module_text, fixed = TRUE)) {
     fail(sprintf("module %s is missing semantic module navigation", item$id))
   }
-  if (!grepl(sprintf('data-module="%s"', module_number), module_text, fixed = TRUE)) {
+  if (!grepl(sprintf('quiz-container data-module="%s"', module_number), module_text, fixed = TRUE)) {
     fail(sprintf("module %s quiz data-module does not match order", item$id))
   }
   if (!grepl("module-takeaways", module_text, fixed = TRUE)) {
@@ -648,7 +658,7 @@ for (i in seq_along(modules)) {
   }
 }
 
-for (phase_start_id in c("modulo06", "modulo13", "modulo18")) {
+for (phase_start_id in c("modulo03", "modulo07", "modulo10")) {
   module_index <- match(phase_start_id, ids)
   if (is.na(module_index)) {
     fail(sprintf("phase start module is missing from manifest: %s", phase_start_id))

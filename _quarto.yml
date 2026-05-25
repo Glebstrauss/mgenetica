@@ -1,118 +1,105 @@
----
 project:
   type: website
   output-dir: docs
   render:
-  - "*.qmd"
-  - modules/*.qmd
-  - semanas/*.qmd
-  - en/*.qmd
-  - en/modules/*.qmd
-  - en/semanas/*.qmd
-  - es/*.qmd
-  - es/modules/*.qmd
-  - es/semanas/*.qmd
+    - "*.qmd"
+    - "modules/*.qmd"
+    - "semanas/*.qmd"
+    - "en/*.qmd"
+    - "en/modules/*.qmd"
+    - "en/semanas/*.qmd"
+    - "es/*.qmd"
+    - "es/modules/*.qmd"
+    - "es/semanas/*.qmd"
   resources:
-  - assets/
-  - data/modulo*_simulado.csv
-  - data/site-manifest.yml
-  - images/
-  - quizzes/
-  - scripts/modulo*.R
+    - "assets/"
+    - "data/modulo*_simulado.csv"
+    - "data/site-manifest.yml"
+    - "images/"
+    - "quizzes/"
+    - "scripts/modulo*.R"
+
 website:
-  title: MGenética
-  site-url: https://mgenetica.github.io/mgenetica/
-  repo-url: https://github.com/Mgenetica/mgenetica
+  title: "MGenética"
+  site-url: "https://mgenetica.github.io/mgenetica/"
+  repo-url: "https://github.com/Mgenetica/mgenetica"
   repo-actions: []
-  description: Curso aberto de melhoramento animal, genética quantitativa e genômica aplicada com R. 21 módulos revisados, scripts reproduzíveis e dados simulados.
+  description: "Curso aberto de melhoramento animal, genética quantitativa e genômica aplicada com R. 12 módulos progressivos, scripts reproduzíveis e dados simulados."
   favicon: images/favicon/favicon.ico
   open-graph:
-    title: MGenética Academy
-    description: Melhoramento animal, do conceito ao código. 21 módulos revisados com R.
+    title: "MGenética Academy"
+    description: "Melhoramento animal, do conceito ao código. 12 módulos progressivos com R."
     image: https://mgenetica.github.io/mgenetica/images/og-card.png
     locale: pt_BR
   twitter-card:
     card-style: summary_large_image
-    title: MGenética Academy
-    description: Melhoramento animal, do conceito ao código. 21 módulos revisados com R.
+    title: "MGenética Academy"
+    description: "Melhoramento animal, do conceito ao código. 12 módulos progressivos com R."
     image: https://mgenetica.github.io/mgenetica/images/og-card.png
   navbar:
     logo: images/mgenetica-logo-correct.png
-    logo-alt: Logo MGenética
+    logo-alt: "Logo MGenética"
     left:
-    - href: index.qmd
-      text: Início
-    - href: plataforma.qmd
-      text: Plataforma
-    - href: modules/index.qmd
-      text: Módulos
-    - href: semanas/index.qmd
-      text: Roteiro
-    - href: certificado.qmd
-      text: Certificado
-    - href: perfil.qmd
-      text: Sobre
+      - href: index.qmd
+        text: Início
+      - href: plataforma.qmd
+        text: Plataforma
+      - href: modules/index.qmd
+        text: Módulos
+      - href: semanas/index.qmd
+        text: Roteiro
+      - href: certificado.qmd
+        text: Certificado
+      - href: perfil.qmd
+        text: Sobre
     right:
-    - href: modules/modulo01-revisao-de-genetica-basica.qmd
-      text: Começar M01
+      - href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
+        text: Começar M01
   page-footer:
-    left: MGenética · estudar, consultar, concluir
+    left: "MGenética · estudar, consultar, concluir"
     center:
-    - href: index.qmd
-      text: Início
-    - href: plataforma.qmd
-      text: Plataforma
-    - href: modules/index.qmd
-      text: Módulos
-    - href: semanas/index.qmd
-      text: Roteiro
-    - href: certificado.qmd
-      text: Certificado
-    - href: perfil.qmd
-      text: Sobre
-    - href: https://github.com/Mgenetica/mgenetica/issues/new
-      text: Feedback
+      - href: index.qmd
+        text: Início
+      - href: plataforma.qmd
+        text: Plataforma
+      - href: modules/index.qmd
+        text: Módulos
+      - href: semanas/index.qmd
+        text: Roteiro
+      - href: certificado.qmd
+        text: Certificado
+      - href: perfil.qmd
+        text: Sobre
+      - href: https://github.com/Mgenetica/mgenetica/issues/new
+        text: Feedback
     right:
-    - href: https://github.com/Mgenetica/mgenetica
-      text: GitHub
+      - href: https://github.com/Mgenetica/mgenetica
+        text: GitHub
   sidebar:
-    style: docked
+    style: "docked"
     search: true
     contents:
-    - section: Módulos
-      contents:
-      - modules/index.qmd
-      - modules/modulo01-revisao-de-genetica-basica.qmd
-      - modules/modulo02-modos-de-acao-genica.qmd
-      - modules/modulo03-genetica-de-populacoes-i-frequencias-alelicas-e-genotipicas.qmd
-      - modules/modulo04-hardy-weinberg-alelos-multiplos-e-genes-ligados-ao-sexo.qmd
-      - modules/modulo05-fatores-que-alteram-frequencias-genicas.qmd
-      - modules/modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd
-      - modules/modulo07-nocoes-de-genetica-quantitativa.qmd
-      - modules/modulo08-componentes-de-variancia.qmd
-      - modules/modulo09-herdabilidade-e-repetibilidade.qmd
-      - modules/modulo10-selecao-e-ganho-genetico.qmd
-      - modules/modulo11-correlacoes-geneticas-fenotipicas-e-ambientais.qmd
-      - modules/modulo12-caracteristicas-de-limiar.qmd
-      - modules/modulo13-endogamia-e-parentesco.qmd
-      - modules/modulo14-cruzamentos-heterose-e-complementaridade.qmd
-      - modules/modulo15-avaliacao-genetica-dep-ebv-e-ranking-de-animais.qmd
-      - modules/modulo16-modelos-lineares-e-modelos-mistos.qmd
-      - modules/modulo17-blup-e-modelo-animal.qmd
-      - modules/modulo18-genomica-marcadores-snp-e-dados-moleculares.qmd
-      - modules/modulo19-controle-de-qualidade-de-dados-genomicos.qmd
-      - modules/modulo20-matrizes-genomicas-gwas-e-predicao-genomica.qmd
-      - modules/modulo21-projeto-final-pipeline-completo-de-selecao.qmd
+      - section: "Módulos"
+        contents:
+          - modules/index.qmd
+          - modules/modulo01-introducao-ao-melhoramento-animal.qmd
+          - modules/modulo02-bases-da-genetica-quantitativa.qmd
+          - modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd
+          - modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd
+          - modules/modulo05-herdabilidade-e-repetibilidade.qmd
+          - modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd
+          - modules/modulo07-modelos-lineares-e-modelos-mistos.qmd
+          - modules/modulo08-blup-e-avaliacao-genetica.qmd
+          - modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd
+          - modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd
+          - modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd
+          - modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd
+
 format:
   html:
     theme:
-      light:
-      - cosmo
-      - styles/main.scss
-      dark:
-      - slate
-      - styles/main.scss
-      - styles/main-dark.scss
+      light: [cosmo, styles/main.scss]
+      dark:  [slate,  styles/main.scss, styles/main-dark.scss]
     include-in-header: assets/html/head-extras.html
     include-after-body: assets/html/body-extras.html
     toc: true
@@ -122,6 +109,7 @@ format:
     smooth-scroll: true
     link-external-newwindow: true
     lang: pt-BR
+
 execute:
   eval: false
   warning: false

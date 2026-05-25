@@ -1,0 +1,328 @@
+---
+title: "Módulo 09 — Estrutura de Pedigree e Parentesco"
+description: "Matriz de parentesco numérico A, método tabular, coeficientes de endogamia e A⁻¹."
+---
+
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 09 · PEDIGREE &amp; PARENTESCO</span>
+  <div class="module-meta"><span>⏱ ~40 min</span><span>Nível: Avançado</span></div>
+</div>
+<div class="module-objectives">
+  <h3>O que você vai aprender</h3>
+  <ul>
+    <li>O que a matriz A (parentesco numérico) representa e como interpretá-la</li>
+    <li>Construir A pelo método tabular de Henderson</li>
+    <li>Calcular coeficientes de endogamia a partir de A</li>
+    <li>Entender por que A⁻¹ é necessária nas MME</li>
+  </ul>
+</div>
+<div class="module-orientation" aria-label="Como estudar este módulo">
+  <span>Leitura</span>
+  <span>Simulação em R</span>
+  <span>Interpretação</span>
+</div>
+```
+
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
+::: {.module-session-plan role="region" aria-label="Plano curto de sessão do módulo"}
+::: {.module-session-plan-copy}
+**Plano curto de sessão**
+
+Use este módulo em uma sessão fechada: entre com uma pergunta, produza uma evidência no script e saia com uma decisão técnica curta.
+:::
+
+::: {.module-session-plan-grid role="list" aria-label="Etapas da sessão de estudo do módulo"}
+::: {.module-session-plan-item role="listitem"}
+**Pergunta**
+
+Defina o que precisa ficar mais claro antes de ler.
+:::
+
+::: {.module-session-plan-item role="listitem"}
+**Evidência**
+
+Rode ou revise o trecho principal em R.
+:::
+
+::: {.module-session-plan-item role="listitem"}
+**Decisão**
+
+Escreva uma consequência técnica antes de sair.
+:::
+:::
+:::
+
+::: {.module-technical-scan role="region" aria-label="Como ler fórmulas, código e tabelas do módulo"}
+::: {.module-technical-scan-copy}
+**Leia a parte técnica em três passagens**
+
+Não tente resolver fórmula, código e tabela ao mesmo tempo. Primeiro localize o conceito, depois execute ou acompanhe o script, e por fim interprete a saída como evidência.
+:::
+
+::: {.module-technical-scan-grid role="list" aria-label="Passagens de leitura técnica do módulo"}
+::: {.module-technical-scan-item role="listitem"}
+**Fórmula**
+
+Identifique quais termos mudam a decisão.
+:::
+
+::: {.module-technical-scan-item role="listitem"}
+**Código**
+
+Veja qual parâmetro foi simulado ou comparado.
+:::
+
+::: {.module-technical-scan-item role="listitem"}
+**Tabela**
+
+Leia a diferença que sustenta a interpretação.
+:::
+:::
+:::
+
+::: {.module-script-lab role="region" aria-label="Laboratório do script do Módulo 09"}
+::: {.module-script-lab-copy}
+**Laboratório do script**
+
+Use o script para responder como pedigree vira matriz A, endogamia e conexões para MME. A página renderiza os trechos principais; o arquivo completo permite incluir novos animais e testar impactos.
+:::
+
+::: {.module-script-lab-grid role="list" aria-label="Como reproduzir o script do Módulo 09"}
+::: {.module-script-lab-item role="listitem"}
+**Roteiro R**
+
+[Abrir `modulo09.R`](../scripts/modulo09.R){.entry-link aria-label="Abrir o script R completo do Módulo 09"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**Saída gerada**
+
+[Ver CSV simulado](../data/modulo09_simulado.csv){.entry-link aria-label="Abrir o CSV simulado gerado pelo Módulo 09"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que alterar**
+
+Adicione animal com acasalamento aparentado e compare diagonal de A e valor de F.
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que interpretar**
+
+Explique como aumento de parentesco muda comparação entre candidatos e risco de endogamia.
+:::
+:::
+:::
+
+## O pedigree como informação genética
+
+Dois irmãos completos compartilham, em média, 50% dos seus genes. Dois meio-irmãos paternos compartilham 25%. Esse grau de parentesco genético — expresso como **coeficiente de parentesco (a_ij)** — é a base para conectar avaliações de animais em diferentes rebanhos e épocas.
+
+A **Matriz de Parentesco Numérico (A)**, também chamada de Numerator Relationship Matrix, organiza esses coeficientes:
+
+- **Diagonal:** a_ii = 1 + F_i (onde F_i = coeficiente de endogamia do animal i)
+- **Off-diagonal:** a_ij = 2 × θ_ij (duas vezes o coeficiente de parentesco entre i e j)
+
+::: {.callout-note}
+**Conceito central:** A diagonal de A não é simplesmente "1" para todos. Para um animal endogâmico (pais aparentados), a_ii = 1 + F_i > 1. Isso reflete que seus dois alelos têm maior probabilidade de serem idênticos por descendência (IBD).
+:::
+
+## Valores esperados de a_ij
+
+| Relação | a_ij |
+|---|---|
+| Animal consigo mesmo (sem endogamia) | 1,0 |
+| Pai–filho | 0,5 |
+| Irmãos completos (sem endogamia) | 0,5 |
+| Meio-irmãos paternos (sem endogamia) | 0,25 |
+| Avô–neto | 0,25 |
+| Primos | 0,125 |
+| Animais não aparentados | 0,0 |
+
+## Método tabular de Henderson
+
+```r
+#| label: constroi-A
+# Pedigree de 10 animais (ordem cronológica obrigatória)
+ped <- data.frame(
+  animal = 1:10,
+  sire   = c(0,0,0, 1,1, 4,4, 6,6, 8),
+  dam    = c(0,0,0, 2,3, 5,5, 5,7, 7)
+)
+cat("=== Pedigree ===\n"); print(ped)
+
+# Método tabular: constrói A linha por linha
+n <- nrow(ped)
+A <- matrix(0, n, n)
+
+for (i in 1:n) {
+  s <- ped$sire[i]; d <- ped$dam[i]
+  # Diagonal
+  A[i,i] <- if (s==0 || d==0) 1 else 1 + 0.5*A[s,d]
+  # Off-diagonal (j < i)
+  for (j in seq_len(i-1)) {
+    A[j,i] <- A[i,j] <- if (s==0 && d==0) 0
+                          else if (s==0)   0.5*A[j,d]
+                          else if (d==0)   0.5*A[j,s]
+                          else             0.5*(A[j,s]+A[j,d])
+  }
+}
+```
+
+```r
+#| label: interpreta-A
+cat("=== Matriz A (arredondada) ===\n")
+print(round(A, 4))
+
+Fi <- diag(A) - 1
+cat("\n=== Coeficientes de endogamia (F_i) ===\n")
+for (i in 1:n)
+  if (Fi[i] > 0) cat(sprintf("Animal %2d: F = %.4f (pais: %d × %d)\n",
+                              i, Fi[i], ped$sire[i], ped$dam[i]))
+if (all(Fi == 0)) cat("Nenhum animal endogâmico neste pedigree.\n")
+```
+
+```r
+#| label: verifica-parentescos
+cat("=== Verificação de coeficientes de parentesco ===\n")
+pares <- list(
+  list(i=4,  j=5,  relacao="Irmãos completos (pai 1, mãe 2/3 distintas)"),
+  list(i=6,  j=7,  relacao="Irmãos completos (pai 4, mãe 5)"),
+  list(i=4,  j=6,  relacao="Pai (4) – filho (6)"),
+  list(i=1,  j=6,  relacao="Avô (1) – neto (6)"),
+  list(i=1,  j=2,  relacao="Fundadores não aparentados"),
+  list(i=8,  j=9,  relacao="Irmãos completos (pai 6, mãe 5/7)")
+)
+for (p in pares)
+  cat(sprintf("a[%d,%d] = %.4f  ← %s\n", p$i, p$j, A[p$i,p$j], p$relacao))
+```
+
+```r
+#| label: inversa-A
+cat("\n=== Inversa de A (5×5 primeiros) ===\n")
+Ainv <- solve(A)
+print(round(Ainv[1:5,1:5], 4))
+cat("\n(Valores fora da diagonal de A⁻¹ conectam parentes nas MME)\n")
+```
+
+```r
+#| label: media-endogamia-geracoes
+cat("\n=== Coeficiente médio de parentesco (diagonal média de A) ===\n")
+for (g in list(1:3, 4:5, 6:7, 8:9, 10)) {
+  cat(sprintf("Geração (~%s): diagonal média = %.4f\n",
+              paste(g, collapse="-"), mean(diag(A)[g])))
+}
+```
+
+## Interpretação
+
+- Os animais 4 e 5 (filhos de 1 × 2 e 1 × 3, respectivamente) têm a[4,5] ≈ 0,25 — meio-irmãos, não irmãos completos, porque têm mães distintas.
+- As diagonais da primeira geração (fundadores) são todas 1,0; nas gerações seguintes, podem superar 1,0 se houver endogamia.
+- A⁻¹ tem uma propriedade crucial: ela é **esparsa** (muitos zeros), o que torna o sistema MME computacionalmente eficiente mesmo com milhões de animais.
+
+::: {.callout-warning}
+**Atenção:** O pedigree deve estar ordenado cronologicamente — pais antes dos filhos. Um animal fora de ordem produz erros silenciosos na matriz A.
+:::
+
+::: {.module-evidence-path role="note" aria-label="Caminho de evidência do módulo"}
+**Caminho de evidência**
+
+Antes do exercício, conecte três pontos: qual pergunta o módulo abriu, qual saída do script sustenta a resposta e qual decisão técnica fica mais clara.
+:::
+
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de seguir, escolha dois indivíduos aparentados e escreva como o parentesco entre eles afetaria comparação, acasalamento ou controle de endogamia.
+:::
+
+## Exercício proposto
+
+1. Adicione ao pedigree um animal 11 com `sire=4` e `dam=5` (irmão cruzado com irmã). Calcule F_11.
+2. O que acontece com a diagonal de A se todos os animais forem filhos de pai × filha repetidamente por 3 gerações?
+3. Compare `solve(A)` com `solve(A + 0.01*diag(n))`. Por que a regularização ajuda?
+
+::: {.module-study-checkpoint role="note" aria-label="Checkpoint de estudo antes do quiz"}
+**Antes do quiz**
+
+Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção. Depois avance para o quiz com essa frase em mente.
+:::
+
+::: {.module-takeaways role="note" aria-label="Resumo técnico do módulo"}
+**O que levar deste módulo**
+
+- A matriz de parentesco transforma genealogia em covariância genética utilizável em avaliação.
+- Diagonal, fora da diagonal e inversa da matriz carregam informação sobre endogamia e conexão entre animais.
+:::
+
+::: {.quiz-container data-module="09"}
+:::
+
+::: {.module-after-quiz role="note" aria-label="Próximo passo depois do quiz"}
+**Depois do quiz**
+
+Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e ao exercício proposto. Se estiver consistente, avance mantendo uma frase técnica registrada.
+:::
+
+::: {.module-phase-note role="note" aria-label="Transição para a fase de genômica"}
+**Transição de fase**
+
+Você fechou a base de parentesco por pedigree. Nos próximos módulos, a relação entre indivíduos passa a ser lida também por marcadores SNP e matrizes genômicas.
+:::
+
+::: {.module-close-check role="region" aria-label="Conferência de fechamento do módulo"}
+::: {.module-close-check-copy}
+**Antes de trocar de página**
+
+Feche o módulo quando a leitura, o código e o quiz sustentarem a mesma conclusão. Se algum ponto ficou aberto, volte pelo índice ou pela busca antes de avançar.
+:::
+
+::: {.module-close-check-grid role="list" aria-label="Critérios de fechamento do módulo"}
+::: {.module-close-check-item role="listitem"}
+**Leitura**
+
+A pergunta central foi respondida com suas palavras.
+:::
+
+::: {.module-close-check-item role="listitem"}
+**Código**
+
+A saída principal foi interpretada, não apenas executada.
+:::
+
+::: {.module-close-check-item role="listitem"}
+**Quiz**
+
+O resultado confirma prontidão para avançar ou revisar.
+:::
+:::
+:::
+
+::: {.module-return-note role="note" aria-label="Como voltar ao fluxo depois deste módulo"}
+**Volte com uma decisão**
+
+Antes de trocar de página, registre se este módulo levou a avanço, revisão ou consulta. Use essa decisão para escolher o próximo clique no índice.
+:::
+
+```{=html}
+<nav class="module-nav" aria-label="Navegação entre módulos">
+  <a class="module-nav-card module-nav-index" href="index.html">
+    <span>Índice</span>
+    <strong>Todos os módulos</strong>
+  </a>
+  <a class="module-nav-card module-nav-prev" href="modulo08-blup-e-avaliacao-genetica.html">
+    <span>Anterior · Módulo 08</span>
+    <strong>BLUP e Avaliação Genética</strong>
+  </a>
+  <a class="module-nav-card module-nav-next" href="modulo10-introducao-a-genomica-e-marcadores-snp.html">
+    <span>Próximo · Módulo 10</span>
+    <strong>Genômica e Marcadores SNP</strong>
+  </a>
+</nav>
+```

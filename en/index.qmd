@@ -24,7 +24,7 @@ Study quantitative genetics and applied genomics through a short, practical and 
 :::
 
 ::: {.home-actions role="navigation" aria-label="Main home page actions"}
-[Access course](modules/modulo01-revisao-de-genetica-basica.qmd){.btn .btn-primary aria-label="Start with Module 01"}
+[Access course](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Start with Module 01"}
 [View modules](modules/index.qmd){.btn .btn-secondary aria-label="Open module index"}
 :::
 :::
@@ -44,7 +44,7 @@ Study quantitative genetics and applied genomics through a short, practical and 
 
 Follow the modules in order, with one technical question per session.
 
-[Start M01](modules/modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Start with Module 01"}
+[Start M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Start with Module 01"}
 :::
 
 ::: {.home-path-card role="listitem"}
@@ -105,7 +105,7 @@ SNP markers, quality control, GWAS and genomic prediction.
 :::
 :::
 
-[View all 21 modules](modules/index.qmd){.btn .btn-secondary aria-label="View all modules"}
+[View all 12 modules](modules/index.qmd){.btn .btn-secondary aria-label="View all modules"}
 :::
 
 ::: {.home-proof-strip role="list" aria-label="MGenética trust pillars"}
@@ -133,7 +133,7 @@ Scripts and simulated data for study without external datasets.
 
 Open the first module, run the main script and close the session with a technical decision.
 
-[Access Module 01](modules/modulo01-revisao-de-genetica-basica.qmd){.btn .btn-primary aria-label="Access Module 01"}
-[Plan 21 modules](semanas/index.qmd){.btn .btn-secondary aria-label="Open 21-module roadmap"}
+[Access Module 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Access Module 01"}
+[Plan 12 weeks](semanas/index.qmd){.btn .btn-secondary aria-label="Open 12-week roadmap"}
 :::
 :::

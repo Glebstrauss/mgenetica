@@ -1,0 +1,320 @@
+---
+title: "Módulo 10 — Introdução à Genômica e Marcadores SNP"
+description: "SNPs, plataformas de genotipagem, frequências alélicas e desequilíbrio de ligação."
+---
+
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 10 · GENÔMICA</span>
+  <div class="module-meta"><span>⏱ ~35 min</span><span>Nível: Intermediário</span></div>
+</div>
+<div class="module-objectives">
+  <h3>O que você vai aprender</h3>
+  <ul>
+    <li>O que são SNPs e como são genotipados em populações</li>
+    <li>Frequência alélica, MAF e codificação 0/1/2</li>
+    <li>Desequilíbrio de ligação (LD) e sua importância para GWAS</li>
+    <li>Simular e analisar dados SNP com R base</li>
+  </ul>
+</div>
+<div class="module-orientation" aria-label="Como estudar este módulo">
+  <span>Leitura</span>
+  <span>Simulação em R</span>
+  <span>Interpretação</span>
+</div>
+```
+
+::: {.module-phase-start role="note" aria-label="Abertura da fase de genômica"}
+**Nova fase da trilha**
+
+Aqui começa a leitura genômica da variação. O parentesco deixa de depender apenas do pedigree esperado e passa a usar marcadores observados no DNA.
+:::
+
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia primeiro para entender a pergunta, rode o script para gerar evidência e só então avance para exercício e quiz.
+:::
+
+::: {.module-session-plan role="region" aria-label="Plano curto de sessão do módulo"}
+::: {.module-session-plan-copy}
+**Plano curto de sessão**
+
+Use este módulo em uma sessão fechada: entre com uma pergunta, produza uma evidência no script e saia com uma decisão técnica curta.
+:::
+
+::: {.module-session-plan-grid role="list" aria-label="Etapas da sessão de estudo do módulo"}
+::: {.module-session-plan-item role="listitem"}
+**Pergunta**
+
+Defina o que precisa ficar mais claro antes de ler.
+:::
+
+::: {.module-session-plan-item role="listitem"}
+**Evidência**
+
+Rode ou revise o trecho principal em R.
+:::
+
+::: {.module-session-plan-item role="listitem"}
+**Decisão**
+
+Escreva uma consequência técnica antes de sair.
+:::
+:::
+:::
+
+::: {.module-technical-scan role="region" aria-label="Como ler fórmulas, código e tabelas do módulo"}
+::: {.module-technical-scan-copy}
+**Leia a parte técnica em três passagens**
+
+Não tente resolver fórmula, código e tabela ao mesmo tempo. Primeiro localize o conceito, depois execute ou acompanhe o script, e por fim interprete a saída como evidência.
+:::
+
+::: {.module-technical-scan-grid role="list" aria-label="Passagens de leitura técnica do módulo"}
+::: {.module-technical-scan-item role="listitem"}
+**Fórmula**
+
+Identifique quais termos mudam a decisão.
+:::
+
+::: {.module-technical-scan-item role="listitem"}
+**Código**
+
+Veja qual parâmetro foi simulado ou comparado.
+:::
+
+::: {.module-technical-scan-item role="listitem"}
+**Tabela**
+
+Leia a diferença que sustenta a interpretação.
+:::
+:::
+:::
+
+::: {.module-script-lab role="region" aria-label="Laboratório do script do Módulo 10"}
+::: {.module-script-lab-copy}
+**Laboratório do script**
+
+Use o script para responder como codificação SNP, MAF e LD qualificam painel antes de análises genômicas. A página renderiza os trechos principais; o arquivo completo permite alterar tamanho e distribuição de frequências.
+:::
+
+::: {.module-script-lab-grid role="list" aria-label="Como reproduzir o script do Módulo 10"}
+::: {.module-script-lab-item role="listitem"}
+**Roteiro R**
+
+[Abrir `modulo10.R`](../scripts/modulo10.R){.entry-link aria-label="Abrir o script R completo do Módulo 10"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**Saída gerada**
+
+[Ver CSV simulado](../data/modulo10_simulado.csv){.entry-link aria-label="Abrir o CSV simulado gerado pelo Módulo 10"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que alterar**
+
+Mude distribuição de `p_alelo` e compare proporção de SNPs com MAF baixo e r² adjacente.
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**O que interpretar**
+
+Explique se painel gerado está apto para GWAS sem inflar ruído por SNP raro.
+:::
+:::
+:::
+
+## Do pedigree ao DNA
+
+Os módulos anteriores usaram o pedigree para inferir parentesco. Mas o pedigree diz o que **esperamos** em média — um filho recebe, em média, 50% dos genes do pai, mas o valor real pode variar de 40% a 60% por acaso meiótico. Com **marcadores moleculares SNP**, medimos o que o animal **realmente herdou**, locus por locus.
+
+Um **SNP (Single Nucleotide Polymorphism)** é uma posição do genoma onde existe variação entre indivíduos em uma única base nitrogenada (ex.: A/G, C/T). Plataformas comerciais como o BovineSNP50 genotipam ~50.000 SNPs; o BovineHD genotipa ~777.000.
+
+::: {.callout-note}
+**Conceito central:** A codificação padrão dos SNPs é 0, 1, 2 — o número de cópias do alelo alternativo. 0 = AA (homozigoto referência), 1 = Aa (heterozigoto), 2 = aa (homozigoto alternativo).
+:::
+
+## Frequências alélicas e MAF
+
+Para cada SNP j na população:
+
+$$p_j = \frac{\text{número de alelos alternativos}}{2n}$$
+
+$$MAF_j = \min(p_j, 1-p_j)$$
+
+SNPs com MAF muito baixo (< 0,05) são pouco informativos e propensos a erros de genotipagem — geralmente removidos no controle de qualidade.
+
+## Simulação em R
+
+```r
+#| label: simula-snp
+set.seed(110)
+n_anim <- 200; n_snp <- 500
+
+# Frequências alélicas (distribuição Beta para variedade realista)
+p_alelo <- rbeta(n_snp, 2, 2)
+p_alelo <- pmax(0.02, pmin(0.98, p_alelo))
+
+# Gera matriz de genótipos 0/1/2
+G_mat <- matrix(NA, n_anim, n_snp)
+for (j in 1:n_snp) {
+  a1 <- rbinom(n_anim, 1, p_alelo[j])
+  a2 <- rbinom(n_anim, 1, p_alelo[j])
+  G_mat[, j] <- a1 + a2
+}
+cat(sprintf("Matriz de genótipos: %d animais × %d SNPs\n", n_anim, n_snp))
+cat(sprintf("Primeiros 3 animais, 8 SNPs:\n"))
+print(G_mat[1:3, 1:8])
+```
+
+```r
+#| label: frequencias
+p_obs <- colMeans(G_mat) / 2
+maf   <- pmin(p_obs, 1 - p_obs)
+
+cat("\n=== Distribuição de MAF ===\n")
+print(summary(maf))
+cat(sprintf("SNPs com MAF < 0.05: %d (%.1f%%)\n", sum(maf<.05), 100*mean(maf<.05)))
+cat(sprintf("SNPs com MAF > 0.40: %d (%.1f%%)\n", sum(maf>.40), 100*mean(maf>.40)))
+```
+
+```r
+#| fig-height: 3.5
+#| label: plot-maf
+hist(maf, breaks=30, col="#e8f1f8", border="#0d2642",
+     main="Distribuição de MAF (n=500 SNPs)", xlab="Minor Allele Frequency", ylab="Frequência")
+abline(v=0.05, col="#dc2626", lty=2, lwd=2)
+legend("topright", "Limiar MAF=0.05", lty=2, col="#dc2626", bty="n")
+```
+
+```r
+#| label: hwe-test
+# Teste de Equilíbrio de Hardy-Weinberg para o SNP 1
+j     <- 1
+p1    <- p_obs[j]; q1 <- 1 - p1
+obs   <- table(factor(G_mat[,j], levels=0:2))
+exp   <- c(p1^2, 2*p1*q1, q1^2) * n_anim
+
+cat("=== Teste HWE — SNP 1 ===\n")
+cat(sprintf("p observada: %.4f\n", p1))
+cat(sprintf("Genótipos observados:  AA=%d  Aa=%d  aa=%d\n", obs[1],obs[2],obs[3]))
+cat(sprintf("Genótipos esperados:   AA=%.1f Aa=%.1f aa=%.1f\n", exp[1],exp[2],exp[3]))
+chi2 <- sum((obs - exp)^2 / exp)
+pval <- pchisq(chi2, df=1, lower.tail=FALSE)
+cat(sprintf("χ²=%.4f  p-valor=%.4f  %s\n", chi2, pval,
+            if(pval>0.05) "→ HWE não rejeitado" else "→ FORA do HWE"))
+```
+
+```r
+#| label: ld
+# Desequilíbrio de ligação entre SNPs adjacentes
+r2_adj <- sapply(1:(n_snp-1), function(j) cor(G_mat[,j], G_mat[,j+1])^2)
+cat("\n=== Desequilíbrio de ligação entre SNPs adjacentes ===\n")
+cat(sprintf("r² médio:   %.4f\n", mean(r2_adj)))
+cat(sprintf("r² mediano: %.4f\n", median(r2_adj)))
+cat(sprintf("r² máximo:  %.4f\n", max(r2_adj)))
+cat("\n(r² alto = SNPs em desequilíbrio = um 'representa' o outro no GWAS)\n")
+```
+
+## Interpretação
+
+- A distribuição de MAF em forma de sino (Bell-shaped) com moda ~0,30–0,35 é típica de plataformas bem projetadas: poucas variantes raras, muitas moderadamente comuns.
+- O teste HWE verifica se as frequências dos genótipos AA, Aa e aa correspondem ao esperado em panmixia. Desvios sistemáticos indicam erros de genotipagem.
+- O LD entre SNPs adjacentes é baixo (~0,03) nesta simulação de posições aleatórias. No genoma real, SNPs próximos têm LD muito mais alto, formando **blocos de haplótipos**.
+
+::: {.callout-tip}
+**Dica R:** O pacote `snpStats` (Bioconductor) é a referência para análise de dados SNP em R. Para dados grandes, `PLINK` e `GCTA` são as ferramentas de linha de comando padrão.
+:::
+
+::: {.module-evidence-path role="note" aria-label="Caminho de evidência do módulo"}
+**Caminho de evidência**
+
+Antes do exercício, conecte três pontos: qual pergunta o módulo abriu, qual saída do script sustenta a resposta e qual decisão técnica fica mais clara.
+:::
+
+::: {.module-practice-contract role="note" aria-label="Contrato prático do módulo"}
+**Evidência mínima deste módulo**
+
+Antes de seguir, escolha um critério de qualidade para SNPs e escreva qual risco ele reduz antes de uma análise genômica.
+:::
+
+## Exercício proposto
+
+1. Calcule a distribuição de genótipos esperada para o SNP com maior MAF. Compare com os observados.
+2. Calcule r² entre SNPs separados por 1, 5 e 10 posições. O LD decai com a distância?
+3. Como o tamanho da amostra afeta a precisão da estimativa de p? Recalcule p_obs com apenas 20 animais.
+
+::: {.module-study-checkpoint role="note" aria-label="Checkpoint de estudo antes do quiz"}
+**Antes do quiz**
+
+Revise a pergunta biológica, rode o trecho principal em R e escreva uma frase ligando o resultado à decisão de seleção. Depois avance para o quiz com essa frase em mente.
+:::
+
+::: {.module-takeaways role="note" aria-label="Resumo técnico do módulo"}
+**O que levar deste módulo**
+
+- SNPs resumem variação genômica em marcadores que podem ser contados, filtrados e comparados.
+- Frequência alélica, equilíbrio e desequilíbrio de ligação indicam qualidade e estrutura do painel genômico.
+:::
+
+::: {.quiz-container data-module="10"}
+:::
+
+::: {.module-after-quiz role="note" aria-label="Próximo passo depois do quiz"}
+**Depois do quiz**
+
+Se o resultado do quiz não refletir sua interpretação, volte ao trecho em R e ao exercício proposto. Se estiver consistente, avance mantendo uma frase técnica registrada.
+:::
+
+::: {.module-close-check role="region" aria-label="Conferência de fechamento do módulo"}
+::: {.module-close-check-copy}
+**Antes de trocar de página**
+
+Feche o módulo quando a leitura, o código e o quiz sustentarem a mesma conclusão. Se algum ponto ficou aberto, volte pelo índice ou pela busca antes de avançar.
+:::
+
+::: {.module-close-check-grid role="list" aria-label="Critérios de fechamento do módulo"}
+::: {.module-close-check-item role="listitem"}
+**Leitura**
+
+A pergunta central foi respondida com suas palavras.
+:::
+
+::: {.module-close-check-item role="listitem"}
+**Código**
+
+A saída principal foi interpretada, não apenas executada.
+:::
+
+::: {.module-close-check-item role="listitem"}
+**Quiz**
+
+O resultado confirma prontidão para avançar ou revisar.
+:::
+:::
+:::
+
+::: {.module-return-note role="note" aria-label="Como voltar ao fluxo depois deste módulo"}
+**Volte com uma decisão**
+
+Antes de trocar de página, registre se este módulo levou a avanço, revisão ou consulta. Use essa decisão para escolher o próximo clique no índice.
+:::
+
+```{=html}
+<nav class="module-nav" aria-label="Navegação entre módulos">
+  <a class="module-nav-card module-nav-index" href="index.html">
+    <span>Índice</span>
+    <strong>Todos os módulos</strong>
+  </a>
+  <a class="module-nav-card module-nav-prev" href="modulo09-estrutura-de-pedigree-e-parentesco.html">
+    <span>Anterior · Módulo 09</span>
+    <strong>Estrutura de Pedigree e Parentesco</strong>
+  </a>
+  <a class="module-nav-card module-nav-next" href="modulo11-controle-de-qualidade-de-dados-genomicos.html">
+    <span>Próximo · Módulo 11</span>
+    <strong>Controle de Qualidade Genômico</strong>
+  </a>
+</nav>
+```

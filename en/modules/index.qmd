@@ -1,278 +1,289 @@
 ---
 title: "Modules"
-subtitle: "Trilha pública revisada de genética e melhoramento animal"
-description: "Índice dos 21 módulos revisados do MGenética."
+subtitle: "Public path for quantitative genetics and applied genomics"
+description: "Index of 12 MGenética modules, grouped by learning phase, R practice and technical progression."
 page-layout: full
 toc: false
 sidebar: false
 number-sections: false
+lang: en
 ---
 
-:::: {.modules-redesign}
-~~~{=html}
+::: {.modules-redesign}
+```{=html}
 <section class="modules-landing">
   <div class="modules-landing-copy">
-    <span class="module-badge">TRILHA COMPLETA</span>
-    <h1>21 módulos revisados. Conceito, cálculo e decisão.</h1>
-    <p>Sequência pública atualizada com os textos de <code>mgenetica-course-texts-2026-05-21</code>: genética básica, genética quantitativa, seleção, avaliação genética e genômica aplicada.</p>
-    <div class="modules-landing-actions" role="navigation" aria-label="Ações principais do índice de módulos">
-      <a class="btn btn-primary" href="modulo01-revisao-de-genetica-basica.html" aria-label="Start M01">Start M01</a>
-      <a class="btn btn-secondary" href="../semanas/index.html" aria-label="Study path">Study path</a>
+    <span class="module-badge">FULL PATH</span>
+    <h1>Choose phase. Open module. Produce evidence.</h1>
+    <p>12 modules in a short sequence: foundations, data, modeling and genomics. Each module gives concept, R script, interpretation and quiz.</p>
+    <div class="modules-landing-actions" role="navigation" aria-label="Main module index actions">
+      <a class="btn btn-primary" href="modulo01-introducao-ao-melhoramento-animal.html" aria-label="Start with Module 01">Start M01</a>
+      <a class="btn btn-secondary" href="../semanas/index.html" aria-label="Open weekly roadmap">View roadmap</a>
     </div>
   </div>
-  <div class="modules-landing-panel" role="note" aria-label="Resumo da trilha">
-    <strong>21 módulos</strong>
-    <span>4 fases</span>
-    <span>Textos revisados</span>
-    <span>Quiz por módulo</span>
+  <div class="modules-landing-panel" role="note" aria-label="Path summary">
+    <strong>12 modules</strong>
+    <span>4 phases</span>
+    <span>R scripts</span>
+    <span>Quiz per module</span>
   </div>
 </section>
-~~~
+```
 
-::: {.public-wayfinding .modules-wayfinding role="navigation" aria-label="Orientação pública do índice de módulos"}
-[Começar M01](modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Abrir módulo"} · [Ir ao projeto final](modulo21-projeto-final-pipeline-completo-de-selecao.qmd){.entry-link aria-label="Abrir módulo"}
+::: {.public-wayfinding .modules-wayfinding role="navigation" aria-label="Public orientation for module index"}
+::: {.public-wayfinding-grid role="list" aria-label="Immediate routes in module index"}
+::: {.public-wayfinding-item role="listitem"}
+**Start**
+
+[Module 01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Open Module 01"}
 :::
 
-::: {.modules-certificate-route role="region" aria-label="Fechamento da trilha e certificado"}
-**Fechar trilha**
+::: {.public-wayfinding-item role="listitem"}
+**Choose phase**
 
-[Abrir certificado](../certificate.qmd){.btn .btn-primary}
+[View phases](#path-phases){.entry-link aria-label="View path phases"}
 :::
 
-::: {.modules-next-step role="region" aria-label="Próximo passo após revisar os módulos"}
-## Próximo passo recomendado
+::: {.public-wayfinding-item role="listitem"}
+**Plan**
 
-Comece M01, retome módulo pendente ou finalize no projeto M21.
+[Weekly roadmap](../semanas/index.qmd){.entry-link aria-label="Open weekly roadmap"}
 :::
-
+:::
+:::
 
 ::: {.modules-guidance}
-**Fluxo recomendado**
+::: {.guidance-item}
+**Flow**
 
-Leia, calcule, interprete e registre evidência.
+Read, run script, interpret output.
 :::
 
-::: {.modules-output-route role="navigation" aria-label="Rotas por tipo de evidência técnica"}
-[Fundamentos](modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Abrir módulo"} · [Genômica](modulo18-genomica-marcadores-snp-e-dados-moleculares.qmd){.entry-link aria-label="Abrir módulo"} · [Projeto final](modulo21-projeto-final-pipeline-completo-de-selecao.qmd){.entry-link aria-label="Abrir módulo"}
+::: {.guidance-item}
+**Criterion**
+
+Move forward with one clear technical sentence.
 :::
 
-::: {.modules-completion-flow role="region" aria-label="Como concluir a trilha MGenética"}
-**Fechamento**
+::: {.guidance-item}
+**Close**
 
-Complete os 21 quizzes e gere certificado.
+Quiz stores local progress. No account.
+:::
 :::
 
-::: {.modules-evidence-standard role="region" aria-label="Evidência esperada em cada módulo"}
-**Padrão de evidência**
+::: {.modules-output-route role="navigation" aria-label="Routes by technical evidence type"}
+::: {.modules-output-route-grid role="list" aria-label="Entries by technical output"}
+::: {.modules-output-route-item role="listitem"}
+**Code and gain**
 
-Cada módulo pede conceito, cálculo ou regra e interpretação biológica.
+[Open M01](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Open Module 01 to practice code and genetic gain"}
 :::
 
-## Fases da trilha
+::: {.modules-output-route-item role="listitem"}
+**Table and parameter**
 
-:::: {.phase-grid role="list" aria-label="Fases da trilha MGenética"}
+[Open M06](modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Open Module 06 to practice tables and correlations"}
+:::
+
+::: {.modules-output-route-item role="listitem"}
+**Figure and genomics**
+
+[Open M12](modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Open Module 12 to practice genomic output reading"}
+:::
+:::
+:::
+
+::: {.modules-completion-flow role="region" aria-label="How to complete the MGenética path"}
+::: {.modules-completion-steps role="list" aria-label="Completion steps"}
+::: {.modules-completion-step role="listitem"}
+**1 · Study**
+
+Open module.
+:::
+
+::: {.modules-completion-step role="listitem"}
+**2 · Validate**
+
+Answer quiz.
+:::
+
+::: {.modules-completion-step role="listitem"}
+**3 · Issue**
+
+Generate certificate.
+:::
+:::
+:::
+
+## Path phases
+
+::: {.phase-grid role="list" aria-label="MGenética path phases"}
 ::: {.phase-card role="listitem"}
-**01 · Fundamentos**
+**01 · Foundations**
 
-Linguagem genética, ação gênica e genética de populações.
+Animal breeding logic and genetic decomposition of phenotype.
 
-[Start M01](modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Abrir módulo"}
+[Start phase](modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Start foundations phase with Module 01"}
 :::
 
 ::: {.phase-card role="listitem"}
-**02 · Genética quantitativa**
+**02 · Data and parameters**
 
-Fenótipo, variâncias, herdabilidade, repetibilidade e correlações.
+Exploration, variance, heritability, repeatability and correlations.
 
-[Start M06](modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd){.entry-link aria-label="Abrir módulo"}
+[Start phase](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd){.entry-link aria-label="Start data phase with Module 03"}
 :::
 
 ::: {.phase-card role="listitem"}
-**03 · Seleção e acasalamentos**
+**03 · Modeling**
 
-Seleção, parentesco, endogamia, cruzamentos e avaliação genética.
+Mixed models, BLUP, pedigree and relationship.
 
-[Start M13](modulo13-endogamia-e-parentesco.qmd){.entry-link aria-label="Abrir módulo"}
+[Start phase](modulo07-modelos-lineares-e-modelos-mistos.qmd){.entry-link aria-label="Start modeling phase with Module 07"}
 :::
 
 ::: {.phase-card role="listitem"}
-**04 · Genômica aplicada**
+**04 · Genomics**
 
-Marcadores, controle de qualidade, matrizes, GWAS, predição e projeto final.
+SNPs, quality control, genomic matrices, GWAS and prediction.
 
-[Start M18](modulo18-genomica-marcadores-snp-e-dados-moleculares.qmd){.entry-link aria-label="Abrir módulo"}
+[Start phase](modulo10-introducao-a-genomica-e-marcadores-snp.qmd){.entry-link aria-label="Start genomics phase with Module 10"}
 :::
-::::
+:::
 
-## Todos os módulos
+## All modules
 
-:::: {.module-grid role="list" aria-label="Todos os módulos do curso"}
+::: {.module-grid role="list" aria-label="All course modules"}
 ::: {.module-card role="listitem"}
 **01**
 
-[Revisão de genética básica](modulo01-revisao-de-genetica-basica.qmd)
+[Introduction to Animal Breeding](modulo01-introducao-ao-melhoramento-animal.qmd)
 
-Pergunta simples.
+Selection response and breeding-program logic.
 :::
 
 ::: {.module-card role="listitem"}
 **02**
 
-[Modos de ação gênica](modulo02-modos-de-acao-genica.qmd)
+[Foundations of Quantitative Genetics](modulo02-bases-da-genetica-quantitativa.qmd)
 
-Pergunta simples.
+Genetic value, phenotype, environment and variation.
 :::
 
 ::: {.module-card role="listitem"}
 **03**
 
-[Genética de populações I: frequências alélicas e genotípicas](modulo03-genetica-de-populacoes-i-frequencias-alelicas-e-genotipicas.qmd)
+[Descriptive statistics and exploration in R](modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd)
 
-Pergunta simples.
+First diagnostics, distributions and exploratory interpretation.
 :::
 
 ::: {.module-card role="listitem"}
 **04**
 
-[Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo](modulo04-hardy-weinberg-alelos-multiplos-e-genes-ligados-ao-sexo.qmd)
+[Means, variances and components](modulo04-medias-variancias-e-componentes-de-variancia.qmd)
 
-Pergunta simples.
+Phenotypic, genetic and environmental variance.
 :::
 
 ::: {.module-card role="listitem"}
 **05**
 
-[Fatores que alteram frequências gênicas](modulo05-fatores-que-alteram-frequencias-genicas.qmd)
+[Heritability and repeatability](modulo05-herdabilidade-e-repetibilidade.qmd)
 
-Pergunta simples.
+Parameters that connect observations to genetic predictability.
 :::
 
 ::: {.module-card role="listitem"}
 **06**
 
-[Valores e médias: fenótipo, genótipo e ambiente](modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd)
+[Genetic and phenotypic correlations](modulo06-correlacoes-geneticas-e-fenotipicas.qmd)
 
-Pergunta simples.
+Trait relationships and indirect selection effects.
 :::
 
 ::: {.module-card role="listitem"}
 **07**
 
-[Noções de genética quantitativa](modulo07-nocoes-de-genetica-quantitativa.qmd)
+[Linear and mixed models](modulo07-modelos-lineares-e-modelos-mistos.qmd)
 
-Pergunta simples.
+Fixed effects, random effects and error.
 :::
 
 ::: {.module-card role="listitem"}
 **08**
 
-[Componentes de variância](modulo08-componentes-de-variancia.qmd)
+[BLUP and genetic evaluation](modulo08-blup-e-avaliacao-genetica.qmd)
 
-Pergunta simples.
+Breeding-value prediction and candidate comparison.
 :::
 
 ::: {.module-card role="listitem"}
 **09**
 
-[Herdabilidade e repetibilidade](modulo09-herdabilidade-e-repetibilidade.qmd)
+[Pedigree and relationship](modulo09-estrutura-de-pedigree-e-parentesco.qmd)
 
-Pergunta simples.
+Genealogy, relationship matrices and individual connections.
 :::
 
 ::: {.module-card role="listitem"}
 **10**
 
-[Seleção e ganho genético](modulo10-selecao-e-ganho-genetico.qmd)
+[Genomics and SNP markers](modulo10-introducao-a-genomica-e-marcadores-snp.qmd)
 
-Pergunta simples.
+Molecular markers in evaluation and data control.
 :::
 
 ::: {.module-card role="listitem"}
 **11**
 
-[Correlações genéticas, fenotípicas e ambientais](modulo11-correlacoes-geneticas-fenotipicas-e-ambientais.qmd)
+[Genomic quality control](modulo11-controle-de-qualidade-de-dados-genomicos.qmd)
 
-Pergunta simples.
+Filters, genotype consistency and genomic-analysis preparation.
 :::
 
 ::: {.module-card role="listitem"}
 **12**
 
-[Características de limiar](modulo12-caracteristicas-de-limiar.qmd)
+[Genomic matrices, GWAS and prediction](modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd)
 
-Pergunta simples.
+Genomic relationship, association and prediction.
+:::
 :::
 
-::: {.module-card role="listitem"}
-**13**
+::: {.modules-certificate-route role="region" aria-label="Path close and certificate"}
+**Close path**
 
-[Endogamia e parentesco](modulo13-endogamia-e-parentesco.qmd)
-
-Pergunta simples.
+[Open certificate](../certificate.qmd){.btn .btn-primary}
+[Review roadmap](../semanas/index.qmd){.btn .btn-secondary}
 :::
 
-::: {.module-card role="listitem"}
-**14**
+::: {.modules-next-step role="region" aria-label="Next step after module review"}
+## Recommended next step
 
-[Cruzamentos, heterose e complementaridade](modulo14-cruzamentos-heterose-e-complementaridade.qmd)
-
-Pergunta simples.
+::: {.modules-next-step-hint}
+First visit: start M01. Returning visitor: choose phase or check certificate.
 :::
 
-::: {.module-card role="listitem"}
-**15**
-
-[Avaliação genética: DEP/EBV e ranking de animais](modulo15-avaliacao-genetica-dep-ebv-e-ranking-de-animais.qmd)
-
-Pergunta simples.
+::: {.modules-next-step-checks role="list" aria-label="How to choose final module-index action"}
+::: {.modules-next-step-check role="listitem"}
+**Start**
 :::
 
-::: {.module-card role="listitem"}
-**16**
-
-[Modelos lineares e modelos mistos](modulo16-modelos-lineares-e-modelos-mistos.qmd)
-
-Pergunta simples.
+::: {.modules-next-step-check role="listitem"}
+**Plan**
 :::
 
-::: {.module-card role="listitem"}
-**17**
-
-[BLUP e modelo animal](modulo17-blup-e-modelo-animal.qmd)
-
-Pergunta simples.
+::: {.modules-next-step-check role="listitem"}
+**Complete**
+:::
 :::
 
-::: {.module-card role="listitem"}
-**18**
-
-[Genômica, marcadores SNP e dados moleculares](modulo18-genomica-marcadores-snp-e-dados-moleculares.qmd)
-
-Pergunta simples.
+::: {.modules-next-step-actions role="navigation" aria-label="Final module-index actions"}
+[Start M01](modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Start with Module 01"}
+[Plan by week](../semanas/index.qmd){.btn .btn-secondary}
+[Check certificate](../certificate.qmd){.btn .btn-secondary}
 :::
-
-::: {.module-card role="listitem"}
-**19**
-
-[Controle de qualidade de dados genômicos](modulo19-controle-de-qualidade-de-dados-genomicos.qmd)
-
-Pergunta simples.
 :::
-
-::: {.module-card role="listitem"}
-**20**
-
-[Matrizes genômicas, GWAS e predição genômica](modulo20-matrizes-genomicas-gwas-e-predicao-genomica.qmd)
-
-Pergunta simples.
 :::
-
-::: {.module-card role="listitem"}
-**21**
-
-[Projeto final: pipeline completo de seleção](modulo21-projeto-final-pipeline-completo-de-selecao.qmd)
-
-Pergunta simples.
-:::
-::::
-::::

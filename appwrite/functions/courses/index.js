@@ -37,8 +37,8 @@ module.exports = async function (context) {
         blockId: course.blockId,
         blockTitle: course.blockTitle,
         title: course.title,
-        description: course.description || course.objective || course.feynmanQuestion || '',
-        published: course.published !== false
+        description: course.description,
+        published: !!course.published
       }));
       context.log(JSON.stringify({ count: payload.length }));
       return { status: 200, body: JSON.stringify(payload) };

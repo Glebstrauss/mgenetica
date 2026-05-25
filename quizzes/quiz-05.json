@@ -1,62 +1,58 @@
 {
   "module": "05",
-  "title": "Quiz — Fatores que alteram frequências gênicas",
-  "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+  "title": "Quiz — Módulo 05",
+  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
   "passMark": 4,
   "questions": [
     {
-      "text": "Se `p` muda de 0,40 para 0,55, qual é `Δp`?",
+      "text": "A herdabilidade no sentido estreito (h²) é definida como:",
       "options": [
-        "`Δp = 0,15`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "VP / VG",
+        "VG / VP",
+        "VA / VP",
+        "VA / VG"
       ],
-      "correct": 0
+      "correct": 2
     },
     {
-      "text": "Por que seleção artificial pode aumentar a frequência de um alelo em cavalos?",
+      "text": "Uma característica com h² = 0,40 significa que:",
       "options": [
-        "Porque os reprodutores escolhidos podem carregar mais cópias do alelo favorecido.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "40% do fenótipo de cada animal é determinado geneticamente.",
+        "40% da variação fenotípica observada na população é devida a diferenças genéticas aditivas.",
+        "40% dos filhos terão fenótipo superior ao pai.",
+        "A acurácia da seleção é exatamente 0,40."
       ],
-      "correct": 0
+      "correct": 1
     },
     {
-      "text": "Por que mutação geralmente muda devagar a frequência de um alelo em poucas gerações?",
+      "text": "A repetibilidade (r) em relação à herdabilidade no sentido estreito (h²):",
       "options": [
-        "Porque taxas de mutação por locus geralmente são baixas.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "É sempre menor que h², pois ignora efeitos de dominância.",
+        "É sempre maior ou igual a h², pois inclui VA, VD e VPE no numerador.",
+        "É sempre igual a h².",
+        "Pode ser negativa para características de reprodução."
       ],
-      "correct": 0
+      "correct": 1
     },
     {
-      "text": "Qual diferença entre migração e mutação?",
+      "text": "A regressão linear de filhos sobre pais (y = a + b × pai) fornece estimativa de:",
       "options": [
-        "Migração traz alelos de outra população; mutação cria uma nova cópia alterada.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "h² diretamente (b = h²).",
+        "h²/2 — metade da herdabilidade no sentido estreito (b = h²/2).",
+        "A repetibilidade da característica.",
+        "A correlação genética entre pai e filho."
       ],
-      "correct": 0
+      "correct": 1
     },
     {
-      "text": "Por que deriva genética é mais forte quando o tamanho efetivo é pequeno?",
+      "text": "Em qual situação a repetibilidade é especialmente útil em termos práticos?",
       "options": [
-        "Porque poucos reprodutores representam mal o conjunto total de alelos, aumentando erro de amostragem.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "Quando apenas uma medida por animal está disponível.",
+        "Quando a característica é medida múltiplas vezes no mesmo animal ao longo da vida.",
+        "Quando se deseja estimar componentes de dominância.",
+        "Quando a população está em cruzamento entre raças."
       ],
-      "correct": 0
-    },
-    {
-      "text": "No exemplo contra `aa`, por que `p` aumentou entre os reprodutores?",
-      "options": [
-        "Porque `aa` carrega apenas alelos `a` e teve menor contribuição para o grupo reprodutor.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
-      ],
-      "correct": 0
+      "correct": 1
     }
   ]
 }

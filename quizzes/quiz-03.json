@@ -1,53 +1,58 @@
 {
   "module": "03",
-  "title": "Quiz — Genética de populações I: frequências alélicas e genotípicas",
-  "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+  "title": "Quiz — Módulo 03",
+  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
   "passMark": 4,
   "questions": [
     {
-      "text": "Em um grupo com 12 éguas, quantas cópias alélicas existem no total para um locus com dois alelos em animais diploides?",
+      "text": "O coeficiente de variação (CV) é útil para comparar variabilidades entre características distintas porque:",
       "options": [
-        "Há 24 cópias alélicas, porque `2N = 2 x 12 = 24`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "Remove a influência da média, expressando a dispersão em termos percentuais.",
+        "É sempre maior que o desvio padrão independente da escala.",
+        "Independe da distribuição dos dados e pode ser negativo.",
+        "É equivalente à variância e facilmente comparável."
       ],
       "correct": 0
     },
     {
-      "text": "Se há 4 `AA`, 6 `Aa` e 2 `aa`, qual é a frequência genotípica de `Aa`?",
+      "text": "Em uma distribuição fenotípica com assimetria positiva (skewness > 0):",
       "options": [
-        "A frequência genotípica de `Aa` é 6/12 = 0,50.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "A média é menor que a mediana e a moda.",
+        "A cauda da distribuição estende-se para a direita, com poucos valores muito altos.",
+        "Os dados são perfeitamente simétricos ao redor da média.",
+        "A variância é necessariamente negativa."
       ],
-      "correct": 0
+      "correct": 1
     },
     {
-      "text": "No mesmo grupo, qual é a frequência do alelo `A`?",
+      "text": "Qual medida de dispersão é diretamente utilizada no cálculo da herdabilidade?",
       "options": [
-        "`p = (2 x 4 + 6) / 24 = 14/24 = 0,5833`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "Amplitude total",
+        "Intervalo interquartil (IIQ)",
+        "Variância",
+        "Moda"
       ],
-      "correct": 0
+      "correct": 2
     },
     {
-      "text": "Por que uma égua `AA` contribui com duas cópias de `A`?",
+      "text": "Na análise exploratória de dados fenotípicos, o gráfico mais eficaz para identificar outliers é:",
       "options": [
-        "Porque cada animal diploide carrega duas cópias do locus, e no genótipo `AA` as duas cópias são `A`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "Gráfico de pizza",
+        "Diagrama de caixa (boxplot)",
+        "Gráfico de barras simples",
+        "Histograma de frequências acumuladas"
       ],
-      "correct": 0
+      "correct": 1
     },
     {
-      "text": "Qual erro ocorre quando alguém interpreta `p = 0,50` como \"50% dos animais são `AA`\"?",
+      "text": "O desvio padrão amostral de um conjunto de fenótipos é:",
       "options": [
-        "O erro é confundir frequência alélica com frequência genotípica. `p` descreve cópias de alelos, não proporção de animais `AA`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "O quadrado da variância amostral.",
+        "A raiz quadrada da variância amostral.",
+        "A média dos valores absolutos dos desvios em relação à mediana.",
+        "A metade da amplitude total dos dados."
       ],
-      "correct": 0
+      "correct": 1
     }
   ]
 }

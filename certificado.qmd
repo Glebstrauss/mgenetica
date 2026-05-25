@@ -10,7 +10,7 @@ number-sections: false
 ::: {.page-hero-copy}
 # Certificado de conclusão
 
-O certificado é o fechamento público da trilha MGenética. Ele fica disponível no navegador quando os 21 módulos constam como concluídos nos quizzes.
+O certificado é o fechamento público da trilha MGenética. Ele fica disponível no navegador quando os 12 módulos constam como concluídos nos quizzes.
 :::
 
 ::: {.page-hero-aside}
@@ -107,7 +107,7 @@ O certificado não é uma página isolada: ele fecha uma rota pública de estudo
 ::: {.certificate-readiness-step role="listitem"}
 **1 · Estude**
 
-Siga os 21 módulos em ordem ou retome a fase em que parou.
+Siga os 12 módulos em ordem ou retome a fase em que parou.
 :::
 
 ::: {.certificate-readiness-step role="listitem"}
@@ -171,7 +171,7 @@ O certificado fecha o percurso, mas a evidência técnica fica mais forte quando
 
 Revise uma simulação simples e a decisão que ela sustenta.
 
-[Revisar M01](modules/modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Revisar o Módulo 01 antes do certificado"}
+[Revisar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Revisar o Módulo 01 antes do certificado"}
 :::
 
 ::: {.certificate-evidence-review-item role="listitem"}
@@ -179,7 +179,7 @@ Revise uma simulação simples e a decisão que ela sustenta.
 
 Revise uma comparação de parâmetros antes de registrar conclusão.
 
-[Revisar M06](modules/modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd){.entry-link aria-label="Revisar o Módulo 06 antes do certificado"}
+[Revisar M06](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Revisar o Módulo 06 antes do certificado"}
 :::
 
 ::: {.certificate-evidence-review-item role="listitem"}
@@ -187,7 +187,7 @@ Revise uma comparação de parâmetros antes de registrar conclusão.
 
 Revise uma saída genômica e a interpretação aplicada.
 
-[Revisar M21](modules/modulo21-projeto-final-pipeline-completo-de-selecao.qmd){.entry-link aria-label="Revisar o Módulo 21 antes do certificado"}
+[Revisar M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Revisar o Módulo 12 antes do certificado"}
 :::
 :::
 :::
@@ -345,13 +345,13 @@ O nome e o navegador foram conferidos.
   <div id="cert-incomplete" class="certificate-state" hidden>
     <div class="module-objectives certificate-status">
       <h3>Módulos pendentes</h3>
-      <p>Complete todos os 21 módulos do curso para desbloquear o certificado.</p>
+      <p>Complete todos os 12 módulos do curso para desbloquear o certificado.</p>
       <p class="certificate-pending-hint">Use esta lista como rota de retomada: conclua o primeiro módulo pendente, volte ao quiz e retorne ao certificado para conferir o avanço.</p>
       <p id="cert-progress-summary" class="certificate-progress-summary" role="status" aria-live="polite"></p>
       <div id="cert-progress-list" aria-live="polite"></div>
     </div>
     <div class="certificate-actions" aria-describedby="cert-progress-summary">
-      <a id="cert-next-pending-link" href="modules/modulo01-revisao-de-genetica-basica.html" class="btn btn-primary">
+      <a id="cert-next-pending-link" href="modules/modulo01-introducao-ao-melhoramento-animal.html" class="btn btn-primary">
         Continuar pendência
       </a>
       <a href="modules/index.html" class="btn btn-secondary">
@@ -364,7 +364,7 @@ O nome e o navegador foram conferidos.
     <div class="certificate-ready">
       <div class="hero-kicker">Trilha concluída</div>
       <h2>Você concluiu o curso</h2>
-      <p>Todos os 21 módulos foram completados com aprovação nos quizzes.</p>
+      <p>Todos os 12 módulos foram completados com aprovação nos quizzes.</p>
     </div>
 
     <div id="cert-preview" class="certificate-preview" role="region" aria-label="Prévia do certificado">
@@ -387,7 +387,7 @@ O nome e o navegador foram conferidos.
       <div class="certificate-preview-body">
         concluiu com aproveitamento o curso<br>
         <strong>Melhoramento Animal, Genética Quantitativa<br>e Genômica Aplicada</strong><br>
-        composto de 21 módulos, com aprovação em todos os quizzes de avaliação.
+        composto de 12 módulos, com aprovação em todos os quizzes de avaliação.
       </div>
 
       <div class="certificate-preview-footer">
@@ -434,60 +434,39 @@ O nome e o navegador foram conferidos.
   'use strict';
 
   var MODULES = [
-    'modulo01', 'modulo02', 'modulo03', 'modulo04',
-    'modulo05', 'modulo06', 'modulo07', 'modulo08',
-    'modulo09', 'modulo10', 'modulo11', 'modulo12',
-    'modulo13', 'modulo14', 'modulo15', 'modulo16',
-    'modulo17', 'modulo18', 'modulo19', 'modulo20',
-    'modulo21'
+    'modulo01','modulo02','modulo03','modulo04',
+    'modulo05','modulo06','modulo07','modulo08',
+    'modulo09','modulo10','modulo11','modulo12'
   ];
 
   var MODULE_TITLES = {
-    modulo01: 'Revisão de genética básica',
-    modulo02: 'Modos de ação gênica',
-    modulo03: 'Genética de populações I: frequências alélicas e genotípicas',
-    modulo04: 'Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo',
-    modulo05: 'Fatores que alteram frequências gênicas',
-    modulo06: 'Valores e médias: fenótipo, genótipo e ambiente',
-    modulo07: 'Noções de genética quantitativa',
-    modulo08: 'Componentes de variância',
-    modulo09: 'Herdabilidade e repetibilidade',
-    modulo10: 'Seleção e ganho genético',
-    modulo11: 'Correlações genéticas, fenotípicas e ambientais',
-    modulo12: 'Características de limiar',
-    modulo13: 'Endogamia e parentesco',
-    modulo14: 'Cruzamentos, heterose e complementaridade',
-    modulo15: 'Avaliação genética: DEP/EBV e ranking de animais',
-    modulo16: 'Modelos lineares e modelos mistos',
-    modulo17: 'BLUP e modelo animal',
-    modulo18: 'Genômica, marcadores SNP e dados moleculares',
-    modulo19: 'Controle de qualidade de dados genômicos',
-    modulo20: 'Matrizes genômicas, GWAS e predição genômica',
-    modulo21: 'Projeto final: pipeline completo de seleção'
+    modulo01: 'Introdução ao Melhoramento Animal',
+    modulo02: 'Bases da Genética Quantitativa',
+    modulo03: 'Estatística Descritiva e Exploração de Dados no R',
+    modulo04: 'Médias, Variâncias e Componentes de Variância',
+    modulo05: 'Herdabilidade e Repetibilidade',
+    modulo06: 'Correlações Genéticas e Fenotípicas',
+    modulo07: 'Modelos Lineares e Modelos Mistos',
+    modulo08: 'BLUP e Avaliação Genética',
+    modulo09: 'Estrutura de Pedigree e Parentesco',
+    modulo10: 'Introdução à Genômica e Marcadores SNP',
+    modulo11: 'Controle de Qualidade de Dados Genômicos',
+    modulo12: 'Matrizes Genômicas, GWAS e Predição Genômica'
   };
 
   var MODULE_LINKS = {
-    modulo01: 'modules/modulo01-revisao-de-genetica-basica.html',
-    modulo02: 'modules/modulo02-modos-de-acao-genica.html',
-    modulo03: 'modules/modulo03-genetica-de-populacoes-i-frequencias-alelicas-e-genotipicas.html',
-    modulo04: 'modules/modulo04-hardy-weinberg-alelos-multiplos-e-genes-ligados-ao-sexo.html',
-    modulo05: 'modules/modulo05-fatores-que-alteram-frequencias-genicas.html',
-    modulo06: 'modules/modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.html',
-    modulo07: 'modules/modulo07-nocoes-de-genetica-quantitativa.html',
-    modulo08: 'modules/modulo08-componentes-de-variancia.html',
-    modulo09: 'modules/modulo09-herdabilidade-e-repetibilidade.html',
-    modulo10: 'modules/modulo10-selecao-e-ganho-genetico.html',
-    modulo11: 'modules/modulo11-correlacoes-geneticas-fenotipicas-e-ambientais.html',
-    modulo12: 'modules/modulo12-caracteristicas-de-limiar.html',
-    modulo13: 'modules/modulo13-endogamia-e-parentesco.html',
-    modulo14: 'modules/modulo14-cruzamentos-heterose-e-complementaridade.html',
-    modulo15: 'modules/modulo15-avaliacao-genetica-dep-ebv-e-ranking-de-animais.html',
-    modulo16: 'modules/modulo16-modelos-lineares-e-modelos-mistos.html',
-    modulo17: 'modules/modulo17-blup-e-modelo-animal.html',
-    modulo18: 'modules/modulo18-genomica-marcadores-snp-e-dados-moleculares.html',
-    modulo19: 'modules/modulo19-controle-de-qualidade-de-dados-genomicos.html',
-    modulo20: 'modules/modulo20-matrizes-genomicas-gwas-e-predicao-genomica.html',
-    modulo21: 'modules/modulo21-projeto-final-pipeline-completo-de-selecao.html'
+    modulo01: 'modules/modulo01-introducao-ao-melhoramento-animal.html',
+    modulo02: 'modules/modulo02-bases-da-genetica-quantitativa.html',
+    modulo03: 'modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.html',
+    modulo04: 'modules/modulo04-medias-variancias-e-componentes-de-variancia.html',
+    modulo05: 'modules/modulo05-herdabilidade-e-repetibilidade.html',
+    modulo06: 'modules/modulo06-correlacoes-geneticas-e-fenotipicas.html',
+    modulo07: 'modules/modulo07-modelos-lineares-e-modelos-mistos.html',
+    modulo08: 'modules/modulo08-blup-e-avaliacao-genetica.html',
+    modulo09: 'modules/modulo09-estrutura-de-pedigree-e-parentesco.html',
+    modulo10: 'modules/modulo10-introducao-a-genomica-e-marcadores-snp.html',
+    modulo11: 'modules/modulo11-controle-de-qualidade-de-dados-genomicos.html',
+    modulo12: 'modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.html'
   };
 
   function getCompleted() {
@@ -664,7 +643,7 @@ O nome e o navegador foram conferidos.
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(10);
     doc.setTextColor(90, 122, 154);
-    doc.text('composto de 21 módulos, com aprovação em todos os quizzes de avaliação.', W / 2, 98, { align: 'center' });
+    doc.text('composto de 12 módulos, com aprovação em todos os quizzes de avaliação.', W / 2, 98, { align: 'center' });
 
     // Bottom row
     var dateStored = localStorage.getItem('mgenetica_cert_date') ||

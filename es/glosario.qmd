@@ -110,7 +110,7 @@ Un término técnico sólo resulta útil cuando vuelve al contexto del curso. El
 
 Úselo cuando la definición dependa del script, la simulación o el argumento de la función.
 
-[Abrir M01](modules/modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Abrir el Módulo 01 para revisar evidencia de código tras el glosario"}
+[Abrir M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir el Módulo 01 para revisar evidencia de código tras el glosario"}
 :::
 
 ::: {.utility-evidence-route-item role="listitem"}
@@ -118,7 +118,7 @@ Un término técnico sólo resulta útil cuando vuelve al contexto del curso. El
 
 Úselo cuando el término sea un parámetro, varianza, correlación o medida comparable.
 
-[Abrir M06](modules/modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd){.entry-link aria-label="Abrir el Módulo 06 para revisar evidencia de tabla tras el glosario"}
+[Abrir M06](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Abrir el Módulo 06 para revisar evidencia de tabla tras el glosario"}
 :::
 
 ::: {.utility-evidence-route-item role="listitem"}
@@ -126,7 +126,7 @@ Un término técnico sólo resulta útil cuando vuelve al contexto del curso. El
 
 Úselo cuando el término aparezca en genómica, SNP, GWAS o predicción.
 
-[Abrir M21](modules/modulo21-projeto-final-pipeline-completo-de-selecao.qmd){.entry-link aria-label="Abrir el Módulo 12 para revisar evidencia visual tras el glosario"}
+[Abrir M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir el Módulo 12 para revisar evidencia visual tras el glosario"}
 :::
 :::
 :::

@@ -1,5 +1,4 @@
 import React, {useEffect, useMemo, useState} from 'react'
-import curriculum from './data/legacy-curriculum.generated.json'
 import { formatCourseCatalog, formatCourseDetail } from './data/courseCurriculum'
 import CoursePage from './CoursePage'
 import Icon from './components/Icon'
@@ -26,8 +25,6 @@ import {
   APPWRITE_PROJECT_ID,
   PUBLIC_SITE_URL
 } from './lib/appwrite'
-
-const LOCAL_COURSE_ROWS = Array.isArray(curriculum?.modules) ? curriculum.modules : []
 
 function LocaleSwitcher({ locale, onChange, t }) {
   return (
@@ -340,7 +337,7 @@ export default function App() {
   const [adminReport, setAdminReport] = useState(null)
   const [adminStatus, setAdminStatus] = useState(null)
   const [progressReport, setProgressReport] = useState(null)
-  const [catalogRows, setCatalogRows] = useState(LOCAL_COURSE_ROWS)
+  const [catalogRows, setCatalogRows] = useState([])
   const [selectedCourseRow, setSelectedCourseRow] = useState(null)
   const t = useMemo(() => createTranslator(locale), [locale])
   const errorMessages = useMemo(() => t('authErrors'), [t])
@@ -395,14 +392,12 @@ export default function App() {
       setSelectedCourseRow(null)
       return () => { active = false }
     }
-    const localRow = LOCAL_COURSE_ROWS.find((course) => course.id === selectedCourseId) || null
-    setSelectedCourseRow(localRow)
     getCourseDetail(selectedCourseId, locale)
-      .then(() => {
-        if (active) setSelectedCourseRow(localRow)
+      .then((payload) => {
+        if (active) setSelectedCourseRow(payload)
       })
       .catch(() => {
-        if (active) setSelectedCourseRow(localRow)
+        if (active) setSelectedCourseRow(null)
       })
     return () => { active = false }
   }, [locale, screen, selectedCourseId, user])
@@ -442,12 +437,13 @@ export default function App() {
   }
 
   async function refreshCourses() {
-    setCatalogRows(LOCAL_COURSE_ROWS)
     try {
-      await listCourses(locale)
-      return LOCAL_COURSE_ROWS
+      const payload = await listCourses(locale)
+      setCatalogRows(Array.isArray(payload) ? payload : [])
+      return payload
     } catch (_) {
-      return LOCAL_COURSE_ROWS
+      setCatalogRows([])
+      return []
     }
   }
 
@@ -464,7 +460,7 @@ export default function App() {
 
   async function handleLogin(payload) { setLoadingAuth(true); try { await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); await Promise.all([refreshProgress(account), refreshCourses(), refreshAdminAccess()]); setAdminReport(null); updateStatus('status.loginSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
   async function handleSignup(payload) { setLoadingAuth(true); try { await createAccount(payload.email, payload.password, payload.name); await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); await Promise.all([refreshProgress(account), refreshCourses(), refreshAdminAccess()]); setAdminReport(null); updateStatus('status.signupSuccess'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
-  async function handleLogout() { setLoadingAuth(true); try { await deleteSession(); setUser(null); setAdminReport(null); setAdminStatus(null); setProgressReport(null); setCatalogRows(LOCAL_COURSE_ROWS); setSelectedCourseRow(null); updateStatus('status.sessionClosed'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
+  async function handleLogout() { setLoadingAuth(true); try { await deleteSession(); setUser(null); setAdminReport(null); setAdminStatus(null); setProgressReport(null); setCatalogRows([]); setSelectedCourseRow(null); updateStatus('status.sessionClosed'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
   function focusAuth(mode) { navigate({ screen: 'auth', authMode: mode, selectedCourseId: null, showQuiz: false }) }
   function openCatalog() { if (!user) { updateStatus('status.enterCourses'); return } navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false }) }
   function openCourse(courseId) { if (!user) { updateStatus('status.enterCoursePage'); return } navigate({ screen: 'course', authMode, selectedCourseId: courseId, showQuiz: false }) }

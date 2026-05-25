@@ -1,4 +1,3 @@
----
 site:
   id: mgenetica
   name: MGenética Academy
@@ -7,6 +6,7 @@ site:
   description: Curso aberto de melhoramento animal, genética quantitativa e genômica aplicada com R.
   publication_target: github-pages
   content_owner: public-site
+
 governance:
   public_site_role: editorial-institutional-layer
   app_role: internal-management-panel
@@ -18,310 +18,301 @@ governance:
     longform_content: qmd-pages
     visual_system: styles
   editable_later_by_app:
-  - navigation labels and routes
-  - page registry and publication status
-  - module order, phase, card title and card summary
-  - editable regions declared per page or collection
+    - navigation labels and routes
+    - page registry and publication status
+    - module order, phase, card title and card summary
+    - editable regions declared per page or collection
   not_app_managed_in_public_site:
-  - rendered Quarto layout chrome
-  - scientific longform body without editorial review
-  - scripts that generate teaching data
-  - visual design tokens without frontend review
+    - rendered Quarto layout chrome
+    - scientific longform body without editorial review
+    - scripts that generate teaching data
+    - visual design tokens without frontend review
   statuses:
-  - draft
-  - review
-  - published
-  - archived
+    - draft
+    - review
+    - published
+    - archived
+
 navigation:
   cta:
     id: start-module-01
     label: Começar M01
-    href: modules/modulo01-revisao-de-genetica-basica.qmd
+    href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
     type: module
   primary:
-  - id: home
-    label: Início
-    href: index.qmd
-    type: page
-  - id: platform
-    label: Plataforma
-    href: plataforma.qmd
-    type: page
-  - id: modules
-    label: Módulos
-    href: modules/index.qmd
-    type: collection
-  - id: study-path
-    label: Roteiro
-    href: semanas/index.qmd
-    type: page
-  - id: certificate
-    label: Certificado
-    href: certificado.qmd
-    type: utility
-  - id: about
-    label: Sobre
-    href: perfil.qmd
-    type: page
+    - id: home
+      label: Início
+      href: index.qmd
+      type: page
+    - id: modules
+      label: Módulos
+      href: modules/index.qmd
+      type: collection
+    - id: study-path
+      label: Roteiro
+      href: semanas/index.qmd
+      type: page
+    - id: certificate
+      label: Certificado
+      href: certificado.qmd
+      type: utility
+    - id: about
+      label: Sobre
+      href: perfil.qmd
+      type: page
   footer:
-  - id: home
-    label: Início
-    href: index.qmd
-  - id: platform
-    label: Plataforma
-    href: plataforma.qmd
-  - id: modules
-    label: Módulos
-    href: modules/index.qmd
-  - id: study-path
-    label: Roteiro
-    href: semanas/index.qmd
-  - id: certificate
-    label: Certificado
-    href: certificado.qmd
-  - id: about
-    label: Sobre
-    href: perfil.qmd
-  - id: feedback
-    label: Feedback
-    href: https://github.com/Mgenetica/mgenetica/issues/new
+    - id: home
+      label: Início
+      href: index.qmd
+    - id: modules
+      label: Módulos
+      href: modules/index.qmd
+    - id: study-path
+      label: Roteiro
+      href: semanas/index.qmd
+    - id: certificate
+      label: Certificado
+      href: certificado.qmd
+    - id: about
+      label: Sobre
+      href: perfil.qmd
+    - id: feedback
+      label: Feedback
+      href: https://github.com/Mgenetica/mgenetica/issues/new
+
 content_pages:
   editable_by_app: true
   editorial_patterns:
-  - hero
-  - home-redesign
-  - home-hero
-  - home-paths
-  - home-curriculum
-  - home-proof-strip
-  - hero-panel-proof
-  - page-hero
-  - hero-signal
-  - hero-action-note
-  - hero-action-note-hint
-  - public-wayfinding
-  - home-wayfinding
-  - public-session-check
-  - home-trust-anchors
-  - home-first-session
-  - home-output-standard
-  - home-path-contract
-  - learning-loop
-  - phase-preview
-  - module-grid
-  - module-anatomy
-  - entry-decision
-  - resource-grid
-  - modules-completion-flow
-  - modules-wayfinding
-  - modules-output-route
-  - modules-evidence-standard
-  - modules-next-step
-  - modules-next-step-hint
-  - route-overview
-  - route-finish-band
-  - route-wayfinding
-  - route-session-check
-  - home-orientation
-  - home-audience
-  - home-start-criteria
-  - home-returning
-  - home-readiness
-  - home-continuity
-  - home-evidence
-  - home-outcome-map
-  - utility-examples
-  - utility-query-plan
-  - utility-evidence-route
-  - utility-wayfinding
-  - utility-session-check
-  - utility-no-result
-  - utility-result-close
-  - utility-decision
-  - modules-certificate-route
-  - route-week-decision
-  - route-session-plan
-  - route-output-check
-  - route-start-today
-  - route-session-split
-  - route-evidence-ladder
-  - route-recovery-plan
-  - route-phase-handoff
-  - route-weekly-output
-  - route-table-guide
-  - certificate-preview
-  - certificate-form
-  - certificate-noscript
-  - certificate-readiness-guide
-  - certificate-scope
-  - certificate-decision
-  - certificate-recovery
-  - certificate-wayfinding
-  - certificate-next-use
-  - certificate-identity-note
-  - certificate-final-check
-  - certificate-evidence-review
-  - certificate-session-check
-  - certificate-pending-hint
-  - about-next-step
-  - about-route
-  - about-credibility
-  - about-public-contract
-  - about-editorial-boundary
-  - about-wayfinding
-  - about-visitor-path
-  - module-phase-note
-  - module-phase-start
-  - module-reading-rhythm
-  - module-session-plan
-  - module-technical-scan
-  - module-script-lab
-  - module-takeaways
-  - module-after-quiz
-  - module-close-check
-  - module-return-note
-  - module-evidence-path
-  - module-practice-contract
-  - final-cta
-  - final-cta-hint
-  items:
-  - id: home
-    title: MGenética
-    href: index.qmd
-    role: public-home
-    status: review
-    editable_regions:
+    - hero
     - home-redesign
     - home-hero
     - home-paths
     - home-curriculum
     - home-proof-strip
-    - final-cta
-    source_collections:
-    - modules
-  - id: platform
-    title: Plataforma do aluno
-    href: plataforma.qmd
-    role: utility
-    status: review
-  - id: modules-index
-    title: Módulos
-    href: modules/index.qmd
-    role: collection-index
-    status: review
-    source_collection: modules
-    editable_regions:
-    - hero
-    - wayfinding
-    - guidance
-    - output-route
-    - completion-flow
-    - evidence-standard
-    - phases
+    - hero-panel-proof
+    - page-hero
+    - hero-signal
+    - hero-action-note
+    - hero-action-note-hint
+    - public-wayfinding
+    - home-wayfinding
+    - public-session-check
+    - home-trust-anchors
+    - home-first-session
+    - home-output-standard
+    - home-path-contract
+    - learning-loop
+    - phase-preview
     - module-grid
-    - certificate-route
-    - next-step
-  - id: study-path
-    title: Roteiro de estudo
-    href: semanas/index.qmd
-    role: study-plan
-    status: review
-    editable_regions:
-    - hero
-    - wayfinding
-    - route-checkpoints
+    - module-anatomy
+    - entry-decision
+    - resource-grid
+    - modules-completion-flow
+    - modules-wayfinding
+    - modules-output-route
+    - modules-evidence-standard
+    - modules-next-step
+    - modules-next-step-hint
     - route-overview
+    - route-finish-band
+    - route-wayfinding
+    - route-session-check
+    - home-orientation
+    - home-audience
+    - home-start-criteria
+    - home-returning
+    - home-readiness
+    - home-continuity
+    - home-evidence
+    - home-outcome-map
+    - utility-examples
+    - utility-query-plan
+    - utility-evidence-route
+    - utility-wayfinding
+    - utility-session-check
+    - utility-no-result
+    - utility-result-close
+    - utility-decision
+    - modules-certificate-route
     - route-week-decision
-    - route-start-today
-    - route-recovery-plan
     - route-session-plan
     - route-output-check
+    - route-start-today
     - route-session-split
     - route-evidence-ladder
+    - route-recovery-plan
     - route-phase-handoff
     - route-weekly-output
-    - route-map-intro
     - route-table-guide
-    - routine
-    - route-finish
-    - session-check
-  - id: search
-    title: Busca
-    href: busca.qmd
-    role: utility
-    status: review
-    editable_regions:
-    - hero
-    - wayfinding
-    - utility-flow
-    - utility-decision
-    - utility-evidence-route
-    - utility-examples
-    - utility-query-plan
-    - utility-no-result
-    - utility-result-close
-    - utility-panel-hint
-    - search-panel
-    - utility-next-step
-    - session-check
-  - id: glossary
-    title: Glossário técnico
-    href: glossario.qmd
-    role: reference
-    status: review
-    editable_regions:
-    - hero
-    - wayfinding
-    - utility-flow
-    - utility-decision
-    - utility-evidence-route
-    - utility-examples
-    - utility-query-plan
-    - utility-no-result
-    - utility-result-close
-    - utility-panel-hint
-    - glossary-panel
-    - utility-next-step
-    - session-check
-  - id: certificate
-    title: Certificado de Conclusão
-    href: certificado.qmd
-    role: utility
-    status: review
-    editable_regions:
-    - hero
-    - wayfinding
-    - certificate-intro
-    - certificate-scope
-    - certificate-readiness
-    - certificate-decision
-    - certificate-evidence-review
-    - certificate-recovery
-    - certificate-next-use
-    - certificate-identity
-    - certificate-final-check
-    - session-check
     - certificate-preview
     - certificate-form
     - certificate-noscript
-    - certificate-gate
-  - id: about
-    title: Sobre
-    href: perfil.qmd
-    role: institutional
-    status: review
-    editable_regions:
-    - hero
-    - wayfinding
-    - public-page-triad
-    - about-route
-    - credibility
-    - public-contract
-    - editorial-boundary
-    - visitor-path
-    - principles
-    - site-map
+    - certificate-readiness-guide
+    - certificate-scope
+    - certificate-decision
+    - certificate-recovery
+    - certificate-wayfinding
+    - certificate-next-use
+    - certificate-identity-note
+    - certificate-final-check
+    - certificate-evidence-review
+    - certificate-session-check
+    - certificate-pending-hint
     - about-next-step
+    - about-route
+    - about-credibility
+    - about-public-contract
+    - about-editorial-boundary
+    - about-wayfinding
+    - about-visitor-path
+    - module-phase-note
+    - module-phase-start
+    - module-reading-rhythm
+    - module-session-plan
+    - module-technical-scan
+    - module-script-lab
+    - module-takeaways
+    - module-after-quiz
+    - module-close-check
+    - module-return-note
+    - module-evidence-path
+    - module-practice-contract
+    - final-cta
+    - final-cta-hint
+  items:
+    - id: home
+      title: MGenética
+      href: index.qmd
+      role: public-home
+      status: review
+      editable_regions:
+        - home-redesign
+        - home-hero
+        - home-paths
+        - home-curriculum
+        - home-proof-strip
+        - final-cta
+      source_collections:
+        - modules
+    - id: modules-index
+      title: Módulos
+      href: modules/index.qmd
+      role: collection-index
+      status: review
+      source_collection: modules
+      editable_regions:
+        - hero
+        - wayfinding
+        - guidance
+        - output-route
+        - completion-flow
+        - evidence-standard
+        - phases
+        - module-grid
+        - certificate-route
+        - next-step
+    - id: study-path
+      title: Roteiro de estudo
+      href: semanas/index.qmd
+      role: study-plan
+      status: review
+      editable_regions:
+        - hero
+        - wayfinding
+        - route-checkpoints
+        - route-overview
+        - route-week-decision
+        - route-start-today
+        - route-recovery-plan
+        - route-session-plan
+        - route-output-check
+        - route-session-split
+        - route-evidence-ladder
+        - route-phase-handoff
+        - route-weekly-output
+        - route-map-intro
+        - route-table-guide
+        - routine
+        - route-finish
+        - session-check
+    - id: search
+      title: Busca
+      href: busca.qmd
+      role: utility
+      status: review
+      editable_regions:
+        - hero
+        - wayfinding
+        - utility-flow
+        - utility-decision
+        - utility-evidence-route
+        - utility-examples
+        - utility-query-plan
+        - utility-no-result
+        - utility-result-close
+        - utility-panel-hint
+        - search-panel
+        - utility-next-step
+        - session-check
+    - id: glossary
+      title: Glossário técnico
+      href: glossario.qmd
+      role: reference
+      status: review
+      editable_regions:
+        - hero
+        - wayfinding
+        - utility-flow
+        - utility-decision
+        - utility-evidence-route
+        - utility-examples
+        - utility-query-plan
+        - utility-no-result
+        - utility-result-close
+        - utility-panel-hint
+        - glossary-panel
+        - utility-next-step
+        - session-check
+    - id: certificate
+      title: Certificado de Conclusão
+      href: certificado.qmd
+      role: utility
+      status: review
+      editable_regions:
+        - hero
+        - wayfinding
+        - certificate-intro
+        - certificate-scope
+        - certificate-readiness
+        - certificate-decision
+        - certificate-evidence-review
+        - certificate-recovery
+        - certificate-next-use
+        - certificate-identity
+        - certificate-final-check
+        - session-check
+        - certificate-preview
+        - certificate-form
+        - certificate-noscript
+        - certificate-gate
+    - id: about
+      title: Sobre
+      href: perfil.qmd
+      role: institutional
+      status: review
+      editable_regions:
+        - hero
+        - wayfinding
+        - public-page-triad
+        - about-route
+        - credibility
+        - public-contract
+        - editorial-boundary
+        - visitor-path
+        - principles
+        - site-map
+        - about-next-step
+
 content_collections:
   modules:
     label: Módulos do curso
@@ -331,325 +322,197 @@ content_collections:
     item_type: learning-module
     default_status: review
     editable_regions:
-    - header
-    - objectives
-    - orientation
-    - reading-rhythm
-    - body
-    - exercise
-    - evidence-path
-    - takeaways
-    - quiz
-    - after-quiz
-    - return-note
-    - navigation
+      - header
+      - objectives
+      - orientation
+      - reading-rhythm
+      - body
+      - exercise
+      - evidence-path
+      - takeaways
+      - quiz
+      - after-quiz
+      - return-note
+      - navigation
     phases:
-    - id: fundamentos
-      order: 1
-      label: Fundamentos
-      summary: Linguagem genética, ação gênica e genética de populações.
-      index_summary: Linguagem genética, ação gênica e genética de populações.
-      modules:
-      - modulo01
-      - modulo02
-      - modulo03
-      - modulo04
-      - modulo05
-    - id: quantitativa
-      order: 2
-      label: Genética quantitativa
-      summary: Fenótipo, variâncias, herdabilidade, repetibilidade e correlações.
-      index_summary: Fenótipo, variâncias, herdabilidade, repetibilidade e correlações.
-      modules:
-      - modulo06
-      - modulo07
-      - modulo08
-      - modulo09
-      - modulo10
-      - modulo11
-      - modulo12
-    - id: selecao
-      order: 3
-      label: Seleção e acasalamentos
-      summary: Seleção, parentesco, endogamia, cruzamentos e avaliação genética.
-      index_summary: Seleção, parentesco, endogamia, cruzamentos e avaliação genética.
-      modules:
-      - modulo13
-      - modulo14
-      - modulo15
-      - modulo16
-      - modulo17
-    - id: genomica
-      order: 4
-      label: Genômica aplicada
-      summary: Marcadores, controle de qualidade, matrizes, GWAS, predição e projeto final.
-      index_summary: Marcadores, controle de qualidade, matrizes, GWAS, predição e projeto final.
-      modules:
-      - modulo18
-      - modulo19
-      - modulo20
-      - modulo21
+      - id: fundamentos
+        order: 1
+        label: Fundamentos
+        summary: Melhoramento animal e bases da genética quantitativa.
+        index_summary: Módulos 01-02 apresentam a lógica do melhoramento animal e a decomposição genética do fenótipo.
+        modules: [modulo01, modulo02]
+      - id: dados-parametros
+        order: 2
+        label: Dados e parâmetros
+        summary: Exploração, variâncias, herdabilidade e correlações.
+        index_summary: Módulos 03-06 conectam exploração, variância, herdabilidade, repetibilidade e correlações.
+        modules: [modulo03, modulo04, modulo05, modulo06]
+      - id: modelagem
+        order: 3
+        label: Modelagem
+        summary: Modelos mistos, BLUP, pedigree e parentesco.
+        index_summary: Módulos 07-09 avançam para modelos mistos, BLUP, pedigree e parentesco.
+        modules: [modulo07, modulo08, modulo09]
+      - id: genomica
+        order: 4
+        label: Genômica
+        summary: SNPs, controle de qualidade, matrizes, GWAS e predição.
+        index_summary: Módulos 10-12 introduzem SNPs, controle de qualidade, matrizes genômicas, GWAS e predição.
+        modules: [modulo10, modulo11, modulo12]
     items:
-    - id: modulo01
-      order: 1
-      title: Revisão de genética básica
-      card_title: Revisão de genética básica
-      card_summary: Pergunta simples
-      phase_id: fundamentos
-      status: review
-      href: modules/modulo01-revisao-de-genetica-basica.qmd
-      script:
-      quiz: quizzes/quiz-01.json
-      previous:
-      next: modulo02
-    - id: modulo02
-      order: 2
-      title: Modos de ação gênica
-      card_title: Modos de ação gênica
-      card_summary: Pergunta simples
-      phase_id: fundamentos
-      status: review
-      href: modules/modulo02-modos-de-acao-genica.qmd
-      script:
-      quiz: quizzes/quiz-02.json
-      previous: modulo01
-      next: modulo03
-    - id: modulo03
-      order: 3
-      title: 'Genética de populações I: frequências alélicas e genotípicas'
-      card_title: 'Genética de populações I: frequências alélicas e genotípicas'
-      card_summary: Pergunta simples
-      phase_id: fundamentos
-      status: review
-      href: modules/modulo03-genetica-de-populacoes-i-frequencias-alelicas-e-genotipicas.qmd
-      script:
-      quiz: quizzes/quiz-03.json
-      previous: modulo02
-      next: modulo04
-    - id: modulo04
-      order: 4
-      title: Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo
-      card_title: Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo
-      card_summary: Pergunta simples
-      phase_id: fundamentos
-      status: review
-      href: modules/modulo04-hardy-weinberg-alelos-multiplos-e-genes-ligados-ao-sexo.qmd
-      script:
-      quiz: quizzes/quiz-04.json
-      previous: modulo03
-      next: modulo05
-    - id: modulo05
-      order: 5
-      title: Fatores que alteram frequências gênicas
-      card_title: Fatores que alteram frequências gênicas
-      card_summary: Pergunta simples
-      phase_id: fundamentos
-      status: review
-      href: modules/modulo05-fatores-que-alteram-frequencias-genicas.qmd
-      script:
-      quiz: quizzes/quiz-05.json
-      previous: modulo04
-      next: modulo06
-    - id: modulo06
-      order: 6
-      title: 'Valores e médias: fenótipo, genótipo e ambiente'
-      card_title: 'Valores e médias: fenótipo, genótipo e ambiente'
-      card_summary: Pergunta simples
-      phase_id: quantitativa
-      status: review
-      href: modules/modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd
-      script:
-      quiz: quizzes/quiz-06.json
-      previous: modulo05
-      next: modulo07
-    - id: modulo07
-      order: 7
-      title: "Noções de genética quantitativa"
-      card_title: "Noções de genética quantitativa"
-      card_summary: Pergunta simples
-      phase_id: quantitativa
-      status: review
-      href: modules/modulo07-nocoes-de-genetica-quantitativa.qmd
-      script:
-      quiz: quizzes/quiz-07.json
-      previous: modulo06
-      next: modulo08
-    - id: modulo08
-      order: 8
-      title: Componentes de variância
-      card_title: Componentes de variância
-      card_summary: Pergunta simples
-      phase_id: quantitativa
-      status: review
-      href: modules/modulo08-componentes-de-variancia.qmd
-      script:
-      quiz: quizzes/quiz-08.json
-      previous: modulo07
-      next: modulo09
-    - id: modulo09
-      order: 9
-      title: Herdabilidade e repetibilidade
-      card_title: Herdabilidade e repetibilidade
-      card_summary: Pergunta simples
-      phase_id: quantitativa
-      status: review
-      href: modules/modulo09-herdabilidade-e-repetibilidade.qmd
-      script:
-      quiz: quizzes/quiz-09.json
-      previous: modulo08
-      next: modulo10
-    - id: modulo10
-      order: 10
-      title: Seleção e ganho genético
-      card_title: Seleção e ganho genético
-      card_summary: Pergunta simples
-      phase_id: quantitativa
-      status: review
-      href: modules/modulo10-selecao-e-ganho-genetico.qmd
-      script:
-      quiz: quizzes/quiz-10.json
-      previous: modulo09
-      next: modulo11
-    - id: modulo11
-      order: 11
-      title: Correlações genéticas, fenotípicas e ambientais
-      card_title: Correlações genéticas, fenotípicas e ambientais
-      card_summary: Pergunta simples
-      phase_id: quantitativa
-      status: review
-      href: modules/modulo11-correlacoes-geneticas-fenotipicas-e-ambientais.qmd
-      script:
-      quiz: quizzes/quiz-11.json
-      previous: modulo10
-      next: modulo12
-    - id: modulo12
-      order: 12
-      title: Características de limiar
-      card_title: Características de limiar
-      card_summary: Pergunta simples
-      phase_id: quantitativa
-      status: review
-      href: modules/modulo12-caracteristicas-de-limiar.qmd
-      script:
-      quiz: quizzes/quiz-12.json
-      previous: modulo11
-      next: modulo13
-    - id: modulo13
-      order: 13
-      title: Endogamia e parentesco
-      card_title: Endogamia e parentesco
-      card_summary: Pergunta simples
-      phase_id: selecao
-      status: review
-      href: modules/modulo13-endogamia-e-parentesco.qmd
-      script:
-      quiz: quizzes/quiz-13.json
-      previous: modulo12
-      next: modulo14
-    - id: modulo14
-      order: 14
-      title: Cruzamentos, heterose e complementaridade
-      card_title: Cruzamentos, heterose e complementaridade
-      card_summary: Pergunta simples
-      phase_id: selecao
-      status: review
-      href: modules/modulo14-cruzamentos-heterose-e-complementaridade.qmd
-      script:
-      quiz: quizzes/quiz-14.json
-      previous: modulo13
-      next: modulo15
-    - id: modulo15
-      order: 15
-      title: 'Avaliação genética: DEP/EBV e ranking de animais'
-      card_title: 'Avaliação genética: DEP/EBV e ranking de animais'
-      card_summary: Pergunta simples
-      phase_id: selecao
-      status: review
-      href: modules/modulo15-avaliacao-genetica-dep-ebv-e-ranking-de-animais.qmd
-      script:
-      quiz: quizzes/quiz-15.json
-      previous: modulo14
-      next: modulo16
-    - id: modulo16
-      order: 16
-      title: Modelos lineares e modelos mistos
-      card_title: Modelos lineares e modelos mistos
-      card_summary: Pergunta simples
-      phase_id: selecao
-      status: review
-      href: modules/modulo16-modelos-lineares-e-modelos-mistos.qmd
-      script:
-      quiz: quizzes/quiz-16.json
-      previous: modulo15
-      next: modulo17
-    - id: modulo17
-      order: 17
-      title: BLUP e modelo animal
-      card_title: BLUP e modelo animal
-      card_summary: Pergunta simples
-      phase_id: selecao
-      status: review
-      href: modules/modulo17-blup-e-modelo-animal.qmd
-      script:
-      quiz: quizzes/quiz-17.json
-      previous: modulo16
-      next: modulo18
-    - id: modulo18
-      order: 18
-      title: Genômica, marcadores SNP e dados moleculares
-      card_title: Genômica, marcadores SNP e dados moleculares
-      card_summary: Pergunta simples
-      phase_id: genomica
-      status: review
-      href: modules/modulo18-genomica-marcadores-snp-e-dados-moleculares.qmd
-      script:
-      quiz: quizzes/quiz-18.json
-      previous: modulo17
-      next: modulo19
-    - id: modulo19
-      order: 19
-      title: Controle de qualidade de dados genômicos
-      card_title: Controle de qualidade de dados genômicos
-      card_summary: Pergunta simples
-      phase_id: genomica
-      status: review
-      href: modules/modulo19-controle-de-qualidade-de-dados-genomicos.qmd
-      script:
-      quiz: quizzes/quiz-19.json
-      previous: modulo18
-      next: modulo20
-    - id: modulo20
-      order: 20
-      title: Matrizes genômicas, GWAS e predição genômica
-      card_title: Matrizes genômicas, GWAS e predição genômica
-      card_summary: Pergunta simples
-      phase_id: genomica
-      status: review
-      href: modules/modulo20-matrizes-genomicas-gwas-e-predicao-genomica.qmd
-      script:
-      quiz: quizzes/quiz-20.json
-      previous: modulo19
-      next: modulo21
-    - id: modulo21
-      order: 21
-      title: 'Projeto final: pipeline completo de seleção'
-      card_title: 'Projeto final: pipeline completo de seleção'
-      card_summary: Pergunta simples
-      phase_id: genomica
-      status: review
-      href: modules/modulo21-projeto-final-pipeline-completo-de-selecao.qmd
-      script:
-      quiz: quizzes/quiz-21.json
-      previous: modulo20
-      next: certificate
+      - id: modulo01
+        order: 1
+        title: Introdução ao Melhoramento Animal
+        card_title: Introdução ao Melhoramento Animal
+        card_summary: Objetivos, resposta à seleção e organização de programas de melhoramento.
+        phase_id: fundamentos
+        status: review
+        href: modules/modulo01-introducao-ao-melhoramento-animal.qmd
+        script: scripts/modulo01.R
+        quiz: quizzes/quiz-01.json
+        previous: null
+        next: modulo02
+      - id: modulo02
+        order: 2
+        title: Bases da Genética Quantitativa
+        card_title: Bases da Genética Quantitativa
+        card_summary: Valor genético, fenótipo, ambiente e decomposição da variação observada.
+        phase_id: fundamentos
+        status: review
+        href: modules/modulo02-bases-da-genetica-quantitativa.qmd
+        script: scripts/modulo02.R
+        quiz: quizzes/quiz-02.json
+        previous: modulo01
+        next: modulo03
+      - id: modulo03
+        order: 3
+        title: Estatística descritiva e exploração no R
+        card_title: Estatística descritiva e exploração no R
+        card_summary: Primeiros diagnósticos, distribuição dos dados e interpretação exploratória.
+        phase_id: dados-parametros
+        status: review
+        href: modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd
+        script: scripts/modulo03.R
+        quiz: quizzes/quiz-03.json
+        previous: modulo02
+        next: modulo04
+      - id: modulo04
+        order: 4
+        title: Médias, variâncias e componentes de variância
+        card_title: Médias, variâncias e componentes
+        card_summary: Variância fenotípica, genética e ambiental como base para decisões.
+        phase_id: dados-parametros
+        status: review
+        href: modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd
+        script: scripts/modulo04.R
+        quiz: quizzes/quiz-04.json
+        previous: modulo03
+        next: modulo05
+      - id: modulo05
+        order: 5
+        title: Herdabilidade e repetibilidade
+        card_title: Herdabilidade e repetibilidade
+        card_summary: Parâmetros que conectam observações individuais à previsibilidade genética.
+        phase_id: dados-parametros
+        status: review
+        href: modules/modulo05-herdabilidade-e-repetibilidade.qmd
+        script: scripts/modulo05.R
+        quiz: quizzes/quiz-05.json
+        previous: modulo04
+        next: modulo06
+      - id: modulo06
+        order: 6
+        title: Correlações genéticas e fenotípicas
+        card_title: Correlações genéticas e fenotípicas
+        card_summary: Relações entre características e consequências indiretas da seleção.
+        phase_id: dados-parametros
+        status: review
+        href: modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd
+        script: scripts/modulo06.R
+        quiz: quizzes/quiz-06.json
+        previous: modulo05
+        next: modulo07
+      - id: modulo07
+        order: 7
+        title: Modelos lineares e modelos mistos
+        card_title: Modelos lineares e mistos
+        card_summary: Estrutura estatística para combinar efeitos fixos, aleatórios e erro.
+        phase_id: modelagem
+        status: review
+        href: modules/modulo07-modelos-lineares-e-modelos-mistos.qmd
+        script: scripts/modulo07.R
+        quiz: quizzes/quiz-07.json
+        previous: modulo06
+        next: modulo08
+      - id: modulo08
+        order: 8
+        title: BLUP e avaliação genética
+        card_title: BLUP e avaliação genética
+        card_summary: Predição de valores genéticos e comparação de candidatos à seleção.
+        phase_id: modelagem
+        status: review
+        href: modules/modulo08-blup-e-avaliacao-genetica.qmd
+        script: scripts/modulo08.R
+        quiz: quizzes/quiz-08.json
+        previous: modulo07
+        next: modulo09
+      - id: modulo09
+        order: 9
+        title: Estrutura de pedigree e parentesco
+        card_title: Pedigree e parentesco
+        card_summary: Uso de genealogia, matrizes de parentesco e conexão entre indivíduos.
+        phase_id: modelagem
+        status: review
+        href: modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd
+        script: scripts/modulo09.R
+        quiz: quizzes/quiz-09.json
+        previous: modulo08
+        next: modulo10
+      - id: modulo10
+        order: 10
+        title: Genômica e marcadores SNP
+        card_title: Genômica e marcadores SNP
+        card_summary: Entrada dos marcadores moleculares na avaliação e no controle de dados.
+        phase_id: genomica
+        status: review
+        href: modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd
+        script: scripts/modulo10.R
+        quiz: quizzes/quiz-10.json
+        previous: modulo09
+        next: modulo11
+      - id: modulo11
+        order: 11
+        title: Controle de qualidade genômico
+        card_title: Controle de qualidade genômico
+        card_summary: Filtros, consistência dos genótipos e preparação para análises genômicas.
+        phase_id: genomica
+        status: review
+        href: modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd
+        script: scripts/modulo11.R
+        quiz: quizzes/quiz-11.json
+        previous: modulo10
+        next: modulo12
+      - id: modulo12
+        order: 12
+        title: Matrizes genômicas, GWAS e predição
+        card_title: Matrizes genômicas, GWAS e predição
+        card_summary: Integração entre parentesco genômico, associação e predição genômica.
+        phase_id: genomica
+        status: review
+        href: modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd
+        script: scripts/modulo12.R
+        quiz: quizzes/quiz-12.json
+        previous: modulo11
+        next: certificate
+
 design_principles:
   public_site:
-  - editorial
-  - scientific
-  - premium
-  - content-first
+    - editorial
+    - scientific
+    - premium
+    - content-first
   admin_app:
-  - operational
-  - project-management
-  - content-maintenance
-  - publishing-control
+    - operational
+    - project-management
+    - content-maintenance
+    - publishing-control

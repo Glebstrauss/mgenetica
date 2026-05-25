@@ -43,7 +43,7 @@ Estude genética quantitativa e genômica aplicada com uma trilha curta, prátic
 
 Siga os módulos em ordem, com uma pergunta técnica por sessão.
 
-[Começar M01](modules/modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Começar pelo Módulo 01"}
+[Começar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Começar pelo Módulo 01"}
 :::
 
 ::: {.home-path-card role="listitem"}
@@ -104,7 +104,7 @@ Marcadores SNP, controle de qualidade, GWAS e predição genômica.
 :::
 :::
 
-[Ver os 21 módulos](modules/index.qmd){.btn .btn-secondary aria-label="Ver todos os módulos"}
+[Ver os 12 módulos](modules/index.qmd){.btn .btn-secondary aria-label="Ver todos os módulos"}
 [Plataforma do aluno](plataforma.qmd){.btn .btn-secondary aria-label="Abrir página da plataforma do aluno"}
 :::
 
@@ -133,7 +133,7 @@ Scripts e dados simulados para estudar sem depender de bases externas.
 
 Abra o primeiro módulo, rode o script principal e feche a sessão com uma decisão técnica.
 
-[Acessar Módulo 01](modules/modulo01-revisao-de-genetica-basica.qmd){.btn .btn-primary aria-label="Acessar Módulo 01"}
+[Acessar Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Acessar Módulo 01"}
 [Plataforma do aluno](plataforma.qmd){.btn .btn-secondary aria-label="Abrir página da plataforma do aluno"}
 :::
 :::

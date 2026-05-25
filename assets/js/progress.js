@@ -11,10 +11,7 @@
   const MODULES = [
     'modulo01', 'modulo02', 'modulo03', 'modulo04',
     'modulo05', 'modulo06', 'modulo07', 'modulo08',
-    'modulo09', 'modulo10', 'modulo11', 'modulo12',
-    'modulo13', 'modulo14', 'modulo15', 'modulo16',
-    'modulo17', 'modulo18', 'modulo19', 'modulo20',
-    'modulo21'
+    'modulo09', 'modulo10', 'modulo11', 'modulo12'
   ];
 
   const STORAGE_KEY = 'mgenetica_completed';
@@ -54,7 +51,7 @@
     bar.innerHTML =
       '<div class="mg-progress-label">' +
         '<span>' + t('progress.label', 'Progresso') + '</span>' +
-        '<span class="mg-progress-count">0/21</span>' +
+        '<span class="mg-progress-count">0/12</span>' +
       '</div>' +
       '<div class="mg-progress-bar-track">' +
         '<div class="mg-progress-bar-fill" style="width:0%"></div>' +

@@ -351,54 +351,28 @@ function buildTopicsSection(moduleRow, locale) {
   return items
 }
 
-function compactParagraphs(items = []) {
-  return items.flat().filter((item) => typeof item === 'string' && item.trim().length > 0)
-}
-
-function buildReviewQuizParagraphs(moduleRow, copy) {
-  if (!Array.isArray(moduleRow.reviewQuiz) || moduleRow.reviewQuiz.length === 0) {
-    return []
-  }
-  return moduleRow.reviewQuiz.map((item, index) => (
-    `${copy.quizLabel} ${index + 1}: ${item.question} Resposta: ${item.answer}`
-  ))
-}
-
-function buildReferenceParagraphs(moduleRow) {
-  if (!Array.isArray(moduleRow.references) || moduleRow.references.length === 0) {
-    return []
-  }
-  return moduleRow.references.map((reference) => `Referência: ${reference}`)
-}
-
 function buildSections(moduleRow, locale) {
   const copy = getLocaleCopy(locale)
   return [
     {
       eyebrow: copy.questionEyebrow,
       title: copy.questionTitle,
-      paragraphs: compactParagraphs([moduleRow.feynmanQuestion, moduleRow.intro])
+      paragraphs: [moduleRow.feynmanQuestion, moduleRow.intro]
     },
     {
       eyebrow: copy.objectiveEyebrow,
       title: copy.objectiveTitle,
-      paragraphs: compactParagraphs([moduleRow.objective, moduleRow.blockSummary])
+      paragraphs: [moduleRow.objective, moduleRow.blockSummary]
     },
     {
       eyebrow: copy.conceptEyebrow,
       title: copy.conceptTitle,
-      paragraphs: compactParagraphs([moduleRow.coreExplanation, moduleRow.formula, moduleRow.technicalNote])
+      paragraphs: [moduleRow.coreExplanation, moduleRow.technicalNote]
     },
     {
       eyebrow: copy.contextEyebrow,
       title: copy.contextTitle,
-      paragraphs: compactParagraphs([
-        moduleRow.analogy,
-        moduleRow.animalExample,
-        moduleRow.workedExample,
-        moduleRow.visualExplanation,
-        moduleRow.manualCalculation
-      ])
+      paragraphs: [moduleRow.analogy, moduleRow.animalExample, moduleRow.workedExample, moduleRow.manualCalculation]
     },
     {
       eyebrow: copy.scopeEyebrow,
@@ -408,20 +382,19 @@ function buildSections(moduleRow, locale) {
     {
       eyebrow: copy.labEyebrow,
       title: copy.labTitle,
-      paragraphs: compactParagraphs([moduleRow.labObjective, moduleRow.labObserve, moduleRow.biologicalInterpretation]),
+      paragraphs: [moduleRow.labObjective, moduleRow.labObserve],
       code: moduleRow.rScript,
       codeLabel: copy.labCodeLabel
     },
     {
       eyebrow: copy.closingEyebrow,
       title: copy.closingTitle,
-      paragraphs: compactParagraphs([
+      paragraphs: [
         `${copy.checkpointLabel}: ${moduleRow.checkpoint}`,
         `${copy.taskLabel}: ${moduleRow.task}`,
         `${copy.evidenceLabel}: ${moduleRow.completionEvidence}`,
-        ...buildReviewQuizParagraphs(moduleRow, copy),
-        ...buildReferenceParagraphs(moduleRow)
-      ])
+        `${copy.quizLabel}: ${moduleRow.quizFocus}`
+      ]
     }
   ]
 }
@@ -453,7 +426,6 @@ function formatCourseDetail(moduleRow, locale = 'pt-BR') {
     badge: `${copy.badgePrefix} ${String(moduleRow.order).padStart(2, '0')} · ${getBlockLabel(moduleRow.blockId, locale)}`,
     meta: buildMeta(moduleRow, locale),
     moduleMeta: [copy.dedicatedPage, moduleRow.legacyId, copy.moduleMetaQuiz],
-    fullText: moduleRow.fullText || '',
     sections: buildSections(moduleRow, locale)
   }
 }

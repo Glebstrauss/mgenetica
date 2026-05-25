@@ -1,53 +1,58 @@
 {
   "module": "10",
-  "title": "Quiz — Seleção e ganho genético",
-  "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
+  "title": "Quiz — Módulo 10",
+  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
   "passMark": 4,
   "questions": [
     {
-      "text": "O que é diferencial de seleção, `S`?",
+      "text": "Um marcador SNP (Single Nucleotide Polymorphism) é:",
       "options": [
-        "É a diferença entre média dos selecionados e média da população candidata.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "Uma variação em uma única posição de nucleotídeo no DNA que difere entre indivíduos.",
+        "Uma duplicação de um segmento cromossômico inteiro.",
+        "Um gene de efeito grande identificado por mapeamento QTL.",
+        "Uma variação no número total de cromossomos do animal."
       ],
       "correct": 0
     },
     {
-      "text": "Se a média dos candidatos é 100 e a média dos selecionados é 120, qual é `S`?",
+      "text": "A frequência do alelo menor (Minor Allele Frequency, MAF) é definida como:",
       "options": [
-        "`S = 20`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "A frequência do alelo mais comum no locus na população.",
+        "A frequência do alelo menos comum no locus na população.",
+        "A diferença entre as frequências dos dois alelos no locus.",
+        "O número de animais homozigotos para o alelo alternativo."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Em uma codificação SNP com valores 0, 1, 2 (número de cópias do alelo alternativo), o genótipo \"1\" representa:",
+      "options": [
+        "Homozigoto para o alelo de referência (AA).",
+        "Heterozigoto (Aa) — uma cópia de cada alelo.",
+        "Homozigoto para o alelo alternativo (aa).",
+        "Genótipo com dado faltante (missing)."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "O desequilíbrio de ligação (Linkage Disequilibrium, LD) entre dois SNPs indica que:",
+      "options": [
+        "Os alelos nos dois loci estão associados com maior frequência do que o esperado ao acaso.",
+        "Os dois loci estão obrigatoriamente em cromossomos diferentes.",
+        "As frequências dos alelos são iguais nos dois loci.",
+        "O LD sempre aumenta com a seleção artificial intensa."
       ],
       "correct": 0
     },
     {
-      "text": "Se `h2 = 0,30` e `S = 20`, qual é `R`?",
+      "text": "Plataformas de genotipagem comercial de alta densidade para bovinos tipicamente contêm:",
       "options": [
-        "`R = 6`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
+        "100 a 500 SNPs distribuídos pelo genoma.",
+        "1.000 a 5.000 SNPs em regiões candidatas.",
+        "50.000 a 800.000 SNPs distribuídos por todos os cromossomos.",
+        "Apenas 10 SNPs por cromossomo autossômico."
       ],
-      "correct": 0
-    },
-    {
-      "text": "Por que a média dos filhos não vira automaticamente a média dos pais selecionados?",
-      "options": [
-        "Porque só parte da superioridade fenotípica é atribuída à variação genética aditiva.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
-      ],
-      "correct": 0
-    },
-    {
-      "text": "Como intervalo de geração altera ganho por ano?",
-      "options": [
-        "Quanto maior o intervalo de geração, menor o ganho por ano para o mesmo `R`.",
-        "Alternativa incompatível com a explicação técnica da unidade.",
-        "Alternativa que ignora a evidência pedida no módulo."
-      ],
-      "correct": 0
+      "correct": 2
     }
   ]
 }

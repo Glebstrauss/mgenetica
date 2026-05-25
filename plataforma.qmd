@@ -32,7 +32,7 @@ A plataforma do aluno fica em um app React separado, com autenticação e funç�
 ## Enquanto isso
 
 - Para estudar conteúdo aberto agora: [ver módulos](modules/index.qmd)
-- Para começar pela trilha pública: [abrir módulo 01](modules/modulo01-revisao-de-genetica-basica.qmd)
+- Para começar pela trilha pública: [abrir módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd)
 
 ::: {.callout-note}
 ## Importante

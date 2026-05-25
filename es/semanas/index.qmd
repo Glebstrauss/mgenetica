@@ -1,6 +1,6 @@
 ---
 title: "Pista de estudio"
-subtitle: "Hoja de ruta de 21 módulos para avanzar en los módulos"
+subtitle: "Hoja de ruta de 12 semanas para avanzar en los módulos"
 page-layout: full
 toc: false
 number-sections: false
@@ -9,7 +9,7 @@ lang: es
 
 ::: {.page-hero}
 ::: {.page-hero-copy}
-# Guía de estudio en 21 módulos.
+# Guía de estudio en 12 semanas.
 
 Esta página organiza los módulos existentes en un ritmo semanal. La propuesta es estudiar un tema por semana, ejecutar el script correspondiente y registrar una breve interpretación de los resultados.
 :::
@@ -36,7 +36,7 @@ Utilice la hoja de ruta para convertir el recorrido en semanas. La siguiente acc
 ::: {.public-wayfinding-item role="listitem"}
 **Semana actual**
 
-[Abrir M01](../modules/modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Abrir el Módulo 01 desde la hoja de ruta"}
+[Abrir M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir el Módulo 01 desde la hoja de ruta"}
 :::
 
 ::: {.public-wayfinding-item role="listitem"}
@@ -66,7 +66,7 @@ No siempre es necesario que la hoja de ruta comience en la semana 1. Elija la en
 
 Utilice la semana 1 para comprender la cuestión biológica.
 
-[Abrir M01](../modules/modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Abrir el Módulo 01 desde la hoja de ruta"}
+[Abrir M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir el Módulo 01 desde la hoja de ruta"}
 :::
 
 ::: {.route-start-today-item role="listitem"}
@@ -107,7 +107,7 @@ Grabe una breve interpretación y pase al siguiente módulo.
 :::
 :::
 
-::: {.route-overview role="region" aria-label="Ritmo editorial del recorrido de 21 módulos"}
+::: {.route-overview role="region" aria-label="Ritmo editorial del recorrido de 12 semanas"}
 ::: {.route-overview-copy}
 ## Ritmo sugerido por fase
 
@@ -238,7 +238,7 @@ Antes de marcar una semana como completa, verifique si la evidencia proviene de 
 
 Úselo cuando la duda esté en el script o en un parámetro modificado.
 
-[Abrir M01](../modules/modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Abrir el Módulo 01 para revisar evidencia de código en la hoja de ruta"}
+[Abrir M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir el Módulo 01 para revisar evidencia de código en la hoja de ruta"}
 :::
 
 ::: {.route-output-check-item role="listitem"}
@@ -246,7 +246,7 @@ Antes de marcar una semana como completa, verifique si la evidencia proviene de 
 
 Úselo cuando la duda sea de comparación, parámetro o correlación.
 
-[Abrir M06](../modules/modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd){.entry-link aria-label="Abrir el Módulo 06 para revisar evidencia de tabla en la hoja de ruta"}
+[Abrir M06](../modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Abrir el Módulo 06 para revisar evidencia de tabla en la hoja de ruta"}
 :::
 
 ::: {.route-output-check-item role="listitem"}
@@ -254,7 +254,7 @@ Antes de marcar una semana como completa, verifique si la evidencia proviene de 
 
 Úselo cuando la duda esté en un patrón visual, marcador o predicción.
 
-[Abrir M21](../modules/modulo21-projeto-final-pipeline-completo-de-selecao.qmd){.entry-link aria-label="Abrir el Módulo 21 para revisar evidencia visual y genómica en la hoja de ruta"}
+[Abrir M12](../modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir el Módulo 12 para revisar evidencia visual y genómica en la hoja de ruta"}
 :::
 :::
 :::
@@ -411,18 +411,18 @@ Define evidencia mínima.
 
 | Semana | Tema | Práctica |
 |---:|---|---|
-| 1 | [Introduction to Animal Improvement](../modules/modulo01-revisao-de-genetica-basica.qmd) | Ejecute `scripts/modulo01.R` y compare grupos de selección. |
-| 2 | [Bases of Quantitative Genetics](../modules/modulo02-modos-de-acao-genica.qmd) | Relacionar fenotipo, valor genético y entorno. |
-| 3 | [Descriptive statistics and exploration in R](../modules/modulo03-genetica-de-populacoes-i-frequencias-alelicas-e-genotipicas.qmd) | Describir la distribución, media y dispersión de los datos simulados. |
-| 4 | [Means, variances, and variance components](../modules/modulo04-hardy-weinberg-alelos-multiplos-e-genes-ligados-ao-sexo.qmd) | Comparar fuentes de variación e interpretación biológica. |
-| 5 | [Heritability and repeatability](../modules/modulo05-fatores-que-alteram-frequencias-genicas.qmd) | Pruebe cómo los cambios en la varianza alteran las estimaciones. |
-| 6 | [Genetic and phenotypic correlations](../modules/modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd) | Discuta las respuestas correlacionadas con la selección. |
-| 7 | [Linear models and mixed models](../modules/modulo07-nocoes-de-genetica-quantitativa.qmd) | Separe los efectos fijos, aleatorios y el error residual. |
-| 8 | [BLUP and genetic evaluation](../modules/modulo08-componentes-de-variancia.qmd) | Interpretar el ranking de los candidatos a la selección. |
-| 9 | [Pedigree and kinship structure](../modules/modulo09-herdabilidade-e-repetibilidade.qmd) | Evaluar cómo el parentesco cambia la comparación entre individuos. |
-| 10 | [Genomics and SNP markers](../modules/modulo10-selecao-e-ganho-genetico.qmd) | Revisar la entrada de marcadores SNP en el flujo analítico. |
-| 11 | [Genomic quality control](../modules/modulo11-correlacoes-geneticas-fenotipicas-e-ambientais.qmd) | Planificar filtros para datos genómicos simulados. |
-| 12 | [Genomic arrays, GWAS and prediction](../modules/modulo21-projeto-final-pipeline-completo-de-selecao.qmd) | Conectar matriz genómica, asociación y predicción. |
+| 1 | [Introduction to Animal Improvement](../modules/modulo01-introducao-ao-melhoramento-animal.qmd) | Ejecute `scripts/modulo01.R` y compare grupos de selección. |
+| 2 | [Bases of Quantitative Genetics](../modules/modulo02-bases-da-genetica-quantitativa.qmd) | Relacionar fenotipo, valor genético y entorno. |
+| 3 | [Descriptive statistics and exploration in R](../modules/modulo03-estatistica-descritiva-e-exploracao-de-dados-no-r.qmd) | Describir la distribución, media y dispersión de los datos simulados. |
+| 4 | [Means, variances, and variance components](../modules/modulo04-medias-variancias-e-componentes-de-variancia.qmd) | Comparar fuentes de variación e interpretación biológica. |
+| 5 | [Heritability and repeatability](../modules/modulo05-herdabilidade-e-repetibilidade.qmd) | Pruebe cómo los cambios en la varianza alteran las estimaciones. |
+| 6 | [Genetic and phenotypic correlations](../modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd) | Discuta las respuestas correlacionadas con la selección. |
+| 7 | [Linear models and mixed models](../modules/modulo07-modelos-lineares-e-modelos-mistos.qmd) | Separe los efectos fijos, aleatorios y el error residual. |
+| 8 | [BLUP and genetic evaluation](../modules/modulo08-blup-e-avaliacao-genetica.qmd) | Interpretar el ranking de los candidatos a la selección. |
+| 9 | [Pedigree and kinship structure](../modules/modulo09-estrutura-de-pedigree-e-parentesco.qmd) | Evaluar cómo el parentesco cambia la comparación entre individuos. |
+| 10 | [Genomics and SNP markers](../modules/modulo10-introducao-a-genomica-e-marcadores-snp.qmd) | Revisar la entrada de marcadores SNP en el flujo analítico. |
+| 11 | [Genomic quality control](../modules/modulo11-controle-de-qualidade-de-dados-genomicos.qmd) | Planificar filtros para datos genómicos simulados. |
+| 12 | [Genomic arrays, GWAS and prediction](../modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd) | Conectar matriz genómica, asociación y predicción. |
 
 ## Rutina recomendada
 
@@ -504,7 +504,7 @@ Para validar todos los scripts a la vez, ejecute `Rscript scripts/run_all_module
 :::
 
 ::: {.section-cta role="navigation" aria-label="Acciones del hoja de ruta semanal"}
-[Iniciar M01](../modules/modulo01-revisao-de-genetica-basica.qmd){.btn .btn-primary aria-label="Iniciar el Módulo 01"}
+[Iniciar M01](../modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Iniciar el Módulo 01"}
 [Volver al índice de módulos](../modules/index.qmd){.btn .btn-secondary}
 [Entender el certificado](../certificado.qmd){.btn .btn-secondary}
 :::

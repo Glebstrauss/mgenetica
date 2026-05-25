@@ -1,0 +1,311 @@
+---
+title: "Module 01 — Introduction to Animal Improvement"
+description: "Breeding objectives, the breeder's equation and the factors that determine genetic gain."
+lang: en
+---
+
+```{=html}
+<div class="module-header">
+  <span class="module-badge">MODULE 01 · FUNDAMENTALS</span>
+  <div class="module-meta"><span>⏱ ~25 min</span><span>Level: Introductory</span></div>
+</div>
+<div class="module-objectives">
+  <h3>What will you learn</h3>
+  <ul>
+    <li>What is animal breeding and what is its biological objective</li>
+    <li>The breeder's equation: ΔG = i × h × σ<sub>THE</sub>/L</li>
+    <li>How each component of the equation affects annual genetic gain</li>
+    <li>Simulate response to selection over generations with R</li>
+  </ul>
+</div>
+<div class="module-orientation" aria-label="How to study this module">
+  <span>Reading</span>
+  <span>Simulation in R</span>
+  <span>Interpretation</span>
+</div>
+```
+
+::: {.module-reading-rhythm role="note" aria-label="Recommended reading pace for the module"}
+**Reading pace**
+
+Read first to understand the question, run the script to generate evidence and only then move on to the exercise and quiz.
+:::
+
+::: {.module-session-plan role="region" aria-label="Short module session plan"}
+::: {.module-session-plan-copy}
+**Short session plan**
+
+Use this module in a closed session: enter with a question, produce scripted evidence, and leave with a short technical decision.
+:::
+
+::: {.module-session-plan-grid role="list" aria-label="Module study session steps"}
+::: {.module-session-plan-item role="listitem"}
+**Question**
+
+Define what needs to be clearer before reading.
+:::
+
+::: {.module-session-plan-item role="listitem"}
+**Evidence**
+
+Rotate or revise the main section in R.
+:::
+
+::: {.module-session-plan-item role="listitem"}
+**Decision**
+
+Write a technical consequence before leaving.
+:::
+:::
+:::
+
+::: {.module-technical-scan role="region" aria-label="How to read the module's formulas, code and tables"}
+::: {.module-technical-scan-copy}
+**Read the technical part in three passages**
+
+Don't try to solve formula, code and table at the same time. First locate the concept, then run or follow the script, and finally interpret the output as evidence.
+:::
+
+::: {.module-technical-scan-grid role="list" aria-label="Module technical reading passages"}
+::: {.module-technical-scan-item role="listitem"}
+**Formula**
+
+Identify which terms change the decision.
+:::
+
+::: {.module-technical-scan-item role="listitem"}
+**Code**
+
+See which parameter was simulated or compared.
+:::
+
+::: {.module-technical-scan-item role="listitem"}
+**Table**
+
+Read the difference that supports the interpretation.
+:::
+:::
+:::
+
+## The problem before the formula
+
+Imagine a herd of beef cattle with an average yearling weight of 280 kg. The producer selects the heaviest animals for breeding. After a few years, the herd weighs, on average, 295 kg. What happened? The genes that contribute to greater weight have become more frequent in the population. This directed change in the genotypic average of a population over generations is what we call **animal genetic improvement**.
+
+::: {.callout-note}
+**Central concept:** Animal breeding is the intentional alteration of the frequency of favorable alleles in a population, through directed selection and mating, with the aim of shifting the genotypic average in the desired direction.
+:::
+
+The target isn't an individual champion animal — it's the **population**. What matters is how much the genetic average changes from generation to generation.
+
+## The breeder's equation
+
+The annual genetic gain (ΔG) is described by the equation:
+
+$$\Delta G = \frac{i \times r_{TI} \times \sigma_A}{L}$$
+
+Where:
+
+| Symbol | Meaning | How to increase |
+|---|---|---|
+| **i** | Selection intensity (function of % selected) | Select smaller aspect ratio |
+| **r** | Accuracy of genetic evaluation | More children, better method |
+| **σ_A** | Additive genetic standard deviation | Maintain diversity |
+| **L** | Average generation interval (years) | Use younger breeders |
+
+::: {.callout-tip}
+**Practical tip:** For mass selection (i.e., based only on the animal's own phenotype), the accuracy r ≈ √h², so ΔG = i × h² × σ_P — the most common simplified equation in books.
+:::
+
+## Simulation in R
+
+::: {.module-script-lab role="region" aria-label="Module 01 script lab"}
+::: {.module-script-lab-copy}
+**Script lab**
+
+Use the script to test how selection intensity and heritability change the expected genetic gain. The page renders the main snippets; the complete file allows you to repeat the simulation outside the browser.
+:::
+
+::: {.module-script-lab-grid role="list" aria-label="How to reproduce Module 01 script"}
+::: {.module-script-lab-item role="listitem"}
+**R script**
+
+[Open `modulo01.R`](../../scripts/modulo01.R){.entry-link aria-label="Open the full R script for Module 01"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**Generated output**
+
+[View simulated CSV](../../data/modulo01_simulado.csv){.entry-link aria-label="Open the simulated CSV generated by Module 01"}
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**What to change**
+
+Change the selection cutoff from 20% to 10% and compare `S`, `delta_G` and the accumulated gain.
+:::
+
+::: {.module-script-lab-item role="listitem"}
+**What to interpret**
+
+Explain whether increased gain justifies selecting fewer animals when diversity and generation span also matter.
+:::
+:::
+:::
+
+```r
+#| label: selecao-basica
+set.seed(101)
+
+# Population parameters
+n     <- 1000   # animais
+mu    <- 300    # média inicial (kg)
+h2    <- 0.35   # herdabilidade
+vp    <- 900    # variância fenotípica (σP = 30 kg)
+va    <- h2 * vp
+ve    <- vp - va
+
+# Gera população base
+a <- rnorm(n, 0, sqrt(va))   # valores genéticos
+e <- rnorm(n, 0, sqrt(ve))   # desvios ambientais
+p <- mu + a + e               # fenótipos
+
+# Seleciona top 20%
+sel      <- p >= quantile(p, 0.80)
+S        <- mean(p[sel]) - mean(p)   # diferencial de seleção
+delta_G  <- h2 * S
+
+cat("Média da população:      ", round(mean(p), 2), "kg\n")
+cat("Média dos selecionados:  ", round(mean(p[sel]), 2), "kg\n")
+cat("Diferencial (S):         ", round(S, 2), "kg\n")
+cat("Ganho genético (ΔG):     ", round(delta_G, 2), "kg\n")
+```
+
+```r
+#| label: progressao-geracoes
+# Simula 5 gerações de seleção
+n_ger     <- 5
+med_ger   <- numeric(n_ger + 1)
+med_ger[1] <- mean(p)
+
+for (g in seq_len(n_ger)) {
+  p_nova <- (med_ger[1] + delta_G * g) + rnorm(n, 0, sqrt(va)) + rnorm(n, 0, sqrt(ve))
+  med_ger[g + 1] <- mean(p_nova)
+}
+
+resultado <- data.frame(
+  Geração          = 0:n_ger,
+  Média_kg         = round(med_ger, 2),
+  Ganho_acumulado  = round(med_ger - med_ger[1], 2)
+)
+print(resultado)
+```
+
+```r
+#| label: efeito-herdabilidade
+# Como a herdabilidade afeta o ganho genético?
+h2_vals <- c(0.10, 0.20, 0.35, 0.50, 0.70)
+cat("\n--- Ganho genético para diferentes h² (S fixo) ---\n")
+for (h in h2_vals) {
+  cat(sprintf("h² = %.2f  →  ΔG = %.2f kg  (%.1f%% da média)\n",
+              h, h * S, 100 * h * S / mu))
+}
+```
+
+## Interpretation
+
+Looking at the progression table:
+
+- The accumulated gain increases approximately **linearly** with each generation — because the intensity of selection was kept constant and the genetic variance was not reduced (no inbreeding in this simple simulation).
+- With h² = 0.35 and selection of the top 20%, the gain per generation is ~4.5 kg — approximately **1.5% of the average** per generation.
+- Low heritability traits (fertility, survival) respond much more slowly to direct selection.
+
+::: {.callout-warning}
+**Attention:** The breeder's equation assumes that genetic variance remains constant over generations. In practice, intense selection and inbreeding reduce this variance — the real gain tends to slow down.
+:::
+
+::: {.module-evidence-path role="note" aria-label="Module evidence path"}
+**Path of evidence**
+
+Before the exercise, connect three points: which question the module opened, which script output supports the answer and which technical decision is clearer.
+:::
+
+::: {.module-practice-contract role="note" aria-label="Module practice contract"}
+**Minimal evidence for this module**
+
+Before proceeding, compare two selection intensities and write which decision increases gain without ignoring generation interval and available variance.
+:::
+
+## Proposed exercise
+
+1. Modify the code to select the **top 10%** instead of 20%. How do S and ΔG change?
+2. Keep the original intensity, but change `h2` to 0.15 (reproduction characteristic). What is the expected gain?
+3. If L = 5 years (bull used for 5 years), what is the **annual** genetic gain using the ΔG/L equation?
+
+::: {.module-study-checkpoint role="note" aria-label="Study checkpoint before the quiz"}
+**Before the quiz**
+
+Review the biological question, run the main section in R, and write a sentence linking the result to the selection decision. Then proceed to the quiz with that phrase in mind.
+:::
+
+::: {.module-takeaways role="note" aria-label="Module takeaways"}
+**What to take away from this module**
+
+- Genetic gain depends on available variation, selection intensity, accuracy and intergenerational interval.
+- The breeder's equation is most useful when it becomes a comparison between possible selection decisions.
+:::
+
+::: {.quiz-container data-module="01"}
+:::
+
+::: {.module-after-quiz role="note" aria-label="Next step after the quiz"}
+**After the quiz**
+
+If the quiz result does not reflect your interpretation, return to the excerpt in R and the proposed exercise. If it is consistent, move forward by keeping a technical phrase recorded.
+:::
+
+::: {.module-close-check role="region" aria-label="Module closing check"}
+::: {.module-close-check-copy}
+**Before changing pages**
+
+Close the module when the reading, code and quiz support the same conclusion. If any point is left open, go back through the index or search before moving forward.
+:::
+
+::: {.module-close-check-grid role="list" aria-label="Module closing criteria"}
+::: {.module-close-check-item role="listitem"}
+**Reading**
+
+The central question was answered with his words.
+:::
+
+::: {.module-close-check-item role="listitem"}
+**Code**
+
+The main output was interpreted, not just executed.
+:::
+
+::: {.module-close-check-item role="listitem"}
+**Quiz**
+
+The result confirms readiness to move forward or revise.
+:::
+:::
+:::
+
+::: {.module-return-note role="note" aria-label="How to return to the flow after this module"}
+**Come back with a decision**
+
+Before changing pages, record whether this module led to advancement, revision or consultation. Use this decision to choose the next click in the index.
+:::
+
+```{=html}
+<nav class="module-nav" aria-label="Navigation between modules">
+  <a class="module-nav-card module-nav-index" href="index.html">
+    <span>Index</span>
+    <strong>All modules</strong>
+  </a>
+  <a class="module-nav-card module-nav-next" href="modulo02-bases-da-genetica-quantitativa.html">
+    <span>Next · Module 02</span>
+    <strong>Bases of Quantitative Genetics</strong>
+  </a>
+</nav>
+```
