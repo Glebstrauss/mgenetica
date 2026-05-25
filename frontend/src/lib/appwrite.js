@@ -38,7 +38,8 @@ async function executeFunction(functionId, payload = {}, { includeCredentials = 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Appwrite-Project': APPWRITE_PROJECT_ID
+      'X-Appwrite-Project': APPWRITE_PROJECT_ID,
+      ...(readSessionFallback() ? { 'X-Fallback-Cookies': readSessionFallback() } : {})
     },
     credentials: includeCredentials ? 'include' : 'omit',
     body: JSON.stringify({
