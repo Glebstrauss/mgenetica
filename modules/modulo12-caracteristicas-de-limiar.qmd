@@ -1,16 +1,18 @@
 ---
-title: "Módulo 12 — Características de limiar"
+title: "Bloco M12 — Características de limiar"
 description: "Pergunta simples"
 ---
 
 ~~~{=html}
 <div class="module-header">
-  <span class="module-badge">MÓDULO 12 · GENÉTICA QUANTITATIVA</span>
+  <span class="module-badge">BLOCO M12 · GENÉTICA QUANTITATIVA</span>
   <div class="module-meta"><span>Texto revisado em português</span><span>Fonte: mgenetica-course-texts-2026-05-21</span></div>
 </div>
 <div class="module-orientation" aria-label="Como estudar este módulo">
   <span>Leitura</span>
-  <span>Exemplo</span>
+  <span>Conceito</span>
+  <span>Exercício</span>
+  <span>Laboratório R</span>
   <span>Quiz</span>
 </div>
 ~~~

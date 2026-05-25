@@ -14,18 +14,18 @@ number-sections: false
 <section class="modules-landing">
   <div class="modules-landing-copy">
     <span class="module-badge">TRILHA COMPLETA</span>
-    <h1>21 módulos revisados. Conceito, cálculo e decisão.</h1>
-    <p>Sequência pública atualizada com os textos de <code>mgenetica-course-texts-2026-05-21</code>: genética básica, genética quantitativa, seleção, avaliação genética e genômica aplicada.</p>
+    <h1>5 main themes. 21 study blocks.</h1>
+    <p>The MGenética course is organized as Course → Main theme → Study block → Block items. M1 to M21 are study blocks, not the main course themes.</p>
     <div class="modules-landing-actions" role="navigation" aria-label="Ações principais do índice de módulos">
       <a class="btn btn-primary" href="modulo01-revisao-de-genetica-basica.html" aria-label="Start M01">Start M01</a>
       <a class="btn btn-secondary" href="../semanas/index.html" aria-label="Study path">Study path</a>
     </div>
   </div>
   <div class="modules-landing-panel" role="note" aria-label="Resumo da trilha">
-    <strong>21 módulos</strong>
-    <span>4 fases</span>
-    <span>Textos revisados</span>
-    <span>Quiz por módulo</span>
+    <strong>5 themes</strong>
+    <span>21 blocks</span>
+    <span>5 parts per block</span>
+    <span>Quiz per block</span>
   </div>
 </section>
 ~~~
@@ -69,43 +69,51 @@ Complete os 21 quizzes e gere certificado.
 Cada módulo pede conceito, cálculo ou regra e interpretação biológica.
 :::
 
-## Fases da trilha
+## Main course themes
 
-:::: {.phase-grid role="list" aria-label="Fases da trilha MGenética"}
+:::: {.phase-grid role="list" aria-label="Main MGenética course themes"}
 ::: {.phase-card role="listitem"}
-**01 · Fundamentos**
+**01 · Foundations**
 
-Linguagem genética, ação gênica e genética de populações.
+Study blocks M1 and M2: basic genetics and modes of gene action.
 
 [Start M01](modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Abrir módulo"}
 :::
 
 ::: {.phase-card role="listitem"}
-**02 · Genética quantitativa**
+**02 · Population genetics**
 
-Fenótipo, variâncias, herdabilidade, repetibilidade e correlações.
+Study blocks M3 to M5: frequencies, Hardy-Weinberg and forces that change alleles.
+
+[Start M03](modulo03-genetica-de-populacoes-i-frequencias-alelicas-e-genotipicas.qmd){.entry-link aria-label="Abrir módulo"}
+:::
+
+::: {.phase-card role="listitem"}
+**03 · Quantitative genetics**
+
+Study blocks M6 to M12: phenotype, variance, heritability, selection and correlations.
 
 [Start M06](modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd){.entry-link aria-label="Abrir módulo"}
 :::
 
 ::: {.phase-card role="listitem"}
-**03 · Seleção e acasalamentos**
+**04 · Relationship, crossbreeding and genetic evaluation**
 
-Seleção, parentesco, endogamia, cruzamentos e avaliação genética.
+Study blocks M13 to M17: inbreeding, heterosis, EBV/DEP, mixed models and BLUP.
 
 [Start M13](modulo13-endogamia-e-parentesco.qmd){.entry-link aria-label="Abrir módulo"}
 :::
 
 ::: {.phase-card role="listitem"}
-**04 · Genômica aplicada**
+**05 · Applied genomics**
 
-Marcadores, controle de qualidade, matrizes, GWAS, predição e projeto final.
+Markers, quality control, matrices, GWAS, prediction and final project.
 
 [Start M18](modulo18-genomica-marcadores-snp-e-dados-moleculares.qmd){.entry-link aria-label="Abrir módulo"}
 :::
 ::::
 
-## Todos os módulos
+## Study blocks M1-M21
 
 :::: {.module-grid role="list" aria-label="Todos os módulos do curso"}
 ::: {.module-card role="listitem"}

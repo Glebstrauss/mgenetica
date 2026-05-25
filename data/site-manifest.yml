@@ -347,19 +347,25 @@ content_collections:
     - id: fundamentos
       order: 1
       label: Fundamentos
-      summary: Linguagem genética, ação gênica e genética de populações.
-      index_summary: Linguagem genética, ação gênica e genética de populações.
+      summary: 'Blocos de estudo M1 e M2: genética básica e modos de ação gênica.'
+      index_summary: 'Blocos de estudo M1 e M2: genética básica e modos de ação gênica.'
       modules:
       - modulo01
       - modulo02
+    - id: populacoes
+      order: 2
+      label: Genética de populações
+      summary: 'Blocos de estudo M3 a M5: frequências, Hardy-Weinberg e forças que alteram alelos.'
+      index_summary: 'Blocos de estudo M3 a M5: frequências, Hardy-Weinberg e forças que alteram alelos.'
+      modules:
       - modulo03
       - modulo04
       - modulo05
     - id: quantitativa
-      order: 2
+      order: 3
       label: Genética quantitativa
-      summary: Fenótipo, variâncias, herdabilidade, repetibilidade e correlações.
-      index_summary: Fenótipo, variâncias, herdabilidade, repetibilidade e correlações.
+      summary: 'Blocos de estudo M6 a M12: fenótipo, variância, herdabilidade, seleção e correlações.'
+      index_summary: 'Blocos de estudo M6 a M12: fenótipo, variância, herdabilidade, seleção e correlações.'
       modules:
       - modulo06
       - modulo07
@@ -368,11 +374,11 @@ content_collections:
       - modulo10
       - modulo11
       - modulo12
-    - id: selecao
-      order: 3
-      label: Seleção e acasalamentos
-      summary: Seleção, parentesco, endogamia, cruzamentos e avaliação genética.
-      index_summary: Seleção, parentesco, endogamia, cruzamentos e avaliação genética.
+    - id: avaliacao
+      order: 4
+      label: Parentesco, cruzamentos e avaliação genética
+      summary: 'Blocos de estudo M13 a M17: endogamia, heterose, DEP/EBV, modelos mistos e BLUP.'
+      index_summary: 'Blocos de estudo M13 a M17: endogamia, heterose, DEP/EBV, modelos mistos e BLUP.'
       modules:
       - modulo13
       - modulo14
@@ -380,7 +386,7 @@ content_collections:
       - modulo16
       - modulo17
     - id: genomica
-      order: 4
+      order: 5
       label: Genômica aplicada
       summary: Marcadores, controle de qualidade, matrizes, GWAS, predição e projeto final.
       index_summary: Marcadores, controle de qualidade, matrizes, GWAS, predição e projeto final.
@@ -419,7 +425,7 @@ content_collections:
       title: 'Genética de populações I: frequências alélicas e genotípicas'
       card_title: 'Genética de populações I: frequências alélicas e genotípicas'
       card_summary: Pergunta simples
-      phase_id: fundamentos
+      phase_id: populacoes
       status: review
       href: modules/modulo03-genetica-de-populacoes-i-frequencias-alelicas-e-genotipicas.qmd
       script:
@@ -431,7 +437,7 @@ content_collections:
       title: Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo
       card_title: Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo
       card_summary: Pergunta simples
-      phase_id: fundamentos
+      phase_id: populacoes
       status: review
       href: modules/modulo04-hardy-weinberg-alelos-multiplos-e-genes-ligados-ao-sexo.qmd
       script:
@@ -443,7 +449,7 @@ content_collections:
       title: Fatores que alteram frequências gênicas
       card_title: Fatores que alteram frequências gênicas
       card_summary: Pergunta simples
-      phase_id: fundamentos
+      phase_id: populacoes
       status: review
       href: modules/modulo05-fatores-que-alteram-frequencias-genicas.qmd
       script:
@@ -539,7 +545,7 @@ content_collections:
       title: Endogamia e parentesco
       card_title: Endogamia e parentesco
       card_summary: Pergunta simples
-      phase_id: selecao
+      phase_id: avaliacao
       status: review
       href: modules/modulo13-endogamia-e-parentesco.qmd
       script:
@@ -551,7 +557,7 @@ content_collections:
       title: Cruzamentos, heterose e complementaridade
       card_title: Cruzamentos, heterose e complementaridade
       card_summary: Pergunta simples
-      phase_id: selecao
+      phase_id: avaliacao
       status: review
       href: modules/modulo14-cruzamentos-heterose-e-complementaridade.qmd
       script:
@@ -563,7 +569,7 @@ content_collections:
       title: 'Avaliação genética: DEP/EBV e ranking de animais'
       card_title: 'Avaliação genética: DEP/EBV e ranking de animais'
       card_summary: Pergunta simples
-      phase_id: selecao
+      phase_id: avaliacao
       status: review
       href: modules/modulo15-avaliacao-genetica-dep-ebv-e-ranking-de-animais.qmd
       script:
@@ -575,7 +581,7 @@ content_collections:
       title: Modelos lineares e modelos mistos
       card_title: Modelos lineares e modelos mistos
       card_summary: Pergunta simples
-      phase_id: selecao
+      phase_id: avaliacao
       status: review
       href: modules/modulo16-modelos-lineares-e-modelos-mistos.qmd
       script:
@@ -587,7 +593,7 @@ content_collections:
       title: BLUP e modelo animal
       card_title: BLUP e modelo animal
       card_summary: Pergunta simples
-      phase_id: selecao
+      phase_id: avaliacao
       status: review
       href: modules/modulo17-blup-e-modelo-animal.qmd
       script:

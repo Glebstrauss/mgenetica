@@ -1,17 +1,19 @@
 ---
 lang: es
-title: "Módulo 03 — Genética de populações I: frequências alélicas e genotípicas"
+title: "Bloco M03 — Genética de populações I: frequências alélicas e genotípicas"
 description: "Pergunta simples"
 ---
 
 ~~~{=html}
 <div class="module-header">
-  <span class="module-badge">MÓDULO 03 · FUNDAMENTOS</span>
+  <span class="module-badge">BLOCO M03 · FUNDAMENTOS</span>
   <div class="module-meta"><span>Texto revisado en portugués</span><span>Fonte: mgenetica-course-texts-2026-05-21</span></div>
 </div>
 <div class="module-orientation" aria-label="Como estudar este módulo">
-  <span>Leitura</span>
-  <span>Exemplo</span>
+  <span>Lectura</span>
+  <span>Concepto</span>
+  <span>Ejercicio</span>
+  <span>Laboratorio R</span>
   <span>Quiz</span>
 </div>
 ~~~

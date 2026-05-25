@@ -150,7 +150,7 @@ function normalizeAppError(err, messages = {}) {
   if (/missing_admin_api_key|appwrite_function_api_key|function execution failed|appwrite function returned an error/i.test(message)) {
     return messages.servicesUnavailable || 'Learning services are temporarily unavailable. Please try again in a moment.'
   }
-  if (/auth_required|session rejected|session not accepted|role:\s*guests|missing scopes/i.test(message)) {
+  if (/auth_required|session rejected|session not accepted|role:\s*guests|missing scopes|execute permission/i.test(message)) {
     return messages.sessionRequired || 'Your session expired or was not accepted. Refresh and sign in again.'
   }
   return message || messages.generic || 'Could not complete the request.'

@@ -2,13 +2,24 @@ import React from 'react'
 import Icon from './components/Icon'
 import { BRAND_LOGO_URL } from './lib/branding'
 
-function SectionCard({ eyebrow, title, paragraphs, code, codeLabel }) {
+function InlineText({ text }) {
+  const parts = String(text || '').split(/(`[^`]+`)/g).filter(Boolean)
+  return parts.map((part, index) => {
+    if (part.startsWith('`') && part.endsWith('`')) {
+      return <code key={index}>{part.slice(1, -1)}</code>
+    }
+    return <React.Fragment key={index}>{part}</React.Fragment>
+  })
+}
+
+function SectionCard({ eyebrow, title, paragraphs, code, codeLabel, part, scientific }) {
   return (
-    <section className="section-card">
+    <section className={'section-card lesson-section' + (scientific ? ' scientific-section' : '')}>
       {eyebrow ? <div className="section-eyebrow">{eyebrow}</div> : null}
       <h3>{title}</h3>
+      {part ? <div className="lesson-part-chip">{part}</div> : null}
       <div className="stack">
-        {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        {paragraphs.map((paragraph) => <p key={paragraph}><InlineText text={paragraph} /></p>)}
       </div>
       {code ? (
         <div className="code-panel" style={{ marginTop: 18 }}>
@@ -23,19 +34,14 @@ function SectionCard({ eyebrow, title, paragraphs, code, codeLabel }) {
   )
 }
 
-function FullTextSection({ text }) {
-  if (!text) return null
+function StudyPath({ detail }) {
   return (
-    <section className="section-card">
-      <div className="section-eyebrow">Texto completo</div>
-      <h3>Texto revisado da unidade</h3>
-      <p>Conteúdo integral importado do pacote de textos do curso.</p>
-      <div className="code-panel" style={{ marginTop: 18 }}>
-        <div className="code-caption">
-          <strong>Markdown original</strong>
-          <span>MD</span>
-        </div>
-        <pre className="code-block"><code>{text}</code></pre>
+    <section className="section-card study-path-card">
+      <div className="section-eyebrow">{detail.courseTitle}</div>
+      <h3>{detail.hierarchy}</h3>
+      <p>{detail.blockTitle}: {detail.blockSummary}</p>
+      <div className="study-parts study-parts-large" aria-label={detail.hierarchy}>
+        {detail.studyParts.map((part) => <span key={part.id}>{part.label}</span>)}
       </div>
     </section>
   )
@@ -91,7 +97,7 @@ export default function CoursePage({ course, detail, progress, onBack, onOpenQui
       </header>
       <a className="skip-link" href="#main-content">{t('common.skipToContent') || 'Skip to content'}</a>
       {detail ? (
-        <main id="main-content" className="stack" tabIndex="-1">
+        <main id="main-content" className="course-content stack" tabIndex="-1">
           <article className="module-card">
             <div className="module-header">
               <div className="badge-row">
@@ -105,6 +111,7 @@ export default function CoursePage({ course, detail, progress, onBack, onOpenQui
             <h2 className="module-title">{detail.title}</h2>
             <p className="module-description">{detail.description}</p>
           </article>
+          <StudyPath detail={detail} />
           <section className="section-card">
             <div className="section-eyebrow">{t('coursePage.progressEyebrow')}</div>
             <h3>{t('coursePage.progressTitle')}</h3>
@@ -131,9 +138,10 @@ export default function CoursePage({ course, detail, progress, onBack, onOpenQui
               paragraphs={section.paragraphs}
               code={section.code}
               codeLabel={section.codeLabel}
+              part={detail.studyParts.find((part) => part.id === section.part)?.label}
+              scientific={section.scientific}
             />
           ))}
-          <FullTextSection text={detail.fullText} />
           <section className="section-card">
             <div className="section-eyebrow">{t('coursePage.actionEyebrow')}</div>
             <h3>{t('coursePage.actionTitle')}</h3>

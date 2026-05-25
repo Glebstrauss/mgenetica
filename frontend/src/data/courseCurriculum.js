@@ -14,6 +14,67 @@ const BLOCK_LABELS = {
   }
 }
 
+const COURSE_LABELS = {
+  courseTitle: {
+    'pt-BR': 'Curso MGenética',
+    en: 'MGenética Course',
+    es: 'Curso MGenética'
+  },
+  studyBlock: {
+    'pt-BR': 'Bloco de estudo',
+    en: 'Study block',
+    es: 'Bloque de estudio'
+  },
+  mainTheme: {
+    'pt-BR': 'Tema principal',
+    en: 'Main theme',
+    es: 'Tema principal'
+  },
+  hierarchy: {
+    'pt-BR': 'Curso -> Tema principal -> Bloco de estudo -> Itens do bloco',
+    en: 'Course -> Main theme -> Study block -> Block items',
+    es: 'Curso -> Tema principal -> Bloque de estudio -> Items del bloque'
+  }
+}
+
+const STUDY_PART_LABELS = {
+  reading: { 'pt-BR': 'Leitura', en: 'Reading', es: 'Lectura' },
+  concept: { 'pt-BR': 'Conceito', en: 'Concept', es: 'Concepto' },
+  exercise: { 'pt-BR': 'Exercício', en: 'Exercise', es: 'Ejercicio' },
+  lab: { 'pt-BR': 'Laboratório R', en: 'R Lab', es: 'Laboratorio R' },
+  quiz: { 'pt-BR': 'Quiz', en: 'Quiz', es: 'Cuestionario' }
+}
+
+const THEME_SUMMARIES = {
+  fundamentos: {
+    'pt-BR': 'Base genética antes de populações e genética quantitativa.',
+    en: 'Genetic foundations before populations and quantitative genetics.',
+    es: 'Base genética antes de poblaciones y genética cuantitativa.'
+  },
+  populacoes: {
+    'pt-BR': 'Frequências, equilíbrio e forças que mudam alelos em rebanhos.',
+    en: 'Frequencies, equilibrium and forces that change alleles in herds.',
+    es: 'Frecuencias, equilibrio y fuerzas que cambian alelos en rebaños.'
+  },
+  quantitativa: {
+    'pt-BR': 'Variação contínua, parâmetros, seleção e respostas correlacionadas.',
+    en: 'Continuous variation, parameters, selection and correlated responses.',
+    es: 'Variación continua, parámetros, selección y respuestas correlacionadas.'
+  },
+  avaliacao: {
+    'pt-BR': 'Parentesco, cruzamentos, modelos e avaliação genética para decisão.',
+    en: 'Relationship, crossbreeding, models and genetic evaluation for decisions.',
+    es: 'Parentesco, cruzamientos, modelos y evaluación genética para decisión.'
+  },
+  genomica: {
+    'pt-BR': 'Marcadores, controle de qualidade, matrizes, predição e projeto final.',
+    en: 'Markers, quality control, matrices, prediction and final project.',
+    es: 'Marcadores, control de calidad, matrices, predicción y proyecto final.'
+  }
+}
+
+const THEME_ORDER = ['fundamentos', 'populacoes', 'quantitativa', 'avaliacao', 'genomica']
+
 const MODULE_LOCALIZATION = {
   'module-01': {
     en: {
@@ -325,6 +386,17 @@ function getBlockLabel(blockId, locale) {
   return BLOCK_LABELS[blockId]?.[locale] || BLOCK_LABELS[blockId]?.['pt-BR'] || blockId
 }
 
+function getLocalizedText(source, locale) {
+  return source?.[locale] || source?.['pt-BR'] || ''
+}
+
+function getStudyParts(locale) {
+  return ['reading', 'concept', 'exercise', 'lab', 'quiz'].map((id) => ({
+    id,
+    label: getLocalizedText(STUDY_PART_LABELS[id], locale)
+  }))
+}
+
 function getLocalizedModule(moduleRow, locale) {
   if (locale === 'pt-BR') return { title: moduleRow.title, objective: moduleRow.objective }
   const localized = MODULE_LOCALIZATION[moduleRow.id]?.[locale]
@@ -377,17 +449,21 @@ function buildSections(moduleRow, locale) {
     {
       eyebrow: copy.questionEyebrow,
       title: copy.questionTitle,
-      paragraphs: compactParagraphs([moduleRow.feynmanQuestion, moduleRow.intro])
+      paragraphs: compactParagraphs([moduleRow.feynmanQuestion, moduleRow.intro]),
+      part: 'reading'
     },
     {
       eyebrow: copy.objectiveEyebrow,
       title: copy.objectiveTitle,
-      paragraphs: compactParagraphs([moduleRow.objective, moduleRow.blockSummary])
+      paragraphs: compactParagraphs([moduleRow.objective, moduleRow.blockSummary]),
+      part: 'reading'
     },
     {
       eyebrow: copy.conceptEyebrow,
       title: copy.conceptTitle,
-      paragraphs: compactParagraphs([moduleRow.coreExplanation, moduleRow.formula, moduleRow.technicalNote])
+      paragraphs: compactParagraphs([moduleRow.coreExplanation, moduleRow.formula, moduleRow.technicalNote]),
+      part: 'concept',
+      scientific: true
     },
     {
       eyebrow: copy.contextEyebrow,
@@ -398,19 +474,22 @@ function buildSections(moduleRow, locale) {
         moduleRow.workedExample,
         moduleRow.visualExplanation,
         moduleRow.manualCalculation
-      ])
+      ]),
+      part: 'exercise'
     },
     {
       eyebrow: copy.scopeEyebrow,
       title: copy.scopeTitle,
-      paragraphs: buildTopicsSection(moduleRow, locale)
+      paragraphs: buildTopicsSection(moduleRow, locale),
+      part: 'concept'
     },
     {
       eyebrow: copy.labEyebrow,
       title: copy.labTitle,
       paragraphs: compactParagraphs([moduleRow.labObjective, moduleRow.labObserve, moduleRow.biologicalInterpretation]),
       code: moduleRow.rScript,
-      codeLabel: copy.labCodeLabel
+      codeLabel: copy.labCodeLabel,
+      part: 'lab'
     },
     {
       eyebrow: copy.closingEyebrow,
@@ -421,7 +500,8 @@ function buildSections(moduleRow, locale) {
         `${copy.evidenceLabel}: ${moduleRow.completionEvidence}`,
         ...buildReviewQuizParagraphs(moduleRow, copy),
         ...buildReferenceParagraphs(moduleRow)
-      ])
+      ]),
+      part: 'quiz'
     }
   ]
 }
@@ -435,11 +515,29 @@ function formatCourseCatalog(moduleRows = [], locale = 'pt-BR') {
       order: moduleRow.order,
       blockId: moduleRow.blockId,
       blockTitle: getBlockLabel(moduleRow.blockId, locale),
+      studyBlockLabel: getLocalizedText(COURSE_LABELS.studyBlock, locale),
       title: localized.title,
       description: localized.objective,
       active: true
     }
   })
+}
+
+function formatCourseGroups(moduleRows = [], locale = 'pt-BR') {
+  const catalog = formatCourseCatalog(moduleRows, locale)
+  return THEME_ORDER.map((blockId, index) => {
+    const courses = catalog.filter((course) => course.blockId === blockId)
+    return {
+      id: blockId,
+      order: index + 1,
+      title: getBlockLabel(blockId, locale),
+      summary: getLocalizedText(THEME_SUMMARIES[blockId], locale),
+      mainThemeLabel: getLocalizedText(COURSE_LABELS.mainTheme, locale),
+      hierarchy: getLocalizedText(COURSE_LABELS.hierarchy, locale),
+      studyParts: getStudyParts(locale),
+      courses
+    }
+  }).filter((group) => group.courses.length > 0)
 }
 
 function formatCourseDetail(moduleRow, locale = 'pt-BR') {
@@ -451,11 +549,15 @@ function formatCourseDetail(moduleRow, locale = 'pt-BR') {
     title: localized.title,
     description: localized.objective,
     badge: `${copy.badgePrefix} ${String(moduleRow.order).padStart(2, '0')} · ${getBlockLabel(moduleRow.blockId, locale)}`,
+    courseTitle: getLocalizedText(COURSE_LABELS.courseTitle, locale),
+    blockTitle: getBlockLabel(moduleRow.blockId, locale),
+    blockSummary: getLocalizedText(THEME_SUMMARIES[moduleRow.blockId], locale),
+    hierarchy: getLocalizedText(COURSE_LABELS.hierarchy, locale),
+    studyParts: getStudyParts(locale),
     meta: buildMeta(moduleRow, locale),
     moduleMeta: [copy.dedicatedPage, moduleRow.legacyId, copy.moduleMetaQuiz],
-    fullText: moduleRow.fullText || '',
     sections: buildSections(moduleRow, locale)
   }
 }
 
-export { formatCourseCatalog, formatCourseDetail, getBlockLabel }
+export { formatCourseCatalog, formatCourseDetail, formatCourseGroups, getBlockLabel, getStudyParts }

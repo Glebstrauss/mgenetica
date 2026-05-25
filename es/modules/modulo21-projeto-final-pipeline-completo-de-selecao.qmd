@@ -1,17 +1,19 @@
 ---
 lang: es
-title: "Módulo 21 — Projeto final: pipeline completo de seleção"
+title: "Bloco M21 — Projeto final: pipeline completo de seleção"
 description: "Pergunta simples"
 ---
 
 ~~~{=html}
 <div class="module-header">
-  <span class="module-badge">MÓDULO 21 · GENÔMICA APLICADA</span>
+  <span class="module-badge">BLOCO M21 · GENÔMICA APLICADA</span>
   <div class="module-meta"><span>Texto revisado en portugués</span><span>Fonte: mgenetica-course-texts-2026-05-21</span></div>
 </div>
 <div class="module-orientation" aria-label="Como estudar este módulo">
-  <span>Leitura</span>
-  <span>Exemplo</span>
+  <span>Lectura</span>
+  <span>Concepto</span>
+  <span>Ejercicio</span>
+  <span>Laboratorio R</span>
   <span>Quiz</span>
 </div>
 ~~~

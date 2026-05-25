@@ -1612,7 +1612,64 @@ body {
   margin-top: 20px;
 }
 
+.theme-stack {
+  display: grid;
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.theme-section {
+  display: grid;
+  gap: 16px;
+  padding: clamp(18px, 2vw, 24px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.64);
+}
+
+.theme-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.theme-header h3 {
+  margin: 6px 0 8px;
+  color: var(--text);
+  font-size: clamp(1.22rem, 2vw, 1.55rem);
+}
+
+.theme-header p {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.study-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.study-parts span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 1px solid rgba(13, 38, 66, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
 .course-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
   padding: 18px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.6);
@@ -1639,6 +1696,7 @@ body {
   color: var(--muted);
   font-size: 0.95rem;
   margin: 8px 0 12px;
+  line-height: 1.58;
 }
 
 .course-meta {
@@ -1646,6 +1704,79 @@ body {
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.study-block-card .badge-row {
+  margin-bottom: 12px;
+}
+
+.study-block-card .course-description {
+  display: -webkit-box;
+  min-height: 4.75em;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.course-action {
+  width: 100%;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.course-content {
+  width: min(100%, 980px);
+  margin-inline: auto;
+}
+
+.lesson-section {
+  overflow: hidden;
+}
+
+.lesson-section p {
+  max-width: 78ch;
+}
+
+.lesson-section code,
+.module-description code {
+  padding: 0.12em 0.36em;
+  border-radius: 6px;
+  background: rgba(74, 159, 209, 0.12);
+  color: var(--brand);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+}
+
+.scientific-section {
+  border-color: rgba(74, 159, 209, 0.28);
+  background: linear-gradient(180deg, rgba(74, 159, 209, 0.08), rgba(255, 255, 255, 0.82));
+}
+
+.lesson-part-chip {
+  display: inline-flex;
+  margin: 0 0 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(13, 38, 66, 0.08);
+  color: var(--brand);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.study-path-card {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.study-parts-large {
+  margin-top: 16px;
+}
+
+.study-parts-large span {
+  min-height: 38px;
+  padding-inline: 12px;
 }
 
 /* Trust items */
@@ -1791,6 +1922,10 @@ body {
   .hero-section {
     grid-template-columns: 1fr;
     padding: 22px;
+  }
+
+  .theme-header {
+    grid-template-columns: 1fr;
   }
 
   .hero-features {

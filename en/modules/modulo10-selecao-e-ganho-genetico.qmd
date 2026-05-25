@@ -1,17 +1,19 @@
 ---
 lang: en
-title: "Módulo 10 — Seleção e ganho genético"
+title: "Bloco M10 — Seleção e ganho genético"
 description: "Pergunta simples"
 ---
 
 ~~~{=html}
 <div class="module-header">
-  <span class="module-badge">MÓDULO 10 · GENÉTICA QUANTITATIVA</span>
+  <span class="module-badge">STUDY BLOCK M10 · GENÉTICA QUANTITATIVA</span>
   <div class="module-meta"><span>Revised Portuguese source text</span><span>Fonte: mgenetica-course-texts-2026-05-21</span></div>
 </div>
 <div class="module-orientation" aria-label="Como estudar este módulo">
-  <span>Leitura</span>
-  <span>Exemplo</span>
+  <span>Reading</span>
+  <span>Concept</span>
+  <span>Exercise</span>
+  <span>R Lab</span>
   <span>Quiz</span>
 </div>
 ~~~

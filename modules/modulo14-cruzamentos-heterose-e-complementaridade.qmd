@@ -1,16 +1,18 @@
 ---
-title: "Módulo 14 — Cruzamentos, heterose e complementaridade"
+title: "Bloco M14 — Cruzamentos, heterose e complementaridade"
 description: "Pergunta simples"
 ---
 
 ~~~{=html}
 <div class="module-header">
-  <span class="module-badge">MÓDULO 14 · SELEÇÃO E ACASALAMENTOS</span>
+  <span class="module-badge">BLOCO M14 · SELEÇÃO E ACASALAMENTOS</span>
   <div class="module-meta"><span>Texto revisado em português</span><span>Fonte: mgenetica-course-texts-2026-05-21</span></div>
 </div>
 <div class="module-orientation" aria-label="Como estudar este módulo">
   <span>Leitura</span>
-  <span>Exemplo</span>
+  <span>Conceito</span>
+  <span>Exercício</span>
+  <span>Laboratório R</span>
   <span>Quiz</span>
 </div>
 ~~~

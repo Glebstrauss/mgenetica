@@ -30,6 +30,7 @@ build/
 *.bak
 *.swp
 *.swo
+/.superpowers/
 /appwrite-logs.txt
 /appwrite.config.json
 

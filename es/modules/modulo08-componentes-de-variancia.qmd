@@ -1,17 +1,19 @@
 ---
 lang: es
-title: "Módulo 08 — Componentes de variância"
+title: "Bloco M08 — Componentes de variância"
 description: "Pergunta simples"
 ---
 
 ~~~{=html}
 <div class="module-header">
-  <span class="module-badge">MÓDULO 08 · GENÉTICA QUANTITATIVA</span>
+  <span class="module-badge">BLOCO M08 · GENÉTICA QUANTITATIVA</span>
   <div class="module-meta"><span>Texto revisado en portugués</span><span>Fonte: mgenetica-course-texts-2026-05-21</span></div>
 </div>
 <div class="module-orientation" aria-label="Como estudar este módulo">
-  <span>Leitura</span>
-  <span>Exemplo</span>
+  <span>Lectura</span>
+  <span>Concepto</span>
+  <span>Ejercicio</span>
+  <span>Laboratorio R</span>
   <span>Quiz</span>
 </div>
 ~~~

@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useEffect, useMemo, useState} from 'react'
-import { formatCourseCatalog, formatCourseDetail } from './data/courseCurriculum'
+import { formatCourseCatalog, formatCourseDetail, formatCourseGroups } from './data/courseCurriculum'
 import Icon from './components/Icon'
 import { BRAND_LOGO_URL } from './lib/branding'
 import { buildRouteHash, parseRouteHash, routeNeedsAdmin, routeNeedsAuth } from './lib/access.mjs'
@@ -261,7 +261,7 @@ function AuthPage({ user, status, authMode, loadingAuth, isAdmin, onAuthIntent, 
   )
 }
 
-function CatalogPage({ courses, progressByCourse, progressSummary, isAdmin, onBack, onOpenCourse, onOpenAdmin, onLogout, loadingAuth, locale, onLocaleChange, t }) {
+function CatalogPage({ courseGroups, progressByCourse, progressSummary, isAdmin, onBack, onOpenCourse, onOpenAdmin, onLogout, loadingAuth, locale, onLocaleChange, t }) {
   return (
     <div className="app-shell">
       <SkipLink t={t} />
@@ -274,26 +274,42 @@ function CatalogPage({ courses, progressByCourse, progressSummary, isAdmin, onBa
         <div className="section-label">{t('catalog.label')}</div>
         <h2 className="section-heading">{t('catalog.heading')}</h2>
         <p className="section-description">{t('catalog.progressOverview', { tracked: progressSummary?.totalCoursesTracked || 0, passed: progressSummary?.passedCourses || 0, average: progressSummary?.averagePercent || 0 })}</p>
-        <div className="content-grid catalog-grid" role="list" aria-label={t('catalog.coursesAria')}>
-          {courses.map((course) => {
-            const progress = progressByCourse?.[course.id]
-            return (
-            <article className="course-card" role="listitem" key={course.id}>
-              <div className="badge-row" style={{ marginBottom: 12 }}>
-                <span className="chip">{course.legacyId}</span>
-                <span className="chip">{course.blockTitle}</span>
-                <span className="chip">{progress ? t('catalog.progressChip', { percent: progress.percent }) : t('catalog.notStarted')}</span>
+        <div className="theme-stack" role="list" aria-label={t('catalog.coursesAria')}>
+          {courseGroups.map((group) => (
+            <section className="theme-section" role="listitem" key={group.id} aria-labelledby={'theme-' + group.id}>
+              <div className="theme-header">
+                <div>
+                  <div className="section-label">{group.mainThemeLabel} {group.order}</div>
+                  <h3 id={'theme-' + group.id}>{group.title}</h3>
+                  <p>{group.summary}</p>
+                </div>
+                <div className="study-parts" aria-label={group.hierarchy}>
+                  {group.studyParts.map((part) => <span key={part.id}>{part.label}</span>)}
+                </div>
               </div>
-              <strong className="course-title">{course.title}</strong>
-              <p className="course-description">{course.description}</p>
-              <div className="course-meta" style={{ marginTop: 12 }}>
-                <span className="status-badge">{course.active ? t('common.available') : t('common.draft')}</span>
-                {progress?.passed ? <span className="status-badge">{t('catalog.passed')}</span> : null}
+              <div className="content-grid catalog-grid" role="list" aria-label={group.title}>
+                {group.courses.map((course) => {
+                  const progress = progressByCourse?.[course.id]
+                  return (
+                    <article className="course-card study-block-card" role="listitem" key={course.id}>
+                      <div className="badge-row">
+                        <span className="chip">{course.legacyId}</span>
+                        <span className="chip">{course.studyBlockLabel}</span>
+                        <span className="chip">{progress ? t('catalog.progressChip', { percent: progress.percent }) : t('catalog.notStarted')}</span>
+                      </div>
+                      <strong className="course-title">{course.title}</strong>
+                      <p className="course-description">{course.description}</p>
+                      <div className="course-meta">
+                        <span className="status-badge">{course.active ? t('common.available') : t('common.draft')}</span>
+                        {progress?.passed ? <span className="status-badge">{t('catalog.passed')}</span> : null}
+                      </div>
+                      <button type="button" className="btn btn-primary course-action" onClick={() => onOpenCourse(course.id)} aria-label={t('catalog.openCourseAria', { title: course.title })}>{t('catalog.openPage')}</button>
+                    </article>
+                  )
+                })}
               </div>
-              <button type="button" className="btn btn-primary" style={{ marginTop: 12 }} onClick={() => onOpenCourse(course.id)} aria-label={t('catalog.openCourseAria', { title: course.title })}>{t('catalog.openPage')}</button>
-            </article>
-            )
-          })}
+            </section>
+          ))}
         </div>
       </main>
     </div>
@@ -353,6 +369,7 @@ export default function App() {
   const errorMessages = useMemo(() => t('authErrors'), [t])
   const status = t(statusState.key, statusState.params)
   const catalogCourses = useMemo(() => formatCourseCatalog(catalogRows, locale), [catalogRows, locale])
+  const courseGroups = useMemo(() => formatCourseGroups(catalogRows, locale), [catalogRows, locale])
   const progressByCourse = useMemo(() => Object.fromEntries((progressReport?.records || []).map((record) => [record.courseId, record])), [progressReport])
   function isProgressReport(report) { return Array.isArray(report?.records) && typeof report?.summary === 'object' }
 
@@ -533,7 +550,7 @@ export default function App() {
     )
   }
   if (screen === 'catalog' && user) {
-    return <CatalogPage courses={catalogCourses} progressByCourse={progressByCourse} progressSummary={progressReport?.summary} isAdmin={adminEnabled} onBack={goHome} onOpenCourse={openCourse} onOpenAdmin={openAdmin} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
+    return <CatalogPage courseGroups={courseGroups} progressByCourse={progressByCourse} progressSummary={progressReport?.summary} isAdmin={adminEnabled} onBack={goHome} onOpenCourse={openCourse} onOpenAdmin={openAdmin} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
   }
   if (screen === 'admin' && user && adminEnabled) {
     return <AdminPage user={user} status={status} report={adminReport} loading={loadingAdmin} onRefresh={runAdminChecks} onBack={goHome} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
