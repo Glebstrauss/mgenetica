@@ -112,7 +112,7 @@ A busca só resolve a sessão quando devolve você para uma saída técnica. Esc
 
 Use quando o resultado apontar para script, simulação ou parâmetro.
 
-[Abrir M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Abrir o Módulo 01 para revisar evidência de código depois da busca"}
+[Abrir M01](modules/modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Abrir o Módulo 01 para revisar evidência de código depois da busca"}
 :::
 
 ::: {.utility-evidence-route-item role="listitem"}
@@ -120,7 +120,7 @@ Use quando o resultado apontar para script, simulação ou parâmetro.
 
 Use quando o resultado pedir comparação de parâmetros, variâncias ou correlações.
 
-[Abrir M06](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Abrir o Módulo 06 para revisar evidência de tabela depois da busca"}
+[Abrir M06](modules/modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd){.entry-link aria-label="Abrir o Módulo 06 para revisar evidência de tabela depois da busca"}
 :::
 
 ::: {.utility-evidence-route-item role="listitem"}
@@ -128,7 +128,7 @@ Use quando o resultado pedir comparação de parâmetros, variâncias ou correla
 
 Use quando o resultado envolver padrão visual, SNPs, GWAS ou predição.
 
-[Abrir M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Abrir o Módulo 12 para revisar evidência visual depois da busca"}
+[Abrir M21](modules/modulo21-projeto-final-pipeline-completo-de-selecao.qmd){.entry-link aria-label="Abrir o Módulo 12 para revisar evidência visual depois da busca"}
 :::
 :::
 :::

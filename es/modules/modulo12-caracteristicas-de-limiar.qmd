@@ -1,0 +1,250 @@
+---
+title: "Módulo 12 — Características de limiar"
+description: "Pergunta simples"
+---
+
+~~~{=html}
+<div class="module-header">
+  <span class="module-badge">MÓDULO 12 · GENÉTICA QUANTITATIVA</span>
+  <div class="module-meta"><span>Texto revisado en portugués</span><span>Fonte: mgenetica-course-texts-2026-05-21</span></div>
+</div>
+<div class="module-orientation" aria-label="Como estudar este módulo">
+  <span>Leitura</span>
+  <span>Exemplo</span>
+  <span>Quiz</span>
+</div>
+~~~
+
+::: {.module-reading-rhythm role="note" aria-label="Ritmo recomendado de leitura do módulo"}
+**Ritmo de leitura**
+
+Leia pergunta, conceito técnico, fórmula, exemplo, script e interpretação. Feche com checkpoint, quiz e mini tarefa.
+:::
+
+::: {.module-session-plan role="region" aria-label="Plano curto de sessão do módulo"}
+**Plano curto de sessão**
+
+Leia o texto revisado, rode mentalmente ou no R o exemplo mínimo e feche com uma decisão técnica curta.
+:::
+
+::: {.module-technical-scan role="region" aria-label="Como ler fórmulas, código e tabelas do módulo"}
+**Leia a parte técnica em três passagens**
+
+Primeiro localize o conceito. Depois confira fórmula, tabela ou script. Por fim escreva a interpretação biológica.
+:::
+
+::: {.module-script-lab role="region" aria-label="Laboratório do módulo"}
+**Laboratório do módulo**
+
+O script mínimo está no texto revisado desta unidade. Use o trecho em R como evidência reproduzível e compare a saída com a interpretação.
+:::
+
+## Pergunta simples
+
+Como genética muda uma resposta sim/não? Em uma planilha de cavalos, algumas características aparecem como categorias simples. Uma égua ficou prenhe ou não ficou. Um potro sobreviveu ou não sobreviveu. Um animal apresentou uma doença ou não apresentou. À primeira vista, parece que não existe meio-termo: o fenótipo observado é 0 ou 1, ausente ou presente, não afetado ou afetado.
+
+Mesmo assim, a causa biológica raramente é tão simples quanto a coluna da planilha. Antes de uma doença aparecer, pode existir uma soma de pequenas diferenças genéticas, nutrição, manejo, idade, estresse, exposição ao agente causador e condição corporal. Em prenhez ou sobrevivência, também pode existir uma propensão latente ao sucesso do evento. O animal só passa para a categoria registrada quando essa soma cruza certo ponto. Esse ponto é o limiar.
+
+A M12 ensina a pensar em características categóricas usando uma escala subjacente. O que observamos é sim/não. O que imaginamos por trás é uma variação contínua. Para doença, essa escala pode ser chamada de suscetibilidade. Para prenhez ou sobrevivência, é mais claro falar em propensão latente ou escala subjacente de sucesso. A genética não precisa transformar diretamente "0" em "1"; ela pode deslocar essa escala na população e, com isso, mudar a proporção de animais que passa do limiar. Essa proporção é a prevalência.
+
+## Explicação intuitiva
+
+Pense em uma nota invisível que define aprovado ou reprovado. O boletim mostra apenas duas classes: aprovado ou reprovado. Porém, por trás da classe existe uma nota contínua. Um aluno com nota 6,9 e outro com nota 2,0 aparecem na mesma categoria se o corte para aprovação é 7,0: ambos são reprovados. Ainda assim, eles não estão igualmente próximos de passar.
+
+Em características de limiar, acontece algo parecido. O registro mostra se a égua ficou prenhe, se o potro sobreviveu ou se o cavalo apresentou uma doença. Porém, por trás desse registro pode existir uma escala contínua. Um animal pode estar muito longe do limiar, outro pode estar quase cruzando o ponto de corte, e ambos podem aparecer na mesma categoria observada.
+
+Isso muda a interpretação genética. Se dois lotes de cavalos têm a mesma prevalência de uma doença em um ano, isso não prova que tenham a mesma distribuição subjacente. O ambiente pode ter empurrado um lote para perto do limiar. Da mesma forma, uma pequena mudança média na escala subjacente pode produzir grande mudança na prevalência quando muitos animais estão próximos do ponto de corte.
+
+## Conceito técnico
+
+Característica de limiar é uma característica observada em categorias, mas interpretada como resultado de uma escala subjacente contínua. A categoria aparece quando essa escala ultrapassa um limiar. Em vez de medir diretamente a escala subjacente, observamos o resultado final: afetado ou não afetado, prenhe ou vazia, vivo ou morto.
+
+Suscetibilidade é a tendência latente de um animal expressar um desfecho indesejado, como doença. Maior suscetibilidade significa maior chance de cruzar o limiar de manifestação. Para desfechos desejados, como prenhez ou sobrevivência, a mesma lógica pode ser explicada como propensão latente ao sucesso. Essa distinção evita tratar todo resultado como se fosse doença.
+
+Prevalência é a proporção de animais que aparece na categoria de interesse. Se 18 de 100 cavalos apresentam uma doença, a prevalência observada da doença é 18%. Se 72 de 100 éguas ficam prenhes, a prevalência de prenhez é 72%. A prevalência é observável; a escala subjacente é uma forma didática de explicar por que o registro sim/não ainda pode ter base quantitativa.
+
+Griffiths et al. (2016) apresentam exemplos de traços de suscetibilidade a doenças e de traços subjacentes estudados por QTL. Nesta aula, essa referência é usada de modo conservador: ela apoia a ideia de que desfechos categóricos ou clínicos podem estar ligados a variação genética e a traços subjacentes. O modelo didático de limiar será usado aqui apenas para treinar interpretação de escala subjacente, limiar e prevalência.
+
+## Fórmula
+
+Nesta unidade, não precisamos estimar herdabilidade em escala de limiar. O cálculo manual é mais simples: contar a proporção de animais acima de um ponto de corte.
+
+`prevalencia = n_acima_do_limiar / n_total`
+
+Onde:
+
+- `prevalencia` é a proporção observada na categoria de interesse;
+- `n_acima_do_limiar` é o número de animais cuja escala subjacente ficou acima do ponto de corte;
+- `n_total` é o número total de animais avaliados;
+- o resultado varia de 0 a 1, ou de 0% a 100% quando multiplicado por 100.
+
+Se a escala subjacente for representada por `x` e o limiar por `T`, a regra didática é:
+
+`animal classificado como positivo se x > T`
+
+Aqui, `x` não é uma medida real de campo. É uma escala subjacente usada para raciocinar. Em um estudo real, a escolha do modelo estatístico e da escala de análise precisa ser explícita. Nesta aula, o objetivo é entender por que uma resposta sim/não pode mudar de frequência quando a população se desloca em uma escala contínua.
+
+## Exemplo numérico
+
+Imagine 20 cavalos expostos ao mesmo desafio sanitário. Para fins didáticos, cada animal recebe uma pontuação de suscetibilidade em uma escala invisível. Quanto maior a pontuação, maior a chance de aparecer a doença. O limiar de manifestação será `T = 1,0`. Animais com `x > 1,0` serão registrados como doentes.
+
+| Animal | Suscetibilidade `x` | Registro se `T = 1,0` |
+|---:|---:|---|
+| 1 | -1,2 | não afetado |
+| 2 | -0,8 | não afetado |
+| 3 | -0,7 | não afetado |
+| 4 | -0,5 | não afetado |
+| 5 | -0,3 | não afetado |
+| 6 | -0,2 | não afetado |
+| 7 | 0,0 | não afetado |
+| 8 | 0,1 | não afetado |
+| 9 | 0,2 | não afetado |
+| 10 | 0,3 | não afetado |
+| 11 | 0,4 | não afetado |
+| 12 | 0,5 | não afetado |
+| 13 | 0,6 | não afetado |
+| 14 | 0,8 | não afetado |
+| 15 | 0,9 | não afetado |
+| 16 | 1,1 | afetado |
+| 17 | 1,2 | afetado |
+| 18 | 1,4 | afetado |
+| 19 | 1,6 | afetado |
+| 20 | 2,0 | afetado |
+
+Cinco animais ficaram acima do limiar. O cálculo da prevalência é:
+
+`prevalencia = 5 / 20 = 0,25`
+
+`prevalencia = 25%`
+
+Biologicamente, isso significa que 25% dos cavalos foram registrados como afetados no lote. O erro que queremos evitar é concluir que todos os 15 animais "não afetados" são iguais. O animal com `x = 0,9` está muito perto do limiar; o animal com `x = -1,2` está distante. Os dois aparecem como não afetados, mas não representam a mesma posição na escala subjacente.
+
+Agora mude o limiar para `T = 0,5`, mantendo os mesmos animais. Animais com `x > 0,5` passam a ser afetados. Nesse caso, oito animais ficam acima do limiar: `0,6`, `0,8`, `0,9`, `1,1`, `1,2`, `1,4`, `1,6` e `2,0`.
+
+`prevalencia = 8 / 20 = 0,40`
+
+`prevalencia = 40%`
+
+A população não mudou. O que mudou foi o ponto de corte. Isso mostra por que a prevalência depende do limiar usado para registrar a categoria. Em doença, esse limiar pode depender do critério diagnóstico. Em prenhez, depende do momento e do método de confirmação. Em sobrevivência, depende do período observado.
+
+## Curva normal com limiar
+
+Uma forma visual de pensar é imaginar uma curva normal da escala subjacente. A maior parte dos animais está perto da média. Poucos animais estão muito baixos ou muito altos. O limiar corta essa curva. A área à direita do limiar corresponde à prevalência da categoria positiva.
+
+| Situação | Limiar | Interpretação |
+|---|---:|---|
+| Limiar alto | `T = 1,5` | Poucos animais cruzam; prevalência baixa |
+| Limiar intermediário | `T = 1,0` | Alguns animais cruzam; prevalência moderada |
+| Limiar baixo | `T = 0,5` | Mais animais cruzam; prevalência maior |
+
+Se diferenças genéticas e ambientais deslocam a média da escala subjacente para cima, mais animais podem ficar à direita do limiar. Se deslocam a média para baixo, menos animais cruzam o ponto de corte. A categoria observada continua sim/não, mas a proporção de "sim" muda.
+
+## Script R mínimo
+
+```r
+set.seed(12)
+x <- rnorm(100)
+p1 <- mean(x > 1)
+p05 <- mean(x > 0.5)
+p15 <- mean(x > 1.5)
+data.frame(limiar = c(1, 0.5, 1.5),
+           prevalencia = c(p1, p05, p15))
+```
+
+O script cria 100 valores de escala subjacente em uma distribuição normal didática. Depois calcula a proporção de valores acima de três limiares. `mean(x > 1)` funciona porque o R transforma cada comparação em `TRUE` ou `FALSE`; ao calcular a média, `TRUE` conta como 1 e `FALSE` conta como 0.
+
+O resultado esperado é que o limiar menor tenha prevalência maior, e o limiar maior tenha prevalência menor. Isso é a aula inteira em forma de laboratório: quando o ponto de corte muda, a proporção de animais classificados como positivos muda.
+
+## Interpretação biológica
+
+Características de limiar exigem cuidado porque a categoria observada esconde distância ao limiar. Dois cavalos não afetados podem ter posições subjacentes muito diferentes. Dois lotes com a mesma prevalência podem ter distribuições subjacentes diferentes. Um lote pode ter muitos animais próximos do limiar e outro pode ter poucos.
+
+Genética pode mudar resposta sim/não ao contribuir para o deslocamento da escala subjacente. Se um grupo tem maior suscetibilidade média a uma doença, mais animais podem cruzar o limiar sob o mesmo ambiente. Se a suscetibilidade média diminui, menos animais cruzam. A mudança aparece como diferença de prevalência.
+
+Ambiente também muda a prevalência. Melhor manejo sanitário, menor estresse, nutrição adequada e diagnóstico mais rigoroso podem deslocar a distribuição ou alterar o limiar prático de observação. Por isso a prevalência observada não deve ser lida automaticamente como valor genético. Ela é uma proporção fenotípica registrada em uma população, em um ambiente e com um critério de classificação.
+
+Para prenhez, a leitura é parecida, mas a palavra central não é suscetibilidade à doença. O registro final pode ser prenhe ou vazia, mas a probabilidade de prenhez depende de uma propensão latente envolvendo fêmea, macho, manejo, sanidade, nutrição e momento da avaliação. O modelo de limiar ajuda a não tratar o "não" como ausência completa de mérito biológico. Uma égua vazia pode estar próxima do sucesso reprodutivo, mas não cruzou o ponto observado naquela estação.
+
+## Checkpoint
+
+Você atingiu o checkpoint se consegue explicar por que um fenótipo sim/não ainda pode ter base quantitativa. A resposta curta é: o registro é categórico, mas a escala subjacente por trás pode variar de modo contínuo. O limiar transforma essa escala contínua em uma categoria observada.
+
+Uma resposta incompleta seria dizer "é genético ou não é genético". A resposta correta reconhece três níveis: existe uma escala subjacente, existe um limiar que define a categoria observada, e existe uma prevalência que resume quantos animais cruzaram esse limiar.
+
+## Quiz
+
+1. O que é uma característica de limiar?
+2. O que significa suscetibilidade nesta unidade?
+3. Como calcular prevalência em um lote?
+4. Se 12 de 80 potros não sobrevivem até uma idade definida, qual é a prevalência de não sobrevivência?
+5. Por que dois animais classificados como "não afetados" podem não ser biologicamente iguais?
+
+Gabarito:
+
+1. É uma característica observada em categorias, mas interpretada como resultado de uma escala subjacente contínua cortada por um limiar.
+2. Para doença, é a tendência latente de cruzar o limiar e expressar o desfecho indesejado; para outros desfechos, podemos falar em propensão latente na escala subjacente.
+3. `prevalencia = n_acima_do_limiar / n_total`.
+4. `12 / 80 = 0,15`, ou 15%.
+5. Porque um pode estar muito longe do limiar e outro pode estar quase cruzando, embora ambos recebam o mesmo registro categórico.
+
+## Mini tarefa
+
+Use os mesmos 20 valores do exemplo numérico. Calcule a prevalência para três limiares:
+
+| Limiar | Animais acima do limiar | Prevalência |
+|---:|---:|---:|
+| `T = 0,5` | 8 | 40% |
+| `T = 1,0` | 5 | 25% |
+| `T = 1,5` | 2 | 10% |
+
+Evidência de conclusão: escreva uma frase interpretando a prevalência. Exemplo: "quando o limiar sobe de 0,5 para 1,5, a prevalência cai de 40% para 10%, porque menos cavalos cruzam o ponto necessário para serem classificados como afetados".
+
+## Referências
+
+GRIFFITHS, Anthony J. F. et al. Introdução à genética. 11. ed. Rio de Janeiro: Guanabara Koogan, 2016.
+
+::: {.module-evidence-path role="region" aria-label="Evidência de conclusão"}
+**Evidência de conclusão**
+
+Entregue resposta curta para checkpoint, quiz e mini tarefa. Evidência boa cita conceito, cálculo ou regra usada.
+:::
+
+::: {.module-practice-contract role="region" aria-label="Contrato de prática do módulo"}
+**Evidência mínima**
+
+Não conclua só por leitura. Registre uma interpretação técnica que outra pessoa consiga auditar.
+:::
+
+::: {.module-takeaways role="region" aria-label="O que levar deste módulo"}
+## O que levar deste módulo
+
+Leve uma distinção conceitual, uma regra de cálculo e uma consequência biológica da unidade.
+:::
+
+::: {.module-after-quiz role="region" aria-label="Depois do quiz"}
+## Depois do quiz
+
+Se passou, avance ao próximo módulo. Se não passou, volte ao conceito técnico e refaça a mini tarefa.
+:::
+
+<div class="quiz-container" data-module="12" aria-label="Quiz do Módulo 12"></div>
+
+::: {.module-close-check role="region" aria-label="Checagem final do módulo"}
+**Checagem final**
+
+Você consegue explicar a decisão sem copiar frase do texto?
+:::
+
+::: {.module-return-note role="note" aria-label="Nota para retorno ao módulo"}
+**Volte depois**
+
+Use este módulo como consulta quando precisar revisar Características de limiar.
+:::
+
+~~~{=html}
+<nav class="module-nav" aria-label="Navegação entre módulos">
+<a class="module-nav-card module-nav-prev" href="modulo11-correlacoes-geneticas-fenotipicas-e-ambientais.html"><span>Anterior</span><strong>M11</strong></a>
+<a class="module-nav-card module-nav-index" href="index.html"><span>Índice</span><strong>21 módulos</strong></a>
+<a class="module-nav-card module-nav-next" href="modulo13-endogamia-e-parentesco.html"><span>Próximo</span><strong>M13</strong></a>
+</nav>
+~~~

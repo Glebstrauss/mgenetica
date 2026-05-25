@@ -24,7 +24,7 @@ Estudia genética cuantitativa y genómica aplicada con una ruta corta, práctic
 :::
 
 ::: {.home-actions role="navigation" aria-label="Acciones principales de la página inicial"}
-[Acceder al curso](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Iniciar el Módulo 01"}
+[Acceder al curso](modules/modulo01-revisao-de-genetica-basica.qmd){.btn .btn-primary aria-label="Iniciar el Módulo 01"}
 [Ver módulos](modules/index.qmd){.btn .btn-secondary aria-label="Abrir índice de módulos"}
 :::
 :::
@@ -44,7 +44,7 @@ Estudia genética cuantitativa y genómica aplicada con una ruta corta, práctic
 
 Sigue los módulos en orden, con una pregunta técnica por sesión.
 
-[Comenzar M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Comenzar por el Módulo 01"}
+[Comenzar M01](modules/modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Comenzar por el Módulo 01"}
 :::
 
 ::: {.home-path-card role="listitem"}
@@ -105,7 +105,7 @@ Marcadores SNP, control de calidad, GWAS y predicción genómica.
 :::
 :::
 
-[Ver los 12 módulos](modules/index.qmd){.btn .btn-secondary aria-label="Ver todos los módulos"}
+[Ver los 21 módulos](modules/index.qmd){.btn .btn-secondary aria-label="Ver todos los módulos"}
 :::
 
 ::: {.home-proof-strip role="list" aria-label="Pilares de confianza de MGenética"}
@@ -133,7 +133,7 @@ Scripts y datos simulados para estudiar sin depender de bases externas.
 
 Abre el primer módulo, ejecuta el script principal y cierra la sesión con una decisión técnica.
 
-[Acceder al Módulo 01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.btn .btn-primary aria-label="Acceder al Módulo 01"}
-[Planificar 12 semanas](semanas/index.qmd){.btn .btn-secondary aria-label="Abrir ruta de 12 semanas"}
+[Acceder al Módulo 01](modules/modulo01-revisao-de-genetica-basica.qmd){.btn .btn-primary aria-label="Acceder al Módulo 01"}
+[Planificar 21 módulos](semanas/index.qmd){.btn .btn-secondary aria-label="Abrir ruta de 21 módulos"}
 :::
 :::

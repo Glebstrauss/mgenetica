@@ -1,58 +1,53 @@
 {
   "module": "07",
-  "title": "Quiz — Módulo 07",
-  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "title": "Quiz — Noções de genética quantitativa",
+  "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
   "passMark": 4,
   "questions": [
     {
-      "text": "Em um modelo misto y = Xb + Zu + e, o vetor u representa:",
+      "text": "O que significa dizer que uma característica é poligênica?",
       "options": [
-        "Efeitos fixos conhecidos e estimáveis (ex.: fazenda, sexo).",
-        "Efeitos aleatórios com distribuição u ~ N(0, Gσ²) (ex.: valores genéticos).",
-        "Os resíduos do modelo com distribuição normal.",
-        "As variáveis ambientais mensuráveis usadas como covariáveis."
+        "Significa que vários loci contribuem para a característica.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "A distinção fundamental entre BLUE e BLUP é que:",
+      "text": "No exemplo da tabela, qual é o `G` de um animal com `L1 = 2`, `L2 = 1` e `L3 = 2`?",
       "options": [
-        "BLUE prediz efeitos aleatórios e BLUP estima efeitos fixos.",
-        "BLUE estima efeitos fixos (b) e BLUP prediz efeitos aleatórios (u).",
-        "BLUE e BLUP produzem resultados idênticos para qualquer modelo.",
-        "BLUE usa a matriz A de parentesco enquanto BLUP não usa pedigree."
+        "`G = 2 + 1 + 2 = 5`.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "Por que \"fazenda\", \"sexo\" e \"ano de nascimento\" são modelados como efeitos fixos?",
+      "text": "Por que a média não descreve sozinha toda a população?",
       "options": [
-        "Porque têm distribuição normal com variância conhecida.",
-        "Porque afetam a média dos grupos e queremos estimar seus efeitos específicos sem assumir distribuição.",
-        "Porque têm variância igual a zero no modelo.",
-        "Porque são sempre ortogonais aos efeitos genéticos."
+        "Porque a média mostra o centro, mas não mostra o espalhamento dos animais.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "No modelo animal básico y = Xb + Za + e, a estrutura de variância assumida para o vetor a é:",
+      "text": "O que o histograma acrescenta à tabela de valores individuais?",
       "options": [
-        "Var(a) = I σ²e (animais independentes entre si)",
-        "Var(a) = A σ²A (animais relacionados conforme pedigree)",
-        "Var(a) = X σ²b",
-        "Var(a) = 0"
+        "O histograma mostra a frequência de animais em cada valor ou intervalo.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "O pressuposto e ~ N(0, I σ²e) para os resíduos implica que:",
+      "text": "Por que três loci são úteis como exemplo, mas ainda não bastam para representar uma distribuição contínua realista?",
       "options": [
-        "Todos os animais têm exatamente o mesmo valor genético.",
-        "Os erros residuais são independentes entre observações e têm variância homogênea.",
-        "Não existe efeito de ambiente permanente entre medidas do mesmo animal.",
-        "A herdabilidade da característica é necessariamente 1,0."
+        "Porque três loci geram poucas somas possíveis; mais loci e ambiente variável produzem mais valores intermediários.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     }
   ]
 }

@@ -1,58 +1,62 @@
 {
   "module": "04",
-  "title": "Quiz — Módulo 04",
-  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "title": "Quiz — Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo",
+  "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
   "passMark": 4,
   "questions": [
     {
-      "text": "A decomposição completa da variância fenotípica é:",
+      "text": "Se `p = 0,7`, qual é o valor de `q` em um locus com apenas dois alelos?",
       "options": [
-        "VP = VG + VE",
-        "VP = VA + VD + VI + VE",
-        "VP = h² + e²",
-        "VP = VG × VE"
+        "`q = 0,3`.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "A variância genética aditiva (VA) é a componente de maior interesse prático porque:",
+      "text": "Com `p = 0,7` e `q = 0,3`, quais são `p^2`, `2pq` e `q^2`?",
       "options": [
-        "É sempre a maior componente da variância total.",
-        "É transmitida aos descendentes e permite resposta à seleção.",
-        "Deve-se a interações não aditivas entre alelos de diferentes loci.",
-        "Resulta de efeitos ambientais não controláveis."
+        "`p^2 = 0,49`, `2pq = 0,42` e `q^2 = 0,09`.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "Em uma população em equilíbrio (panmixia, sem seleção), as variâncias genéticas:",
+      "text": "Em `N = 100`, quantos animais `Aa` são esperados?",
       "options": [
-        "Tendem a aumentar continuamente a cada geração.",
-        "Permanecem relativamente constantes de geração em geração.",
-        "Desaparecem após 5–6 gerações de cruzamento aleatório.",
-        "Tornam-se todas dominância após o equilíbrio de Hardy-Weinberg."
+        "São esperados 42 animais `Aa`.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "O método de análise de variância (ANOVA) por grupos de meio-irmãos paternos permite estimar VA porque:",
+      "text": "Por que Hardy-Weinberg deve ser tratado como expectativa, não como dogma?",
       "options": [
-        "Meio-irmãos paternos compartilham em média 1/4 dos genes aditivos (a_ij = 0,25).",
-        "Meio-irmãos paternos compartilham todos os genes de dominância.",
-        "A covariância entre meio-irmãos = VA/4, então VA ≈ 4 × CMS entre grupos.",
-        "Alternativas a e c estão corretas."
+        "Porque a fórmula descreve um padrão esperado sob condições simples; a tabela real pode diferir por estrutura do plantel, tamanho da amostra ou outros fatores.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 3
+      "correct": 0
     },
     {
-      "text": "A variância de dominância (VD) contribui para:",
+      "text": "Em um locus com três alelos de frequências iguais, por que a proporção de heterozigotos pode ser maior que 50%?",
       "options": [
-        "A resposta à seleção massal em características de baixa h².",
-        "A heterose observada em cruzamentos entre populações divergentes.",
-        "O aumento da herdabilidade no sentido estreito.",
-        "A transmissão linear de metade do valor genético para os filhos."
+        "Porque há mais combinações heterozigotas possíveis. Com três alelos em frequências iguais, a soma dos heterozigotos esperados pode chegar a 2/3.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
+    },
+    {
+      "text": "Em um locus ligado ao X, por que machos XY não devem ser tratados como se tivessem os mesmos três genótipos das fêmeas XX?",
+      "options": [
+        "Porque machos XY têm uma cópia X para esse locus e são hemizigotos; fêmeas XX têm duas cópias X e podem formar homozigotos ou heterozigotos.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
+      ],
+      "correct": 0
     }
   ]
 }

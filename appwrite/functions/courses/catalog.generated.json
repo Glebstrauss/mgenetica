@@ -6,8 +6,9 @@
     "blockId": "fundamentos",
     "blockTitle": "Fundamentos",
     "title": "Revisão de genética básica",
-    "description": "Revisar gene, alelo, genótipo, fenótipo e segregação.",
-    "published": true
+    "description": "Dois potros podem nascer dos mesmos pais e ainda assim não serem iguais. Um pode mostrar uma característica de pelagem que o outro não mostra. Um pode receber uma versão de uma instrução biológica do pai e outra versão da mãe. A primeira pergunta desta aula é direta: de onde vem essa diferença?",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-02",
@@ -16,8 +17,9 @@
     "blockId": "fundamentos",
     "blockTitle": "Fundamentos",
     "title": "Modos de ação gênica",
-    "description": "Entender efeitos aditivos, dominância e epistasia antes da genética quantitativa.",
-    "published": true
+    "description": "Na M1, vimos que um animal pode ser `AA`, `Aa` ou `aa`. Agora a pergunta muda: esses três genótipos sempre formam uma escada regular?",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-03",
@@ -26,8 +28,9 @@
     "blockId": "populacoes",
     "blockTitle": "Genética de populações",
     "title": "Genética de populações I: frequências alélicas e genotípicas",
-    "description": "Calcular frequências alélicas e genotípicas.",
-    "published": true
+    "description": "Imagine um grupo pequeno de éguas genotipadas para um locus didático com dois alelos, `A` e `a`. Cada égua tem dois alelos nesse locus, porque recebeu uma cópia do pai e uma cópia da mãe. A pergunta da aula é direta: depois de olhar os genótipos das éguas, quantos alelos `A` e quantos alelos `a` existem na população observada?",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-04",
@@ -36,8 +39,9 @@
     "blockId": "populacoes",
     "blockTitle": "Genética de populações",
     "title": "Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo",
-    "description": "Usar Hardy-Weinberg como expectativa, não como dogma.",
-    "published": true
+    "description": "Na M3, contamos genótipos observados e transformamos essa contagem em frequências alélicas. Agora a pergunta muda: se sabemos que a frequência do alelo `A` é `p` e a frequência do alelo `a` é `q`, quais genótipos esperaríamos observar em uma população grande, com acasalamento ao acaso e sem uma força evidente mudando essas frequências?",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-05",
@@ -46,8 +50,9 @@
     "blockId": "populacoes",
     "blockTitle": "Genética de populações",
     "title": "Fatores que alteram frequências gênicas",
-    "description": "Comparar seleção, migração, mutação e deriva.",
-    "published": true
+    "description": "Na M4, usamos Hardy-Weinberg como expectativa: dado `p` e `q`, esperamos certas proporções de genótipos. Agora a pergunta é outra: por que `p` e `q` deixam de ficar parados?",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-06",
@@ -56,8 +61,9 @@
     "blockId": "quantitativa",
     "blockTitle": "Genética quantitativa",
     "title": "Valores e médias: fenótipo, genótipo e ambiente",
-    "description": "Separar P, G e E em exemplos pequenos.",
-    "published": true
+    "description": "Um cavalo alto é alto porque tem bons genes para altura, porque cresceu em ambiente favorável, ou pelas duas coisas ao mesmo tempo? Essa pergunta abre a genética quantitativa. Até aqui, olhamos alelos, genótipos e frequências. Agora vamos olhar uma medida observável: a altura à cernelha.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-07",
@@ -66,8 +72,9 @@
     "blockId": "quantitativa",
     "blockTitle": "Genética quantitativa",
     "title": "Noções de genética quantitativa",
-    "description": "Entender muitos genes pequenos mais ambiente.",
-    "published": true
+    "description": "Por que peso, altura e desempenho esportivo não parecem ervilhas de Mendel? Em muitos exemplos mendelianos, a característica é apresentada em classes bem separadas: uma planta tem uma forma de semente ou outra; uma flor tem uma cor ou outra. Em animais de produção e de esporte, muitas características não aparecem assim. Quando medimos altura à cernelha em cavalos, não vemos apenas duas caixas, \"baixo\" e \"alto\". Vemos animais um pouco mais baixos, médios, um pouco mais altos e muito altos, com muitos valores intermediários.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-08",
@@ -76,8 +83,9 @@
     "blockId": "quantitativa",
     "blockTitle": "Genética quantitativa",
     "title": "Componentes de variância",
-    "description": "Entender VA, VD, VI, VE e VP.",
-    "published": true
+    "description": "Qual parte da variação ajuda seleção? Imagine um lote de cavalos jovens avaliados para ganho médio diário. Alguns animais ganham mais peso por dia, outros ganham menos. O avaliador vê a diferença fenotípica entre eles, mas essa diferença não vem de uma fonte só. Parte da variação pode estar ligada a efeitos genéticos que os pais transmitem de modo previsível aos filhos. Outra parte pode vir de dominância, de combinações entre loci, de manejo, de nutrição, de sanidade, de estação ou de erro de medição.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-09",
@@ -86,8 +94,9 @@
     "blockId": "quantitativa",
     "blockTitle": "Genética quantitativa",
     "title": "Herdabilidade e repetibilidade",
-    "description": "Diferenciar h2 e repetibilidade.",
-    "published": true
+    "description": "O dado de hoje prevê filhos ou repetição? Imagine um cavalo avaliado hoje para desempenho ou andamento. Ele foi bem na pista. Essa informação pode servir para duas perguntas diferentes. A primeira pergunta é: esse desempenho ajuda a prever como serão os filhos desse animal? A segunda pergunta é: esse mesmo animal tende a repetir desempenho parecido em outra avaliação?",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-10",
@@ -96,8 +105,9 @@
     "blockId": "quantitativa",
     "blockTitle": "Genética quantitativa",
     "title": "Seleção e ganho genético",
-    "description": "Calcular diferencial, resposta e ganho por geração.",
-    "published": true
+    "description": "Escolher os melhores muda a próxima geração quanto? Imagine 100 garanhões jovens avaliados por um índice didático de desempenho, em pontos. A média do grupo é 100 pontos. O criador decide usar como pais apenas os 20 melhores, e a média desses selecionados é 120 pontos. A diferença entre 120 e 100 mostra que a peneira foi mais exigente: os escolhidos estão 20 pontos acima da média do grupo.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-11",
@@ -106,8 +116,9 @@
     "blockId": "quantitativa",
     "blockTitle": "Genética quantitativa",
     "title": "Correlações genéticas, fenotípicas e ambientais",
-    "description": "Interpretar rA, rP e rE.",
-    "published": true
+    "description": "Melhorar peso pode piorar outra característica? Imagine cavalos jovens avaliados para peso corporal e espessura de gordura subcutânea. Alguns animais são mais pesados e também têm mais gordura. Outros são mais pesados sem aumentar tanto a gordura. Se o criador seleciona apenas para aumentar peso, a gordura pode acompanhar? A resposta depende de qual ligação existe entre as duas características.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-12",
@@ -116,8 +127,9 @@
     "blockId": "quantitativa",
     "blockTitle": "Genética quantitativa",
     "title": "Características de limiar",
-    "description": "Entender escala subjacente para características categóricas.",
-    "published": true
+    "description": "Como genética muda uma resposta sim/não? Em uma planilha de cavalos, algumas características aparecem como categorias simples. Uma égua ficou prenhe ou não ficou. Um potro sobreviveu ou não sobreviveu. Um animal apresentou uma doença ou não apresentou. À primeira vista, parece que não existe meio-termo: o fenótipo observado é 0 ou 1, ausente ou presente, não afetado ou afetado.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-13",
@@ -126,8 +138,9 @@
     "blockId": "avaliacao",
     "blockTitle": "Parentesco, cruzamentos e avaliação genética",
     "title": "Endogamia e parentesco",
-    "description": "Calcular parentesco simples e interpretar F.",
-    "published": true
+    "description": "Parentes aumentam semelhança ou risco? Imagine um criador escolhendo um garanhão para acasalar com uma égua. No papel, os dois animais parecem bons. Porém, ao olhar o pedigree, aparece o mesmo ancestral nos dois lados. Isso muda a leitura da decisão. O acasalamento pode aumentar a chance de a cria receber cópias de genes herdadas do mesmo ancestral comum.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-14",
@@ -136,8 +149,9 @@
     "blockId": "avaliacao",
     "blockTitle": "Parentesco, cruzamentos e avaliação genética",
     "title": "Cruzamentos, heterose e complementaridade",
-    "description": "Entender heterose e complementaridade sem vender milagre.",
-    "published": true
+    "description": "Misturar raças ajuda por quê? Imagine dois grupos de cavalos. Um grupo tem boa adaptação, fertilidade e rusticidade. Outro grupo tem melhor desempenho esportivo, tamanho ou conformação para determinada função. Cruzar esses grupos pode produzir uma progênie interessante, mas isso não acontece por mágica. O cruzamento precisa ter objetivo, medida e comparação.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-15",
@@ -146,8 +160,9 @@
     "blockId": "avaliacao",
     "blockTitle": "Parentesco, cruzamentos e avaliação genética",
     "title": "Avaliação genética: DEP/EBV e ranking de animais",
-    "description": "Entender EBV, DEP e acurácia como decisão corrigida.",
-    "published": true
+    "description": "Ranking por fenótipo basta? Imagine três garanhões jovens avaliados por desempenho. Um deles tem a maior pontuação bruta. Outro competiu em grupo mais difícil. Outro tem menos provas, mas vem de família com bons registros. Se o criador ordenar apenas pela pontuação observada, pode escolher o animal que parece melhor no boletim, mas não necessariamente o que transmite melhor mérito genético aos filhos.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-16",
@@ -156,8 +171,9 @@
     "blockId": "avaliacao",
     "blockTitle": "Parentesco, cruzamentos e avaliação genética",
     "title": "Modelos lineares e modelos mistos",
-    "description": "Separar efeitos fixos, aleatórios e resíduo.",
-    "published": true
+    "description": "Como tirar efeito da fazenda? Imagine potros de duas fazendas avaliados pelo peso ao sobreano. Uma fazenda tem melhor pastagem, manejo mais constante e lote mais uniforme. Outra teve seca, menor oferta de volumoso e lote mais heterogêneo. Se o aluno comparar apenas o peso observado, pode concluir que o potro mais pesado é geneticamente melhor. Mas parte da diferença pode vir da fazenda, do sexo, da idade, da dieta ou de qualquer outro fator que acompanhou a medida.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-17",
@@ -166,8 +182,9 @@
     "blockId": "avaliacao",
     "blockTitle": "Parentesco, cruzamentos e avaliação genética",
     "title": "BLUP e modelo animal",
-    "description": "Entender BLUP, encolhimento, matriz A e modelo animal.",
-    "published": true
+    "description": "Como parentes ajudam predizer animal? Imagine um garanhão jovem com bom desempenho próprio, mas ainda sem filhos avaliados. Ele fez uma prova forte, ficou `20` pontos acima da média do grupo e parece promissor. Se o ranking usar só essa diferença bruta, o animal pode subir demais. Uma única medida ainda mistura mérito genético, ambiente, treinamento, acaso e erro de medida.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-18",
@@ -176,8 +193,9 @@
     "blockId": "genomica",
     "blockTitle": "Genômica aplicada ao melhoramento",
     "title": "Genômica, marcadores SNP e dados moleculares",
-    "description": "Entender SNP, genótipo 0/1/2 e frequência alélica.",
-    "published": true
+    "description": "DNA melhora o pedigree? Imagine cinco cavalos de um plantel. Pelo pedigree, dois animais parecem pouco aparentados. Mas, quando olhamos muitos pontos do DNA, eles podem compartilhar mais marcadores do que o pedigree simples sugeria. Em outro caso, dois meio-irmãos podem compartilhar menos material do que a expectativa média. O pedigree diz quem deveria compartilhar genes; o DNA mostra parte do que foi observado nos marcadores.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-19",
@@ -186,8 +204,9 @@
     "blockId": "genomica",
     "blockTitle": "Genômica aplicada ao melhoramento",
     "title": "Controle de qualidade de dados genômicos",
-    "description": "Aplicar filtros de call rate, MAF e HWE.",
-    "published": true
+    "description": "Todo SNP serve? Imagine que um laboratório entregou uma matriz genômica de cavalos com muitos marcadores. Alguns SNPs aparecem em quase todos os animais. Outros têm muitos valores faltantes. Alguns quase não variam: todos os cavalos têm o mesmo genótipo. Outros mostram uma distribuição estranha demais para ser aceita sem checagem. Se o aluno usar tudo sem filtrar, pode levar erro técnico para a análise seguinte.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-20",
@@ -196,8 +215,9 @@
     "blockId": "genomica",
     "blockTitle": "Genômica aplicada ao melhoramento",
     "title": "Matrizes genômicas, GWAS e predição genômica",
-    "description": "Diferenciar matriz G, GWAS e predição.",
-    "published": true
+    "description": "DNA aponta parentesco, região ou valor futuro? Imagine cinco potros genotipados em um painel de SNPs depois do controle de qualidade da M19. O laboratório entregou uma matriz limpa de `0`, `1` e `2`. Agora surgem três perguntas diferentes. A primeira pergunta é: quais animais parecem mais próximos pelo DNA? A segunda é: algum ponto do genoma parece associado ao desempenho? A terceira é: consigo predizer mérito futuro de seleção usando esses marcadores?",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   },
   {
     "id": "module-21",
@@ -206,7 +226,8 @@
     "blockId": "genomica",
     "blockTitle": "Genômica aplicada ao melhoramento",
     "title": "Projeto final: pipeline completo de seleção",
-    "description": "Integrar fenótipo, pedigree, genômica, QC, EBV/DEP e decisão.",
-    "published": true
+    "description": "Quem seleciono e por quê? Imagine um plantel simulado com quatro garanhões candidatos. Um tem maior fenótipo observado. Outro tem melhor `DEP`. Outro tem boa predição genômica, mas parentesco alto com as matrizes disponíveis. Outro tem desempenho moderado, porém dados mais limpos e menor risco de endogamia. Se o aluno escolher apenas o animal que \"parece melhor\", ele ignora vinte unidades de raciocínio técnico.",
+    "published": true,
+    "sourcePackage": "mgenetica-course-texts-2026-05-21"
   }
 ]

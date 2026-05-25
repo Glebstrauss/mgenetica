@@ -23,6 +23,24 @@ function SectionCard({ eyebrow, title, paragraphs, code, codeLabel }) {
   )
 }
 
+function FullTextSection({ text }) {
+  if (!text) return null
+  return (
+    <section className="section-card">
+      <div className="section-eyebrow">Texto completo</div>
+      <h3>Texto revisado da unidade</h3>
+      <p>Conteúdo integral importado do pacote de textos do curso.</p>
+      <div className="code-panel" style={{ marginTop: 18 }}>
+        <div className="code-caption">
+          <strong>Markdown original</strong>
+          <span>MD</span>
+        </div>
+        <pre className="code-block"><code>{text}</code></pre>
+      </div>
+    </section>
+  )
+}
+
 function LocaleSwitcher({ locale, onLocaleChange, t }) {
   return (
     <label className="locale-switcher" aria-label={t('localeSwitcher.label')}>
@@ -115,6 +133,7 @@ export default function CoursePage({ course, detail, progress, onBack, onOpenQui
               codeLabel={section.codeLabel}
             />
           ))}
+          <FullTextSection text={detail.fullText} />
           <section className="section-card">
             <div className="section-eyebrow">{t('coursePage.actionEyebrow')}</div>
             <h3>{t('coursePage.actionTitle')}</h3>

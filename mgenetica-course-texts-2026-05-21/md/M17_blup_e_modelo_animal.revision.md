@@ -1,0 +1,202 @@
+# M17 — BLUP e modelo animal
+
+## Pergunta simples
+
+Como parentes ajudam predizer animal? Imagine um garanhão jovem com bom desempenho próprio, mas ainda sem filhos avaliados. Ele fez uma prova forte, ficou `20` pontos acima da média do grupo e parece promissor. Se o ranking usar só essa diferença bruta, o animal pode subir demais. Uma única medida ainda mistura mérito genético, ambiente, treinamento, acaso e erro de medida.
+
+Na M15, vimos que `EBV` é valor genético estimado e que acurácia mede a confiança relativa nessa estimativa. Na M16, vimos que modelos mistos separam efeitos fixos, efeitos aleatórios e resíduo por meio da estrutura `y = Xb + Zu + e`. A M17 junta essas duas ideias: o efeito aleatório de interesse passa a ser o valor genético aditivo de cada animal, e os parentes entram porque compartilham parte dos genes.
+
+A pergunta prática é: quando a prova individual é fraca ou pequena, como usar a informação da família sem transformar parentesco em palpite? A resposta começa com BLUP, modelo animal, matriz `A`, fator `lambda` e acurácia. Eler (2017) trata predição de valor genético e acurácia como partes centrais da seleção. Aqui, vamos escrever a lógica de forma didática e calcular um encolhimento simples antes de olhar a estrutura completa.
+
+## Explicação intuitiva
+
+A analogia é uma investigação com testemunhas familiares. O desempenho próprio do garanhão é uma testemunha direta. Ele diz algo importante, mas pode estar contaminado por ambiente, treino e acaso. O pai, a mãe e irmãos são testemunhas indiretas. Eles não provam tudo sobre o jovem, mas ajudam quando a prova individual ainda é pequena.
+
+O BLUP funciona como um avaliador que não acredita cegamente em nenhuma testemunha. Se o animal tem pouco dado próprio, a estimativa dele é puxada para uma média mais segura. Esse movimento se chama encolhimento. Encolher não é punir o animal. Encolher é reconhecer que uma diferença observada ainda não deve ser tratada como mérito genético completo.
+
+Parentes ajudam porque carregam informação compartilhada. Um filho recebe, em média, metade da informação aditiva do pai e metade da mãe. Meio-irmãos compartilham uma fração menor. A matriz `A` organiza essas relações esperadas pelo pedigree. Sem essa matriz, o modelo vê animais como se fossem independentes. Com essa matriz, o modelo sabe que o bom desempenho de um parente aumenta, com peso limitado, a evidência sobre o jovem.
+
+## Conceito técnico
+
+BLUP significa `Best Linear Unbiased Prediction`, ou melhor predição linear não viesada. Em melhoramento animal, o BLUP é usado para predizer efeitos aleatórios, especialmente valores genéticos aditivos. O termo "melhor" depende dos pressupostos do modelo e das variâncias usadas. Portanto, BLUP não é verdade biológica automática. É uma predição estatística condicionada ao modelo.
+
+O modelo animal é uma forma de modelo misto em que cada animal recebe um efeito genético aditivo próprio. A escrita básica é:
+
+`y = Xb + Za + e`
+
+Nessa fórmula, `y` contém os fenótipos observados; `Xb` representa efeitos fixos, como fazenda, sexo ou grupo contemporâneo; `Za` liga cada observação ao valor genético aditivo do animal; e `e` é o resíduo. O vetor `a` contém os valores genéticos aditivos a serem preditos. Quando falamos em `EBV`, estamos falando da estimativa desses valores genéticos aditivos.
+
+A diferença central em relação à M16 é que agora o efeito aleatório `a` não é uma coleção de desvios soltos. Ele tem covariância dada pela matriz `A`. Em forma conceitual:
+
+`a ~ N(0, A * sigma_a^2)`
+
+Isso significa que os valores genéticos aditivos dos animais são relacionados conforme o parentesco esperado. Se dois animais são mais aparentados, seus valores genéticos aditivos esperados têm maior covariância. Se são menos aparentados, a covariância esperada é menor. A matriz `A` é a forma numérica de colocar o pedigree dentro do modelo.
+
+As equações de modelos mistos, ou `MME`, reúnem efeitos fixos e efeitos aleatórios em um sistema único. Para leitura conceitual, uma forma simplificada é:
+
+`[X'X  X'Z; Z'X  Z'Z + A^-1 * lambda] [b_hat; a_hat] = [X'y; Z'y]`
+
+O aluno não precisa resolver essa matriz à mão nesta unidade. A fórmula serve para localizar as peças do modelo, não para treinar álgebra matricial. `X` ajusta efeitos fixos. `Z` liga observações aos animais. `A^-1` insere parentesco. `lambda` controla o peso relativo entre resíduo e variação genética aditiva. Quando o resíduo pesa muito em relação à genética aditiva, o modelo encolhe mais os `EBV` para a média.
+
+## Fórmula
+
+A fórmula didática do cálculo manual desta unidade é:
+
+`EBV_didatico = h2 * y`
+
+Onde:
+
+- `y` é o desvio fenotípico do animal em relação à média do grupo comparável;
+- `h2` é a herdabilidade no sentido restrito, em escala de `0` a `1`;
+- `EBV_didatico` é uma predição encolhida simples, na mesma unidade de `y`.
+
+Se o jovem garanhão teve `y = 20` pontos e a característica tem `h2 = 0,30`, então:
+
+`EBV_didatico = 0,30 * 20 = 6`
+
+Biologicamente, o número `6` diz: a diferença bruta de `20` pontos não deve ser lida como `20` pontos de mérito genético aditivo. Com herdabilidade moderada, parte da diferença observada pode vir de ambiente e resíduo. O valor encolhido é menor porque o modelo não transfere toda a observação para o valor genético.
+
+Esse cálculo não é BLUP completo. O nome `EBV_didatico` é apenas um rótulo pedagógico para uma predição encolhida simples. O BLUP completo ajusta efeitos fixos, usa relações de parentesco, combina informações de vários animais e depende dos componentes de variância. A miniatura serve para o aluno enxergar o princípio antes de entrar na matriz.
+
+O fator `lambda` ajuda a entender a força do encolhimento. No caso simplificado desta aula, supondo que a variação fenotípica foi separada em parte genética aditiva e parte residual, podemos escrever:
+
+`lambda = (1 - h2) / h2`
+
+Se `h2 = 0,30`, então:
+
+`lambda = 0,70 / 0,30 = 2,33`
+
+Valor maior de `lambda` indica que o resíduo pesa mais em relação à variação genética aditiva. Nesse caso, o modelo deve confiar menos no desvio individual cru e encolher mais a predição. Se `h2` aumenta, `lambda` diminui, e o desvio observado recebe mais peso genético.
+
+## Exemplo numérico
+
+Considere um jovem garanhão chamado `Jovem`. Ele ainda não tem filhos avaliados. Em uma prova didática, ficou `20` pontos acima da média do grupo contemporâneo. O pai tem `EBV = 12`, a mãe tem `EBV = 4`, e um meio-irmão paterno tem `EBV = 8`. Esses números são didáticos, não estimativas oficiais de raça.
+
+Primeiro, use apenas a informação própria simplificada:
+
+`EBV_didatico = h2 * y = 0,30 * 20 = 6`
+
+O desempenho bruto sugere `+20`, mas a predição encolhida simples é `+6`. Esse é o primeiro alerta: fenótipo alto não entra inteiro no mérito genético.
+
+Agora olhe a família. A média parental didática é:
+
+`media_parental = (EBV_pai + EBV_mae) / 2 = (12 + 4) / 2 = 8`
+
+Uma combinação didática simples pode colocar mais peso na família porque o animal ainda é jovem:
+
+`EBV_com_familia = 0,60 * media_parental + 0,40 * EBV_didatico`
+
+`EBV_com_familia = 0,60 * 8 + 0,40 * 6 = 7,2`
+
+Esse cálculo também não é BLUP completo. Ele apenas mostra a narrativa do dado. A observação própria sozinha dá `6`. A família sugere `8`. A combinação didática fica em `7,2`. O resultado evita dois erros: não transforma `+20` em mérito genético completo e não ignora que parentes avaliados carregam evidência útil.
+
+## Matriz A e ranking EBV
+
+A matriz `A` guarda o parentesco aditivo esperado entre os animais. Em um pedigree simples, sem endogamia, a diagonal pode ser lida como `1,00` para o animal consigo mesmo. Fora da diagonal, pai e filho têm parentesco esperado `0,50`; mãe e filho também `0,50`; meio-irmãos paternos têm parentesco esperado `0,25`.
+
+| Relação com `Jovem` | Parentesco aditivo esperado |
+|---|---:|
+| `Jovem` com ele mesmo | 1,00 |
+| `Jovem` com pai | 0,50 |
+| `Jovem` com mãe | 0,50 |
+| `Jovem` com meio-irmão paterno | 0,25 |
+
+Uma representação didática da matriz é:
+
+| Animal | `Jovem` | `Pai` | `Mãe` | `Meio-irmão` |
+|---|---:|---:|---:|---:|
+| `Jovem` | 1,00 | 0,50 | 0,50 | 0,25 |
+| `Pai` | 0,50 | 1,00 | 0,00 | 0,50 |
+| `Mãe` | 0,50 | 0,00 | 1,00 | 0,00 |
+| `Meio-irmão` | 0,25 | 0,50 | 0,00 | 1,00 |
+
+O valor `0,00` entre pai e mãe no exemplo não significa impossibilidade biológica geral. Significa apenas que, neste pedigree didático, eles foram tratados como não aparentados. Se houvesse parentesco ou endogamia, a matriz mudaria.
+
+Agora compare ranking bruto e ranking por `EBV` didático:
+
+| Animal | Desvio bruto | Evidência familiar | `EBV` didático | Acurácia qualitativa |
+|---|---:|---|---:|---|
+| `A_Jovem` | +20 | pai +12, mãe +4 | 7,2 | moderada |
+| `B_Provado` | +14 | filhos avaliados | 10,0 | alta |
+| `C_Jovem` | +18 | família fraca | 4,0 | baixa |
+
+A coluna de acurácia é qualitativa. Ela separa situações didáticas de baixa, moderada e alta confiança, mas não calcula a acurácia real de cada animal.
+
+O ranking bruto seria `A_Jovem`, `C_Jovem`, `B_Provado`. O ranking por `EBV` didático fica `B_Provado`, `A_Jovem`, `C_Jovem`. Essa mudança é a evidência central da unidade. O animal com maior desvio bruto não precisa ser o melhor reprodutor estimado. A informação familiar, a quantidade de dados e a acurácia mudam a leitura.
+
+## Script R mínimo
+
+```r
+y <- 20
+h2 <- .3
+h2 * y
+h2s <- c(.1, .3, .6)
+ebv <- h2s * y
+data.frame(h2 = h2s, desvio = y, EBV = ebv)
+pai <- 12
+mae <- 4
+media_pais <- (pai + mae) / 2
+0.6 * media_pais + 0.4 * (h2 * y)
+```
+
+O script começa com o cálculo-base da unidade: `y <- 20; h2 <- .3; h2 * y`. O resultado é `6`. Depois, o aluno muda `h2` para observar o encolhimento. Com `h2 = 0,10`, o `EBV` didático é `2`; com `h2 = 0,30`, é `6`; com `h2 = 0,60`, é `12`.
+
+A última linha combina média dos pais e desempenho próprio encolhido. O resultado é `7,2`. Essa linha reforça a pergunta da unidade: parentes ajudam a predizer o jovem quando a prova individual ainda não é suficiente.
+
+## Interpretação biológica
+
+O BLUP evita tratar observação bruta como se fosse valor genético. Um animal jovem pode parecer excelente em uma prova, mas ainda ter pouca evidência. O modelo puxa a estimativa para uma região mais compatível com herdabilidade, resíduo, efeitos fixos e informação familiar. Esse movimento protege contra ranking instável.
+
+O modelo animal coloca cada animal dentro do sistema como portador de um valor genético aditivo estimado. Em vez de avaliar apenas reprodutores provados ou apenas médias familiares, o modelo permite usar registros próprios, parentes, pedigree e efeitos fixos no mesmo raciocínio. A matriz `A` é o mapa que informa ao modelo quem está relacionado com quem.
+
+`lambda` regula a força da penalização sobre os efeitos genéticos aleatórios. Quando `lambda` é alto, a informação individual precisa ser mais forte para afastar o `EBV` da média. Quando `lambda` é baixo, o modelo permite maior afastamento porque a variação genética aditiva tem peso relativo maior. Por isso mudar `h2` no script muda o `EBV` didático.
+
+Acurácia não é elogio ao animal. Acurácia é informação sobre a estabilidade da predição. Um animal pode ter `EBV` alto e acurácia baixa; outro pode ter `EBV` menor e acurácia alta. O primeiro pode ser promissor, mas incerto. O segundo pode ser menos extremo, mas mais conhecido. Decisão de seleção precisa declarar se aceita mais risco para buscar maior ganho esperado ou se prefere estimativa mais estável.
+
+O erro que a M17 evita é chamar de superioridade genética aquilo que é apenas desvio bruto. O segundo erro evitado é descartar parentes como se cada animal fosse uma ilha. BLUP e modelo animal existem porque os dois extremos são ruins: acreditar só no fenótipo próprio ou ignorar a rede de parentesco.
+
+## Checkpoint
+
+Você atingiu o checkpoint se consegue explicar encolhimento para a média. Resposta curta: encolhimento é a redução do desvio observado quando a evidência ainda não permite tratar toda a diferença como mérito genético aditivo. Se `y = 20` e `h2 = 0,30`, a predição didática `h2 * y` dá `6`, não `20`.
+
+Uma resposta completa precisa acrescentar parentesco. O jovem garanhão não é avaliado sozinho. Pai, mãe e meio-irmãos ajudam porque compartilham proporções esperadas de genes. A matriz `A` organiza essas relações, e o BLUP usa essa informação junto com efeitos fixos, resíduo e componentes de variância.
+
+Uma resposta incompleta seria dizer apenas "BLUP escolhe o melhor animal". BLUP não escolhe sozinho. BLUP prediz valores genéticos estimados sob um modelo. A decisão de seleção vem depois, com `EBV`, acurácia, objetivo do programa e risco aceitável.
+
+## Quiz
+
+1. O que significa BLUP?
+2. Qual é o papel da matriz `A` no modelo animal?
+3. No cálculo didático `EBV_didatico = h2 * y`, o que representa `y`?
+4. Se `y = 20` e `h2 = 0,30`, qual é o `EBV` didático?
+5. Por que `h2 * y` não deve ser chamado de BLUP completo?
+6. O que acontece com o encolhimento quando `h2` aumenta?
+7. O que acurácia informa sobre um `EBV`?
+
+Gabarito:
+
+1. Melhor predição linear não viesada.
+2. Ela informa o parentesco aditivo esperado entre os animais.
+3. O desvio fenotípico em relação à média do grupo comparável.
+4. `6`.
+5. Porque BLUP completo ajusta efeitos fixos, parentesco, resíduo e componentes de variância em um sistema de modelos mistos.
+6. O encolhimento diminui; o desvio observado recebe mais peso genético.
+7. Informa a confiança relativa ou estabilidade esperada da predição, não a qualidade biológica do animal.
+
+## Mini tarefa
+
+Mude `h2` no script e observe o `EBV` didático:
+
+| `h2` | Desvio `y` | `EBV_didatico = h2 * y` | Leitura |
+|---:|---:|---:|---|
+| 0,10 | 20 | 2 | forte encolhimento |
+| 0,30 | 20 | 6 | encolhimento moderado |
+| 0,60 | 20 | 12 | menor encolhimento |
+
+Esses valores são uma aproximação didática de encolhimento. Eles não substituem um BLUP real com modelo animal, matriz `A`, efeitos fixos e componentes de variância.
+
+Depois responda em uma frase: por que o mesmo desvio bruto de `20` pontos gera `EBV` diferente quando `h2` muda? A evidência de conclusão esperada é: "o `EBV` muda porque a herdabilidade altera o peso genético dado ao desvio observado; com menor `h2`, mais da diferença pode ser resíduo ou ambiente, então a predição encolhe mais para a média."
+
+## Referências
+
+ELER, Joanir Pereira. Teorias e métodos em melhoramento genético animal: seleção. Pirassununga: Faculdade de Zootecnia e Engenharia de Alimentos da Universidade de São Paulo, 2017. DOI: 10.11606/9788566404135.

@@ -113,7 +113,7 @@ The search only resolves the session when it returns you to a technical page. Ch
 
 Use when result points to script, simulation, or parameter.
 
-[Open M01](modules/modulo01-introducao-ao-melhoramento-animal.qmd){.entry-link aria-label="Open Module 01 to review code evidence after search"}
+[Open M01](modules/modulo01-revisao-de-genetica-basica.qmd){.entry-link aria-label="Open Module 01 to review code evidence after search"}
 :::
 
 ::: {.utility-evidence-route-item role="listitem"}
@@ -121,7 +121,7 @@ Use when result points to script, simulation, or parameter.
 
 Use when the result requires comparison of parameters, variances or correlations.
 
-[Open M06](modules/modulo06-correlacoes-geneticas-e-fenotipicas.qmd){.entry-link aria-label="Open Module 06 to review table evidence after search"}
+[Open M06](modules/modulo06-valores-e-medias-fenotipo-genotipo-e-ambiente.qmd){.entry-link aria-label="Open Module 06 to review table evidence after search"}
 :::
 
 ::: {.utility-evidence-route-item role="listitem"}
@@ -129,7 +129,7 @@ Use when the result requires comparison of parameters, variances or correlations
 
 Use when the result involves visual pattern, SNPs, GWAS or prediction.
 
-[Open M12](modules/modulo12-matrizes-genomicas-gwas-e-predicao-genomica.qmd){.entry-link aria-label="Open Module 12 to review visual evidence after search"}
+[Open M21](modules/modulo21-projeto-final-pipeline-completo-de-selecao.qmd){.entry-link aria-label="Open Module 12 to review visual evidence after search"}
 :::
 :::
 :::

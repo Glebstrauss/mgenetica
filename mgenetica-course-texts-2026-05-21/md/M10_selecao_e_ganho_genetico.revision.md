@@ -1,0 +1,184 @@
+# M10 — Seleção e ganho genético
+
+## Pergunta simples
+
+Escolher os melhores muda a próxima geração quanto? Imagine 100 garanhões jovens avaliados por um índice didático de desempenho, em pontos. A média do grupo é 100 pontos. O criador decide usar como pais apenas os 20 melhores, e a média desses selecionados é 120 pontos. A diferença entre 120 e 100 mostra que a peneira foi mais exigente: os escolhidos estão 20 pontos acima da média do grupo.
+
+Mas a próxima geração não muda 20 pontos automaticamente. Parte da diferença observada vem de ambiente, acaso de avaliação e componentes que não se transmitem de modo simples. A M9 mostrou que a herdabilidade `h2` indica a fração aditiva da variação fenotípica. Na M10, usamos essa ideia para calcular a resposta esperada à seleção.
+
+O fenômeno observável é simples: escolhemos animais acima da média. A pergunta genética é mais cuidadosa: quanto dessa superioridade fenotípica deve aparecer, em média, nos filhos? A fórmula básica da aula é `R = h2 * S`, em que `S` é o diferencial de seleção e `R` é a resposta esperada por geração.
+
+## Explicação intuitiva
+
+A seleção é como uma peneira. Uma peneira larga deixa passar muitos animais, inclusive alguns apenas medianos. Uma peneira fina deixa passar poucos animais, geralmente os mais altos no critério escolhido. Quanto mais fina a peneira, maior tende a ser a média dos selecionados em relação à média do grupo. Esse afastamento é o diferencial de seleção, `S`.
+
+Peneira mais fina aumenta intensidade, mas também aumenta risco. Se poucos garanhões forem usados, a escolha fica mais concentrada. Isso pode reduzir opções de acasalamento, aumentar dependência de poucos animais e amplificar erro se a avaliação inicial estiver contaminada por ambiente ou medição ruim. Intensidade não é sinônimo de segurança. É força de seleção aplicada sobre um critério.
+
+O intervalo de geração entra porque ganho por geração e ganho por tempo não são a mesma coisa. Uma resposta de 6 pontos por geração parece boa, mas se cada geração demora 10 anos, o ganho anualizado é menor do que em uma espécie ou sistema com geração mais curta. Em cavalos, o intervalo de geração costuma ser uma limitação prática importante porque garanhões e éguas têm ciclo reprodutivo e uso seletivo mais longos que em espécies de produção de ciclo curto.
+
+## Conceito técnico
+
+Seleção é a escolha de animais que serão usados como pais da próxima geração. Nesta aula, seleção significa escolher os 20% melhores garanhões com base em um índice didático de desempenho. O índice está em pontos e serve apenas para treinar o cálculo.
+
+O diferencial de seleção, `S`, é a diferença entre a média dos animais selecionados e a média da população candidata:
+
+`S = media_dos_selecionados - media_da_populacao`
+
+Se a média de todos os candidatos é 100 pontos e a média dos selecionados é 120 pontos, então `S = 20` pontos. Biologicamente, isso significa que os pais escolhidos estão 20 pontos acima da média dos candidatos no critério avaliado.
+
+A resposta à seleção, `R`, é a mudança esperada na média da próxima geração, na mesma unidade da característica. No modelo simples da unidade:
+
+`R = h2 * S`
+
+Essa resposta é esperada, não garantida. Ela vale como aproximação didática para uma geração e depende da população, da característica, do ambiente, da qualidade da avaliação e da adequação do modelo. Eler (2017) apresenta resposta à seleção como tema central de predição genética. Falconer e Mackay (1996) relacionam diferencial, intensidade de seleção e resposta esperada. Aqui vamos usar a forma mais curta porque a unidade precisa treinar o raciocínio básico antes de modelos mais complexos.
+
+Intensidade de seleção é a força da peneira. Selecionar 20% costuma gerar maior `S` do que selecionar 50%, se os animais foram ordenados pelo mesmo critério. A intensidade depende da proporção selecionada e da distribuição dos valores. Nesta aula, vamos calcular `S` diretamente pelas médias, sem usar tabelas de intensidade.
+
+Intervalo de geração, `L`, é o tempo médio entre a geração dos pais e a geração dos filhos usados como novos pais. Se uma geração demora 8 anos, uma resposta de 6 pontos por geração equivale a 0,75 ponto por ano:
+
+`ganho_por_ano = R / L = 6 / 8 = 0,75`
+
+Esse cálculo anualizado é uma forma de enxergar o efeito do tempo. O alvo principal da aula continua sendo resposta por geração.
+
+## Fórmula
+
+A fórmula central é:
+
+`R = h2 * S`
+
+Onde:
+
+- `R` é a resposta esperada à seleção, na unidade da característica por geração;
+- `h2` é a herdabilidade no sentido restrito, sem unidade, entre 0 e 1 no exercício;
+- `S` é o diferencial de seleção, na unidade da característica.
+
+Se `h2 = 0,30` e `S = 20` pontos, então:
+
+`R = 0,30 * 20 = 6`
+
+Biologicamente, a próxima geração é esperada 6 pontos acima da média original, não 20 pontos. Os 20 pontos representam a superioridade fenotípica média dos pais selecionados. A resposta esperada fica menor porque apenas parte dessa superioridade é atribuída à variação genética aditiva.
+
+Para considerar tempo, usamos:
+
+`ganho_por_ano = R / L`
+
+Onde `L` é o intervalo de geração em anos. Se `R = 6` pontos por geração e `L = 8` anos:
+
+`ganho_por_ano = 6 / 8 = 0,75`
+
+Isso significa que o ganho médio esperado, distribuído pelo tempo, é 0,75 ponto por ano. O ganho biológico acontece por geração, mas o planejamento precisa enxergar o tempo.
+
+## Exemplo numérico
+
+Considere 100 garanhões candidatos avaliados por índice didático de desempenho. O criador seleciona os 20 melhores, isto é, 20% do grupo.
+
+| Grupo | Número de animais | Média do índice |
+|---|---:|---:|
+| Todos os candidatos | 100 | 100 |
+| Selecionados | 20 | 120 |
+
+O diferencial de seleção é:
+
+`S = 120 - 100 = 20`
+
+Os selecionados estão, em média, 20 pontos acima da média dos candidatos. Esse é o efeito da peneira. Agora use a herdabilidade da característica:
+
+`h2 = 0,30`
+
+A resposta esperada é:
+
+`R = h2 * S = 0,30 * 20 = 6`
+
+Interpretação: se os pressupostos do modelo didático forem razoáveis, a média da próxima geração deve aumentar cerca de 6 pontos no índice. A média esperada dos filhos não é 120 pontos. Ela é:
+
+`media_proxima_geracao = 100 + 6 = 106`
+
+Esse ponto evita um erro comum. A média dos pais selecionados não vira automaticamente a média dos filhos. A resposta esperada é filtrada pela herdabilidade, pela qualidade da avaliação e pelas condições do modelo.
+
+Agora considere intervalo de geração:
+
+| Item | Valor |
+|---|---:|
+| `R` | 6 pontos por geração |
+| `L` | 8 anos |
+| `ganho_por_ano` | 0,75 ponto por ano |
+
+Se o intervalo de geração fosse 6 anos, mantendo `R = 6`, o ganho anualizado seria `6 / 6 = 1` ponto por ano. Portanto, reduzir intervalo de geração pode aumentar ganho por tempo, mesmo quando a resposta por geração não muda. Em cavalos, essa decisão precisa ser biologicamente e operacionalmente plausível; não basta querer geração curta se o sistema de avaliação e reprodução não permite.
+
+## Intensidade e risco
+
+Agora compare duas peneiras:
+
+| Proporção selecionada | Média dos selecionados | `S` | `R`, com `h2 = 0,30` |
+|---|---:|---:|---:|
+| 50% melhores | 110 | 10 | 3 |
+| 20% melhores | 120 | 20 | 6 |
+
+Selecionar 20% gera maior resposta esperada no exemplo porque aumenta `S`. A peneira ficou mais fina. Mas a decisão também fica mais arriscada: menos garanhões usados, maior dependência de poucos indivíduos e maior dano se o índice de desempenho estiver enviesado por ambiente, idade, treinamento ou avaliação desigual.
+
+O checkpoint da unidade está aqui: intensidade aumenta pressão de seleção, mas também aumenta custo e risco. Boa seleção não é escolher o menor número possível de pais sem critério. Boa seleção é equilibrar intensidade, qualidade de informação, número suficiente de pais e intervalo de geração viável.
+
+## Script R mínimo
+
+```r
+h2 <- 0.3
+S <- 20
+R <- h2 * S
+L <- 8
+ganho_ano <- R / L
+data.frame(h2, S, R, L, ganho_ano)
+```
+
+O script calcula a resposta esperada com `R = h2 * S` e depois divide por `L` para mostrar o ganho anualizado. A unidade de `R` é ponto por geração, porque `S` está em pontos. A unidade de `ganho_ano` é ponto por ano.
+
+Se o estudante mudar `S` de 20 para 10, `R` cai de 6 para 3. Isso simula uma peneira menos intensa. Se mudar `L` de 8 para 6, `R` por geração não muda, mas o ganho por ano aumenta. O script separa duas decisões: intensidade muda resposta por geração; intervalo de geração muda velocidade por tempo.
+
+## Interpretação biológica
+
+Quando `S` aumenta, os pais escolhidos estão mais acima da média dos candidatos. Isso tende a aumentar `R`, desde que `h2` seja maior que zero e que a superioridade observada tenha ligação real com a parte aditiva. Se `h2` é baixa, mesmo uma peneira fina pode gerar resposta modesta.
+
+Quando `h2` aumenta, a mesma diferença entre selecionados e população gera maior resposta esperada. Com `S = 20`, se `h2 = 0,10`, então `R = 2`. Se `h2 = 0,50`, então `R = 10`. A diferença vem da fração aditiva da variação fenotípica, estudada na M9.
+
+Quando o intervalo de geração aumenta, o ganho por geração pode continuar igual, mas o ganho por ano diminui. Isso é importante para cavalos porque decisões de reprodução, idade de avaliação, uso de garanhões e tempo até avaliar a progênie podem alongar o ciclo. Um programa lento pode ter boa resposta por geração e ainda avançar devagar por calendário.
+
+Intensidade tem risco. Selecionar apenas poucos garanhões pode aumentar ganho esperado no curto prazo, mas também pode concentrar demais a decisão, reduzir alternativas de acasalamento e tornar o programa vulnerável a erros de avaliação. A decisão precisa equilibrar ganho esperado e robustez do programa.
+
+## Checkpoint
+
+Você atingiu o checkpoint se consegue relacionar intensidade e risco. Selecionar proporção menor aumenta intensidade e tende a aumentar `S`. Como `R = h2 * S`, isso pode aumentar resposta esperada. Mas proporção menor também concentra a seleção em poucos pais e aumenta risco quando a informação é fraca, enviesada ou pouco representativa.
+
+Uma resposta completa deve dizer: peneira mais fina aumenta resposta esperada no exercício, mas não deve ser aplicada sem olhar qualidade dos dados, número de pais usado e intervalo de geração.
+
+## Quiz
+
+1. O que é diferencial de seleção, `S`?
+2. Se a média dos candidatos é 100 e a média dos selecionados é 120, qual é `S`?
+3. Se `h2 = 0,30` e `S = 20`, qual é `R`?
+4. Por que a média dos filhos não vira automaticamente a média dos pais selecionados?
+5. Como intervalo de geração altera ganho por ano?
+
+Gabarito:
+
+1. É a diferença entre média dos selecionados e média da população candidata.
+2. `S = 20`.
+3. `R = 6`.
+4. Porque só parte da superioridade fenotípica é atribuída à variação genética aditiva.
+5. Quanto maior o intervalo de geração, menor o ganho por ano para o mesmo `R`.
+
+## Mini tarefa
+
+Compare três proporções selecionadas em um exercício didático:
+
+| Proporção selecionada | Média dos selecionados | Média dos candidatos | `S` | `R`, com `h2 = 0,30` |
+|---|---:|---:|---:|---:|
+| 50% | 110 | 100 | 10 | 3 |
+| 20% | 120 | 100 | 20 | 6 |
+| 10% | 128 | 100 | 28 | 8,4 |
+
+Depois escreva uma interpretação. A evidência de conclusão deve dizer qual proporção gera maior ganho esperado e qual risco aumenta. Exemplo: "selecionar 10% gera maior `R`, mas concentra a escolha em poucos garanhões; se a avaliação tiver erro ou se esses poucos garanhões representarem mal o grupo, o risco do programa aumenta".
+
+## Referências
+
+ELER, Joanir Pereira. Teorias e métodos em melhoramento genético animal: seleção. Pirassununga: Faculdade de Zootecnia e Engenharia de Alimentos da Universidade de São Paulo, 2017. DOI: 10.11606/9788566404135.
+
+FALCONER, D. S.; MACKAY, T. F. C. Introduction to quantitative genetics. 4. ed. Harlow: Longman, 1996.

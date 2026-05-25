@@ -1,56 +1,51 @@
 {
   "module": "02",
-  "title": "Quiz — Módulo 02",
-  "subtitle": "Responda as questões abaixo. São necessários 4 acertos para concluir o módulo.",
+  "title": "Quiz — Modos de ação gênica",
+  "subtitle": "Questões formativas alinhadas ao pacote textual revisado de 2026-05-21.",
   "passMark": 4,
   "questions": [
     {
-      "text": "Na equação P = G + E, o componente G representa:",
+      "text": "Se `AA = 10` e `aa = 4`, qual seria o valor de `Aa` sob ação aditiva simples?",
       "options": [
-        "Apenas o valor genético aditivo do animal.",
-        "O valor genotípico total, incluindo efeitos aditivos, de dominância e epistáticos.",
-        "Somente efeitos ambientais permanentes do animal.",
-        "A variância fenotípica observada na população."
+        "7 kg.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "O valor de melhoramento (valor genético aditivo) é central porque:",
+      "text": "Se `Aa = 8`, qual é o desvio em relação ao ponto médio?",
       "options": [
-        "É transmitido integralmente para cada filho.",
-        "Em média, metade dele é transmitida para cada filho.",
-        "Depende do ambiente e varia ao longo da vida.",
-        "Inclui efeitos de dominância e epistasia."
+        "1 kg acima do ponto médio.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 1
+      "correct": 0
     },
     {
-      "text": "Uma característica com baixa variância genética aditiva, mas alta variância de dominância:",
+      "text": "Por que não basta escrever \"há dominância\"?",
       "options": [
-        "Responde muito bem à seleção massal individual.",
-        "Tem herdabilidade no sentido estreito elevada.",
-        "É difícil de melhorar por seleção contínua, pois a herança transmissível é baixa.",
-        "Não apresenta variação fenotípica entre animais."
+        "Porque é preciso dizer em qual direção o heterozigoto desviou.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 2
+      "correct": 0
     },
     {
-      "text": "A expressão correta da relação entre fenótipo, genótipo e ambiente é:",
+      "text": "Se dois loci somariam 10 kg, mas a combinação vale 13 kg, qual é o desvio de interação?",
       "options": [
-        "P = G × E",
-        "P = G − E",
-        "P = G + E",
-        "P = G / E"
+        "3 kg.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
-      "correct": 2
+      "correct": 0
     },
     {
-      "text": "Em cruzamentos entre linhas puras muito divergentes, a dominância genética manifesta-se principalmente como:",
+      "text": "Qual erro ocorre quando alguém chama qualquer diferença genotípica de \"aditiva\"?",
       "options": [
-        "Vigor híbrido (heterose) na progênie F1.",
-        "Depressão por endogamia nas linhagens parentais.",
-        "Aumento da variância aditiva na população.",
-        "Redução da covariância entre parentes."
+        "Confundir diferença entre genótipos com soma regular de efeitos.",
+        "Alternativa incompatível com a explicação técnica da unidade.",
+        "Alternativa que ignora a evidência pedida no módulo."
       ],
       "correct": 0
     }
