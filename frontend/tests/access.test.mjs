@@ -4,6 +4,7 @@ import { buildRouteHash, parseRouteHash, routeNeedsAdmin, routeNeedsAuth } from 
 
 test('parseRouteHash protects known learner routes', () => {
   assert.deepEqual(parseRouteHash('#catalog'), { screen: 'catalog', authMode: 'login', selectedCourseId: null, showQuiz: false })
+  assert.deepEqual(parseRouteHash('#account'), { screen: 'account', authMode: 'login', selectedCourseId: null, showQuiz: false })
   assert.deepEqual(parseRouteHash('#course/module-01'), { screen: 'course', authMode: 'login', selectedCourseId: 'module-01', showQuiz: false })
   assert.deepEqual(parseRouteHash('#quiz/module-01'), { screen: 'course', authMode: 'login', selectedCourseId: 'module-01', showQuiz: true })
 })
@@ -17,7 +18,9 @@ test('buildRouteHash round-trips protected routes', () => {
 test('guard helpers classify access correctly', () => {
   assert.equal(routeNeedsAuth(parseRouteHash('#auth')), false)
   assert.equal(routeNeedsAuth(parseRouteHash('#catalog')), true)
+  assert.equal(routeNeedsAuth(parseRouteHash('#account')), true)
   assert.equal(routeNeedsAuth(parseRouteHash('#quiz/module-01')), true)
   assert.equal(routeNeedsAdmin(parseRouteHash('#admin')), true)
+  assert.equal(routeNeedsAuth(parseRouteHash('#admin')), true)
   assert.equal(routeNeedsAdmin(parseRouteHash('#course/module-01')), false)
 })

@@ -8,6 +8,7 @@ function parseRouteHash(hash) {
   if (clean === 'auth' || clean === 'login') return { screen: 'auth', authMode: 'login', selectedCourseId: null, showQuiz: false }
   if (clean === 'signup') return { screen: 'auth', authMode: 'signup', selectedCourseId: null, showQuiz: false }
   if (clean === 'catalog') return { screen: 'catalog', authMode: 'login', selectedCourseId: null, showQuiz: false }
+  if (clean === 'account') return { screen: 'account', authMode: 'login', selectedCourseId: null, showQuiz: false }
   if (clean === 'admin') return { screen: 'admin', authMode: 'login', selectedCourseId: null, showQuiz: false }
   if (clean.indexOf('course/') === 0) {
     const selectedCourseId = clean.slice('course/'.length) || null
@@ -24,13 +25,14 @@ function buildRouteHash(route) {
   if (route.showQuiz && route.selectedCourseId) return 'quiz/' + route.selectedCourseId
   if (route.screen === 'auth') return route.authMode === 'signup' ? 'signup' : 'auth'
   if (route.screen === 'catalog') return 'catalog'
+  if (route.screen === 'account') return 'account'
   if (route.screen === 'admin') return 'admin'
   if (route.screen === 'course' && route.selectedCourseId) return 'course/' + route.selectedCourseId
   return ''
 }
 
 function routeNeedsAuth(route) {
-  return route.screen === 'catalog' || route.screen === 'course' || route.screen === 'admin' || Boolean(route.showQuiz)
+  return route.screen === 'catalog' || route.screen === 'course' || route.screen === 'account' || route.screen === 'admin' || Boolean(route.showQuiz)
 }
 
 function routeNeedsAdmin(route) {

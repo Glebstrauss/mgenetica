@@ -17,6 +17,7 @@ import {
   createAccount,
   deleteSession,
   getAccount,
+  updateAccountName,
   normalizeAuthError,
   functionIds,
   APPWRITE_ENDPOINT,
@@ -170,7 +171,7 @@ function AuthPanel({ user, mode, onModeChange, onLogin, onSignup, onLogout, load
   )
 }
 
-function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, onOpenCatalog, onOpenAdmin, locale, onLocaleChange, t }) {
+function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, onOpenCatalog, onOpenAccount, onOpenAdmin, locale, onLocaleChange, t }) {
   const benefits = t('home.benefits')
   const trust = t('home.trust')
   return (
@@ -182,6 +183,10 @@ function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, 
             <button type="button" className="btn btn-secondary" onClick={onOpenCatalog} aria-label={t('home.openCatalogAria')}>
               <Icon name="layers" size={16} />
               {t('common.learnerArea')}
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={onOpenAccount} aria-label={t('account.openAria')}>
+              <Icon name="user" size={16} />
+              {t('common.profile')}
             </button>
             {isAdmin ? <button type="button" className="btn btn-secondary" onClick={onOpenAdmin} aria-label={t('home.openAdminAria')}><Icon name="check" size={16} />{t('common.admin')}</button> : null}
             <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth} aria-label={t('home.logoutAria')}><Icon name="arrowLeft" size={16} />{t('common.logout')}</button>
@@ -222,6 +227,7 @@ function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, 
           <p className="section-description">{t('home.learner.copy')}</p>
           <div className="section-cta" style={{ marginTop: 16 }}>
             <button type="button" className="btn btn-primary" onClick={onOpenCatalog}>{t('home.learner.openCourses')}</button>
+            <button type="button" className="btn btn-secondary" onClick={onOpenAccount}>{t('account.open')}</button>
             <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth}>{t('home.learner.logout')}</button>
           </div>
         </section>
@@ -236,7 +242,7 @@ function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, 
   )
 }
 
-function AuthPage({ user, status, authMode, loadingAuth, isAdmin, onAuthIntent, onLogin, onSignup, onLogout, onOpenCatalog, onOpenAdmin, locale, onLocaleChange, t, errorMessages }) {
+function AuthPage({ user, status, authMode, loadingAuth, isAdmin, onAuthIntent, onLogin, onSignup, onLogout, onOpenCatalog, onOpenAccount, onOpenAdmin, locale, onLocaleChange, t, errorMessages }) {
   return (
     <div className="app-shell">
       <SkipLink t={t} />
@@ -244,6 +250,7 @@ function AuthPage({ user, status, authMode, loadingAuth, isAdmin, onAuthIntent, 
         {user ? (
           <>
             <button type="button" className="btn btn-secondary" onClick={onOpenCatalog}><Icon name="layers" size={16} />{t('common.learnerArea')}</button>
+            <button type="button" className="btn btn-secondary" onClick={onOpenAccount}><Icon name="user" size={16} />{t('common.profile')}</button>
             {isAdmin ? <button type="button" className="btn btn-secondary" onClick={onOpenAdmin}><Icon name="check" size={16} />{t('common.admin')}</button> : null}
             <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth}><Icon name="arrowLeft" size={16} />{t('common.logout')}</button>
           </>
@@ -261,12 +268,13 @@ function AuthPage({ user, status, authMode, loadingAuth, isAdmin, onAuthIntent, 
   )
 }
 
-function CatalogPage({ courseGroups, progressByCourse, progressSummary, isAdmin, onBack, onOpenCourse, onOpenAdmin, onLogout, loadingAuth, locale, onLocaleChange, t }) {
+function CatalogPage({ courseGroups, progressByCourse, progressSummary, isAdmin, onBack, onOpenCourse, onOpenAccount, onOpenAdmin, onLogout, loadingAuth, locale, onLocaleChange, t }) {
   return (
     <div className="app-shell">
       <SkipLink t={t} />
       <AppHeader brandName={t('catalog.brandName')} brandTagline={t('catalog.brandTagline')} status={''} locale={locale} onLocaleChange={onLocaleChange} t={t}>
         <button type="button" className="btn btn-secondary" onClick={onBack} aria-label={t('catalog.backHomeAria')}><Icon name="arrowLeft" size={16} />{t('common.back')}</button>
+        <button type="button" className="btn btn-secondary" onClick={onOpenAccount} aria-label={t('account.openAria')}><Icon name="user" size={16} />{t('common.profile')}</button>
         {isAdmin ? <button type="button" className="btn btn-secondary" onClick={onOpenAdmin} aria-label={t('catalog.openAdminAria')}><Icon name="check" size={16} />{t('common.admin')}</button> : null}
         <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth} aria-label={t('catalog.logoutAria')}><Icon name="lock" size={16} />{t('common.logout')}</button>
       </AppHeader>
@@ -311,6 +319,98 @@ function CatalogPage({ courseGroups, progressByCourse, progressSummary, isAdmin,
             </section>
           ))}
         </div>
+      </main>
+    </div>
+  )
+}
+
+function AccountPage({ user, courses, progressByCourse, progressSummary, isAdmin, onBack, onOpenCatalog, onOpenCourse, onOpenAdmin, onLogout, onUpdateProfile, loadingAuth, locale, onLocaleChange, t }) {
+  const [name, setName] = useState(user?.name || '')
+  const [saving, setSaving] = useState(false)
+  const [message, setMessage] = useState('')
+  const trackedCourses = courses.map((course) => ({ course, progress: progressByCourse?.[course.id] || null }))
+
+  useEffect(() => {
+    setName(user?.name || '')
+  }, [user?.name])
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    setSaving(true)
+    setMessage('')
+    try {
+      await onUpdateProfile({ name: name.trim() })
+      setMessage(t('account.profileSaved'))
+    } catch (err) {
+      setMessage(err?.message || t('account.profileSaveError'))
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  return (
+    <div className="app-shell">
+      <SkipLink t={t} />
+      <AppHeader brandName={t('account.brandName')} brandTagline={t('account.brandTagline')} status={message} locale={locale} onLocaleChange={onLocaleChange} t={t}>
+        <button type="button" className="btn btn-secondary" onClick={onBack}><Icon name="arrowLeft" size={16} />{t('common.back')}</button>
+        <button type="button" className="btn btn-secondary" onClick={onOpenCatalog}><Icon name="layers" size={16} />{t('common.learnerArea')}</button>
+        {isAdmin ? <button type="button" className="btn btn-secondary" onClick={onOpenAdmin}><Icon name="check" size={16} />{t('common.admin')}</button> : null}
+        <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth}><Icon name="lock" size={16} />{t('common.logout')}</button>
+      </AppHeader>
+      <main id="main-content" className="account-layout" tabIndex="-1">
+        <section className="content-section account-profile-panel">
+          <div className="section-label">{t('account.profileLabel')}</div>
+          <h1 className="section-heading">{t('account.heading')}</h1>
+          <p className="section-description">{t('account.copy')}</p>
+          <form className="account-form" onSubmit={handleSubmit}>
+            <div className="field">
+              <label htmlFor="account-name">{t('account.name')}</label>
+              <input id="account-name" name="name" autoComplete="name" value={name} onChange={(event) => setName(event.target.value)} placeholder={t('account.namePlaceholder')} />
+            </div>
+            <div className="field">
+              <label htmlFor="account-email">{t('account.email')}</label>
+              <input id="account-email" name="email" type="email" value={user?.email || ''} readOnly />
+            </div>
+            <div className="account-meta-grid">
+              <div><span>{t('account.accountId')}</span><strong>{user?.$id || '-'}</strong></div>
+              <div><span>{t('account.emailVerified')}</span><strong>{user?.emailVerification ? t('account.yes') : t('account.no')}</strong></div>
+              <div><span>{t('account.registeredAt')}</span><strong>{user?.registration ? new Date(user.registration).toLocaleDateString(locale) : '-'}</strong></div>
+            </div>
+            {message ? <div className="callout-card" role="status" aria-live="polite">{message}</div> : null}
+            <div className="section-cta">
+              <button type="submit" className="btn btn-primary" disabled={saving}><Icon name="check" size={16} />{saving ? t('account.saving') : t('account.saveProfile')}</button>
+            </div>
+          </form>
+        </section>
+        <section className="content-section account-progress-panel">
+          <div className="section-label">{t('account.coursesLabel')}</div>
+          <h2 className="section-heading">{t('account.coursesHeading')}</h2>
+          <p className="section-description">{t('account.progressOverview', { tracked: progressSummary?.totalCoursesTracked || 0, passed: progressSummary?.passedCourses || 0, average: progressSummary?.averagePercent || 0 })}</p>
+          <div className="account-summary-grid">
+            <article><strong>{progressSummary?.totalCoursesTracked || 0}</strong><span>{t('account.tracked')}</span></article>
+            <article><strong>{progressSummary?.passedCourses || 0}</strong><span>{t('account.passed')}</span></article>
+            <article><strong>{progressSummary?.averagePercent || 0}%</strong><span>{t('account.average')}</span></article>
+          </div>
+          <div className="enrollment-list" role="list" aria-label={t('account.coursesHeading')}>
+            {trackedCourses.map(({ course, progress }) => (
+              <article className="enrollment-card" role="listitem" key={course.id}>
+                <div>
+                  <div className="badge-row">
+                    <span className="chip">{course.legacyId}</span>
+                    <span className="chip">{progress ? t('catalog.progressChip', { percent: progress.percent }) : t('catalog.notStarted')}</span>
+                    {progress?.passed ? <span className="chip">{t('catalog.passed')}</span> : null}
+                  </div>
+                  <strong className="course-title">{course.title}</strong>
+                  <p className="course-description">{course.description}</p>
+                </div>
+                <div className="progress-meter" aria-label={t('account.courseProgress', { percent: progress?.percent || 0 })}>
+                  <span style={{ width: (progress?.percent || 0) + '%' }} />
+                </div>
+                <button type="button" className="btn btn-primary course-action" onClick={() => onOpenCourse(course.id)}>{progress ? t('account.continueCourse') : t('account.startCourse')}</button>
+              </article>
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   )
@@ -499,7 +599,14 @@ export default function App() {
   function focusAuth(mode) { navigate({ screen: 'auth', authMode: mode, selectedCourseId: null, showQuiz: false }) }
   function openCatalog() { if (!user) { updateStatus('status.enterCourses'); return } navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false }) }
   function openCourse(courseId) { if (!user) { updateStatus('status.enterCoursePage'); return } navigate({ screen: 'course', authMode, selectedCourseId: courseId, showQuiz: false }) }
+  function openAccount() { if (!user) { updateStatus('status.enterCourses'); return } navigate({ screen: 'account', authMode, selectedCourseId: null, showQuiz: false }) }
   function openAdmin() { if (!adminEnabled) { updateStatus('status.notAdmin'); return } navigate({ screen: 'admin', authMode, selectedCourseId: null, showQuiz: false }) }
+  async function handleUpdateProfile(payload) {
+    const account = await updateAccountName(payload.name || user?.name || user?.email || 'MGenética learner')
+    setUser(account)
+    updateStatus('status.profileSaved')
+    return account
+  }
   async function persistQuizResult(courseId, quizResult) {
     const rawReport = await updateProgress(courseId, {
       percent: quizResult?.total ? Math.round((Number(quizResult.score || 0) / Number(quizResult.total)) * 100) : 0,
@@ -536,7 +643,7 @@ export default function App() {
   function goHome() { navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) }
 
   if (protectedRoutePending) {
-    return <AuthPage user={null} status={status} authMode="login" loadingAuth={true} isAdmin={false} onAuthIntent={focusAuth} onLogin={handleLogin} onSignup={handleSignup} onLogout={handleLogout} onOpenCatalog={openCatalog} onOpenAdmin={openAdmin} locale={locale} onLocaleChange={setLocale} t={t} errorMessages={errorMessages} />
+    return <AuthPage user={null} status={status} authMode="login" loadingAuth={true} isAdmin={false} onAuthIntent={focusAuth} onLogin={handleLogin} onSignup={handleSignup} onLogout={handleLogout} onOpenCatalog={openCatalog} onOpenAccount={openAccount} onOpenAdmin={openAdmin} locale={locale} onLocaleChange={setLocale} t={t} errorMessages={errorMessages} />
   }
   if (showQuiz && user && selectedCourse) {
     return (
@@ -553,13 +660,16 @@ export default function App() {
     )
   }
   if (screen === 'catalog' && user) {
-    return <CatalogPage courseGroups={courseGroups} progressByCourse={progressByCourse} progressSummary={progressReport?.summary} isAdmin={adminEnabled} onBack={goHome} onOpenCourse={openCourse} onOpenAdmin={openAdmin} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
+    return <CatalogPage courseGroups={courseGroups} progressByCourse={progressByCourse} progressSummary={progressReport?.summary} isAdmin={adminEnabled} onBack={goHome} onOpenCourse={openCourse} onOpenAccount={openAccount} onOpenAdmin={openAdmin} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
+  }
+  if (screen === 'account' && user) {
+    return <AccountPage user={user} courses={catalogCourses} progressByCourse={progressByCourse} progressSummary={progressReport?.summary} isAdmin={adminEnabled} onBack={goHome} onOpenCatalog={openCatalog} onOpenCourse={openCourse} onOpenAdmin={openAdmin} onLogout={handleLogout} onUpdateProfile={handleUpdateProfile} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
   }
   if (screen === 'admin' && user && adminEnabled) {
     return <AdminPage user={user} status={status} report={adminReport} loading={loadingAdmin} onRefresh={runAdminChecks} onBack={goHome} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
   }
   if (screen === 'auth') {
-    return <AuthPage user={user} status={status} authMode={authMode} loadingAuth={loadingAuth} isAdmin={adminEnabled} onAuthIntent={focusAuth} onLogin={handleLogin} onSignup={handleSignup} onLogout={handleLogout} onOpenCatalog={openCatalog} onOpenAdmin={openAdmin} locale={locale} onLocaleChange={setLocale} t={t} errorMessages={errorMessages} />
+    return <AuthPage user={user} status={status} authMode={authMode} loadingAuth={loadingAuth} isAdmin={adminEnabled} onAuthIntent={focusAuth} onLogin={handleLogin} onSignup={handleSignup} onLogout={handleLogout} onOpenCatalog={openCatalog} onOpenAccount={openAccount} onOpenAdmin={openAdmin} locale={locale} onLocaleChange={setLocale} t={t} errorMessages={errorMessages} />
   }
-  return <HomePage user={user} status={status} loadingAuth={loadingAuth} isAdmin={adminEnabled} onAuthIntent={focusAuth} onLogout={handleLogout} onOpenCatalog={openCatalog} onOpenAdmin={openAdmin} locale={locale} onLocaleChange={setLocale} t={t} />
+  return <HomePage user={user} status={status} loadingAuth={loadingAuth} isAdmin={adminEnabled} onAuthIntent={focusAuth} onLogout={handleLogout} onOpenCatalog={openCatalog} onOpenAccount={openAccount} onOpenAdmin={openAdmin} locale={locale} onLocaleChange={setLocale} t={t} />
 }

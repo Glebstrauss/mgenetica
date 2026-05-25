@@ -221,6 +221,13 @@ async function getAccount() {
   });
 }
 
+async function updateAccountName(name) {
+  return callAccountApi('/account/name', {
+    method: 'PATCH',
+    payload: { name }
+  });
+}
+
 export {
   client,
   databases,
@@ -240,6 +247,7 @@ export {
   createAccount,
   deleteSession,
   getAccount,
+  updateAccountName,
   normalizeAuthError,
   normalizeAppError,
   APPWRITE_ENDPOINT,
