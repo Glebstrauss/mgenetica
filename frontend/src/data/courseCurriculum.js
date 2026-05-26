@@ -341,10 +341,10 @@ const DETAIL_COPY = {
     checkpointLabel: 'Checkpoint',
     taskLabel: 'Task',
     evidenceLabel: 'Expected evidence',
-    quizLabel: 'Assessment focus',
+    quizLabel: 'Quiz focus',
     glossaryLabel: 'Glossary',
     topicsLabel: 'Topics',
-    moduleMetaQuiz: 'Real assessment',
+    moduleMetaQuiz: 'Real quiz',
     dedicatedPage: 'Dedicated module page'
   },
   es: {

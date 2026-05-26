@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MGenética</title>
+    <script>
+      const base = '/mgenetica/'
+      const path = window.location.pathname
+      const filename = path.split('/').pop()
+      const moduleMatch = filename && filename.match(/^modulo(\d{2})-/)
+      let hash = ''
+
+      if (/\/plataforma\.html$/.test(path)) hash = 'auth'
+      else if (/\/(en\/|es\/)?modules\/?$/.test(path)) hash = 'catalog'
+      else if (moduleMatch) hash = 'course/module-' + moduleMatch[1]
+
+      window.location.replace(base + (hash ? '#' + hash : ''))
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to MGenética...</p>
+  </body>
+</html>

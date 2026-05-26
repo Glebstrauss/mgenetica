@@ -1,51 +1,95 @@
 # MGenética
 
-MGenética tem dois fronts neste repositório:
+MGenética has two separate fronts in this repository:
 
-- **Site público:** conteúdo editorial/institucional em Quarto, mantido como fonte e publicação manual.
-- **Learner app:** experiência autenticada em `frontend/`, construída com Vite + React e Appwrite, publicada no GitHub Pages live root.
+- **Public site source:** editorial and institutional content in Quarto, kept for manual review/publication.
+- **Learner app:** authenticated learning experience in `frontend/`, built with Vite + React + Appwrite and currently served at the GitHub Pages live root.
 
-Não misture esses fronts. O site não deve virar painel/app administrativo. Hoje o GitHub Pages raiz serve o learner app, enquanto o conteúdo Quarto permanece como fonte editorial/manual.
+Do not mix these fronts. The public site must not become an admin/app surface. Today `https://mgenetica.github.io/mgenetica/` serves the React learner app, while the Quarto source remains the editorial source of record.
+
+## Course Structure
+
+The course hierarchy is:
+
+```text
+Course -> Theme/Main Module -> Study Block -> Study Block Items
+```
+
+MGenética currently uses:
+
+- 1 course: MGenética
+- 5 major themes/main modules
+- 21 study blocks (`M1` through `M21`)
+- 5 standard items in each study block:
+  - Reading
+  - Concept
+  - Exercise
+  - R Lab
+  - Quiz
+
+The `M1` through `M21` identifiers are study blocks, not the five major themes.
+
+## Live Route Contract
+
+The learner app owns the live root:
+
+- `/mgenetica/` -> React learner app
+- `#/auth` -> Sign in
+- `#/catalog` -> Courses
+- `#/account` -> Profile
+- `#/course/module-01` through `#/course/module-21` -> Course page
+- `#/quiz/module-01` through `#/quiz/module-21` -> Quiz
+
+Legacy Quarto URLs are kept as compatibility entry points:
+
+- `/mgenetica/plataforma.html` -> `#/auth`
+- `/mgenetica/modules/` -> `#/catalog`
+- `/mgenetica/en/modules/` -> `#/catalog`
+- `/mgenetica/es/modules/` -> `#/catalog`
+- `/mgenetica/modules/moduloNN-*.html` -> `#/course/module-NN`
+
+Courses are free after sign in/login.
 
 ## Stack
 
-- **Public site source:** Quarto + R + SCSS + JavaScript estático
+- **Public site source:** Quarto + R + SCSS + static JavaScript
 - **Live app/runtime:** Vite + React + Appwrite + GitHub Pages
+- **Validation:** R scripts, Node syntax checks, frontend tests, Vite build
 
-Há um `frontend/package.json` para o learner app. O site Quarto na raiz continua sem toolchain Node própria além das checagens e do uso de Pagefind no CI.
+The Quarto site at the repository root has no primary Node toolchain beyond checks and CI support. The learner app has its own `frontend/package.json`.
 
-## Pré-requisitos
+## Prerequisites
 
-- [Quarto](https://quarto.org/) instalado para preview/build local.
-- [R](https://www.r-project.org/) instalado.
-- Node.js opcional para o site e necessário para o learner app.
+- [Quarto](https://quarto.org/) for local public-site preview/render.
+- [R](https://www.r-project.org/) for public-site validation scripts.
+- Node.js for the learner app.
 
-Neste ambiente local atual, `quarto` pode não estar no `PATH`. O workflow do GitHub Pages instala Quarto e executa o render completo no CI.
+Local machines may not have `quarto` on `PATH`. The GitHub Pages workflows install Quarto when rendering the editorial site.
 
-## Instalar dependências
+## Install Dependencies
 
-As dependências R são restauradas pelo `renv`:
+Restore R dependencies:
 
 ```bash
 Rscript -e 'renv::restore()'
 ```
 
-O learner app instala dependências próprias em `frontend/`:
+Install learner-app dependencies:
 
 ```bash
 cd frontend
 npm ci
 ```
 
-## Rodar localmente
+## Run Locally
 
-Para abrir o preview local do site:
+Preview the public Quarto source:
 
 ```bash
 quarto preview
 ```
 
-Para rodar o learner app localmente:
+Run the learner app:
 
 ```bash
 cd frontend
@@ -54,106 +98,72 @@ npm run dev
 
 ## Build
 
-Para renderizar o site estático:
+Render the public Quarto source:
 
 ```bash
 quarto render
 ```
 
-A saída Quarto continua sendo gerada em `docs/`, mas o live root atual do GitHub Pages está ocupado pelo learner app empacotado.
-
-Build do learner app:
+Build the learner app:
 
 ```bash
 cd frontend
 npm run build
 ```
 
-## Validação
+The Quarto output is generated under `docs/` for review/editorial workflows. The current GitHub Pages live root is occupied by the packaged learner app.
 
-Validação completa antes de publicar o site:
+## Validation
+
+Frontend:
 
 ```bash
-Rscript scripts/prepublish_site_check.R
+cd frontend
+npm test
+npm run build
 ```
 
-Checks úteis durante desenvolvimento do site:
+Public-site checks:
 
 ```bash
-Rscript scripts/validate_site_manifest.R
-Rscript scripts/run_all_modules.R
-node --check assets/js/progress.js
-node --check assets/js/i18n.js
-node --check assets/js/darkmode.js
-node --check assets/js/interactives.js
-node --check assets/js/quiz.js
-node --check assets/js/teacher-mode.js
+Rscript --vanilla scripts/validate_site_manifest.R
+SKIP_QUARTO_RENDER=1 Rscript --vanilla scripts/prepublish_site_check.R
 git diff --check
 ```
 
-## Estrutura principal
+Full public-site publication check:
+
+```bash
+Rscript --vanilla scripts/prepublish_site_check.R
+```
+
+## Main Structure
 
 ```text
 mgenetica/
-├── _quarto.yml                  # Configuração do site Quarto
-├── index.qmd                    # Homepage pública
-├── plataforma.qmd               # Handoff público para learner app separado
-├── modules/                     # 12 módulos do curso
-├── semanas/                     # Roteiro de estudo
-├── assets/                      # JS e includes HTML
-├── styles/                      # SCSS principal e dark mode
-├── data/                        # Manifesto do site e dados simulados
-├── docs/                        # Saída renderizada do Quarto para revisão/editorial
-├── frontend/                    # Learner app React + Appwrite
-└── .github/workflows/           # Publicação Pages, Quarto manual e Appwrite
+├── _quarto.yml                  # Quarto public-site configuration
+├── index.qmd                    # Public homepage source
+├── plataforma.qmd               # Public handoff/source page
+├── modules/                     # Quarto source for 21 study-block pages
+├── semanas/                     # Public study route source
+├── assets/                      # Public-site JavaScript and HTML includes
+├── styles/                      # Public-site SCSS and dark mode
+├── data/                        # Public-site manifest and simulated data
+├── docs/                        # Quarto render output for editorial review
+├── frontend/                    # React learner app + Appwrite integration
+└── .github/workflows/           # Pages, Quarto manual, Vercel and Appwrite workflows
 ```
 
-## Estado operacional atual
+## Operational State
 
-- A URL live `https://mgenetica.github.io/mgenetica/` serve hoje o learner app React publicado na raiz do GitHub Pages.
-- O conteúdo Quarto continua como fonte editorial e fluxo manual, sem disputar automaticamente a mesma raiz publicada.
-- O backend produtivo continua em Appwrite.
-- O painel administrativo depende de:
-  - `ADMIN_EMAILS` na função `mgenetica_admin_fn`
-  - `APPWRITE_ADMIN_API_KEY` na função `mgenetica_admin_fn` (`APPWRITE_API_KEY` é aceito como fallback)
+- The live URL `https://mgenetica.github.io/mgenetica/` serves the React learner app.
+- The Quarto content remains available as editorial source and manual review output.
+- Appwrite is the production backend for auth, course data, quiz submission and progress.
+- The admin panel requires `ADMIN_EMAILS` and `APPWRITE_ADMIN_API_KEY` on `mgenetica_admin_fn`; `APPWRITE_API_KEY` is accepted as fallback.
 
-## Documentação operacional local
+## Agent Scope
 
-Arquivos Markdown de planejamento, tracking e status de operação na raiz do repositório agora são tratados como notas locais e ficam no `.gitignore`. A documentação versionada que continua sendo referência para colaboradores é:
-
-- este `README.md`
-- `frontend/README.md`
-- `frontend/README-APPWRITE.md`
-- `appwrite/README.md`
-- READMEs pontuais de subpastas
-
-## Escopo para agentes
-
-- Trabalhe no front correto: site público ou learner app.
-- Não trate Quarto e learner app como o mesmo artefato publicado.
-- Antes de publicar o site, rode `Rscript scripts/prepublish_site_check.R`.
-- Preserve mudanças locais existentes; não reverta arquivos sem pedido explícito.
-
-## Publicação
-
-### Site público
-
-O workflow `.github/workflows/quarto-publish.yml` ficou manual. Ele não deve mais disputar automaticamente a raiz do GitHub Pages com o learner app.
-
-Fluxo:
-1. Instalar R
-2. Instalar Quarto
-3. Configurar Node.js
-4. Rodar `Rscript scripts/prepublish_site_check.R` com `SKIP_QUARTO_RENDER=1`
-5. Renderizar com Quarto
-6. Indexar com Pagefind
-7. Gerar artefato Quarto para revisão/publicação manual
-
-### Learner app
-
-O learner app live é publicado hoje no GitHub Pages root e fala com o Appwrite em produção.
-
-Checklist operacional atual:
-- manter `APPWRITE_API_KEY` e `APPWRITE_PROJECT_ID` para deploy das funções
-- registrar `https://mgenetica.github.io/mgenetica/` em Appwrite Web Platforms
-- configurar `ADMIN_EMAILS` e `APPWRITE_ADMIN_API_KEY` na função `mgenetica_admin_fn` para habilitar resumo administrativo real
+- Work on the correct front: public site or learner app.
+- Do not treat Quarto publication and learner-app publication as the same artifact.
+- Before publishing site changes, run `Rscript --vanilla scripts/prepublish_site_check.R`.
+- Preserve existing local changes; do not revert files without an explicit request.

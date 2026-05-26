@@ -1,16 +1,8 @@
 import React from 'react'
 import Icon from './components/Icon'
-import { BRAND_LOGO_URL } from './lib/branding'
-
-function InlineText({ text }) {
-  const parts = String(text || '').split(/(`[^`]+`)/g).filter(Boolean)
-  return parts.map((part, index) => {
-    if (part.startsWith('`') && part.endsWith('`')) {
-      return <code key={index}>{part.slice(1, -1)}</code>
-    }
-    return <React.Fragment key={index}>{part}</React.Fragment>
-  })
-}
+import AppHeader from './components/AppHeader'
+import ActionButton from './components/ActionButton'
+import LessonText from './components/LessonText'
 
 function SectionCard({ eyebrow, title, paragraphs, code, codeLabel, part, scientific }) {
   return (
@@ -18,9 +10,7 @@ function SectionCard({ eyebrow, title, paragraphs, code, codeLabel, part, scient
       {eyebrow ? <div className="section-eyebrow">{eyebrow}</div> : null}
       <h3>{title}</h3>
       {part ? <div className="lesson-part-chip">{part}</div> : null}
-      <div className="stack">
-        {paragraphs.map((paragraph) => <p key={paragraph}><InlineText text={paragraph} /></p>)}
-      </div>
+      <LessonText paragraphs={paragraphs} />
       {code ? (
         <div className="code-panel" style={{ marginTop: 18 }}>
           <div className="code-caption">
@@ -47,54 +37,22 @@ function StudyPath({ detail }) {
   )
 }
 
-function LocaleSwitcher({ locale, onLocaleChange, t }) {
-  return (
-    <label className="locale-switcher" aria-label={t('localeSwitcher.label')}>
-      <span className="locale-switcher-icon" aria-hidden="true">
-        <Icon name="globe" size={16} />
-      </span>
-      <select className="locale-select" value={locale} onChange={(e) => onLocaleChange(e.target.value)}>
-        {['pt-BR', 'en', 'es'].map((localeCode) => (
-          <option key={localeCode} value={localeCode}>
-            {t('locales.' + localeCode)}
-          </option>
-        ))}
-      </select>
-    </label>
-  )
-}
-
 export default function CoursePage({ course, detail, progress, onBack, onOpenQuiz, onOpenCatalog, onOpenCourse, nextCourse, onLogout, loadingAuth, locale, onLocaleChange, t }) {
   return (
     <div className="app-shell">
-      <header className="app-header course-header">
-        <div className="header-brand">
-          <div className="brand-logo">
-            <img src={BRAND_LOGO_URL} alt={t('common.brandName')} style={{ width: 32, height: 32 }} />
-          </div>
-          <div className="brand-info">
-            <div className="brand-name">{course.title}</div>
-            <div className="brand-tagline">{t('coursePage.dedicatedPage')}</div>
-          </div>
-        </div>
-        <div className="header-actions">
-          <LocaleSwitcher locale={locale} onLocaleChange={onLocaleChange} t={t} />
-          <button type="button" className="btn btn-secondary" onClick={onBack}>
-            <Icon name="arrowLeft" size={16} />
-            {t('coursePage.backToCatalog')}
-          </button>
-          {onOpenCatalog ? (
-            <button type="button" className="btn btn-secondary" onClick={onOpenCatalog}>
-              <Icon name="layers" size={16} />
-              {t('coursePage.catalog')}
-            </button>
-          ) : null}
-          <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth}>
-            <Icon name="arrowLeft" size={16} />
-            {t('common.logout')}
-          </button>
-        </div>
-      </header>
+      <AppHeader brandName={course.title} brandTagline={t('coursePage.dedicatedPage')} status="" locale={locale} onLocaleChange={onLocaleChange} t={t} className="course-header">
+        <ActionButton type="button" variant="secondary" onClick={onBack} icon={<Icon name="arrowLeft" size={16} />}>
+          {t('coursePage.backToCatalog')}
+        </ActionButton>
+        {onOpenCatalog ? (
+          <ActionButton type="button" variant="secondary" onClick={onOpenCatalog} icon={<Icon name="layers" size={16} />}>
+            {t('coursePage.catalog')}
+          </ActionButton>
+        ) : null}
+        <ActionButton type="button" variant="secondary" onClick={onLogout} disabled={loadingAuth} icon={<Icon name="lock" size={16} />}>
+          {t('common.logout')}
+        </ActionButton>
+      </AppHeader>
       <a className="skip-link" href="#main-content">{t('common.skipToContent') || 'Skip to content'}</a>
       {detail ? (
         <main id="main-content" className="course-content stack" tabIndex="-1">
@@ -146,22 +104,20 @@ export default function CoursePage({ course, detail, progress, onBack, onOpenQui
             <div className="section-eyebrow">{t('coursePage.actionEyebrow')}</div>
             <h3>{t('coursePage.actionTitle')}</h3>
             <p>{t('coursePage.afterQuizCopy')}</p>
-            <div className="hero-actions" style={{ marginTop: 16 }}>
-              <button type="button" className="btn btn-primary" onClick={onOpenQuiz}>
-                <Icon name="arrowRight" size={16} />
+            <div className="hero-actions section-actions">
+              <ActionButton type="button" variant="primary" onClick={onOpenQuiz} icon={<Icon name="arrowRight" size={16} />}>
                 {t('coursePage.openQuiz')}
-              </button>
-              <button type="button" className="btn btn-secondary" onClick={onBack}>
-                <Icon name="arrowLeft" size={16} />
+              </ActionButton>
+              <ActionButton type="button" variant="secondary" onClick={onBack} icon={<Icon name="arrowLeft" size={16} />}>
                 {t('coursePage.backToCatalog')}
-              </button>
+              </ActionButton>
             </div>
           </section>
           <section className="section-card">
             <div className="section-eyebrow">{t('coursePage.closingEyebrow')}</div>
             <h3>{t('coursePage.closingTitle')}</h3>
             <p>{t('coursePage.closingCopy')}</p>
-            <div className="module-nav" style={{ marginTop: 16 }}>
+            <div className="module-nav section-actions">
               <button className="module-nav-card" type="button" onClick={onOpenCatalog}>
                 <Icon name="layers" size={16} />
                 <span>{t('coursePage.index')}</span>

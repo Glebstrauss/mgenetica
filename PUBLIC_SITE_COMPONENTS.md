@@ -1,6 +1,6 @@
 # PUBLIC_SITE_COMPONENTS.md
 
-Reference for public-site patterns only. This file documents the visitor-facing MGenetica site and must not be used as app/admin documentation.
+Reference for public-site patterns only. This file documents the visitor-facing MGenetica Quarto source and must not be used as app/admin documentation. The current GitHub Pages live root serves the React learner app from frontend/; public Quarto paths are editorial/manual unless deliberately published or redirected.
 
 ## Purpose
 
@@ -35,7 +35,7 @@ The public site uses editorial components to explain the MGenetica learning path
 - Discovery components: `.home-discovery`, `.discovery-grid`, `.discovery-card`, `.utility-no-result`, `.utility-result-close`, `.utility-panel-hint`, `.utility-decision`, `.utility-evidence-route`, `.utility-examples` and `.utility-query-plan` connect search, glossary and route pages as learning support, not as admin utilities.
 - Certificate components: `.certificate-intro`, `.certificate-scope`, `.certificate-decision`, `.certificate-evidence-review`, `.certificate-recovery`, `.certificate-next-use`, `.certificate-identity-note`, `.certificate-final-check`, `.certificate-readiness-guide`, `.certificate-status`, `.certificate-pending-hint`, `.certificate-progress-summary`, `.certificate-progress-list`, `.certificate-progress-module`, `.certificate-progress-title`, `#cert-next-pending-link`, `.certificate-actions`, `.certificate-ready`, `.certificate-preview`, `.certificate-form` and `.certificate-noscript` keep the completion flow public and editorial while the progress logic remains browser-local.
 - Institutional components: `.about-route`, `.about-credibility`, `.about-public-contract`, `.about-editorial-boundary`, `.about-visitor-path`, `.site-map-grid` and `.about-next-step` keep the about page connected to public learning routes.
-- Module navigation: `.module-nav` and `.module-nav-card` keep module pages connected to previous, index and next destinations; module pages should expose this block as semantic `<nav aria-label="Navegação entre módulos">`.
+- Module navigation: `.module-nav` and `.module-nav-card` keep module pages connected to previous, index and next destinations; module pages should expose this block as semantic `<nav aria-label="Module navigation">`.
 - Learning widgets: quizzes, progress indicators and visualizations must remain public learning aids, not admin controls. Quiz JSON files are data for public self-assessment and must stay aligned with each module's `data-module` value.
 
 ## Responsive And Accessibility Rules

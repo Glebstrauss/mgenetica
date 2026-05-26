@@ -1,9 +1,10 @@
 import React, { Suspense, lazy, useEffect, useMemo, useState} from 'react'
 import { formatCourseCatalog, formatCourseDetail, formatCourseGroups } from './data/courseCurriculum'
 import Icon from './components/Icon'
+import AppHeader from './components/AppHeader'
 import { BRAND_LOGO_URL } from './lib/branding'
 import { buildRouteHash, parseRouteHash, routeNeedsAdmin, routeNeedsAuth } from './lib/access.mjs'
-import { createTranslator, detectInitialLocale, LOCALE_STORAGE_KEY, normalizeLocale, SUPPORTED_LOCALES } from './i18n'
+import { createTranslator, detectInitialLocale, LOCALE_STORAGE_KEY, normalizeLocale } from './i18n'
 import {
   pingAppwrite,
   listCourses,
@@ -35,44 +36,6 @@ function loadLocalCourseRows() {
       .then((module) => (Array.isArray(module.default?.modules) ? module.default.modules : []))
   }
   return localCourseRowsPromise
-}
-
-function LocaleSwitcher({ locale, onChange, t }) {
-  return (
-    <label className="locale-switcher" aria-label={t('localeSwitcher.label')}>
-      <span className="locale-switcher-icon" aria-hidden="true">
-        <Icon name="globe" size={16} />
-      </span>
-      <select className="locale-select" name="locale" value={locale} onChange={(e) => onChange(e.target.value)}>
-        {SUPPORTED_LOCALES.map((localeCode) => (
-          <option key={localeCode} value={localeCode}>
-            {t('locales.' + localeCode)}
-          </option>
-        ))}
-      </select>
-    </label>
-  )
-}
-
-function AppHeader({ brandName, brandTagline, status, locale, onLocaleChange, t, children }) {
-  return (
-    <header className="app-header">
-      <div className="header-brand">
-        <div className="brand-logo">
-          <img src={BRAND_LOGO_URL} alt={t('common.brandName')} style={{ width: 32, height: 32 }} />
-        </div>
-        <div className="brand-info">
-          <div className="brand-name">{brandName}</div>
-          <div className="brand-tagline">{brandTagline}</div>
-        </div>
-      </div>
-      <div className="header-actions">
-        <LocaleSwitcher locale={locale} onChange={onLocaleChange} t={t} />
-        {status ? <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">{status}</span> : null}
-        {children}
-      </div>
-    </header>
-  )
 }
 
 function SkipLink({ t }) {
