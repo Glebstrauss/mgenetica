@@ -24,10 +24,17 @@ The active site surface is `frontend/`. Root-level generated static pages and th
 
 Compatibility redirects in `frontend/public/` keep older static URLs pointing into the React app.
 
+## Runtime Node
+
+Use Node `24.x`, o mesmo runtime usado nos workflows de deploy. Este repositorio inclui
+`.nvmrc`, `.node-version` e `frontend/.npmrc` com `engine-strict=true` para evitar builds
+locais em versoes fora da faixa suportada pelo Vite.
+
 ## Development
 
 ```bash
 cd frontend
+node -v
 npm ci
 npm run dev
 ```

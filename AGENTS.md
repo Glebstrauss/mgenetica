@@ -22,6 +22,7 @@ Work in the front that matches the request. Do not mix public UX, Appwrite runti
 
 ```bash
 cd frontend
+node -v
 npm test
 npm run build
 ```

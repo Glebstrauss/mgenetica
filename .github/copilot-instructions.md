@@ -14,6 +14,7 @@ Run frontend checks from `frontend/`.
 
 | Task | Command |
 |---|---|
+| Confirm Node runtime | `node -v` |
 | Install dependencies | `npm ci` |
 | Local dev server | `npm run dev` |
 | Unit tests | `npm test` |
