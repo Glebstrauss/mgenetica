@@ -1,11 +1,11 @@
 # Course Structure Redesign Design
 
 Date: 2026-05-25
-Scope: public Quarto site and internal React course app
+Scope: React public site and learner app
 
 ## Goal
 
-Make the MGenetica course hierarchy clear and consistent across the public site and the internal learner app.
+Make the MGenetica course hierarchy clear and consistent across the public site and the learner app.
 
 Canonical hierarchy:
 
@@ -44,7 +44,7 @@ Add or normalize a shared course-structure layer that exposes:
 - Study blocks assigned to each theme.
 - Five standard parts for each study block.
 
-The app should consume this structure for catalog grouping and block-page context. The public Quarto site should mirror it in module index/navigation text and any structure data used to generate public pages.
+The app should consume this structure for catalog grouping, block-page context, and public route copy.
 
 The current Express backend and Appwrite functions remain in place. There is no NestJS migration in this work because the repository is not a NestJS app and the requested fixes do not require that blast radius.
 
@@ -83,7 +83,7 @@ Errors should be normalized into useful learner-facing messages without exposing
 
 ## Public Site Components
 
-The public Quarto site should communicate the same hierarchy:
+The public React site should communicate the same hierarchy:
 
 - The module index should introduce the five main themes.
 - M1-M21 should be labeled as study blocks inside those themes.
@@ -98,7 +98,7 @@ This is site evolution, not app administration. No backend/auth work should be a
 2. App catalog loads module rows and groups them through the shared structure.
 3. App block page formats selected module details into five learner-facing parts.
 4. App quiz page calls Appwrite quiz function for get/submit.
-5. Public Quarto pages/index consume the same hierarchy manually or through existing generation scripts where available.
+5. Public routes consume the same hierarchy through shared frontend data where available.
 
 ## Math And Scientific Rendering
 
@@ -109,7 +109,7 @@ Prefer lightweight formatting first:
 - Keep table/code overflow contained.
 - Avoid adding a heavy math dependency unless existing content requires full TeX parsing.
 
-If formula content already uses TeX-style syntax, enable the existing Quarto/HTML math support on the public site and add a minimal app-side renderer only if needed.
+If formula content already uses TeX-style syntax, add a minimal app-side renderer only if needed.
 
 ## Error Handling
 
@@ -125,8 +125,7 @@ Run available checks after implementation:
 - `npm test` and `npm run build` in `frontend`.
 - Backend tests if backend files are touched.
 - `node --check` for touched Appwrite/backend JavaScript.
-- Site validation scripts.
-- Quarto/site render or documented skip path if render produces source-side artifacts.
+- Frontend route and redirect checks.
 
 Manual verification:
 
@@ -150,7 +149,7 @@ Manual verification:
 2. Redesign study-block page structure and remove raw Markdown display.
 3. Standardize card/page CSS and overflow handling.
 4. Fix Appwrite quiz execute configuration and error copy.
-5. Align public Quarto course index/navigation with the five-theme model.
+5. Align public course index/navigation with the five-theme model.
 6. Run validation and update `WORKLOG_SITE.md` / `NEXT_SITE.md` for site-side changes.
 
 ## Self-Review
