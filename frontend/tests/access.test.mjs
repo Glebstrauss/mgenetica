@@ -5,6 +5,8 @@ import { buildRouteHash, legacyPathToHash, parseRouteHash, routeNeedsAdmin, rout
 test('parseRouteHash protects known learner routes', () => {
   assert.deepEqual(parseRouteHash('#catalog'), { screen: 'catalog', authMode: 'login', selectedCourseId: null, showQuiz: false })
   assert.deepEqual(parseRouteHash('#account'), { screen: 'account', authMode: 'login', selectedCourseId: null, showQuiz: false })
+  assert.deepEqual(parseRouteHash('#consultoria'), { screen: 'consultoria', authMode: 'login', selectedCourseId: null, showQuiz: false })
+  assert.deepEqual(parseRouteHash('#treinamentos'), { screen: 'treinamentos', authMode: 'login', selectedCourseId: null, showQuiz: false })
   assert.deepEqual(parseRouteHash('#course/module-01'), { screen: 'course', authMode: 'login', selectedCourseId: 'module-01', showQuiz: false })
   assert.deepEqual(parseRouteHash('#quiz/module-01'), { screen: 'course', authMode: 'login', selectedCourseId: 'module-01', showQuiz: true })
 })
@@ -17,6 +19,8 @@ test('buildRouteHash round-trips protected routes', () => {
 
 test('guard helpers classify access correctly', () => {
   assert.equal(routeNeedsAuth(parseRouteHash('#auth')), false)
+  assert.equal(routeNeedsAuth(parseRouteHash('#consultoria')), false)
+  assert.equal(routeNeedsAuth(parseRouteHash('#treinamentos')), false)
   assert.equal(routeNeedsAuth(parseRouteHash('#catalog')), true)
   assert.equal(routeNeedsAuth(parseRouteHash('#account')), true)
   assert.equal(routeNeedsAuth(parseRouteHash('#quiz/module-01')), true)
@@ -25,8 +29,10 @@ test('guard helpers classify access correctly', () => {
   assert.equal(routeNeedsAdmin(parseRouteHash('#course/module-01')), false)
 })
 
-test('legacyPathToHash maps former Quarto entry points to learner routes', () => {
+test('legacyPathToHash maps older static entry points to app routes', () => {
   assert.equal(legacyPathToHash('/mgenetica/plataforma.html'), 'auth')
+  assert.equal(legacyPathToHash('/mgenetica/consultoria.html'), 'consultoria')
+  assert.equal(legacyPathToHash('/mgenetica/treinamentos.html'), 'treinamentos')
   assert.equal(legacyPathToHash('/mgenetica/modules/'), 'catalog')
   assert.equal(legacyPathToHash('/mgenetica/en/modules/'), 'catalog')
   assert.equal(legacyPathToHash('/mgenetica/es/modules/'), 'catalog')

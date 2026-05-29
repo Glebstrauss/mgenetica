@@ -16,4 +16,4 @@ Docker:
 CI:
 See .github/workflows/backend-ci.yml
 
-Note: Keep this backend isolated from the Quarto site; it's scaffolded as a starting point for Phase 1 work.
+Note: Keep this backend isolated from the live React frontend unless the task explicitly requires API behavior.

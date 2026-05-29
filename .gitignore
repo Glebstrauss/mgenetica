@@ -1,8 +1,4 @@
 .DS_Store
-.Rhistory
-.RData
-.Rproj.user/
-
 # Environment and secrets
 .env
 .env.*
@@ -13,9 +9,7 @@ node_modules/
 dist/
 build/
 
-# Quarto outputs and caches
-/.quarto/
-/_freeze/
+# Local generated artifacts
 /docs/
 /**/*_files/
 /.jupyter_cache/
@@ -53,5 +47,3 @@ build/
 /TASK_CHECKLIST.md
 /WORKLOG_SITE.md
 /project_status.md
-
-**/*.quarto_ipynb

@@ -12,6 +12,8 @@
       let hash = ''
 
       if (/\/plataforma\.html$/.test(path)) hash = 'auth'
+      else if (/\/consultoria\.html$/.test(path)) hash = 'consultoria'
+      else if (/\/treinamentos\.html$/.test(path)) hash = 'treinamentos'
       else if (/\/(en\/|es\/)?modules\/?$/.test(path)) hash = 'catalog'
       else if (moduleMatch) hash = 'course/module-' + moduleMatch[1]
 

@@ -10,6 +10,8 @@ function parseRouteHash(hash) {
   if (clean === 'catalog') return { screen: 'catalog', authMode: 'login', selectedCourseId: null, showQuiz: false }
   if (clean === 'account') return { screen: 'account', authMode: 'login', selectedCourseId: null, showQuiz: false }
   if (clean === 'admin') return { screen: 'admin', authMode: 'login', selectedCourseId: null, showQuiz: false }
+  if (clean === 'consultoria') return { screen: 'consultoria', authMode: 'login', selectedCourseId: null, showQuiz: false }
+  if (clean === 'treinamentos') return { screen: 'treinamentos', authMode: 'login', selectedCourseId: null, showQuiz: false }
   if (clean.indexOf('course/') === 0) {
     const selectedCourseId = clean.slice('course/'.length) || null
     return selectedCourseId ? { screen: 'course', authMode: 'login', selectedCourseId, showQuiz: false } : emptyRoute()
@@ -27,6 +29,8 @@ function buildRouteHash(route) {
   if (route.screen === 'catalog') return 'catalog'
   if (route.screen === 'account') return 'account'
   if (route.screen === 'admin') return 'admin'
+  if (route.screen === 'consultoria') return 'consultoria'
+  if (route.screen === 'treinamentos') return 'treinamentos'
   if (route.screen === 'course' && route.selectedCourseId) return 'course/' + route.selectedCourseId
   return ''
 }
@@ -58,6 +62,8 @@ const LEGACY_MODULE_SLUGS = new Map([
 function legacyPathToHash(pathname) {
   const normalizedPath = String(pathname || '').replace(/\/+/g, '/').replace(/\/+$/, '/')
   if (/\/plataforma\.html$/.test(normalizedPath)) return 'auth'
+  if (/\/consultoria\.html$/.test(normalizedPath)) return 'consultoria'
+  if (/\/treinamentos\.html$/.test(normalizedPath)) return 'treinamentos'
   if (/\/(en\/|es\/)?modules\/?$/.test(normalizedPath)) return 'catalog'
 
   const filename = normalizedPath.split('/').filter(Boolean).pop()

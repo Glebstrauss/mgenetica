@@ -1,5 +1,6 @@
 import React, { Suspense, lazy, useEffect, useMemo, useState} from 'react'
 import { formatCourseCatalog, formatCourseDetail, formatCourseGroups } from './data/courseCurriculum'
+import { getServicePage, getServicePages } from './data/servicePages'
 import Icon from './components/Icon'
 import AppHeader from './components/AppHeader'
 import { BRAND_LOGO_URL } from './lib/branding'
@@ -146,9 +147,10 @@ function AuthPanel({ user, mode, onModeChange, onLogin, onSignup, onLogout, load
   )
 }
 
-function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, onOpenCatalog, onOpenAccount, onOpenAdmin, locale, onLocaleChange, t }) {
+function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, onOpenCatalog, onOpenAccount, onOpenAdmin, onOpenService, locale, onLocaleChange, t }) {
   const benefits = t('home.benefits')
   const trust = t('home.trust')
+  const servicePages = getServicePages(locale)
   return (
     <div className="app-shell">
       <SkipLink t={t} />
@@ -205,6 +207,26 @@ function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, 
           <article className="benefit-card"><div className="benefit-icon"><Icon name="book" size={18} /></div><strong>{benefits.reproducible.title}</strong><p>{benefits.reproducible.copy}</p></article>
           <article className="benefit-card"><div className="benefit-icon"><Icon name="layers" size={18} /></div><strong>{benefits.science.title}</strong><p>{benefits.science.copy}</p></article>
           <article className="benefit-card"><div className="benefit-icon"><Icon name="lock" size={18} /></div><strong>{benefits.access.title}</strong><p>{benefits.access.copy}</p></article>
+        </section>
+        <section className="application-section" aria-labelledby="application-heading">
+          <div className="section-label">Aplicacao</div>
+          <h2 id="application-heading" className="section-heading">Aprender na plataforma. Aplicar com criterio.</h2>
+          <p className="section-description">Curso, consultoria e treinamento agora vivem no mesmo app React. Sem camada editorial paralela.</p>
+          <div className="application-grid" role="list" aria-label="Frentes aplicadas MGenetica">
+            {servicePages.map((page) => (
+              <article className="application-card" role="listitem" key={page.route}>
+                <div className="badge-row">
+                  {page.bullets.map((item) => <span className="chip" key={item}>{item}</span>)}
+                </div>
+                <strong className="course-title">{page.shortTitle}</strong>
+                <p className="course-description">{page.teaser}</p>
+                <button type="button" className="btn btn-secondary course-action" onClick={() => onOpenService(page.route)}>
+                  <Icon name="arrowRight" size={16} />
+                  Abrir {page.shortTitle.toLowerCase()}
+                </button>
+              </article>
+            ))}
+          </div>
         </section>
       </main>
       {user ? (
@@ -435,6 +457,115 @@ function AdminPage({ user, status, report, loading, onBack, onRefresh, onLogout,
   )
 }
 
+function ServicePage({ route, user, status, isAdmin, onBack, onOpenCatalog, onOpenAccount, onOpenAdmin, onOpenService, onLogout, loadingAuth, locale, onLocaleChange, t }) {
+  const page = getServicePage(route, locale)
+
+  function scrollToAnchor(anchor) {
+    const target = document.getElementById(anchor)
+    if (!target) return
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    target.focus({ preventScroll: true })
+  }
+
+  function handleAction(action) {
+    if (action.route === 'catalog') {
+      onOpenCatalog()
+      return
+    }
+    if (action.route) {
+      onOpenService(action.route)
+      if (action.anchor) window.setTimeout(() => scrollToAnchor(action.anchor), 80)
+      return
+    }
+    if (action.anchor) scrollToAnchor(action.anchor)
+  }
+
+  function renderAction(action, index, primary = false) {
+    return (
+      <button
+        type="button"
+        className={'btn ' + (primary ? 'btn-primary' : 'btn-secondary')}
+        onClick={() => handleAction(action)}
+        key={action.label}
+      >
+        <Icon name={index === 0 ? 'arrowRight' : 'layers'} size={16} />
+        {action.label}
+      </button>
+    )
+  }
+
+  return (
+    <div className="app-shell">
+      <SkipLink t={t} />
+      <AppHeader brandName={page.navTitle} brandTagline={page.tagline} status={status} locale={locale} onLocaleChange={onLocaleChange} t={t}>
+        <button type="button" className="btn btn-secondary" onClick={onBack}><Icon name="arrowLeft" size={16} />{t('common.home')}</button>
+        <button type="button" className={'btn ' + (route === 'consultoria' ? 'btn-primary' : 'btn-secondary')} onClick={() => onOpenService('consultoria')}>Consultoria</button>
+        <button type="button" className={'btn ' + (route === 'treinamentos' ? 'btn-primary' : 'btn-secondary')} onClick={() => onOpenService('treinamentos')}>Treinamentos</button>
+        {user ? <button type="button" className="btn btn-secondary" onClick={onOpenAccount}><Icon name="user" size={16} />{t('common.profile')}</button> : null}
+        {user ? <button type="button" className="btn btn-secondary" onClick={onOpenCatalog}><Icon name="book" size={16} />{t('common.courses')}</button> : null}
+        {isAdmin ? <button type="button" className="btn btn-secondary" onClick={onOpenAdmin}><Icon name="check" size={16} />{t('common.admin')}</button> : null}
+        {user ? <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth}><Icon name="arrowLeft" size={16} />{t('common.logout')}</button> : null}
+      </AppHeader>
+      <main id="main-content" className="service-page" tabIndex="-1">
+        <section className="service-hero">
+          <div className="service-hero-copy">
+            <div className="hero-eyebrow">{page.kicker}</div>
+            <h1 className="hero-headline">{page.title}</h1>
+            <p className="hero-description">{page.description}</p>
+            <div className="hero-cta">
+              {page.primaryActions.map((action, index) => renderAction(action, index, index === 0))}
+            </div>
+          </div>
+          <aside className="service-proof-panel" aria-label={page.proofTitle}>
+            <img src={BRAND_LOGO_URL} alt="" />
+            <strong>{page.proofTitle}</strong>
+            <p>{page.proofCopy}</p>
+          </aside>
+        </section>
+
+        {page.sections.map((section) => (
+          <section className="service-section" id={section.id} key={section.id} tabIndex="-1" aria-labelledby={section.id + '-heading'}>
+            <div className="section-label">{section.label}</div>
+            <h2 id={section.id + '-heading'} className="section-heading">{section.title}</h2>
+            <p className="section-description">{section.copy}</p>
+            {section.cards ? (
+              <div className="service-card-grid" role="list" aria-label={section.title}>
+                {section.cards.map((card) => (
+                  <article className="service-card" role="listitem" key={card.title}>
+                    <strong>{card.title}</strong>
+                    <p>{card.copy}</p>
+                  </article>
+                ))}
+              </div>
+            ) : null}
+            {section.steps ? (
+              <div className="service-step-grid" role="list" aria-label={section.title}>
+                {section.steps.map((step, index) => (
+                  <article className="service-step" role="listitem" key={step}>
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                    <strong>{step}</strong>
+                  </article>
+                ))}
+              </div>
+            ) : null}
+          </section>
+        ))}
+
+        <section className="service-next-step">
+          <div>
+            <div className="section-label">Acao</div>
+            <h2 className="section-heading">{page.nextStep.title}</h2>
+            <p className="section-description">{page.nextStep.copy}</p>
+          </div>
+          <div className="section-cta">
+            {page.nextStep.actions.map((action, index) => renderAction(action, index, index === 0))}
+          </div>
+        </section>
+      </main>
+    </div>
+  )
+}
+
 export default function App() {
   const initialRoute = parseRouteHash(typeof window !== 'undefined' ? window.location.hash : '')
   const [locale, setLocale] = useState(detectInitialLocale())
@@ -588,6 +719,7 @@ export default function App() {
   function openCourse(courseId) { if (!user) { updateStatus('status.enterCoursePage'); return } navigate({ screen: 'course', authMode, selectedCourseId: courseId, showQuiz: false }) }
   function openAccount() { if (!user) { updateStatus('status.enterCourses'); return } navigate({ screen: 'account', authMode, selectedCourseId: null, showQuiz: false }) }
   function openAdmin() { if (!adminEnabled) { updateStatus('status.notAdmin'); return } navigate({ screen: 'admin', authMode, selectedCourseId: null, showQuiz: false }) }
+  function openService(serviceRoute) { navigate({ screen: serviceRoute === 'treinamentos' ? 'treinamentos' : 'consultoria', authMode: 'login', selectedCourseId: null, showQuiz: false }) }
   async function handleUpdateProfile(payload) {
     const account = await updateAccountName(payload.name || user?.name || user?.email || 'MGenética learner')
     setUser(account)
@@ -655,8 +787,11 @@ export default function App() {
   if (screen === 'admin' && user && adminEnabled) {
     return <AdminPage user={user} status={status} report={adminReport} loading={loadingAdmin} onRefresh={runAdminChecks} onBack={goHome} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
   }
+  if (screen === 'consultoria' || screen === 'treinamentos') {
+    return <ServicePage route={screen} user={user} status={status} isAdmin={adminEnabled} onBack={goHome} onOpenCatalog={openCatalog} onOpenAccount={openAccount} onOpenAdmin={openAdmin} onOpenService={openService} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
+  }
   if (screen === 'auth') {
     return <AuthPage user={user} status={status} authMode={authMode} loadingAuth={loadingAuth} isAdmin={adminEnabled} onAuthIntent={focusAuth} onLogin={handleLogin} onSignup={handleSignup} onLogout={handleLogout} onOpenCatalog={openCatalog} onOpenAccount={openAccount} onOpenAdmin={openAdmin} locale={locale} onLocaleChange={setLocale} t={t} errorMessages={errorMessages} />
   }
-  return <HomePage user={user} status={status} loadingAuth={loadingAuth} isAdmin={adminEnabled} onAuthIntent={focusAuth} onLogout={handleLogout} onOpenCatalog={openCatalog} onOpenAccount={openAccount} onOpenAdmin={openAdmin} locale={locale} onLocaleChange={setLocale} t={t} />
+  return <HomePage user={user} status={status} loadingAuth={loadingAuth} isAdmin={adminEnabled} onAuthIntent={focusAuth} onLogout={handleLogout} onOpenCatalog={openCatalog} onOpenAccount={openAccount} onOpenAdmin={openAdmin} onOpenService={openService} locale={locale} onLocaleChange={setLocale} t={t} />
 }
