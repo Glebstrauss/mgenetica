@@ -6,8 +6,15 @@ function normalizeLabSrc(src) {
   return value
 }
 
+function resolveLabSrc(src) {
+  const labPath = normalizeLabSrc(src)
+  if (!labPath) return null
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/')
+  return `${base}${labPath.replace(/^\//, '')}`
+}
+
 export default function LabEmbed({ src, title, eyebrow, heading, description, openLabel }) {
-  const labSrc = normalizeLabSrc(src)
+  const labSrc = resolveLabSrc(src)
   if (!labSrc) return null
 
   return (
@@ -34,4 +41,4 @@ export default function LabEmbed({ src, title, eyebrow, heading, description, op
   )
 }
 
-export { normalizeLabSrc }
+export { normalizeLabSrc, resolveLabSrc }

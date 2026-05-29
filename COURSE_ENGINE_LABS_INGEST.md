@@ -28,7 +28,7 @@ em `/labs/*.html`.
 
 - Labs HTML copiados para `frontend/public/labs/`.
 - `frontend/src/components/LabEmbed.jsx` renderiza o iframe com `loading="lazy"` e
-  `sandbox="allow-scripts"`.
+  `sandbox="allow-scripts"`, resolvendo `/labs/*.html` com `import.meta.env.BASE_URL`.
 - `frontend/src/CoursePage.jsx` embute o lab depois do texto do módulo.
 - `frontend/src/App.jsx` deixou de fazer request de detalhe não usado ao abrir um módulo.
 - `frontend/vite.config.mjs` substitui a config ESM antiga em `.js`, corrigindo o build com
