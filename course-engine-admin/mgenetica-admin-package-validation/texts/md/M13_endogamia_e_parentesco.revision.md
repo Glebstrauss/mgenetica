@@ -1,0 +1,201 @@
+# M13 — Endogamia e parentesco
+
+## Pergunta simples
+
+Parentes aumentam semelhança ou risco? Imagine um criador escolhendo um garanhão para acasalar com uma égua. No papel, os dois animais parecem bons. Porém, ao olhar o pedigree, aparece o mesmo ancestral nos dois lados. Isso muda a leitura da decisão. O acasalamento pode aumentar a chance de a cria receber cópias de genes herdadas do mesmo ancestral comum.
+
+Parentesco não é só uma palavra de família. Em melhoramento genético, parentesco mede a semelhança genética esperada entre animais por causa de ancestrais comuns. Endogamia, representada por `F`, mede a probabilidade de um animal receber duas cópias idênticas por descendência no mesmo locus. O parentesco ajuda a prever semelhança; a endogamia ajuda a interpretar risco.
+
+A pergunta da M13 é prática: se dois animais são aparentados, quanto isso aparece na matriz de parentesco e o que isso significa para uma cria? A resposta passa por três peças: pedigree, matriz `A` e coeficiente de endogamia `F`.
+
+## Explicação intuitiva
+
+Pense em receber a mesma carta pelos dois lados da família. Se pai e mãe não têm ancestrais comuns recentes, as cartas recebidas por cada lado tendem a vir de caminhos diferentes. Se pai e mãe são aparentados, aumenta a chance de a mesma carta ancestral chegar duas vezes ao filho.
+
+No pedigree, essa "mesma carta" é uma cópia de origem comum. Quando dois pais compartilham um ancestral, a cria pode receber, pelo lado paterno e pelo lado materno, cópias que voltam ao mesmo ponto do pedigree. Isso é a base intuitiva da endogamia.
+
+Parentesco entre dois animais não significa automaticamente problema. Meio-irmãos, irmãos completos, pai e filho e primos têm graus diferentes de semelhança esperada. O risco aparece quando usamos esse parentesco em acasalamentos sem controle, porque a cria pode ficar mais endogâmica. Falconer e Mackay (1996) tratam endogamia a partir de pedigrees e caminhos por ancestrais comuns; Eler (2017) apresenta coeficientes de parentesco e endogamia em exercícios de pedigree.
+
+## Conceito técnico
+
+Pedigree é o registro dos pais, avós e outros ancestrais de um animal. Ele permite enxergar caminhos de herança. Quando dois animais têm um ancestral comum, existe parentesco esperado entre eles. Quando os pais de um animal são aparentados, o animal pode nascer endogâmico.
+
+A matriz `A` é a matriz de parentesco genético aditivo. Na diagonal, cada animal aparece comparado consigo mesmo. Fora da diagonal, aparecem parentescos esperados entre pares de animais. Em uma forma simplificada, animais sem parentesco conhecido têm valor `0` fora da diagonal; meio-irmãos têm `0,25`; irmãos completos têm valor esperado maior, `0,50`, quando os pais não são aparentados e não são endogâmicos.
+
+Toda interpretação de parentesco e endogamia depende de uma população-base. Nesta aula, os animais-base são tratados como não endogâmicos e não aparentados, salvo informação em contrário. Isso permite fazer os cálculos simples sem carregar parentesco anterior desconhecido.
+
+O coeficiente de endogamia `F` mede a probabilidade de dois alelos de um indivíduo serem idênticos por descendência. Na matriz `A`, a diagonal de um animal é:
+
+`Aii = 1 + Fi`
+
+Se `F = 0`, a diagonal é `1`. Se `F = 0,125`, a diagonal é `1,125`. Por isso o checkpoint desta unidade é identificar que a diagonal da matriz `A` não é apenas "um número fixo"; ela carrega a endogamia do próprio animal.
+
+Nesta aula, usaremos `Aij` para o parentesco aditivo entre dois animais na matriz `A`. A coancestria entre dois possíveis pais é metade desse valor:
+
+`coancestria_ij = Aij / 2`
+
+Essa distinção evita confundir dois números próximos. Para meio-irmãos não endogâmicos, `Aij = 0,25`. Se esses meio-irmãos forem acasalados, a endogamia esperada da cria será `0,25 / 2 = 0,125`, ou 12,5%.
+
+## Fórmula
+
+A regra central da matriz `A` nesta unidade é:
+
+`Aii = 1 + Fi`
+
+Onde:
+
+- `Aii` é o valor da diagonal da matriz `A` para o animal `i`;
+- `Fi` é o coeficiente de endogamia do animal `i`;
+- se `Fi = 0`, o animal não é endogâmico em relação à base definida e `Aii = 1`;
+- se `Fi > 0`, a diagonal fica maior que 1.
+
+Para acasalamento entre dois animais `i` e `j`, usaremos a regra didática:
+
+`F_cria = Aij / 2`
+
+Onde:
+
+- `F_cria` é a endogamia esperada da cria;
+- `Aij` é o parentesco aditivo entre os pais na matriz `A`;
+- a regra vale para este exemplo simples, assumindo base sem endogamia anterior.
+
+O cálculo manual da unidade é o parentesco esperado entre meio-irmãos. Dois meio-irmãos compartilham um dos pais. Em uma base simples, sem endogamia anterior e sem parentesco entre os demais pais, o parentesco aditivo esperado é:
+
+`Aij = 0,25`
+
+Biologicamente, isso significa que os dois animais compartilham, em média, 25% de semelhança genética aditiva por causa do ancestral comum imediato. Se esses dois meio-irmãos forem acasalados, a endogamia esperada da cria será:
+
+`F_cria = Aij / 2 = 0,25 / 2 = 0,125`
+
+`F_cria = 12,5%`
+
+O número não diz que exatamente 12,5% dos genes terão problema. Ele indica uma probabilidade esperada de identidade por descendência, condicionada ao pedigree e à base de referência.
+
+## Exemplo numérico
+
+Considere um pedigree didático com cavalos. O garanhão `S` tem duas crias: `P` e `Q`. A mãe de `P` é `M1`; a mãe de `Q` é `M2`. As mães não são aparentadas entre si e não são aparentadas com `S`. Nenhum animal da base é endogâmico.
+
+| Animal | Pai | Mãe | Observação |
+|---|---|---|---|
+| `S` | desconhecido | desconhecida | animal base |
+| `M1` | desconhecido | desconhecida | animal base |
+| `M2` | desconhecido | desconhecida | animal base |
+| `P` | `S` | `M1` | filho de `S` |
+| `Q` | `S` | `M2` | filho de `S` |
+
+`P` e `Q` são meio-irmãos paternos. Eles compartilham o garanhão `S`, mas têm mães diferentes. O parentesco aditivo esperado entre meio-irmãos é:
+
+`A_PQ = 0,25`
+
+A matriz `A` simplificada para comparar apenas `P` e `Q` é:
+
+| Animal | `P` | `Q` |
+|---|---:|---:|
+| `P` | 1,00 | 0,25 |
+| `Q` | 0,25 | 1,00 |
+
+As diagonais são `1,00` porque `P` e `Q` não são endogâmicos neste exemplo. As posições fora da diagonal são `0,25` porque eles são meio-irmãos. A matriz é simétrica: o parentesco de `P` com `Q` é igual ao parentesco de `Q` com `P`.
+
+Agora imagine um acasalamento entre `P` e `Q`. Como eles são meio-irmãos, a endogamia esperada da cria `X` é:
+
+`F_X = A_PQ / 2`
+
+`F_X = 0,25 / 2 = 0,125`
+
+`F_X = 12,5%`
+
+Na matriz `A`, a diagonal da cria seria:
+
+`A_XX = 1 + F_X`
+
+`A_XX = 1 + 0,125 = 1,125`
+
+Esse é o ponto central da aula. Parentesco entre os pais aparece como endogamia na cria. A diagonal `1 + F` mostra que a cria não é apenas "mais um animal"; ela carrega informação sobre identidade por descendência.
+
+## Pedigree pequeno e matriz
+
+O mesmo exemplo pode ser visto como desenho textual:
+
+```text
+S x M1 -> P
+S x M2 -> Q
+```
+
+O desenho mostra que `P` e `Q` recebem parte da herança do mesmo garanhão `S`, mas por mães diferentes. A matriz mostra o mesmo fato em números:
+
+```text
+      P     Q
+P   1.00  0.25
+Q   0.25  1.00
+```
+
+O pedigree ajuda a enxergar o caminho. A matriz ajuda a usar o parentesco em cálculo. Em avaliações genéticas, matrizes maiores organizam muitos animais ao mesmo tempo. Nesta unidade, usamos matriz pequena para entender o significado biológico dos números.
+
+## Script R mínimo
+
+```r
+A <- matrix(c(1, 0.25,
+              0.25, 1), 2)
+rownames(A) <- c("P", "Q")
+colnames(A) <- c("P", "Q")
+F_cria <- A["P", "Q"] / 2
+diag_cria <- 1 + F_cria
+A
+data.frame(F_cria = F_cria, diag_cria = diag_cria)
+```
+
+O script cria a matriz `A` simplificada para dois meio-irmãos não endogâmicos. Os valores `1` na diagonal indicam `F = 0` para `P` e `Q`. Os valores `0,25` fora da diagonal indicam parentesco aditivo esperado entre meio-irmãos. Depois o script calcula `F_cria = 0,125` e `diag_cria = 1,125`, conectando matriz, parentesco e diagonal `1 + F`.
+
+## Interpretação biológica
+
+Parentesco aumenta semelhança esperada. Dois meio-irmãos tendem a ser mais parecidos geneticamente do que dois animais sem parentesco conhecido, porque compartilham um dos pais. Essa semelhança pode ser útil para entender dados e organizar avaliação genética.
+
+Endogamia aumenta risco porque concentra cópias herdadas de ancestrais comuns. Quando os pais são aparentados, a cria tem maior chance de receber duas cópias idênticas por descendência. Isso não significa que todo animal endogâmico será ruim, mas significa que o acasalamento precisa ser interpretado com cuidado.
+
+O erro que queremos evitar é olhar apenas desempenho individual e ignorar pedigree. Um garanhão e uma égua podem ter bons fenótipos e bons valores estimados, mas se forem aparentados, a cria pode ter `F` maior. A decisão de acasalamento deve observar o par, não apenas cada animal isolado.
+
+Também é erro confundir parentesco entre pais com endogamia do próprio animal. `A_PQ = 0,25` descreve o parentesco entre `P` e `Q`. `F_X = 0,125` descreve a endogamia esperada da cria desse acasalamento. `A_XX = 1,125` descreve a diagonal da cria na matriz `A`. São números conectados, mas não são o mesmo número.
+
+## Checkpoint
+
+Você atingiu o checkpoint se consegue identificar a diagonal `1 + F`. Em uma matriz `A`, diagonal igual a `1` indica animal sem endogamia registrada em relação à base. Diagonal maior que `1` indica `F > 0`. Se a diagonal é `1,125`, então:
+
+`F = Aii - 1 = 1,125 - 1 = 0,125`
+
+`F = 12,5%`
+
+Uma resposta incompleta seria dizer "a diagonal é sempre 1". A resposta correta é: a diagonal é `1 + F`; ela é 1 apenas quando `F = 0`.
+
+## Quiz
+
+1. O que o pedigree mostra nesta unidade?
+2. O que representa a matriz `A`?
+3. Qual é o parentesco aditivo esperado entre meio-irmãos não endogâmicos?
+4. Se `A_PQ = 0,25`, qual é a endogamia esperada da cria de `P` com `Q`?
+5. Se a diagonal de um animal na matriz `A` é `1,125`, qual é `F`?
+
+Gabarito:
+
+1. Mostra pais, mães e ancestrais usados para identificar caminhos de parentesco.
+2. Representa parentesco genético aditivo entre animais, com diagonal `1 + F`.
+3. `0,25`.
+4. `F_cria = 0,25 / 2 = 0,125`, ou 12,5%.
+5. `F = 1,125 - 1 = 0,125`, ou 12,5%.
+
+## Mini tarefa
+
+Compare três pares de cavalos:
+
+| Par | Relação | `Aij` esperado | Se acasalados, `F_cria` esperado |
+|---|---|---:|---:|
+| `P` × `Q` | sem parentesco conhecido | 0,00 | 0,00 |
+| `P` × `R` | meio-irmãos | 0,25 | 0,125 |
+| `P` × `S` | pai e filha | 0,50 | 0,25 |
+
+Evidência de conclusão: escreva uma frase descrevendo parentesco e risco de endogamia. Exemplo: "o par de meio-irmãos tem `Aij = 0,25`; se for acasalado, a cria terá `F` esperado de 12,5%, então o parentesco entre os pais vira risco de endogamia na descendência".
+
+## Referências
+
+ELER, Joanir Pereira. Teorias e métodos em melhoramento genético animal: bases do melhoramento genético animal. Pirassununga: Faculdade de Zootecnia e Engenharia de Alimentos da Universidade de São Paulo, 2017. DOI: 10.11606/9788566404128.
+
+FALCONER, D. S.; MACKAY, T. F. C. Introduction to quantitative genetics. 4. ed. Harlow: Longman, 1996.

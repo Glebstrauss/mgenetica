@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M5 · Forças que mudam as frequências — MGenética</title>
+<style>
+  :root{
+    --mg-ink:#0a1f38;--mg-navy-700:#1a4b78;--mg-navy-900:#061626;
+    --mg-cyan:#00a8d6;--mg-cyan-soft:#d6f1f9;--mg-mid:#4a9fd1;
+    --mg-muted:#5a7391;
+    --mg-bg:#fff;--mg-bg-soft:#f7f9fc;--mg-bg-tint:#eef3f9;
+    --mg-line:rgba(10,31,56,.10);--mg-line-strong:rgba(10,31,56,.18);
+    --mg-gold:#ffc107;--mg-gold-soft:#fff7e0;--mg-gold-border:#ffe08a;--mg-gold-ink:#7b4200;
+    --shadow-sm:0 1px 2px rgba(13,38,66,.05),0 1px 1px rgba(13,38,66,.04);
+    --font-body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --font-display:"Lora",Georgia,"Times New Roman",serif;
+    --font-mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--font-body);background:linear-gradient(180deg,#f7f9fc,#eef3f9);min-height:100vh;color:var(--mg-ink);line-height:1.6;padding:1.4rem 1rem 3rem;}
+  .page{max-width:840px;margin:0 auto;}
+  .back{display:inline-block;font-family:var(--font-mono);font-size:.74rem;color:var(--mg-muted);text-decoration:none;margin-bottom:1rem;letter-spacing:.03em;}
+  .back:hover{color:var(--mg-cyan);}
+  .eyebrow{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mg-cyan);font-weight:600;}
+  h1{font-family:var(--font-display);font-size:1.75rem;font-weight:600;margin:.25rem 0 .4rem;line-height:1.18;}
+  .sub{color:var(--mg-muted);font-size:.96rem;margin-bottom:1.6rem;max-width:62ch;}
+  h2{font-family:var(--font-display);font-size:1.12rem;font-weight:600;color:var(--mg-navy-700);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;}
+  h2 .n{display:inline-flex;align-items:center;justify-content:center;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--mg-cyan);color:#fff;font-family:var(--font-mono);font-size:.8rem;font-weight:700;flex:none;}
+  .card{background:var(--mg-bg);border:1px solid var(--mg-line);border-radius:var(--radius);padding:1.4rem;margin-bottom:1.2rem;box-shadow:var(--shadow-sm);}
+  .slider-group{margin-bottom:1rem;}
+  .slider-group label{display:flex;justify-content:space-between;align-items:baseline;font-size:.86rem;margin-bottom:.35rem;font-weight:500;}
+  .slider-group label .v{font-family:var(--font-mono);font-weight:700;color:var(--mg-navy-700);font-size:.95rem;}
+  input[type=range]{width:100%;height:6px;-webkit-appearance:none;appearance:none;background:var(--mg-bg-tint);border-radius:4px;outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--mg-cyan);border:3px solid #fff;box-shadow:var(--shadow-sm);cursor:pointer;}
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--mg-cyan);border:3px solid #fff;cursor:pointer;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .chk{display:flex;align-items:center;gap:.5rem;font-size:.86rem;font-weight:500;margin-top:.3rem;}
+  .chk input{width:18px;height:18px;accent-color:var(--mg-gold);}
+  .btn{font-family:var(--font-mono);font-size:.78rem;font-weight:600;color:var(--mg-navy-700);background:var(--mg-bg-tint);border:1px solid var(--mg-line-strong);border-radius:8px;padding:.5rem .9rem;cursor:pointer;margin-top:.3rem;}
+  .btn:hover{border-color:var(--mg-cyan);color:var(--mg-cyan);}
+  .twores{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.3rem;}
+  .res{background:var(--mg-bg-soft);border:1px solid var(--mg-line);border-radius:12px;padding:1rem;text-align:center;}
+  .res .lab{font-size:.72rem;color:var(--mg-muted);margin-bottom:.25rem;font-family:var(--font-mono);}
+  .res .val{font-family:var(--font-mono);font-size:1.9rem;font-weight:700;color:var(--mg-navy-700);}
+  .res .hint{font-size:.74rem;color:var(--mg-muted);margin-top:.25rem;}
+  .legend{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.76rem;color:var(--mg-muted);margin-top:.4rem;justify-content:center;}
+  .legend span{display:inline-flex;align-items:center;gap:.35rem;}
+  .ln{display:inline-block;width:20px;border-top:3px solid var(--mg-cyan);}
+  .note{border-left:3px solid var(--mg-cyan);background:var(--mg-cyan-soft);color:var(--mg-navy-900);padding:.75rem .9rem;border-radius:0 8px 8px 0;font-size:.86rem;margin-top:1rem;}
+  .try{font-size:.82rem;color:var(--mg-navy-700);background:var(--mg-bg-tint);border:1px dashed var(--mg-line-strong);border-radius:8px;padding:.6rem .8rem;margin-top:.9rem;}
+  .try b{color:var(--mg-cyan);}
+  .mg-foot{text-align:center;font-size:.74rem;color:var(--mg-muted);margin-top:2rem;font-family:var(--font-mono);}
+  canvas{width:100%;height:auto;display:block;}
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back" href="index.html">← Trilha interativa MGenética</a>
+  <p class="eyebrow">Módulo 5 · Genética de populações</p>
+  <h1>Forças que mudam as frequências gênicas</h1>
+  <p class="sub">Hardy-Weinberg diz o que esperar quando <b>nada</b> muda. Aqui você liga as forças que tiram <i>p</i> do lugar: seleção e migração empurram com direção; a deriva mexe ao acaso. Comece com o exemplo do curso — seleção contra <i>aa</i> leva p de 0,40 a 0,488 em uma geração.</p>
+
+  <div class="card">
+    <h2><span class="n">1</span>Ajuste as forças</h2>
+    <div class="grid2">
+      <div class="slider-group">
+        <label><span>Frequência inicial de A (p)</span><span class="v" id="vp0">0,40</span></label>
+        <input type="range" id="p0" min="0.05" max="0.95" step="0.01" value="0.40">
+      </div>
+      <div class="slider-group">
+        <label><span>Aptidão de <i>aa</i> (seleção)</span><span class="v" id="vw">0,50</span></label>
+        <input type="range" id="w" min="0" max="1" step="0.05" value="0.5">
+      </div>
+      <div class="slider-group">
+        <label><span>Migração por geração (m)</span><span class="v" id="vm">0,00</span></label>
+        <input type="range" id="m" min="0" max="0.5" step="0.01" value="0">
+      </div>
+      <div class="slider-group">
+        <label><span>Freq. de A nos migrantes</span><span class="v" id="vpm">1,00</span></label>
+        <input type="range" id="pm" min="0" max="1" step="0.05" value="1">
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="slider-group">
+        <label><span>Tamanho efetivo (Ne) — deriva</span><span class="v" id="vNe">25</span></label>
+        <input type="range" id="Ne" min="5" max="200" step="5" value="25">
+      </div>
+      <div>
+        <label class="chk"><input type="checkbox" id="drift"> Incluir deriva (acaso de amostragem)</label>
+        <button class="btn" id="preset">↺ Exemplo do curso (seleção contra aa)</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">2</span>Trajetória de p ao longo das gerações</h2>
+    <canvas id="cv" width="1360" height="520"></canvas>
+    <div class="legend">
+      <span><i class="ln"></i> p sob seleção + migração (dirigida)</span>
+      <span><i class="ln" style="border-top-color:#ffc107"></i> p com deriva (acaso)</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">3</span>O que aconteceu com p</h2>
+    <div class="twores">
+      <div class="res"><div class="lab">p após 1 geração</div><div class="val" id="p1">0,488</div><div class="hint" id="p1h">Δp = +0,088</div></div>
+      <div class="res"><div class="lab">p após 12 gerações</div><div class="val" id="pfin">—</div><div class="hint">tendência de longo prazo</div></div>
+    </div>
+    <div class="note" id="verdict"></div>
+    <div class="try"><b>Compare dirigida × aleatória:</b> deixe a seleção forte (aptidão de <i>aa</i> baixa) e veja p subir liso. Agora ligue a <b>deriva</b> com <b>Ne = 5</b> e recarregue algumas vezes: a linha dourada salta para cima e para baixo sem direção — pode até fixar ou perder o alelo. É a diferença entre mudança com sentido e acaso de amostragem.</div>
+  </div>
+
+  <div class="mg-foot">MGenética · artefato interativo · derivado do texto M5 — Fatores que alteram frequências gênicas</div>
+</div>
+
+<script>
+  const cv=document.getElementById('cv'),ctx=cv.getContext('2d');ctx.scale(2,2);
+  const CW=680,CH=260;
+  const el=id=>document.getElementById(id);
+  const G=12;
+  let p0=0.40,w=0.5,m=0,pm=1,Ne=25,drift=false;
+  function f2(x){return x.toFixed(2).replace('.',',');}
+  function f3(x){return x.toFixed(3).replace('.',',');}
+
+  function step(p){
+    const q=1-p;
+    const wbar=p*p+2*p*q+w*q*q;            // w_AA=w_Aa=1, w_aa=w
+    let pp=(p*p+p*q)/wbar;                  // seleção (p/wbar)
+    pp=(1-m)*pp+m*pm;                       // migração
+    return Math.min(1,Math.max(0,pp));
+  }
+  function trajSel(){const a=[p0];let p=p0;for(let t=1;t<=G;t++){p=step(p);a.push(p);}return a;}
+  function trajDrift(){
+    const a=[p0];let p=p0;const n=2*Ne;
+    for(let t=1;t<=G;t++){p=step(p);let k=0;for(let i=0;i<n;i++)if(Math.random()<p)k++;p=k/n;a.push(p);}
+    return a;
+  }
+
+  function draw(sel,dft){
+    ctx.clearRect(0,0,CW,CH);
+    const x0=42,x1=658,yb=222,yTop=20;
+    const X=g=>x0+(x1-x0)*(g/G);
+    const Y=p=>yb-(yb-yTop)*p;
+    // gridlines p=0,.25,.5,.75,1
+    ctx.font='10px monospace';ctx.textAlign='right';
+    [0,0.25,0.5,0.75,1].forEach(p=>{const y=Y(p);ctx.strokeStyle='rgba(10,31,56,.08)';ctx.beginPath();ctx.moveTo(x0,y);ctx.lineTo(x1,y);ctx.stroke();ctx.fillStyle='#5a7391';ctx.fillText(f2(p),x0-6,y+3);});
+    // x labels (generations)
+    ctx.textAlign='center';
+    for(let g=0;g<=G;g+=2){const x=X(g);ctx.fillStyle='#5a7391';ctx.fillText(g,x,yb+16);}
+    ctx.fillText('geração',(x0+x1)/2,yb+32);
+    // drift line (behind)
+    if(dft){
+      ctx.strokeStyle='#ffc107';ctx.lineWidth=2;ctx.beginPath();
+      dft.forEach((p,g)=>{const x=X(g),y=Y(p);g?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();
+      ctx.fillStyle='#e0a800';dft.forEach((p,g)=>{ctx.beginPath();ctx.arc(X(g),Y(p),2.5,0,7);ctx.fill();});
+    }
+    // selection line
+    ctx.strokeStyle='#00a8d6';ctx.lineWidth=3;ctx.beginPath();
+    sel.forEach((p,g)=>{const x=X(g),y=Y(p);g?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();
+    ctx.fillStyle='#0a1f38';sel.forEach((p,g)=>{ctx.beginPath();ctx.arc(X(g),Y(p),3,0,7);ctx.fill();});
+    // start marker
+    ctx.fillStyle='#0a1f38';ctx.font='bold 11px monospace';ctx.textAlign='left';
+    ctx.fillText('p₀ = '+f2(p0),X(0)+6,Y(p0)-8);
+  }
+
+  function update(){
+    p0=+el('p0').value;w=+el('w').value;m=+el('m').value;pm=+el('pm').value;Ne=+el('Ne').value;drift=el('drift').checked;
+    el('vp0').textContent=f2(p0);el('vw').textContent=f2(w);el('vm').textContent=f2(m);el('vpm').textContent=f2(pm);el('vNe').textContent=Ne;
+    const sel=trajSel();
+    const dft=drift?trajDrift():null;
+    draw(sel,dft);
+    const dp=sel[1]-sel[0];
+    el('p1').textContent=f3(sel[1]);
+    el('p1h').textContent='Δp = '+(dp>=0?'+':'')+f3(dp);
+    el('pfin').textContent=f3(sel[G]);
+    // verdict
+    let v='';
+    const sel_on=w<1, mig_on=m>0;
+    if(!sel_on&&!mig_on&&!drift){v='Sem seleção, migração ou deriva, <b>p fica parado</b> — é o equilíbrio de Hardy-Weinberg.';}
+    else{
+      const parts=[];
+      if(sel_on)parts.push('a <b>seleção</b> contra <i>aa</i> empurra p para cima de forma regular');
+      if(mig_on)parts.push('a <b>migração</b> puxa p em direção a '+f2(pm)+' (freq. dos migrantes)');
+      if(parts.length)v='Mudança <b>dirigida</b>: '+parts.join(' e ')+'.';
+      if(drift)v+=(v?' ':'')+'A <b>deriva</b> (Ne = '+Ne+') soma um zigue-zague <b>aleatório</b> — sem direção; com Ne pequeno o acaso domina e o alelo pode fixar (1) ou se perder (0). Recarregue para outro sorteio.';
+    }
+    el('verdict').innerHTML=v;
+  }
+  ['p0','w','m','pm','Ne'].forEach(id=>el(id).addEventListener('input',update));
+  el('drift').addEventListener('change',update);
+  el('preset').addEventListener('click',()=>{
+    el('p0').value=0.40;el('w').value=0.5;el('m').value=0;el('pm').value=1;el('Ne').value=25;el('drift').checked=false;update();
+  });
+  update();
+</script>
+<script type="application/json" id="dados">
+{
+  "controls": {
+    "p0": {
+      "type": "range",
+      "min": 0.05,
+      "max": 0.95,
+      "step": 0.01,
+      "value": 0.4
+    },
+    "w": {
+      "type": "range",
+      "min": 0,
+      "max": 1,
+      "step": 0.05,
+      "value": 0.5
+    },
+    "m": {
+      "type": "range",
+      "min": 0,
+      "max": 0.5,
+      "step": 0.01,
+      "value": 0
+    },
+    "pm": {
+      "type": "range",
+      "min": 0,
+      "max": 1,
+      "step": 0.05,
+      "value": 1
+    },
+    "Ne": {
+      "type": "range",
+      "min": 5,
+      "max": 200,
+      "step": 5,
+      "value": 25
+    }
+  }
+}
+</script>
+<script id="dados-hydrator">
+(() => {
+  const node = document.getElementById('dados');
+  if (!node) return;
+  let data;
+  try { data = JSON.parse(node.textContent || '{}'); } catch (_) { return; }
+  const controls = data.controls || {};
+  for (const [id, cfg] of Object.entries(controls)) {
+    const target = document.getElementById(id);
+    if (!target || cfg == null || !Object.prototype.hasOwnProperty.call(cfg, 'value')) continue;
+    target.value = String(cfg.value);
+    target.dispatchEvent(new Event('input', { bubbles: true }));
+    target.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+  if (data.cruzamento && typeof update === 'function') {
+    try {
+      if (Object.prototype.hasOwnProperty.call(data.cruzamento, 'pai')) pai = data.cruzamento.pai;
+      if (Object.prototype.hasOwnProperty.call(data.cruzamento, 'mae')) mae = data.cruzamento.mae;
+      update();
+    } catch (_) {}
+  }
+})();
+</script>
+</body>
+</html>

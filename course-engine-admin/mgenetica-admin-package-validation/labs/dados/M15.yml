@@ -1,0 +1,4 @@
+animais:
+- {id: A, ebv: 20, acc: 0.55, corr: 104, color: '#1a4b78'}
+- {id: B, ebv: 8, acc: 0.85, corr: 108, color: '#00a8d6'}
+- {id: C, ebv: -4, acc: 0.7, corr: 100, color: '#4a9fd1'}

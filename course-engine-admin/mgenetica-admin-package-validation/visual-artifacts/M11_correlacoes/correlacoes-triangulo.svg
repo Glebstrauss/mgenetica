@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" font-family="system-ui,sans-serif">
+  <rect width="820" height="480" fill="#0f1117"/>
+  <text x="410" y="38" text-anchor="middle" fill="#818cf8" font-size="18" font-weight="700">M11 — Correlações Genéticas, Fenotípicas e Ambientais</text>
+  <text x="410" y="58" text-anchor="middle" fill="#8892a4" font-size="12">rP = rA·hT1·hT2 + rE·eT1·eT2 · A correlação genética (rA) determina a resposta correlacionada</text>
+  <rect x="30" y="72" width="460" height="310" rx="10" fill="#1a1d27" stroke="#2a2d3a"/>
+  <text x="260" y="96" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600" letter-spacing="1">DOIS CARACTERES — TRÊS CORRELAÇÕES</text>
+  <circle cx="130" cy="220" r="55" fill="#064e3b" stroke="#6ee7b7" stroke-width="2"/>
+  <text x="130" y="215" text-anchor="middle" fill="#6ee7b7" font-size="13" font-weight="700">Caráter 1</text>
+  <text x="130" y="231" text-anchor="middle" fill="#a7f3d0" font-size="10">ex: altura</text>
+  <circle cx="390" cy="220" r="55" fill="#1e1b4b" stroke="#818cf8" stroke-width="2"/>
+  <text x="390" y="215" text-anchor="middle" fill="#818cf8" font-size="13" font-weight="700">Caráter 2</text>
+  <text x="390" y="231" text-anchor="middle" fill="#a5b4fc" font-size="10">ex: peso</text>
+  <line x1="185" y1="220" x2="335" y2="220" stroke="#e2e8f0" stroke-width="2"/>
+  <polygon points="335,220 325,215 325,225" fill="#e2e8f0"/>
+  <polygon points="185,220 195,215 195,225" fill="#e2e8f0"/>
+  <rect x="228" y="206" width="64" height="20" rx="4" fill="#0f1117"/>
+  <text x="260" y="220" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="700">rP</text>
+  <text x="260" y="234" text-anchor="middle" fill="#8892a4" font-size="9">fenotípica</text>
+  <path d="M155,170 Q260,120 365,170" fill="none" stroke="#6ee7b7" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="365,170 355,162 358,172" fill="#6ee7b7"/>
+  <polygon points="155,170 165,162 162,172" fill="#6ee7b7"/>
+  <text x="260" y="128" text-anchor="middle" fill="#6ee7b7" font-size="13" font-weight="700">rA</text>
+  <text x="260" y="142" text-anchor="middle" fill="#a7f3d0" font-size="9">genética aditiva</text>
+  <path d="M155,270 Q260,318 365,270" fill="none" stroke="#fcd34d" stroke-width="2" stroke-dasharray="4,4"/>
+  <polygon points="365,270 355,268 358,278" fill="#fcd34d"/>
+  <polygon points="155,270 165,268 162,278" fill="#fcd34d"/>
+  <text x="260" y="312" text-anchor="middle" fill="#fcd34d" font-size="13" font-weight="700">rE</text>
+  <text x="260" y="326" text-anchor="middle" fill="#fde68a" font-size="9">ambiental</text>
+  <rect x="510" y="72" width="280" height="310" rx="10" fill="#1a1d27" stroke="#2a2d3a"/>
+  <text x="650" y="96" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600" letter-spacing="1">RESPOSTA CORRELACIONADA</text>
+  <rect x="524" y="108" width="252" height="52" rx="6" fill="#12141e"/>
+  <text x="650" y="128" text-anchor="middle" fill="#e2e8f0" font-size="13" font-family="monospace">CR = rA × h₁ × h₂ × σP₁</text>
+  <text x="650" y="148" text-anchor="middle" fill="#8892a4" font-size="10">resposta no caráter 2 ao selecionar caráter 1</text>
+  <text x="524" y="186" fill="#8892a4" font-size="11">Exemplo numérico:</text>
+  <rect x="524" y="196" width="252" height="100" rx="6" fill="#12141e"/>
+  <text x="536" y="216" fill="#8892a4" font-size="10">rA (alt × peso)</text>
+  <text x="762" y="216" text-anchor="end" fill="#6ee7b7" font-size="11" font-weight="600">= 0,60</text>
+  <text x="536" y="234" fill="#8892a4" font-size="10">h₁ (altura)</text>
+  <text x="762" y="234" text-anchor="end" fill="#e2e8f0" font-size="11">= 0,50</text>
+  <text x="536" y="252" fill="#8892a4" font-size="10">h₂ (peso)</text>
+  <text x="762" y="252" text-anchor="end" fill="#e2e8f0" font-size="11">= 0,40</text>
+  <text x="536" y="270" fill="#8892a4" font-size="10">σP₁ (desvio altura)</text>
+  <text x="762" y="270" text-anchor="end" fill="#e2e8f0" font-size="11">= 5 cm</text>
+  <line x1="524" y1="276" x2="776" y2="276" stroke="#2a2d3a"/>
+  <text x="536" y="293" fill="#fcd34d" font-size="11" font-weight="600">CR peso</text>
+  <text x="762" y="293" text-anchor="end" fill="#6ee7b7" font-size="13" font-weight="700">= 0,60 kg</text>
+  <text x="650" y="325" text-anchor="middle" fill="#8892a4" font-size="10">Ao selecionar para altura, o peso</text>
+  <text x="650" y="339" text-anchor="middle" fill="#8892a4" font-size="10">aumenta 0,60 kg por geração.</text>
+  <text x="650" y="358" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="600">rA positivo = melhora correlacionada</text>
+  <text x="650" y="372" text-anchor="middle" fill="#f9a8d4" font-size="10" font-weight="600">rA negativo = conflito entre caracteres</text>
+  <rect x="30" y="400" width="760" height="46" rx="8" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="410" y="418" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Ponto-chave</text>
+  <text x="410" y="436" text-anchor="middle" fill="#e2e8f0" font-size="11">rP pode ser positivo e rA negativo — a correlação fenotípica observada pode mascarar conflito genético. Decisões de seleção dependem de rA, não de rP.</text>
+  <text x="410" y="460" text-anchor="middle" fill="#3d4252" font-size="9">MGenética · Falconer &amp; Mackay (1996)</text>
+</svg>

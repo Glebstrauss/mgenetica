@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M9 — Herdabilidade e Repetibilidade</title>
+<style>
+  :root {
+    --bg:#0f1117; --card:#1a1d27; --border:#2a2d3a;
+    --text:#e2e8f0; --muted:#8892a4;
+    --A:#6ee7b7; --a:#f9a8d4; --Aa:#c4b5fd;
+    --yellow:#fcd34d; --accent:#818cf8; --pink:#f9a8d4;
+    --AA:#059669; --Aa-col:#7c3aed; --aa-col:#be185d;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    font-family: system-ui, sans-serif;
+    background: var(--bg); color: var(--text);
+    padding: 1.5rem 1rem; line-height: 1.5;
+  }
+  .page { max-width: 800px; margin: 0 auto; }
+  h1 { font-size:1.4rem; font-weight:700; color:var(--accent); margin-bottom:.3rem; }
+  .sub { color:var(--muted); font-size:.88rem; margin-bottom:1.6rem; }
+  h2 {
+    font-size:.9rem; font-weight:600; color:var(--yellow);
+    text-transform:uppercase; letter-spacing:.05em; margin-bottom:.8rem;
+  }
+  .card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:1.3rem; margin-bottom:1.1rem;
+  }
+  .bar-track { background:#12141e; border-radius:5px; height:16px; overflow:hidden; margin-bottom:.6rem; }
+  .bar-fill  { height:100%; border-radius:5px; transition:width .4s cubic-bezier(.4,0,.2,1); }
+  .bar-label { display:flex; justify-content:space-between; font-size:.82rem; margin-bottom:3px; }
+  .tag { display:inline-block; padding:2px 7px; border-radius:4px; font-family:monospace; font-size:.82rem; font-weight:700; }
+  .tag-AA { background:rgba(5,150,105,.2); color:var(--A);  border:1px solid var(--AA); }
+  .tag-Aa { background:rgba(124,58,237,.2); color:var(--Aa); border:1px solid var(--Aa-col); }
+  .tag-aa { background:rgba(190,24,93,.2);  color:var(--a);  border:1px solid var(--aa-col); }
+  .note-box {
+    border-left:3px solid var(--accent);
+    background:rgba(129,140,248,.06);
+    padding:.7rem .9rem; border-radius:0 6px 6px 0;
+    font-size:.84rem; color:#a5b4fc; margin-top:.8rem;
+  }
+  .warn-box {
+    border-left:3px solid var(--yellow);
+    background:rgba(252,211,77,.05);
+    padding:.6rem .8rem; border-radius:0 6px 6px 0;
+    font-size:.82rem; color:#fde68a; margin-top:.6rem;
+  }
+  input[type=range] { width:100%; accent-color:var(--accent); }
+  input[type=number] {
+    background:#12141e; border:1px solid var(--border);
+    color:var(--text); border-radius:6px;
+    padding:.45rem .7rem; font-size:.95rem; font-family:monospace; outline:none;
+  }
+  input[type=number]:focus { border-color:var(--accent); }
+
+  .slider-group{margin-bottom:.9rem;}
+  .slider-group label{display:flex;justify-content:space-between;font-size:.84rem;margin-bottom:4px;}
+  .slider-group label span{font-family:monospace;font-weight:600;}
+  .results-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.2rem;}
+  .res-card{background:#12141e;border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center;}
+  .res-label{font-size:.78rem;color:var(--muted);margin-bottom:4px;}
+  .res-value{font-size:1.6rem;font-weight:700;font-family:monospace;}
+  .rv-h2{color:var(--A);}
+  .rv-r{color:var(--Aa);}
+  .res-interp{font-size:.78rem;margin-top:.4rem;color:var(--muted);}
+  .comparison{margin-top:1rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .comp-box{background:#12141e;border-radius:8px;padding:.8rem;font-size:.85rem;border:1px solid var(--border);}
+  .comp-box strong{display:block;margin-bottom:.4rem;}
+  .ok-box{border-left:3px solid var(--A);background:rgba(110,231,183,.06);padding:.6rem .8rem;border-radius:0 6px 6px 0;font-size:.84rem;color:var(--A);margin-top:.8rem;}
+  .vp-note{font-size:.78rem;color:var(--muted);text-align:right;margin-top:.3rem;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>M9 — Herdabilidade e Repetibilidade</h1>
+  <p class="sub">h² pergunta sobre filhos · r pergunta sobre repetição do mesmo animal</p>
+  <div class="card">
+    <h2>1. Componentes de variância (VP = 100)</h2>
+    <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;">Ajuste os componentes. A soma VA + VD deve ser ≤ 100. Vperm está contida em VA + VD.</p>
+    <div class="slider-group">
+      <label><span style="color:var(--A)">VA — Variância genética aditiva</span> <span id="va-val" style="color:var(--A)">40</span></label>
+      <input type="range" id="sl-va" min="0" max="100" step="1" value="40">
+    </div>
+    <div class="slider-group">
+      <label><span style="color:var(--Aa)">VD — Variância de dominância</span> <span id="vd-val" style="color:var(--Aa)">20</span></label>
+      <input type="range" id="sl-vd" min="0" max="100" step="1" value="20">
+    </div>
+    <div class="slider-group">
+      <label><span style="color:var(--muted)">VE — Variância ambiental (calculado)</span> <span id="ve-val">40</span></label>
+      <input type="range" id="sl-ve" min="0" max="100" step="1" value="40" disabled style="opacity:.4">
+    </div>
+    <div class="slider-group">
+      <label><span style="color:var(--Aa)">Vperm — Variância permanente (≤ VA+VD)</span> <span id="vp-val" style="color:var(--Aa)">60</span></label>
+      <input type="range" id="sl-vp" min="0" max="100" step="1" value="60">
+    </div>
+    <p class="vp-note">VP total fixo = 100 · VE = 100 − VA − VD</p>
+  </div>
+  <div class="card">
+    <h2>2. Resultados</h2>
+    <div class="results-row">
+      <div class="res-card">
+        <div class="res-label">h² = VA / VP</div>
+        <div class="res-value rv-h2" id="h2-val">0,400</div>
+        <div class="res-interp" id="h2-interp">Fração aditiva moderada — seleção eficaz</div>
+      </div>
+      <div class="res-card">
+        <div class="res-label">r = Vperm / VP</div>
+        <div class="res-value rv-r" id="r-val">0,600</div>
+        <div class="res-interp" id="r-interp">Repetibilidade alta — 1–2 medidas suficientes</div>
+      </div>
+    </div>
+    <div style="margin-top:1rem;">
+      <div class="bar-label"><span style="color:var(--A)">h²</span><span id="lh2" style="color:var(--A)">0,400</span></div>
+      <div class="bar-track"><div class="bar-fill" id="bh2" style="background:#059669;width:40%"></div></div>
+      <div class="bar-label"><span style="color:var(--Aa)">r</span><span id="lr" style="color:var(--Aa)">0,600</span></div>
+      <div class="bar-track"><div class="bar-fill" id="br" style="background:#7c3aed;width:60%"></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>3. Interpretação prática</h2>
+    <div class="comparison">
+      <div class="comp-box" style="border-color:var(--A)">
+        <strong style="color:var(--A)">h² — pergunta sobre filhos</strong>
+        Quanto da variação fenotípica se deve a efeitos aditivos transmissíveis?<br>
+        <span style="color:var(--muted);font-size:.78rem;">Quanto maior h², mais a seleção massal move a média da progênie.</span>
+      </div>
+      <div class="comp-box" style="border-color:var(--Aa)">
+        <strong style="color:var(--Aa)">r — pergunta sobre nova medida</strong>
+        Quão parecidas são as medidas repetidas do mesmo animal?<br>
+        <span style="color:var(--muted);font-size:.78rem;">Quanto maior r, menos medidas extras agregam informação.</span>
+      </div>
+    </div>
+    <div class="ok-box" id="interp-box">
+      r ≥ h² porque Vperm inclui VA e diferenças permanentes de ambiente.
+    </div>
+    <div class="warn-box" id="n-medidas-box">
+      Com r = 0,60, uma segunda medida reduz incerteza, mas uma terceira acrescenta pouco.
+    </div>
+  </div>
+
+<script>
+  function fmt(v){return v.toFixed(3).replace('.',',');}
+  function interp_h2(h){
+    if(h<0.1) return 'h² muito baixo — seleção massal pouco eficaz';
+    if(h<0.3) return 'h² baixo — progresso lento por seleção massal';
+    if(h<0.5) return 'h² moderado — seleção eficaz com boa avaliação';
+    return 'h² alto — seleção massal move rapidamente a média';
+  }
+  function interp_r(r){
+    if(r<0.3) return 'Repetibilidade baixa — múltiplas medidas necessárias';
+    if(r<0.5) return 'Repetibilidade moderada — 2-3 medidas recomendadas';
+    if(r<0.7) return 'Repetibilidade alta — 1-2 medidas suficientes';
+    return 'Repetibilidade muito alta — 1 medida bem feita é confiável';
+  }
+  function update(){
+    const va=parseInt(document.getElementById('sl-va').value);
+    const vd=parseInt(document.getElementById('sl-vd').value);
+    const vperm=parseInt(document.getElementById('sl-vp').value);
+    const ve=Math.max(0,100-va-vd);
+    document.getElementById('ve-val').textContent=ve;
+    document.getElementById('va-val').textContent=va;
+    document.getElementById('vd-val').textContent=vd;
+    const vpermCapped=Math.min(vperm,va+vd);
+    document.getElementById('vp-val').textContent=vpermCapped;
+    const h2=va/100, r=vpermCapped/100;
+    document.getElementById('h2-val').textContent=fmt(h2);
+    document.getElementById('r-val').textContent=fmt(r);
+    document.getElementById('h2-interp').textContent=interp_h2(h2);
+    document.getElementById('r-interp').textContent=interp_r(r);
+    document.getElementById('lh2').textContent=fmt(h2);
+    document.getElementById('lr').textContent=fmt(r);
+    document.getElementById('bh2').style.width=(h2*100)+'%';
+    document.getElementById('br').style.width=(r*100)+'%';
+    const n=Math.round(1+(1-Math.max(0.01,r))/Math.max(0.01,r)*2);
+    document.getElementById('n-medidas-box').textContent=
+      'Com r = '+fmt(r)+', número ótimo de medidas ≈ '+Math.max(1,n)+' para boa acurácia individual.';
+    const box=document.getElementById('interp-box');
+    if(r<h2){
+      box.textContent='Atenção: r < h² — verifique se Vperm está compatível com VA+VD.';
+      box.style.borderColor='var(--yellow)';box.style.color='#fde68a';
+    }else{
+      box.textContent='r ('+fmt(r)+') ≥ h² ('+fmt(h2)+') — consistente. Vperm inclui a parte aditiva mais diferenças permanentes de ambiente.';
+      box.style.borderColor='var(--A)';box.style.color='var(--A)';
+    }
+  }
+  ['sl-va','sl-vd','sl-vp'].forEach(id=>document.getElementById(id).addEventListener('input',update));
+  update();
+</script>
+
+</div>
+</body>
+</html>

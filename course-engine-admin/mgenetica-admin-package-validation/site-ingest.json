@@ -1,0 +1,247 @@
+{
+  "schema": "mgenetica-site-ingest/v1",
+  "gerado_em": "2026-05-29T15:59:41",
+  "curso": "Trilha de graduação em melhoramento genético animal",
+  "target_site": "https://mgenetica.github.io/mgenetica/",
+  "assets": {
+    "labs_src_dir": "interactive/",
+    "labs_dest_dir": "frontend/public/labs/",
+    "lab_public_base": "/labs/"
+  },
+  "catalog_field": "lab",
+  "join_key": "module_route",
+  "guia": "docs/INTEGRACAO_ARTEFATOS_SITE.md (no course-engine)",
+  "modulos": [
+    {
+      "id": "M1",
+      "module_route": "module-01",
+      "nome": "Revisão de genética básica",
+      "texto_md": "texts/md/M1_revisao_de_genetica_basica.revision.md",
+      "docx": "texts/docx/M1_revisao_de_genetica_basica.revision.docx",
+      "lab_file": "M01_punnett.html",
+      "lab_src": "interactive/M01_punnett.html",
+      "lab_public_path": "/labs/M01_punnett.html",
+      "dados_yaml": "labs/dados/M01.yml"
+    },
+    {
+      "id": "M2",
+      "module_route": "module-02",
+      "nome": "Modos de ação gênica",
+      "texto_md": "texts/md/M2_modos_de_acao_genica.revision.v001.md",
+      "docx": "texts/docx/M2_modos_de_acao_genica.revision.v001.docx",
+      "lab_file": "M02_acao_genica.html",
+      "lab_src": "interactive/M02_acao_genica.html",
+      "lab_public_path": "/labs/M02_acao_genica.html",
+      "dados_yaml": "labs/dados/M02.yml"
+    },
+    {
+      "id": "M3",
+      "module_route": "module-03",
+      "nome": "Genética de populações I: frequências alélicas e genotípicas",
+      "texto_md": "texts/md/M3_genetica_de_populacoes_i_frequencias_alelicas_e_genotipicas.revision.md",
+      "docx": "texts/docx/M3_genetica_de_populacoes_i_frequencias_alelicas_e_genotipicas.revision.docx",
+      "lab_file": "M03_frequencias.html",
+      "lab_src": "interactive/M03_frequencias.html",
+      "lab_public_path": "/labs/M03_frequencias.html",
+      "dados_yaml": "labs/dados/M03.yml"
+    },
+    {
+      "id": "M4",
+      "module_route": "module-04",
+      "nome": "Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo",
+      "texto_md": "texts/md/M4_hardy_weinberg_alelos_multiplos_e_genes_ligados_ao_sexo.revision.md",
+      "docx": "texts/docx/M4_hardy_weinberg_alelos_multiplos_e_genes_ligados_ao_sexo.revision.docx",
+      "lab_file": "M04_hardy_weinberg.html",
+      "lab_src": "interactive/M04_hardy_weinberg.html",
+      "lab_public_path": "/labs/M04_hardy_weinberg.html",
+      "dados_yaml": "labs/dados/M04.yml"
+    },
+    {
+      "id": "M5",
+      "module_route": "module-05",
+      "nome": "Fatores que alteram frequências gênicas",
+      "texto_md": "texts/md/M5_fatores_que_alteram_frequencias_genicas.revision.md",
+      "docx": "texts/docx/M5_fatores_que_alteram_frequencias_genicas.revision.docx",
+      "lab_file": "M05_forcas_evolutivas.html",
+      "lab_src": "interactive/M05_forcas_evolutivas.html",
+      "lab_public_path": "/labs/M05_forcas_evolutivas.html",
+      "dados_yaml": "labs/dados/M05.yml"
+    },
+    {
+      "id": "M6",
+      "module_route": "module-06",
+      "nome": "Valores e médias: fenótipo, genótipo e ambiente",
+      "texto_md": "texts/md/M6_valores_e_medias_fenotipo_genotipo_e_ambiente.revision.md",
+      "docx": "texts/docx/M6_valores_e_medias_fenotipo_genotipo_e_ambiente.revision.docx",
+      "lab_file": "M06_p_g_e.html",
+      "lab_src": "interactive/M06_p_g_e.html",
+      "lab_public_path": "/labs/M06_p_g_e.html",
+      "dados_yaml": "labs/dados/M06.yml"
+    },
+    {
+      "id": "M7",
+      "module_route": "module-07",
+      "nome": "Noções de genética quantitativa",
+      "texto_md": "texts/md/M7_nocoes_de_genetica_quantitativa.revision.md",
+      "docx": "texts/docx/M7_nocoes_de_genetica_quantitativa.revision.docx",
+      "lab_file": "M07_poligenico.html",
+      "lab_src": "interactive/M07_poligenico.html",
+      "lab_public_path": "/labs/M07_poligenico.html",
+      "dados_yaml": "labs/dados/M07.yml"
+    },
+    {
+      "id": "M8",
+      "module_route": "module-08",
+      "nome": "Componentes de variância",
+      "texto_md": "texts/md/M8_componentes_de_variancia.revision.md",
+      "docx": "texts/docx/M8_componentes_de_variancia.revision.docx",
+      "lab_file": "M08_componentes_variancia.html",
+      "lab_src": "interactive/M08_componentes_variancia.html",
+      "lab_public_path": "/labs/M08_componentes_variancia.html",
+      "dados_yaml": "labs/dados/M08.yml"
+    },
+    {
+      "id": "M9",
+      "module_route": "module-09",
+      "nome": "Herdabilidade e repetibilidade",
+      "texto_md": "texts/md/M9_herdabilidade_e_repetibilidade.revision.md",
+      "docx": "texts/docx/M9_herdabilidade_e_repetibilidade.revision.docx",
+      "lab_file": "M09_herdabilidade.html",
+      "lab_src": "interactive/M09_herdabilidade.html",
+      "lab_public_path": "/labs/M09_herdabilidade.html",
+      "dados_yaml": "labs/dados/M09.yml"
+    },
+    {
+      "id": "M10",
+      "module_route": "module-10",
+      "nome": "Seleção e ganho genético",
+      "texto_md": "texts/md/M10_selecao_e_ganho_genetico.revision.md",
+      "docx": "texts/docx/M10_selecao_e_ganho_genetico.revision.docx",
+      "lab_file": "M10_selecao.html",
+      "lab_src": "interactive/M10_selecao.html",
+      "lab_public_path": "/labs/M10_selecao.html",
+      "dados_yaml": "labs/dados/M10.yml"
+    },
+    {
+      "id": "M11",
+      "module_route": "module-11",
+      "nome": "Correlações genéticas, fenotípicas e ambientais",
+      "texto_md": "texts/md/M11_correlacoes_geneticas_fenotipicas_e_ambientais.revision.md",
+      "docx": "texts/docx/M11_correlacoes_geneticas_fenotipicas_e_ambientais.revision.docx",
+      "lab_file": "M11_correlacoes.html",
+      "lab_src": "interactive/M11_correlacoes.html",
+      "lab_public_path": "/labs/M11_correlacoes.html",
+      "dados_yaml": "labs/dados/M11.yml"
+    },
+    {
+      "id": "M12",
+      "module_route": "module-12",
+      "nome": "Características de limiar",
+      "texto_md": "texts/md/M12_caracteristicas_de_limiar.revision.md",
+      "docx": "texts/docx/M12_caracteristicas_de_limiar.revision.docx",
+      "lab_file": "M12_limiar.html",
+      "lab_src": "interactive/M12_limiar.html",
+      "lab_public_path": "/labs/M12_limiar.html",
+      "dados_yaml": "labs/dados/M12.yml"
+    },
+    {
+      "id": "M13",
+      "module_route": "module-13",
+      "nome": "Endogamia e parentesco",
+      "texto_md": "texts/md/M13_endogamia_e_parentesco.revision.md",
+      "docx": "texts/docx/M13_endogamia_e_parentesco.revision.docx",
+      "lab_file": "M13_endogamia.html",
+      "lab_src": "interactive/M13_endogamia.html",
+      "lab_public_path": "/labs/M13_endogamia.html",
+      "dados_yaml": "labs/dados/M13.yml"
+    },
+    {
+      "id": "M14",
+      "module_route": "module-14",
+      "nome": "Cruzamentos, heterose e complementaridade",
+      "texto_md": "texts/md/M14_cruzamentos_heterose_e_complementaridade.revision.md",
+      "docx": "texts/docx/M14_cruzamentos_heterose_e_complementaridade.revision.docx",
+      "lab_file": "M14_heterose.html",
+      "lab_src": "interactive/M14_heterose.html",
+      "lab_public_path": "/labs/M14_heterose.html",
+      "dados_yaml": "labs/dados/M14.yml"
+    },
+    {
+      "id": "M15",
+      "module_route": "module-15",
+      "nome": "Avaliação genética: DEP/EBV e ranking de animais",
+      "texto_md": "texts/md/M15_avaliacao_genetica_dep_ebv_e_ranking_de_animais.revision.md",
+      "docx": "texts/docx/M15_avaliacao_genetica_dep_ebv_e_ranking_de_animais.revision.docx",
+      "lab_file": "M15_ranking_ebv.html",
+      "lab_src": "interactive/M15_ranking_ebv.html",
+      "lab_public_path": "/labs/M15_ranking_ebv.html",
+      "dados_yaml": "labs/dados/M15.yml"
+    },
+    {
+      "id": "M16",
+      "module_route": "module-16",
+      "nome": "Modelos lineares e modelos mistos",
+      "texto_md": "texts/md/M16_modelos_lineares_e_modelos_mistos.revision.md",
+      "docx": "texts/docx/M16_modelos_lineares_e_modelos_mistos.revision.docx",
+      "lab_file": "M16_modelo_misto.html",
+      "lab_src": "interactive/M16_modelo_misto.html",
+      "lab_public_path": "/labs/M16_modelo_misto.html",
+      "dados_yaml": "labs/dados/M16.yml"
+    },
+    {
+      "id": "M17",
+      "module_route": "module-17",
+      "nome": "BLUP e modelo animal",
+      "texto_md": "texts/md/M17_blup_e_modelo_animal.revision.md",
+      "docx": "texts/docx/M17_blup_e_modelo_animal.revision.docx",
+      "lab_file": "M17_blup.html",
+      "lab_src": "interactive/M17_blup.html",
+      "lab_public_path": "/labs/M17_blup.html",
+      "dados_yaml": "labs/dados/M17.yml"
+    },
+    {
+      "id": "M18",
+      "module_route": "module-18",
+      "nome": "Genômica, marcadores SNP e dados moleculares",
+      "texto_md": "texts/md/M18_genomica_marcadores_snp_e_dados_moleculares.revision.md",
+      "docx": "texts/docx/M18_genomica_marcadores_snp_e_dados_moleculares.revision.docx",
+      "lab_file": "M18_matriz_snp.html",
+      "lab_src": "interactive/M18_matriz_snp.html",
+      "lab_public_path": "/labs/M18_matriz_snp.html",
+      "dados_yaml": "labs/dados/M18.yml"
+    },
+    {
+      "id": "M19",
+      "module_route": "module-19",
+      "nome": "Controle de qualidade de dados genômicos",
+      "texto_md": "texts/md/M19_controle_de_qualidade_de_dados_genomicos.revision.md",
+      "docx": "texts/docx/M19_controle_de_qualidade_de_dados_genomicos.revision.docx",
+      "lab_file": "M19_qc_genomico.html",
+      "lab_src": "interactive/M19_qc_genomico.html",
+      "lab_public_path": "/labs/M19_qc_genomico.html",
+      "dados_yaml": "labs/dados/M19.yml"
+    },
+    {
+      "id": "M20",
+      "module_route": "module-20",
+      "nome": "Matrizes genômicas, GWAS e predição genômica",
+      "texto_md": "texts/md/M20_matrizes_genomicas_gwas_e_predicao_genomica.revision.md",
+      "docx": "texts/docx/M20_matrizes_genomicas_gwas_e_predicao_genomica.revision.docx",
+      "lab_file": "M20_gwas_genomica.html",
+      "lab_src": "interactive/M20_gwas_genomica.html",
+      "lab_public_path": "/labs/M20_gwas_genomica.html",
+      "dados_yaml": "labs/dados/M20.yml"
+    },
+    {
+      "id": "M21",
+      "module_route": "module-21",
+      "nome": "Projeto final: pipeline completo de seleção",
+      "texto_md": "texts/md/M21_projeto_final_pipeline_completo_de_selecao.revision.md",
+      "docx": "texts/docx/M21_projeto_final_pipeline_completo_de_selecao.revision.docx",
+      "lab_file": "M21_pipeline_selecao.html",
+      "lab_src": "interactive/M21_pipeline_selecao.html",
+      "lab_public_path": "/labs/M21_pipeline_selecao.html",
+      "dados_yaml": "labs/dados/M21.yml"
+    }
+  ]
+}

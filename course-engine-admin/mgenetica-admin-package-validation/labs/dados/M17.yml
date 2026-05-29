@@ -1,0 +1,5 @@
+controls:
+  y: {type: range, min: -30, max: 30, step: 1, value: 20}
+  h2: {type: range, min: 0.05, max: 0.95, step: 0.01, value: 0.3}
+  pai: {type: range, min: -20, max: 20, step: 1, value: 12}
+  mae: {type: range, min: -20, max: 20, step: 1, value: 4}

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" font-family="system-ui,sans-serif">
+  <rect width="820" height="480" fill="#0f1117"/>
+  <text x="410" y="38" text-anchor="middle" fill="#818cf8" font-size="18" font-weight="700">M5 — Forças que Alteram Frequências Alélicas</text>
+  <text x="410" y="58" text-anchor="middle" fill="#8892a4" font-size="12">Quatro mecanismos que mudam p e q entre gerações</text>
+  <rect x="295" y="185" width="230" height="80" rx="12" fill="#1a1d27" stroke="#818cf8" stroke-width="2"/>
+  <text x="410" y="220" text-anchor="middle" fill="#818cf8" font-size="15" font-weight="700">Frequência alélica</text>
+  <text x="410" y="240" text-anchor="middle" fill="#c7d2fe" font-size="13">p e q na população</text>
+  <text x="410" y="256" text-anchor="middle" fill="#8892a4" font-size="11">muda entre gerações</text>
+  <rect x="285" y="62" width="250" height="72" rx="10" fill="#064e3b" stroke="#6ee7b7" stroke-width="1.5"/>
+  <text x="410" y="88" text-anchor="middle" fill="#6ee7b7" font-size="14" font-weight="700">Seleção</text>
+  <text x="410" y="106" text-anchor="middle" fill="#a7f3d0" font-size="11">Favorece alelos com maior aptidão</text>
+  <text x="410" y="121" text-anchor="middle" fill="#6ee7b7" font-size="10">direcional · estabilizadora · disruptiva</text>
+  <line x1="410" y1="134" x2="410" y2="183" stroke="#6ee7b7" stroke-width="2"/>
+  <polygon points="410,185 404,175 416,175" fill="#6ee7b7"/>
+  <rect x="42" y="195" width="218" height="72" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="151" y="221" text-anchor="middle" fill="#818cf8" font-size="14" font-weight="700">Migração (fluxo gênico)</text>
+  <text x="151" y="239" text-anchor="middle" fill="#a5b4fc" font-size="11">Entrada de alelos externos</text>
+  <text x="151" y="254" text-anchor="middle" fill="#818cf8" font-size="10">homogeniza frequências entre grupos</text>
+  <line x1="260" y1="231" x2="293" y2="231" stroke="#818cf8" stroke-width="2"/>
+  <polygon points="295,231 285,225 285,237" fill="#818cf8"/>
+  <rect x="560" y="195" width="218" height="72" rx="10" fill="#1c1917" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="669" y="221" text-anchor="middle" fill="#fcd34d" font-size="14" font-weight="700">Mutação</text>
+  <text x="669" y="239" text-anchor="middle" fill="#fde68a" font-size="11">Cria novos alelos; taxa µ baixa</text>
+  <text x="669" y="254" text-anchor="middle" fill="#fcd34d" font-size="10">efeito lento, mas cumulativo</text>
+  <line x1="558" y1="231" x2="527" y2="231" stroke="#fcd34d" stroke-width="2"/>
+  <polygon points="525,231 535,225 535,237" fill="#fcd34d"/>
+  <rect x="285" y="320" width="250" height="72" rx="10" fill="#3b0764" stroke="#f9a8d4" stroke-width="1.5"/>
+  <text x="410" y="346" text-anchor="middle" fill="#f9a8d4" font-size="14" font-weight="700">Deriva genética</text>
+  <text x="410" y="364" text-anchor="middle" fill="#fbcfe8" font-size="11">Flutuação aleatória em pop. pequenas</text>
+  <text x="410" y="379" text-anchor="middle" fill="#f9a8d4" font-size="10">Ne pequeno → fixação ou perda de alelos</text>
+  <line x1="410" y1="318" x2="410" y2="267" stroke="#f9a8d4" stroke-width="2"/>
+  <polygon points="410,265 404,275 416,275" fill="#f9a8d4"/>
+  <rect x="42" y="320" width="218" height="56" rx="8" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="151" y="344" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="600">Tamanho efetivo Ne</text>
+  <text x="151" y="360" text-anchor="middle" fill="#8892a4" font-size="10">Quanto menor Ne,</text>
+  <text x="151" y="373" text-anchor="middle" fill="#8892a4" font-size="10">maior o efeito da deriva</text>
+  <rect x="42" y="415" width="736" height="46" rx="8" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="410" y="434" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Ponto-chave</text>
+  <text x="410" y="453" text-anchor="middle" fill="#e2e8f0" font-size="11">Em um plantel pequeno de cavalos, deriva e endogamia dominam o cenário. Seleção intencional precisa competir com esse ruído genético.</text>
+  <text x="410" y="472" text-anchor="middle" fill="#3d4252" font-size="9">MGenética · Falconer &amp; Mackay (1996) · Eler (2017)</text>
+</svg>

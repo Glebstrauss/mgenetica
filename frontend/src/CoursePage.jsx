@@ -2,6 +2,7 @@ import React from 'react'
 import Icon from './components/Icon'
 import AppHeader from './components/AppHeader'
 import ActionButton from './components/ActionButton'
+import LabEmbed from './components/LabEmbed'
 import LessonText from './components/LessonText'
 
 function publicAssetUrl(src) {
@@ -136,6 +137,14 @@ export default function CoursePage({ course, detail, progress, onBack, onOpenQui
               {detail.visualAsset?.placement === 'after-concept' && section.scientific ? <CourseVisualAsset asset={detail.visualAsset} /> : null}
             </React.Fragment>
           ))}
+          <LabEmbed
+            src={detail.lab}
+            title={`${t('coursePage.labEmbedTitle')}: ${detail.title}`}
+            eyebrow={t('coursePage.labEmbedEyebrow')}
+            heading={t('coursePage.labEmbedTitle')}
+            description={t('coursePage.labEmbedCopy')}
+            openLabel={t('coursePage.labEmbedOpen')}
+          />
           <section className="section-card">
             <div className="section-eyebrow">{t('coursePage.actionEyebrow')}</div>
             <h3>{t('coursePage.actionTitle')}</h3>

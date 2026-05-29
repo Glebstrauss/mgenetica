@@ -53,6 +53,8 @@ module.exports = async function (context) {
         blockTitle: course.blockTitle,
         title: course.title,
         description: course.description || course.objective || course.feynmanQuestion || '',
+        lab: course.lab || null,
+        labFile: course.labFile || null,
         published: course.published !== false
       }));
       context.log(JSON.stringify({ count: payload.length }));

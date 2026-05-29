@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" font-family="system-ui,sans-serif">
+  <rect width="820" height="480" fill="#0f1117"/>
+  <text x="410" y="38" text-anchor="middle" fill="#818cf8" font-size="18" font-weight="700">M7 — Genética Quantitativa</text>
+  <text x="410" y="58" text-anchor="middle" fill="#8892a4" font-size="12">Muitos loci com efeitos pequenos → distribuição contínua aproximando a normal</text>
+  <text x="115" y="90" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">1 locus</text>
+  <text x="115" y="104" text-anchor="middle" fill="#8892a4" font-size="10">2 fenótipos</text>
+  <text x="310" y="90" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">2 loci</text>
+  <text x="310" y="104" text-anchor="middle" fill="#8892a4" font-size="10">3 fenótipos</text>
+  <text x="530" y="90" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">5 loci</text>
+  <text x="530" y="104" text-anchor="middle" fill="#8892a4" font-size="10">6 fenótipos</text>
+  <text x="720" y="90" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Muitos loci</text>
+  <text x="720" y="104" text-anchor="middle" fill="#8892a4" font-size="10">distribuição normal</text>
+  <rect x="55" y="115" width="120" height="240" rx="6" fill="#1a1d27" stroke="#2a2d3a"/>
+  <line x1="55" y1="345" x2="175" y2="345" stroke="#2a2d3a"/>
+  <rect x="70" y="245" width="38" height="100" rx="3" fill="#6ee7b7"/>
+  <rect x="118" y="245" width="38" height="100" rx="3" fill="#6ee7b7"/>
+  <text x="89" y="360" text-anchor="middle" fill="#8892a4" font-size="9">aa</text>
+  <text x="137" y="360" text-anchor="middle" fill="#8892a4" font-size="9">AA</text>
+  <rect x="250" y="115" width="120" height="240" rx="6" fill="#1a1d27" stroke="#2a2d3a"/>
+  <line x1="250" y1="345" x2="370" y2="345" stroke="#2a2d3a"/>
+  <rect x="257" y="295" width="28" height="50" rx="3" fill="#818cf8"/>
+  <rect x="291" y="245" width="28" height="100" rx="3" fill="#818cf8"/>
+  <rect x="325" y="295" width="28" height="50" rx="3" fill="#818cf8"/>
+  <text x="271" y="360" text-anchor="middle" fill="#8892a4" font-size="8">0 al A</text>
+  <text x="305" y="360" text-anchor="middle" fill="#8892a4" font-size="8">1 al A</text>
+  <text x="339" y="360" text-anchor="middle" fill="#8892a4" font-size="8">2 al A</text>
+  <rect x="470" y="115" width="120" height="240" rx="6" fill="#1a1d27" stroke="#2a2d3a"/>
+  <line x1="470" y1="345" x2="590" y2="345" stroke="#2a2d3a"/>
+  <rect x="473" y="336" width="16" height="9"  rx="2" fill="#c4b5fd"/>
+  <rect x="491" y="300" width="16" height="45" rx="2" fill="#c4b5fd"/>
+  <rect x="509" y="255" width="16" height="90" rx="2" fill="#c4b5fd"/>
+  <rect x="527" y="255" width="16" height="90" rx="2" fill="#c4b5fd"/>
+  <rect x="545" y="300" width="16" height="45" rx="2" fill="#c4b5fd"/>
+  <rect x="563" y="336" width="16" height="9"  rx="2" fill="#c4b5fd"/>
+  <rect x="655" y="115" width="140" height="240" rx="6" fill="#1a1d27" stroke="#2a2d3a"/>
+  <line x1="655" y1="345" x2="795" y2="345" stroke="#2a2d3a"/>
+  <path d="M660,344 C670,344 680,340 690,330 C700,318 705,295 715,270 C720,255 725,240 728,230 C730,222 731,218 733,215 C735,218 736,222 738,230 C741,240 746,255 751,270 C761,295 766,318 776,330 C786,340 790,344 795,344"
+        fill="rgba(129,140,248,0.3)" stroke="#818cf8" stroke-width="2.5"/>
+  <text x="725" y="210" text-anchor="middle" fill="#fcd34d" font-size="10" font-weight="600">Normal</text>
+  <line x1="178" y1="230" x2="247" y2="230" stroke="#3d4252" stroke-width="1.5"/>
+  <polygon points="248,230 240,226 240,234" fill="#3d4252"/>
+  <line x1="373" y1="230" x2="467" y2="230" stroke="#3d4252" stroke-width="1.5"/>
+  <polygon points="468,230 460,226 460,234" fill="#3d4252"/>
+  <line x1="593" y1="230" x2="652" y2="230" stroke="#3d4252" stroke-width="1.5"/>
+  <polygon points="653,230 645,226 645,234" fill="#3d4252"/>
+  <text x="213" y="222" text-anchor="middle" fill="#3d4252" font-size="9">+ loci</text>
+  <text x="420" y="222" text-anchor="middle" fill="#3d4252" font-size="9">+ loci</text>
+  <text x="622" y="222" text-anchor="middle" fill="#3d4252" font-size="9">n → ∞</text>
+  <rect x="55" y="385" width="710" height="55" rx="8" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="410" y="405" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Por que a distribuição parece contínua?</text>
+  <text x="410" y="421" text-anchor="middle" fill="#e2e8f0" font-size="11">Cada locus adicional dobra o número de classes fenotípicas. Com dezenas ou centenas de loci, as classes ficam</text>
+  <text x="410" y="436" text-anchor="middle" fill="#e2e8f0" font-size="11">tão próximas que o olho vê uma curva contínua — e o erro de medição preenche as lacunas.</text>
+  <text x="410" y="468" text-anchor="middle" fill="#3d4252" font-size="9">MGenética · Falconer &amp; Mackay (1996)</text>
+</svg>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M3 — Frequências Alélicas e Genotípicas</title>
+<style>
+  :root {
+    --bg:#0f1117; --card:#1a1d27; --border:#2a2d3a;
+    --text:#e2e8f0; --muted:#8892a4;
+    --A:#6ee7b7; --a:#f9a8d4; --Aa:#c4b5fd;
+    --yellow:#fcd34d; --accent:#818cf8; --pink:#f9a8d4;
+    --AA:#059669; --Aa-col:#7c3aed; --aa-col:#be185d;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    font-family: system-ui, sans-serif;
+    background: var(--bg); color: var(--text);
+    padding: 1.5rem 1rem; line-height: 1.5;
+  }
+  .page { max-width: 800px; margin: 0 auto; }
+  h1 { font-size:1.4rem; font-weight:700; color:var(--accent); margin-bottom:.3rem; }
+  .sub { color:var(--muted); font-size:.88rem; margin-bottom:1.6rem; }
+  h2 {
+    font-size:.9rem; font-weight:600; color:var(--yellow);
+    text-transform:uppercase; letter-spacing:.05em; margin-bottom:.8rem;
+  }
+  .card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:1.3rem; margin-bottom:1.1rem;
+  }
+  .bar-track { background:#12141e; border-radius:5px; height:16px; overflow:hidden; margin-bottom:.6rem; }
+  .bar-fill  { height:100%; border-radius:5px; transition:width .4s cubic-bezier(.4,0,.2,1); }
+  .bar-label { display:flex; justify-content:space-between; font-size:.82rem; margin-bottom:3px; }
+  .tag { display:inline-block; padding:2px 7px; border-radius:4px; font-family:monospace; font-size:.82rem; font-weight:700; }
+  .tag-AA { background:rgba(5,150,105,.2); color:var(--A);  border:1px solid var(--AA); }
+  .tag-Aa { background:rgba(124,58,237,.2); color:var(--Aa); border:1px solid var(--Aa-col); }
+  .tag-aa { background:rgba(190,24,93,.2);  color:var(--a);  border:1px solid var(--aa-col); }
+  .note-box {
+    border-left:3px solid var(--accent);
+    background:rgba(129,140,248,.06);
+    padding:.7rem .9rem; border-radius:0 6px 6px 0;
+    font-size:.84rem; color:#a5b4fc; margin-top:.8rem;
+  }
+  .warn-box {
+    border-left:3px solid var(--yellow);
+    background:rgba(252,211,77,.05);
+    padding:.6rem .8rem; border-radius:0 6px 6px 0;
+    font-size:.82rem; color:#fde68a; margin-top:.6rem;
+  }
+  input[type=range] { width:100%; accent-color:var(--accent); }
+  input[type=number] {
+    background:#12141e; border:1px solid var(--border);
+    color:var(--text); border-radius:6px;
+    padding:.45rem .7rem; font-size:.95rem; font-family:monospace; outline:none;
+  }
+  input[type=number]:focus { border-color:var(--accent); }
+
+      .chips-grid { display:flex; flex-wrap:wrap; gap:5px; margin:.8rem 0;
+                    padding:.8rem; background:#12141e; border-radius:8px; min-height:60px; }
+      .chip { width:28px; height:28px; border-radius:50%; display:flex; align-items:center;
+              justify-content:center; font-size:.7rem; font-weight:700; cursor:default; }
+      .chip-A { background:var(--A);  color:#064e3b; }
+      .chip-a { background:var(--a);  color:#831843; }
+      .calc-inputs { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-bottom:1rem; }
+      .input-group label { display:block; font-size:.8rem; color:var(--muted); margin-bottom:4px; }
+      .results-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:.7rem; }
+      .res-card { background:#12141e; border:1px solid var(--border); border-radius:8px;
+                  padding:.7rem; text-align:center; }
+      .res-label { font-size:.72rem; color:var(--muted); margin-bottom:3px; }
+      .res-value { font-size:1.2rem; font-weight:700; font-family:monospace; }
+      .pq-track  { height:20px; border-radius:7px; overflow:hidden; }
+      .pq-p-fill { height:100%; border-radius:7px 0 0 7px; display:flex; align-items:center;
+                   justify-content:center; font-size:.72rem; font-weight:700; color:#064e3b; }
+      .mare-grid { display:grid; grid-template-columns:repeat(auto-fill,50px); gap:6px; margin:.8rem 0; }
+      .mare { width:50px; height:50px; border-radius:7px; display:flex; align-items:center;
+              justify-content:center; font-size:.72rem; font-weight:700; font-family:monospace; border:2px solid; }
+      .mare-AA { background:rgba(5,150,105,.2);  border-color:var(--AA);     color:var(--A); }
+      .mare-Aa { background:rgba(124,58,237,.2); border-color:var(--Aa-col); color:var(--Aa); }
+      .mare-aa { background:rgba(190,24,93,.2);  border-color:var(--aa-col); color:var(--a); }
+    </style>
+</head>
+<body>
+<div class="page">
+
+  <h1>M3 — Frequências Alélicas e Genotípicas</h1>
+  <p class="sub">Calculadora p, q, f_AA, f_Aa, f_aa · animal ≠ cópia alélica</p>
+
+  <!-- Conceito central -->
+  <div class="card">
+    <h2>Animal vs. Cópia Alélica</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;">
+      <div style="text-align:center;padding:.8rem;background:#12141e;border-radius:8px;">
+        <span class="tag tag-AA" style="font-size:1rem">AA</span>
+        <div style="font-size:.8rem;color:var(--muted);margin-top:.4rem">contribui</div>
+        <div style="font-size:1.3rem;font-weight:700;color:var(--A)">2×A</div>
+      </div>
+      <div style="text-align:center;padding:.8rem;background:#12141e;border-radius:8px;">
+        <span class="tag tag-Aa" style="font-size:1rem">Aa</span>
+        <div style="font-size:.8rem;color:var(--muted);margin-top:.4rem">contribui</div>
+        <div style="font-size:1.3rem;font-weight:700;color:var(--A)">1×A</div>
+        <div style="font-size:.8rem;color:var(--a);font-weight:700">1×a</div>
+      </div>
+      <div style="text-align:center;padding:.8rem;background:#12141e;border-radius:8px;">
+        <span class="tag tag-aa" style="font-size:1rem">aa</span>
+        <div style="font-size:.8rem;color:var(--muted);margin-top:.4rem">contribui</div>
+        <div style="font-size:1.3rem;font-weight:700;color:var(--a)">2×a</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculadora -->
+  <div class="card">
+    <h2>Calculadora</h2>
+    <div class="calc-inputs">
+      <div class="input-group">
+        <label>n<sub>AA</sub></label>
+        <input type="number" id="nAA" value="3" min="0">
+      </div>
+      <div class="input-group">
+        <label>n<sub>Aa</sub></label>
+        <input type="number" id="nAa" value="4" min="0">
+      </div>
+      <div class="input-group">
+        <label>n<sub>aa</sub></label>
+        <input type="number" id="naa" value="3" min="0">
+      </div>
+    </div>
+    <div class="results-grid">
+      <div class="res-card"><div class="res-label">f<sub>AA</sub></div><div class="res-value" style="color:var(--A)" id="r-fAA">0,300</div></div>
+      <div class="res-card"><div class="res-label">f<sub>Aa</sub></div><div class="res-value" style="color:var(--Aa)" id="r-fAa">0,400</div></div>
+      <div class="res-card"><div class="res-label">f<sub>aa</sub></div><div class="res-value" style="color:var(--a)" id="r-faa">0,300</div></div>
+      <div class="res-card"><div class="res-label">p (A)</div><div class="res-value" style="color:var(--A)" id="r-p">0,500</div></div>
+      <div class="res-card"><div class="res-label">q (a)</div><div class="res-value" style="color:var(--a)" id="r-q">0,500</div></div>
+    </div>
+    <div style="margin-top:1rem;">
+      <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:4px;">
+        <span id="lbl-p" style="color:var(--A)">p = 0,500</span>
+        <span id="lbl-q" style="color:var(--a)">q = 0,500</span>
+      </div>
+      <div class="pq-track" style="background:var(--a)">
+        <div class="pq-p-fill" id="pq-fill" style="width:50%;background:var(--A)">p</div>
+      </div>
+      <div style="text-align:center;font-size:.78rem;color:var(--muted);margin-top:4px;">
+        p + q = <span id="pq-sum" style="color:var(--yellow);font-weight:700">1,000</span>
+      </div>
+    </div>
+    <h2 style="margin-top:1.2rem;">Éguas</h2>
+    <div class="mare-grid" id="mare-grid"></div>
+    <h2>Sacola de alelos</h2>
+    <div class="chips-grid" id="chips-calc"></div>
+    <div style="display:flex;gap:1.2rem;font-size:.82rem;color:var(--muted);margin-top:.5rem;">
+      <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--A);margin-right:4px"></span>Alelo A (<span id="count-A">10</span>)</span>
+      <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--a);margin-right:4px"></span>Alelo a (<span id="count-a">10</span>)</span>
+    </div>
+  </div>
+
+<script>
+  function fmt(v){return v.toFixed(3).replace('.',',');}
+  function calcular(){
+    const nAA=Math.max(0,parseInt(document.getElementById('nAA').value)||0);
+    const nAa=Math.max(0,parseInt(document.getElementById('nAa').value)||0);
+    const naa=Math.max(0,parseInt(document.getElementById('naa').value)||0);
+    const N=nAA+nAa+naa; if(!N) return;
+    const fAA=nAA/N, fAa=nAa/N, faa=naa/N;
+    const totA=2*nAA+nAa, tota=2*naa+nAa;
+    const p=totA/(2*N), q=tota/(2*N);
+    document.getElementById('r-fAA').textContent=fmt(fAA);
+    document.getElementById('r-fAa').textContent=fmt(fAa);
+    document.getElementById('r-faa').textContent=fmt(faa);
+    document.getElementById('r-p').textContent=fmt(p);
+    document.getElementById('r-q').textContent=fmt(q);
+    document.getElementById('lbl-p').textContent='p = '+fmt(p);
+    document.getElementById('lbl-q').textContent='q = '+fmt(q);
+    document.getElementById('pq-sum').textContent=fmt(p+q);
+    document.getElementById('count-A').textContent=totA;
+    document.getElementById('count-a').textContent=tota;
+    const fill=document.getElementById('pq-fill');
+    fill.style.width=(p*100).toFixed(1)+'%';
+    fill.textContent=p>0.1?'p':'';
+    // éguas
+    const mg=document.getElementById('mare-grid'); mg.innerHTML='';
+    [['AA',nAA],['Aa',nAa],['aa',naa]].forEach(([gt,n])=>{
+      for(let i=0;i<n;i++){
+        const d=document.createElement('div');
+        d.className='mare mare-'+gt; d.textContent=gt; mg.appendChild(d);
+      }
+    });
+    // chips
+    const cc=document.getElementById('chips-calc'); cc.innerHTML='';
+    const chips=[...Array(totA).fill('A'),...Array(tota).fill('a')];
+    chips.sort(()=>Math.random()-.5);
+    chips.forEach(c=>{
+      const d=document.createElement('div');
+      d.className='chip chip-'+c; d.textContent=c; cc.appendChild(d);
+    });
+  }
+  ['nAA','nAa','naa'].forEach(id=>document.getElementById(id).addEventListener('input',calcular));
+  calcular();
+</script>
+
+</div>
+</body>
+</html>

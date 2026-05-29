@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 500" font-family="system-ui,sans-serif">
+  <rect width="820" height="500" fill="#0f1117"/>
+  <text x="410" y="36" text-anchor="middle" fill="#818cf8" font-size="17" font-weight="700">M21 — Pipeline Completo de Seleção Genômica</text>
+  <text x="410" y="54" text-anchor="middle" fill="#8892a4" font-size="11">Da genotipagem à decisão de acasalamento — cada etapa conecta a um módulo do curso</text>
+  <rect x="28"  y="80" width="118" height="70" rx="8" fill="#064e3b" stroke="#6ee7b7" stroke-width="1.5"/>
+  <text x="87"  y="102" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="700">1. Coleta de dados</text>
+  <text x="87"  y="117" text-anchor="middle" fill="#a7f3d0" font-size="9">fenótipos + pedigree</text>
+  <text x="87"  y="130" text-anchor="middle" fill="#a7f3d0" font-size="9">+ chip SNP</text>
+  <text x="87"  y="143" text-anchor="middle" fill="#3d4252" font-size="8">→ M1, M18</text>
+  <line x1="146" y1="115" x2="162" y2="115" stroke="#2a2d3a" stroke-width="1.5"/>
+  <polygon points="162,115 155,111 155,119" fill="#2a2d3a"/>
+  <rect x="163" y="80" width="118" height="70" rx="8" fill="#064e3b" stroke="#6ee7b7" stroke-width="1.5"/>
+  <text x="222" y="102" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="700">2. Validação</text>
+  <text x="222" y="117" text-anchor="middle" fill="#a7f3d0" font-size="9">consistência pedigree</text>
+  <text x="222" y="130" text-anchor="middle" fill="#a7f3d0" font-size="9">outliers fenotípicos</text>
+  <text x="222" y="143" text-anchor="middle" fill="#3d4252" font-size="8">→ M6, M16</text>
+  <line x1="281" y1="115" x2="297" y2="115" stroke="#2a2d3a" stroke-width="1.5"/>
+  <polygon points="297,115 290,111 290,119" fill="#2a2d3a"/>
+  <rect x="298" y="80" width="118" height="70" rx="8" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="357" y="102" text-anchor="middle" fill="#818cf8" font-size="11" font-weight="700">3. QC Genômico</text>
+  <text x="357" y="117" text-anchor="middle" fill="#a5b4fc" font-size="9">call rate · MAF</text>
+  <text x="357" y="130" text-anchor="middle" fill="#a5b4fc" font-size="9">HWE · parentesco</text>
+  <text x="357" y="143" text-anchor="middle" fill="#3d4252" font-size="8">→ M19</text>
+  <line x1="416" y1="115" x2="432" y2="115" stroke="#2a2d3a" stroke-width="1.5"/>
+  <polygon points="432,115 425,111 425,119" fill="#2a2d3a"/>
+  <rect x="433" y="80" width="118" height="70" rx="8" fill="#3b0764" stroke="#c4b5fd" stroke-width="1.5"/>
+  <text x="492" y="102" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">4. Modelo linear</text>
+  <text x="492" y="117" text-anchor="middle" fill="#a78bfa" font-size="9">ajuste efeitos fixos</text>
+  <text x="492" y="130" text-anchor="middle" fill="#a78bfa" font-size="9">Xb: sexo · ano · criador</text>
+  <text x="492" y="143" text-anchor="middle" fill="#3d4252" font-size="8">→ M16</text>
+  <line x1="551" y1="115" x2="567" y2="115" stroke="#2a2d3a" stroke-width="1.5"/>
+  <polygon points="567,115 560,111 560,119" fill="#2a2d3a"/>
+  <rect x="568" y="80" width="118" height="70" rx="8" fill="#064e3b" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="627" y="102" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="700">5. G-BLUP / BLUP</text>
+  <text x="627" y="117" text-anchor="middle" fill="#fde68a" font-size="9">EBV / GEBV</text>
+  <text x="627" y="130" text-anchor="middle" fill="#fde68a" font-size="9">matriz G ou A</text>
+  <text x="627" y="143" text-anchor="middle" fill="#3d4252" font-size="8">→ M17, M20</text>
+  <line x1="686" y1="115" x2="702" y2="115" stroke="#2a2d3a" stroke-width="1.5"/>
+  <polygon points="702,115 695,111 695,119" fill="#2a2d3a"/>
+  <rect x="703" y="80" width="94" height="70" rx="8" fill="#7c2d12" stroke="#fcd34d" stroke-width="2"/>
+  <text x="750" y="102" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="700">6. Índice</text>
+  <text x="750" y="117" text-anchor="middle" fill="#fde68a" font-size="9">DEP + acurácia</text>
+  <text x="750" y="130" text-anchor="middle" fill="#fde68a" font-size="9">penalidade F</text>
+  <text x="750" y="143" text-anchor="middle" fill="#3d4252" font-size="8">→ M15, M13</text>
+  <rect x="28" y="186" width="253" height="58" rx="8" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="155" y="208" text-anchor="middle" fill="#fcd34d" font-size="10" font-weight="600">Contexto populacional</text>
+  <text x="155" y="222" text-anchor="middle" fill="#8892a4" font-size="9">frequências alélicas (M3, M4) · forças evolutivas (M5)</text>
+  <text x="155" y="236" text-anchor="middle" fill="#8892a4" font-size="9">endogamia e Ne (M13) · modos de cruzamento (M14)</text>
+  <rect x="298" y="186" width="253" height="58" rx="8" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="424" y="208" text-anchor="middle" fill="#fcd34d" font-size="10" font-weight="600">Base quantitativa</text>
+  <text x="424" y="222" text-anchor="middle" fill="#8892a4" font-size="9">P=G+E (M6) · componentes de variância (M8)</text>
+  <text x="424" y="236" text-anchor="middle" fill="#8892a4" font-size="9">herdabilidade (M9) · correlações (M11) · limiar (M12)</text>
+  <rect x="568" y="186" width="229" height="58" rx="8" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="682" y="208" text-anchor="middle" fill="#fcd34d" font-size="10" font-weight="600">Ferramentas genômicas</text>
+  <text x="682" y="222" text-anchor="middle" fill="#8892a4" font-size="9">SNP coding · QC (M18, M19)</text>
+  <text x="682" y="236" text-anchor="middle" fill="#8892a4" font-size="9">GWAS · matriz G (M20)</text>
+  <rect x="28" y="270" width="760" height="52" rx="10" fill="#1a1d27" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="410" y="292" text-anchor="middle" fill="#818cf8" font-size="12" font-weight="700">Decisão de acasalamento · R = h² × S · ganho anualizado = R / L</text>
+  <text x="410" y="308" text-anchor="middle" fill="#8892a4" font-size="10">selecionados → acasalamento controlado → próxima geração → novo ciclo</text>
+  <path d="M788,270 Q808,220 788,150" fill="none" stroke="#6ee7b7" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="788,152 783,162 793,162" fill="#6ee7b7"/>
+  <rect x="28" y="342" width="760" height="130" rx="10" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="410" y="364" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Módulos do curso por categoria</text>
+  <line x1="28" y1="372" x2="788" y2="372" stroke="#2a2d3a"/>
+  <rect x="36" y="380" width="170" height="80" rx="6" fill="#064e3b" stroke="#6ee7b7" stroke-width="1"/>
+  <text x="121" y="398" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="700">Genética básica</text>
+  <text x="121" y="412" text-anchor="middle" fill="#8892a4" font-size="9">M1, M2, M3, M4, M5</text>
+  <text x="121" y="424" text-anchor="middle" fill="#8892a4" font-size="9">M13, M14 — endog./cruz.</text>
+  <rect x="214" y="380" width="170" height="80" rx="6" fill="#3b0764" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="299" y="398" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="700">Genética quantitativa</text>
+  <text x="299" y="412" text-anchor="middle" fill="#8892a4" font-size="9">M6, M7, M8 — variância</text>
+  <text x="299" y="424" text-anchor="middle" fill="#8892a4" font-size="9">M9, M10, M11, M12</text>
+  <rect x="392" y="380" width="170" height="80" rx="6" fill="#1e1b4b" stroke="#818cf8" stroke-width="1"/>
+  <text x="477" y="398" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="700">Avaliação genética</text>
+  <text x="477" y="412" text-anchor="middle" fill="#8892a4" font-size="9">M15 — EBV / DEP</text>
+  <text x="477" y="424" text-anchor="middle" fill="#8892a4" font-size="9">M16, M17 — BLUP</text>
+  <rect x="570" y="380" width="210" height="80" rx="6" fill="#064e3b" stroke="#fcd34d" stroke-width="1"/>
+  <text x="675" y="398" text-anchor="middle" fill="#fcd34d" font-size="10" font-weight="700">Genômica</text>
+  <text x="675" y="412" text-anchor="middle" fill="#8892a4" font-size="9">M18 — SNPs, codificação</text>
+  <text x="675" y="424" text-anchor="middle" fill="#8892a4" font-size="9">M19, M20, M21</text>
+  <text x="410" y="492" text-anchor="middle" fill="#3d4252" font-size="9">MGenética · Falconer &amp; Mackay (1996) · Eler (2017) · VanRaden (2008) · Henderson (1973)</text>
+</svg>

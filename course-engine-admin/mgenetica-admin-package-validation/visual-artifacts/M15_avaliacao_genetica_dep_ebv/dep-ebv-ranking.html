@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M15 — DEP/EBV e Ranking</title>
+<style>
+  :root {
+    --bg:#0f1117; --card:#1a1d27; --border:#2a2d3a;
+    --text:#e2e8f0; --muted:#8892a4;
+    --A:#6ee7b7; --a:#f9a8d4; --Aa:#c4b5fd;
+    --yellow:#fcd34d; --accent:#818cf8; --pink:#f9a8d4;
+    --AA:#059669; --Aa-col:#7c3aed; --aa-col:#be185d;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    font-family: system-ui, sans-serif;
+    background: var(--bg); color: var(--text);
+    padding: 1.5rem 1rem; line-height: 1.5;
+  }
+  .page { max-width: 800px; margin: 0 auto; }
+  h1 { font-size:1.4rem; font-weight:700; color:var(--accent); margin-bottom:.3rem; }
+  .sub { color:var(--muted); font-size:.88rem; margin-bottom:1.6rem; }
+  h2 {
+    font-size:.9rem; font-weight:600; color:var(--yellow);
+    text-transform:uppercase; letter-spacing:.05em; margin-bottom:.8rem;
+  }
+  .card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:1.3rem; margin-bottom:1.1rem;
+  }
+  .bar-track { background:#12141e; border-radius:5px; height:16px; overflow:hidden; margin-bottom:.6rem; }
+  .bar-fill  { height:100%; border-radius:5px; transition:width .4s cubic-bezier(.4,0,.2,1); }
+  .bar-label { display:flex; justify-content:space-between; font-size:.82rem; margin-bottom:3px; }
+  .tag { display:inline-block; padding:2px 7px; border-radius:4px; font-family:monospace; font-size:.82rem; font-weight:700; }
+  .tag-AA { background:rgba(5,150,105,.2); color:var(--A);  border:1px solid var(--AA); }
+  .tag-Aa { background:rgba(124,58,237,.2); color:var(--Aa); border:1px solid var(--Aa-col); }
+  .tag-aa { background:rgba(190,24,93,.2);  color:var(--a);  border:1px solid var(--aa-col); }
+  .note-box {
+    border-left:3px solid var(--accent);
+    background:rgba(129,140,248,.06);
+    padding:.7rem .9rem; border-radius:0 6px 6px 0;
+    font-size:.84rem; color:#a5b4fc; margin-top:.8rem;
+  }
+  .warn-box {
+    border-left:3px solid var(--yellow);
+    background:rgba(252,211,77,.05);
+    padding:.6rem .8rem; border-radius:0 6px 6px 0;
+    font-size:.82rem; color:#fde68a; margin-top:.6rem;
+  }
+  input[type=range] { width:100%; accent-color:var(--accent); }
+  input[type=number] {
+    background:#12141e; border:1px solid var(--border);
+    color:var(--text); border-radius:6px;
+    padding:.45rem .7rem; font-size:.95rem; font-family:monospace; outline:none;
+  }
+  input[type=number]:focus { border-color:var(--accent); }
+
+  .btn-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+  .btn{padding:.45rem 1rem;border-radius:20px;border:1px solid var(--border);background:#12141e;
+    color:var(--muted);font-size:.82rem;cursor:pointer;transition:all .2s;}
+  .btn:hover{border-color:var(--accent);color:var(--text);}
+  .btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;}
+  .rank-table{width:100%;border-collapse:collapse;font-size:.88rem;}
+  .rank-table th{background:#12141e;color:var(--muted);font-size:.76rem;text-transform:uppercase;
+    letter-spacing:.05em;padding:.5rem .7rem;text-align:left;cursor:pointer;user-select:none;}
+  .rank-table th:hover{color:var(--text);}
+  .rank-table th.sort-active{color:var(--yellow);}
+  .rank-table td{padding:.55rem .7rem;border-bottom:1px solid var(--border);}
+  .rank-table tr.winner td{background:rgba(110,231,183,.07);}
+  .rank-table tr.second td{background:rgba(129,140,248,.05);}
+  .rank-badge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:.78rem;font-weight:700;}
+  .badge-1{background:var(--yellow);color:#000;}
+  .badge-2{background:#6b7280;color:#fff;}
+  .badge-3{background:#374151;color:#9ca3af;}
+  .acc-bar{display:flex;align-items:center;gap:.4rem;}
+  .acc-track{flex:1;height:8px;background:#12141e;border-radius:4px;overflow:hidden;}
+  .acc-fill{height:100%;border-radius:4px;}
+  .acc-val{font-family:monospace;font-size:.82rem;min-width:38px;text-align:right;}
+  .crit-explain{background:#12141e;border:1px solid var(--border);border-radius:8px;padding:.8rem;
+    margin-bottom:1rem;font-size:.84rem;min-height:46px;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>M15 — Avaliação Genética: DEP/EBV e Ranking</h1>
+  <p class="sub">Escolha o critério de ordenação — a posição dos garanhões muda conforme a pergunta</p>
+  <div class="card">
+    <h2>Critério de ranking</h2>
+    <div class="btn-row">
+      <button class="btn" onclick="sortBy('obs')">Fenótipo observado</button>
+      <button class="btn" onclick="sortBy('cor')">Fenótipo corrigido</button>
+      <button class="btn active" onclick="sortBy('ebv')">EBV</button>
+      <button class="btn" onclick="sortBy('dep')">DEP</button>
+      <button class="btn" onclick="sortBy('acc')">Acurácia</button>
+    </div>
+    <div class="crit-explain" id="crit-explain">
+      <strong style="color:var(--yellow)">EBV</strong> — Valor genético estimado. Estima o mérito genético aditivo do garanhão para transmissão à progênie.
+    </div>
+    <table class="rank-table" id="rank-table">
+      <thead><tr>
+        <th>#</th>
+        <th>Garanhão</th>
+        <th id="th-obs">Fenótipo obs.</th>
+        <th>Ef. ambiente</th>
+        <th id="th-cor">Fen. corrigido</th>
+        <th id="th-ebv" class="sort-active">EBV</th>
+        <th id="th-dep">DEP</th>
+        <th>Acurácia</th>
+      </tr></thead>
+      <tbody id="rank-body"></tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Interpretação do ranking atual</h2>
+    <div class="note-box" id="interp-main">
+      Ordenando por EBV: o garanhão A lidera em mérito estimado, mas com acurácia moderada (0,55). O garanhão B tem EBV menor, mas informação mais firme (acurácia 0,85).
+    </div>
+    <div class="warn-box" id="interp-warn">
+      Fenótipo observado não corrige por ambiente. O garanhão A parece melhor apenas pelo boletim bruto — mas parte da vantagem é ambiental (+8 pontos).
+    </div>
+  </div>
+  <div class="card">
+    <h2>Fórmulas</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div style="background:#12141e;border-radius:8px;padding:.8rem;">
+        <div style="font-family:monospace;font-size:.92rem;color:var(--A);margin-bottom:.3rem;">DEP = EBV / 2</div>
+        <div style="font-size:.78rem;color:var(--muted);">O pai transmite metade de seus alelos. DEP = expectativa média na progênie.</div>
+      </div>
+      <div style="background:#12141e;border-radius:8px;padding:.8rem;">
+        <div style="font-family:monospace;font-size:.92rem;color:var(--yellow);margin-bottom:.3rem;">P_cor = P_obs − E_amb</div>
+        <div style="font-size:.78rem;color:var(--muted);">Fenótipo corrigido remove vantagem ambiental para comparação mais justa.</div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const data=[
+    {name:'A',obs:112,env:8, cor:104,ebv:20, dep:10, acc:0.55},
+    {name:'B',obs:106,env:-2,cor:108,ebv:8,  dep:4,  acc:0.85},
+    {name:'C',obs:100,env:0, cor:100,ebv:-4, dep:-2, acc:0.70},
+  ];
+  const explains={
+    obs:'<strong style="color:var(--yellow)">Fenótipo observado</strong> — nota bruta sem ajustes. Inclui efeito de ambiente.',
+    cor:'<strong style="color:var(--yellow)">Fenótipo corrigido</strong> — remove o efeito ambiental conhecido. Mais justo que o bruto.',
+    ebv:'<strong style="color:var(--yellow)">EBV</strong> — Valor genético estimado. Estima o mérito genético aditivo do garanhão para transmissão à progênie.',
+    dep:'<strong style="color:var(--yellow)">DEP</strong> — Diferença esperada na progênie (EBV/2). Indica quanto os filhos devem estar acima da base, em média.',
+    acc:'<strong style="color:var(--yellow)">Acurácia</strong> — Confiança na estimativa. Acurácia alta não significa animal bom; significa que o EBV é mais estável.',
+  };
+  const interpMain={
+    obs:'Ordenando por fenótipo observado: A lidera (112), mas 8 pontos vêm do ambiente. Este ranking favorece animais criados em melhores condições.',
+    cor:'Ordenando por fenótipo corrigido: B passa para o 1º lugar (108 vs 104). A correção ambiental revelou que B era o melhor animal.',
+    ebv:'Ordenando por EBV: o garanhão A lidera em mérito estimado, mas com acurácia moderada (0,55). O garanhão B tem EBV menor, mas informação mais firme (acurácia 0,85).',
+    dep:'Ordenando por DEP: a ordem é idêntica ao EBV, pois DEP = EBV/2. DEP = 10 significa que os filhos de A devem ser, em média, 10 pontos acima da base.',
+    acc:'Ordenando por acurácia: B tem a estimativa mais confiável (0,85). Acurácia alta não garante que B seja o melhor — apenas que sabemos mais sobre ele.',
+  };
+  let currentSort='ebv', sortDir=-1;
+  function sortBy(key){
+    if(currentSort===key) sortDir*=-1; else{currentSort=key;sortDir=-1;}
+    document.querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));
+    const btn=[...document.querySelectorAll('.btn')].find(b=>b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+key+"'"));
+    if(btn) btn.classList.add('active');
+    ['obs','cor','ebv','dep'].forEach(k=>{const th=document.getElementById('th-'+k);if(th)th.classList.toggle('sort-active',k===key);});
+    if(explains[key]) document.getElementById('crit-explain').innerHTML=explains[key];
+    if(interpMain[key]) document.getElementById('interp-main').textContent=interpMain[key];
+    render();
+  }
+  function accColor(a){return a>=0.8?'#6ee7b7':a>=0.6?'#fcd34d':'#f9a8d4';}
+  function render(){
+    const sorted=[...data].sort((a,b)=>{
+      if(currentSort==='name') return sortDir*(a.name<b.name?-1:1);
+      return sortDir*(b[currentSort]-a[currentSort]);
+    });
+    const tbody=document.getElementById('rank-body'); tbody.innerHTML='';
+    const badges=['<span class="rank-badge badge-1">1</span>','<span class="rank-badge badge-2">2</span>','<span class="rank-badge badge-3">3</span>'];
+    sorted.forEach((row,i)=>{
+      const tr=document.createElement('tr');
+      if(i===0) tr.className='winner'; if(i===1) tr.className='second';
+      const envStr=row.env===0?'0':(row.env>0?'+'+row.env:row.env);
+      const envCol=row.env>0?'#6ee7b7':(row.env<0?'#f9a8d4':'#8892a4');
+      const ebvCol=row.ebv>0?'#6ee7b7':(row.ebv<0?'#f9a8d4':'#8892a4');
+      tr.innerHTML=badges[i]+'</td><td style="font-weight:700;font-size:1rem">'+row.name+'</td><td style="font-family:monospace">'+row.obs+'</td><td style="font-family:monospace;color:'+envCol+'">'+envStr+'</td><td style="font-family:monospace;font-weight:600">'+row.cor+'</td><td style="font-family:monospace;font-weight:700;color:'+ebvCol+';font-size:1rem">'+(row.ebv>0?'+'+row.ebv:row.ebv)+'</td><td style="font-family:monospace;color:'+ebvCol+'">'+(row.dep>0?'+'+row.dep:row.dep)+'</td><td><div class="acc-bar"><div class="acc-track"><div class="acc-fill" style="width:'+row.acc*100+'%;background:'+accColor(row.acc)+'"></div></div><span class="acc-val" style="color:'+accColor(row.acc)+'">'+row.acc.toFixed(2)+'</span></div></td>';
+      tr.innerHTML='<td>'+tr.innerHTML;
+      tbody.appendChild(tr);
+    });
+  }
+  render();
+</script>
+
+</div>
+</body>
+</html>

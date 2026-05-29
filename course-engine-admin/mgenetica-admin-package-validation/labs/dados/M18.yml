@@ -1,0 +1,8 @@
+animais: [Cavalo_1, Cavalo_2, Cavalo_3, Cavalo_4, Cavalo_5]
+snps: [SNP1, SNP2, SNP3]
+matriz:
+- [0, 0, 2]
+- [1, 0, 2]
+- [2, 0, 1]
+- [1, 1, 2]
+- [0, 0, 2]

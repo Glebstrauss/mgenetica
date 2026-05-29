@@ -1,0 +1,92 @@
+referencias:
+  falconer_mackay_1996:
+    aliases:
+      - Falconer & Mackay (1996)
+      - Introduction to Quantitative Genetics 3rd edition 1997-2
+      - Introduction to Quantitative Genetics 3rd edition 1997-2.pdf
+    abnt: "FALCONER, D. S.; MACKAY, T. F. C. Introduction to quantitative genetics. 4. ed. Harlow: Longman, 1996."
+  eler_2017_bases:
+    aliases:
+      - Joanir Eler - Livro1
+      - Joanir Eler - Livro1.pdf
+      - Eler (2017)
+      - Teorias e métodos em melhoramento genético animal
+    abnt: "ELER, Joanir Pereira. Teorias e métodos em melhoramento genético animal: bases do melhoramento genético animal. Pirassununga: Faculdade de Zootecnia e Engenharia de Alimentos da Universidade de São Paulo, 2017. DOI: 10.11606/9788566404128."
+  eler_2017_selecao:
+    aliases:
+      - Joanir Eler - Livro2
+      - Joanir Eler - Livro2.pdf
+      - Teorias e métodos em melhoramento genético animal: seleção
+    abnt: "ELER, Joanir Pereira. Teorias e métodos em melhoramento genético animal: seleção. Pirassununga: Faculdade de Zootecnia e Engenharia de Alimentos da Universidade de São Paulo, 2017. DOI: 10.11606/9788566404135."
+  griffiths_2016_introducao:
+    aliases:
+      - Introdução à genética
+      - Introdução à genética.pdf
+      - Griffiths et al. (2016)
+    abnt: "GRIFFITHS, Anthony J. F. et al. Introdução à genética. 11. ed. Rio de Janeiro: Guanabara Koogan, 2016."
+  jonas_2015_genomic_selection:
+    aliases:
+      - Jonas_2015_genomic_selection_livestock_breeding_programs
+      - Jonas_2015_genomic_selection_livestock_breeding_programs.pdf
+      - fgene-06-00049.pdf
+      - Jonas (2015)
+      - Jonas and de Koning (2015)
+      - Genomic selection needs to be carefully assessed to meet specific requirements in livestock breeding programs
+    abnt: "JONAS, Elisabeth; DE KONING, Dirk-Jan. Genomic selection needs to be carefully assessed to meet specific requirements in livestock breeding programs. Frontiers in Genetics, v. 6, article 49, 2015. DOI: 10.3389/fgene.2015.00049."
+  johnsson_2023_genomics_matrices_molecules:
+    aliases:
+      - Johnsson_2023_genomics_animal_breeding_matrices_molecules
+      - Johnsson_2023_genomics_animal_breeding_matrices_molecules.pdf
+      - s41065-023-00285-w.pdf
+      - Johnsson (2023)
+      - Genomics in animal breeding from the perspectives of matrices and molecules
+    abnt: "JOHNSSON, Martin. Genomics in animal breeding from the perspectives of matrices and molecules. Hereditas, v. 160, article 20, 2023. DOI: 10.1186/s41065-023-00285-w."
+  lourenco_2020_ssgblup_blupf90:
+    aliases:
+      - Lourenco_2020_single_step_genomic_evaluations_blupf90
+      - Lourenco_2020_single_step_genomic_evaluations_blupf90.pdf
+      - genes-11-00790.pdf
+      - Lourenco et al. (2020)
+      - Single-Step Genomic Evaluations from Theory to Practice
+      - Single-Step Genomic Evaluations from Theory to Practice: Using SNP Chips and Sequence Data in BLUPF90
+    abnt: "LOURENCO, Daniela et al. Single-Step Genomic Evaluations from Theory to Practice: Using SNP Chips and Sequence Data in BLUPF90. Genes, v. 11, n. 7, article 790, 2020. DOI: 10.3390/genes11070790."
+  legarra_2009_relationship_matrix:
+    aliases:
+      - Legarra_2009_relationship_matrix_pedigree_genomic_information
+      - Legarra_2009_relationship_matrix_pedigree_genomic_information.pdf
+      - PIIS0022030209707933.pdf
+      - Legarra et al. (2009)
+      - A relationship matrix including full pedigree and genomic information
+    abnt: "LEGARRA, A.; AGUILAR, I.; MISZTAL, I. A relationship matrix including full pedigree and genomic information. Journal of Dairy Science, v. 92, n. 9, p. 4656-4663, 2009. DOI: 10.3168/jds.2009-2061."
+  aguilar_2010_unified_genomic_evaluation:
+    aliases:
+      - Aguilar_2010_unified_phenotypic_pedigree_genomic_evaluation
+      - Aguilar_2010_unified_phenotypic_pedigree_genomic_evaluation.pdf
+      - 1-s2.0-S0022030210715174-main.pdf
+      - Aguilar et al. (2010)
+      - Hot topic: A unified approach to utilize phenotypic, full pedigree, and genomic information for genetic evaluation of Holstein final score
+    abnt: "AGUILAR, I. et al. Hot topic: A unified approach to utilize phenotypic, full pedigree, and genomic information for genetic evaluation of Holstein final score. Journal of Dairy Science, v. 93, n. 2, p. 743-752, 2010. DOI: 10.3168/jds.2009-2730."
+  meuwissen_2001_total_genetic_value:
+    aliases:
+      - Meuwissen_2001_prediction_total_genetic_value_dense_marker_maps
+      - Meuwissen_2001_prediction_total_genetic_value_dense_marker_maps.pdf
+      - genetics%2F157.4.1819.pdf
+      - Meuwissen et al. (2001)
+      - Prediction of total genetic value using genome-wide dense marker maps
+    abnt: "MEUWISSEN, T. H. E.; HAYES, B. J.; GODDARD, M. E. Prediction of total genetic value using genome-wide dense marker maps. Genetics, v. 157, n. 4, p. 1819-1829, 2001."
+  vanraden_2008_genomic_predictions:
+    aliases:
+      - VanRaden_2008_efficient_methods_genomic_predictions
+      - VanRaden_2008_efficient_methods_genomic_predictions.pdf
+      - 1-s2.0-S0022030208709901-main.pdf
+      - VanRaden (2008)
+      - Efficient Methods to Compute Genomic Predictions
+    abnt: "VANRADEN, P. M. Efficient Methods to Compute Genomic Predictions. Journal of Dairy Science, v. 91, n. 11, p. 4414-4423, 2008. DOI: 10.3168/jds.2007-0980."
+  goddard_2009_genomic_selection_accuracy:
+    aliases:
+      - Goddard_2009_genomic_selection_accuracy_long_term_response
+      - Goddard_2009_genomic_selection_accuracy_long_term_response.pdf
+      - s10709-008-9308-0.pdf
+      - Goddard (2009)
+      - Genomic selection: prediction of accuracy and maximisation of long term response
+    abnt: "GODDARD, Mike. Genomic selection: prediction of accuracy and maximisation of long term response. Genetica, v. 136, p. 245-257, 2009. DOI: 10.1007/s10709-008-9308-0."

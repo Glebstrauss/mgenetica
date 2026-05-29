@@ -9,7 +9,6 @@ import { createTranslator, detectInitialLocale, LOCALE_STORAGE_KEY, normalizeLoc
 import {
   pingAppwrite,
   listCourses,
-  getCourseDetail,
   getProgress,
   updateProgress,
   getAuthCapabilities,
@@ -645,13 +644,6 @@ export default function App() {
       const localRow = rows.find((course) => course.id === selectedCourseId) || null
       setSelectedCourseRow(localRow)
     })
-    getCourseDetail(selectedCourseId, locale)
-      .then(() => {
-        if (!active) return
-      })
-      .catch(() => {
-        if (!active) return
-      })
     return () => { active = false }
   }, [locale, screen, selectedCourseId, user])
 

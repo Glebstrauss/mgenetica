@@ -520,6 +520,8 @@ function formatCourseCatalog(moduleRows = [], locale = 'pt-BR') {
       studyBlockLabel: getLocalizedText(COURSE_LABELS.studyBlock, locale),
       title: localized.title,
       description: localized.objective,
+      lab: moduleRow.lab || null,
+      labFile: moduleRow.labFile || null,
       active: true
     }
   })
@@ -558,6 +560,8 @@ function formatCourseDetail(moduleRow, locale = 'pt-BR') {
     studyParts: getStudyParts(locale),
     meta: buildMeta(moduleRow, locale),
     moduleMeta: [copy.dedicatedPage, moduleRow.legacyId, copy.moduleMetaQuiz],
+    lab: moduleRow.lab || null,
+    labFile: moduleRow.labFile || null,
     sections: buildSections(moduleRow, locale),
     visualAsset: getCourseVisualAsset(moduleRow.id)
   }

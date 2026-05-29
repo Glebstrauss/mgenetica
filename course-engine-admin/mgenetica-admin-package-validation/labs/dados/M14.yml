@@ -1,0 +1,4 @@
+controls:
+  A: {type: range, min: 150, max: 260, step: 1, value: 210}
+  B: {type: range, min: 150, max: 260, step: 1, value: 220}
+  F1: {type: range, min: 150, max: 280, step: 1, value: 230}

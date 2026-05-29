@@ -1,0 +1,4 @@
+animais:
+- {id: A, name: Animal A, G: 10, E: 1}
+- {id: B, name: Animal B, G: 12, E: -2}
+- {id: C, name: Animal C, G: 8, E: 3}

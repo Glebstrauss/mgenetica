@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 460" font-family="system-ui,sans-serif">
+  <rect width="820" height="460" fill="#0f1117"/>
+  <text x="410" y="38" text-anchor="middle" fill="#818cf8" font-size="18" font-weight="700">M17 — BLUP e Modelo Animal</text>
+  <text x="410" y="58" text-anchor="middle" fill="#8892a4" font-size="12">Best Linear Unbiased Prediction · combina fenótipo + pedigree em EBV</text>
+  <rect x="30" y="88" width="155" height="76" rx="10" fill="#064e3b" stroke="#6ee7b7" stroke-width="1.5"/>
+  <text x="108" y="113" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="700">Dados fenotípicos</text>
+  <text x="108" y="129" text-anchor="middle" fill="#a7f3d0" font-size="10">y = medidas dos animais</text>
+  <text x="108" y="143" text-anchor="middle" fill="#a7f3d0" font-size="10">e efeitos de ambiente</text>
+  <rect x="30" y="200" width="155" height="76" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="108" y="225" text-anchor="middle" fill="#818cf8" font-size="12" font-weight="700">Pedigree → Matriz A</text>
+  <text x="108" y="241" text-anchor="middle" fill="#a5b4fc" font-size="10">parentesco entre animais</text>
+  <text x="108" y="255" text-anchor="middle" fill="#a5b4fc" font-size="10">coancestria e endogamia</text>
+  <text x="108" y="269" text-anchor="middle" fill="#8892a4" font-size="9">Aij = 2 × f(i,j)</text>
+  <line x1="185" y1="126" x2="265" y2="178" stroke="#6ee7b7" stroke-width="1.5"/>
+  <line x1="185" y1="238" x2="265" y2="192" stroke="#818cf8" stroke-width="1.5"/>
+  <polygon points="265,180 257,172 267,170" fill="#6ee7b7"/>
+  <polygon points="265,190 257,196 267,200" fill="#818cf8"/>
+  <rect x="268" y="148" width="165" height="90" rx="10" fill="#3b0764" stroke="#c4b5fd" stroke-width="2"/>
+  <text x="350" y="173" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="700">Equações de Modelo</text>
+  <text x="350" y="188" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="700">Misto (MME)</text>
+  <text x="350" y="206" text-anchor="middle" fill="#a78bfa" font-size="10">X'X  X'Z   b    X'y</text>
+  <text x="350" y="220" text-anchor="middle" fill="#a78bfa" font-size="10">Z'X  Z'Z+λA⁻¹ u = Z'y</text>
+  <text x="350" y="232" text-anchor="middle" fill="#8892a4" font-size="9">λ = σ²e / σ²a = (1−h²)/h²</text>
+  <line x1="433" y1="193" x2="488" y2="193" stroke="#c4b5fd" stroke-width="2"/>
+  <polygon points="488,193 480,188 480,198" fill="#c4b5fd"/>
+  <rect x="490" y="148" width="140" height="90" rx="10" fill="#064e3b" stroke="#6ee7b7" stroke-width="2"/>
+  <text x="560" y="172" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="700">Solução BLUP</text>
+  <text x="560" y="190" text-anchor="middle" fill="#a7f3d0" font-size="10">b̂ = efeitos fixos ajustados</text>
+  <text x="560" y="205" text-anchor="middle" fill="#a7f3d0" font-size="10">û = EBV dos animais</text>
+  <text x="560" y="220" text-anchor="middle" fill="#8892a4" font-size="9">Best = mínima variância</text>
+  <line x1="630" y1="193" x2="683" y2="193" stroke="#6ee7b7" stroke-width="2"/>
+  <polygon points="683,193 675,188 675,198" fill="#6ee7b7"/>
+  <rect x="685" y="148" width="115" height="90" rx="10" fill="#7c2d12" stroke="#fcd34d" stroke-width="2"/>
+  <text x="742" y="172" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="700">Ranking</text>
+  <text x="742" y="189" text-anchor="middle" fill="#fde68a" font-size="10">DEP = EBV / 2</text>
+  <text x="742" y="205" text-anchor="middle" fill="#fde68a" font-size="10">Acurácia</text>
+  <text x="742" y="220" text-anchor="middle" fill="#fde68a" font-size="10">Seleção dos melhores</text>
+  <rect x="30" y="310" width="370" height="110" rx="10" fill="#1a1d27" stroke="#2a2d3a"/>
+  <text x="215" y="333" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">BLUP vs. Ranking por fenótipo</text>
+  <line x1="30" y1="344" x2="400" y2="344" stroke="#2a2d3a" stroke-width="1"/>
+  <text x="130" y="360" text-anchor="middle" fill="#8892a4" font-size="10" font-weight="600">Sem BLUP</text>
+  <text x="300" y="360" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">Com BLUP</text>
+  <line x1="215" y1="344" x2="215" y2="420" stroke="#2a2d3a" stroke-width="1"/>
+  <text x="130" y="376" text-anchor="middle" fill="#8892a4" font-size="10">Confunde G e E</text>
+  <text x="300" y="376" text-anchor="middle" fill="#a7f3d0" font-size="10">Separa G de E</text>
+  <text x="130" y="392" text-anchor="middle" fill="#8892a4" font-size="10">Ignora parentesco</text>
+  <text x="300" y="392" text-anchor="middle" fill="#a7f3d0" font-size="10">Usa matriz A</text>
+  <text x="130" y="408" text-anchor="middle" fill="#8892a4" font-size="10">Viés por grupos</text>
+  <text x="300" y="408" text-anchor="middle" fill="#a7f3d0" font-size="10">Comparação justa</text>
+  <rect x="420" y="310" width="370" height="110" rx="10" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="605" y="333" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Ponto-chave: λ = (1−h²)/h²</text>
+  <text x="605" y="353" text-anchor="middle" fill="#8892a4" font-size="10">λ define o peso dado ao pedigree em relação ao fenótipo.</text>
+  <text x="605" y="368" text-anchor="middle" fill="#8892a4" font-size="10">h² baixo → λ alto → mais peso ao pedigree (família importa mais).</text>
+  <text x="605" y="383" text-anchor="middle" fill="#8892a4" font-size="10">h² alto → λ baixo → mais peso ao próprio fenótipo do animal.</text>
+  <text x="605" y="403" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="600">Ex: h²=0,30 → λ = 0,70/0,30 = 2,33</text>
+  <text x="410" y="440" text-anchor="middle" fill="#3d4252" font-size="9">MGenética · Henderson (1973) · Falconer &amp; Mackay (1996) · Eler (2017)</text>
+</svg>

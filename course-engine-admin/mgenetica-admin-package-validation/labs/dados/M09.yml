@@ -1,0 +1,5 @@
+controls:
+  VA: {type: range, min: 0, max: 100, step: 1, value: 40}
+  VD: {type: range, min: 0, max: 100, step: 1, value: 15}
+  VE: {type: range, min: 0, max: 100, step: 1, value: 45}
+  VP: {type: range, min: 0, max: 100, step: 1, value: 60}

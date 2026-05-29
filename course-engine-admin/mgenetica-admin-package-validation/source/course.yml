@@ -1,0 +1,523 @@
+id: mgenetica-graduacao
+titulo: Trilha de graduação em melhoramento genético animal
+status: draft
+versao: 0.1.0
+raca_exemplo: cavalos
+nivel: padrao
+idioma: pt-BR
+citacao_formato: ABNT
+publico_alvo:
+- Zootecnia
+- Medicina Veterinária
+- Agronomia
+- Biologia
+agentes:
+  writer:
+    nome: Falconer & Mackay
+    profile: prompts/agents/falconer.md
+    retrieval:
+      script: scripts/read_falconer.py
+      max_trechos: 3
+  critic:
+    nome: Crítico didático MGenética
+    profile: prompts/critics/didactic.md
+  gate:
+    nome: Gate de qualidade MGenética
+    profile: prompts/gates/quality.md
+pipeline_didatico:
+  pattern: writer_critic_gate
+  target: aula_completa
+  max_revision_loops: 1
+modelo_didatico:
+- pergunta_simples
+- explicacao_intuitiva
+- conceito_tecnico
+- formula
+- exemplo_numerico
+- script_r_minimo
+- interpretacao_biologica
+- quiz
+- mini_tarefa
+biblioteca:
+  tipo: duckdb
+  raiz: ${COURSE_LIBRARY_ROOT}
+  duckdb_path: ${COURSE_LIBRARY_DB}
+  min_fontes: 1
+  max_fontes: 6
+modulos:
+- id: MOD1
+  nome: Fundamentos
+  blocos:
+  - id: M1
+    nome: Revisão de genética básica
+    pergunta_feynman: De onde vem a diferença entre animais?
+    objetivo: Revisar gene, alelo, genótipo, fenótipo e segregação.
+    prereqs: []
+    topicos:
+    - DNA
+    - gene
+    - alelo
+    - genótipo
+    - fenótipo
+    - segregação
+    analogia: Alelos são versões de uma instrução na receita do animal.
+    exemplo_animal: Pelagem ou característica simples em cavalos.
+    calculo_manual: Cruzamento Aa x Aa com proporção 1:2:1.
+    script_r: offspring <- sample(c("AA", "Aa", "aa"), 20, replace = TRUE, prob = c(.25, .50, .25)); table(offspring)
+    visual_sugerido: Quadro de Punnett e tabela de contagem.
+    checkpoint: Diferenciar alelo, genótipo e fenótipo.
+    tarefa: Resolver um cruzamento simples.
+    evidencia_conclusao: Tabela genotípica interpretada.
+    tempo_min: 90
+    status: nao_iniciado
+  - id: M2
+    nome: Modos de ação gênica
+    pergunta_feynman: Um gene sempre soma do mesmo jeito?
+    objetivo: Entender efeitos aditivos, dominância e epistasia antes da genética quantitativa.
+    prereqs:
+    - M1
+    topicos:
+    - aditividade
+    - dominância
+    - epistasia
+    - valor genotípico
+    analogia: Alguns botões somam volume, outros escondem ou mudam o efeito de outro botão.
+    exemplo_animal: Diferenças de ganho de peso entre genótipos.
+    calculo_manual: Comparar valores AA, Aa e aa com efeito aditivo e dominância.
+    script_r: data.frame(gen = c("AA", "Aa", "aa"), valor = c(10, 8, 4))
+    visual_sugerido: Barras por genótipo.
+    checkpoint: Dizer quando heterozigoto foge da média dos homozigotos.
+    tarefa: Alterar dominância e interpretar o novo valor.
+    evidencia_conclusao: Frase ligando ação gênica à resposta esperada.
+    tempo_min: 90
+    status: nao_iniciado
+  resumo: Revisão de base genética antes de entrar em populações e genética quantitativa.
+- id: MOD2
+  nome: Genética de populações
+  blocos:
+  - id: M3
+    nome: 'Genética de populações I: frequências alélicas e genotípicas'
+    pergunta_feynman: Quantos alelos existem na população de cavalos?
+    objetivo: Calcular frequências alélicas e genotípicas.
+    prereqs:
+    - M1
+    topicos:
+    - contagem de genótipos
+    - p
+    - q
+    - frequência genotípica
+    analogia: Contar cores de fichas em um saco.
+    exemplo_animal: Frequência de um alelo em um grupo de éguas.
+    calculo_manual: p = (2AA + Aa) / 2N.
+    script_r: gen <- c("AA","Aa","aa","Aa"); mean(gen == "AA")
+    visual_sugerido: Tabela AA, Aa, aa, p e q.
+    checkpoint: Calcular p e q sem software.
+    tarefa: Estimar frequências em uma população pequena.
+    evidencia_conclusao: p, q e interpretação do alelo mais comum.
+    tempo_min: 90
+    status: nao_iniciado
+  - id: M4
+    nome: Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo
+    pergunta_feynman: Quando uma população fica previsível?
+    objetivo: Usar Hardy-Weinberg como expectativa, não como dogma.
+    prereqs:
+    - M3
+    topicos:
+    - p2
+    - 2pq
+    - q2
+    - equilíbrio
+    - alelos múltiplos
+    - ligação ao sexo
+    analogia: Baralho bem embaralhado gera proporções esperadas.
+    exemplo_animal: Frequência esperada de genótipos em plantel grande.
+    calculo_manual: Para p = 0,7, calcular p2, 2pq e q2.
+    script_r: p <- .7; c(AA = p^2, Aa = 2*p*(1-p), aa = (1-p)^2)
+    visual_sugerido: Barras observado versus esperado.
+    checkpoint: Explicar diferença entre observado e esperado.
+    tarefa: Testar se uma contagem pequena parece em equilíbrio.
+    evidencia_conclusao: Tabela esperado/observado interpretada.
+    tempo_min: 100
+    status: nao_iniciado
+  - id: M5
+    nome: Fatores que alteram frequências gênicas
+    pergunta_feynman: Por que alelos mudam com o tempo?
+    objetivo: Comparar seleção, migração, mutação e deriva.
+    prereqs:
+    - M4
+    topicos:
+    - seleção
+    - migração
+    - mutação
+    - deriva genética
+    - tamanho efetivo
+    analogia: Correnteza muda direção de folhas no rio.
+    exemplo_animal: Aumento de alelo favorável por seleção artificial.
+    calculo_manual: Mudança simples de p após seleção contra aa.
+    script_r: p <- .4; for(i in 1:5) p <- p + .05; p
+    visual_sugerido: Linha de frequência por geração.
+    checkpoint: Separar mudança dirigida de mudança aleatória.
+    tarefa: Simular população pequena e grande.
+    evidencia_conclusao: Comparação entre seleção e deriva.
+    tempo_min: 100
+    status: nao_iniciado
+  resumo: Frequências, equilíbrio e forças que mudam alelos em populações de cavalos.
+- id: MOD3
+  nome: Genética quantitativa
+  blocos:
+  - id: M6
+    nome: 'Valores e médias: fenótipo, genótipo e ambiente'
+    pergunta_feynman: Animal bom é gene bom ou ambiente bom?
+    objetivo: Separar P, G e E em exemplos pequenos.
+    prereqs:
+    - M2
+    - M5
+    topicos:
+    - P = G + E
+    - média
+    - desvio
+    - ambiente
+    analogia: Nota final mistura preparo, condição do dia e ruído.
+    exemplo_animal: Altura à cernelha em propriedades diferentes.
+    calculo_manual: P = G + E para três animais.
+    script_r: G <- c(10, 12, 8); E <- c(1, -2, 3); G + E
+    visual_sugerido: Tabela P, G, E.
+    checkpoint: Interpretar animal com P alto e G moderado.
+    tarefa: Alterar ambiente e comparar ranking.
+    evidencia_conclusao: Ranking antes/depois do ajuste.
+    tempo_min: 90
+    status: nao_iniciado
+  - id: M7
+    nome: Noções de genética quantitativa
+    pergunta_feynman: Por que peso não parece ervilha de Mendel?
+    objetivo: Entender muitos genes pequenos mais ambiente.
+    prereqs:
+    - M6
+    topicos:
+    - poligenia
+    - distribuição contínua
+    - média
+    - variação
+    analogia: Muitos botões pequenos regulam o mesmo resultado.
+    exemplo_animal: Altura ou desempenho esportivo.
+    calculo_manual: Somar efeitos de três loci.
+    script_r: rowSums(matrix(sample(0:2, 30, TRUE), ncol = 3))
+    visual_sugerido: Histograma de valores.
+    checkpoint: Explicar por que distribuição fica contínua.
+    tarefa: Mudar número de loci simulados.
+    evidencia_conclusao: Histograma interpretado.
+    tempo_min: 100
+    status: nao_iniciado
+  - id: M8
+    nome: Componentes de variância
+    pergunta_feynman: Qual parte da variação ajuda seleção?
+    objetivo: Entender VA, VD, VI, VE e VP.
+    prereqs:
+    - M7
+    topicos:
+    - variância aditiva
+    - dominância
+    - epistasia
+    - ambiente
+    - VP
+    analogia: Dividir uma conta em fontes de gasto.
+    exemplo_animal: Ganho médio diário.
+    calculo_manual: VP = VA + VD + VI + VE.
+    script_r: parts <- c(VA=40, VD=10, VI=5, VE=45); sum(parts)
+    visual_sugerido: Tabela ou barras empilhadas.
+    checkpoint: Identificar por que VA é central para seleção.
+    tarefa: Dobrar VE e interpretar h2.
+    evidencia_conclusao: VP e fração aditiva calculadas.
+    tempo_min: 100
+    status: nao_iniciado
+  - id: M9
+    nome: Herdabilidade e repetibilidade
+    pergunta_feynman: O dado de hoje prevê filhos ou repetição?
+    objetivo: Diferenciar h2 e repetibilidade.
+    prereqs:
+    - M8
+    topicos:
+    - h2
+    - repetibilidade
+    - medida repetida
+    - acurácia
+    analogia: Foto única versus filme do mesmo animal.
+    exemplo_animal: Medida repetida de desempenho ou andamento.
+    calculo_manual: h2 = VA / VP.
+    script_r: VA <- 40; VP <- 100; VA / VP
+    visual_sugerido: Quadro comparando h2 e r.
+    checkpoint: Decidir quando medir de novo.
+    tarefa: Comparar h2 baixa e alta.
+    evidencia_conclusao: Decisão sobre medir mais animais ou mais vezes.
+    tempo_min: 100
+    status: nao_iniciado
+  - id: M10
+    nome: Seleção e ganho genético
+    pergunta_feynman: Escolher os melhores muda a próxima geração quanto?
+    objetivo: Calcular diferencial, resposta e ganho por geração.
+    prereqs:
+    - M9
+    topicos:
+    - seleção
+    - S
+    - R
+    - intensidade
+    - intervalo de geração
+    analogia: Peneira mais fina deixa passar menos animais.
+    exemplo_animal: Seleção dos 20% melhores garanhões.
+    calculo_manual: R = h2 * S.
+    script_r: h2 <- .3; S <- 20; h2 * S
+    visual_sugerido: Linha de ganho por geração.
+    checkpoint: Relacionar intensidade e risco.
+    tarefa: Mudar proporção selecionada.
+    evidencia_conclusao: Ganho esperado interpretado.
+    tempo_min: 100
+    status: nao_iniciado
+  - id: M11
+    nome: Correlações genéticas, fenotípicas e ambientais
+    pergunta_feynman: Melhorar peso pode piorar outra característica?
+    objetivo: Interpretar rA, rP e rE.
+    prereqs:
+    - M10
+    topicos:
+    - covariância
+    - correlação
+    - resposta correlacionada
+    - trade-off
+    analogia: Dois termômetros ligados por cabos diferentes.
+    exemplo_animal: Peso e espessura de gordura.
+    calculo_manual: correlação = covxy / sqrt(vx * vy).
+    script_r: cor(c(1,2,3), c(1,3,5))
+    visual_sugerido: Heatmap de correlações.
+    checkpoint: Separar correlação genética de fenotípica.
+    tarefa: Interpretar resposta correlacionada.
+    evidencia_conclusao: Trade-off descrito.
+    tempo_min: 100
+    status: nao_iniciado
+  - id: M12
+    nome: Características de limiar
+    pergunta_feynman: Como genética muda uma resposta sim/não?
+    objetivo: Entender escala subjacente para características categóricas.
+    prereqs:
+    - M9
+    topicos:
+    - limiar
+    - suscetibilidade
+    - prevalência
+    - escala subjacente
+    analogia: Nota invisível define aprovado ou reprovado.
+    exemplo_animal: Prenhez, sobrevivência ou doença.
+    calculo_manual: Contar proporção acima de um limiar.
+    script_r: x <- rnorm(100); mean(x > 1)
+    visual_sugerido: Curva normal com limiar.
+    checkpoint: Explicar por que sim/não ainda pode ter base quantitativa.
+    tarefa: Mudar limiar e observar prevalência.
+    evidencia_conclusao: Prevalência interpretada.
+    tempo_min: 100
+    status: nao_iniciado
+  resumo: Variação contínua, parâmetros, seleção e consequências entre características.
+- id: MOD4
+  nome: Parentesco, cruzamentos e avaliação genética
+  blocos:
+  - id: M13
+    nome: Endogamia e parentesco
+    pergunta_feynman: Parentes aumentam semelhança ou risco?
+    objetivo: Calcular parentesco simples e interpretar F.
+    prereqs:
+    - M8
+    topicos:
+    - pedigree
+    - matriz A
+    - parentesco
+    - endogamia
+    analogia: Receber a mesma carta pelos dois lados da família.
+    exemplo_animal: Acasalamento entre aparentados.
+    calculo_manual: Parentesco esperado entre meio-irmãos.
+    script_r: matrix(c(1,.25,.25,1), 2)
+    visual_sugerido: Pedigree pequeno e matriz.
+    checkpoint: Identificar diagonal 1 + F.
+    tarefa: Comparar pares aparentados e não aparentados.
+    evidencia_conclusao: Parentesco e risco de endogamia descritos.
+    tempo_min: 100
+    status: nao_iniciado
+  - id: M14
+    nome: Cruzamentos, heterose e complementaridade
+    pergunta_feynman: Misturar raças ajuda por quê?
+    objetivo: Entender heterose e complementaridade sem vender milagre.
+    prereqs:
+    - M13
+    topicos:
+    - cruzamento
+    - heterose
+    - complementaridade
+    - raça materna
+    - raça paterna
+    analogia: Combinar ferramentas diferentes para mesma tarefa.
+    exemplo_animal: Cruzamento planejado entre linhagens de cavalos.
+    calculo_manual: heterose percentual = (F1 - média parental) / média parental.
+    script_r: f1 <- 230; pais <- mean(c(210, 220)); (f1 - pais) / pais
+    visual_sugerido: Tabela parental versus F1.
+    checkpoint: Separar heterose de complementaridade.
+    tarefa: Comparar duas estratégias de cruzamento.
+    evidencia_conclusao: Recomendação de cruzamento com justificativa.
+    tempo_min: 100
+    status: nao_iniciado
+  - id: M15
+    nome: 'Avaliação genética: DEP/EBV e ranking de animais'
+    pergunta_feynman: Ranking por fenótipo basta?
+    objetivo: Entender EBV, DEP e acurácia como decisão corrigida.
+    prereqs:
+    - M10
+    - M13
+    topicos:
+    - EBV
+    - DEP
+    - acurácia
+    - ranking
+    - fenótipo corrigido
+    analogia: Boletim corrigido por dificuldade da prova.
+    exemplo_animal: Comparar garanhões por valor genético estimado.
+    calculo_manual: DEP = EBV / 2.
+    script_r: ebv <- c(20, 8, -4); ebv / 2
+    visual_sugerido: Tabela de ranking.
+    checkpoint: Explicar por que maior fenótipo não basta.
+    tarefa: Escolher animal com EBV, DEP e acurácia.
+    evidencia_conclusao: Ranking defendido.
+    tempo_min: 100
+    status: nao_iniciado
+  - id: M16
+    nome: Modelos lineares e modelos mistos
+    pergunta_feynman: Como tirar efeito da fazenda?
+    objetivo: Separar efeitos fixos, aleatórios e resíduo.
+    prereqs:
+    - M15
+    topicos:
+    - y = Xb + Zu + e
+    - efeito fixo
+    - efeito aleatório
+    - resíduo
+    analogia: Ajustar uma régua torta antes de comparar animais.
+    exemplo_animal: Peso corrigido por fazenda e sexo.
+    calculo_manual: Fenótipo ajustado = observado - efeito fixo.
+    script_r: lm(peso ~ fazenda + sexo, data = dados)
+    visual_sugerido: Resíduos por grupo.
+    checkpoint: Dizer o que é fixo e o que é aleatório.
+    tarefa: Comparar ranking bruto e ajustado.
+    evidencia_conclusao: Mudança de ranking explicada.
+    tempo_min: 120
+    status: nao_iniciado
+  - id: M17
+    nome: BLUP e modelo animal
+    pergunta_feynman: Como parentes ajudam predizer animal?
+    objetivo: Entender BLUP, encolhimento, matriz A e modelo animal.
+    prereqs:
+    - M16
+    topicos:
+    - BLUP
+    - MME
+    - matriz A
+    - lambda
+    - acurácia
+    analogia: Testemunhas familiares ajudam quando prova individual é fraca.
+    exemplo_animal: Jovem garanhão com parentes avaliados.
+    calculo_manual: Predição encolhida com h2 simples.
+    script_r: y <- 20; h2 <- .3; h2 * y
+    visual_sugerido: Matriz A e ranking EBV.
+    checkpoint: Explicar encolhimento para média.
+    tarefa: Mudar h2 e observar EBV.
+    evidencia_conclusao: EBV interpretado com parentesco.
+    tempo_min: 120
+    status: nao_iniciado
+  resumo: Pedigree, endogamia, cruzamentos, ranking, modelos mistos e BLUP.
+- id: MOD5
+  nome: Genômica aplicada ao melhoramento
+  blocos:
+  - id: M18
+    nome: Genômica, marcadores SNP e dados moleculares
+    pergunta_feynman: DNA melhora o pedigree?
+    objetivo: Entender SNP, genótipo 0/1/2 e frequência alélica.
+    prereqs:
+    - M5
+    - M17
+    topicos:
+    - SNP
+    - genótipo molecular
+    - MAF
+    - matriz de marcadores
+    analogia: Código de barras genético.
+    exemplo_animal: Painel SNP equino.
+    calculo_manual: MAF de um marcador 0/1/2.
+    script_r: snp <- c(0,1,2,1,0); mean(snp) / 2
+    visual_sugerido: Histograma de MAF.
+    checkpoint: Interpretar 0, 1 e 2 como cópias alélicas.
+    tarefa: Calcular MAF em três SNPs.
+    evidencia_conclusao: SNP informativo identificado.
+    tempo_min: 100
+    status: nao_iniciado
+  - id: M19
+    nome: Controle de qualidade de dados genômicos
+    pergunta_feynman: Todo SNP serve?
+    objetivo: Aplicar filtros de call rate, MAF e HWE.
+    prereqs:
+    - M18
+    topicos:
+    - call rate
+    - missing
+    - MAF
+    - HWE
+    - filtro por animal
+    analogia: Limpar balança antes de pesar.
+    exemplo_animal: Remover marcadores ruins antes de GWAS.
+    calculo_manual: Proporção de genótipos faltantes.
+    script_r: mean(is.na(c(0, 1, NA, 2)))
+    visual_sugerido: Tabela antes/depois dos filtros.
+    checkpoint: Justificar filtro sem exagero.
+    tarefa: Definir thresholds e observar retenção.
+    evidencia_conclusao: Conjunto limpo descrito.
+    tempo_min: 100
+    status: nao_iniciado
+  - id: M20
+    nome: Matrizes genômicas, GWAS e predição genômica
+    pergunta_feynman: DNA aponta parentesco, região ou valor futuro?
+    objetivo: Diferenciar matriz G, GWAS e predição.
+    prereqs:
+    - M19
+    topicos:
+    - matriz G
+    - GWAS
+    - GBLUP
+    - validação
+    - predição
+    analogia: DNA como mapa de parentesco e pistas de regiões importantes.
+    exemplo_animal: Mérito genômico para seleção precoce.
+    calculo_manual: Parentesco genômico simplificado por marcadores centrados.
+    script_r: scale(matrix(sample(0:2, 20, TRUE), nrow = 5)) |> tcrossprod()
+    visual_sugerido: Heatmap G e Manhattan plot.
+    checkpoint: Separar pergunta de parentesco, associação e predição.
+    tarefa: Interpretar pico e acurácia de predição.
+    evidencia_conclusao: Decisão sobre uso de informação genômica.
+    tempo_min: 130
+    status: nao_iniciado
+  - id: M21
+    nome: 'Projeto final: pipeline completo de seleção'
+    pergunta_feynman: Quem seleciono e por quê?
+    objetivo: Integrar fenótipo, pedigree, genômica, QC, EBV/DEP e decisão.
+    prereqs:
+    - M1-M20
+    topicos:
+    - pipeline
+    - controle de dados
+    - ranking
+    - decisão
+    - relatório
+    analogia: Comitê técnico junta evidências antes de comprar ou descartar animal.
+    exemplo_animal: Seleção de reprodutores em plantel simulado.
+    calculo_manual: Índice simples ponderando DEP e penalidade de endogamia.
+    script_r: score <- dep - 10 * parentesco; order(score, decreasing = TRUE)
+    visual_sugerido: Tabela final com ranking e justificativa.
+    checkpoint: Defender seleção com evidência, não preferência.
+    tarefa: Entregar relatório curto e script reprodutível.
+    evidencia_conclusao: Pipeline final executado e decisão defendida.
+    tempo_min: 180
+    status: nao_iniciado
+  resumo: Marcadores SNP, controle de qualidade, matriz G, GWAS, predição e projeto final.

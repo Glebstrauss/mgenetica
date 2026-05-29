@@ -1,0 +1,6 @@
+candidatos:
+- {id: A, fen: 108, ebv: 24, dep: 12, acc: 0.62, par: 0.2, qc: true, qcLab: aprovado}
+- {id: B, fen: 104, ebv: 18, dep: 9, acc: 0.76, par: 0.02, qc: true, qcLab: aprovado}
+- {id: C, fen: 112, ebv: 14, dep: 7, acc: 0.54, par: 0.05, qc: true, qcLab: aprovado
+    c/ ressalva}
+- {id: D, fen: 101, ebv: 20, dep: 10, acc: 0.4, par: 0.3, qc: false, qcLab: reprovado}

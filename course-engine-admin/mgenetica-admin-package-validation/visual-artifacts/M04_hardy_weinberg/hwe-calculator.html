@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M4 — Hardy-Weinberg</title>
+<style>
+  :root {
+    --bg:#0f1117; --card:#1a1d27; --border:#2a2d3a;
+    --text:#e2e8f0; --muted:#8892a4;
+    --A:#6ee7b7; --a:#f9a8d4; --Aa:#c4b5fd;
+    --yellow:#fcd34d; --accent:#818cf8; --pink:#f9a8d4;
+    --AA:#059669; --Aa-col:#7c3aed; --aa-col:#be185d;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    font-family: system-ui, sans-serif;
+    background: var(--bg); color: var(--text);
+    padding: 1.5rem 1rem; line-height: 1.5;
+  }
+  .page { max-width: 800px; margin: 0 auto; }
+  h1 { font-size:1.4rem; font-weight:700; color:var(--accent); margin-bottom:.3rem; }
+  .sub { color:var(--muted); font-size:.88rem; margin-bottom:1.6rem; }
+  h2 {
+    font-size:.9rem; font-weight:600; color:var(--yellow);
+    text-transform:uppercase; letter-spacing:.05em; margin-bottom:.8rem;
+  }
+  .card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:1.3rem; margin-bottom:1.1rem;
+  }
+  .bar-track { background:#12141e; border-radius:5px; height:16px; overflow:hidden; margin-bottom:.6rem; }
+  .bar-fill  { height:100%; border-radius:5px; transition:width .4s cubic-bezier(.4,0,.2,1); }
+  .bar-label { display:flex; justify-content:space-between; font-size:.82rem; margin-bottom:3px; }
+  .tag { display:inline-block; padding:2px 7px; border-radius:4px; font-family:monospace; font-size:.82rem; font-weight:700; }
+  .tag-AA { background:rgba(5,150,105,.2); color:var(--A);  border:1px solid var(--AA); }
+  .tag-Aa { background:rgba(124,58,237,.2); color:var(--Aa); border:1px solid var(--Aa-col); }
+  .tag-aa { background:rgba(190,24,93,.2);  color:var(--a);  border:1px solid var(--aa-col); }
+  .note-box {
+    border-left:3px solid var(--accent);
+    background:rgba(129,140,248,.06);
+    padding:.7rem .9rem; border-radius:0 6px 6px 0;
+    font-size:.84rem; color:#a5b4fc; margin-top:.8rem;
+  }
+  .warn-box {
+    border-left:3px solid var(--yellow);
+    background:rgba(252,211,77,.05);
+    padding:.6rem .8rem; border-radius:0 6px 6px 0;
+    font-size:.82rem; color:#fde68a; margin-top:.6rem;
+  }
+  input[type=range] { width:100%; accent-color:var(--accent); }
+  input[type=number] {
+    background:#12141e; border:1px solid var(--border);
+    color:var(--text); border-radius:6px;
+    padding:.45rem .7rem; font-size:.95rem; font-family:monospace; outline:none;
+  }
+  input[type=number]:focus { border-color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>M4 — Hardy-Weinberg</h1>
+  <p class="sub">Frequências genotípicas esperadas · p² + 2pq + q² = 1</p>
+
+  <div class="card">
+    <h2>1. Frequências Esperadas</h2>
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.8rem;">
+      <label style="color:var(--muted);font-size:.84rem;min-width:120px">Frequência <span style="color:var(--A)">p (A)</span></label>
+      <input type="range" id="pSlider" min="0" max="1" step="0.01" value="0.7">
+      <span style="font-family:monospace;font-size:1.3rem;font-weight:700;color:var(--A);min-width:50px" id="pVal">0,70</span>
+    </div>
+    <div style="font-size:.85rem;margin-bottom:1rem;">
+      q = 1 − p = <span style="font-family:monospace;font-size:1.1rem;font-weight:700;color:var(--a)" id="qVal">0,30</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.7rem;margin-bottom:1rem;">
+      <div style="background:#12141e;border-radius:8px;padding:.7rem;text-align:center;">
+        <div style="font-size:.75rem;color:var(--muted)">f<sub>AA</sub> = p²</div>
+        <div style="font-size:1.2rem;font-weight:700;font-family:monospace;color:var(--A)" id="fAA">0,490</div>
+      </div>
+      <div style="background:#12141e;border-radius:8px;padding:.7rem;text-align:center;">
+        <div style="font-size:.75rem;color:var(--muted)">f<sub>Aa</sub> = 2pq</div>
+        <div style="font-size:1.2rem;font-weight:700;font-family:monospace;color:var(--Aa)" id="fAa">0,420</div>
+      </div>
+      <div style="background:#12141e;border-radius:8px;padding:.7rem;text-align:center;">
+        <div style="font-size:.75rem;color:var(--muted)">f<sub>aa</sub> = q²</div>
+        <div style="font-size:1.2rem;font-weight:700;font-family:monospace;color:var(--a)" id="faa">0,090</div>
+      </div>
+    </div>
+    <div class="bar-label"><span><span class="tag tag-AA">AA</span></span><span id="lAA" style="color:var(--A)">0,490</span></div>
+    <div class="bar-track"><div class="bar-fill" id="bAA" style="background:var(--AA)"></div></div>
+    <div class="bar-label"><span><span class="tag tag-Aa">Aa</span></span><span id="lAa" style="color:var(--Aa)">0,420</span></div>
+    <div class="bar-track"><div class="bar-fill" id="bAa" style="background:var(--Aa-col)"></div></div>
+    <div class="bar-label"><span><span class="tag tag-aa">aa</span></span><span id="laa" style="color:var(--a)">0,090</span></div>
+    <div class="bar-track"><div class="bar-fill" id="baa" style="background:var(--aa-col)"></div></div>
+  </div>
+
+  <div class="card">
+    <h2>2. Observado vs. Esperado</h2>
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.8rem;">
+      <label style="font-size:.82rem;color:var(--muted)">N (animais)</label>
+      <input type="number" id="nTotal" value="100" min="1" style="width:90px">
+    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:.88rem;">
+      <thead><tr style="background:#12141e;">
+        <th style="padding:.5rem .7rem;text-align:left;color:var(--muted);font-size:.78rem;text-transform:uppercase">Genótipo</th>
+        <th style="padding:.5rem .7rem;color:var(--muted);font-size:.78rem;text-transform:uppercase">Observado</th>
+        <th style="padding:.5rem .7rem;color:var(--muted);font-size:.78rem;text-transform:uppercase">Esperado</th>
+        <th style="padding:.5rem .7rem;color:var(--muted);font-size:.78rem;text-transform:uppercase">Diferença</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:.5rem .7rem"><span class="tag tag-AA">AA</span></td>
+          <td style="padding:.5rem"><input type="number" id="obsAA" value="49" min="0" style="width:70px;color:var(--A)"></td>
+          <td style="padding:.5rem .7rem;font-family:monospace;color:var(--A)" id="expAA">49,0</td>
+          <td style="padding:.5rem .7rem;font-family:monospace;font-weight:600" id="dAA">0,0</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:.5rem .7rem"><span class="tag tag-Aa">Aa</span></td>
+          <td style="padding:.5rem"><input type="number" id="obsAa" value="42" min="0" style="width:70px;color:var(--Aa)"></td>
+          <td style="padding:.5rem .7rem;font-family:monospace;color:var(--Aa)" id="expAa">42,0</td>
+          <td style="padding:.5rem .7rem;font-family:monospace;font-weight:600" id="dAa">0,0</td>
+        </tr>
+        <tr>
+          <td style="padding:.5rem .7rem"><span class="tag tag-aa">aa</span></td>
+          <td style="padding:.5rem"><input type="number" id="obsaa" value="9" min="0" style="width:70px;color:var(--a)"></td>
+          <td style="padding:.5rem .7rem;font-family:monospace;color:var(--a)" id="expaa">9,0</td>
+          <td style="padding:.5rem .7rem;font-family:monospace;font-weight:600" id="daa">0,0</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note-box" id="hwe-note">Contagem compatível com a expectativa de HWE.</div>
+  </div>
+
+  <div class="card">
+    <h2>3. Genes Ligados ao Sexo (XX/XY)</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div style="background:#12141e;border-radius:8px;padding:.8rem;">
+        <div style="font-size:.8rem;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem">Fêmeas XX</div>
+        <div style="font-family:monospace;font-size:.9rem;line-height:1.9;">
+          <span style="color:var(--Aa)">X<sup>A</sup>X<sup>A</sup></span> — homozigota<br>
+          <span style="color:var(--Aa)">X<sup>A</sup>X<sup>a</sup></span> — heterozigota<br>
+          <span style="color:var(--Aa)">X<sup>a</sup>X<sup>a</sup></span> — homozigota rec.
+        </div>
+      </div>
+      <div style="background:#12141e;border-radius:8px;padding:.8rem;">
+        <div style="font-size:.8rem;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem">Machos XY (hemizigoto)</div>
+        <div style="font-family:monospace;font-size:.9rem;line-height:1.9;">
+          <span style="color:var(--Aa)">X<sup>A</sup>Y</span> — expressa A<br>
+          <span style="color:var(--Aa)">X<sup>a</sup>Y</span> — expressa a<br>
+          <span style="color:var(--muted)">— não há heterozigose</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  function fmt(v,d=3){return v.toFixed(d).replace('.',',');}
+  function update(){
+    const p=parseFloat(document.getElementById('pSlider').value), q=1-p;
+    document.getElementById('pVal').textContent=fmt(p,2);
+    document.getElementById('qVal').textContent=fmt(q,2);
+    const fAA=p*p, fAa=2*p*q, faa=q*q;
+    ['AA','Aa','aa'].forEach((k,i)=>{
+      const f=[fAA,fAa,faa][i];
+      document.getElementById('f'+k).textContent=fmt(f);
+      document.getElementById('l'+k).textContent=fmt(f);
+      document.getElementById('b'+k).style.width=(f*100).toFixed(1)+'%';
+    });
+    updateTable(p,q,fAA,fAa,faa);
+  }
+  function updateTable(p,q,fAA,fAa,faa){
+    const N=Math.max(1,parseInt(document.getElementById('nTotal').value)||100);
+    const [eAA,eAa,eaa]=[fAA*N,fAa*N,faa*N];
+    document.getElementById('expAA').textContent=eAA.toFixed(1);
+    document.getElementById('expAa').textContent=eAa.toFixed(1);
+    document.getElementById('expaa').textContent=eaa.toFixed(1);
+    const o=[+document.getElementById('obsAA').value,+document.getElementById('obsAa').value,+document.getElementById('obsaa').value];
+    const e=[eAA,eAa,eaa]; const ids=['dAA','dAa','daa'];
+    let big=false;
+    ids.forEach((id,i)=>{
+      const d=o[i]-e[i]; const el=document.getElementById(id);
+      el.textContent=(d>=0?'+':'')+d.toFixed(1);
+      const warn=Math.abs(d)>N*0.1;
+      el.style.color=warn?'var(--yellow)':'var(--A)';
+      if(warn) big=true;
+    });
+    const note=document.getElementById('hwe-note');
+    if(big){note.textContent='Diferença grande — possíveis causas: seleção, endogamia ou estrutura de acasalamento.';note.style.borderColor='var(--yellow)';}
+    else{note.textContent='Contagem compatível com a expectativa de HWE.';note.style.borderColor='var(--accent)';}
+  }
+  document.getElementById('pSlider').addEventListener('input',update);
+  ['nTotal','obsAA','obsAa','obsaa'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{
+    const p=parseFloat(document.getElementById('pSlider').value),q=1-p;
+    updateTable(p,q,p*p,2*p*q,q*q);
+  }));
+  update();
+</script>
+
+</div>
+</body>
+</html>

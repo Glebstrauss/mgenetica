@@ -1,0 +1,5 @@
+animais:
+- {id: A, farm: Boa, sex: M, obs: 310, color: '#1a4b78'}
+- {id: B, farm: Boa, sex: F, obs: 294, color: '#00a8d6'}
+- {id: C, farm: Seca, sex: M, obs: 292, color: '#4a9fd1'}
+- {id: D, farm: Seca, sex: F, obs: 278, color: '#5a7391'}

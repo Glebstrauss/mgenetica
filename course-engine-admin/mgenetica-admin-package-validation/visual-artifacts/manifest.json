@@ -1,0 +1,279 @@
+{
+  "gerado_em": "2026-05-25",
+  "fonte": "exports/mgenetica-course-texts-2026-05-21/md/",
+  "modulos": [
+    {
+      "modulo": "M1",
+      "titulo": "Revisão de genética básica",
+      "texto_fonte": "M1_revisao_de_genetica_basica.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M01_revisao_genetica_basica/genotipo-alelo.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Hierarquia DNA → gene → alelo → genótipo e segregação mendeliana",
+          "uso_no_site": "Imagem de abertura da página M1; embutir com <img>"
+        }
+      ]
+    },
+    {
+      "modulo": "M2",
+      "titulo": "Modos de ação gênica",
+      "texto_fonte": "M2_modos_de_acao_genica.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M02_modos_de_acao_genica/modos-de-acao.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Gráfico valor genotípico × genótipo: aditivo, dominância, sobredominância",
+          "uso_no_site": "Infográfico na seção 'Conceito técnico' de M2"
+        }
+      ]
+    },
+    {
+      "modulo": "M3",
+      "titulo": "Frequências alélicas e genotípicas",
+      "texto_fonte": "M3_genetica_de_populacoes_i_frequencias_alelicas_e_genotipicas.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M03_frequencias_alelicas_e_genotipicas/calculator.html",
+          "tipo": "html-interativo",
+          "conceito": "Calculadora de p, q, f_AA, f_Aa, f_aa com sacola de fichas e gauge p+q",
+          "uso_no_site": "Embed em iframe na página da unidade M3; largura mínima 600px"
+        }
+      ]
+    },
+    {
+      "modulo": "M4",
+      "titulo": "Hardy-Weinberg, alelos múltiplos e genes ligados ao sexo",
+      "texto_fonte": "M4_hardy_weinberg_alelos_multiplos_e_genes_ligados_ao_sexo.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M04_hardy_weinberg/hwe-calculator.html",
+          "tipo": "html-interativo",
+          "conceito": "Calculadora HWE: p² 2pq q² esperados vs. observado; genes ligados ao sexo",
+          "uso_no_site": "Embed em iframe na página da unidade M4"
+        }
+      ]
+    },
+    {
+      "modulo": "M5",
+      "titulo": "Fatores que alteram frequências gênicas",
+      "texto_fonte": "M5_fatores_que_alteram_frequencias_genicas.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M05_fatores_frequencias_genicas/quatro-forcas.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Diagrama das 4 forças evolutivas: seleção, migração, mutação, deriva",
+          "uso_no_site": "Abertura de M5; embutir com <img>"
+        }
+      ]
+    },
+    {
+      "modulo": "M6",
+      "titulo": "Valores e médias: fenótipo, genótipo e ambiente",
+      "texto_fonte": "M6_valores_e_medias_fenotipo_genotipo_e_ambiente.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M06_valores_e_medias/pge-decomposicao.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Decomposição P = G + E em barras sobrepostas com exemplo numérico",
+          "uso_no_site": "Embutir após a fórmula na página M6"
+        }
+      ]
+    },
+    {
+      "modulo": "M7",
+      "titulo": "Noções de genética quantitativa",
+      "texto_fonte": "M7_nocoes_de_genetica_quantitativa.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M07_genetica_quantitativa/poligeico-normal.svg",
+          "tipo": "svg-estatico",
+          "conceito": "1→2→5→muitos loci convergindo para distribuição normal",
+          "uso_no_site": "Embutir na seção 'Explicação intuitiva' de M7"
+        }
+      ]
+    },
+    {
+      "modulo": "M8",
+      "titulo": "Componentes de variância",
+      "texto_fonte": "M8_componentes_de_variancia.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M08_componentes_de_variancia/particao-variancia.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Partição VP = VA+VD+VI+VE em barras empilhadas; três cenários de h²",
+          "uso_no_site": "Embutir na seção 'Conceito técnico' de M8"
+        }
+      ]
+    },
+    {
+      "modulo": "M9",
+      "titulo": "Herdabilidade e repetibilidade",
+      "texto_fonte": "M9_herdabilidade_e_repetibilidade.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M09_herdabilidade_e_repetibilidade/h2-calculator.html",
+          "tipo": "html-interativo",
+          "conceito": "Calculadora h² = VA/VP e r = Vperm/VP com sliders e interpretação",
+          "uso_no_site": "Embed via iframe na página M9 após as fórmulas"
+        }
+      ]
+    },
+    {
+      "modulo": "M10",
+      "titulo": "Seleção e ganho genético",
+      "texto_fonte": "M10_selecao_e_ganho_genetico.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M10_selecao_e_ganho_genetico/selecao-calculator.html",
+          "tipo": "html-interativo",
+          "conceito": "Calculadora R = h²×S com diagrama de peneira e ganho anualizado",
+          "uso_no_site": "Embed via iframe na página M10"
+        }
+      ]
+    },
+    {
+      "modulo": "M11",
+      "titulo": "Correlações genéticas, fenotípicas e ambientais",
+      "texto_fonte": "M11_correlacoes_geneticas_fenotipicas_e_ambientais.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M11_correlacoes/correlacoes-triangulo.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Diagrama rP/rA/rE entre dois caracteres e resposta correlacionada",
+          "uso_no_site": "Embutir na seção 'Conceito técnico' de M11"
+        }
+      ]
+    },
+    {
+      "modulo": "M12",
+      "titulo": "Características de limiar",
+      "texto_fonte": "M12_caracteristicas_de_limiar.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M12_caracteristicas_de_limiar/curva-limiar.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Curva de responsabilidade contínua com limiar e área de probabilidade",
+          "uso_no_site": "Ilustração central de M12; embutir com <img>"
+        }
+      ]
+    },
+    {
+      "modulo": "M13",
+      "titulo": "Endogamia e parentesco",
+      "texto_fonte": "M13_endogamia_e_parentesco.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M13_endogamia_e_parentesco/pedigree-endogamia.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Pedigree de meio-irmãos com F = 1/8, coancestria e matriz A",
+          "uso_no_site": "Embutir na seção 'Conceito técnico' de M13"
+        }
+      ]
+    },
+    {
+      "modulo": "M14",
+      "titulo": "Cruzamentos, heterose e complementaridade",
+      "texto_fonte": "M14_cruzamentos_heterose_e_complementaridade.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M14_cruzamentos_e_heterose/heterose-grafico.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Barras P1/P2/MP/F1 com heterose destacada; H% = 26,7%",
+          "uso_no_site": "Embutir no exemplo numérico de M14 com <img>"
+        }
+      ]
+    },
+    {
+      "modulo": "M15",
+      "titulo": "Avaliação genética: DEP/EBV e ranking de animais",
+      "texto_fonte": "M15_avaliacao_genetica_dep_ebv_e_ranking_de_animais.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M15_avaliacao_genetica_dep_ebv/dep-ebv-ranking.html",
+          "tipo": "html-interativo",
+          "conceito": "Ranking interativo por fenótipo/corrigido/EBV/DEP/acurácia",
+          "uso_no_site": "Embed em iframe na página M15; largura mínima 640px"
+        }
+      ]
+    },
+    {
+      "modulo": "M16",
+      "titulo": "Modelos lineares e modelos mistos",
+      "texto_fonte": "M16_modelos_lineares_e_modelos_mistos.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M16_modelos_lineares/modelo-linear.svg",
+          "tipo": "svg-estatico",
+          "conceito": "y = Xb + Zu + e com blocos coloridos e anotações por componente",
+          "uso_no_site": "Embutir logo após a fórmula na seção 'Fórmula' de M16"
+        }
+      ]
+    },
+    {
+      "modulo": "M17",
+      "titulo": "BLUP e modelo animal",
+      "texto_fonte": "M17_blup_e_modelo_animal.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M17_blup_modelo_animal/blup-fluxo.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Fluxo dados+pedigree → MME → BLUP → ranking; λ = (1−h²)/h²",
+          "uso_no_site": "Embutir na seção 'Conceito técnico' de M17"
+        }
+      ]
+    },
+    {
+      "modulo": "M18",
+      "titulo": "Genômica, marcadores SNP e dados moleculares",
+      "texto_fonte": "M18_genomica_marcadores_snp_e_dados_moleculares.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M18_genomica_snp/snp-codificacao.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Codificação AA/Aa/aa → 0/1/2 e matriz Z (animais × SNPs)",
+          "uso_no_site": "Embutir na seção 'Conceito técnico' de M18"
+        }
+      ]
+    },
+    {
+      "modulo": "M19",
+      "titulo": "Controle de qualidade de dados genômicos",
+      "texto_fonte": "M19_controle_de_qualidade_de_dados_genomicos.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M19_controle_qualidade_genomico/qc-fluxo.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Pipeline QC: call rate animais → call rate SNPs → MAF → HWE → dados limpos",
+          "uso_no_site": "Embutir na seção 'Conceito técnico' de M19"
+        }
+      ]
+    },
+    {
+      "modulo": "M20",
+      "titulo": "Matrizes genômicas, GWAS e predição genômica",
+      "texto_fonte": "M20_matrizes_genomicas_gwas_e_predicao_genomica.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M20_gwas_predicao_genomica/gwas-manhattan.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Manhattan plot conceitual + diagrama BLUP vs. G-BLUP",
+          "uso_no_site": "Ilustração central de M20; embutir com <img>"
+        }
+      ]
+    },
+    {
+      "modulo": "M21",
+      "titulo": "Projeto final: pipeline completo de seleção",
+      "texto_fonte": "M21_projeto_final_pipeline_completo_de_selecao.revision.md",
+      "artefatos": [
+        {
+          "arquivo": "M21_projeto_final/pipeline-selecao.svg",
+          "tipo": "svg-estatico",
+          "conceito": "Pipeline completo: coleta → validação → QC → modelo → BLUP → índice",
+          "uso_no_site": "Infográfico de síntese em M21 e na página inicial do site"
+        }
+      ]
+    }
+  ]
+}
