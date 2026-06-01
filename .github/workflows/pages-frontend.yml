@@ -69,3 +69,17 @@ jobs:
         run: node scripts/smoke_learner_routes.mjs "$DEPLOYED_URL"
       - name: Smoke Appwrite runtime
         run: node scripts/smoke_appwrite_runtime.mjs
+      - name: Audit Appwrite backend
+        env:
+          APPWRITE_ENDPOINT: ${{ vars.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1' }}
+          APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
+          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+        run: node scripts/audit_appwrite_backend.mjs
+      - name: Smoke real Appwrite login
+        env:
+          APPWRITE_ENDPOINT: ${{ vars.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1' }}
+          APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
+          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+          APPWRITE_SMOKE_EMAIL: ${{ secrets.APPWRITE_SMOKE_EMAIL || '' }}
+          APPWRITE_SMOKE_PASSWORD: ${{ secrets.APPWRITE_SMOKE_PASSWORD || '' }}
+        run: node scripts/smoke_appwrite_real_login.mjs
