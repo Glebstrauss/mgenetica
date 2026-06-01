@@ -36,6 +36,8 @@ jobs:
       - name: Test frontend
         working-directory: frontend
         run: npm test
+      - name: Validate course assets
+        run: node scripts/validate_course_assets.mjs
       - name: Build frontend for Pages
         working-directory: frontend
         env:
@@ -61,3 +63,9 @@ jobs:
         env:
           DEPLOYED_URL: ${{ steps.deployment.outputs.page_url }}
         run: node scripts/smoke_deployed_frontend.mjs "$DEPLOYED_URL"
+      - name: Smoke learner routes
+        env:
+          DEPLOYED_URL: ${{ steps.deployment.outputs.page_url }}
+        run: node scripts/smoke_learner_routes.mjs "$DEPLOYED_URL"
+      - name: Smoke Appwrite runtime
+        run: node scripts/smoke_appwrite_runtime.mjs
