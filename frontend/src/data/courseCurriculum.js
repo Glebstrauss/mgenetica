@@ -1,3 +1,5 @@
+import { getCourseVisualAsset } from './courseVisualAssets'
+
 const BLOCK_LABELS = {
   fundamentos: { 'pt-BR': 'Fundamentos', en: 'Foundations', es: 'Fundamentos' },
   populacoes: { 'pt-BR': 'Genética de populações', en: 'Population genetics', es: 'Genética de poblaciones' },
@@ -556,7 +558,8 @@ function formatCourseDetail(moduleRow, locale = 'pt-BR') {
     studyParts: getStudyParts(locale),
     meta: buildMeta(moduleRow, locale),
     moduleMeta: [copy.dedicatedPage, moduleRow.legacyId, copy.moduleMetaQuiz],
-    sections: buildSections(moduleRow, locale)
+    sections: buildSections(moduleRow, locale),
+    visualAsset: getCourseVisualAsset(moduleRow.id)
   }
 }
 

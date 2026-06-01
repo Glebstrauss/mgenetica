@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 460" font-family="system-ui,sans-serif">
+  <rect width="820" height="460" fill="#0f1117"/>
+  <text x="410" y="38" text-anchor="middle" fill="#818cf8" font-size="18" font-weight="700">M16 — Modelo Linear Misto</text>
+  <text x="410" y="58" text-anchor="middle" fill="#8892a4" font-size="12">y = Xb + Zu + e · Separar efeitos fixos de efeitos aleatórios</text>
+  <rect x="60" y="88" width="70" height="70" rx="10" fill="#1a1d27" stroke="#818cf8" stroke-width="2"/>
+  <text x="95" y="123" text-anchor="middle" fill="#818cf8" font-size="32" font-weight="700">y</text>
+  <text x="95" y="145" text-anchor="middle" fill="#8892a4" font-size="10">observações</text>
+  <text x="148" y="130" text-anchor="middle" fill="#8892a4" font-size="26">=</text>
+  <rect x="170" y="88" width="120" height="70" rx="10" fill="#064e3b" stroke="#6ee7b7" stroke-width="2"/>
+  <text x="230" y="123" text-anchor="middle" fill="#6ee7b7" font-size="30" font-weight="700">Xb</text>
+  <text x="230" y="145" text-anchor="middle" fill="#a7f3d0" font-size="10">efeitos fixos</text>
+  <text x="308" y="130" text-anchor="middle" fill="#8892a4" font-size="26">+</text>
+  <rect x="328" y="88" width="120" height="70" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="2"/>
+  <text x="388" y="123" text-anchor="middle" fill="#818cf8" font-size="30" font-weight="700">Zu</text>
+  <text x="388" y="145" text-anchor="middle" fill="#a5b4fc" font-size="10">efeitos aleatórios</text>
+  <text x="466" y="130" text-anchor="middle" fill="#8892a4" font-size="26">+</text>
+  <rect x="486" y="88" width="70" height="70" rx="10" fill="#7c2d12" stroke="#fcd34d" stroke-width="2"/>
+  <text x="521" y="123" text-anchor="middle" fill="#fcd34d" font-size="32" font-weight="700">e</text>
+  <text x="521" y="145" text-anchor="middle" fill="#fde68a" font-size="10">resíduo</text>
+  <line x1="95" y1="160" x2="95" y2="196" stroke="#818cf8" stroke-width="1.5"/>
+  <rect x="36" y="196" width="118" height="56" rx="6" fill="#12141e" stroke="#818cf8" stroke-width="1"/>
+  <text x="95" y="214" text-anchor="middle" fill="#818cf8" font-size="11" font-weight="600">Vetor de fenótipos</text>
+  <text x="95" y="229" text-anchor="middle" fill="#8892a4" font-size="10">n × 1 observações</text>
+  <text x="95" y="243" text-anchor="middle" fill="#8892a4" font-size="10">ex: alturas das éguas</text>
+  <line x1="230" y1="160" x2="230" y2="196" stroke="#6ee7b7" stroke-width="1.5"/>
+  <rect x="168" y="196" width="124" height="86" rx="6" fill="#12141e" stroke="#6ee7b7" stroke-width="1"/>
+  <text x="230" y="214" text-anchor="middle" fill="#6ee7b7" font-size="11" font-weight="600">Efeitos fixos</text>
+  <text x="230" y="229" text-anchor="middle" fill="#8892a4" font-size="10">X = matriz de incidência</text>
+  <text x="230" y="244" text-anchor="middle" fill="#8892a4" font-size="10">b = efeitos estimados</text>
+  <text x="230" y="259" text-anchor="middle" fill="#a7f3d0" font-size="10">ex: sexo, ano, criador</text>
+  <text x="230" y="273" text-anchor="middle" fill="#a7f3d0" font-size="10">Corrige o fenótipo</text>
+  <line x1="388" y1="160" x2="388" y2="196" stroke="#818cf8" stroke-width="1.5"/>
+  <rect x="326" y="196" width="124" height="86" rx="6" fill="#12141e" stroke="#818cf8" stroke-width="1"/>
+  <text x="388" y="214" text-anchor="middle" fill="#818cf8" font-size="11" font-weight="600">Efeitos aleatórios</text>
+  <text x="388" y="229" text-anchor="middle" fill="#8892a4" font-size="10">Z = matriz de incidência</text>
+  <text x="388" y="244" text-anchor="middle" fill="#8892a4" font-size="10">u = efeitos do animal</text>
+  <text x="388" y="259" text-anchor="middle" fill="#a5b4fc" font-size="10">u ~ N(0, Aσ²a)</text>
+  <text x="388" y="273" text-anchor="middle" fill="#a5b4fc" font-size="10">relaciona ao EBV</text>
+  <line x1="521" y1="160" x2="521" y2="196" stroke="#fcd34d" stroke-width="1.5"/>
+  <rect x="459" y="196" width="124" height="86" rx="6" fill="#12141e" stroke="#fcd34d" stroke-width="1"/>
+  <text x="521" y="214" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="600">Resíduo</text>
+  <text x="521" y="229" text-anchor="middle" fill="#8892a4" font-size="10">variação não explicada</text>
+  <text x="521" y="244" text-anchor="middle" fill="#8892a4" font-size="10">por b e u</text>
+  <text x="521" y="259" text-anchor="middle" fill="#fde68a" font-size="10">e ~ N(0, Iσ²e)</text>
+  <text x="521" y="273" text-anchor="middle" fill="#fde68a" font-size="10">ambiente temporário</text>
+  <rect x="620" y="88" width="180" height="280" rx="10" fill="#1a1d27" stroke="#2a2d3a"/>
+  <text x="710" y="112" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">EXEMPLO</text>
+  <text x="710" y="126" text-anchor="middle" fill="#8892a4" font-size="10">altura à cernelha (cm)</text>
+  <rect x="632" y="136" width="156" height="118" rx="6" fill="#12141e"/>
+  <text x="632" y="153" fill="#6ee7b7" font-size="10">Efeitos fixos (b):</text>
+  <text x="640" y="167" fill="#8892a4" font-size="10">μ geral = 148 cm</text>
+  <text x="640" y="181" fill="#8892a4" font-size="10">sexo fêmea = −2 cm</text>
+  <text x="640" y="195" fill="#8892a4" font-size="10">ano 2022 = +3 cm</text>
+  <text x="632" y="213" fill="#818cf8" font-size="10">Efeito animal (u):</text>
+  <text x="640" y="227" fill="#8892a4" font-size="10">égua A = +5 cm</text>
+  <text x="640" y="241" fill="#8892a4" font-size="10">égua B = −3 cm</text>
+  <text x="632" y="258" fill="#fcd34d" font-size="10">Resíduo (e):</text>
+  <text x="640" y="272" fill="#8892a4" font-size="10">égua A = −1 cm</text>
+  <rect x="632" y="280" width="156" height="50" rx="6" fill="#064e3b" stroke="#6ee7b7"/>
+  <text x="710" y="298" text-anchor="middle" fill="#a7f3d0" font-size="10">P = 148−2+3+5−1</text>
+  <text x="710" y="314" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="700">= 153 cm</text>
+  <rect x="30" y="310" width="570" height="46" rx="8" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="315" y="328" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Ponto-chave</text>
+  <text x="315" y="346" text-anchor="middle" fill="#e2e8f0" font-size="11">O modelo linear isola o sinal genético (u) do ruído ambiental (Xb + e). Sem essa separação, animais em ambientes melhores parecem geneticamente superiores.</text>
+  <text x="410" y="378" text-anchor="middle" fill="#3d4252" font-size="9">MGenética · Falconer &amp; Mackay (1996) · Henderson (1973)</text>
+</svg>

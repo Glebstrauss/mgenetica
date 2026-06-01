@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" font-family="system-ui,sans-serif">
+  <rect width="820" height="480" fill="#0f1117"/>
+  <text x="410" y="38" text-anchor="middle" fill="#818cf8" font-size="18" font-weight="700">M2 — Modos de Ação Gênica</text>
+  <text x="410" y="58" text-anchor="middle" fill="#8892a4" font-size="12">Valor genotípico em função do genótipo: aditivo, dominância e sobredominância</text>
+  <rect x="60" y="75" width="490" height="300" rx="8" fill="#1a1d27" stroke="#2a2d3a"/>
+  <line x1="60" y1="375" x2="550" y2="375" stroke="#2a2d3a"/>
+  <line x1="60" y1="325" x2="550" y2="325" stroke="#2a2d3a" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <line x1="60" y1="275" x2="550" y2="275" stroke="#2a2d3a" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <line x1="60" y1="225" x2="550" y2="225" stroke="#2a2d3a" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <line x1="60" y1="175" x2="550" y2="175" stroke="#2a2d3a" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <line x1="60" y1="125" x2="550" y2="125" stroke="#2a2d3a" stroke-width="0.5" stroke-dasharray="4,4"/>
+  <text x="50" y="379" text-anchor="end" fill="#8892a4" font-size="10">0</text>
+  <text x="50" y="329" text-anchor="end" fill="#8892a4" font-size="10">2</text>
+  <text x="50" y="279" text-anchor="end" fill="#8892a4" font-size="10">4</text>
+  <text x="50" y="229" text-anchor="end" fill="#8892a4" font-size="10">6</text>
+  <text x="50" y="179" text-anchor="end" fill="#8892a4" font-size="10">8</text>
+  <text x="50" y="129" text-anchor="end" fill="#8892a4" font-size="10">10</text>
+  <text x="20" y="230" text-anchor="middle" fill="#8892a4" font-size="11" transform="rotate(-90,20,230)">Valor genotípico</text>
+  <line x1="160" y1="375" x2="160" y2="380" stroke="#8892a4"/>
+  <line x1="305" y1="375" x2="305" y2="380" stroke="#8892a4"/>
+  <line x1="450" y1="375" x2="450" y2="380" stroke="#8892a4"/>
+  <text x="160" y="395" text-anchor="middle" fill="#f9a8d4" font-size="13" font-weight="600">aa</text>
+  <text x="305" y="395" text-anchor="middle" fill="#c4b5fd" font-size="13" font-weight="600">Aa</text>
+  <text x="450" y="395" text-anchor="middle" fill="#6ee7b7" font-size="13" font-weight="600">AA</text>
+  <text x="305" y="413" text-anchor="middle" fill="#8892a4" font-size="11">Genótipo</text>
+  <line x1="160" y1="325" x2="450" y2="125" stroke="#6ee7b7" stroke-width="2.5"/>
+  <circle cx="160" cy="325" r="5" fill="#6ee7b7"/>
+  <circle cx="305" cy="225" r="5" fill="#6ee7b7"/>
+  <circle cx="450" cy="125" r="5" fill="#6ee7b7"/>
+  <polyline points="160,325 305,125 450,125" fill="none" stroke="#fcd34d" stroke-width="2.5" stroke-dasharray="8,4"/>
+  <circle cx="160" cy="325" r="5" fill="#fcd34d"/>
+  <circle cx="305" cy="125" r="5" fill="#fcd34d"/>
+  <circle cx="450" cy="125" r="5" fill="#fcd34d"/>
+  <path d="M160,275 Q305,95 450,275" fill="none" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="4,4"/>
+  <circle cx="160" cy="275" r="5" fill="#f9a8d4"/>
+  <circle cx="305" cy="115" r="5" fill="#f9a8d4"/>
+  <circle cx="450" cy="275" r="5" fill="#f9a8d4"/>
+  <rect x="580" y="100" width="220" height="180" rx="8" fill="#1a1d27" stroke="#2a2d3a"/>
+  <text x="690" y="125" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600" letter-spacing="1">LEGENDA</text>
+  <line x1="598" y1="155" x2="628" y2="155" stroke="#6ee7b7" stroke-width="2.5"/>
+  <circle cx="613" cy="155" r="4" fill="#6ee7b7"/>
+  <text x="636" y="159" fill="#e2e8f0" font-size="12" font-weight="600">Aditivo</text>
+  <text x="636" y="172" fill="#8892a4" font-size="10">d = 0; linha reta</text>
+  <line x1="598" y1="200" x2="628" y2="200" stroke="#fcd34d" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <circle cx="613" cy="200" r="4" fill="#fcd34d"/>
+  <text x="636" y="204" fill="#e2e8f0" font-size="12" font-weight="600">Dominância</text>
+  <text x="636" y="217" fill="#8892a4" font-size="10">Aa = AA (d = a)</text>
+  <path d="M598,248 Q613,238 628,248" fill="none" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="4,3"/>
+  <circle cx="613" cy="241" r="4" fill="#f9a8d4"/>
+  <text x="636" y="250" fill="#e2e8f0" font-size="12" font-weight="600">Sobredominância</text>
+  <text x="636" y="263" fill="#8892a4" font-size="10">Aa &gt; AA (d &gt; a)</text>
+  <rect x="60" y="425" width="740" height="40" rx="8" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="430" y="441" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="600">Ponto-chave</text>
+  <text x="430" y="457" text-anchor="middle" fill="#e2e8f0" font-size="11">Efeito aditivo (a): diferença entre homozigoto AA e a média dos homozigotos. Dominância (d): desvio do heterozigoto do ponto médio.</text>
+  <text x="410" y="475" text-anchor="middle" fill="#3d4252" font-size="9">MGenética · Falconer &amp; Mackay (1996)</text>
+</svg>

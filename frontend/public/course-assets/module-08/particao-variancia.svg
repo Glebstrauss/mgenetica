@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" font-family="system-ui,sans-serif">
+  <rect width="820" height="480" fill="#0f1117"/>
+  <text x="410" y="38" text-anchor="middle" fill="#818cf8" font-size="18" font-weight="700">M8 — Componentes de Variância</text>
+  <text x="410" y="58" text-anchor="middle" fill="#8892a4" font-size="12">VP = VA + VD + VI + VE · Apenas VA responde à seleção massal de forma previsível</text>
+  <text x="175" y="88" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Alta VA</text>
+  <text x="175" y="102" text-anchor="middle" fill="#8892a4" font-size="10">h² alto → seleção eficaz</text>
+  <text x="410" y="88" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Alta VD</text>
+  <text x="410" y="102" text-anchor="middle" fill="#8892a4" font-size="10">heterose relevante</text>
+  <text x="645" y="88" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Alta VE</text>
+  <text x="645" y="102" text-anchor="middle" fill="#8892a4" font-size="10">ambiente domina</text>
+  <rect x="115" y="204" width="120" height="156" rx="0" fill="#059669"/>
+  <rect x="115" y="165" width="120" height="39"  rx="0" fill="#7c3aed"/>
+  <rect x="115" y="152" width="120" height="13"  rx="0" fill="#ea580c"/>
+  <rect x="115" y="100" width="120" height="52"  rx="4" fill="#475569"/>
+  <rect x="115" y="100" width="120" height="260" rx="4" fill="none" stroke="#2a2d3a" stroke-width="1"/>
+  <text x="175" y="288" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">VA = 60</text>
+  <text x="175" y="188" text-anchor="middle" fill="#fff" font-size="11">VD = 15</text>
+  <text x="175" y="132" text-anchor="middle" fill="#fff" font-size="10">VE = 20</text>
+  <rect x="115" y="364" width="120" height="28" rx="4" fill="#064e3b" stroke="#6ee7b7"/>
+  <text x="175" y="382" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="700">h² = 0,60</text>
+  <rect x="350" y="308" width="120" height="52"  rx="0" fill="#059669"/>
+  <rect x="350" y="178" width="120" height="130" rx="0" fill="#7c3aed"/>
+  <rect x="350" y="152" width="120" height="26"  rx="0" fill="#ea580c"/>
+  <rect x="350" y="100" width="120" height="52"  rx="4" fill="#475569"/>
+  <rect x="350" y="100" width="120" height="260" rx="4" fill="none" stroke="#2a2d3a" stroke-width="1"/>
+  <text x="410" y="338" text-anchor="middle" fill="#fff" font-size="11">VA = 20</text>
+  <text x="410" y="246" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">VD = 50</text>
+  <text x="410" y="132" text-anchor="middle" fill="#fff" font-size="10">VE = 20</text>
+  <rect x="350" y="364" width="120" height="28" rx="4" fill="#1e1b4b" stroke="#818cf8"/>
+  <text x="410" y="382" text-anchor="middle" fill="#818cf8" font-size="12" font-weight="700">h² = 0,20</text>
+  <rect x="585" y="321" width="120" height="39"  rx="0" fill="#059669"/>
+  <rect x="585" y="295" width="120" height="26"  rx="0" fill="#7c3aed"/>
+  <rect x="585" y="282" width="120" height="13"  rx="0" fill="#ea580c"/>
+  <rect x="585" y="100" width="120" height="182" rx="4" fill="#475569"/>
+  <rect x="585" y="100" width="120" height="260" rx="4" fill="none" stroke="#2a2d3a" stroke-width="1"/>
+  <text x="645" y="340" text-anchor="middle" fill="#fff" font-size="11">VA = 15</text>
+  <text x="645" y="200" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">VE = 70</text>
+  <rect x="585" y="364" width="120" height="28" rx="4" fill="#1c1917" stroke="#fcd34d"/>
+  <text x="645" y="382" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="700">h² = 0,15</text>
+  <text x="175" y="96" text-anchor="middle" fill="#8892a4" font-size="10">VP = 100</text>
+  <text x="410" y="96" text-anchor="middle" fill="#8892a4" font-size="10">VP = 100</text>
+  <text x="645" y="96" text-anchor="middle" fill="#8892a4" font-size="10">VP = 100</text>
+  <rect x="60" y="400" width="18" height="12" rx="2" fill="#059669"/>
+  <text x="84" y="411" fill="#6ee7b7" font-size="11">VA — aditiva (h²)</text>
+  <rect x="220" y="400" width="18" height="12" rx="2" fill="#7c3aed"/>
+  <text x="244" y="411" fill="#c4b5fd" font-size="11">VD — dominância</text>
+  <rect x="380" y="400" width="18" height="12" rx="2" fill="#ea580c"/>
+  <text x="404" y="411" fill="#fdba74" font-size="11">VI — epistasia</text>
+  <rect x="520" y="400" width="18" height="12" rx="2" fill="#475569"/>
+  <text x="544" y="411" fill="#94a3b8" font-size="11">VE — ambiental</text>
+  <rect x="60" y="420" width="700" height="36" rx="6" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="410" y="436" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="600">Ponto-chave: h² = VA / VP</text>
+  <text x="410" y="450" text-anchor="middle" fill="#e2e8f0" font-size="11">Quanto maior VA e menor VD + VE, mais a seleção massal move a média da progênie na direção desejada.</text>
+  <text x="410" y="470" text-anchor="middle" fill="#3d4252" font-size="9">MGenética · Falconer &amp; Mackay (1996)</text>
+</svg>

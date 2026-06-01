@@ -4,6 +4,40 @@ import AppHeader from './components/AppHeader'
 import ActionButton from './components/ActionButton'
 import LessonText from './components/LessonText'
 
+function publicAssetUrl(src) {
+  const base = import.meta.env.BASE_URL || '/'
+  return `${base.replace(/\/$/, '')}/${String(src || '').replace(/^\//, '')}`
+}
+
+function CourseVisualAsset({ asset }) {
+  if (!asset?.src) return null
+  const src = publicAssetUrl(asset.src)
+  return (
+    <section className={'section-card course-visual-card course-visual-card-' + asset.type} aria-labelledby="course-visual-title">
+      <div className="section-eyebrow">{asset.type === 'interactive' ? 'Interativo' : 'Visual tecnico'}</div>
+      <h3 id="course-visual-title">{asset.title}</h3>
+      {asset.type === 'interactive' ? (
+        <div className="course-visual-frame-wrap">
+          <iframe
+            className="course-visual-frame"
+            src={src}
+            title={asset.title}
+            loading="lazy"
+            sandbox="allow-scripts"
+            referrerPolicy="no-referrer"
+            style={{ '--course-visual-height': `${asset.height || 820}px` }}
+          />
+        </div>
+      ) : (
+        <figure className="course-visual-figure">
+          <img src={src} alt={asset.alt} loading="lazy" decoding="async" />
+        </figure>
+      )}
+      {asset.caption ? <p className="course-visual-caption">{asset.caption}</p> : null}
+    </section>
+  )
+}
+
 function SectionCard({ eyebrow, title, paragraphs, code, codeLabel, part, scientific }) {
   return (
     <section className={'section-card lesson-section' + (scientific ? ' scientific-section' : '')}>
@@ -89,16 +123,18 @@ export default function CoursePage({ course, detail, progress, onBack, onOpenQui
             </div>
           </section>
           {detail.sections.map((section) => (
-            <SectionCard
-              key={section.eyebrow + section.title}
-              eyebrow={section.eyebrow}
-              title={section.title}
-              paragraphs={section.paragraphs}
-              code={section.code}
-              codeLabel={section.codeLabel}
-              part={detail.studyParts.find((part) => part.id === section.part)?.label}
-              scientific={section.scientific}
-            />
+            <React.Fragment key={section.eyebrow + section.title}>
+              <SectionCard
+                eyebrow={section.eyebrow}
+                title={section.title}
+                paragraphs={section.paragraphs}
+                code={section.code}
+                codeLabel={section.codeLabel}
+                part={detail.studyParts.find((part) => part.id === section.part)?.label}
+                scientific={section.scientific}
+              />
+              {detail.visualAsset?.placement === 'after-concept' && section.scientific ? <CourseVisualAsset asset={detail.visualAsset} /> : null}
+            </React.Fragment>
           ))}
           <section className="section-card">
             <div className="section-eyebrow">{t('coursePage.actionEyebrow')}</div>

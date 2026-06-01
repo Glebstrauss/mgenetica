@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" font-family="system-ui,sans-serif">
+  <rect width="820" height="480" fill="#0f1117"/>
+  <text x="410" y="38" text-anchor="middle" fill="#818cf8" font-size="18" font-weight="700">M12 — Modelo de Limiar</text>
+  <text x="410" y="58" text-anchor="middle" fill="#8892a4" font-size="12">Responsabilidade (liability) contínua · fenótipo binário ao cruzar o limiar T</text>
+  <rect x="30" y="72" width="360" height="290" rx="10" fill="#1a1d27" stroke="#2a2d3a"/>
+  <text x="210" y="95" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">POPULAÇÃO BASE — prevalência baixa</text>
+  <path d="M50,320 C60,320 70,318 80,312 C95,302 105,280 115,255 C125,228 132,205 140,192 C145,185 148,182 150,181 C152,182 155,185 160,192 C168,205 175,228 185,255 C195,280 205,302 220,312 C230,318 240,320 250,320 Z"
+        fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+  <line x1="220" y1="120" x2="220" y2="325" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <path d="M220,302 C230,298 240,320 250,320 Z" fill="rgba(249,168,212,0.5)"/>
+  <text x="235" y="310" fill="#f9a8d4" font-size="10" font-weight="600">~5%</text>
+  <text x="220" y="115" text-anchor="middle" fill="#f9a8d4" font-size="11" font-weight="700">T (limiar)</text>
+  <text x="140" y="340" text-anchor="middle" fill="#818cf8" font-size="10">responsabilidade</text>
+  <text x="280" y="340" fill="#f9a8d4" font-size="10">→ afetados</text>
+  <text x="80" y="340" fill="#6ee7b7" font-size="10">não afetados ←</text>
+  <line x1="45" y1="325" x2="365" y2="325" stroke="#2a2d3a" stroke-width="1"/>
+  <line x1="45" y1="325" x2="45" y2="125" stroke="#2a2d3a" stroke-width="1"/>
+  <rect x="420" y="72" width="370" height="290" rx="10" fill="#1a1d27" stroke="#2a2d3a"/>
+  <text x="605" y="95" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">FAMÍLIA DE ALTO RISCO — média deslocada</text>
+  <path d="M440,320 C450,320 460,318 470,312 C485,302 495,280 505,255 C515,228 522,205 530,192 C535,185 538,182 540,181 C542,182 545,185 550,192 C558,205 565,228 575,255 C585,280 595,302 610,312 C620,318 630,320 640,320 Z"
+        fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.5"/>
+  <path d="M480,320 C490,320 500,318 510,312 C525,302 535,280 545,255 C555,228 562,205 570,192 C575,185 578,182 580,181 C582,182 585,185 590,192 C598,205 605,228 615,255 C625,280 635,302 650,312 C660,318 670,320 680,320 Z"
+        fill="rgba(129,140,248,0.25)" stroke="#6ee7b7" stroke-width="2"/>
+  <line x1="610" y1="120" x2="610" y2="325" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <path d="M610,255 C620,265 630,290 640,308 C650,316 660,320 680,320 L680,320 L610,320 Z"
+        fill="rgba(249,168,212,0.5)"/>
+  <text x="650" y="305" fill="#f9a8d4" font-size="10" font-weight="600">~25%</text>
+  <text x="610" y="115" text-anchor="middle" fill="#f9a8d4" font-size="11" font-weight="700">T (mesmo limiar)</text>
+  <text x="520" y="175" fill="#818cf8" font-size="9" opacity="0.7">μ pop</text>
+  <text x="568" y="175" fill="#6ee7b7" font-size="9">μ família</text>
+  <line x1="435" y1="325" x2="780" y2="325" stroke="#2a2d3a" stroke-width="1"/>
+  <line x1="435" y1="325" x2="435" y2="125" stroke="#2a2d3a" stroke-width="1"/>
+  <line x1="540" y1="215" x2="580" y2="215" stroke="#fcd34d" stroke-width="1.5"/>
+  <polygon points="580,215 573,211 573,219" fill="#fcd34d"/>
+  <text x="560" y="208" text-anchor="middle" fill="#fcd34d" font-size="9">μ mais alto</text>
+  <rect x="30" y="385" width="760" height="58" rx="8" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="410" y="403" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Ponto-chave do modelo de limiar</text>
+  <text x="410" y="420" text-anchor="middle" fill="#e2e8f0" font-size="11">Mesmo sem observar a responsabilidade, a seleção funciona porque ela tem base genética. Famílias</text>
+  <text x="410" y="436" text-anchor="middle" fill="#e2e8f0" font-size="11">de alto risco têm média de responsabilidade acima do limiar — mais animais o cruzam e expressam o caráter.</text>
+  <text x="410" y="460" text-anchor="middle" fill="#3d4252" font-size="9">MGenética · Falconer &amp; Mackay (1996)</text>
+</svg>

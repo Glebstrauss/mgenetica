@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M10 — Seleção e Ganho Genético</title>
+<style>
+  :root {
+    --bg:#0f1117; --card:#1a1d27; --border:#2a2d3a;
+    --text:#e2e8f0; --muted:#8892a4;
+    --A:#6ee7b7; --a:#f9a8d4; --Aa:#c4b5fd;
+    --yellow:#fcd34d; --accent:#818cf8; --pink:#f9a8d4;
+    --AA:#059669; --Aa-col:#7c3aed; --aa-col:#be185d;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    font-family: system-ui, sans-serif;
+    background: var(--bg); color: var(--text);
+    padding: 1.5rem 1rem; line-height: 1.5;
+  }
+  .page { max-width: 800px; margin: 0 auto; }
+  h1 { font-size:1.4rem; font-weight:700; color:var(--accent); margin-bottom:.3rem; }
+  .sub { color:var(--muted); font-size:.88rem; margin-bottom:1.6rem; }
+  h2 {
+    font-size:.9rem; font-weight:600; color:var(--yellow);
+    text-transform:uppercase; letter-spacing:.05em; margin-bottom:.8rem;
+  }
+  .card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:1.3rem; margin-bottom:1.1rem;
+  }
+  .bar-track { background:#12141e; border-radius:5px; height:16px; overflow:hidden; margin-bottom:.6rem; }
+  .bar-fill  { height:100%; border-radius:5px; transition:width .4s cubic-bezier(.4,0,.2,1); }
+  .bar-label { display:flex; justify-content:space-between; font-size:.82rem; margin-bottom:3px; }
+  .tag { display:inline-block; padding:2px 7px; border-radius:4px; font-family:monospace; font-size:.82rem; font-weight:700; }
+  .tag-AA { background:rgba(5,150,105,.2); color:var(--A);  border:1px solid var(--AA); }
+  .tag-Aa { background:rgba(124,58,237,.2); color:var(--Aa); border:1px solid var(--Aa-col); }
+  .tag-aa { background:rgba(190,24,93,.2);  color:var(--a);  border:1px solid var(--aa-col); }
+  .note-box {
+    border-left:3px solid var(--accent);
+    background:rgba(129,140,248,.06);
+    padding:.7rem .9rem; border-radius:0 6px 6px 0;
+    font-size:.84rem; color:#a5b4fc; margin-top:.8rem;
+  }
+  .warn-box {
+    border-left:3px solid var(--yellow);
+    background:rgba(252,211,77,.05);
+    padding:.6rem .8rem; border-radius:0 6px 6px 0;
+    font-size:.82rem; color:#fde68a; margin-top:.6rem;
+  }
+  input[type=range] { width:100%; accent-color:var(--accent); }
+  input[type=number] {
+    background:#12141e; border:1px solid var(--border);
+    color:var(--text); border-radius:6px;
+    padding:.45rem .7rem; font-size:.95rem; font-family:monospace; outline:none;
+  }
+  input[type=number]:focus { border-color:var(--accent); }
+
+  .inputs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+  .input-group label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:4px;}
+  .input-group input{width:100%;background:#12141e;border:1px solid var(--border);color:var(--text);
+    border-radius:6px;padding:.45rem .7rem;font-size:.95rem;font-family:monospace;outline:none;}
+  .input-group input:focus{border-color:var(--accent);}
+  .slider-group{margin-bottom:.9rem;}
+  .slider-group label{display:flex;justify-content:space-between;font-size:.84rem;margin-bottom:4px;}
+  .results-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin-top:1rem;}
+  .res-card{background:#12141e;border:1px solid var(--border);border-radius:8px;padding:.8rem;text-align:center;}
+  .res-label{font-size:.75rem;color:var(--muted);margin-bottom:3px;}
+  .res-value{font-size:1.25rem;font-weight:700;font-family:monospace;}
+  .rv-S{color:var(--yellow);}
+  .rv-R{color:var(--A);}
+  .rv-yr{color:var(--pink);}
+  .pop-bars{display:flex;align-items:flex-end;gap:3px;height:80px;padding:0 .5rem;}
+  .pop-bar{flex:1;border-radius:2px 2px 0 0;}
+  .pop-bar.selected{opacity:1;}
+  .pop-bar.unselected{opacity:.3;}
+  .sieve-labels{display:flex;justify-content:space-between;font-size:.76rem;color:var(--muted);margin-top:4px;}
+  .resp-diagram{position:relative;height:90px;margin-top:1rem;background:#12141e;border-radius:8px;overflow:hidden;}
+  .resp-baseline{position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--border);}
+  .resp-mu-line{position:absolute;width:2px;background:var(--muted);top:0;bottom:0;}
+  .resp-sel-line{position:absolute;width:2px;background:var(--yellow);top:0;bottom:0;}
+  .resp-prog-line{position:absolute;width:2px;background:var(--A);top:0;bottom:0;}
+  .resp-S-brace{position:absolute;height:3px;background:var(--yellow);top:20px;}
+  .resp-R-brace{position:absolute;height:3px;background:var(--A);top:40px;}
+  .resp-label{position:absolute;font-size:.7rem;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>M10 — Seleção e Ganho Genético</h1>
+  <p class="sub">R = h² × S · Diferencial de seleção × herdabilidade = resposta por geração</p>
+  <div class="card">
+    <h2>1. Parâmetros da seleção</h2>
+    <div class="inputs-grid">
+      <div class="input-group">
+        <label>Média da população (todos os candidatos)</label>
+        <input type="number" id="muPop" value="100">
+      </div>
+      <div class="input-group">
+        <label>Média dos selecionados</label>
+        <input type="number" id="muSel" value="120">
+      </div>
+    </div>
+    <div class="slider-group">
+      <label>
+        <span>Herdabilidade h²</span>
+        <span style="color:var(--A);font-family:monospace;font-weight:700" id="h2-lbl">0,30</span>
+      </label>
+      <input type="range" id="sl-h2" min="0" max="1" step="0.01" value="0.30">
+    </div>
+    <div class="slider-group">
+      <label>
+        <span>Intervalo de geração L (anos)</span>
+        <span style="color:var(--pink);font-family:monospace;font-weight:700" id="L-lbl">8</span>
+      </label>
+      <input type="range" id="sl-L" min="1" max="20" step="0.5" value="8">
+    </div>
+  </div>
+  <div class="card">
+    <h2>2. Resultados</h2>
+    <div class="results-grid">
+      <div class="res-card">
+        <div class="res-label">S — Diferencial de seleção</div>
+        <div class="res-value rv-S" id="r-S">20,0</div>
+        <div style="font-size:.72rem;color:var(--muted);margin-top:3px;">média_sel − média_pop</div>
+      </div>
+      <div class="res-card">
+        <div class="res-label">R — Resposta por geração</div>
+        <div class="res-value rv-R" id="r-R">6,0</div>
+        <div style="font-size:.72rem;color:var(--muted);margin-top:3px;">h² × S</div>
+      </div>
+      <div class="res-card">
+        <div class="res-label">Ganho por ano</div>
+        <div class="res-value rv-yr" id="r-yr">0,75</div>
+        <div style="font-size:.72rem;color:var(--muted);margin-top:3px;">R ÷ L</div>
+      </div>
+    </div>
+    <div style="margin-top:1rem;">
+      <div style="font-size:.78rem;color:var(--muted);margin-bottom:.4rem;">Distribuição dos candidatos — barras selecionadas em destaque</div>
+      <div class="pop-bars" id="pop-bars"></div>
+      <div class="sieve-labels"><span>← piores</span><span style="color:var(--yellow)">selecionados (top 20%)</span><span>melhores →</span></div>
+    </div>
+    <div class="resp-diagram" id="resp-diagram">
+      <div class="resp-baseline"></div>
+      <div class="resp-mu-line" id="mu-line" style="left:40%"></div>
+      <div class="resp-sel-line" id="sel-line" style="left:65%"></div>
+      <div class="resp-prog-line" id="prog-line" style="left:49%"></div>
+      <div class="resp-S-brace" id="S-brace" style="left:40%;width:25%"></div>
+      <div class="resp-R-brace" id="R-brace" style="left:40%;width:9%"></div>
+      <span class="resp-label" id="lbl-mu" style="bottom:5px;color:var(--muted)">μ pop</span>
+      <span class="resp-label" id="lbl-sel" style="bottom:5px;color:var(--yellow)">μ sel</span>
+      <span class="resp-label" id="lbl-prog" style="bottom:5px;color:var(--A)">μ prog</span>
+      <span class="resp-label" style="top:12px;color:var(--yellow)" id="lbl-S">S</span>
+      <span class="resp-label" style="top:32px;color:var(--A)" id="lbl-R">R</span>
+    </div>
+  </div>
+  <div class="card">
+    <h2>3. Interpretação</h2>
+    <div class="note-box" id="interp-note">
+      Com h² = 0,30 e S = 20, a próxima geração é esperada 6 pontos acima da média original.
+    </div>
+  </div>
+
+<script>
+  function fmt(v,d=2){return v.toFixed(d).replace('.',',');}
+  function buildBars(){
+    const el=document.getElementById('pop-bars'); el.innerHTML='';
+    for(let i=0;i<30;i++){
+      const d=document.createElement('div');
+      d.className='pop-bar '+(i>=24?'selected':'unselected');
+      const h=20+Math.round(80*Math.pow(i/30,0.4));
+      d.style.height=h+'px';
+      d.style.background=i>=24?'#6ee7b7':'#2a2d3a';
+      el.appendChild(d);
+    }
+  }
+  function update(){
+    const muPop=parseFloat(document.getElementById('muPop').value)||100;
+    const muSel=parseFloat(document.getElementById('muSel').value)||100;
+    const h2=parseFloat(document.getElementById('sl-h2').value);
+    const L=parseFloat(document.getElementById('sl-L').value);
+    document.getElementById('h2-lbl').textContent=fmt(h2);
+    document.getElementById('L-lbl').textContent=fmt(L,1);
+    const S=muSel-muPop, R=h2*S, yr=R/L;
+    document.getElementById('r-S').textContent=fmt(S,1);
+    document.getElementById('r-R').textContent=fmt(R,1);
+    document.getElementById('r-yr').textContent=fmt(yr,2);
+    const diag=document.getElementById('resp-diagram');
+    const W=diag.offsetWidth||700;
+    const range=Math.max(Math.abs(S)*2.5,30);
+    const toX=v=>((v-(muPop-range/2))/range)*W;
+    const muX=toX(muPop), selX=toX(muSel), progX=toX(muPop+R);
+    document.getElementById('mu-line').style.left=Math.max(0,Math.min(W-2,muX))+'px';
+    document.getElementById('sel-line').style.left=Math.max(0,Math.min(W-2,selX))+'px';
+    document.getElementById('prog-line').style.left=Math.max(0,Math.min(W-2,progX))+'px';
+    document.getElementById('S-brace').style.left=Math.min(muX,selX)+'px';
+    document.getElementById('S-brace').style.width=Math.abs(selX-muX)+'px';
+    document.getElementById('R-brace').style.left=Math.min(muX,progX)+'px';
+    document.getElementById('R-brace').style.width=Math.abs(progX-muX)+'px';
+    document.getElementById('lbl-mu').style.left=Math.max(0,muX-18)+'px';
+    document.getElementById('lbl-sel').style.left=Math.max(0,selX-18)+'px';
+    document.getElementById('lbl-prog').style.left=Math.max(0,progX-20)+'px';
+    document.getElementById('lbl-S').style.left=Math.max(0,(Math.min(muX,selX)+Math.abs(selX-muX)/2)-6)+'px';
+    document.getElementById('lbl-R').style.left=Math.max(0,(Math.min(muX,progX)+Math.abs(progX-muX)/2)-6)+'px';
+    document.getElementById('interp-note').textContent=
+      'Com h² = '+fmt(h2)+' e S = '+fmt(S,1)+', a próxima geração é esperada '+fmt(R,1)+
+      (R>=0?' acima':' abaixo')+' da média original. Ganho por ano = '+fmt(yr,2)+' (geração de '+fmt(L,1)+' anos).';
+  }
+  buildBars();
+  ['muPop','muSel'].forEach(id=>document.getElementById(id).addEventListener('input',update));
+  ['sl-h2','sl-L'].forEach(id=>document.getElementById(id).addEventListener('input',update));
+  update();
+</script>
+
+</div>
+</body>
+</html>

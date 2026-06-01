@@ -18,3 +18,11 @@ Production requirements:
 - Appwrite admin runtime must include `ADMIN_EMAILS` and `APPWRITE_ADMIN_API_KEY` for admin summary mode
 - Appwrite progress runtime must include `APPWRITE_ADMIN_API_KEY` or `APPWRITE_API_KEY` so learner progress can persist in user prefs
 - Frontend env must expose Appwrite endpoint/project and function IDs when canonical defaults are not used
+
+Course visual assets:
+- Module visuals live under `frontend/public/course-assets/`.
+- The source contract for rendering them is `frontend/src/data/courseVisualAssets.js`.
+- Static SVGs render as lazy `<img>` elements with module-specific alt text.
+- Interactive HTML calculators render in lazy iframes with `sandbox="allow-scripts"` and `referrerPolicy="no-referrer"`.
+- Keep generated curriculum JSON separate from the visual-asset map so future curriculum imports do not overwrite asset metadata.
+- When replacing or adding an asset, update both the public file and `courseVisualAssets.js`, then run `npm test` and `npm run build`.

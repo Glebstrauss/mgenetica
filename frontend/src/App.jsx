@@ -152,22 +152,22 @@ function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, 
   return (
     <div className="app-shell">
       <SkipLink t={t} />
-      <AppHeader brandName={t('common.brandName')} brandTagline={t('common.brandTagline')} status={status} locale={locale} onLocaleChange={onLocaleChange} t={t}>
+      <AppHeader brandName={t('common.brandName')} brandTagline={t('common.brandTagline')} status={status} locale={locale} onLocaleChange={onLocaleChange} t={t} homeHref="#">
         {user ? (
           <>
-            <button type="button" className="btn btn-secondary" onClick={onOpenCatalog} aria-label={t('home.openCatalogAria')}>
+            <a className="btn btn-secondary" href="#catalog" onClick={onOpenCatalog} aria-label={t('home.openCatalogAria')}>
               <Icon name="layers" size={16} />
               {t('common.learnerArea')}
-            </button>
-            <button type="button" className="btn btn-secondary" onClick={onOpenAccount} aria-label={t('account.openAria')}>
+            </a>
+            <a className="btn btn-secondary" href="#account" onClick={onOpenAccount} aria-label={t('account.openAria')}>
               <Icon name="user" size={16} />
               {t('common.profile')}
-            </button>
-            {isAdmin ? <button type="button" className="btn btn-secondary" onClick={onOpenAdmin} aria-label={t('home.openAdminAria')}><Icon name="check" size={16} />{t('common.admin')}</button> : null}
+            </a>
+            {isAdmin ? <a className="btn btn-secondary" href="#admin" onClick={onOpenAdmin} aria-label={t('home.openAdminAria')}><Icon name="check" size={16} />{t('common.admin')}</a> : null}
             <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loadingAuth} aria-label={t('home.logoutAria')}><Icon name="arrowLeft" size={16} />{t('common.logout')}</button>
           </>
         ) : (
-          <button type="button" className="btn btn-primary" onClick={() => onAuthIntent('login')} aria-label={t('home.signInAria')}>{t('home.signIn')}</button>
+          <a className="btn btn-primary" href="#auth" onClick={() => onAuthIntent('login')} aria-label={t('home.signInAria')}>{t('home.signIn')}</a>
         )}
       </AppHeader>
       <main id="main-content" className="landing-stack" tabIndex="-1">
@@ -178,14 +178,26 @@ function HomePage({ user, status, loadingAuth, isAdmin, onAuthIntent, onLogout, 
               <h1 className="hero-headline">{t('home.headline')}</h1>
               <p className="hero-description">{t('home.description')}</p>
               <div className="hero-cta">
-                <button type="button" className="btn btn-primary" onClick={() => onAuthIntent('login')}><Icon name="arrowRight" size={16} />{t('home.ctaLogin')}</button>
-                <button type="button" className="btn btn-secondary" onClick={() => onAuthIntent('signup')}><Icon name="lock" size={16} />{t('home.ctaSignup')}</button>
+                <a className="btn btn-primary" href="#auth" onClick={() => onAuthIntent('login')}><Icon name="arrowRight" size={16} />{t('home.ctaLogin')}</a>
+                <a className="btn btn-secondary" href="#signup" onClick={() => onAuthIntent('signup')}><Icon name="lock" size={16} />{t('home.ctaSignup')}</a>
               </div>
             </div>
-            <aside className="hero-brand-card" aria-hidden="true">
-              <img src={BRAND_LOGO_URL} alt="" style={{ maxWidth: 180, height: 'auto' }} />
-              <div className="visual-caption"><strong>{t('common.brandName')}</strong><p>{t('common.brandTagline')}.</p></div>
-              <div className="brand-meta"><div className="brand-meta-item">{t('home.brandMeta1')}</div><div className="brand-meta-item">{t('home.brandMeta2')}</div></div>
+            <aside className="hero-brand-card">
+              <div className="hero-proof-mark">
+                <img src={BRAND_LOGO_URL} alt="" aria-hidden="true" />
+                <span>{t('home.proofKicker')}</span>
+              </div>
+              <div className="visual-caption"><strong>{t('home.proofTitle')}</strong><p>{t('home.proofCopy')}</p></div>
+              <div className="hero-proof-metrics" aria-label={t('home.proofMetricsAria')}>
+                <div><strong>{t('home.proofMetricModulesValue')}</strong><span>{t('home.proofMetricModulesLabel')}</span></div>
+                <div><strong>{t('home.proofMetricAxesValue')}</strong><span>{t('home.proofMetricAxesLabel')}</span></div>
+                <div><strong>{t('home.proofMetricCodeValue')}</strong><span>{t('home.proofMetricCodeLabel')}</span></div>
+              </div>
+              <div className="brand-meta">
+                <div className="brand-meta-item"><Icon name="book" size={15} /><span>{t('home.proofConcept')}</span></div>
+                <div className="brand-meta-item"><Icon name="layers" size={15} /><span>{t('home.proofCode')}</span></div>
+                <div className="brand-meta-item"><Icon name="check" size={15} /><span>{t('home.proofDecision')}</span></div>
+              </div>
             </aside>
           </div>
         </section>

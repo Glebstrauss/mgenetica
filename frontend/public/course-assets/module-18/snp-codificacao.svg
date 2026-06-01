@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 460" font-family="system-ui,sans-serif">
+  <rect width="820" height="460" fill="#0f1117"/>
+  <text x="410" y="38" text-anchor="middle" fill="#818cf8" font-size="18" font-weight="700">M18 — Genômica e Marcadores SNP</text>
+  <text x="410" y="58" text-anchor="middle" fill="#8892a4" font-size="12">Codificação de genótipos em valores 0/1/2 · Matriz Z de animais × marcadores</text>
+  <rect x="30" y="75" width="360" height="290" rx="10" fill="#1a1d27" stroke="#2a2d3a"/>
+  <text x="210" y="100" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600" letter-spacing="1">CODIFICAÇÃO DO GENÓTIPO</text>
+  <text x="210" y="115" text-anchor="middle" fill="#8892a4" font-size="10">contagem do alelo alternativo (ou de referência, por convenção)</text>
+  <rect x="45" y="124" width="330" height="30" rx="4" fill="#12141e"/>
+  <text x="120" y="144" text-anchor="middle" fill="#8892a4" font-size="11" font-weight="600">Genótipo</text>
+  <text x="230" y="144" text-anchor="middle" fill="#8892a4" font-size="11" font-weight="600">Código</text>
+  <text x="330" y="144" text-anchor="middle" fill="#8892a4" font-size="11" font-weight="600">Descrição</text>
+  <rect x="45" y="155" width="330" height="45" rx="4" fill="#064e3b"/>
+  <text x="120" y="183" text-anchor="middle" fill="#6ee7b7" font-size="22" font-weight="700" font-family="monospace">AA</text>
+  <text x="230" y="183" text-anchor="middle" fill="#6ee7b7" font-size="28" font-weight="700" font-family="monospace">0</text>
+  <text x="330" y="178" text-anchor="middle" fill="#a7f3d0" font-size="10">homozigoto de</text>
+  <text x="330" y="191" text-anchor="middle" fill="#a7f3d0" font-size="10">referência</text>
+  <rect x="45" y="202" width="330" height="45" rx="4" fill="rgba(124,58,237,0.2)"/>
+  <text x="120" y="230" text-anchor="middle" fill="#c4b5fd" font-size="22" font-weight="700" font-family="monospace">Aa</text>
+  <text x="230" y="230" text-anchor="middle" fill="#c4b5fd" font-size="28" font-weight="700" font-family="monospace">1</text>
+  <text x="330" y="225" text-anchor="middle" fill="#c4b5fd" font-size="10">heterozigoto</text>
+  <text x="330" y="238" text-anchor="middle" fill="#c4b5fd" font-size="10">1 cópia alt.</text>
+  <rect x="45" y="249" width="330" height="45" rx="4" fill="#831843"/>
+  <text x="120" y="277" text-anchor="middle" fill="#f9a8d4" font-size="22" font-weight="700" font-family="monospace">aa</text>
+  <text x="230" y="277" text-anchor="middle" fill="#f9a8d4" font-size="28" font-weight="700" font-family="monospace">2</text>
+  <text x="330" y="272" text-anchor="middle" fill="#fbcfe8" font-size="10">homozigoto</text>
+  <text x="330" y="285" text-anchor="middle" fill="#fbcfe8" font-size="10">alternativo</text>
+  <rect x="45" y="306" width="330" height="46" rx="6" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="210" y="322" text-anchor="middle" fill="#fcd34d" font-size="11" font-weight="600">Frequência do alelo alt. em um SNP</text>
+  <text x="210" y="338" text-anchor="middle" fill="#e2e8f0" font-size="11" font-family="monospace">p = (2·n_aa + n_Aa) / (2N)</text>
+  <text x="210" y="352" text-anchor="middle" fill="#8892a4" font-size="10">MAF = min(p, 1−p)</text>
+  <rect x="410" y="75" width="390" height="290" rx="10" fill="#1a1d27" stroke="#2a2d3a"/>
+  <text x="605" y="100" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600" letter-spacing="1">MATRIZ Z — ANIMAIS × MARCADORES</text>
+  <text x="605" y="115" text-anchor="middle" fill="#8892a4" font-size="10">cada linha = animal; cada coluna = SNP</text>
+  <text x="520" y="140" text-anchor="middle" fill="#8892a4" font-size="10">SNP1</text>
+  <text x="565" y="140" text-anchor="middle" fill="#8892a4" font-size="10">SNP2</text>
+  <text x="610" y="140" text-anchor="middle" fill="#8892a4" font-size="10">SNP3</text>
+  <text x="655" y="140" text-anchor="middle" fill="#8892a4" font-size="10">SNP4</text>
+  <text x="700" y="140" text-anchor="middle" fill="#8892a4" font-size="10">SNP5</text>
+  <text x="455" y="165" text-anchor="end" fill="#8892a4" font-size="10">Égua 1</text>
+  <rect x="497" y="148" width="40" height="25" rx="3" fill="#064e3b"/>
+  <text x="520" y="165" text-anchor="middle" fill="#6ee7b7" font-size="14" font-weight="700">0</text>
+  <rect x="542" y="148" width="40" height="25" rx="3" fill="rgba(124,58,237,.2)"/>
+  <text x="565" y="165" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">1</text>
+  <rect x="587" y="148" width="40" height="25" rx="3" fill="#831843"/>
+  <text x="610" y="165" text-anchor="middle" fill="#f9a8d4" font-size="14" font-weight="700">2</text>
+  <rect x="632" y="148" width="40" height="25" rx="3" fill="#064e3b"/>
+  <text x="655" y="165" text-anchor="middle" fill="#6ee7b7" font-size="14" font-weight="700">0</text>
+  <rect x="677" y="148" width="40" height="25" rx="3" fill="rgba(124,58,237,.2)"/>
+  <text x="700" y="165" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">1</text>
+  <text x="455" y="208" text-anchor="end" fill="#8892a4" font-size="10">Égua 2</text>
+  <rect x="497" y="191" width="40" height="25" rx="3" fill="rgba(124,58,237,.2)"/>
+  <text x="520" y="208" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">1</text>
+  <rect x="542" y="191" width="40" height="25" rx="3" fill="#064e3b"/>
+  <text x="565" y="208" text-anchor="middle" fill="#6ee7b7" font-size="14" font-weight="700">0</text>
+  <rect x="587" y="191" width="40" height="25" rx="3" fill="rgba(124,58,237,.2)"/>
+  <text x="610" y="208" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">1</text>
+  <rect x="632" y="191" width="40" height="25" rx="3" fill="#831843"/>
+  <text x="655" y="208" text-anchor="middle" fill="#f9a8d4" font-size="14" font-weight="700">2</text>
+  <rect x="677" y="191" width="40" height="25" rx="3" fill="#064e3b"/>
+  <text x="700" y="208" text-anchor="middle" fill="#6ee7b7" font-size="14" font-weight="700">0</text>
+  <text x="455" y="251" text-anchor="end" fill="#8892a4" font-size="10">Égua 3</text>
+  <rect x="497" y="234" width="40" height="25" rx="3" fill="#831843"/>
+  <text x="520" y="251" text-anchor="middle" fill="#f9a8d4" font-size="14" font-weight="700">2</text>
+  <rect x="542" y="234" width="40" height="25" rx="3" fill="rgba(124,58,237,.2)"/>
+  <text x="565" y="251" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">1</text>
+  <rect x="587" y="234" width="40" height="25" rx="3" fill="#064e3b"/>
+  <text x="610" y="251" text-anchor="middle" fill="#6ee7b7" font-size="14" font-weight="700">0</text>
+  <rect x="632" y="234" width="40" height="25" rx="3" fill="rgba(124,58,237,.2)"/>
+  <text x="655" y="251" text-anchor="middle" fill="#c4b5fd" font-size="14" font-weight="700">1</text>
+  <rect x="677" y="234" width="40" height="25" rx="3" fill="#831843"/>
+  <text x="700" y="251" text-anchor="middle" fill="#f9a8d4" font-size="14" font-weight="700">2</text>
+  <text x="605" y="300" text-anchor="middle" fill="#8892a4" font-size="10">n animais × p SNPs (ex: 500 × 50.000)</text>
+  <text x="605" y="316" text-anchor="middle" fill="#8892a4" font-size="10">G = ZZ' / 2Σp(1−p) — matriz genômica</text>
+  <text x="605" y="332" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="600">G substitui A no G-BLUP</text>
+  <rect x="30" y="383" width="760" height="46" rx="8" fill="#12141e" stroke="#2a2d3a"/>
+  <text x="410" y="401" text-anchor="middle" fill="#fcd34d" font-size="12" font-weight="600">Ponto-chave</text>
+  <text x="410" y="419" text-anchor="middle" fill="#e2e8f0" font-size="11">A codificação 0/1/2 transforma genótipo em número, permitindo álgebra linear. A matriz Z é a ponte entre genômica e modelos mistos.</text>
+  <text x="410" y="444" text-anchor="middle" fill="#3d4252" font-size="9">MGenética · VanRaden (2008)</text>
+</svg>
