@@ -3155,3 +3155,83 @@ h3,
     height: min(var(--course-visual-height, 820px), 72vh);
   }
 }
+
+/* Visual consistency guard: card labels and names must outrank body text. */
+:root {
+  --type-card-title: 1.08rem;
+  --type-body: 0.98rem;
+  --type-label: 0.9rem;
+  --type-small: 0.9rem;
+}
+
+.section-label,
+.hero-eyebrow,
+.section-eyebrow,
+.module-badge,
+.path-label,
+.lesson-part-chip {
+  font-size: var(--type-label);
+  line-height: 1.18;
+  font-weight: 850;
+}
+
+.chip,
+.status-badge,
+.study-parts span,
+.module-meta,
+.brand-meta-item span,
+.hero-proof-metrics span {
+  font-size: var(--type-small);
+  line-height: 1.24;
+  font-weight: 760;
+}
+
+.course-title,
+.benefit-card strong,
+.trust-item strong,
+.module-nav-card strong,
+.visual-caption strong,
+.home-path-card strong,
+.home-curriculum-item strong,
+.home-proof-item strong {
+  font-size: var(--type-card-title);
+  line-height: 1.28;
+  font-weight: 830;
+}
+
+.course-description,
+.benefit-card p,
+.trust-item p,
+.section-card p,
+.section-card li,
+.module-description,
+.hero-description,
+.visual-caption p {
+  font-size: var(--type-body);
+}
+
+.hero-proof-metrics strong {
+  font-size: 1.5rem;
+}
+
+.course-content .section-eyebrow,
+.course-content .module-badge,
+.course-content .chip,
+.course-content .lesson-part-chip,
+.course-content .study-parts span {
+  font-size: var(--type-label);
+}
+
+.course-content .course-title,
+.course-content .module-nav-card strong {
+  font-size: var(--type-card-title);
+}
+
+@media (max-width: 760px) {
+  :root {
+    --type-card-title: 1.04rem;
+    --type-body: 0.96rem;
+    --type-label: 0.88rem;
+    --type-small: 0.88rem;
+  }
+}

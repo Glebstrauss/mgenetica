@@ -38,8 +38,8 @@ const functionsConfig = JSON.parse(read('appwrite/functions.json'))
 assertIncludes(gitignore, '/mgenetica-course-visual-artifacts-*/', 'raw visual artifacts ignored')
 
 if (projectStatus) {
-  assertIncludes(projectStatus, 'Version: 1.6.0 | Date: 2026-06-09', 'project status current date')
-  assertIncludes(projectStatus, '**Current Phase:** learner app hardening and production-risk closure after Pages activation.', 'project current phase')
+  assertIncludes(projectStatus, 'Version: 1.6.1 | Date: 2026-06-09', 'project status current date')
+  assertIncludes(projectStatus, '**Current Phase:** learner app visual consistency and production-risk closure after Pages activation.', 'project current phase')
   assertNotIncludes(projectStatus, 'Delivery is planned for completion by Friday, 2026-06-05', 'project status stale delivery plan')
 } else {
   pass('project status absent in CI checkout')
@@ -47,7 +47,7 @@ if (projectStatus) {
 
 if (nextSite) {
   assertIncludes(nextSite, '## Status (2026-06-09)', 'next site current date')
-  assertIncludes(nextSite, '`risk-closure-browser-qa-and-runtime-verification`', 'next block type')
+  assertIncludes(nextSite, '`visual-consistency-qa-and-admin-screen-verification`', 'next block type')
   assertNotIncludes(nextSite, '## Status (2026-06-01)', 'next site stale status date')
 } else {
   pass('next site absent in CI checkout')
