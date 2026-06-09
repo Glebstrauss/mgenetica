@@ -22,6 +22,7 @@ build/
 
 # Generated practice data
 /data/modulo*_simulado.csv
+/mgenetica-course-visual-artifacts-*/
 
 # Logs and temporary files
 *.log

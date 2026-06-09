@@ -1,4 +1,19 @@
-const curriculum = require('./legacy-curriculum.generated.json');
+let catalogCache = null;
+let curriculumCache = null;
+
+function readCatalog() {
+  if (!catalogCache) {
+    catalogCache = require('./catalog.generated.json');
+  }
+  return Array.isArray(catalogCache) ? catalogCache : [];
+}
+
+function readCurriculum() {
+  if (!curriculumCache) {
+    curriculumCache = require('./legacy-curriculum.generated.json');
+  }
+  return curriculumCache?.modules || [];
+}
 
 function readUserId(headers = {}) {
   return String(headers['x-appwrite-user-id'] || headers['X-Appwrite-User-Id'] || headers['x-appwrite-userid'] || '').trim();
@@ -30,7 +45,7 @@ module.exports = async function (context) {
     }
 
     if (action === 'list') {
-      const payload = (curriculum.modules || []).map((course) => ({
+      const payload = readCatalog().map((course) => ({
         id: course.id,
         order: course.order,
         legacyId: course.legacyId,
@@ -51,7 +66,7 @@ module.exports = async function (context) {
         context.log(JSON.stringify(out));
         return { status: 400, body: JSON.stringify(out) };
       }
-      const payload = (curriculum.modules || []).find((course) => course.id === courseId) || null;
+      const payload = readCurriculum().find((course) => course.id === courseId) || null;
       if (!payload) {
         const out = { ok: false, error: 'course_not_found', courseId };
         context.log(JSON.stringify(out));

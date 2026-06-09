@@ -38,6 +38,8 @@ jobs:
         run: npm test
       - name: Validate course assets
         run: node scripts/validate_course_assets.mjs
+      - name: Check operational risks
+        run: node scripts/check_operational_risks.mjs
       - name: Build frontend for Pages
         working-directory: frontend
         env:
