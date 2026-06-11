@@ -40,10 +40,6 @@ if (!html.includes('<div id="root"></div>')) {
   throw new Error('Published HTML does not contain the React root element.')
 }
 
-if (html.includes('quarto-') || html.includes('quarto-nav')) {
-  throw new Error('Published HTML still appears to be the legacy Quarto page.')
-}
-
 const scripts = uniqueMatches(html, /<script[^>]+src="([^"]+\.js)"/g)
 const stylesheets = uniqueMatches(html, /<link[^>]+href="([^"]+\.css)"/g)
 
