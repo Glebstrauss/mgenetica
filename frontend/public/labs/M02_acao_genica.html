@@ -52,6 +52,220 @@
   .mg-foot a{color:var(--mg-cyan);text-decoration:none;}
   canvas{width:100%;height:auto;display:block;}
 </style>
+<!-- MG-RUNTIME:start (gerado por scripts/apply_lab_runtime.py — não editar à mão) -->
+<style id="mg-runtime">
+/* mg-lab.css — runtime compartilhado dos labs interativos MGenética.
+   Fonte única: injetado inline em cada lab (mantém self-contained/offline).
+   Adiciona tema ESCURO (sobre os mesmos tokens --mg-* que os labs já usam),
+   foco visível, reduced-motion e utilitários de acessibilidade.
+   Deve vir DEPOIS do <style> do lab para sobrescrever o :root claro. */
+
+/* ----- Tema escuro: auto (prefers-color-scheme) + manual ([data-theme]) ----- */
+:root[data-theme="dark"],
+:root.mg-dark {
+  --mg-ink:#e8eef5;
+  --mg-navy-700:#5fa8da;
+  --mg-navy-900:#cdddec;
+  --mg-cyan:#34c0e8;
+  --mg-cyan-soft:#10344a;
+  --mg-mid:#6bb4dd;
+  --mg-muted:#9fb3c9;
+  --mg-bg:#0c1622;
+  --mg-bg-soft:#111f30;
+  --mg-bg-tint:#16263a;
+  --mg-line:rgba(220,235,250,.12);
+  --mg-line-strong:rgba(220,235,250,.22);
+  --mg-gold:#ffca28;
+  --mg-gold-soft:#33290f;
+  --mg-gold-border:#7a5a16;
+  --mg-gold-ink:#ffd97a;
+  --mg-red:#f08a5a;
+  --mg-red-soft:#3a2018;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.mg-light) {
+    --mg-ink:#e8eef5;
+    --mg-navy-700:#5fa8da;
+    --mg-navy-900:#cdddec;
+    --mg-cyan:#34c0e8;
+    --mg-cyan-soft:#10344a;
+    --mg-mid:#6bb4dd;
+    --mg-muted:#9fb3c9;
+    --mg-bg:#0c1622;
+    --mg-bg-soft:#111f30;
+    --mg-bg-tint:#16263a;
+    --mg-line:rgba(220,235,250,.12);
+    --mg-line-strong:rgba(220,235,250,.22);
+    --mg-gold:#ffca28;
+    --mg-gold-soft:#33290f;
+    --mg-gold-border:#7a5a16;
+    --mg-gold-ink:#ffd97a;
+    --mg-red:#f08a5a;
+    --mg-red-soft:#3a2018;
+  }
+}
+
+/* garante que o fundo/texto sigam os tokens (alguns labs herdam do body) */
+html, body { background: var(--mg-bg); color: var(--mg-ink); }
+:root { color-scheme: light dark; }
+
+/* ----- Acessibilidade ----- */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--mg-cyan);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+.mg-visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ----- Controles do runtime (reset, legenda "como ler") ----- */
+.mg-reset-btn {
+  font: inherit; cursor: pointer;
+  border: 1px solid var(--mg-line-strong);
+  background: var(--mg-bg-soft); color: var(--mg-navy-700);
+  border-radius: 8px; padding: 6px 12px; font-weight: 600; font-size: 12.5px;
+}
+.mg-reset-btn:hover { border-color: var(--mg-cyan); }
+.mg-howto {
+  font-size: 12px; color: var(--mg-muted); margin: 6px 0 0; line-height: 1.5;
+}
+
+/* ----- Base responsiva (vale para todos, mesmo sem media query própria) ----- */
+img, canvas, svg, iframe, table { max-width: 100%; }
+canvas { height: auto; }
+@media (max-width: 640px) {
+  body { font-size: 15px; }
+}
+</style>
+<script id="mg-runtime">
+/* mg-lab.js — runtime compartilhado dos labs interativos MGenética.
+   Fonte única, injetado inline. Fornece:
+   - MG: tokens de cor (lidos do CSS) para o canvas usar e reagir ao tema.
+   - tema/idioma via ?theme=&lang= e via postMessage do site (iframe).
+   - auto-resize: reporta a altura ao parent (postMessage).
+   - i18n t(key) lendo <script type="application/json" id="i18n">.
+   - hook de reset ("voltar ao exemplo"). Tudo offline, sem dependências. */
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  var TOKENS = {
+    ink: "--mg-ink", navy7: "--mg-navy-700", navy9: "--mg-navy-900",
+    cyan: "--mg-cyan", cyanSoft: "--mg-cyan-soft", mid: "--mg-mid", muted: "--mg-muted",
+    bg: "--mg-bg", bgSoft: "--mg-bg-soft", bgTint: "--mg-bg-tint",
+    line: "--mg-line", lineStrong: "--mg-line-strong",
+    gold: "--mg-gold", goldSoft: "--mg-gold-soft", goldBorder: "--mg-gold-border", goldInk: "--mg-gold-ink",
+    red: "--mg-red", redSoft: "--mg-red-soft"
+  };
+  var MG = {};
+  window.MG = MG; // canvas usa MG.ink, MG.cyan, ...
+
+  function readPalette() {
+    var cs = getComputedStyle(root);
+    for (var k in TOKENS) MG[k] = cs.getPropertyValue(TOKENS[k]).trim();
+  }
+
+  function params() {
+    try { return new URLSearchParams(location.search); } catch (e) { return new URLSearchParams(); }
+  }
+
+  // ---- tema -------------------------------------------------------------
+  function setTheme(theme) {
+    if (theme === "dark" || theme === "light") root.setAttribute("data-theme", theme);
+    else root.removeAttribute("data-theme"); // auto = segue o sistema/host
+    readPalette();
+    window.dispatchEvent(new CustomEvent("mg:themechange", { detail: { palette: MG } }));
+  }
+  // reage a mudança do sistema quando em modo auto
+  try {
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    mq.addEventListener("change", function () {
+      if (!root.hasAttribute("data-theme")) { readPalette(); window.dispatchEvent(new CustomEvent("mg:themechange", { detail: { palette: MG } })); }
+    });
+  } catch (e) {}
+
+  // ---- i18n -------------------------------------------------------------
+  var DICT = {};
+  var LANG = "pt-BR";
+  function loadDict() {
+    var el = document.getElementById("i18n");
+    if (!el) return;
+    try { DICT = JSON.parse(el.textContent) || {}; } catch (e) { DICT = {}; }
+  }
+  function t(key) {
+    var l = DICT[LANG] || {};
+    if (key in l) return l[key];
+    var base = DICT["pt-BR"] || {};
+    return key in base ? base[key] : key;
+  }
+  function setLang(lang) {
+    if (DICT[lang]) LANG = lang;
+    root.setAttribute("lang", LANG);
+    document.querySelectorAll("[data-i18n]").forEach(function (n) {
+      n.textContent = t(n.getAttribute("data-i18n"));
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (n) {
+      n.setAttribute("aria-label", t(n.getAttribute("data-i18n-aria")));
+    });
+    window.dispatchEvent(new CustomEvent("mg:langchange", { detail: { lang: LANG } }));
+  }
+  window.MGi18n = { t: t, lang: function () { return LANG; } };
+
+  // ---- auto-resize (reporta altura ao iframe pai) -----------------------
+  var lastH = 0, raf = 0;
+  function reportHeight() {
+    var h = Math.ceil(document.documentElement.getBoundingClientRect().height);
+    if (h && h !== lastH) {
+      lastH = h;
+      try { parent.postMessage({ type: "mg-lab-height", id: document.title || "", height: h }, "*"); } catch (e) {}
+    }
+  }
+  function scheduleReport() { cancelAnimationFrame(raf); raf = requestAnimationFrame(reportHeight); }
+
+  // ---- mensagens do site (host controla tema/idioma) --------------------
+  window.addEventListener("message", function (ev) {
+    var d = ev && ev.data; if (!d || typeof d !== "object") return;
+    if (d.type === "mg-set-theme") setTheme(d.theme);
+    if (d.type === "mg-set-lang") setLang(d.lang);
+  });
+
+  // ---- reset ("voltar ao exemplo") --------------------------------------
+  document.addEventListener("click", function (ev) {
+    var b = ev.target.closest && ev.target.closest("[data-mg-reset]");
+    if (b && typeof window.MGReset === "function") { ev.preventDefault(); window.MGReset(); }
+  });
+
+  // ---- boot -------------------------------------------------------------
+  function boot() {
+    readPalette();
+    loadDict();
+    var p = params();
+    var th = p.get("theme"); if (th) setTheme(th); else readPalette();
+    var lg = p.get("lang"); setLang(lg || LANG);
+    if (window.ResizeObserver) new ResizeObserver(scheduleReport).observe(document.documentElement);
+    window.addEventListener("load", scheduleReport);
+    window.addEventListener("mg:themechange", scheduleReport);
+    setTimeout(reportHeight, 60);
+  }
+  // popula MG imediatamente (o <style> do lab já foi parseado), para o canvas
+  // do lab ver as cores certas mesmo se desenhar antes do DOMContentLoaded.
+  readPalette();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+</script>
+<!-- MG-RUNTIME:end -->
 </head>
 <body>
 <div class="page">
