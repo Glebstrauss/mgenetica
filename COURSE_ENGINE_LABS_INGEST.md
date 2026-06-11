@@ -55,14 +55,17 @@ conteúdo atual.
 ## Validação executada
 
 ```bash
+cd frontend
+npm ci
 npm test
 npm run build
-Rscript scripts/prepublish_site_check.R
-python scripts/validate_mgenetica_integration.py --target /Users/glebstrauss/git-it --package /Users/glebstrauss/git-it/course-engine-admin/mgenetica-admin-package-validation
+cd ../backend
+npm ci
+npm test
 ```
 
 Observações:
 
-- `npm run build` passa, mas o Node local é `22.3.0`; Vite 7 recomenda `20.19+` ou `22.12+`.
-- `prepublish_site_check.R` passou. O render Quarto foi pulado porque `quarto` não está no
-  `PATH` local.
+- Validação atual executada com Node `24.16.0`.
+- A branch fica empilhada sobre `codex/mgenetica-current-site-consultoria`; revise/merge essa
+  PR antes desta para evitar duplicação visual no diff.
