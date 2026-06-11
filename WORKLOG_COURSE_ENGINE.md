@@ -1,5 +1,28 @@
 # WORKLOG_COURSE_ENGINE.md
 
+## 2026-06-11
+
+### Feito
+
+- Rebase da PR `docs/course-engine-integration` sobre `codex/mgenetica-current-site-consultoria`.
+- Resolvido conflito antigo de `AGENTS.md` mantendo `frontend/` como fonte vigente do site e isolando regras do course-engine.
+- Alterada base da PR #7 para `codex/mgenetica-current-site-consultoria`, removendo diff duplicado contra `main`.
+- Simulado merge da PR #7 com a PR #10 atualizada; sem conflitos nas duas ordens.
+
+### Não feito
+
+- Nenhum merge na `main`.
+- Nenhuma publicação do site.
+- Nenhuma alteração no pacote de labs.
+
+### Validação local
+
+- `npm ci` em `frontend/` e `backend/`.
+- `npm test` em `frontend/`: 6 testes aprovados.
+- `npm run build` em `frontend/`: build Vite aprovado.
+- `npm test` em `backend/`: 3 testes aprovados.
+- Varredura de termos legados do site antigo: sem ocorrências.
+
 ## 2026-05-20
 
 ### Feito
