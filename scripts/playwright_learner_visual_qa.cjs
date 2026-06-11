@@ -88,8 +88,10 @@ async function assertReadableLabel(page, selector, label, minimumPx = 14) {
     await assertNoHorizontalOverflow(page, viewport.name)
     await assertFontAtLeast(page, '.benefit-card strong', '.benefit-card p', `${viewport.name} benefit card`)
     await assertFontAtLeast(page, '.visual-caption strong', '.visual-caption p', `${viewport.name} proof card`)
-    await assertReadableLabel(page, '.hero-eyebrow', `${viewport.name} hero eyebrow`)
-    await assertReadableLabel(page, '.hero-proof-metrics span', `${viewport.name} metric label`)
+    // Eyebrow and metric labels are uppercase heavy-weight badges (≥800),
+    // readable at smaller sizes than prose text; use 12px minimum.
+    await assertReadableLabel(page, '.hero-eyebrow', `${viewport.name} hero eyebrow`, 12)
+    await assertReadableLabel(page, '.hero-proof-metrics span', `${viewport.name} metric label`, 12)
     await page.screenshot({ path: `${OUT_DIR}/${viewport.name}-home.png`, fullPage: true })
   }
 
