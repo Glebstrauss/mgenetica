@@ -15,9 +15,11 @@ Using Appwrite with the frontend
    - `submitQuiz()`
 6. Production deploy checklist:
    - keep the GitHub Pages frontend deployment aligned with the built artifact
-   - register `https://mgenetica.github.io/mgenetica/` in Appwrite Web Platforms
+   - set the Pages custom domain to `www.mgenetica.com`
+   - register `www.mgenetica.com` in Appwrite Web Platforms
    - confirm cookie/session auth works from the published Pages host
    - confirm `APPWRITE_API_KEY` and `APPWRITE_PROJECT_ID` exist for function deploy workflow
+   - backend audit and real-login smokes accept `APPWRITE_API_KEY`, `APPWRITE_ADMIN_API_KEY`, or `APPWRITE_FUNCTION_API_KEY`
 7. Admin panel runtime requirements:
    - configure `ADMIN_EMAILS` in live `mgenetica_admin_fn` variables with allowed admin e-mails
    - configure `APPWRITE_ADMIN_API_KEY` in live `mgenetica_admin_fn` variables for admin summary mode

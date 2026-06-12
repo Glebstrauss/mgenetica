@@ -18,6 +18,11 @@ Cloud function variables used by this repo:
 - `APPWRITE_API_KEY`: accepted fallback key name in `mgenetica_admin_fn` when dedicated admin key is not set
 - `APPWRITE_ADMIN_API_KEY`, `APPWRITE_API_KEY`, or scoped `APPWRITE_FUNCTION_API_KEY` is required by `mgenetica_progress_fn` because learner progress is persisted in Appwrite user prefs from the server side
 
+GitHub Actions deploy notes:
+- `.github/workflows/appwrite-deploy.yml` uses `APPWRITE_API_KEY` and `APPWRITE_PROJECT_ID` to push functions.
+- Appwrite CLI 22 stores API keys under the current CLI session. Fresh CI runners have no session, so the workflow writes a minimal `~/.appwrite/prefs.json` session before `appwrite push functions` and removes it in an `if: always()` cleanup step.
+- `pages-frontend.yml` accepts `APPWRITE_API_KEY`, `APPWRITE_ADMIN_API_KEY`, or `APPWRITE_FUNCTION_API_KEY` for backend audit and real-login smoke scripts.
+
 Current live behavior:
 - learner account creation/login works with Appwrite account REST calls
 - learner functions execute for authenticated users

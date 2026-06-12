@@ -43,7 +43,7 @@ jobs:
       - name: Build frontend for Pages
         working-directory: frontend
         env:
-          VITE_APP_BASE: /mgenetica/
+          VITE_APP_BASE: /
           VITE_APPWRITE_ENDPOINT: https://fra.cloud.appwrite.io/v1
           VITE_APPWRITE_PROJECT_ID: 6a0b2fc1001c380eeb26
           VITE_APPWRITE_FUNCTION_COURSES_ID: ${{ vars.VITE_APPWRITE_FUNCTION_COURSES_ID || 'mgenetica_courses_fn' }}
@@ -51,7 +51,7 @@ jobs:
           VITE_APPWRITE_FUNCTION_PROGRESS_ID: ${{ vars.VITE_APPWRITE_FUNCTION_PROGRESS_ID || 'mgenetica_progress_fn' }}
           VITE_APPWRITE_FUNCTION_AUTH_ID: ${{ vars.VITE_APPWRITE_FUNCTION_AUTH_ID || 'mgenetica_auth_fn' }}
           VITE_APPWRITE_FUNCTION_ADMIN_ID: ${{ vars.VITE_APPWRITE_FUNCTION_ADMIN_ID || 'mgenetica_admin_fn' }}
-          VITE_PUBLIC_SITE_URL: https://mgenetica.github.io/mgenetica/
+          VITE_PUBLIC_SITE_URL: https://www.mgenetica.com/
           VITE_ADMIN_EMAILS: ${{ vars.VITE_ADMIN_EMAILS || '' }}
         run: npm run build
       - name: Upload Pages artifact
@@ -70,18 +70,24 @@ jobs:
           DEPLOYED_URL: ${{ steps.deployment.outputs.page_url }}
         run: node scripts/smoke_learner_routes.mjs "$DEPLOYED_URL"
       - name: Smoke Appwrite runtime
+        env:
+          APPWRITE_ORIGIN: https://www.mgenetica.com
         run: node scripts/smoke_appwrite_runtime.mjs
       - name: Audit Appwrite backend
         env:
           APPWRITE_ENDPOINT: ${{ vars.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1' }}
           APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
-          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+          APPWRITE_ORIGIN: https://www.mgenetica.com
+          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY || secrets.APPWRITE_ADMIN_API_KEY }}
+          APPWRITE_ADMIN_API_KEY: ${{ secrets.APPWRITE_ADMIN_API_KEY || secrets.APPWRITE_API_KEY }}
         run: node scripts/audit_appwrite_backend.mjs
       - name: Smoke real Appwrite login
         env:
           APPWRITE_ENDPOINT: ${{ vars.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1' }}
           APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
-          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+          APPWRITE_ORIGIN: https://www.mgenetica.com
+          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY || secrets.APPWRITE_ADMIN_API_KEY }}
+          APPWRITE_ADMIN_API_KEY: ${{ secrets.APPWRITE_ADMIN_API_KEY || secrets.APPWRITE_API_KEY }}
           APPWRITE_SMOKE_EMAIL: ${{ secrets.APPWRITE_SMOKE_EMAIL || '' }}
           APPWRITE_SMOKE_PASSWORD: ${{ secrets.APPWRITE_SMOKE_PASSWORD || '' }}
         run: node scripts/smoke_appwrite_real_login.mjs

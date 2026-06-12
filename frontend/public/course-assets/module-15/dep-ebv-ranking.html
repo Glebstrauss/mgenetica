@@ -142,11 +142,11 @@
     {name:'C',obs:100,env:0, cor:100,ebv:-4, dep:-2, acc:0.70},
   ];
   const explains={
-    obs:'<strong style="color:var(--yellow)">Fenótipo observado</strong> — nota bruta sem ajustes. Inclui efeito de ambiente.',
-    cor:'<strong style="color:var(--yellow)">Fenótipo corrigido</strong> — remove o efeito ambiental conhecido. Mais justo que o bruto.',
-    ebv:'<strong style="color:var(--yellow)">EBV</strong> — Valor genético estimado. Estima o mérito genético aditivo do garanhão para transmissão à progênie.',
-    dep:'<strong style="color:var(--yellow)">DEP</strong> — Diferença esperada na progênie (EBV/2). Indica quanto os filhos devem estar acima da base, em média.',
-    acc:'<strong style="color:var(--yellow)">Acurácia</strong> — Confiança na estimativa. Acurácia alta não significa animal bom; significa que o EBV é mais estável.',
+    obs:{label:'Fenótipo observado',copy:'nota bruta sem ajustes. Inclui efeito de ambiente.'},
+    cor:{label:'Fenótipo corrigido',copy:'remove o efeito ambiental conhecido. Mais justo que o bruto.'},
+    ebv:{label:'EBV',copy:'Valor genético estimado. Estima o mérito genético aditivo do garanhão para transmissão à progênie.'},
+    dep:{label:'DEP',copy:'Diferença esperada na progênie (EBV/2). Indica quanto os filhos devem estar acima da base, em média.'},
+    acc:{label:'Acurácia',copy:'Confiança na estimativa. Acurácia alta não significa animal bom; significa que o EBV é mais estável.'},
   };
   const interpMain={
     obs:'Ordenando por fenótipo observado: A lidera (112), mas 8 pontos vêm do ambiente. Este ranking favorece animais criados em melhores condições.',
@@ -162,26 +162,68 @@
     const btn=[...document.querySelectorAll('.btn')].find(b=>b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+key+"'"));
     if(btn) btn.classList.add('active');
     ['obs','cor','ebv','dep'].forEach(k=>{const th=document.getElementById('th-'+k);if(th)th.classList.toggle('sort-active',k===key);});
-    if(explains[key]) document.getElementById('crit-explain').innerHTML=explains[key];
+    if(explains[key]) {
+      const explanation=document.getElementById('crit-explain');
+      explanation.replaceChildren();
+      const label=document.createElement('strong');
+      label.style.color='var(--yellow)';
+      label.textContent=explains[key].label;
+      explanation.appendChild(label);
+      explanation.appendChild(document.createTextNode(' — '+explains[key].copy));
+    }
     if(interpMain[key]) document.getElementById('interp-main').textContent=interpMain[key];
     render();
   }
   function accColor(a){return a>=0.8?'#6ee7b7':a>=0.6?'#fcd34d':'#f9a8d4';}
+  function appendCell(row, text, style){
+    const td=document.createElement('td');
+    td.textContent=String(text);
+    if(style) td.setAttribute('style',style);
+    row.appendChild(td);
+    return td;
+  }
   function render(){
     const sorted=[...data].sort((a,b)=>{
       if(currentSort==='name') return sortDir*(a.name<b.name?-1:1);
       return sortDir*(b[currentSort]-a[currentSort]);
     });
-    const tbody=document.getElementById('rank-body'); tbody.innerHTML='';
-    const badges=['<span class="rank-badge badge-1">1</span>','<span class="rank-badge badge-2">2</span>','<span class="rank-badge badge-3">3</span>'];
+    const tbody=document.getElementById('rank-body'); tbody.replaceChildren();
     sorted.forEach((row,i)=>{
       const tr=document.createElement('tr');
       if(i===0) tr.className='winner'; if(i===1) tr.className='second';
       const envStr=row.env===0?'0':(row.env>0?'+'+row.env:row.env);
       const envCol=row.env>0?'#6ee7b7':(row.env<0?'#f9a8d4':'#8892a4');
       const ebvCol=row.ebv>0?'#6ee7b7':(row.ebv<0?'#f9a8d4':'#8892a4');
-      tr.innerHTML=badges[i]+'</td><td style="font-weight:700;font-size:1rem">'+row.name+'</td><td style="font-family:monospace">'+row.obs+'</td><td style="font-family:monospace;color:'+envCol+'">'+envStr+'</td><td style="font-family:monospace;font-weight:600">'+row.cor+'</td><td style="font-family:monospace;font-weight:700;color:'+ebvCol+';font-size:1rem">'+(row.ebv>0?'+'+row.ebv:row.ebv)+'</td><td style="font-family:monospace;color:'+ebvCol+'">'+(row.dep>0?'+'+row.dep:row.dep)+'</td><td><div class="acc-bar"><div class="acc-track"><div class="acc-fill" style="width:'+row.acc*100+'%;background:'+accColor(row.acc)+'"></div></div><span class="acc-val" style="color:'+accColor(row.acc)+'">'+row.acc.toFixed(2)+'</span></div></td>';
-      tr.innerHTML='<td>'+tr.innerHTML;
+      const rankCell=document.createElement('td');
+      const badge=document.createElement('span');
+      badge.className='rank-badge badge-'+(i+1);
+      badge.textContent=String(i+1);
+      rankCell.appendChild(badge);
+      tr.appendChild(rankCell);
+      appendCell(tr,row.name,'font-weight:700;font-size:1rem');
+      appendCell(tr,row.obs,'font-family:monospace');
+      appendCell(tr,envStr,'font-family:monospace;color:'+envCol);
+      appendCell(tr,row.cor,'font-family:monospace;font-weight:600');
+      appendCell(tr,row.ebv>0?'+'+row.ebv:row.ebv,'font-family:monospace;font-weight:700;color:'+ebvCol+';font-size:1rem');
+      appendCell(tr,row.dep>0?'+'+row.dep:row.dep,'font-family:monospace;color:'+ebvCol);
+      const accCell=document.createElement('td');
+      const accBar=document.createElement('div');
+      accBar.className='acc-bar';
+      const accTrack=document.createElement('div');
+      accTrack.className='acc-track';
+      const accFill=document.createElement('div');
+      accFill.className='acc-fill';
+      accFill.style.width=(row.acc*100)+'%';
+      accFill.style.background=accColor(row.acc);
+      const accVal=document.createElement('span');
+      accVal.className='acc-val';
+      accVal.style.color=accColor(row.acc);
+      accVal.textContent=row.acc.toFixed(2);
+      accTrack.appendChild(accFill);
+      accBar.appendChild(accTrack);
+      accBar.appendChild(accVal);
+      accCell.appendChild(accBar);
+      tr.appendChild(accCell);
       tbody.appendChild(tr);
     });
   }

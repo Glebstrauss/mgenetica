@@ -165,7 +165,7 @@
 <script>
   function fmt(v,d=2){return v.toFixed(d).replace('.',',');}
   function buildBars(){
-    const el=document.getElementById('pop-bars'); el.innerHTML='';
+    const el=document.getElementById('pop-bars'); el.replaceChildren();
     for(let i=0;i<30;i++){
       const d=document.createElement('div');
       d.className='pop-bar '+(i>=24?'selected':'unselected');

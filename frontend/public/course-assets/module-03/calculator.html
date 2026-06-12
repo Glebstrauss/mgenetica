@@ -179,7 +179,7 @@
     fill.style.width=(p*100).toFixed(1)+'%';
     fill.textContent=p>0.1?'p':'';
     // éguas
-    const mg=document.getElementById('mare-grid'); mg.innerHTML='';
+    const mg=document.getElementById('mare-grid'); mg.replaceChildren();
     [['AA',nAA],['Aa',nAa],['aa',naa]].forEach(([gt,n])=>{
       for(let i=0;i<n;i++){
         const d=document.createElement('div');
@@ -187,7 +187,7 @@
       }
     });
     // chips
-    const cc=document.getElementById('chips-calc'); cc.innerHTML='';
+    const cc=document.getElementById('chips-calc'); cc.replaceChildren();
     const chips=[...Array(totA).fill('A'),...Array(tota).fill('a')];
     chips.sort(()=>Math.random()-.5);
     chips.forEach(c=>{

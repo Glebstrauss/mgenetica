@@ -4,11 +4,15 @@ import crypto from 'node:crypto'
 
 const endpoint = process.env.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1'
 const projectId = process.env.APPWRITE_PROJECT_ID || '6a0b2fc1001c380eeb26'
-const apiKey = process.env.APPWRITE_API_KEY || ''
+const apiKey =
+  process.env.APPWRITE_API_KEY ||
+  process.env.APPWRITE_ADMIN_API_KEY ||
+  process.env.APPWRITE_FUNCTION_API_KEY ||
+  ''
 const origin = process.env.APPWRITE_ORIGIN || 'https://mgenetica.github.io'
 
 if (!apiKey) {
-  console.log('Skipping real login smoke: APPWRITE_API_KEY is not available.')
+  console.log('Skipping real login smoke: APPWRITE_API_KEY, APPWRITE_ADMIN_API_KEY, or APPWRITE_FUNCTION_API_KEY is not available.')
   process.exit(0)
 }
 
@@ -56,6 +60,11 @@ async function appwriteRequest(pathname, { method = 'GET', body, cookie, admin =
     },
     body: body ? JSON.stringify(body) : undefined
   })
+  if (!response.ok) {
+    console.error(`Request to ${pathname} failed: ${response.status} ${response.statusText}`)
+    console.error(`Project ID: ${projectId}`)
+    console.error(`Endpoint: ${endpoint}`)
+  }
   const data = await readJson(response)
   return { response, data }
 }

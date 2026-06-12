@@ -23,14 +23,32 @@ jobs:
           fi
       - name: Install Appwrite CLI
         run: npm install -g appwrite-cli
-      - name: Configure Appwrite client
+      - name: Configure Appwrite CLI prefs
         env:
           APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+          APPWRITE_ENDPOINT: ${{ vars.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1' }}
+          APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
         run: |
-          appwrite client \
-            --endpoint "${{ vars.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1' }}" \
-            --project-id "${{ secrets.APPWRITE_PROJECT_ID }}" \
-            --key "$APPWRITE_API_KEY"
+          mkdir -p "$HOME/.appwrite"
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+
+          const prefsPath = path.join(process.env.HOME, '.appwrite', 'prefs.json');
+          const sessionId = 'ci-api-key';
+          const prefs = {
+            current: sessionId,
+            [sessionId]: {
+              endpoint: process.env.APPWRITE_ENDPOINT,
+              project: process.env.APPWRITE_PROJECT_ID,
+              key: process.env.APPWRITE_API_KEY,
+              selfSigned: false,
+              mode: 'default'
+            }
+          };
+
+          fs.writeFileSync(prefsPath, JSON.stringify(prefs, null, 2), { mode: 0o600 });
+          NODE
       - name: Push functions
         working-directory: appwrite
         run: appwrite push functions --all --force --activate true
@@ -156,3 +174,6 @@ jobs:
       - name: Re-activate functions after variable sync
         working-directory: appwrite
         run: appwrite push functions --all --force --activate true
+      - name: Remove Appwrite CLI prefs
+        if: always()
+        run: rm -f "$HOME/.appwrite/prefs.json"
