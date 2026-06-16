@@ -8,7 +8,7 @@ export default function AppHeader({ brandName, brandTagline, status, locale, onL
     <header className={['app-header', className].filter(Boolean).join(' ')}>
       <BrandElement className="header-brand" href={homeHref} aria-label={homeHref ? t('common.home') : undefined}>
         <div className="brand-logo">
-          <img src={BRAND_LOGO_URL} alt={t('common.brandName')} width="60" height="60" />
+          <img src={BRAND_LOGO_URL} alt={t('common.brandName')} width="72" height="72" />
         </div>
         <div className="brand-info">
           <div className="brand-name">{brandName}</div>

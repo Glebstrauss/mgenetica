@@ -3166,12 +3166,13 @@ h3,
   --type-body: 0.98rem;
   --type-label: 0.9rem;
   --type-small: 0.9rem;
-  --header-logo-box: 66px;
-  --header-logo-mark: 60px;
+  --header-logo-box: 78px;
+  --header-logo-mark: 72px;
+  --hero-proof-logo-mark: 40px;
 }
 
 .app-header {
-  min-height: 82px;
+  min-height: 94px;
 }
 
 .brand-logo {
@@ -3193,6 +3194,22 @@ h3,
 .brand-tagline {
   font-size: 0.86rem;
   line-height: 1.28;
+}
+
+.hero-proof-mark {
+  min-height: 54px;
+  gap: 12px;
+  padding: 8px 16px;
+}
+
+.hero-proof-mark img {
+  width: var(--hero-proof-logo-mark);
+  height: var(--hero-proof-logo-mark);
+  object-fit: contain;
+}
+
+.hero-proof-mark span {
+  font-size: 0.92rem;
 }
 
 .section-label,
@@ -3264,8 +3281,9 @@ h3,
     --type-body: 0.96rem;
     --type-label: 0.88rem;
     --type-small: 0.88rem;
-    --header-logo-box: 58px;
-    --header-logo-mark: 52px;
+    --header-logo-box: 70px;
+    --header-logo-mark: 64px;
+    --hero-proof-logo-mark: 36px;
   }
 
   .app-shell {
