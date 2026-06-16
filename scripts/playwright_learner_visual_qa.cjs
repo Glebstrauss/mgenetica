@@ -85,6 +85,19 @@ async function assertReadableLabel(page, selector, label, minimumPx = 14) {
   console.log(`OK label size ${label}: ${size.toFixed(1)}px`)
 }
 
+async function box(page, selector) {
+  return page.locator(selector).first().boundingBox()
+}
+
+async function assertBoxBetween(page, selector, label, minWidth, maxWidth, minHeight, maxHeight) {
+  const rect = await box(page, selector)
+  if (!rect) throw new Error(`${label} missing: ${selector}`)
+  if (rect.width < minWidth || rect.width > maxWidth || rect.height < minHeight || rect.height > maxHeight) {
+    throw new Error(`${label} size out of range: ${selector}=${rect.width.toFixed(1)}x${rect.height.toFixed(1)}px`)
+  }
+  console.log(`OK size ${label}: ${rect.width.toFixed(1)}x${rect.height.toFixed(1)}px`)
+}
+
 (async () => {
   const fs = require('node:fs')
   fs.mkdirSync(OUT_DIR, { recursive: true })
@@ -98,6 +111,9 @@ async function assertReadableLabel(page, selector, label, minimumPx = 14) {
     await assertVisible(page, '#main-content', `${viewport.name} main`)
     await assertVisible(page, '.hero-headline, h1', `${viewport.name} headline`)
     await assertNoHorizontalOverflow(page, viewport.name)
+    await assertBoxBetween(page, '.brand-logo img', `${viewport.name} header logo`, viewport.name === 'mobile' ? 52 : 60, 64, viewport.name === 'mobile' ? 52 : 60, 64)
+    await assertBoxBetween(page, '.app-header', `${viewport.name} header`, 300, viewport.width, 82, viewport.name === 'mobile' ? 250 : 104)
+    await assertBoxBetween(page, '.header-actions .btn, .hero-cta .btn', `${viewport.name} action button`, 42, 260, 42, 58)
     await assertFontAtLeast(page, '.benefit-card strong', '.benefit-card p', `${viewport.name} benefit card`)
     await assertFontAtLeast(page, '.visual-caption strong', '.visual-caption p', `${viewport.name} proof card`)
     // Eyebrow and metric labels are uppercase heavy-weight badges (≥800),
