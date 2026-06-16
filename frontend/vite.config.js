@@ -7,8 +7,12 @@ export default defineConfig({
     chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
-        manualChunks: {
-          appwrite: ['appwrite']
+        manualChunks(id) {
+          if (id.includes('/node_modules/appwrite/')) {
+            return 'appwrite'
+          }
+
+          return undefined
         }
       }
     }

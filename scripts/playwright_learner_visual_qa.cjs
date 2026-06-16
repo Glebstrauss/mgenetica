@@ -1,6 +1,18 @@
 #!/usr/bin/env node
 
-const { chromium } = require('playwright')
+const { createRequire } = require('node:module')
+const { join } = require('node:path')
+
+function loadPlaywright() {
+  try {
+    return require('playwright')
+  } catch (error) {
+    if (error.code !== 'MODULE_NOT_FOUND') throw error
+    return createRequire(join(__dirname, '..', 'frontend', 'package.json'))('playwright')
+  }
+}
+
+const { chromium } = loadPlaywright()
 
 const TARGET_URL = process.env.TARGET_URL || process.argv[2] || 'http://localhost:4177/mgenetica/'
 const OUT_DIR = process.env.PLAYWRIGHT_OUT_DIR || '/tmp/mgenetica-learner-qa'

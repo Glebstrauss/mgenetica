@@ -3234,4 +3234,46 @@ h3,
     --type-label: 0.88rem;
     --type-small: 0.88rem;
   }
+
+  .app-shell {
+    padding: 12px;
+  }
+
+  .hero-shell {
+    padding: 16px;
+    overflow: visible;
+  }
+
+  .hero-main {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .hero-copy-card,
+  .hero-brand-card,
+  .hero-cta {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero-copy-card {
+    padding: 0;
+  }
+
+  .hero-brand-card {
+    padding: 18px;
+    min-height: 0;
+  }
+
+  .hero-cta {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-eyebrow {
+    max-width: 100%;
+  }
+
+  .hero-proof-metrics {
+    grid-template-columns: 1fr;
+  }
 }

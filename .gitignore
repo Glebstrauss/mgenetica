@@ -24,7 +24,7 @@ build/
 /data/modulo*_simulado.csv
 /mgenetica-course-visual-artifacts-*/
 
-# Logs and temporary files
+# Logs, temporary files and local tool state
 *.log
 *.tmp
 *.temp
@@ -32,8 +32,10 @@ build/
 *.swp
 *.swo
 /.superpowers/
+/.opencode/
 /appwrite-logs.txt
 /appwrite.config.json
+/EMAIL_SERVER_AGENT_INSTRUCTIONS.md
 
 # Local planning and status notes kept out of the published repo surface
 /BACKLOG_SITE.md
