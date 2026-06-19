@@ -124,14 +124,23 @@ npm test
 npm run build
 ```
 
-Appwrite runtime smokes:
+Appwrite runtime smokes from the repository root:
 
 ```bash
 node scripts/smoke_appwrite_runtime.mjs
 node scripts/smoke_appwrite_real_login.mjs
+node scripts/smoke_appwrite_verification_request.mjs
 ```
 
-The real-login smoke skips safely when no Appwrite API key is available locally.
+From `frontend/`, use `node ../scripts/smoke_appwrite_runtime.mjs`, `node ../scripts/smoke_appwrite_real_login.mjs`, and `node ../scripts/smoke_appwrite_verification_request.mjs`. The real-login and verification-request smokes skip safely when no Appwrite API key is available locally.
+
+Secret scan:
+
+```bash
+node scripts/check_secrets.mjs
+```
+
+The scanner blocks committed Appwrite API key patterns and does not print matched values. CI runs it on push and pull request. To enable the local pre-commit hook, run `git config core.hooksPath .githooks`. If a key is exposed in terminal history, chat, or logs, rotate it in Appwrite before relying on it again.
 
 Public-site checks:
 
@@ -170,7 +179,7 @@ mgenetica/
 - The Quarto content remains available as editorial source and manual review output.
 - Appwrite is the production backend for auth, email verification, course data, quiz submission and progress.
 - Email verification is active through Appwrite `/account/verification`; catalog, course, quiz, progress and admin routes require `account.emailVerification === true`.
-- The latest Appwrite runtime smoke passed after function deployment; real-login smoke requires an Appwrite API key environment variable.
+- The latest Appwrite runtime and real-login smokes passed after function deployment; real-login smoke requires an Appwrite API key environment variable.
 - The admin panel requires `ADMIN_EMAILS` and `APPWRITE_ADMIN_API_KEY` on `mgenetica_admin_fn`; `APPWRITE_API_KEY` is accepted as fallback.
 
 ## Agent Scope
@@ -178,4 +187,5 @@ mgenetica/
 - Work on the correct front: public site or learner app.
 - Do not treat Quarto publication and learner-app publication as the same artifact.
 - Before publishing site changes, run `Rscript --vanilla scripts/prepublish_site_check.R`.
+- Run `node scripts/check_secrets.mjs` before committing changes that touch Appwrite, workflows, env examples, docs, or scripts.
 - Preserve existing local changes; do not revert files without an explicit request.

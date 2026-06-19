@@ -1,6 +1,7 @@
 ---
 title: "Plataforma do aluno"
-subtitle: "Experiência separada do site público"
+subtitle: "Acesso autenticado ao learner app"
+description: "Orientação pública sobre a plataforma MGenética: login, verificação de e-mail, módulos, quizzes e progresso com Appwrite."
 page-layout: article
 toc: false
 sidebar: false
@@ -13,29 +14,57 @@ Plataforma
 
 # Site público e plataforma do aluno são fronts diferentes
 
-O endereço público da MGenética em GitHub Pages continua sendo a camada editorial e institucional: módulos abertos, roteiro, certificado e páginas de apoio.
+A MGenética mantém duas camadas com papéis distintos:
 
-A plataforma do aluno fica em um app React separado, com autenticação e funções em Appwrite. Ela **não** é servida pela raiz do GitHub Pages.
+- **Site público:** apresentação editorial, módulos abertos, roteiro, certificado e páginas de apoio.
+- **Learner app:** experiência React autenticada, com login, verificação de e-mail, quizzes, progresso e funções em Appwrite.
+
+Hoje a raiz publicada em GitHub Pages entrega o learner app React. O conteúdo Quarto continua sendo a fonte editorial revisável deste site público.
 
 ## Estado atual
 
-- **Site público live:** [https://mgenetica.github.io/mgenetica/](https://mgenetica.github.io/mgenetica/)
-- **Learner app:** separado em `frontend/`, com deploy-alvo no Vercel
+- **URL pública:** [https://mgenetica.github.io/mgenetica/](https://mgenetica.github.io/mgenetica/)
+- **Domínio pretendido:** `https://www.mgenetica.com/`
+- **Learner app:** código em `frontend/`, publicado por GitHub Pages
 - **Backend da plataforma:** Appwrite (`https://fra.cloud.appwrite.io/v1`)
+- **Validação de usuário:** e-mail verificado antes de liberar catálogo, cursos, quizzes, progresso e admin
 
-## O que falta para a plataforma ficar live
+::: {.public-wayfinding role="navigation" aria-label="Como acessar a plataforma"}
+::: {.public-wayfinding-copy}
+**Como entrar**
 
-1. Configurar `VERCEL_TOKEN`, `VERCEL_ORG_ID` e `VERCEL_PROJECT_ID` no repositório.
-2. Publicar o learner app em um host Vercel de produção.
-3. Registrar esse host em **Appwrite Web Platforms** para liberar login, sessão e execução de funções no navegador.
+Use a plataforma para estudar com sessão autenticada. Contas novas devem confirmar o e-mail antes de acessar o conteúdo protegido.
+:::
 
-## Enquanto isso
+::: {.public-wayfinding-grid role="list" aria-label="Passos de acesso"}
+::: {.public-wayfinding-item role="listitem"}
+**Criar conta ou entrar**
 
-- Para estudar conteúdo aberto agora: [ver módulos](modules/index.qmd)
+Acesse o app publicado e faça login com e-mail e senha.
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Verificar e-mail**
+
+Abra o link enviado pelo Appwrite e conclua o callback `#/verify-email`.
+:::
+
+::: {.public-wayfinding-item role="listitem"}
+**Retomar estudo**
+
+Depois da verificação, use catálogo, módulos, quizzes e progresso.
+:::
+:::
+:::
+
+## Para estudar agora
+
+- Para entrar na plataforma publicada: [abrir learner app](https://mgenetica.github.io/mgenetica/){target="_blank" rel="noopener"}
+- Para consultar a trilha pública: [ver módulos](modules/index.qmd)
 - Para começar pela trilha pública: [abrir módulo 01](modules/modulo01-revisao-de-genetica-basica.qmd)
 
 ::: {.callout-note}
-## Importante
+## Operação
 
-Quando o host de produção da plataforma do aluno for configurado, esta página deve ser atualizada para apontar para a URL final do app.
+A configuração manual pendente está no Appwrite: provedor de e-mail, template de verificação e URLs de callback aceitas, incluindo `https://www.mgenetica.com/#verify-email` e ambiente local quando necessário.
 :::

@@ -16,6 +16,14 @@ test('buildRouteHash round-trips protected routes', () => {
 })
 
 test('parseRouteHash extracts email verification callback tokens', () => {
+  assert.deepEqual(parseRouteHash('#/verify-email?userId=user-123&secret=token-456'), {
+    screen: 'verify-email',
+    authMode: 'login',
+    selectedCourseId: null,
+    showQuiz: false,
+    verificationUserId: 'user-123',
+    verificationSecret: 'token-456',
+  })
   assert.deepEqual(parseRouteHash('#verify-email?userId=user-123&secret=token-456'), {
     screen: 'verify-email',
     authMode: 'login',
@@ -37,6 +45,15 @@ test('parseRouteHash extracts email verification callback tokens', () => {
 test('buildRouteHash supports email verification callback route', () => {
   assert.equal(buildRouteHash({ screen: 'verify-email', verificationUserId: 'user 123', verificationSecret: 'token/456' }), 'verify-email?userId=user+123&secret=token%2F456')
   assert.equal(buildRouteHash({ screen: 'verify-email' }), 'verify-email')
+})
+
+test('email verification route never requires an authenticated or verified session', () => {
+  const missingLink = parseRouteHash('#verify-email')
+  const callbackLink = parseRouteHash('#/verify-email?userId=user&secret=secret')
+  assert.equal(routeNeedsAuth(missingLink), false)
+  assert.equal(routeNeedsAuth(callbackLink), false)
+  assert.equal(routeNeedsVerifiedEmail(missingLink), false)
+  assert.equal(routeNeedsVerifiedEmail(callbackLink), false)
 })
 
 test('guard helpers classify access correctly', () => {

@@ -18,6 +18,7 @@ import {
   createAccount,
   createEmailVerification,
   completeEmailVerification,
+  deleteAllSessions,
   deleteSession,
   getAccount,
   updateAccountName,
@@ -31,6 +32,7 @@ import {
 const CoursePage = lazy(() => import('./CoursePage'))
 const Quiz = lazy(() => import('./Quiz'))
 let localCourseRowsPromise = null
+const RESEND_VERIFICATION_COOLDOWN_SECONDS = 60
 
 function loadLocalCourseRows() {
   if (!localCourseRowsPromise) {
@@ -313,16 +315,25 @@ function CatalogPage({ courseGroups, progressByCourse, progressSummary, isAdmin,
   )
 }
 
-function AccountPage({ user, courses, progressByCourse, progressSummary, isAdmin, onBack, onOpenCatalog, onOpenCourse, onOpenAdmin, onLogout, onUpdateProfile, onResendVerification, onRefreshUser, loadingAuth, locale, onLocaleChange, t }) {
+function AccountPage({ user, courses, progressByCourse, progressSummary, isAdmin, onBack, onOpenCatalog, onOpenCourse, onOpenAdmin, onLogout, onLogoutAll, onUpdateProfile, onResendVerification, onRefreshUser, loadingAuth, locale, onLocaleChange, t }) {
   const [name, setName] = useState(user?.name || '')
   const [saving, setSaving] = useState(false)
   const [verificationSaving, setVerificationSaving] = useState(false)
+  const [resendCooldown, setResendCooldown] = useState(0)
   const [message, setMessage] = useState('')
   const trackedCourses = courses.map((course) => ({ course, progress: progressByCourse?.[course.id] || null }))
+  const resendDisabled = verificationSaving || resendCooldown > 0
+  const resendLabel = resendCooldown > 0 ? t('verification.resendCooldown', { seconds: resendCooldown }) : t('verification.resendEmail')
 
   useEffect(() => {
     setName(user?.name || '')
   }, [user?.name])
+
+  useEffect(() => {
+    if (resendCooldown <= 0) return undefined
+    const timer = window.setTimeout(() => setResendCooldown((value) => Math.max(0, value - 1)), 1000)
+    return () => window.clearTimeout(timer)
+  }, [resendCooldown])
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -338,11 +349,12 @@ function AccountPage({ user, courses, progressByCourse, progressSummary, isAdmin
     }
   }
 
-  async function handleVerificationAction(action, successKey, fallbackKey) {
+  async function handleVerificationAction(action, successKey, fallbackKey, { cooldown = false } = {}) {
     setVerificationSaving(true)
     setMessage('')
     try {
       await action()
+      if (cooldown) setResendCooldown(RESEND_VERIFICATION_COOLDOWN_SECONDS)
       setMessage(t(successKey))
     } catch (err) {
       setMessage(err?.message || t(fallbackKey))
@@ -383,12 +395,25 @@ function AccountPage({ user, courses, progressByCourse, progressSummary, isAdmin
               <div className="callout-card" role="status" aria-live="polite">
                 <strong>{t('verification.requiredTitle')}</strong>
                 <p className="subtle" style={{ margin: '6px 0 0' }}>{t('verification.requiredCopy', { email: user?.email || '-' })}</p>
+                <p className="subtle" style={{ margin: '6px 0 0' }}>{t('verification.inboxGuidance')}</p>
                 <div className="section-cta" style={{ marginTop: 12 }}>
-                  <button type="button" className="btn btn-primary" disabled={verificationSaving} onClick={() => handleVerificationAction(onResendVerification, 'verification.emailSent', 'verification.emailSendError')}>{t('verification.resendEmail')}</button>
+                  <button type="button" className="btn btn-primary" disabled={resendDisabled} onClick={() => handleVerificationAction(onResendVerification, 'verification.emailSent', 'verification.emailSendError', { cooldown: true })}>{resendLabel}</button>
                   <button type="button" className="btn btn-secondary" disabled={verificationSaving} onClick={() => handleVerificationAction(onRefreshUser, 'verification.accountRefreshed', 'verification.refreshError')}>{t('verification.refreshStatus')}</button>
                 </div>
               </div>
             ) : null}
+            <div className="account-security-card">
+              <div>
+                <span className="section-label">{t('account.securityLabel')}</span>
+                <h2>{t('account.securityHeading')}</h2>
+                <p className="subtle">{t('account.securityCopy')}</p>
+              </div>
+              <div className="account-meta-grid compact">
+                <div><span>{t('account.emailVerified')}</span><strong>{user?.emailVerification ? t('account.yes') : t('account.no')}</strong></div>
+                <div><span>{t('account.currentSession')}</span><strong>{loadingAuth ? t('account.sessionChanging') : t('account.sessionActive')}</strong></div>
+              </div>
+              <button type="button" className="btn btn-secondary" onClick={onLogoutAll} disabled={loadingAuth}>{t('account.logoutAll')}</button>
+            </div>
             {message ? <div className="callout-card" role="status" aria-live="polite">{message}</div> : null}
             <div className="section-cta">
               <button type="submit" className="btn btn-primary" disabled={saving}><Icon name="check" size={16} />{saving ? t('account.saving') : t('account.saveProfile')}</button>
@@ -433,8 +458,13 @@ function AccountPage({ user, courses, progressByCourse, progressSummary, isAdmin
   )
 }
 
-function VerificationPage({ route, user, status, loading, onBack, onLogout, locale, onLocaleChange, t }) {
+function VerificationPage({ route, user, status, loading, state, onBack, onOpenAccount, onAuthIntent, onLogout, locale, onLocaleChange, t }) {
   const hasTokens = Boolean(route?.verificationUserId && route?.verificationSecret)
+  const isFailed = state === 'failed'
+  const isMissing = state === 'missing' || !hasTokens
+  const isSuccess = state === 'success'
+  const title = isFailed ? t('verification.failedTitle') : isMissing ? t('verification.missingTitle') : isSuccess ? t('verification.successTitle') : t('verification.processingTitle')
+  const copy = isFailed ? t('verification.failedCopy') : isMissing ? t('verification.missingCopy') : isSuccess ? t('verification.successCopy') : t('verification.processingCopy')
   return (
     <div className="app-shell">
       <SkipLink t={t} />
@@ -442,10 +472,20 @@ function VerificationPage({ route, user, status, loading, onBack, onLogout, loca
         <button type="button" className="btn btn-secondary" onClick={onBack}><Icon name="arrowLeft" size={16} />{t('common.back')}</button>
         {user ? <button type="button" className="btn btn-secondary" onClick={onLogout} disabled={loading}><Icon name="lock" size={16} />{t('common.logout')}</button> : null}
       </AppHeader>
-      <main id="main-content" className="content-section" tabIndex="-1" aria-busy={loading ? 'true' : undefined}>
+      <main id="main-content" className="content-section verification-panel" tabIndex="-1" aria-busy={loading ? 'true' : undefined}>
         <div className="section-label">{t('verification.label')}</div>
-        <h1 className="section-heading">{hasTokens ? t('verification.processingTitle') : t('verification.missingTitle')}</h1>
-        <p className="section-description">{hasTokens ? t('verification.processingCopy') : t('verification.missingCopy')}</p>
+        <h1 className="section-heading">{title}</h1>
+        <p className="section-description">{copy}</p>
+        {isFailed || isMissing ? (
+          <div className="callout-card" role="alert">
+            <strong>{t('verification.nextStepTitle')}</strong>
+            <p className="subtle" style={{ margin: '6px 0 0' }}>{t('verification.nextStepCopy')}</p>
+            <div className="section-cta" style={{ marginTop: 12 }}>
+              {user ? <button type="button" className="btn btn-primary" onClick={onOpenAccount}>{t('account.open')}</button> : <button type="button" className="btn btn-primary" onClick={() => onAuthIntent('login')}>{t('common.signIn')}</button>}
+              <button type="button" className="btn btn-secondary" onClick={onBack}>{t('common.home')}</button>
+            </div>
+          </div>
+        ) : null}
       </main>
     </div>
   )
@@ -498,6 +538,7 @@ export default function App() {
   const [verificationUserId, setVerificationUserId] = useState(initialRoute.verificationUserId || initialQueryParams?.get('userId') || '')
   const [verificationSecret, setVerificationSecret] = useState(initialRoute.verificationSecret || initialQueryParams?.get('secret') || '')
   const [verificationBusy, setVerificationBusy] = useState(false)
+  const [verificationState, setVerificationState] = useState('idle')
   const [statusState, setStatusState] = useState({ key: 'status.syncing' })
   const [adminReport, setAdminReport] = useState(null)
   const [adminStatus, setAdminStatus] = useState(null)
@@ -646,13 +687,13 @@ export default function App() {
     }
   }
 
-  async function activateAccount(account, successKey = 'status.loginSuccess') {
+  async function activateAccount(account, successKey = 'status.loginSuccess', nextScreen = 'home') {
     setUser(account)
     setAdminReport(null)
     if (account?.emailVerification) {
       await Promise.all([refreshProgress(account), refreshCourses(), refreshAdminAccess()])
       updateStatus(successKey)
-      navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false })
+      navigate({ screen: nextScreen, authMode: 'login', selectedCourseId: null, showQuiz: false })
     } else {
       setProgressReport(null)
       setAdminStatus(null)
@@ -664,8 +705,9 @@ export default function App() {
   async function handleLogin(payload) { setLoadingAuth(true); try { await createEmailSession(payload.email, payload.password); const account = await getAccount(); await activateAccount(account, 'status.loginSuccess') } finally { setLoadingAuth(false) } }
   async function handleSignup(payload) { setLoadingAuth(true); try { await createAccount(payload.email, payload.password, payload.name); await createEmailSession(payload.email, payload.password); const account = await getAccount(); setUser(account); await createEmailVerification(); setProgressReport(null); setAdminReport(null); setAdminStatus(null); await refreshCourses(); updateStatus('status.verificationEmailSent'); navigate({ screen: 'account', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
   async function handleLogout() { setLoadingAuth(true); try { await deleteSession(); setUser(null); setAdminReport(null); setAdminStatus(null); setProgressReport(null); setCatalogRows([]); setSelectedCourseRow(null); updateStatus('status.sessionClosed'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
+  async function handleLogoutAll() { setLoadingAuth(true); try { await deleteAllSessions(); setUser(null); setAdminReport(null); setAdminStatus(null); setProgressReport(null); setCatalogRows([]); setSelectedCourseRow(null); updateStatus('status.sessionClosed'); navigate({ screen: 'home', authMode: 'login', selectedCourseId: null, showQuiz: false }) } finally { setLoadingAuth(false) } }
   async function resendVerificationEmail() { await createEmailVerification(); updateStatus('status.verificationEmailSent') }
-  async function refreshCurrentAccount() { const account = await getAccount(); await activateAccount(account, account.emailVerification ? 'status.emailVerified' : 'status.verifyEmailRequired'); return account }
+  async function refreshCurrentAccount() { const account = await getAccount(); await activateAccount(account, account.emailVerification ? 'status.emailVerified' : 'status.verifyEmailRequired', account.emailVerification ? 'catalog' : 'account'); return account }
   function focusAuth(mode) { navigate({ screen: 'auth', authMode: mode, selectedCourseId: null, showQuiz: false }) }
   function requireVerifiedAccess(statusKey) { if (!user) { updateStatus(statusKey); return false } if (!emailVerified) { updateStatus('status.verifyEmailRequired'); navigate({ screen: 'account', authMode: 'login', selectedCourseId: null, showQuiz: false }); return false } return true }
   function openCatalog() { if (!requireVerifiedAccess('status.enterCourses')) return; navigate({ screen: 'catalog', authMode, selectedCourseId: null, showQuiz: false }) }
@@ -695,21 +737,24 @@ export default function App() {
   useEffect(() => {
     if (screen !== 'verify-email') return
     if (!verificationUserId || !verificationSecret) {
+      setVerificationState('missing')
       updateStatus('status.verificationMissing')
       return
     }
     let active = true
+    setVerificationState('processing')
     setVerificationBusy(true)
     updateStatus('status.verifyingEmail')
     ;(async () => {
       try {
         await completeEmailVerification(verificationUserId, verificationSecret)
         if (!active) return
+        setVerificationState('success')
         updateStatus('status.emailVerified')
         try {
           const account = await getAccount()
           if (!active) return
-          await activateAccount(account, 'status.emailVerified')
+          await activateAccount(account, 'status.emailVerified', 'catalog')
         } catch (_) {
           if (!active) return
           setUser(null)
@@ -718,7 +763,10 @@ export default function App() {
           navigate({ screen: 'auth', authMode: 'login', selectedCourseId: null, showQuiz: false })
         }
       } catch (err) {
-        if (active) updateStatus('status.verificationFailed')
+        if (active) {
+          setVerificationState('failed')
+          updateStatus('status.verificationFailed')
+        }
       } finally {
         if (active) setVerificationBusy(false)
       }
@@ -751,7 +799,7 @@ export default function App() {
     return <AuthPage user={null} status={status} authMode="login" loadingAuth={true} isAdmin={false} onAuthIntent={focusAuth} onLogin={handleLogin} onSignup={handleSignup} onLogout={handleLogout} onOpenCatalog={openCatalog} onOpenAccount={openAccount} onOpenAdmin={openAdmin} locale={locale} onLocaleChange={setLocale} t={t} errorMessages={errorMessages} />
   }
   if (screen === 'verify-email') {
-    return <VerificationPage route={currentRoute} user={user} status={status} loading={verificationBusy} onBack={goHome} onLogout={handleLogout} locale={locale} onLocaleChange={setLocale} t={t} />
+    return <VerificationPage route={currentRoute} user={user} status={status} loading={verificationBusy} state={verificationState} onBack={goHome} onOpenAccount={openAccount} onAuthIntent={focusAuth} onLogout={handleLogout} locale={locale} onLocaleChange={setLocale} t={t} />
   }
   if (showQuiz && user && emailVerified && selectedCourse) {
     return (
@@ -771,7 +819,7 @@ export default function App() {
     return <CatalogPage courseGroups={courseGroups} progressByCourse={progressByCourse} progressSummary={progressReport?.summary} isAdmin={adminEnabled} onBack={goHome} onOpenCourse={openCourse} onOpenAccount={openAccount} onOpenAdmin={openAdmin} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
   }
   if (screen === 'account' && user) {
-    return <AccountPage user={user} courses={catalogCourses} progressByCourse={progressByCourse} progressSummary={progressReport?.summary} isAdmin={adminEnabled} onBack={goHome} onOpenCatalog={openCatalog} onOpenCourse={openCourse} onOpenAdmin={openAdmin} onLogout={handleLogout} onUpdateProfile={handleUpdateProfile} onResendVerification={resendVerificationEmail} onRefreshUser={refreshCurrentAccount} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
+    return <AccountPage user={user} courses={catalogCourses} progressByCourse={progressByCourse} progressSummary={progressReport?.summary} isAdmin={adminEnabled} onBack={goHome} onOpenCatalog={openCatalog} onOpenCourse={openCourse} onOpenAdmin={openAdmin} onLogout={handleLogout} onLogoutAll={handleLogoutAll} onUpdateProfile={handleUpdateProfile} onResendVerification={resendVerificationEmail} onRefreshUser={refreshCurrentAccount} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />
   }
   if (screen === 'admin' && user && adminEnabled) {
     return <AdminPage user={user} status={status} report={adminReport} loading={loadingAdmin} onRefresh={runAdminChecks} onBack={goHome} onLogout={handleLogout} loadingAuth={loadingAuth} locale={locale} onLocaleChange={setLocale} t={t} />

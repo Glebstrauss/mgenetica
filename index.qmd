@@ -1,6 +1,7 @@
 ---
 title: "MGenética"
 subtitle: "Educação aplicada em melhoramento genético animal"
+description: "Curso aberto de melhoramento genético animal, genética quantitativa e genômica aplicada com módulos, scripts em R, dados simulados e interpretação técnica."
 page-layout: full
 toc: false
 sidebar: false
@@ -68,6 +69,62 @@ Use dados simulados e scripts em R para transformar conceito em evidência.
 Valide os quizzes e emita o certificado quando a trilha estiver completa.
 
 [Ver certificado](certificado.qmd){.entry-link aria-label="Abrir certificado"}
+:::
+:::
+
+::: {.home-output-standard role="region" aria-label="Padrão de entrega técnica da MGenética"}
+::: {.home-output-standard-copy}
+**Aprendizado verificável**
+
+Cada sessão deve terminar com uma evidência curta: conceito definido, cálculo reproduzido, regra interpretada ou decisão técnica justificada.
+:::
+
+::: {.home-output-standard-grid role="list" aria-label="Evidências esperadas"}
+::: {.home-output-standard-item role="listitem"}
+**Conceito operacional**
+
+Defina o termo sem perder o vínculo com seleção, população ou avaliação genética.
+:::
+
+::: {.home-output-standard-item role="listitem"}
+**Resultado reproduzível**
+
+Use dados simulados e scripts em R para conferir contas, gráficos e pressupostos.
+:::
+
+::: {.home-output-standard-item role="listitem"}
+**Decisão interpretada**
+
+Converta o resultado em implicação prática para acasalamento, ranking ou ganho genético.
+:::
+:::
+:::
+
+::: {.public-session-check .home-session-check role="region" aria-label="Como estudar uma sessão pública"}
+::: {.public-session-check-copy}
+**Sessão de 30 a 45 minutos**
+
+O site público funciona melhor como consulta orientada: leia o bloco, rode o trecho essencial e feche com uma decisão escrita em uma frase.
+:::
+
+::: {.public-session-check-grid role="list" aria-label="Roteiro de sessão"}
+::: {.public-session-check-item role="listitem"}
+**Antes**
+
+Escolha um módulo e uma pergunta técnica única.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Durante**
+
+Leia a explicação, execute o script e anote a saída relevante.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**Depois**
+
+Faça o quiz ou registre o critério de decisão para revisar depois.
+:::
 :::
 :::
 

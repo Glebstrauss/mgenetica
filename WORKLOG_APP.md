@@ -34,3 +34,16 @@ Closure verification:
 Documentation and Linear update:
 - Repository documentation was updated across the root README, learner README, Appwrite frontend guide, Appwrite operations README, and this worklog.
 - Linear project status was updated to record the delivered email verification gate, successful deploys, runtime smoke pass, and remaining optional real-login smoke dependency on Appwrite API key availability.
+
+Immediate hardening:
+- `node scripts/smoke_appwrite_real_login.mjs` passed when run from the repository root with an Appwrite API key available.
+- The same smoke must be invoked as `node ../scripts/smoke_appwrite_real_login.mjs` from `frontend/`.
+- Added a no-dependency secret scan at `scripts/check_secrets.mjs`, CI workflow `.github/workflows/secret-scan.yml`, and optional local hook `.githooks/pre-commit` to block committed Appwrite API key patterns without printing secret values.
+- If an Appwrite key is exposed in terminal history, chat, or logs, rotate it in Appwrite even if it was never committed.
+
+Verification UX/account hardening:
+- Improved profile verification copy with inbox/spam guidance and a 60-second resend cooldown.
+- Added explicit invalid/expired verification callback state with recovery CTA.
+- Redirect verified learners to the course catalog after successful callback/status refresh.
+- Added account security panel with verification state and all-session logout.
+- Added `scripts/smoke_appwrite_verification_request.mjs` to validate `/account/verification` request flow without claiming manual inbox-link completion.

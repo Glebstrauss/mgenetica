@@ -240,6 +240,14 @@ async function deleteSession() {
   return result
 }
 
+async function deleteAllSessions() {
+  const result = await callAccountApi('/account/sessions', {
+    method: 'DELETE'
+  });
+  clearSessionFallback()
+  return result
+}
+
 async function getAccount() {
   return callAccountApi('/account', {
     method: 'GET'
@@ -274,6 +282,7 @@ export {
   createEmailVerification,
   completeEmailVerification,
   deleteSession,
+  deleteAllSessions,
   getAccount,
   updateAccountName,
   normalizeAuthError,

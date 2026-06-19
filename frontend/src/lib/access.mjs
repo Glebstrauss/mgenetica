@@ -3,7 +3,7 @@ function emptyRoute() {
 }
 
 function parseRouteHash(hash) {
-  const clean = String(hash || '').replace(/^#/, '').trim()
+  const clean = String(hash || '').replace(/^#/, '').replace(/^\//, '').trim()
   if (!clean) return emptyRoute()
   const [path, query = ''] = clean.split('?')
   if (path === 'verify-email') {

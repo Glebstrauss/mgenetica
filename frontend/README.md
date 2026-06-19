@@ -27,7 +27,8 @@ Learner authentication and validation:
 - Unverified sessions may view profile, resend verification email, refresh account status, or sign out.
 - Courses, quizzes, progress persistence and admin access require `account.emailVerification === true`.
 - The SPA callback route is `#/verify-email`; Appwrite may return `userId` and `secret` through hash query or URL query.
-- Validate with `npm test`, `npm run build`, `node ../scripts/smoke_appwrite_runtime.mjs`, and optional `node ../scripts/smoke_appwrite_real_login.mjs` when an Appwrite API key is present.
+- Validate from `frontend/` with `npm test`, `npm run build`, `node ../scripts/smoke_appwrite_runtime.mjs`, and optional `node ../scripts/smoke_appwrite_real_login.mjs` plus `node ../scripts/smoke_appwrite_verification_request.mjs` when an Appwrite API key is present.
+- Before committing Appwrite/workflow/env/docs changes, run `node ../scripts/check_secrets.mjs`; the scanner blocks Appwrite API key patterns without printing values.
 
 Course visual assets:
 - Module visuals live under `frontend/public/course-assets/`.

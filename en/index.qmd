@@ -1,6 +1,7 @@
 ---
 title: "MGenética"
 subtitle: "Applied education in animal breeding"
+description: "Open animal breeding course covering quantitative genetics and applied genomics with modules, R scripts, simulated data and technical interpretation."
 page-layout: full
 toc: false
 sidebar: false
@@ -69,6 +70,62 @@ Use simulated data and R scripts to turn concepts into evidence.
 Validate quizzes and issue the certificate when the path is complete.
 
 [View certificate](certificate.qmd){.entry-link aria-label="Open certificate"}
+:::
+:::
+
+::: {.home-output-standard role="region" aria-label="MGenética technical output standard"}
+::: {.home-output-standard-copy}
+**Verifiable learning**
+
+Each session should end with short evidence: a defined concept, reproduced calculation, interpreted rule or justified technical decision.
+:::
+
+::: {.home-output-standard-grid role="list" aria-label="Expected evidence"}
+::: {.home-output-standard-item role="listitem"}
+**Operational concept**
+
+Define the term while keeping its link to selection, population or genetic evaluation.
+:::
+
+::: {.home-output-standard-item role="listitem"}
+**Reproducible result**
+
+Use simulated data and R scripts to check calculations, charts and assumptions.
+:::
+
+::: {.home-output-standard-item role="listitem"}
+**Interpreted decision**
+
+Convert the result into practical implications for mating, ranking or genetic gain.
+:::
+:::
+:::
+
+::: {.public-session-check .home-session-check role="region" aria-label="How to study one public session"}
+::: {.public-session-check-copy}
+**30 to 45 minute session**
+
+The public site works best as guided reference: read the block, run the essential snippet and close with one written decision sentence.
+:::
+
+::: {.public-session-check-grid role="list" aria-label="Session route"}
+::: {.public-session-check-item role="listitem"}
+**Before**
+
+Choose one module and one technical question.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**During**
+
+Read the explanation, execute the script and note the relevant output.
+:::
+
+::: {.public-session-check-item role="listitem"}
+**After**
+
+Take the quiz or record the decision criterion for later review.
+:::
 :::
 :::
 

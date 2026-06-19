@@ -30,7 +30,8 @@ Current live behavior:
 - learner functions execute for authenticated users
 - quiz submissions now persist learner progress in Appwrite user prefs through `mgenetica_progress_fn`
 - `node scripts/smoke_appwrite_runtime.mjs` passes against the deployed Appwrite project
-- real-login smoke is available through `node scripts/smoke_appwrite_real_login.mjs` when an Appwrite API key is available locally or in CI
+- `node scripts/smoke_appwrite_real_login.mjs` passes from the repository root when an Appwrite API key is available locally or in CI; from `frontend/`, use `node ../scripts/smoke_appwrite_real_login.mjs`
+- `node scripts/check_secrets.mjs` blocks committed Appwrite API key patterns without printing matched values
 - admin summary remains unavailable until `ADMIN_EMAILS` and an admin API key are configured in the live function environment
 
 Next steps (manual):
