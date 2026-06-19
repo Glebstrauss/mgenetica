@@ -71,6 +71,9 @@ const authCapabilities = await executeFunction(functions.auth, { action: 'capabi
 if (!authCapabilities.ok || authCapabilities.responseStatusCode >= 400 || authCapabilities.responseBody?.ok !== true) {
   throw new Error('Auth capabilities function did not return ok=true.')
 }
+if (!authCapabilities.responseBody?.flows?.includes('email-verification')) {
+  throw new Error('Auth capabilities function does not advertise email-verification.')
+}
 
 const protectedChecks = [
   ['courses', functions.courses, { action: 'list', locale: 'pt-BR' }],

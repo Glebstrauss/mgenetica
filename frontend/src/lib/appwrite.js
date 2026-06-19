@@ -207,6 +207,31 @@ async function createAccount(email, password, name) {
   });
 }
 
+function buildEmailVerificationUrl() {
+  if (typeof window !== 'undefined' && window.location?.href) {
+    const url = new URL(window.location.href);
+    url.search = '';
+    url.hash = 'verify-email';
+    return url.toString();
+  }
+  const base = PUBLIC_SITE_URL.endsWith('/') ? PUBLIC_SITE_URL : `${PUBLIC_SITE_URL}/`;
+  return `${base}#verify-email`;
+}
+
+async function createEmailVerification(url = buildEmailVerificationUrl()) {
+  return callAccountApi('/account/verification', {
+    method: 'POST',
+    payload: { url }
+  });
+}
+
+async function completeEmailVerification(userId, secret) {
+  return callAccountApi('/account/verification', {
+    method: 'PUT',
+    payload: { userId, secret }
+  });
+}
+
 async function deleteSession() {
   const result = await callAccountApi('/account/sessions/current', {
     method: 'DELETE'
@@ -245,6 +270,9 @@ export {
   getAdminSummary,
   createEmailSession,
   createAccount,
+  buildEmailVerificationUrl,
+  createEmailVerification,
+  completeEmailVerification,
   deleteSession,
   getAccount,
   updateAccountName,

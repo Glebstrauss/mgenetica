@@ -25,6 +25,7 @@ GitHub Actions deploy notes:
 
 Current live behavior:
 - learner account creation/login works with Appwrite account REST calls
+- learner e-mail verification is handled with Appwrite `/account/verification`; the frontend blocks courses, quizzes, progress and admin until `emailVerification` is true
 - learner functions execute for authenticated users
 - quiz submissions now persist learner progress in Appwrite user prefs through `mgenetica_progress_fn`
 - admin summary remains unavailable until `ADMIN_EMAILS` and an admin API key are configured in the live function environment
@@ -34,3 +35,4 @@ Next steps (manual):
 2. Open Appwrite console (http://localhost) and create a project and an API key.
 3. Create a database collection for quizzes or deploy the Function below.
 4. Configure frontend to use endpoint and project ID in frontend/src/appwriteClient.js
+5. Configure Auth e-mail delivery/provider and allow verification callback URLs such as `https://www.mgenetica.com/#verify-email` and local dev equivalents.

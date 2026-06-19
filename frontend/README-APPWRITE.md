@@ -17,7 +17,9 @@ Using Appwrite with the frontend
    - keep the GitHub Pages frontend deployment aligned with the built artifact
    - set the Pages custom domain to `www.mgenetica.com`
    - register `www.mgenetica.com` in Appwrite Web Platforms
-   - confirm cookie/session auth works from the published Pages host
+   - configure Appwrite Auth e-mail delivery/provider and verification template
+   - allow the verification callback URL used by the SPA: `https://www.mgenetica.com/#verify-email` plus local dev URLs such as `http://localhost:5173/#verify-email` when testing locally
+   - confirm cookie/session auth and `/account/verification` work from the published Pages host
    - confirm `APPWRITE_API_KEY` and `APPWRITE_PROJECT_ID` exist for function deploy workflow
    - backend audit and real-login smokes accept `APPWRITE_API_KEY`, `APPWRITE_ADMIN_API_KEY`, or `APPWRITE_FUNCTION_API_KEY`
 7. Admin panel runtime requirements:
@@ -29,3 +31,7 @@ Using Appwrite with the frontend
    - preferred: grant `users.read` + `users.write` scopes so the runtime `APPWRITE_FUNCTION_API_KEY` can be used automatically
    - fallback: configure `APPWRITE_ADMIN_API_KEY` or `APPWRITE_API_KEY` in live `mgenetica_progress_fn` variables
    - quiz submissions update percent, attempts, pass state, and timestamps through that function
+9. Learner e-mail verification gate:
+   - sign-up creates the Appwrite account, starts a session, sends `/account/verification`, and keeps the learner on the profile verification state
+   - unverified sessions can view profile, resend verification e-mail, refresh account state, or sign out
+   - courses, quizzes, progress and admin routes stay blocked until `account.emailVerification` is `true`

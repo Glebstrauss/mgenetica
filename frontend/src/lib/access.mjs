@@ -5,17 +5,29 @@ function emptyRoute() {
 function parseRouteHash(hash) {
   const clean = String(hash || '').replace(/^#/, '').trim()
   if (!clean) return emptyRoute()
-  if (clean === 'auth' || clean === 'login') return { screen: 'auth', authMode: 'login', selectedCourseId: null, showQuiz: false }
-  if (clean === 'signup') return { screen: 'auth', authMode: 'signup', selectedCourseId: null, showQuiz: false }
-  if (clean === 'catalog') return { screen: 'catalog', authMode: 'login', selectedCourseId: null, showQuiz: false }
-  if (clean === 'account') return { screen: 'account', authMode: 'login', selectedCourseId: null, showQuiz: false }
-  if (clean === 'admin') return { screen: 'admin', authMode: 'login', selectedCourseId: null, showQuiz: false }
-  if (clean.indexOf('course/') === 0) {
-    const selectedCourseId = clean.slice('course/'.length) || null
+  const [path, query = ''] = clean.split('?')
+  if (path === 'verify-email') {
+    const params = new URLSearchParams(query)
+    return {
+      screen: 'verify-email',
+      authMode: 'login',
+      selectedCourseId: null,
+      showQuiz: false,
+      verificationUserId: params.get('userId') || '',
+      verificationSecret: params.get('secret') || '',
+    }
+  }
+  if (path === 'auth' || path === 'login') return { screen: 'auth', authMode: 'login', selectedCourseId: null, showQuiz: false }
+  if (path === 'signup') return { screen: 'auth', authMode: 'signup', selectedCourseId: null, showQuiz: false }
+  if (path === 'catalog') return { screen: 'catalog', authMode: 'login', selectedCourseId: null, showQuiz: false }
+  if (path === 'account') return { screen: 'account', authMode: 'login', selectedCourseId: null, showQuiz: false }
+  if (path === 'admin') return { screen: 'admin', authMode: 'login', selectedCourseId: null, showQuiz: false }
+  if (path.indexOf('course/') === 0) {
+    const selectedCourseId = path.slice('course/'.length) || null
     return selectedCourseId ? { screen: 'course', authMode: 'login', selectedCourseId, showQuiz: false } : emptyRoute()
   }
-  if (clean.indexOf('quiz/') === 0) {
-    const selectedCourseId = clean.slice('quiz/'.length) || null
+  if (path.indexOf('quiz/') === 0) {
+    const selectedCourseId = path.slice('quiz/'.length) || null
     return selectedCourseId ? { screen: 'course', authMode: 'login', selectedCourseId, showQuiz: true } : emptyRoute()
   }
   return emptyRoute()
@@ -23,6 +35,13 @@ function parseRouteHash(hash) {
 
 function buildRouteHash(route) {
   if (route.showQuiz && route.selectedCourseId) return 'quiz/' + route.selectedCourseId
+  if (route.screen === 'verify-email') {
+    const params = new URLSearchParams()
+    if (route.verificationUserId) params.set('userId', route.verificationUserId)
+    if (route.verificationSecret) params.set('secret', route.verificationSecret)
+    const query = params.toString()
+    return query ? 'verify-email?' + query : 'verify-email'
+  }
   if (route.screen === 'auth') return route.authMode === 'signup' ? 'signup' : 'auth'
   if (route.screen === 'catalog') return 'catalog'
   if (route.screen === 'account') return 'account'
@@ -73,4 +92,8 @@ function routeNeedsAdmin(route) {
   return route.screen === 'admin'
 }
 
-export { buildRouteHash, emptyRoute, legacyPathToHash, parseRouteHash, routeNeedsAdmin, routeNeedsAuth }
+function routeNeedsVerifiedEmail(route) {
+  return route.screen === 'catalog' || route.screen === 'course' || route.screen === 'admin' || Boolean(route.showQuiz)
+}
+
+export { buildRouteHash, emptyRoute, legacyPathToHash, parseRouteHash, routeNeedsAdmin, routeNeedsAuth, routeNeedsVerifiedEmail }

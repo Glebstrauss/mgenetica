@@ -24,6 +24,7 @@ const password = configuredPassword || `Mg!${crypto.randomUUID()}9a`
 const name = 'MGenetica Smoke User'
 
 const functions = {
+  auth: 'mgenetica_auth_fn',
   courses: 'mgenetica_courses_fn',
   quizzes: 'mgenetica_quizzes_fn',
   progress: 'mgenetica_progress_fn',
@@ -146,6 +147,10 @@ try {
     throw new Error('Current account does not match the smoke user.')
   }
   const activeUserId = account.data?.$id || userId
+  const authCapabilities = await requireFunctionOk('auth capabilities', functions.auth, { action: 'capabilities' }, cookie)
+  if (!authCapabilities.responseBody?.flows?.includes('email-verification')) {
+    throw new Error('Auth capabilities function does not advertise email-verification.')
+  }
 
   const courses = await requireFunctionOk('courses list', functions.courses, { action: 'list', locale: 'pt-BR' }, cookie)
   if (!Array.isArray(courses.responseBody) || courses.responseBody.length !== 21) {
@@ -173,7 +178,8 @@ try {
   console.log('Appwrite real login smoke OK')
   console.log(`Endpoint: ${endpoint}`)
   console.log(`Project: ${projectId}`)
-  console.log('Created, logged in, loaded account, courses, quiz, progress, and confirmed admin denial.')
+  console.log(`Email verified: ${Boolean(account.data?.emailVerification)}`)
+  console.log('Created/logged in account, checked email-verification capability, loaded courses, quiz, progress, and confirmed admin denial.')
 } finally {
   if (created) {
     const cleanup = await appwriteRequest(`/users/${encodeURIComponent(userId)}`, {

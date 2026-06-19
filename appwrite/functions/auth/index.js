@@ -19,11 +19,12 @@ module.exports = async function (context) {
       const payload = {
         ok: true,
         authStrategy: 'appwrite-account-rest',
-        flows: ['create-account', 'email-login', 'logout', 'get-account'],
+        flows: ['create-account', 'email-login', 'email-verification', 'logout', 'get-account'],
         notes: [
           'Use Appwrite REST /account on client for sign-up.',
           'Use Appwrite REST /account/sessions/email on client for login.',
-          'Add deployed host to Appwrite Web Platforms before production auth tests.'
+          'Use Appwrite REST /account/verification to send and confirm email verification.',
+          'Add deployed host and verification callback URL to Appwrite Web Platforms before production auth tests.'
         ]
       };
       context.log(JSON.stringify(payload));
