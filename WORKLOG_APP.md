@@ -30,3 +30,7 @@ Closure verification:
 - Final execution validation passed: `npm test`, `npm run build`, and `node scripts/smoke_appwrite_runtime.mjs`.
 - `node scripts/smoke_appwrite_real_login.mjs` was checked and skipped locally because no Appwrite API key environment variable was available.
 - Task status: closed after code, deploy, CI, runtime smoke, and worklog verification.
+
+Documentation and Linear update:
+- Repository documentation was updated across the root README, learner README, Appwrite frontend guide, Appwrite operations README, and this worklog.
+- Linear project status was updated to record the delivered email verification gate, successful deploys, runtime smoke pass, and remaining optional real-login smoke dependency on Appwrite API key availability.

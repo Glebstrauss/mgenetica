@@ -26,13 +26,17 @@ GitHub Actions deploy notes:
 Current live behavior:
 - learner account creation/login works with Appwrite account REST calls
 - learner e-mail verification is handled with Appwrite `/account/verification`; the frontend blocks courses, quizzes, progress and admin until `emailVerification` is true
+- `mgenetica_auth_fn` advertises `email-verification` in auth capabilities after deployment
 - learner functions execute for authenticated users
 - quiz submissions now persist learner progress in Appwrite user prefs through `mgenetica_progress_fn`
+- `node scripts/smoke_appwrite_runtime.mjs` passes against the deployed Appwrite project
+- real-login smoke is available through `node scripts/smoke_appwrite_real_login.mjs` when an Appwrite API key is available locally or in CI
 - admin summary remains unavailable until `ADMIN_EMAILS` and an admin API key are configured in the live function environment
 
 Next steps (manual):
 1. Start Appwrite with docker compose.
 2. Open Appwrite console (http://localhost) and create a project and an API key.
 3. Create a database collection for quizzes or deploy the Function below.
-4. Configure frontend to use endpoint and project ID in frontend/src/appwriteClient.js
+4. Configure frontend to use endpoint and project ID in `frontend/src/lib/appwrite.js` or frontend environment variables.
 5. Configure Auth e-mail delivery/provider and allow verification callback URLs such as `https://www.mgenetica.com/#verify-email` and local dev equivalents.
+6. Deploy functions with `.github/workflows/appwrite-deploy.yml` and verify with `node scripts/smoke_appwrite_runtime.mjs`.

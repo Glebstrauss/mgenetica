@@ -35,8 +35,9 @@ The learner app owns the live root:
 
 - `/mgenetica/` -> React learner app
 - `#/auth` -> Sign in
+- `#/verify-email` -> Appwrite email verification callback
 - `#/catalog` -> Courses
-- `#/account` -> Profile
+- `#/account` -> Profile and email-verification gate
 - `#/course/module-01` through `#/course/module-21` -> Course page
 - `#/quiz/module-01` through `#/quiz/module-21` -> Quiz
 
@@ -48,7 +49,7 @@ Legacy Quarto URLs are kept as compatibility entry points:
 - `/mgenetica/es/modules/` -> `#/catalog`
 - `/mgenetica/modules/moduloNN-*.html` -> `#/course/module-NN`
 
-Courses are free after sign in/login.
+Courses are free after verified sign in/login. Unverified learner accounts remain signed in but can only use the profile verification flow until `account.emailVerification` is true.
 
 ## Stack
 
@@ -123,6 +124,15 @@ npm test
 npm run build
 ```
 
+Appwrite runtime smokes:
+
+```bash
+node scripts/smoke_appwrite_runtime.mjs
+node scripts/smoke_appwrite_real_login.mjs
+```
+
+The real-login smoke skips safely when no Appwrite API key is available locally.
+
 Public-site checks:
 
 ```bash
@@ -158,7 +168,9 @@ mgenetica/
 
 - The live URL `https://mgenetica.github.io/mgenetica/` serves the React learner app.
 - The Quarto content remains available as editorial source and manual review output.
-- Appwrite is the production backend for auth, course data, quiz submission and progress.
+- Appwrite is the production backend for auth, email verification, course data, quiz submission and progress.
+- Email verification is active through Appwrite `/account/verification`; catalog, course, quiz, progress and admin routes require `account.emailVerification === true`.
+- The latest Appwrite runtime smoke passed after function deployment; real-login smoke requires an Appwrite API key environment variable.
 - The admin panel requires `ADMIN_EMAILS` and `APPWRITE_ADMIN_API_KEY` on `mgenetica_admin_fn`; `APPWRITE_API_KEY` is accepted as fallback.
 
 ## Agent Scope

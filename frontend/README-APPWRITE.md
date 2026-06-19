@@ -33,5 +33,11 @@ Using Appwrite with the frontend
    - quiz submissions update percent, attempts, pass state, and timestamps through that function
 9. Learner e-mail verification gate:
    - sign-up creates the Appwrite account, starts a session, sends `/account/verification`, and keeps the learner on the profile verification state
+   - `#/verify-email` consumes Appwrite `userId` and `secret` from hash query or URL query, confirms `/account/verification`, then refreshes account state
    - unverified sessions can view profile, resend verification e-mail, refresh account state, or sign out
    - courses, quizzes, progress and admin routes stay blocked until `account.emailVerification` is `true`
+   - deployed runtime smoke now verifies that `mgenetica_auth_fn` advertises `email-verification`
+10. Verification commands:
+   - `cd frontend && npm test && npm run build`
+   - `node scripts/smoke_appwrite_runtime.mjs`
+   - `node scripts/smoke_appwrite_real_login.mjs` when an Appwrite API key environment variable is present

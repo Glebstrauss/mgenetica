@@ -10,15 +10,24 @@ This Vite+React surface is learner/app scope only.
 - Public site Quarto source remains separate from this learner app.
 - The intended primary domain is `https://www.mgenetica.com/`; GitHub Pages remains the hosting backend.
 - GitHub Pages root is the active production target for this frontend.
-- Appwrite remains backend of record for auth, functions and learner flows.
+- Appwrite remains backend of record for auth, email verification, functions and learner flows.
 
 Production requirements:
 - GitHub Pages deploy/workflow must stay aligned with the built frontend artifact
 - The Pages artifact must include `frontend/public/CNAME` with `www.mgenetica.com`
 - Appwrite Web Platform must include `www.mgenetica.com`
+- Appwrite Auth must have email delivery/provider and verification template configured
+- Verification callbacks must support `https://www.mgenetica.com/#verify-email` and local dev equivalents
 - Appwrite admin runtime must include `ADMIN_EMAILS` and `APPWRITE_ADMIN_API_KEY` for admin summary mode
 - Appwrite progress runtime must include `APPWRITE_ADMIN_API_KEY` or `APPWRITE_API_KEY` so learner progress can persist in user prefs
 - Frontend env must expose Appwrite endpoint/project and function IDs when canonical defaults are not used
+
+Learner authentication and validation:
+- Sign-up creates an Appwrite account, starts an email session, sends `/account/verification`, and routes the learner to profile verification.
+- Unverified sessions may view profile, resend verification email, refresh account status, or sign out.
+- Courses, quizzes, progress persistence and admin access require `account.emailVerification === true`.
+- The SPA callback route is `#/verify-email`; Appwrite may return `userId` and `secret` through hash query or URL query.
+- Validate with `npm test`, `npm run build`, `node ../scripts/smoke_appwrite_runtime.mjs`, and optional `node ../scripts/smoke_appwrite_real_login.mjs` when an Appwrite API key is present.
 
 Course visual assets:
 - Module visuals live under `frontend/public/course-assets/`.
