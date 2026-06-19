@@ -39,5 +39,14 @@ Using Appwrite with the frontend
    - deployed runtime smoke now verifies that `mgenetica_auth_fn` advertises `email-verification`
 10. Verification commands:
    - `cd frontend && npm test && npm run build`
+   - `node scripts/check_secrets.mjs`
    - `node scripts/smoke_appwrite_runtime.mjs`
    - `node scripts/smoke_appwrite_real_login.mjs` when an Appwrite API key environment variable is present
+   - `node scripts/smoke_appwrite_verification_request.mjs` when an Appwrite API key environment variable is present
+11. Manual production verification:
+   - create a fresh learner on the published site
+   - confirm the provider email arrives
+   - click the verification callback and confirm `account.emailVerification` becomes `true`
+   - confirm catalog/course/quiz access unlocks only after verification
+   - try a malformed or already-used callback link and confirm the recovery UI leads back to sign-in/account resend
+   - use Linear follow-up `FEW-23` or its successor to resume this checklist if interrupted

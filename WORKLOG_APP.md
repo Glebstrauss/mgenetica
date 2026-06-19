@@ -47,3 +47,10 @@ Verification UX/account hardening:
 - Redirect verified learners to the course catalog after successful callback/status refresh.
 - Added account security panel with verification state and all-session logout.
 - Added `scripts/smoke_appwrite_verification_request.mjs` to validate `/account/verification` request flow without claiming manual inbox-link completion.
+
+Resume handoff for final verification:
+- Plan `b74bde7d-9b01-44d0-86c6-0141428ae842` documents the remaining finalization path.
+- Code implementation is already present; resume work should start with audit/validation, not a greenfield rewrite.
+- Orchestration attempt was blocked by local/remote config conflict, so resume directly or recreate a clean local-only orchestration config before launching child audits.
+- Suggested resume commands from repo root: `npm test --prefix frontend`, `npm run build --prefix frontend`, `node scripts/check_secrets.mjs`, `node scripts/smoke_appwrite_runtime.mjs`, `node scripts/smoke_appwrite_real_login.mjs`, and `node scripts/smoke_appwrite_verification_request.mjs` when Appwrite key env vars are available.
+- Remaining manual production check: create a fresh learner on the published site, receive the provider email, click the callback link, confirm `emailVerification=true`, verify catalog/course access, then test malformed or reused callback recovery.
