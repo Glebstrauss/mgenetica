@@ -20,3 +20,13 @@ Validation:
 Deployment note:
 - Configure Appwrite Auth email provider/template and allow callback URLs such as `https://www.mgenetica.com/#verify-email` and local dev equivalents.
 - Deploy `mgenetica_auth_fn`, then rerun `node scripts/smoke_appwrite_runtime.mjs`.
+
+Closure verification:
+- Commit `1122945` implemented the email verification gate.
+- Commit `096888b` completed the remaining learner logo cleanup and visual QA threshold sync.
+- `main` was pushed and matched `origin/main`.
+- Appwrite Functions deploy passed for the verification-gate commit.
+- GitHub Pages frontend deploy passed for the latest `main` commit.
+- Final execution validation passed: `npm test`, `npm run build`, and `node scripts/smoke_appwrite_runtime.mjs`.
+- `node scripts/smoke_appwrite_real_login.mjs` was checked and skipped locally because no Appwrite API key environment variable was available.
+- Task status: closed after code, deploy, CI, runtime smoke, and worklog verification.
