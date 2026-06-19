@@ -3166,13 +3166,13 @@ h3,
   --type-body: 0.98rem;
   --type-label: 0.9rem;
   --type-small: 0.9rem;
-  --header-logo-box: 78px;
-  --header-logo-mark: 72px;
-  --hero-proof-logo-mark: 40px;
+  --header-logo-box: 94px;
+  --header-logo-mark: 88px;
+  --hero-proof-logo-mark: 56px;
 }
 
 .app-header {
-  min-height: 94px;
+  min-height: 110px;
 }
 
 .brand-logo {
@@ -3197,9 +3197,9 @@ h3,
 }
 
 .hero-proof-mark {
-  min-height: 54px;
-  gap: 12px;
-  padding: 8px 16px;
+  min-height: 70px;
+  gap: 14px;
+  padding: 10px 20px;
 }
 
 .hero-proof-mark img {
@@ -3281,9 +3281,9 @@ h3,
     --type-body: 0.96rem;
     --type-label: 0.88rem;
     --type-small: 0.88rem;
-    --header-logo-box: 70px;
-    --header-logo-mark: 64px;
-    --hero-proof-logo-mark: 36px;
+    --header-logo-box: 82px;
+    --header-logo-mark: 76px;
+    --hero-proof-logo-mark: 48px;
   }
 
   .app-shell {
