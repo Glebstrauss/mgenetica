@@ -2,6 +2,7 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 const { validateLoginInput, validateRegisterInput } = require('../src/validators');
 const { createAuthLimiter } = require('../src/index');
+const { scoreProgress } = require('../src/routes/progress');
 
 test('register validation normalizes email and enforces password length', () => {
   const bad = validateRegisterInput({ email: 'USER@example.com', password: 'short' });
@@ -38,4 +39,16 @@ test('auth limiter returns 429 after configured threshold', () => {
   assert.equal(nextCalls, 1);
   assert.equal(res.statusCode, 429);
   assert.deepEqual(res.body, { error: 'rate_limit_exceeded' });
+});
+
+test('legacy progress scoring ignores client-authored percent', () => {
+  const forged = scoreProgress('module-01', undefined);
+  assert.equal(forged.ok, false);
+  assert.equal(forged.error, 'answers_required');
+
+  const scored = scoreProgress('1', [0, 0, 0, 0, 0]);
+  assert.equal(scored.ok, true);
+  assert.equal(scored.courseId, 'module-01');
+  assert.equal(scored.total, 5);
+  assert.equal(scored.percent, 100);
 });

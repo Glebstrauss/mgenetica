@@ -1,5 +1,9 @@
 # App Worklog
 
+## 2026-06-21 — Legacy backend progress forgery patch
+
+Patched the legacy Express `/progress` route so it no longer trusts client-provided `percent`. The route now rejects `percent`, requires raw quiz `answers`, normalizes numeric legacy course IDs to `module-XX`, scores against the packaged quiz bank, and returns server-computed score/pass/percent only. Added backend coverage for the scoring helper and documented the constraint in `backend/README.md`.
+
 ## 2026-06-21 — Security audit closure and CI deployment resolution
 
 Security audit outcome:

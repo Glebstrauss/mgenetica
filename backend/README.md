@@ -17,3 +17,5 @@ CI:
 See .github/workflows/backend-ci.yml
 
 Note: Keep this backend isolated from the Quarto site; it's scaffolded as a starting point for Phase 1 work.
+
+Security note: the legacy `/progress` route rejects client-provided `percent` and computes score/pass/percent from raw quiz `answers` using the packaged quiz bank. Do not reintroduce client-authoritative progress fields.
