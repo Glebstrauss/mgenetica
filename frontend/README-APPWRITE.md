@@ -30,7 +30,8 @@ Using Appwrite with the frontend
    - `mgenetica_progress_fn` stores learner progress in Appwrite user prefs under `mgeneticaProgress`
    - preferred: grant `users.read` + `users.write` scopes so the runtime `APPWRITE_FUNCTION_API_KEY` can be used automatically
    - fallback: configure `APPWRITE_ADMIN_API_KEY` or `APPWRITE_API_KEY` in live `mgenetica_progress_fn` variables
-   - quiz submissions update percent, attempts, pass state, and timestamps through that function
+   - quiz progress persistence is server-authoritative: the frontend sends raw answers, the progress function scores against its packaged quiz bank, and score/pass/percent fields from the client are not trusted
+   - repeated progress submissions for the same learner/course are rate-limited with a 30-second minimum interval
 9. Learner e-mail verification gate:
    - sign-up creates the Appwrite account, starts a session, sends `/account/verification`, and keeps the learner on the profile verification state
    - `#/verify-email` consumes Appwrite `userId` and `secret` from hash query or URL query, confirms `/account/verification`, then refreshes account state
@@ -40,7 +41,8 @@ Using Appwrite with the frontend
 10. Verification commands:
    - `cd frontend && npm test && npm run build`
    - `node scripts/check_secrets.mjs`
-   - `node scripts/smoke_appwrite_runtime.mjs`
+   - `APPWRITE_ORIGIN=https://www.mgenetica.com node scripts/smoke_appwrite_runtime.mjs`
+   - if Pages CI fails only at `Smoke Appwrite runtime` immediately after an Appwrite deploy, rerun after function activation completes; the security audit closure on 2026-06-21 confirmed this transient race by rerunning the same smoke successfully against live Appwrite
    - `node scripts/smoke_appwrite_real_login.mjs` when an Appwrite API key environment variable is present
    - `node scripts/smoke_appwrite_verification_request.mjs` when an Appwrite API key environment variable is present
 11. Manual production verification:

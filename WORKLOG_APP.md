@@ -1,5 +1,31 @@
 # App Worklog
 
+## 2026-06-21 — Security audit closure and CI deployment resolution
+
+Security audit outcome:
+- No committed secrets were found by `node scripts/check_secrets.mjs`.
+- Dependency audit reported 0 vulnerabilities.
+- Appwrite learner functions were hardened so `mgenetica_courses_fn`, `mgenetica_quizzes_fn`, and `mgenetica_progress_fn` require authenticated `users` execute permissions.
+- Public `mgenetica_auth_fn` remains intentionally executable by guests for the limited capabilities endpoint.
+- Learner progress is now server-authoritative: the frontend sends raw quiz answers, `mgenetica_progress_fn` scores against its packaged quiz bank, and client-provided score/pass/percent fields are no longer trusted.
+- Quiz progress submissions are rate-limited per learner/course with a 30-second minimum interval; rapid repeats return `429 rate_limited`.
+- Admin status and quiz responses were reduced to avoid unnecessary operational detail or per-question answer leakage.
+
+Validation:
+- Local gates passed from repository root: `node scripts/check_secrets.mjs`, `npm --prefix frontend audit --json`, `npm --prefix frontend test`, `node scripts/validate_course_assets.mjs`, `node scripts/check_operational_risks.mjs`, `npm --prefix frontend run build`, and `node --check` for all Appwrite function entrypoints.
+- Live runtime smoke passed after deploy: `APPWRITE_ORIGIN=https://www.mgenetica.com node scripts/smoke_appwrite_runtime.mjs`.
+
+CI deployment resolution:
+- Push `4900a7d` triggered `Secret scan`, `Appwrite Functions deploy`, and `Deploy Frontend to GitHub Pages`.
+- `Secret scan` passed and `Appwrite Functions deploy` passed.
+- `Deploy Frontend to GitHub Pages` failed only at the post-deploy `Smoke Appwrite runtime` step with `Auth capabilities function did not return ok=true.`
+- The same smoke command passed shortly after against the live runtime, confirming the failure was a deployment-order/race condition rather than a persistent security or build defect.
+- Resolution: no code change required for the security hardening; rerun the failed Pages workflow after Appwrite deploy completes if this race appears again.
+
+Remaining recommendations:
+- Keep backend smoke tests after Appwrite deploy, but consider adding a short retry/backoff around `scripts/smoke_appwrite_runtime.mjs` in the Pages workflow to tolerate function activation delay.
+- If assessment integrity becomes higher-stakes, move quiz submission and progress persistence into one Appwrite function so scoring and persistence are atomic.
+
 ## 2026-06-19 — Learner email verification gate
 
 Implemented the learner-app email verification gate for Appwrite accounts.
