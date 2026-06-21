@@ -1,5 +1,8 @@
 const quizBank = require('./quiz-bank.generated.json');
 
+const QUIZ_SUBMIT_MIN_INTERVAL_MS = 30 * 1000;
+const recentSubmits = new Map();
+
 function readUserId(headers = {}) {
   return String(headers['x-appwrite-user-id'] || headers['X-Appwrite-User-Id'] || headers['x-appwrite-userid'] || '').trim();
 }
@@ -19,6 +22,15 @@ function parseBody(req) {
 function getQuizByCourseId(courseId) {
   if (!/^module-\d{2}$/.test(String(courseId || ''))) return null;
   return quizBank.find((quiz) => quiz.id === courseId) || null;
+}
+
+function shouldThrottleSubmit(userId, courseId, nowMs = Date.now()) {
+  const key = `${userId}:${courseId}`;
+  const previous = recentSubmits.get(key) || 0;
+  if (nowMs - previous < QUIZ_SUBMIT_MIN_INTERVAL_MS) return true;
+  recentSubmits.set(key, nowMs);
+  if (recentSubmits.size > 1000) recentSubmits.clear();
+  return false;
 }
 
 module.exports = async function (context) {
@@ -59,14 +71,19 @@ module.exports = async function (context) {
     }
 
     if (action === 'submit') {
+      if (shouldThrottleSubmit(userId, quiz.id)) {
+        const out = { ok: false, error: 'rate_limited', message: 'Wait before submitting this quiz again.' };
+        context.log(JSON.stringify({ courseId: quiz.id, action, error: out.error }));
+        return { status: 429, body: JSON.stringify(out) };
+      }
       if (!Array.isArray(body.answers)) {
         const out = { error: 'answers_required', courseId };
-        context.log(JSON.stringify(out));
+        context.log(JSON.stringify({ courseId, action, error: out.error }));
         return { status: 400, body: JSON.stringify(out) };
       }
       if (body.answers.length !== quiz.questions.length) {
         const out = { error: 'answers_length_mismatch', courseId };
-        context.log(JSON.stringify(out));
+        context.log(JSON.stringify({ courseId, action, error: out.error }));
         return { status: 400, body: JSON.stringify(out) };
       }
 

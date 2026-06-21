@@ -43,8 +43,8 @@ function readUserId(headers) {
 
 function currentAppwriteConfig() {
   return {
-    endpoint: process.env.APPWRITE_FUNCTION_ENDPOINT || process.env.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1',
-    projectId: process.env.APPWRITE_FUNCTION_PROJECT_ID || process.env.APPWRITE_PROJECT_ID || '6a0b2fc1001c380eeb26',
+    endpoint: process.env.APPWRITE_FUNCTION_ENDPOINT || process.env.APPWRITE_ENDPOINT || '',
+    projectId: process.env.APPWRITE_FUNCTION_PROJECT_ID || process.env.APPWRITE_PROJECT_ID || '',
     apiKey: process.env.APPWRITE_ADMIN_API_KEY || process.env.APPWRITE_API_KEY || process.env.APPWRITE_FUNCTION_API_KEY || ''
   };
 }
@@ -53,11 +53,11 @@ const PROGRESS_PREFS_KEY = 'mgeneticaProgress';
 
 async function appwriteAdminGet(pathname) {
   const { endpoint, projectId, apiKey } = currentAppwriteConfig();
-  if (!apiKey) {
+  if (!endpoint || !projectId || !apiKey) {
     return {
       ok: false,
-      error: 'missing_admin_api_key',
-      hint: 'Configure APPWRITE_ADMIN_API_KEY or APPWRITE_API_KEY, or grant scopes so APPWRITE_FUNCTION_API_KEY is available, to enable admin summary.'
+      error: 'missing_appwrite_config',
+      hint: 'Configure APPWRITE_FUNCTION_ENDPOINT, APPWRITE_FUNCTION_PROJECT_ID, and an Appwrite API key to enable admin summary.'
     };
   }
 
@@ -175,11 +175,12 @@ function makeStatusPayload(userEmail, userId) {
 }
 
 module.exports = async function (context) {
+  let action = 'unknown';
   try {
     const req = context.req || {};
     const body = parseBody(req);
     const headers = req.headers || {};
-    const action = body.action || 'status';
+    action = body.action || 'status';
     const userId = readUserId(headers);
     const userEmail = readUserEmail(headers);
     const adminIds = readAdminIds();
@@ -190,14 +191,14 @@ module.exports = async function (context) {
         error: 'auth_required',
         message: 'Authenticated Appwrite user required.'
       };
-      context.log(JSON.stringify(payload));
+      context.log(JSON.stringify({ action, error: payload.error }));
       return { status: 401, body: JSON.stringify(payload) };
     }
 
     const statusPayload = makeStatusPayload(userEmail, userId);
 
     if (action === 'status') {
-      context.log(JSON.stringify(statusPayload));
+      context.log(JSON.stringify({ action, isAdmin: statusPayload.user.isAdmin }));
       return { status: 200, body: JSON.stringify(statusPayload) };
     }
 
@@ -208,7 +209,7 @@ module.exports = async function (context) {
           ok: false,
           error: 'admin_required'
         };
-        context.log(JSON.stringify(payload));
+        context.log(JSON.stringify({ action, error: payload.error }));
         return { status: 403, body: JSON.stringify(payload) };
       }
 
@@ -225,17 +226,22 @@ module.exports = async function (context) {
           functions: functions.ok ? { ok: true, total: functions.data?.total ?? null } : functions
         }
       };
-      context.log(JSON.stringify(payload));
+      context.log(JSON.stringify({
+        action,
+        usersTotal: payload.summary.usersTotal,
+        functionsTotal: payload.summary.functionsTotal,
+        trackedLearners: payload.summary.learnerProgress?.trackedLearners ?? null
+      }));
       return { status: 200, body: JSON.stringify(payload) };
     }
 
     const payload = { error: 'unsupported_action', action };
-    context.log(JSON.stringify(payload));
+    context.log(JSON.stringify({ action, error: payload.error }));
     return { status: 400, body: JSON.stringify(payload) };
   } catch (err) {
     console.error(err);
     const out = { error: 'internal_error', message: err.message || 'unknown_error' };
-    context.log(JSON.stringify(out));
+    context.log(JSON.stringify({ action, error: out.error }));
     return { status: 500, body: JSON.stringify(out) };
   }
 };

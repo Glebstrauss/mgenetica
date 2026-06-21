@@ -17,8 +17,8 @@ function parseBody(req) {
 
 function currentAppwriteConfig() {
   return {
-    endpoint: process.env.APPWRITE_FUNCTION_ENDPOINT || process.env.APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1',
-    projectId: process.env.APPWRITE_FUNCTION_PROJECT_ID || process.env.APPWRITE_PROJECT_ID || '6a0b2fc1001c380eeb26',
+    endpoint: process.env.APPWRITE_FUNCTION_ENDPOINT || process.env.APPWRITE_ENDPOINT || '',
+    projectId: process.env.APPWRITE_FUNCTION_PROJECT_ID || process.env.APPWRITE_PROJECT_ID || '',
     apiKey: process.env.APPWRITE_ADMIN_API_KEY || process.env.APPWRITE_API_KEY || process.env.APPWRITE_FUNCTION_API_KEY || ''
   };
 }
@@ -33,12 +33,12 @@ function readUserIdentity(req) {
 
 async function appwriteAdminRequest(pathname, { method = 'GET', payload } = {}) {
   const { endpoint, projectId, apiKey } = currentAppwriteConfig();
-  if (!apiKey) {
+  if (!endpoint || !projectId || !apiKey) {
     return {
       ok: false,
       status: 503,
-      error: 'missing_admin_api_key',
-      message: 'Configure APPWRITE_ADMIN_API_KEY, APPWRITE_API_KEY, or Appwrite function scopes so APPWRITE_FUNCTION_API_KEY is available.'
+      error: 'missing_appwrite_config',
+      message: 'Configure APPWRITE_FUNCTION_ENDPOINT, APPWRITE_FUNCTION_PROJECT_ID, and an Appwrite API key.'
     };
   }
 
@@ -168,28 +168,29 @@ function buildProgressResponse(userId, progress) {
 }
 
 module.exports = async function (context) {
+  let action = 'unknown';
   try {
     const req = context.req || {};
     const body = parseBody(req);
-    const action = body.action || 'get';
+    action = body.action || 'get';
     const user = readUserIdentity(req);
 
     if (!user.id) {
       const payload = { ok: false, error: 'auth_required', message: 'Authenticated Appwrite user required.' };
-      context.log(JSON.stringify(payload));
+      context.log(JSON.stringify({ action, error: payload.error }));
       return { status: 401, body: JSON.stringify(payload) };
     }
 
     if (body.userId && body.userId !== user.id) {
       const payload = { ok: false, error: 'user_mismatch', message: 'Cannot access another learner progress.' };
-      context.log(JSON.stringify(payload));
+      context.log(JSON.stringify({ action, error: payload.error }));
       return { status: 403, body: JSON.stringify(payload) };
     }
 
     const currentUser = await appwriteAdminRequest(`/users/${encodeURIComponent(user.id)}`);
     if (!currentUser.ok) {
       const payload = { ok: false, error: currentUser.error, message: currentUser.message };
-      context.log(JSON.stringify(payload));
+      context.log(JSON.stringify({ action, error: payload.error }));
       return { status: currentUser.status || 500, body: JSON.stringify(payload) };
     }
 
@@ -198,7 +199,7 @@ module.exports = async function (context) {
 
     if (action === 'get') {
       const payload = buildProgressResponse(user.id, existingProgress);
-      context.log(JSON.stringify({ action, userId: user.id, totalCoursesTracked: payload.summary.totalCoursesTracked }));
+      context.log(JSON.stringify({ action, totalCoursesTracked: payload.summary.totalCoursesTracked }));
       return { status: 200, body: JSON.stringify(payload) };
     }
 
@@ -206,21 +207,21 @@ module.exports = async function (context) {
       const courseId = String(body.courseId || '').trim();
       if (!/^module-\d{2}$/.test(courseId)) {
         const payload = { ok: false, error: 'course_id_required', message: 'courseId is required.' };
-        context.log(JSON.stringify(payload));
+        context.log(JSON.stringify({ action, courseId, error: payload.error }));
         return { status: 400, body: JSON.stringify(payload) };
       }
 
       const previousRecord = existingProgress.courses[courseId];
       if (shouldThrottleAttempt(previousRecord)) {
         const payload = { ok: false, error: 'rate_limited', message: 'Wait before submitting this quiz again.' };
-        context.log(JSON.stringify({ action, userId: user.id, courseId, error: payload.error }));
+        context.log(JSON.stringify({ action, courseId, error: payload.error }));
         return { status: 429, body: JSON.stringify(payload) };
       }
 
       const scoreResult = scoreQuiz(courseId, body.answers);
       if (!scoreResult.ok) {
         const payload = { ok: false, error: scoreResult.error, message: scoreResult.message };
-        context.log(JSON.stringify({ action, userId: user.id, courseId, error: payload.error }));
+        context.log(JSON.stringify({ action, courseId, error: payload.error }));
         return { status: scoreResult.status || 400, body: JSON.stringify(payload) };
       }
 
@@ -245,22 +246,22 @@ module.exports = async function (context) {
 
       if (!update.ok) {
         const payload = { ok: false, error: update.error, message: update.message };
-        context.log(JSON.stringify(payload));
+        context.log(JSON.stringify({ action, courseId, error: payload.error }));
         return { status: update.status || 500, body: JSON.stringify(payload) };
       }
 
       const payload = buildProgressResponse(user.id, nextProgress);
-      context.log(JSON.stringify({ action, userId: user.id, courseId, percent: nextRecord.percent, attempts: nextRecord.attempts }));
+      context.log(JSON.stringify({ action, courseId, percent: nextRecord.percent, attempts: nextRecord.attempts }));
       return { status: 200, body: JSON.stringify(payload) };
     }
 
     const payload = { ok: false, error: 'unsupported_action', action };
-    context.log(JSON.stringify(payload));
+    context.log(JSON.stringify({ action, error: payload.error }));
     return { status: 400, body: JSON.stringify(payload) };
   } catch (err) {
     const payload = { ok: false, error: 'internal_error', message: err.message || 'Unknown progress error.' };
     context.error?.(err);
-    context.log(JSON.stringify(payload));
+    context.log(JSON.stringify({ action, error: payload.error }));
     return { status: 500, body: JSON.stringify(payload) };
   }
 };

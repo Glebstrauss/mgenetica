@@ -8,8 +8,10 @@ Security audit outcome:
 - Appwrite learner functions were hardened so `mgenetica_courses_fn`, `mgenetica_quizzes_fn`, and `mgenetica_progress_fn` require authenticated `users` execute permissions.
 - Public `mgenetica_auth_fn` remains intentionally executable by guests for the limited capabilities endpoint.
 - Learner progress is now server-authoritative: the frontend sends raw quiz answers, `mgenetica_progress_fn` scores against its packaged quiz bank, and client-provided score/pass/percent fields are no longer trusted.
-- Quiz progress submissions are rate-limited per learner/course with a 30-second minimum interval; rapid repeats return `429 rate_limited`.
+- Quiz and progress submissions are rate-limited per learner/course with a 30-second minimum interval; rapid repeats return `429 rate_limited`.
 - Admin status and quiz responses were reduced to avoid unnecessary operational detail or per-question answer leakage.
+- Admin/progress logs now emit compact metadata instead of full payloads or learner user IDs.
+- Appwrite admin/progress functions no longer fall back to hardcoded endpoint/project config; missing runtime config fails closed.
 
 Validation:
 - Local gates passed from repository root: `node scripts/check_secrets.mjs`, `npm --prefix frontend audit --json`, `npm --prefix frontend test`, `node scripts/validate_course_assets.mjs`, `node scripts/check_operational_risks.mjs`, `npm --prefix frontend run build`, and `node --check` for all Appwrite function entrypoints.
@@ -25,6 +27,7 @@ CI deployment resolution:
 Remaining recommendations:
 - Keep backend smoke tests after Appwrite deploy, but consider adding a short retry/backoff around `scripts/smoke_appwrite_runtime.mjs` in the Pages workflow to tolerate function activation delay.
 - If assessment integrity becomes higher-stakes, move quiz submission and progress persistence into one Appwrite function so scoring and persistence are atomic.
+- Remaining audit findings 3, 4, and 5 are closed in local code: quiz submit throttling, compact admin/progress logs, and fail-closed Appwrite runtime config.
 
 ## 2026-06-19 — Learner email verification gate
 

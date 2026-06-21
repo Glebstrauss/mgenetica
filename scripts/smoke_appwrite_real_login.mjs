@@ -166,12 +166,7 @@ try {
   await requireFunctionOk('progress update', functions.progress, {
     action: 'update',
     courseId: 'module-01',
-    percent: 100,
-    quizScore: 1,
-    quizTotal: 1,
-    passMark: 1,
-    passed: true,
-    incrementAttempts: false
+    answers: quiz.responseBody.questions.map(() => 0)
   }, cookie)
   await requireFunctionDenied('admin status', functions.admin, { action: 'status' }, cookie)
 
