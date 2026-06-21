@@ -12,6 +12,7 @@ Security audit outcome:
 - Admin status and quiz responses were reduced to avoid unnecessary operational detail or per-question answer leakage.
 - Admin/progress logs now emit compact metadata instead of full payloads or learner user IDs.
 - Appwrite admin/progress functions no longer fall back to hardcoded endpoint/project config; missing runtime config fails closed.
+- Appwrite deploy workflow now syncs endpoint/project/API key variables into admin/progress functions so fail-closed runtime config works after deployment.
 
 Validation:
 - Local gates passed from repository root: `node scripts/check_secrets.mjs`, `npm --prefix frontend audit --json`, `npm --prefix frontend test`, `node scripts/validate_course_assets.mjs`, `node scripts/check_operational_risks.mjs`, `npm --prefix frontend run build`, and `node --check` for all Appwrite function entrypoints.
