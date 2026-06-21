@@ -7,7 +7,7 @@
     "entrypoint": "index.js",
     "commands": "",
     "execute": [
-      "any"
+      "users"
     ],
     "events": [],
     "schedule": "",
@@ -29,7 +29,7 @@
     "entrypoint": "index.js",
     "commands": "",
     "execute": [
-      "any"
+      "users"
     ],
     "events": [],
     "schedule": "",
@@ -51,7 +51,7 @@
     "entrypoint": "index.js",
     "commands": "",
     "execute": [
-      "any"
+      "users"
     ],
     "events": [],
     "schedule": "",

@@ -1,15 +1,8 @@
 import { Client, Databases, ID } from 'appwrite';
 
-const APPWRITE_ENDPOINT = import.meta.env.VITE_APPWRITE_ENDPOINT || 'https://fra.cloud.appwrite.io/v1';
-const APPWRITE_PROJECT_ID = import.meta.env.VITE_APPWRITE_PROJECT_ID || '6a0b2fc1001c380eeb26';
-const PUBLIC_SITE_URL = import.meta.env.VITE_PUBLIC_SITE_URL || 'https://mgenetica.github.io/mgenetica/';
-const DEFAULT_FUNCTION_IDS = {
-  courses: 'mgenetica_courses_fn',
-  quizzes: 'mgenetica_quizzes_fn',
-  progress: 'mgenetica_progress_fn',
-  auth: 'mgenetica_auth_fn',
-  admin: 'mgenetica_admin_fn'
-};
+const APPWRITE_ENDPOINT = import.meta.env.VITE_APPWRITE_ENDPOINT || '';
+const APPWRITE_PROJECT_ID = import.meta.env.VITE_APPWRITE_PROJECT_ID || '';
+const PUBLIC_SITE_URL = import.meta.env.VITE_PUBLIC_SITE_URL || '';
 
 const client = new Client()
   .setEndpoint(APPWRITE_ENDPOINT)
@@ -23,16 +16,23 @@ async function pingAppwrite() {
 }
 
 const functionIds = {
-  courses: import.meta.env.VITE_APPWRITE_FUNCTION_COURSES_ID || DEFAULT_FUNCTION_IDS.courses,
-  quizzes: import.meta.env.VITE_APPWRITE_FUNCTION_QUIZZES_ID || DEFAULT_FUNCTION_IDS.quizzes,
-  progress: import.meta.env.VITE_APPWRITE_FUNCTION_PROGRESS_ID || DEFAULT_FUNCTION_IDS.progress,
-  auth: import.meta.env.VITE_APPWRITE_FUNCTION_AUTH_ID || DEFAULT_FUNCTION_IDS.auth,
-  admin: import.meta.env.VITE_APPWRITE_FUNCTION_ADMIN_ID || DEFAULT_FUNCTION_IDS.admin
+  courses: import.meta.env.VITE_APPWRITE_FUNCTION_COURSES_ID || '',
+  quizzes: import.meta.env.VITE_APPWRITE_FUNCTION_QUIZZES_ID || '',
+  progress: import.meta.env.VITE_APPWRITE_FUNCTION_PROGRESS_ID || '',
+  auth: import.meta.env.VITE_APPWRITE_FUNCTION_AUTH_ID || '',
+  admin: import.meta.env.VITE_APPWRITE_FUNCTION_ADMIN_ID || ''
 };
 
+function assertAppwriteClientConfig() {
+  if (!APPWRITE_ENDPOINT || !APPWRITE_PROJECT_ID) {
+    throw new Error('Missing Appwrite frontend configuration. Set VITE_APPWRITE_ENDPOINT and VITE_APPWRITE_PROJECT_ID.');
+  }
+}
+
 async function executeFunction(functionId, payload = {}, { includeCredentials = true } = {}) {
+  assertAppwriteClientConfig();
   if (!functionId) {
-    throw new Error('Missing Appwrite function ID. Check frontend env vars or keep canonical IDs aligned with appwrite/functions.json.');
+    throw new Error('Missing Appwrite function ID. Check frontend env vars.');
   }
   const res = await fetch(`${APPWRITE_ENDPOINT}/functions/${functionId}/executions`, {
     method: 'POST',
@@ -89,6 +89,7 @@ function clearSessionFallback() {
 }
 
 async function callAccountApi(path, { method = 'GET', payload } = {}) {
+  assertAppwriteClientConfig();
   const url = `${APPWRITE_ENDPOINT}${path}`;
   const response = await fetch(url, {
     method,
@@ -177,8 +178,8 @@ async function getProgress(userId) {
   return executeFunction(functionIds.progress, { action: 'get', userId }, { includeCredentials: true });
 }
 
-async function updateProgress(courseId, progress = {}) {
-  return executeFunction(functionIds.progress, { action: 'update', courseId, ...progress }, { includeCredentials: true });
+async function updateProgress(courseId, answers = []) {
+  return executeFunction(functionIds.progress, { action: 'update', courseId, answers }, { includeCredentials: true });
 }
 
 async function getAuthCapabilities() {
@@ -214,7 +215,8 @@ function buildEmailVerificationUrl() {
     url.hash = 'verify-email';
     return url.toString();
   }
-  const base = PUBLIC_SITE_URL.endsWith('/') ? PUBLIC_SITE_URL : `${PUBLIC_SITE_URL}/`;
+  const baseUrl = PUBLIC_SITE_URL || 'https://www.mgenetica.com/';
+  const base = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
   return `${base}#verify-email`;
 }
 

@@ -133,12 +133,23 @@ function buildProgressSummary(usersPayload, adminEmails) {
   };
 }
 
-function makeStatusPayload(userEmail) {
+function makeStatusPayload(userEmail, userId) {
   const adminEmails = readAdminEmails();
   const adminIds = readAdminIds();
-  const { endpoint, projectId, apiKey } = currentAppwriteConfig();
-  return {
+  const { endpoint, apiKey } = currentAppwriteConfig();
+  const isAdmin = Boolean(userEmail && adminEmails.includes(userEmail)) || Boolean(userId && adminIds.includes(userId));
+  const basePayload = {
     ok: true,
+    user: {
+      authenticated: Boolean(userEmail),
+      isAdmin
+    }
+  };
+
+  if (!isAdmin) return basePayload;
+
+  return {
+    ...basePayload,
     capabilities: {
       auth: ['create-account', 'login', 'logout', 'get-account'],
       learner: ['list-courses', 'submit-quiz', 'track-progress'],
@@ -156,13 +167,9 @@ function makeStatusPayload(userEmail) {
       endpoint,
       adminApiConfigured: Boolean(apiKey)
     },
-    user: {
-      authenticated: Boolean(userEmail),
-      isAdmin: userEmail ? adminEmails.includes(userEmail) : false,
-      adminUserIdsConfigured: adminIds.length > 0
-    },
     checks: {
-      adminEmailsConfigured: adminEmails.length > 0
+      adminEmailsConfigured: adminEmails.length > 0,
+      adminUserIdsConfigured: adminIds.length > 0
     }
   };
 }
@@ -187,9 +194,7 @@ module.exports = async function (context) {
       return { status: 401, body: JSON.stringify(payload) };
     }
 
-    const statusPayload = makeStatusPayload(userEmail);
-    const isAdminById = adminIds.length > 0 && adminIds.includes(userId);
-    statusPayload.user.isAdmin = statusPayload.user.isAdmin || isAdminById;
+    const statusPayload = makeStatusPayload(userEmail, userId);
 
     if (action === 'status') {
       context.log(JSON.stringify(statusPayload));

@@ -57,7 +57,7 @@ export default function Quiz({ courseId, courseTitle, locale, onBack, onPersistR
       const payload = await submitQuiz(courseId, answers, locale)
       setResult(payload)
       if (onPersistResult) {
-        await onPersistResult(payload)
+        await onPersistResult(answers)
         setSaveState(t('quiz.progressSaved'))
       }
     } catch (err) {

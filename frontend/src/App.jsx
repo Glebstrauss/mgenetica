@@ -720,15 +720,8 @@ export default function App() {
     updateStatus('status.profileSaved')
     return account
   }
-  async function persistQuizResult(courseId, quizResult) {
-    const rawReport = await updateProgress(courseId, {
-      percent: quizResult?.total ? Math.round((Number(quizResult.score || 0) / Number(quizResult.total)) * 100) : 0,
-      quizScore: Number(quizResult.score || 0),
-      quizTotal: Number(quizResult.total || 0),
-      passMark: Number(quizResult.passMark || 0),
-      passed: Boolean(quizResult.passed),
-      lastSubmittedAt: new Date().toISOString()
-    })
+  async function persistQuizResult(courseId, answers) {
+    const rawReport = await updateProgress(courseId, answers)
     const report = isProgressReport(rawReport) ? rawReport : await refreshProgress(user)
     if (report) setProgressReport(report)
     updateStatus('status.progressSaved')

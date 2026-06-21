@@ -1,4 +1,7 @@
+const quizBank = require('./quiz-bank.generated.json');
+
 const PROGRESS_PREFS_KEY = 'mgeneticaProgress';
+const QUIZ_ATTEMPT_MIN_INTERVAL_MS = 30 * 1000;
 
 function parseBody(req) {
   const raw = req?.body ?? req?.payload ?? {};
@@ -76,27 +79,52 @@ function normalizePercent(value) {
   return Math.max(0, Math.min(100, Math.round(numeric)));
 }
 
-function sanitizeCourseRecord(courseId, input = {}, previous = null) {
+function getQuizByCourseId(courseId) {
+  if (!/^module-\d{2}$/.test(String(courseId || ''))) return null;
+  return quizBank.find((quiz) => quiz.id === courseId) || null;
+}
+
+function scoreQuiz(courseId, answers) {
+  const quiz = getQuizByCourseId(courseId);
+  if (!quiz) return { ok: false, status: 404, error: 'quiz_not_found', message: 'Quiz not found.' };
+  if (!Array.isArray(answers)) return { ok: false, status: 400, error: 'answers_required', message: 'answers is required.' };
+  if (answers.length !== quiz.questions.length) {
+    return { ok: false, status: 400, error: 'answers_length_mismatch', message: 'answers length does not match quiz.' };
+  }
+  const score = quiz.questions.reduce((total, question, index) => {
+    const selected = Number(answers[index]);
+    const validSelection = Number.isInteger(selected) && selected >= 0 && selected < question.options.length;
+    return total + (validSelection && selected === question.correct ? 1 : 0);
+  }, 0);
+  return {
+    ok: true,
+    score,
+    total: quiz.questions.length,
+    passMark: quiz.passMark,
+    passed: score >= quiz.passMark,
+    percent: normalizePercent((score / quiz.questions.length) * 100)
+  };
+}
+
+function shouldThrottleAttempt(previous = null, nowMs = Date.now()) {
+  const lastAttemptMs = Date.parse(previous?.lastSubmittedAt || previous?.updatedAt || '');
+  return Number.isFinite(lastAttemptMs) && nowMs - lastAttemptMs < QUIZ_ATTEMPT_MIN_INTERVAL_MS;
+}
+
+function sanitizeCourseRecord(courseId, scoreResult, previous = null) {
   const now = new Date().toISOString();
-  const percent = normalizePercent(input.percent);
-  const quizScore = Number.isFinite(Number(input.quizScore)) ? Number(input.quizScore) : null;
-  const quizTotal = Number.isFinite(Number(input.quizTotal)) ? Number(input.quizTotal) : null;
-  const passMark = Number.isFinite(Number(input.passMark)) ? Number(input.passMark) : null;
-  const passed = typeof input.passed === 'boolean' ? input.passed : percent >= 100;
   const previousAttempts = Number.isFinite(Number(previous?.attempts)) ? Number(previous.attempts) : 0;
-  const incrementAttempts = input.incrementAttempts !== false;
-  const attempts = incrementAttempts ? previousAttempts + 1 : Math.max(previousAttempts, 1);
 
   return {
     courseId,
-    percent,
-    quizScore,
-    quizTotal,
-    passMark,
-    passed,
-    attempts,
-    lastSubmittedAt: input.lastSubmittedAt || now,
-    completedAt: passed ? previous?.completedAt || input.completedAt || now : null,
+    percent: scoreResult.percent,
+    quizScore: scoreResult.score,
+    quizTotal: scoreResult.total,
+    passMark: scoreResult.passMark,
+    passed: scoreResult.passed,
+    attempts: previousAttempts + 1,
+    lastSubmittedAt: now,
+    completedAt: scoreResult.passed ? previous?.completedAt || now : null,
     updatedAt: now
   };
 }
@@ -182,7 +210,21 @@ module.exports = async function (context) {
         return { status: 400, body: JSON.stringify(payload) };
       }
 
-      const nextRecord = sanitizeCourseRecord(courseId, body, existingProgress.courses[courseId]);
+      const previousRecord = existingProgress.courses[courseId];
+      if (shouldThrottleAttempt(previousRecord)) {
+        const payload = { ok: false, error: 'rate_limited', message: 'Wait before submitting this quiz again.' };
+        context.log(JSON.stringify({ action, userId: user.id, courseId, error: payload.error }));
+        return { status: 429, body: JSON.stringify(payload) };
+      }
+
+      const scoreResult = scoreQuiz(courseId, body.answers);
+      if (!scoreResult.ok) {
+        const payload = { ok: false, error: scoreResult.error, message: scoreResult.message };
+        context.log(JSON.stringify({ action, userId: user.id, courseId, error: payload.error }));
+        return { status: scoreResult.status || 400, body: JSON.stringify(payload) };
+      }
+
+      const nextRecord = sanitizeCourseRecord(courseId, scoreResult, previousRecord);
       const nextProgress = {
         version: 1,
         updatedAt: nextRecord.updatedAt,

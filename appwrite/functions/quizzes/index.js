@@ -70,23 +70,17 @@ module.exports = async function (context) {
         return { status: 400, body: JSON.stringify(out) };
       }
 
-      const results = quiz.questions.map((question, index) => {
+      const score = quiz.questions.reduce((total, question, index) => {
         const selected = Number(body.answers[index]);
         const validSelection = Number.isInteger(selected) && selected >= 0 && selected < question.options.length;
-        return {
-          index: index + 1,
-          correct: validSelection && selected === question.correct,
-          selected: validSelection ? selected : null
-        };
-      });
-      const score = results.filter((item) => item.correct).length;
+        return total + (validSelection && selected === question.correct ? 1 : 0);
+      }, 0);
       const payload = {
         courseId,
         score,
         total: quiz.questions.length,
         passMark: quiz.passMark,
-        passed: score >= quiz.passMark,
-        results
+        passed: score >= quiz.passMark
       };
       context.log(JSON.stringify({ courseId, action, score, total: payload.total }));
       return { status: 200, body: JSON.stringify(payload) };
